@@ -1,0 +1,35 @@
+# Directory dell'IDE
+.idea/
+
+# Ambiente virtuale
+.venv/
+env/
+venv/
+
+# File compilati Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# File di log
+*.log
+
+# File di configurazione locali
+*.env
+*.ini
+*.cfg
+
+# File di database
+*.sqlite3
+
+# File generati da test
+.coverage
+*.cover
+*.py,cover
+.hypothesis/
+.tox/
+nosetests.xml
+coverage.xml
+*.egg-info/
+dist/
+build/
