@@ -3,3 +3,4 @@ spacy
 torch
 fastapi
 uvicorn
+sentencepiece

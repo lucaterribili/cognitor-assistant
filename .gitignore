@@ -33,3 +33,6 @@ coverage.xml
 *.egg-info/
 dist/
 build/
+data.json
+data/*
+!data/.gitkeep
