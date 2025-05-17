@@ -1,6 +1,6 @@
 import json
 
-from classes.DatasetGenerator import DatasetGenerator
+from classes.dataset_generator import DatasetGenerator
 
 with open("data.json", 'r', encoding='utf-8') as file:
     data = json.load(file)

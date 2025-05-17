@@ -4,3 +4,8 @@ torch
 fastapi
 uvicorn
 sentencepiece
+pandas
+scikit-learn
+fasttext
+nlpaug
+nltk
