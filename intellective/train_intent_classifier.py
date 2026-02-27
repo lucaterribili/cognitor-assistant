@@ -6,10 +6,10 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
 from torch.nn.utils.rnn import pad_sequence
-import sentencepiece as spm
+import fasttext
 from tqdm import tqdm
 
-from config import BASE_DIR, TOKENIZER_PATH
+from config import BASE_DIR
 from intellective.intent_classifier import IntentClassifier
 
 
@@ -58,7 +58,6 @@ def train_model(model, dataloader, epochs, lr, device):
 
 
 def train_main_model():
-    # Controlla disponibilità di CUDA
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Dispositivo in uso: {device}")
 
@@ -72,17 +71,17 @@ def train_main_model():
     dataset = IntentDataset(npy_path)
     dataloader = DataLoader(dataset, batch_size=8, shuffle=True, collate_fn=collate_fn)
 
-    sp = spm.SentencePieceProcessor()
-    sp.Load(TOKENIZER_PATH)
+    fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
+    ft_model = fasttext.load_model(fasttext_model_path)
+    vocab_size = len(ft_model.words)
 
     model = IntentClassifier(
-        vocab_size=sp.vocab_size(),
+        vocab_size=vocab_size,
         embed_dim=300,
         hidden_dim=256,
         output_dim=intents_number,
         dropout_prob=0.3,
-        sp_model_path=TOKENIZER_PATH,
-        fasttext_model_path=os.path.join(BASE_DIR, 'models', 'fasttext_model.bin'),
+        fasttext_model_path=fasttext_model_path,
         freeze_embeddings=True
     )
     model.to(device)

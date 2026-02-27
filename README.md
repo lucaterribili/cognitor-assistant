@@ -140,7 +140,7 @@ Genera `models/intent_model_fast.pth`.
 
 - torch
 - fasttext
-- sentencepiece
+- spacy
 - numpy
 - tqdm
 - nltk

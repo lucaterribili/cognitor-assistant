@@ -1,16 +1,17 @@
 import json
 import os
 import torch
+import fasttext
 
-from config import TOKENIZER_PATH, BASE_DIR
+from config import BASE_DIR
 from intellective.intent_classifier import IntentClassifier
-import sentencepiece as spm
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Device: {device}")
 
-sp = spm.SentencePieceProcessor()
-sp.Load(TOKENIZER_PATH)
+fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
+ft_model = fasttext.load_model(fasttext_model_path)
+vocab_size = len(ft_model.words)
 
 intent_dict_path = os.path.join(BASE_DIR, 'data', 'intent_dict.json')
 
@@ -21,19 +22,17 @@ with open(intent_dict_path, 'r') as f:
 model_path = os.path.join(BASE_DIR, 'models', 'intent_model_fast.pth')
 
 model = IntentClassifier(
-    vocab_size=sp.vocab_size(),
+    vocab_size=vocab_size,
     embed_dim=300,
     hidden_dim=256,
     output_dim=intents_number,
     dropout_prob=0.3,
-    sp_model_path=TOKENIZER_PATH,
-    fasttext_model_path=os.path.join(BASE_DIR, 'models', 'fasttext_model.bin'),
+    fasttext_model_path=fasttext_model_path,
     freeze_embeddings=True
 )
 model.load_state_dict(torch.load(model_path, map_location=device))
 model.to(device)
 model.eval()
-
 
 
 def predict(sentence_ids):
@@ -49,10 +48,8 @@ while True:
         print("Terminato.")
         break
 
-    # Tokenizza l'input con SentencePiece
-    tokenized_input = sp.EncodeAsIds(user_input)
+    tokenized_input = model.tokenize(user_input)
 
-    # Usa la funzione predict per ottenere la previsione
     prediction = predict(tokenized_input)
 
     print(f"Predizione: {intent_dict[str(prediction)]}")

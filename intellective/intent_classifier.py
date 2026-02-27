@@ -2,7 +2,9 @@ import torch.nn as nn
 import torch
 import torch.nn.functional as F
 import fasttext
-from sentencepiece import SentencePieceProcessor  # Per il tokenizer
+import os
+from config import BASE_DIR
+from classes.simple_tokenizer import SimpleTokenizer
 
 
 class Attention(nn.Module):
@@ -24,33 +26,25 @@ class IntentClassifier(nn.Module):
             hidden_dim,
             output_dim,
             dropout_prob,
-            sp_model_path,  # Percorso al modello SentencePiece
-            fasttext_model_path,  # Percorso al modello FastText (.bin o .vec)
-            freeze_embeddings=False,  # Se congelare gli embedding durante il training
+            fasttext_model_path,
+            freeze_embeddings=False,
     ):
         super(IntentClassifier, self).__init__()
 
-        # Carica SentencePiece
-        self.sp_model = SentencePieceProcessor()
-        self.sp_model.Load(sp_model_path)
-        # Carica FastText
+        self.tokenizer = SimpleTokenizer(fasttext_model_path)
         self.ft_model = fasttext.load_model(fasttext_model_path)
 
-
         embedding_matrix = torch.zeros((vocab_size, embed_dim))
-        for i in range(vocab_size):
-            token = self.sp_model.IdToPiece(i)
+        vocab_tokens = self.ft_model.words[:vocab_size]
+
+        for i, token in enumerate(vocab_tokens):
             embedding_matrix[i] = torch.tensor(self.ft_model.get_word_vector(token))
 
-        # Crea il layer di embedding
         self.embedding = nn.Embedding.from_pretrained(
             embedding_matrix,
-            freeze=freeze_embeddings,  # Se True, gli embedding non vengono aggiornati
+            freeze=freeze_embeddings,
         )
 
-        #self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
-
-        # Resto del modello
         self.bigru = nn.GRU(
             embed_dim,
             hidden_dim,
@@ -68,3 +62,7 @@ class IntentClassifier(nn.Module):
         out = self.dropout(attn_out)
         out = self.fc(out)
         return out
+
+    def tokenize(self, text):
+        tokens = self.tokenizer(text)
+        return [self.tokenizer.get_word_index(token) for token in tokens]
