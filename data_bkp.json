@@ -1,0 +1,140 @@
+{
+  "nlu": {
+    "intents": [
+      {
+        "intent": "musica",
+        "examples": [
+          "riproduci una canzone", "metti musica", "play", "collegati a spotify",
+          "riproduci artist", "voglio sentire musica", "metti una canzone", "riproduci",
+          "musica", "play music", "ascolta", "cantami una canzone", "metti i Beatles",
+          "riproduci jazz", "musica classica", "playlist", "radio", "shuffle", "next",
+          "previous", "stop", "pausa", "riprendi", "volume su", "volume giù", "mute",
+          "canzone successiva", "canzone precedente", "artista", "album", "genere",
+          "rock", "pop", "jazz", "classica", "hip hop", "electronic", "dance"
+        ]
+      },
+      {
+        "intent": "timer",
+        "examples": [
+          "imposta un timer", "timer", "minuti", "ore", "quanto tempo", "conto alla rovescia",
+          "ricordami tra", "svegliami tra", "allarme", "alert", "promemoria", "ricorda",
+          "ricordami", "tra quanto", "fra quanto", "in quanto", "tempo rimanente",
+          "durata", "tempo", "secondi", "minuti", "orologio", "che ore sono", "orario"
+        ]
+      },
+      {
+        "intent": "calcolo",
+        "examples": [
+          "calcola", "quanto fa", "quanto è", "conta", "somma", "differenza", "prodotto",
+          "quoziente", "addizione", "sottrazione", "moltiplicazione", "divisione",
+          "percentuale", "radice quadrata", "elevato a", "potenza", "logaritmo",
+          "tabellina", "quanto fa due più due", "calcola", "computa", "conta fino a"
+        ]
+      },
+      {
+        "intent": "traduzione",
+        "examples": [
+          "traduci", "traduzione", "come si dice", "traduci in", "ingles", "francese",
+          "tedesco", "spagnolo", "portoghese", "russo", "cinese", "giapponese", "coreano",
+          "arabo", "ebraico", "latino", "traduci questa frase", "cosa significa",
+          "significato", "traduzione di", "traduci in inglese", "traduci in italiano",
+          "come si dice in", "traduci questa parola", "tradurmi", "interpreta"
+        ]
+      },
+      {
+        "intent": "notizie",
+        "examples": [
+          "notizie", "news", "ultime notizie", "giornali", "stampa", "telegiornale",
+          "tg", "attualità", "eventi", "novità", "cosa è successo", "cosa succede",
+          "informazioni di oggi", "notizie di oggi", "cronaca", "politica", "economia",
+          "sport", "tecnologia", "scienza", "cultura", "spettacolo", "gossip",
+          "meteo notizie", "traffico", "viabilità", "esteri", "italia", "mondo"
+        ]
+      },
+      {
+        "intent": "promemoria",
+        "examples": [
+          "ricordami di", "promemoria", "non dimenticare", "segnalami", "fammi sapere",
+          "ricordami", "memo", "note", "appunti", "annotazione", "scrivilo", "salva",
+          "memorizza", "tieni a mente", "non scordare", "raccogli", "trascrivi",
+          "appunto", "nota", "record", "mark", "flag", "alert me", "remind me"
+        ]
+      },
+      {
+        "intent": "chat",
+        "examples": [
+          "parlami", "chi sei", "come ti chiami", "cosa fai", "descrizione",
+          "raccontami qualcosa", "curiosità", "barzelletta", "battuta", "humor",
+          "fatti", "aneddoto", "storia", "cosa ti piace", "hobby", "interessi",
+          " parliamo", "conversiamo", "chi sei", "da dove vieni", "quanti anni hai"
+        ]
+      },
+      {
+        "intent": "controllo",
+        "examples": [
+          "accendi", "spegni", "apri", "chiudi", "attiva", "disattiva", "enable",
+          "disable", "on", "off", "apri il", "chiudi il", "lucchetto", "serratura",
+          "porta", "finestra", "luce", "luci", "televisore", "tv", "radio", "termostato",
+          " temperatura", "condizionatore", "ventilatore", "cancello", "garage",
+          "allarme", "sensore", "camera", "videocitofono", "domotica", "smart home"
+        ]
+      },
+      {
+        "intent": "lista",
+        "examples": [
+          "lista", "elenco", "crea lista", "aggiungi", "rimuovi", "togli", "compra",
+          "spesa", "carrello", "cose da fare", "todo", "task", "impegni", "appuntamenti",
+          "eventi", "promemoria", "note", "memo", "scrivi", "aggiungi alla lista",
+          "togli dalla lista", "mostrami la lista", "leggi la lista", "elenco cose"
+        ]
+      },
+      {
+        "intent": "email",
+        "examples": [
+          "email", "mail", "messaggio", "invia", "scrivi", "leggi", "posta",
+          "gmail", "casella", "mittente", "destinatario", "oggetto", "corpo",
+          "allegato", "inbox", "spam", "bozza", "invia email", "leggi email",
+          "nuovo messaggio", "rispondi", "inoltra", "elimina", "archivia"
+        ]
+      },
+      {
+        "intent": "navigazione",
+        "examples": [
+          "navigazione", "mappa", "mappe", "google maps", "indicazioni", "percorso",
+          "direzione", "gps", "dove si trova", "come arrivare", "indirizzo",
+          "coordinate", "latitudine", "longitudine", "chilometri", "tempo di percorrenza",
+          "traffico", "strada", "autostrada", "uscita", "casello", "pedaggio",
+          "percorsi alternativi", "punto di interesse", "poi", "ristorante", "hotel",
+          "benzinaio", "parcheggio", "stazione", "aeroporto"
+        ]
+      },
+      {
+        "intent": "risposta",
+        "examples": [
+          "rispondi", "risposta", "cosa", "quando", "dove", "perché", "come",
+          "chi", "quanto", "quanti", "quale", "quali", "spiegami", "dimmi",
+          "sai dirmi", "vorrei sapere", "informami", "fammi sapere", "qual è",
+          "quali sono", "mi sai dire", "puoi dirmi", "rispondimi", "spiegazione"
+        ]
+      },
+      {
+        "intent": "conferma",
+        "examples": [
+          "ok", "si", "sì", "certo", "conferma", "approva", "accetta", "confermo",
+          "va bene", "d'accordo", "perfetto", "ok va bene", "va bene così",
+          "procedi", "continua", "fatto", "confermato", "positivo", "affermativo",
+          "esatto", "giusto", "corretto", "apposto", "tutto a posto"
+        ]
+      },
+      {
+        "intent": "negazione",
+        "examples": [
+          "no", "non", "niente", "mai", "nessuno", "negativo", "rifiuta", "rifiuto",
+          "annulla", "annullare", "no grazie", "non ora", "non voglio", "non mi serve",
+          "non lo so", "non capisco", "non intendevo", "scusa no", "cancella",
+          "elimina", "togliti", "basta", "stop", "fermo"
+        ]
+      }
+    ]
+  }
+}

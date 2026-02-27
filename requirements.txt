@@ -9,3 +9,5 @@ scikit-learn
 fasttext
 nlpaug
 nltk
+
+fasttext-wheel

@@ -1,0 +1,65 @@
+version: "3.1"
+
+nlu:
+  - intent: ask_capital
+    examples: |
+      - Qual è la capitale della [Francia](country)?
+      - Qual è la capitale dell'[Egitto](country)?
+      - Dove si trova la capitale dell'[Italia](country)?
+      - Qual è la capitale della [Spagna](country)?
+      - Qual è la capitale del [Congo](country)?      
+      - Mi dici la capitale della [Germania](country)?
+      - Qual è la capitale del [Giappone](country)?
+      - Dove si trova la capitale degli [Stati Uniti](country)?
+      - Cos'è la capitale di [Brasile](country)?
+      - Qual è la capitale del [Canada](country)?
+      - Qual è la capitale dell'[India](country)?
+      - Dove si trova la capitale della [Russia](country)?
+      - La capitale della [Francia](country)?
+      - Puoi dirmi qual è la capitale dell'[Argentina](country)?
+      - Dimmi la capitale dell'[Ucraina](country)
+      - In quale città si trova la capitale dell'[Australia](country)?
+      - La capitale di [Israele](country) è Gerusalemme o Tel Aviv?
+      - Qual è la capitale della [Repubblica Islamica dell'Iran](country)?
+      - La capitale del [Kazakistan](country) è Nur-Sultan o Almaty?
+      - Qual è la capitale della [Repubblica Popolare Cinese](country)?
+
+  - intent: ask_city_touristic_information
+    examples: |
+      - Quali sono le principali attrazioni di [Roma](city)?
+      - Cosa posso visitare a [Parigi](city)?
+      - Quali sono i luoghi imperdibili a [Londra](city)?
+      - Mi consigli qualcosa da vedere a [Milano](city)?
+      - Cosa c'è di interessante da fare a [Berlino](city)?
+      - Puoi suggerirmi attrazioni turistiche a [Firenze](city)?
+      - Quali musei posso visitare a [New York](city)?
+      - Mi puoi dire le cose più famose da vedere a [Barcellona](city)?
+      - Quali monumenti ci sono a [Venezia](city)?
+      - Dove posso trovare i punti di interesse di [Amsterdam](city)?
+      - Quali tour turistici ci sono a [Tokyo](city)?
+      - C'è qualcosa di storico da visitare a [Atene](city)?
+      - Qual è l'attrazione più famosa di [Dubai](city)?
+      - Mi puoi dire cosa visitare vicino a [Madrid](city)?
+      - Quali posti devo assolutamente vedere a [Toronto](city)?
+      - Quali sono i migliori quartieri da esplorare a [Sydney](city)?
+      - Consigli luoghi panoramici a [Rio de Janeiro](city)?
+      - Qual è il posto più fotografato a [Praga](city)?
+      - Quali eventi culturali posso trovare a [Istanbul](city)?
+      - Mi puoi aiutare a pianificare una visita a [Mosca](city)?
+      - Cosa posso visitare a [San Pietroburgo](city)?
+      - Dimmi qualche idea per un viaggio a [Civita di Bagnoregio](city)
+
+  - intent: ask_touristic_place_information
+    examples: |
+      - Dove si trova la [tomba di Napoleone](touristic_place)?
+      - Quali sono gli orari del [Louvre](touristic_place)?
+      - Dove si trova la casa di [Gabriele D'Annunzio](touristic_place)?
+      - Parlami del [Colosseo](touristic_place)
+      - Cosa posso visitare a [Machu Picchu](touristic_place)?
+      - Cosa puoi dirmi sulla [Torre Eiffel](touristic_place)?
+      - Quali informazioni hai sulla [Piramide di Cheope](touristic_place)?
+      - Dove si trova il [Museo Egizio](touristic_place)?
+      - Quali sono gli orari per visitare la [Reggia di Versailles](touristic_place)?
+      - Hai informazioni sul [Castello di Neuschwanstein](touristic_place)?
+      - Raccontami qualcosa sulla [Basilica di San Pietro](touristic_place)
+      

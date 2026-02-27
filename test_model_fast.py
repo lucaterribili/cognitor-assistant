@@ -6,6 +6,9 @@ from config import TOKENIZER_PATH, BASE_DIR
 from intellective.intent_classifier import IntentClassifier
 import sentencepiece as spm
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Device: {device}")
+
 sp = spm.SentencePieceProcessor()
 sp.Load(TOKENIZER_PATH)
 
@@ -27,16 +30,15 @@ model = IntentClassifier(
     fasttext_model_path=os.path.join(BASE_DIR, 'models', 'fasttext_model.bin'),
     freeze_embeddings=True
 )
-
-pretrained = torch.load(model_path, map_location="cuda" if torch.cuda.is_available() else "cpu")
-model.load_state_dict(pretrained, strict=False)
+model.load_state_dict(torch.load(model_path, map_location=device))
+model.to(device)
+model.eval()
 
 
 
 def predict(sentence_ids):
-    model.eval()
     with torch.no_grad():
-        tokens = torch.tensor(sentence_ids, dtype=torch.long).unsqueeze(0)
+        tokens = torch.tensor(sentence_ids, dtype=torch.long).unsqueeze(0).to(device)
         output = model(tokens)
         return torch.argmax(output, dim=1).item()
 
@@ -53,4 +55,4 @@ while True:
     # Usa la funzione predict per ottenere la previsione
     prediction = predict(tokenized_input)
 
-    print(f"Predizione: {prediction}")
+    print(f"Predizione: {intent_dict[str(prediction)]}")

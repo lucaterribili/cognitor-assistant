@@ -2,16 +2,20 @@ import fasttext
 import os
 from config import BASE_DIR
 
-# Modello Skip-gram (alternativa: CBOW con model='cbow')
-model = fasttext.train_unsupervised(
-    input=os.path.join(BASE_DIR, 'data', 'fast-text.txt'),
-    model='skipgram',    # 'skipgram' o 'cbow'
-    dim=300,             # Dimensione degli embedding
-    epoch=20,            # Numero di epoche
-    lr=0.1,             # Learning rate
-    minCount=3,          # Ignora parole con meno di 3 occorrenze
-    wordNgrams=2         # Considera bigrammi
-)
+def train_embedder():
 
-# Salva il modello
-model.save_model("fasttext_model.bin")
+    MODEL_PATH = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
+
+    model = fasttext.train_unsupervised(
+        input=os.path.join(BASE_DIR, 'data', 'fast-text.txt'),
+        model='skipgram',
+        dim=300,
+        epoch=20,
+        lr=0.1,
+        minCount=1,  # <- abbassa a 1, i subword sono rari
+        wordNgrams=1  # <- abbassa a 1, i subword sono già n-gram
+    )
+
+
+    model.save_model(MODEL_PATH)
+    print(f"Modello FastText salvato in: {MODEL_PATH}")

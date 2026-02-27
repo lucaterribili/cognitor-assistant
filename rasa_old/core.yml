@@ -1,0 +1,154 @@
+version: "3.1"
+
+nlu:
+- intent: request_names
+  examples: |
+    - i want to give you my name
+    - give name
+    - you need to know my name
+    - do you know my name?
+
+- intent: insult
+  examples: |
+    - sei stupido
+    - vai a quel paese
+    - che idiota
+    - scemo
+    - sei una merda
+    - vaffanculo
+    - stronzo
+    - imbecille
+    - rotto in culo
+    - testa di cazzo
+    - cazzone
+    - vattene a fanculo
+    - succhiacazzi
+    - tua madre è una puttana
+    - quanto sei stronzo
+    - quanto sei frocio
+    - sei proprio stronzo
+    - vai a fare in culo
+    - vai a cagare
+    - fottiti
+    - brutto stronzo
+    - merda di cane
+
+- intent: compliment
+  examples: |
+    - sei fantastico
+    - sei bravissimo
+    - che genio
+    - sei il migliore
+    - sei un grande
+    - incredibile quanto sei bravo
+    - sei un campione
+    - complimenti, davvero
+    - sei troppo forte
+    - sei eccezionale
+    - bravissimo
+    - ottimo lavoro
+    - sei incredibile
+    - sei grandioso
+    - fantastico lavoro
+    - sei geniale
+    - bravissimo, davvero
+    - che spettacolo
+    - grazie, sei un angelo
+    - grazie mille, sei il top    
+
+- intent: greet
+  examples: |
+    - ciao
+    - salve
+    - buongiorno
+    - buonasera
+    - ciao a te
+    - hey amico
+    - buon giorno
+    - buona sera
+    - buon pomeriggio
+
+- intent: goodbye
+  examples: |
+    - ci vediamo
+    - arrivederci
+    - ci vediamo dopo
+    - buona notte
+    - addio
+    - buona giornata
+    - ci sentiamo
+    - a presto
+    - ciao ciao
+
+- intent: affirm
+  examples: |
+    - si
+    - ok, procediamo
+    - va bene
+    - certamente
+
+- intent: deny
+  examples: |
+    - no
+    - no, grazie
+
+- intent: stop
+  examples: |
+    - fermati
+    - annulla
+    - stop
+    - interrompi
+
+- intent: ask_name
+  examples: |
+    - come ti chiami?
+    - qual è il tuo nome?
+    - puoi dirmi il tuo nome?
+    - chi sei?
+    - chi ti ha creato?
+
+- intent: thank_you
+  examples: |
+    - grazie
+    - grazie mille
+    - ti ringrazio
+    - grazie di tutto
+    - grazie infinite
+    - grazie tante
+    - grazie per l'aiuto
+    - ti sono grato
+    - grazie per il supporto
+    - molte grazie
+    - un grande grazie
+    - ti ringrazio tanto
+    - ti sono davvero grato   
+
+- intent: mood_great
+  examples: |
+    - Sto bene, grazie.
+    - Molto bene.
+    - Sono felice.
+    - Sono di ottimo umore.
+    - Bene, grazie.
+
+- intent: mood_unhappy
+  examples: |
+    - la mia giornata è stata orribile
+    - sono triste
+    - non mi sento molto bene
+    - sono deluso
+    - super triste
+    - sono così triste
+    - molto triste
+    - infelice
+    - non va bene
+    - non molto bene
+    - estremamente triste
+    - così triste
+
+- intent: bot_challenge
+  examples: |
+    - sei un bot?
+    - sei un umano?
+    - sto parlando con un bot?
+    - sto parlando con un umano?

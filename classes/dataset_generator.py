@@ -33,12 +33,51 @@ class DatasetGenerator:
             writer = csv.writer(csv_file)
             writer.writerow(['INPUT', 'OUTPUT'])
 
+            seen = set()
             for intent_id, intent in intent_dict.items():
-                for example in next(item['examples'] for item in intents_data if item['intent'] == intent):
-                    writer.writerow([example, intent_id])
-                    writer.writerow([self.normalizer.normalize(example), intent_id])
+                examples = next(item['examples'] for item in intents_data if item['intent'] == intent)
+                for example in examples:
+                    normalized = self.normalizer.normalize(example)
+                    for text in [example, normalized]:
+                        if text and text not in seen:
+                            seen.add(text)
+                            writer.writerow([text, intent_id])
 
         self.tokenize_and_save_npy(csv_path)
+        self.generate_fasttext_corpus()
+
+    def generate_fasttext_corpus(self):
+        fasttext_path = os.path.join(self.data_path, 'fast-text.txt')
+        training_phrases_path = os.path.join(BASE_DIR, 'training_data', 'fasttext_phrases.txt')
+        nlu_data = self.data['nlu']
+        intents_data = nlu_data['intents']
+
+        seen = set()
+        lines_to_write = []
+
+        for intent in intents_data:
+            for example in intent['examples']:
+                normalized = self.normalizer.normalize(example)
+                for text in [example, normalized]:
+                    if text and text not in seen:
+                        seen.add(text)
+                        lines_to_write.append(text)
+
+        if os.path.exists(training_phrases_path):
+            print(f"Merge con frasi da: {training_phrases_path}")
+            with open(training_phrases_path, mode='r', encoding='utf-8') as phrases_file:
+                for line in phrases_file:
+                    line = line.strip()
+                    if line and line not in seen:
+                        seen.add(line)
+                        lines_to_write.append(line)
+
+        with open(fasttext_path, mode='w', encoding='utf-8') as f:
+            for text in lines_to_write:
+                tokens = self.sp_model.EncodeAsPieces(text)
+                f.write(" ".join(tokens) + "\n")
+
+        print(f"FastText corpus salvato in: {fasttext_path}")
 
     def tokenize_and_save_npy(self, csv_path):
         """

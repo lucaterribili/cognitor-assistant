@@ -27,7 +27,7 @@ class IntentDataset(Dataset):
 
 def collate_fn(batch):
     sentences, labels = zip(*batch)
-    sentences_padded = pad_sequence(sentences, batch_first=True, padding_value=0)
+    sentences_padded = pad_sequence(list(sentences), batch_first=True, padding_value=0)
     labels = torch.stack(labels)
     return sentences_padded, labels
 
@@ -57,7 +57,7 @@ def train_model(model, dataloader, epochs, lr, device):
         print(f"Epoch {epoch + 1}/{epochs}, Loss: {avg_loss}")
 
 
-def main():
+def train_main_model():
     # Controlla disponibilità di CUDA
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Dispositivo in uso: {device}")
@@ -87,9 +87,9 @@ def main():
     )
     model.to(device)
 
-    train_model(model, dataloader, epochs=15, lr=0.001, device=device)
+    train_model(model, dataloader, epochs=50, lr=0.001, device=device)
 
-    torch.save(model.state_dict(), "../models/intent_model_fast.pth")
+    torch.save(model.state_dict(), os.path.join(BASE_DIR, 'models', 'intent_model_fast.pth'))
 
     def predict(sentence_ids):
         model.eval()
@@ -97,11 +97,3 @@ def main():
             tokens = torch.tensor(sentence_ids, dtype=torch.long).unsqueeze(0).to(device)
             output = model(tokens)
             return torch.argmax(output, dim=1).item()
-
-    # Esempi di predizione
-    print(predict([1, 23, 45]))  # Esempio di input tokenizzato
-    print(predict([12, 67, 89]))
-
-
-if __name__ == "__main__":
-    main()

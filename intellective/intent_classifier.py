@@ -36,7 +36,7 @@ class IntentClassifier(nn.Module):
         # Carica FastText
         self.ft_model = fasttext.load_model(fasttext_model_path)
 
-        # Inizializza la matrice di embedding con FastText
+
         embedding_matrix = torch.zeros((vocab_size, embed_dim))
         for i in range(vocab_size):
             token = self.sp_model.IdToPiece(i)
@@ -47,6 +47,8 @@ class IntentClassifier(nn.Module):
             embedding_matrix,
             freeze=freeze_embeddings,  # Se True, gli embedding non vengono aggiornati
         )
+
+        #self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
 
         # Resto del modello
         self.bigru = nn.GRU(
