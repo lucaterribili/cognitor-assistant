@@ -10,21 +10,22 @@ import fasttext
 
 from config import BASE_DIR
 from intellective.intent_classifier import IntentClassifier
+from agent.session_manager import SessionManager
 
 
 class Agent:
     def __init__(self):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.base_dir = BASE_DIR
+        self.session_manager = SessionManager()
+        self.current_session_id = None
         
         self.fasttext_model_path = os.path.join(self.base_dir, 'models', 'fasttext_model.bin')
         self.intent_dict_path = os.path.join(self.base_dir, 'data', 'intent_dict.json')
         self.model_path = os.path.join(self.base_dir, 'models', 'intent_model_fast.pth')
         
-        self.rules_base_path = os.path.join(self.base_dir, 'knowledge', 'rules', 'base.json')
-        self.rules_domain_path = os.path.join(self.base_dir, 'knowledge', 'rules', 'domain.json')
-        self.responses_base_path = os.path.join(self.base_dir, 'knowledge', 'responses', 'base.json')
-        self.responses_domain_path = os.path.join(self.base_dir, 'knowledge', 'responses', 'domain.json')
+        self.rules_base_path = os.path.join(self.base_dir, 'knowledge', 'rules')
+        self.responses_base_path = os.path.join(self.base_dir, 'knowledge', 'responses')
         
         self.model = None
         self.intent_dict = None
@@ -72,21 +73,22 @@ class Agent:
     def load_knowledge(self):
         print("Caricamento rules e responses...")
         
-        with open(self.rules_base_path, 'r') as f:
-            rules_base = json.load(f)
-            self.rules.update(rules_base.get('rules', {}))
+        rules_dir = os.path.join(self.base_dir, 'knowledge', 'rules')
+        responses_dir = os.path.join(self.base_dir, 'knowledge', 'responses')
         
-        with open(self.rules_domain_path, 'r') as f:
-            rules_domain = json.load(f)
-            self.rules.update(rules_domain.get('rules', {}))
+        for filename in os.listdir(rules_dir):
+            if filename.endswith('.json'):
+                file_path = os.path.join(rules_dir, filename)
+                with open(file_path, 'r') as f:
+                    rules_data = json.load(f)
+                    self.rules.update(rules_data.get('rules', {}))
         
-        with open(self.responses_base_path, 'r') as f:
-            responses_base = json.load(f)
-            self.responses.update(responses_base.get('responses', {}))
-        
-        with open(self.responses_domain_path, 'r') as f:
-            responses_domain = json.load(f)
-            self.responses.update(responses_domain.get('responses', {}))
+        for filename in os.listdir(responses_dir):
+            if filename.endswith('.json'):
+                file_path = os.path.join(responses_dir, filename)
+                with open(file_path, 'r') as f:
+                    responses_data = json.load(f)
+                    self.responses.update(responses_data.get('responses', {}))
         
         print(f"✓ Caricate {len(self.rules)} rules e {len(self.responses)} response keys")
     
@@ -117,9 +119,14 @@ class Agent:
         }
     
     def chat(self):
+        self.current_session_id = self.session_manager.create_session()
+        session = self.session_manager.get_session(self.current_session_id)
+        
         print("\n" + "="*50)
         print("🤖 ARIANNA AGENT - Interfaccia Testuale")
         print("="*50)
+        print(f"📋 Session ID: {self.current_session_id}")
+        print(f"📊 Sessioni attive: {len(self.session_manager.get_active_sessions())}")
         print("Scrivi un messaggio (o 'esci' per terminare)\n")
         
         while True:
@@ -144,6 +151,11 @@ class Agent:
             
             response = self.get_response(prediction['intent'])
             print(f"\n🤖 Arianna: {response}\n")
+            
+            session.add_message("user", user_input, prediction['intent'], prediction.get('entities', []))
+            session.add_message("assistant", response, prediction['intent'])
+            
+            print(f"💾 Cronologia: {len(session.history)} messaggi | Contesto: {session.context}")
 
 
 def main():

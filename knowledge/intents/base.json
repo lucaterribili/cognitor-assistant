@@ -75,7 +75,6 @@
           "a dopo",
           "a più tardi",
           "buonasera",
-          "ciao ciao",
           "alla prossima",
           "ci sentiamo",
           "buona serata",
@@ -83,7 +82,6 @@
           "a [domani](DATE) vado da [Mario](PERSON)",
           "notte",
           "dormi bene",
-          "ciao amico",
           "grazie ciao",
           "ora vado",
           "me ne vado",
@@ -96,7 +94,6 @@
           "a [stasera](TIME)",
           "buonanotte amico",
           "vado a dormire",
-          "ciao a te",
           "addio amico mio",
           "alla prossima volta",
           "ci sentiamo presto",
@@ -567,6 +564,8 @@
       {
         "intent": "ask_city_touristic_information",
         "examples": [
+          "Voglio andare a [Malaga](LOCATION)",
+          "Voglio visitare la [Russia](LOCATION)",
           "Quali sono le principali attrazioni di [Roma](LOCATION)",
           "Cosa posso visitare a [Parigi](LOCATION)",
           "Quali sono i luoghi imperdibili a [Londra](LOCATION)",
