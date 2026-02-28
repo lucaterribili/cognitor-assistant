@@ -21,40 +21,107 @@ class IntentDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx):
-        tokenized_input, output_id = self.data[idx]
-        return torch.tensor(tokenized_input, dtype=torch.long), torch.tensor(output_id[0], dtype=torch.long)
+        item = self.data[idx]
+        tokenized_input = item[0]
+        output_id = item[1][0]
+        ner_tags = item[2] if len(item) > 2 else [0] * len(tokenized_input)  # Default: tutti tag O
+
+        return (
+            torch.tensor(tokenized_input, dtype=torch.long),
+            torch.tensor(output_id, dtype=torch.long),
+            torch.tensor(ner_tags, dtype=torch.long)
+        )
 
 
 def collate_fn(batch):
-    sentences, labels = zip(*batch)
+    sentences, labels, ner_tags_list = zip(*batch)
+
+    # Padding delle sequenze
     sentences_padded = pad_sequence(list(sentences), batch_first=True, padding_value=0)
+    ner_tags_padded = pad_sequence(list(ner_tags_list), batch_first=True, padding_value=0)
+
+    # Crea maschere di padding (True per token validi, False per padding)
+    masks = pad_sequence([torch.ones(len(s), dtype=torch.bool) for s in sentences],
+                        batch_first=True, padding_value=False)
+
     labels = torch.stack(labels)
-    return sentences_padded, labels
+
+    return sentences_padded, labels, ner_tags_padded, masks
 
 
-def train_model(model, dataloader, epochs, lr, device):
-    criterion = nn.CrossEntropyLoss()
+def train_model(model, dataloader, epochs, lr, device, intent_weight=1.0, ner_weight=0.5, patience=10):
+    intent_criterion = nn.CrossEntropyLoss()
     optimizer = optim.AdamW(model.parameters(), lr=lr)
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=2)
+
+    # Early stopping variables
+    best_loss = float('inf')
+    patience_counter = 0
+    best_model_state = None
 
     for epoch in range(epochs):
         print(f"Epoch {epoch + 1}/{epochs}")
         epoch_progress = tqdm(dataloader, desc="Training", leave=False)
         model.train()
         total_loss = 0
-        for inputs, labels in epoch_progress:
-            inputs, labels = inputs.to(device), labels.to(device)
+        total_intent_loss = 0
+        total_ner_loss = 0
+
+        for inputs, intent_labels, ner_tags, masks in epoch_progress:
+            inputs = inputs.to(device)
+            intent_labels = intent_labels.to(device)
+            ner_tags = ner_tags.to(device)
+            masks = masks.to(device)
+
             optimizer.zero_grad()
-            outputs = model(inputs)
-            loss = criterion(outputs, labels)
+
+            # Forward pass con NER tags per training
+            intent_logits, ner_loss = model(inputs, ner_tags=ner_tags, mask=masks)
+
+            # Calcola loss intent
+            intent_loss = intent_criterion(intent_logits, intent_labels)
+
+            # Loss combinato pesato
+            loss = intent_weight * intent_loss + ner_weight * ner_loss
+
             loss.backward()
             optimizer.step()
+
             total_loss += loss.item()
-            epoch_progress.set_postfix(loss=loss.item())
+            total_intent_loss += intent_loss.item()
+            total_ner_loss += ner_loss.item()
+
+            epoch_progress.set_postfix(
+                loss=loss.item(),
+                intent_loss=intent_loss.item(),
+                ner_loss=ner_loss.item()
+            )
 
         avg_loss = total_loss / len(dataloader)
+        avg_intent_loss = total_intent_loss / len(dataloader)
+        avg_ner_loss = total_ner_loss / len(dataloader)
+
         scheduler.step(avg_loss)
-        print(f"Epoch {epoch + 1}/{epochs}, Loss: {avg_loss}")
+        print(f"Epoch {epoch + 1}/{epochs}, Loss: {avg_loss:.4f}, Intent Loss: {avg_intent_loss:.4f}, NER Loss: {avg_ner_loss:.4f}")
+
+        # Early stopping check
+        if avg_loss < best_loss:
+            best_loss = avg_loss
+            patience_counter = 0
+            best_model_state = model.state_dict().copy()
+            print(f"✓ Miglioramento! Nuovo best loss: {best_loss:.4f}")
+        else:
+            patience_counter += 1
+            print(f"Nessun miglioramento. Pazienza: {patience_counter}/{patience}")
+
+            if patience_counter >= patience:
+                print(f"\n⚠️  Early stopping attivato dopo {epoch + 1} epoche")
+                print(f"Best loss: {best_loss:.4f}")
+                # Ripristina il miglior modello
+                if best_model_state is not None:
+                    model.load_state_dict(best_model_state)
+                    print("✓ Ripristinato il miglior modello")
+                break
 
 
 def train_main_model():

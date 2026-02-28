@@ -3,7 +3,7 @@ import os
 from classes.dataset_generator import DatasetGenerator
 
 
-def build_intents(data_path: str = "data.json", output_dir: str = "data"):
+def build_intents(data_path: str = "data/training_source.json", output_dir: str = "data"):
     with open(data_path, 'r', encoding='utf-8') as file:
         data = json.load(file)
 

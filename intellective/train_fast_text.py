@@ -8,16 +8,19 @@ def train_embedder():
 
     corpus_path = os.path.join(BASE_DIR, 'data', 'fast-text.txt')
     if not os.path.exists(corpus_path):
-        corpus_path = os.path.join(BASE_DIR, 'training_data', 'fasttext_phrases.txt')
+        corpus_path = os.path.join(BASE_DIR, 'training_data', 'embeddings.txt')
 
     model = fasttext.train_unsupervised(
         input=corpus_path,
         model='skipgram',
         dim=300,
-        epoch=20,
+        epoch=25,  # Aumento le epoche per miglior apprendimento
         lr=0.1,
-        minCount=1,  # <- abbassa a 1, i subword sono rari
-        wordNgrams=1  # <- abbassa a 1, i subword sono già n-gram
+        minCount=1,  # Include parole rare
+        wordNgrams=2,  # Usa character n-grams (3-6 caratteri di default)
+        minn=2,  # Minimo n-gram size (per parole brevi come "ciao")
+        maxn=5,  # Massimo n-gram size
+        ws=5  # Context window size
     )
 
 

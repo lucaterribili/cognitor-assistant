@@ -33,8 +33,9 @@ coverage.xml
 *.egg-info/
 dist/
 build/
-data.json
+data/training_source.json
 data/*
 !data/.gitkeep
 
 models/
+!models/.gitkeep

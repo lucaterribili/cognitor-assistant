@@ -50,7 +50,7 @@ arianna-assistant/
 
 ### Formato Input
 
-Il file `data.json` (o quelli in `training_data/`) deve seguire questa struttura:
+Il file `data/training_source.json` (o quelli in `training_data/`) deve seguire questa struttura:
 
 ```json
 {
@@ -72,7 +72,7 @@ I dati di training sono memorizzati nella cartella `training_data/` e possono es
 
 #### Merge dei dati
 
-Per mergiare tutti i file JSON da `training_data/` in `data.json`:
+Per mergiare tutti i file JSON da `training_data/` in `data/training_source.json`:
 
 ```bash
 python -m pipeline.merge_data
