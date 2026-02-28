@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "greeting": ["greeting_response"],
+    "farewell": ["farewell_response"],
+    "help": ["help_response"],
+    "ask_name": ["ask_name_response"],
+    "thank_you": ["thank_you_response"],
+    "compliment": ["compliment_response"],
+    "insult": ["insult_response"],
+    "bot_challenge": ["bot_challenge_response"],
+    "mood_great": ["mood_great_response"],
+    "mood_unhappy": ["mood_unhappy_response"],
+    "joke": ["joke_response"],
+    "weather_query": ["weather_query_response"],
+    "time_query": ["time_query_response"],
+    "date_query": ["date_query_response"]
+  }
+}

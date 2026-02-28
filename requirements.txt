@@ -9,6 +9,8 @@ fasttext
 nlpaug
 nltk
 pytorch-crf
-
 fasttext-wheel
 torchcrf
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
