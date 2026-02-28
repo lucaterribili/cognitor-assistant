@@ -1,0 +1,54 @@
+{
+  "responses": {
+    "restaurant_booking_response": [
+      "Certo! Per quante persone vuoi prenotare e in quale ristorante?",
+      "Posso aiutarti con la prenotazione. Dimmi il ristorante, la data e il numero di ospiti.",
+      "Prenotiamo! Qual è il ristorante scelto e per quante persone?"
+    ],
+    "order_food_response": [
+      "Cosa vorresti ordinare? Dimmi il tipo di cucina o il ristorante.",
+      "Che cibo vorresti ordinare? Posso cercare ristoranti per te.",
+      "Ordiniamo! Che cosa ti va di mangiare?"
+    ],
+    "taxi_ride_response": [
+      "Certamente! Da dove partiamo e qual è la destinazione?",
+      "Ti chiamo un taxi. Dimmi il punto di partenza e la destinazione.",
+      "Prenoto subito un taxi. Da dove e per dove?"
+    ],
+    "book_flight_response": [
+      "Posso cercare voli per te. Da dove parti e qual è la destinazione?",
+      "Dimmi città di partenza, destinazione e date per cercare i migliori voli.",
+      "Cercando voli! Da dove vuoi partire?"
+    ],
+    "book_hotel_response": [
+      "Certo! In quale città vuoi prenotare e per quante notti?",
+      "Posso aiutarti a trovare un hotel. Dove vorresti alloggiare?",
+      "Prenotiamo un alloggio! Dimmi la città e le date."
+    ],
+    "alarm_set_response": [
+      "A che ora vuoi la sveglia?",
+      "Imposto la sveglia per te. Qual è l'orario desiderato?",
+      "Ti sveglio! Dimmi a che ora."
+    ],
+    "play_music_response": [
+      "Cosa vuoi ascoltare? Dimmi il titolo, l'artista o il genere.",
+      "Riproduco musica per te! Cosa preferisci sentire?",
+      "Che musica ti va? Dimmi artista o brano."
+    ],
+    "read_news_response": [
+      "Su quale argomento vuoi le notizie? Posso cercare news su vari temi.",
+      "Che tipo di notizie ti interessano? Politica, sport, tecnologia, ecc.",
+      "Cercando notizie! Di cosa vuoi essere informato?"
+    ],
+    "schedule_meeting_response": [
+      "Certo! Quando vuoi organizzare la riunione e chi deve partecipare?",
+      "Posso aiutarti a schedulare. Dimmi data, ora e partecipanti.",
+      "Organizziamo una riunione! Quando e con chi?"
+    ],
+    "send_email_response": [
+      "Certo! A chi vuoi mandare l'email e qual è il messaggio?",
+      "Componiamo l'email. Chi è il destinatario e cosa vuoi scrivere?",
+      "Ti aiuto a mandare l'email. Destinatario e contenuto?"
+    ]
+  }
+}
