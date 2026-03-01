@@ -63,6 +63,18 @@
     "date_query_response": [
       "Oggi è [DATE]. Cosa vuoi fare?",
       "La data odierna è [DATE]. Sono qui per aiutarti!"
+    ],
+    "ask_city_touristic_information_roma_response": [
+      "Roma, la Città Eterna! Puoi visitare il Colosseo, Vatican City, la Fontana di Trevi e tanto altro. Cosa vuoi sapere in particolare?",
+      "Roma è una città meravigliosa ricca di storia. Vuoi informazioni su musei, ristoranti o attrazioni turistiche?"
+    ],
+    "ask_city_touristic_information_milano_response": [
+      "Milano, la capitale della moda e del design! Puoi visitare il Duomo, la Galleria Vittorio Emanuele II, il Castello Sforzesco e molto altro.",
+      "Milano è una città moderna e dinamica. Hai bisogno di informazioni su shopping, ristoranti o attrazioni culturali?"
+    ],
+    "ask_location_wait_response": [
+      "Che bella domanda! Per darti informazioni più precise, puoi dirmi la località che ti interessa?",
+      "Devi specificare una città per poterti dare informazioni turistiche accurate. Quale località vorresti conoscere?"
     ]
   }
 }

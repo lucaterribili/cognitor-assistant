@@ -1,6 +1,5 @@
 import json
 import os
-import random
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -11,6 +10,7 @@ import fasttext
 from config import BASE_DIR
 from intellective.intent_classifier import IntentClassifier
 from agent.session_manager import SessionManager
+from agent.answer_manager import AnswerManager
 
 
 class Agent:
@@ -31,6 +31,7 @@ class Agent:
         self.intent_dict = None
         self.rules = {}
         self.responses = {}
+        self.answer_manager = None
         
     def load_models(self):
         print("Caricamento modello FastText...")
@@ -90,21 +91,15 @@ class Agent:
                     responses_data = json.load(f)
                     self.responses.update(responses_data.get('responses', {}))
         
+        self.answer_manager = AnswerManager(self.rules)
+        
         print(f"✓ Caricate {len(self.rules)} rules e {len(self.responses)} response keys")
     
-    def get_response(self, intent_name):
-        response_keys = self.rules.get(intent_name, [])
+    def get_response(self, intent_name, slots: dict = None):
+        if slots is None:
+            slots = {}
         
-        if not response_keys:
-            return "Non ho una risposta per questo. Puoi riformulare?"
-        
-        response_key = response_keys[0]
-        response_list = self.responses.get(response_key, [])
-        
-        if not response_list:
-            return f"Risposta non definita per {response_key}"
-        
-        return random.choice(response_list)
+        return self.answer_manager.get_response(intent_name, slots, self.responses)
     
     def predict(self, text):
         result = self.model.predict(text)
@@ -149,7 +144,10 @@ class Agent:
             if prediction['entities']:
                 print(f"🏷️  Entità: {', '.join([e['value'] for e in prediction['entities']])}")
             
-            response = self.get_response(prediction['intent'])
+            for entity in prediction.get('entities', []):
+                session.update_context(entity['entity'], entity['value'])
+            
+            response = self.get_response(prediction['intent'], session.context)
             print(f"\n🤖 Arianna: {response}\n")
             
             session.add_message("user", user_input, prediction['intent'], prediction.get('entities', []))
