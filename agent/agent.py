@@ -9,6 +9,7 @@ import fasttext
 
 from config import BASE_DIR
 from intellective.intent_classifier import IntentClassifier
+from intellective.doping_preprocessor import DopingPreprocessor
 from agent.session_manager import SessionManager
 from agent.answer_manager import AnswerManager
 
@@ -32,6 +33,7 @@ class Agent:
         self.rules = {}
         self.responses = {}
         self.answer_manager = None
+        self.doping_preprocessor = DopingPreprocessor()
         
     def load_models(self):
         print("Caricamento modello FastText...")
@@ -94,6 +96,17 @@ class Agent:
         self.answer_manager = AnswerManager(self.rules)
         
         print(f"✓ Caricate {len(self.rules)} rules e {len(self.responses)} response keys")
+        
+        print("Costruzione lookup table per doping...")
+        nlu_dir = os.path.join(self.base_dir, 'knowledge', 'intents')
+        for filename in os.listdir(nlu_dir):
+            if filename.endswith('.json'):
+                file_path = os.path.join(nlu_dir, filename)
+                with open(file_path, 'r') as f:
+                    nlu_data = json.load(f)
+                    self.doping_preprocessor.build_lookup_table(nlu_data)
+        
+        print("✓ Lookup table costruita")
     
     def get_response(self, intent_name, slots: dict = None):
         if slots is None:
@@ -102,7 +115,9 @@ class Agent:
         return self.answer_manager.get_response(intent_name, slots, self.responses)
     
     def predict(self, text):
-        result = self.model.predict(text)
+        doped_text = self.doping_preprocessor.dope_input(text)
+        
+        result = self.model.predict(doped_text)
         intent_idx = result['intent_idx']
         intent_name = self.intent_dict[str(intent_idx)]
         confidence = result['intent_confidence']
@@ -110,7 +125,8 @@ class Agent:
         return {
             'intent': intent_name,
             'confidence': confidence,
-            'entities': result.get('entities', [])
+            'entities': result.get('entities', []),
+            'doped': doped_text != text
         }
     
     def chat(self):

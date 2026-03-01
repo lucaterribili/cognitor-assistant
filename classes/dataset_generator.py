@@ -6,6 +6,7 @@ from classes.intent_normalizer import IntentNormalizer
 from classes.simple_tokenizer import SimpleTokenizer
 from classes.ner_markup_parser import NERMarkupParser
 from classes.ner_tag_builder import NERTagBuilder
+from intellective.doping_preprocessor import DopingPreprocessor
 from config import BASE_DIR
 
 
@@ -19,6 +20,8 @@ class DatasetGenerator:
         self.tokenizer = SimpleTokenizer(fasttext_model_path)
         self.ner_parser = NERMarkupParser()
         self.ner_tag_builder = NERTagBuilder()
+        self.doping_preprocessor = DopingPreprocessor()
+        self.doping_preprocessor.build_lookup_table(data)
 
     def generate_nlu(self):
         nlu_data = self.data['nlu']
@@ -31,31 +34,34 @@ class DatasetGenerator:
 
         csv_path = os.path.join(self.data_path, 'nlu_data.csv')
         os.makedirs(self.data_path, exist_ok=True)
+        
+        doped_dataset = self.doping_preprocessor.process_dataset(self.data)
 
         with open(csv_path, mode='w', encoding='utf-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(['INPUT', 'OUTPUT', 'CLEAN_TEXT', 'ENTITIES'])
 
             seen = set()
-            for intent_id, intent in intent_dict.items():
-                examples = next(item['examples'] for item in intents_data if item['intent'] == intent)
-                for example in examples:
-                    # Parsa markup NER
-                    clean_text, entities = self.ner_parser.parse(example)
+            intent_name_to_id = {v: k for k, v in intent_dict.items()}
+            for item in doped_dataset:
+                text = item['text']
+                intent = item['intent']
+                intent_id = intent_name_to_id.get(intent)
+                if intent_id is None:
+                    continue
+                    
+                clean_text, entities = self.ner_parser.parse(text)
+                normalized = self.normalizer.normalize(clean_text)
 
-                    # Normalizza il testo pulito
-                    normalized = self.normalizer.normalize(clean_text)
-
-                    # Salva sia il testo pulito che quello normalizzato
-                    for text_variant in [clean_text, normalized]:
-                        if text_variant and text_variant not in seen:
-                            seen.add(text_variant)
-                            writer.writerow([
-                                text_variant,
-                                intent_id,
-                                clean_text,
-                                json.dumps(entities, ensure_ascii=False)
-                            ])
+                for text_variant in [clean_text, normalized]:
+                    if text_variant and text_variant not in seen:
+                        seen.add(text_variant)
+                        writer.writerow([
+                            text_variant,
+                            intent_id,
+                            clean_text,
+                            json.dumps(entities, ensure_ascii=False)
+                        ])
 
         self.tokenize_and_save_npy(csv_path)
         self.generate_fasttext_corpus()
@@ -68,21 +74,20 @@ class DatasetGenerator:
     def generate_fasttext_corpus(self):
         fasttext_path = os.path.join(self.data_path, 'fast-text.txt')
         training_phrases_path = os.path.join(BASE_DIR, 'knowledge', 'embeddings.txt')
-        nlu_data = self.data['nlu']
-        intents_data = nlu_data['intents']
+        
+        doped_dataset = self.doping_preprocessor.process_dataset(self.data)
 
         seen = set()
         lines_to_write = []
 
-        for intent in intents_data:
-            for example in intent['examples']:
-                # Parsa e pulisce dal markup NER
-                clean_text, _ = self.ner_parser.parse(example)
-                normalized = self.normalizer.normalize(clean_text)
-                for text in [clean_text, normalized]:
-                    if text and text not in seen:
-                        seen.add(text)
-                        lines_to_write.append(text)
+        for item in doped_dataset:
+            text = item['text']
+            clean_text, _ = self.ner_parser.parse(text)
+            normalized = self.normalizer.normalize(clean_text)
+            for text_variant in [clean_text, normalized]:
+                if text_variant and text_variant not in seen:
+                    seen.add(text_variant)
+                    lines_to_write.append(text_variant)
 
         if os.path.exists(training_phrases_path):
             print(f"Merge con frasi da: {training_phrases_path}")
