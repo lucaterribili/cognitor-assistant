@@ -34,22 +34,27 @@ class AnswerManager:
             return expected_value in (slot_value or "")
         return False
 
-    def resolve(self, intent: str, slots: dict) -> str:
+    def resolve(self, intent: str, slots: dict) -> dict:
         rule = self.rules.get(intent)
         if not rule:
-            return "default_fallback"
+            return {"response": "default_fallback", "wait_for_slot": None}
 
         for branch in rule.get("conditions", []):
             if all(self._check_condition(condition, slots) for condition in branch["if"]):
-                return branch["response"]
+                return {
+                    "response": branch["response"],
+                    "wait_for_slot": branch.get("wait_for_slot")
+                }
 
-        return rule.get("default", "default_fallback")
+        return {"response": rule.get("default", "default_fallback"), "wait_for_slot": None}
 
-    def get_response(self, intent: str, slots: dict, responses: dict) -> str:
-        response_key = self.resolve(intent, slots)
+    def get_response(self, intent: str, slots: dict, responses: dict) -> tuple[str, str | None]:
+        resolved = self.resolve(intent, slots)
+        response_key = resolved["response"]
+        wait_for_slot = resolved["wait_for_slot"]
 
         response_list = responses.get(response_key, [])
         if not response_list:
-            return f"Risposta non definita per {response_key}"
+            return f"Risposta non definita per {response_key}", None
 
-        return random.choice(response_list)
+        return random.choice(response_list), wait_for_slot
