@@ -137,6 +137,23 @@ class Agent:
             if not user_input:
                 continue
             
+            if session.waiting_for_slot:
+                slot_name = session.waiting_for_slot["slot"]
+                pending_intent = session.waiting_for_slot["intent"]
+
+                session.update_context(slot_name, user_input)
+                session.waiting_for_slot = None
+
+                response, wait_for_slot = self.get_response(pending_intent, session.context)
+                print(f"\n🤖 Arianna: {response}\n")
+
+                if wait_for_slot:
+                    session.waiting_for_slot = {"intent": pending_intent, "slot": wait_for_slot}
+
+                session.add_message("user", user_input)
+                session.add_message("assistant", response, pending_intent)
+                continue
+
             prediction = self.predict(user_input)
             
             print(f"\n🎯 Intent: {prediction['intent']} ({prediction['confidence']:.1%})")
@@ -147,8 +164,11 @@ class Agent:
             for entity in prediction.get('entities', []):
                 session.update_context(entity['entity'], entity['value'])
             
-            response = self.get_response(prediction['intent'], session.context)
+            response, wait_for_slot = self.get_response(prediction['intent'], session.context)
             print(f"\n🤖 Arianna: {response}\n")
+            
+            if wait_for_slot:
+                session.waiting_for_slot = {"intent": prediction['intent'], "slot": wait_for_slot}
             
             session.add_message("user", user_input, prediction['intent'], prediction.get('entities', []))
             session.add_message("assistant", response, prediction['intent'])

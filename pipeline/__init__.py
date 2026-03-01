@@ -27,6 +27,17 @@ def run_full_pipeline(
     print("AVVIO PIPELINE COMPLETA")
     print("=" * 50)
 
+    data_dir = os.path.join(BASE_DIR, "data")
+    for item in os.listdir(data_dir):
+        if item == ".gitkeep":
+            continue
+        item_path = os.path.join(data_dir, item)
+        if os.path.isfile(item_path):
+            os.remove(item_path)
+        elif os.path.isdir(item_path):
+            import shutil
+            shutil.rmtree(item_path)
+
     if merge_data:
         print("\n[1/4] Merge dei dati da training_data/...")
         merge_intents(output_file=data_path)

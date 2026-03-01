@@ -45,6 +45,16 @@
             }
           ],
           "response": "ask_city_touristic_information_milano_response"
+        },
+        {
+          "if": [
+            {
+              "slot": "LOCATION",
+              "operator": "not_filled"
+            }
+          ],
+          "response": "ask_location_wait_response",
+          "wait_for_slot": "LOCATION"
         }
       ],
       "default": "ask_location_wait_response"
