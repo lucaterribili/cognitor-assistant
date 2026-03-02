@@ -53,6 +53,13 @@ class DopingPreprocessor:
         safe_text = text.replace(" ", "_")
         return f"{intent_name}_{safe_text}"
 
+    def get_examples(self, nlu_data: dict) -> list[dict]:
+        return [
+            {"text": self._clean_example(ex), "intent": intent_data["intent"]}
+            for intent_data in nlu_data["nlu"]["intents"]
+            for ex in intent_data["examples"]
+        ]
+
     def process_dataset(self, nlu_data: dict) -> list[dict]:
         dataset = []
         for intent_data in nlu_data["nlu"]["intents"]:

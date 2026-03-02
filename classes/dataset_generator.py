@@ -7,7 +7,7 @@ from classes.simple_tokenizer import SimpleTokenizer
 from classes.ner_markup_parser import NERMarkupParser
 from classes.ner_tag_builder import NERTagBuilder
 from intellective.doping_preprocessor import DopingPreprocessor
-from config import BASE_DIR
+from config import BASE_DIR, DOPING_ACTIVE
 
 
 class DatasetGenerator:
@@ -35,7 +35,10 @@ class DatasetGenerator:
         csv_path = os.path.join(self.data_path, 'nlu_data.csv')
         os.makedirs(self.data_path, exist_ok=True)
         
-        doped_dataset = self.doping_preprocessor.process_dataset(self.data)
+        if DOPING_ACTIVE:
+            doped_dataset = self.doping_preprocessor.process_dataset(self.data)
+        else:
+            doped_dataset = self.doping_preprocessor.get_examples(self.data)
 
         with open(csv_path, mode='w', encoding='utf-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
@@ -75,7 +78,10 @@ class DatasetGenerator:
         fasttext_path = os.path.join(self.data_path, 'fast-text.txt')
         training_phrases_path = os.path.join(BASE_DIR, 'knowledge', 'embeddings.txt')
         
-        doped_dataset = self.doping_preprocessor.process_dataset(self.data)
+        if DOPING_ACTIVE:
+            doped_dataset = self.doping_preprocessor.process_dataset(self.data)
+        else:
+            doped_dataset = self.doping_preprocessor.get_examples(self.data)
 
         seen = set()
         lines_to_write = []

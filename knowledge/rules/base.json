@@ -76,6 +76,9 @@
     },
     "date_query": {
       "default": "date_query_response"
+    },
+    "low_confidence_fallback": {
+      "default": "low_confidence_fallback_response"
     }
   }
 }

@@ -6,13 +6,27 @@
         "examples": [
           "ciao",
           "salve",
+          "hey",
           "buongiorno",
           "buonasera",
           "ciao a te",
           "hey amico",
           "buon giorno",
           "buona sera",
-          "buon pomeriggio"
+          "buon pomeriggio",
+          "ehilà",
+          "hei",
+          "yo",
+          "ola",
+          "ciao!",
+          "hey!",
+          "salve a te",
+          "buon dì",
+          "hey ciao",
+          "salve salve",
+          "ciao bella",
+          "ciao a tutti",
+          "hola"
         ]
       },
       {
@@ -28,24 +42,24 @@
           "ciao ciao"
         ]
       },
-{
-  "intent": "help",
-  "examples": [
-    "aiuto",
-    "aiutami per favore",
-    "ho bisogno di aiuto",
-    "aiuto urgente",
-    "puoi aiutarmi",
-    "ho bisogno di supporto",
-    "mi serve aiuto",
-    "riesci ad aiutarmi",
-    "ho bisogno di te",
-    "puoi darmi una mano",
-    "sai aiutarmi",
-    "ho bisogno di assistenza",
-    "supporto"
-  ]
-},
+      {
+        "intent": "help",
+        "examples": [
+          "aiuto",
+          "aiutami per favore",
+          "ho bisogno di aiuto",
+          "aiuto urgente",
+          "puoi aiutarmi",
+          "ho bisogno di supporto",
+          "mi serve aiuto",
+          "riesci ad aiutarmi",
+          "ho bisogno di te",
+          "puoi darmi una mano",
+          "sai aiutarmi",
+          "ho bisogno di assistenza",
+          "supporto"
+        ]
+      },
       {
         "intent": "call",
         "examples": [
@@ -861,70 +875,6 @@
         ]
       },
       {
-        "intent": "describe",
-        "examples": [
-          "descrivi",
-          "descrivi cosa vedi",
-          "dimmi come è",
-          "descrivi l'immagine",
-          "descrivi la foto",
-          "cosa c'è nell'immagine",
-          "descrivi il video",
-          "descrivi questo",
-          "cosa vedi",
-          "descrivi quello che vedi",
-          "raccontami cosa vedi",
-          "descrivi la scena",
-          "cosa contiene l'immagine",
-          "descrivi il contenuto",
-          "dimmi cosa c'è nella foto",
-          "descrivi il file",
-          "descrivi il documento",
-          "descrivi il testo",
-          "descrivi la situazione",
-          "raccontami di te",
-          "descrivi le tue capacità",
-          "descrivi te stesso",
-          "descrivi la tua funzione",
-          "dimmi di te",
-          "raccontami tutto"
-        ]
-      },
-      {
-        "intent": "explain",
-        "examples": [
-          "spiegami",
-          "mi spieghi",
-          "spiega",
-          "cosa significa",
-          "che vuol dire",
-          "mi puoi spiegare",
-          "cos'è",
-          "che cos'è",
-          "dimmi cosa è",
-          "spiegazione",
-          "perché",
-          "mi spieghi il motivo",
-          "dammi una spiegazione",
-          "spiegami come funziona",
-          "mi spieghi come fare",
-          "dimmi il perché",
-          "spiegami questo",
-          "spiegami quello",
-          "puoi spiegare",
-          "spiegami meglio",
-          "puoi darmi una spiegazione",
-          "vorrei una spiegazione",
-          "mi servono chiarimenti",
-          "chiarimento",
-          "spiegazione per favore",
-          "dimmi di più su",
-          "approfondisci",
-          "vorrei capire meglio",
-          "spiegami nel dettaglio"
-        ]
-      },
-      {
         "intent": "joke",
         "examples": [
           "racconta una barzelletta",
@@ -1144,29 +1094,6 @@
           "significato di questa parola",
           "traduzione di cane in russo",
           "come si chiama [Mauro](person) in inglese"
-        ]
-      },
-      {
-        "intent": "define",
-        "examples": [
-          "definisci",
-          "definizione",
-          "cosa significa la parola",
-          "significato",
-          "che significa",
-          "definizione di",
-          "cosa vuol dire la parola",
-          "mi definisci",
-          "spiegami il termine",
-          "che vuol dire",
-          "significato della parola",
-          "definizione del termine",
-          "che indica",
-          "cosa intende",
-          "spiegazione della parola",
-          "significato di",
-          "cos'è la definizione di",
-          "vorrei sapere il significato di"
         ]
       },
       {
