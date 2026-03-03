@@ -79,6 +79,29 @@
     },
     "low_confidence_fallback": {
       "default": "low_confidence_fallback_response"
+    },
+    "introduce_user": {
+      "conditions": [
+        {
+          "if": [
+            {
+              "slot": "PERSON",
+              "operator": "filled"
+            }
+          ],
+          "response": "introduce_user_response"
+        },
+        {
+          "if": [
+            {
+              "slot": "PERSON",
+              "operator": "not_filled"
+            }
+          ],
+          "response": "introduce_user_response"
+        }
+      ],
+      "default": "introduce_user_response"
     }
   }
 }

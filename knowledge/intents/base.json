@@ -130,21 +130,16 @@
         ]
       },
       {
-        "intent": "request_names",
+        "intent": "introduce_user",
         "examples": [
-          "voglio dirti il mio nome",
-          "dammi il tuo nome",
-          "devi sapere il mio nome",
-          "conosci il mio nome",
-          "ti voglio dire il mio nome",
-          "il mio nome è",
-          "come si chiama",
-          "quale è il tuo nome",
-          "mi chiamo",
-          "presentati",
-          "qual è il tuo nome",
-          "dimmi il tuo nome",
-          "vuoi sapere chi sono"
+          "il mio nome è [Luca](PERSON)",
+          "mi chiamo [Marco](PERSON)",
+          "sono [Giulia](PERSON)",
+          "vorrei presentarmi, sono [Alessandro](PERSON)",
+          "posso dirti il mio nome? [Francesca](PERSON)",
+          "ti dico chi sono: [Matteo](PERSON)",
+          "io sono [Sara](PERSON), piacere di conoscerti",
+          "il mio nome è [Davide](PERSON)"
         ]
       },
       {
