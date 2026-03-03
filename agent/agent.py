@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import torch
 import fasttext
 
-from config import BASE_DIR
+from config import BASE_DIR, DOPING_ACTIVE, MIN_INTENT_CONFIDENCE
 from intellective.intent_classifier import IntentClassifier
 from intellective.doping_preprocessor import DopingPreprocessor
 from agent.session_manager import SessionManager
@@ -115,18 +115,28 @@ class Agent:
         return self.answer_manager.get_response(intent_name, slots, self.responses)
     
     def predict(self, text):
-        doped_text = self.doping_preprocessor.dope_input(text)
+        if DOPING_ACTIVE:
+            doped_text = self.doping_preprocessor.dope_input(text)
+            text_to_predict = doped_text
+            is_doped = doped_text != text
+        else:
+            text_to_predict = text
+            is_doped = False
         
-        result = self.model.predict(doped_text)
+        result = self.model.predict(text_to_predict)
         intent_idx = result['intent_idx']
         intent_name = self.intent_dict[str(intent_idx)]
         confidence = result['intent_confidence']
         
+        # Se la confidenza è troppo bassa, usa un fallback generico
+        if confidence < MIN_INTENT_CONFIDENCE:
+            intent_name = 'low_confidence_fallback'
+
         return {
             'intent': intent_name,
             'confidence': confidence,
             'entities': result.get('entities', []),
-            'doped': doped_text != text
+            'doped': is_doped
         }
     
     def chat(self):

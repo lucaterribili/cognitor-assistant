@@ -75,6 +75,18 @@
     "ask_location_wait_response": [
       "Che bella domanda! Per darti informazioni più precise, puoi dirmi la località che ti interessa?",
       "Devi specificare una città per poterti dare informazioni turistiche accurate. Quale località vorresti conoscere?"
+    ],
+    "low_confidence_fallback_response": [
+      "Scusa, non ho capito bene. Potresti riformulare?",
+      "Mi dispiace, non sono sicuro di aver compreso. Puoi dirlo in un altro modo?",
+      "Non ho capito bene la tua richiesta. Puoi essere più specifico?"
+    ],
+    "introduce_user_response": [
+      "Ciao [PERSON]! Piacere di conoscerti, sono Arianna!",
+      "Hey [PERSON]! Che bello che ti presenti! Sono qui per aiutarti!",
+      "Ciao [PERSON]! Benvenuto! Sono Arianna, il tuo assistente virtuale!",
+      "Non ho capito bene il tuo nome, potresti ripeterlo?",
+      "Scusa, non ho afferrato bene il tuo nome. Come ti chiami?"
     ]
   }
 }

@@ -64,10 +64,6 @@ class IntentClassifier(nn.Module):
         self.dropout = nn.Dropout(dropout_prob)
         self.fc = nn.Linear(hidden_dim * 2, output_dim)
 
-        # Branch alternativo per sequenze corte (bypassa attention)
-        self.short_seq_fc = nn.Linear(embed_dim, output_dim)
-        self.short_seq_dropout = nn.Dropout(dropout_prob)
-
         # Proiezione per NER su sequenze corte (embed_dim -> hidden_dim*2)
         self.short_seq_ner_proj = nn.Linear(embed_dim, hidden_dim * 2)
 
