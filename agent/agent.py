@@ -1,137 +1,121 @@
-import json
+"""
+Agent principale per il chatbot Arianna.
+Coordina i modelli ML, la gestione delle sessioni e le risposte.
+"""
 import os
-import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import torch
-import fasttext
 
 from config import BASE_DIR, DOPING_ACTIVE, MIN_INTENT_CONFIDENCE
-from intellective.intent_classifier import IntentClassifier
 from intellective.doping_preprocessor import DopingPreprocessor
 from agent.session_manager import SessionManager
 from agent.answer_manager import AnswerManager, SlotValidator
-
-SUPPORTED_CITIES = {"Roma", "Milano"}
-
-LOCATION_INTENTS = {"ask_city_touristic_information", "visit_city", "city_info"}
-
-CHANGE_LOCATION_PATTERNS = [
-    r"visitare\s+\w+",
-    r"andare\s+a\s+\w+",
-    r"voglio\s+(visitare|andare|vedere)",
-    r"vuoi\s+(visitare|andare|vedere)",
-    r"adesso\s+voglio",
-    r"cambiamo\s+(città|luogo)",
-    r"preferisco\s+\w+",
-    r"prova\s+(con|in)\s+\w+",
-]
+from agent.model_loader import ModelLoader, KnowledgeLoader
+from agent.slot_manager import SlotManager
 
 
 class Agent:
+    """
+    Agent principale che coordina tutti i componenti del chatbot.
+
+    Responsabilità:
+    - Caricamento e gestione dei modelli ML
+    - Predizione di intent ed entità
+    - Gestione delle risposte
+    - Coordinamento con SessionManager
+    """
+
     def __init__(self):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.base_dir = BASE_DIR
+
+        # Manager e componenti
         self.session_manager = SessionManager()
-        self.current_session_id = None
-        
-        self.fasttext_model_path = os.path.join(self.base_dir, 'models', 'fasttext_model.bin')
-        self.intent_dict_path = os.path.join(self.base_dir, 'data', 'intent_dict.json')
-        self.model_path = os.path.join(self.base_dir, 'models', 'intent_model_fast.pth')
-        
-        self.rules_base_path = os.path.join(self.base_dir, 'knowledge', 'rules')
-        self.responses_base_path = os.path.join(self.base_dir, 'knowledge', 'responses')
-        
+        self.doping_preprocessor = DopingPreprocessor()
+        self.model_loader = ModelLoader(self.base_dir, self.device)
+        self.knowledge_loader = KnowledgeLoader(self.base_dir)
+
+        # Modelli e dati (caricati successivamente)
+        self.ft_model = None
         self.model = None
         self.intent_dict = None
+
+        # Knowledge base
         self.rules = {}
         self.responses = {}
+
+        # Answer management
         self.answer_manager = None
-        self.doping_preprocessor = DopingPreprocessor()
-        
-    def load_models(self):
-        print("Caricamento modello FastText...")
-        self.ft_model = fasttext.load_model(self.fasttext_model_path)
-        vocab_size = len(self.ft_model.words)
-        
-        print("Caricamento intent dictionary...")
-        with open(self.intent_dict_path, 'r') as f:
-            self.intent_dict = json.load(f)
-            intents_number = len(self.intent_dict)
-        
-        print("Caricamento modello Intent Classifier...")
-        self.model = IntentClassifier(
-            vocab_size=vocab_size,
-            embed_dim=300,
-            hidden_dim=256,
-            output_dim=intents_number,
-            dropout_prob=0.3,
-            fasttext_model_path=self.fasttext_model_path,
-            freeze_embeddings=True
+        self.slot_validator = None
+
+        # Slot management (data-driven)
+        self.slot_manager = None
+
+    def load_models(self) -> bool:
+        """
+        Carica tutti i modelli ML necessari.
+
+        Returns:
+            bool: True se il modello è stato caricato correttamente, False se usa pesi random
+        """
+        self.ft_model = self.model_loader.load_fasttext()
+        self.intent_dict = self.model_loader.load_intent_dict()
+
+        intents_number = len(self.intent_dict)
+        self.model, model_loaded = self.model_loader.load_intent_classifier(
+            self.ft_model,
+            intents_number
         )
-        
-        model_loaded = False
-        try:
-            state_dict = torch.load(self.model_path, map_location=self.device)
-            self.model.load_state_dict(state_dict)
-            print(f"OK Modello trainato caricato")
-            model_loaded = True
-        except FileNotFoundError:
-            print(f"WARNING Modello non trovato, usando pesi random")
-        except Exception as e:
-            print(f"WARNING Errore caricamento modello: {e}")
-            print(f"WARNING Usando pesi random")
-        
-        self.model.to(self.device)
-        self.model.eval()
-        
+
         return model_loaded
     
-    def load_knowledge(self):
-        print("Caricamento rules e responses...")
-        
-        rules_dir = os.path.join(self.base_dir, 'knowledge', 'rules')
-        responses_dir = os.path.join(self.base_dir, 'knowledge', 'responses')
-        
-        for filename in os.listdir(rules_dir):
-            if filename.endswith('.json'):
-                file_path = os.path.join(rules_dir, filename)
-                with open(file_path, 'r') as f:
-                    rules_data = json.load(f)
-                    self.rules.update(rules_data.get('rules', {}))
-        
-        for filename in os.listdir(responses_dir):
-            if filename.endswith('.json'):
-                file_path = os.path.join(responses_dir, filename)
-                with open(file_path, 'r') as f:
-                    responses_data = json.load(f)
-                    self.responses.update(responses_data.get('responses', {}))
-        
+    def load_knowledge(self) -> None:
+        """Carica rules, responses e costruisce la lookup table per doping."""
+        self.rules, self.responses = self.knowledge_loader.load_all()
+
         self.answer_manager = AnswerManager(self.rules)
         self.slot_validator = SlotValidator(self.rules)
         
-        print(f"OK Caricate {len(self.rules)} rules e {len(self.responses)} response keys")
-        
-        print("Costruzione lookup table per doping...")
-        nlu_dir = os.path.join(self.base_dir, 'knowledge', 'intents')
-        for filename in os.listdir(nlu_dir):
-            if filename.endswith('.json'):
-                file_path = os.path.join(nlu_dir, filename)
-                with open(file_path, 'r') as f:
-                    nlu_data = json.load(f)
-                    self.doping_preprocessor.build_lookup_table(nlu_data)
-        
-        print("OK Lookup table costruita")
-    
-    def get_response(self, intent_name, slots: dict = None):
+        # Inizializza il nuovo SlotManager (completamente data-driven)
+        self.slot_manager = SlotManager(self.rules)
+
+        self.knowledge_loader.build_doping_lookup_table(self.doping_preprocessor)
+
+    def get_response(self, intent_name: str, slots: dict = None) -> tuple[str, str | None]:
+        """
+        Ottiene una risposta per l'intent specificato.
+
+        Args:
+            intent_name: Nome dell'intent
+            slots: Dizionario degli slot disponibili
+
+        Returns:
+            tuple: (risposta, slot_da_attendere)
+        """
         if slots is None:
             slots = {}
         
         return self.answer_manager.get_response(intent_name, slots, self.responses)
     
-    def predict(self, text):
+    def predict(self, text: str) -> dict:
+        """
+        Predice intent ed entità per il testo fornito.
+
+        Args:
+            text: Testo dell'utente
+
+        Returns:
+            dict: {
+                'intent': nome_intent,
+                'confidence': probabilità,
+                'entities': lista_entità,
+                'doped': bool
+            }
+        """
+        # Doping del testo se attivo
         if DOPING_ACTIVE:
             doped_text = self.doping_preprocessor.dope_input(text)
             text_to_predict = doped_text
@@ -140,12 +124,13 @@ class Agent:
             text_to_predict = text
             is_doped = False
         
+        # Predizione
         result = self.model.predict(text_to_predict)
         intent_idx = result['intent_idx']
         intent_name = self.intent_dict[str(intent_idx)]
         confidence = result['intent_confidence']
         
-        # Se la confidenza è troppo bassa, usa un fallback generico
+        # Fallback per bassa confidenza
         if confidence < MIN_INTENT_CONFIDENCE:
             intent_name = 'low_confidence_fallback'
 
@@ -156,132 +141,20 @@ class Agent:
             'doped': is_doped
         }
     
-    def chat(self):
-        self.current_session_id = self.session_manager.create_session()
-        session = self.session_manager.get_session(self.current_session_id)
-        
-        print("\n" + "="*50)
-        print("ARIANNA AGENT - Interfaccia Testuale")
-        print("="*50)
-        print(f"Session ID: {self.current_session_id}")
-        print(f"Sessioni attive: {len(self.session_manager.get_active_sessions())}")
-        print("Scrivi un messaggio (o 'esci' per terminare)\n")
-        
-        while True:
-            mode_indicator = f"[{session.agent_mode.upper()}] " if session.agent_mode != "predictable" else ""
-            try:
-                user_input = input(f"Tu: {mode_indicator}").strip()
-            except EOFError:
-                break
-            
-            if user_input.lower() in ['esci', 'exit', 'quit', 'q']:
-                print("\nArrivederci!")
-                break
-            
-            if not user_input:
-                continue
-            
-            if session.agent_mode == "inputable":
-                if session.waiting_for_slot:
-                    slot_name = session.waiting_for_slot["slot"]
-                    pending_intent = session.waiting_for_slot["intent"]
-                    
-                    exit_commands = ['#exit', '#annulla', '#cancel', '#abort']
-                    if user_input.lower() in exit_commands:
-                        print("\nArianna: Input annullato. Puoi fornire un nuovo comando.\n")
-                        session.waiting_for_slot = None
-                        session.agent_mode = "predictable"
-                        session.add_message("user", user_input)
-                        session.add_message("assistant", "Input annullato.", None)
-                        continue
+    def chat(self) -> None:
+        """
+        Avvia l'interfaccia di conversazione testuale.
 
-                    if not self.slot_validator.validate(pending_intent, slot_name, user_input):
-                        print("\nArianna: Selezione non valida. Riprova.\n")
-                        session.add_message("user", user_input)
-                        continue
+        Delega la gestione del loop di conversazione al ConversationHandler.
+        """
+        from agent.conversation_handler import ConversationHandler
 
-                    session.update_context(slot_name, user_input)
-                    session.waiting_for_slot = None
-                    session.agent_mode = "predictable"
-
-                    response, wait_for_slot = self.get_response(pending_intent, session.context)
-                    print(f"\nArianna: {response}\n")
-
-                    if wait_for_slot:
-                        session.waiting_for_slot = {"intent": pending_intent, "slot": wait_for_slot}
-
-                    session.add_message("user", user_input)
-                    session.add_message("assistant", response, pending_intent)
-                    continue
-            
-            prediction = self.predict(user_input)
-            
-            print(f"\nIntent: {prediction['intent']} ({prediction['confidence']:.1%})")
-            
-            entities_str = ', '.join([e['value'] for e in prediction['entities']]) or "nessuna"
-            print(f"Entita: {entities_str}")
-            
-            intent_has_location = prediction['intent'] in LOCATION_INTENTS
-            previous_intent = None
-            if len(session.history) >= 2:
-                for msg in reversed(session.history[:-1]):
-                    if msg.get('role') == 'user' and msg.get('intent'):
-                        previous_intent = msg.get('intent')
-                        break
-            
-            extracted_location = None
-            for entity in prediction.get('entities', []):
-                if entity['entity'] == 'LOCATION':
-                    extracted_location = entity['value']
-                    break
-            
-            if intent_has_location and previous_intent in LOCATION_INTENTS:
-                current_location = session.get_context('LOCATION')
-                
-                if extracted_location:
-                    normalized_location = extracted_location.lower()
-                    if any(normalized_location == city.lower() for city in SUPPORTED_CITIES):
-                        session.update_context('LOCATION', extracted_location)
-                        session.update_context('LOCATION_UNSUPPORTED', False)
-                        print(f"Location aggiornata: {extracted_location}")
-                    else:
-                        session.update_context('LOCATION', None)
-                        session.update_context('LOCATION_UNSUPPORTED', True)
-                        print(f"Location non supportata: {extracted_location}, slot invalidato")
-                else:
-                    user_text_lower = user_input.lower()
-                    looks_like_location_change = any(
-                        re.search(pattern, user_text_lower) for pattern in CHANGE_LOCATION_PATTERNS
-                    )
-                    
-                    if looks_like_location_change and current_location:
-                        session.update_context('LOCATION', None)
-                        session.update_context('LOCATION_UNSUPPORTED', True)
-                        print(f"Utente sembra volere cambiare città ma NER non ha estratto nulla, slot invalidato")
-            
-            elif extracted_location:
-                normalized_location = extracted_location.lower()
-                if any(normalized_location == city.lower() for city in SUPPORTED_CITIES):
-                    session.update_context('LOCATION', extracted_location)
-                    session.update_context('LOCATION_UNSUPPORTED', False)
-                else:
-                    session.update_context('LOCATION', extracted_location)
-                    session.update_context('LOCATION_UNSUPPORTED', True)
-            
-            response, wait_for_slot = self.get_response(prediction['intent'], session.context)
-            print(f"\nArianna: {response}\n")
-            
-            if wait_for_slot:
-                session.waiting_for_slot = {"intent": prediction['intent'], "slot": wait_for_slot}
-                session.agent_mode = "inputable"
-            
-            session.add_message("user", user_input, prediction['intent'], prediction.get('entities', []))
-            session.add_message("assistant", response, prediction['intent'])
-            
-            print(f"Cronologia: {len(session.history)} messaggi | Contesto: {session.context}")
+        conversation_handler = ConversationHandler(self)
+        conversation_handler.run()
 
 
 def main():
+    """Entry point per l'esecuzione standalone dell'agent."""
     agent = Agent()
     
     agent.load_models()
