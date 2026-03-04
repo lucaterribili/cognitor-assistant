@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -12,6 +13,21 @@ from intellective.intent_classifier import IntentClassifier
 from intellective.doping_preprocessor import DopingPreprocessor
 from agent.session_manager import SessionManager
 from agent.answer_manager import AnswerManager, SlotValidator
+
+SUPPORTED_CITIES = {"Roma", "Milano"}
+
+LOCATION_INTENTS = {"ask_city_touristic_information", "visit_city", "city_info"}
+
+CHANGE_LOCATION_PATTERNS = [
+    r"visitare\s+\w+",
+    r"andare\s+a\s+\w+",
+    r"voglio\s+(visitare|andare|vedere)",
+    r"vuoi\s+(visitare|andare|vedere)",
+    r"adesso\s+voglio",
+    r"cambiamo\s+(città|luogo)",
+    r"preferisco\s+\w+",
+    r"prova\s+(con|in)\s+\w+",
+]
 
 
 class Agent:
@@ -205,8 +221,52 @@ class Agent:
             entities_str = ', '.join([e['value'] for e in prediction['entities']]) or "nessuna"
             print(f"Entita: {entities_str}")
             
+            intent_has_location = prediction['intent'] in LOCATION_INTENTS
+            previous_intent = None
+            if len(session.history) >= 2:
+                for msg in reversed(session.history[:-1]):
+                    if msg.get('role') == 'user' and msg.get('intent'):
+                        previous_intent = msg.get('intent')
+                        break
+            
+            extracted_location = None
             for entity in prediction.get('entities', []):
-                session.update_context(entity['entity'], entity['value'])
+                if entity['entity'] == 'LOCATION':
+                    extracted_location = entity['value']
+                    break
+            
+            if intent_has_location and previous_intent in LOCATION_INTENTS:
+                current_location = session.get_context('LOCATION')
+                
+                if extracted_location:
+                    normalized_location = extracted_location.lower()
+                    if any(normalized_location == city.lower() for city in SUPPORTED_CITIES):
+                        session.update_context('LOCATION', extracted_location)
+                        session.update_context('LOCATION_UNSUPPORTED', False)
+                        print(f"Location aggiornata: {extracted_location}")
+                    else:
+                        session.update_context('LOCATION', None)
+                        session.update_context('LOCATION_UNSUPPORTED', True)
+                        print(f"Location non supportata: {extracted_location}, slot invalidato")
+                else:
+                    user_text_lower = user_input.lower()
+                    looks_like_location_change = any(
+                        re.search(pattern, user_text_lower) for pattern in CHANGE_LOCATION_PATTERNS
+                    )
+                    
+                    if looks_like_location_change and current_location:
+                        session.update_context('LOCATION', None)
+                        session.update_context('LOCATION_UNSUPPORTED', True)
+                        print(f"Utente sembra volere cambiare città ma NER non ha estratto nulla, slot invalidato")
+            
+            elif extracted_location:
+                normalized_location = extracted_location.lower()
+                if any(normalized_location == city.lower() for city in SUPPORTED_CITIES):
+                    session.update_context('LOCATION', extracted_location)
+                    session.update_context('LOCATION_UNSUPPORTED', False)
+                else:
+                    session.update_context('LOCATION', extracted_location)
+                    session.update_context('LOCATION_UNSUPPORTED', True)
             
             response, wait_for_slot = self.get_response(prediction['intent'], session.context)
             print(f"\nArianna: {response}\n")

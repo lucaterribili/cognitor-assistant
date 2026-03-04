@@ -76,6 +76,10 @@
       "Che bella domanda! Per darti informazioni più precise, puoi dirmi la località che ti interessa?",
       "Devi specificare una città per poterti dare informazioni turistiche accurate. Quale località vorresti conoscere?"
     ],
+    "ask_location_unsupported_response": [
+      "Mi dispiace, al momento non ho informazioni turistiche per quella località. Posso aiutarti con Roma o Milano. Quale città vorresti visitare?",
+      "Non gestisco ancora quella destinazione. Per ora posso darti info su Roma e Milano. Quale preferisci?"
+    ],
     "low_confidence_fallback_response": [
       "Scusa, non ho capito bene. Potresti riformulare?",
       "Mi dispiace, non sono sicuro di aver compreso. Puoi dirlo in un altro modo?",
