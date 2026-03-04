@@ -11,7 +11,7 @@ from config import BASE_DIR, DOPING_ACTIVE, MIN_INTENT_CONFIDENCE
 from intellective.intent_classifier import IntentClassifier
 from intellective.doping_preprocessor import DopingPreprocessor
 from agent.session_manager import SessionManager
-from agent.answer_manager import AnswerManager
+from agent.answer_manager import AnswerManager, SlotValidator
 
 
 class Agent:
@@ -60,13 +60,13 @@ class Agent:
         try:
             state_dict = torch.load(self.model_path, map_location=self.device)
             self.model.load_state_dict(state_dict)
-            print(f"✓ Modello trainato caricato")
+            print(f"OK Modello trainato caricato")
             model_loaded = True
         except FileNotFoundError:
-            print(f"⚠️ Modello non trovato, usando pesi random")
+            print(f"WARNING Modello non trovato, usando pesi random")
         except Exception as e:
-            print(f"⚠️ Errore caricamento modello: {e}")
-            print(f"⚠️ Usando pesi random")
+            print(f"WARNING Errore caricamento modello: {e}")
+            print(f"WARNING Usando pesi random")
         
         self.model.to(self.device)
         self.model.eval()
@@ -94,8 +94,9 @@ class Agent:
                     self.responses.update(responses_data.get('responses', {}))
         
         self.answer_manager = AnswerManager(self.rules)
+        self.slot_validator = SlotValidator(self.rules)
         
-        print(f"✓ Caricate {len(self.rules)} rules e {len(self.responses)} response keys")
+        print(f"OK Caricate {len(self.rules)} rules e {len(self.responses)} response keys")
         
         print("Costruzione lookup table per doping...")
         nlu_dir = os.path.join(self.base_dir, 'knowledge', 'intents')
@@ -106,7 +107,7 @@ class Agent:
                     nlu_data = json.load(f)
                     self.doping_preprocessor.build_lookup_table(nlu_data)
         
-        print("✓ Lookup table costruita")
+        print("OK Lookup table costruita")
     
     def get_response(self, intent_name, slots: dict = None):
         if slots is None:
@@ -144,62 +145,80 @@ class Agent:
         session = self.session_manager.get_session(self.current_session_id)
         
         print("\n" + "="*50)
-        print("🤖 ARIANNA AGENT - Interfaccia Testuale")
+        print("ARIANNA AGENT - Interfaccia Testuale")
         print("="*50)
-        print(f"📋 Session ID: {self.current_session_id}")
-        print(f"📊 Sessioni attive: {len(self.session_manager.get_active_sessions())}")
+        print(f"Session ID: {self.current_session_id}")
+        print(f"Sessioni attive: {len(self.session_manager.get_active_sessions())}")
         print("Scrivi un messaggio (o 'esci' per terminare)\n")
         
         while True:
+            mode_indicator = f"[{session.agent_mode.upper()}] " if session.agent_mode != "predictable" else ""
             try:
-                user_input = input("Tu: ").strip()
+                user_input = input(f"Tu: {mode_indicator}").strip()
             except EOFError:
                 break
             
             if user_input.lower() in ['esci', 'exit', 'quit', 'q']:
-                print("\n👋 Arrivederci!")
+                print("\nArrivederci!")
                 break
             
             if not user_input:
                 continue
             
-            if session.waiting_for_slot:
-                slot_name = session.waiting_for_slot["slot"]
-                pending_intent = session.waiting_for_slot["intent"]
+            if session.agent_mode == "inputable":
+                if session.waiting_for_slot:
+                    slot_name = session.waiting_for_slot["slot"]
+                    pending_intent = session.waiting_for_slot["intent"]
+                    
+                    exit_commands = ['#exit', '#annulla', '#cancel', '#abort']
+                    if user_input.lower() in exit_commands:
+                        print("\nArianna: Input annullato. Puoi fornire un nuovo comando.\n")
+                        session.waiting_for_slot = None
+                        session.agent_mode = "predictable"
+                        session.add_message("user", user_input)
+                        session.add_message("assistant", "Input annullato.", None)
+                        continue
 
-                session.update_context(slot_name, user_input)
-                session.waiting_for_slot = None
+                    if not self.slot_validator.validate(pending_intent, slot_name, user_input):
+                        print("\nArianna: Selezione non valida. Riprova.\n")
+                        session.add_message("user", user_input)
+                        continue
 
-                response, wait_for_slot = self.get_response(pending_intent, session.context)
-                print(f"\n🤖 Arianna: {response}\n")
+                    session.update_context(slot_name, user_input)
+                    session.waiting_for_slot = None
+                    session.agent_mode = "predictable"
 
-                if wait_for_slot:
-                    session.waiting_for_slot = {"intent": pending_intent, "slot": wait_for_slot}
+                    response, wait_for_slot = self.get_response(pending_intent, session.context)
+                    print(f"\nArianna: {response}\n")
 
-                session.add_message("user", user_input)
-                session.add_message("assistant", response, pending_intent)
-                continue
+                    if wait_for_slot:
+                        session.waiting_for_slot = {"intent": pending_intent, "slot": wait_for_slot}
 
+                    session.add_message("user", user_input)
+                    session.add_message("assistant", response, pending_intent)
+                    continue
+            
             prediction = self.predict(user_input)
             
-            print(f"\n🎯 Intent: {prediction['intent']} ({prediction['confidence']:.1%})")
+            print(f"\nIntent: {prediction['intent']} ({prediction['confidence']:.1%})")
             
-            if prediction['entities']:
-                print(f"🏷️  Entità: {', '.join([e['value'] for e in prediction['entities']])}")
+            entities_str = ', '.join([e['value'] for e in prediction['entities']]) or "nessuna"
+            print(f"Entita: {entities_str}")
             
             for entity in prediction.get('entities', []):
                 session.update_context(entity['entity'], entity['value'])
             
             response, wait_for_slot = self.get_response(prediction['intent'], session.context)
-            print(f"\n🤖 Arianna: {response}\n")
+            print(f"\nArianna: {response}\n")
             
             if wait_for_slot:
                 session.waiting_for_slot = {"intent": prediction['intent'], "slot": wait_for_slot}
+                session.agent_mode = "inputable"
             
             session.add_message("user", user_input, prediction['intent'], prediction.get('entities', []))
             session.add_message("assistant", response, prediction['intent'])
             
-            print(f"💾 Cronologia: {len(session.history)} messaggi | Contesto: {session.context}")
+            print(f"Cronologia: {len(session.history)} messaggi | Contesto: {session.context}")
 
 
 def main():

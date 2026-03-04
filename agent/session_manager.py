@@ -15,6 +15,7 @@ class ConversationSession:
     context: dict[str, Any] = field(default_factory=dict)
     metadata: dict[str, Any] = field(default_factory=dict)
     waiting_for_slot: dict | None = None
+    agent_mode: str = "predictable"
 
     def add_message(self, role: str, content: str, intent: str | None = None, entities: list | None = None):
         self.history.append({

@@ -2,6 +2,37 @@ import random
 from typing import Any
 
 
+class SlotValidator:
+    def __init__(self, rules: dict):
+        self.rules = rules
+
+    def get_valid_values(self, intent: str, slot_name: str) -> list[str]:
+        rule = self.rules.get(intent)
+        if not rule:
+            return []
+
+        valid_values = []
+        for branch in rule.get("conditions", []):
+            for condition in branch.get("if", []):
+                if condition.get("slot") == slot_name and condition.get("operator") == "eq":
+                    value = condition.get("value")
+                    if value:
+                        valid_values.append(value)
+
+        return valid_values
+
+    def validate(self, intent: str, slot_name: str, value: str) -> bool:
+        valid_values = self.get_valid_values(intent, slot_name)
+        if not valid_values:
+            return True
+
+        value_lower = value.lower()
+        for valid in valid_values:
+            if valid.lower() == value_lower:
+                return True
+        return False
+
+
 class AnswerManager:
     def __init__(self, rules: dict):
         self.rules = rules
