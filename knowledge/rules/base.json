@@ -112,6 +112,71 @@
         }
       ],
       "default": "introduce_user_response"
+    },
+    "open_app": {
+      "conditions": [
+        {
+          "if": [
+            {
+              "slot": "PRODUCT",
+              "operator": "eq",
+              "value": "WhatsApp"
+            }
+          ],
+          "response": "open_app_whatsapp_response"
+        },
+        {
+          "if": [
+            {
+              "slot": "PRODUCT",
+              "operator": "eq",
+              "value": "Telegram"
+            }
+          ],
+          "response": "open_app_telegram_response"
+        },
+        {
+          "if": [
+            {
+              "slot": "PRODUCT",
+              "operator": "eq",
+              "value": "Spotify"
+            }
+          ],
+          "response": "open_app_spotify_response"
+        },
+        {
+          "if": [
+            {
+              "slot": "PRODUCT",
+              "operator": "eq",
+              "value": "Chrome"
+            }
+          ],
+          "response": "open_app_chrome_response"
+        },
+        {
+          "if": [
+            {
+              "slot": "PRODUCT_UNSUPPORTED",
+              "operator": "eq",
+              "value": true
+            }
+          ],
+          "response": "open_app_unsupported_response"
+        },
+        {
+          "if": [
+            {
+              "slot": "PRODUCT",
+              "operator": "not_filled"
+            }
+          ],
+          "response": "open_app_wait_response",
+          "wait_for_slot": "PRODUCT"
+        }
+      ],
+      "default": "open_app_wait_response"
     }
   }
 }

@@ -91,6 +91,36 @@
       "Ciao [PERSON]! Benvenuto! Sono Arianna, il tuo assistente virtuale!",
       "Non ho capito bene il tuo nome, potresti ripeterlo?",
       "Scusa, non ho afferrato bene il tuo nome. Come ti chiami?"
+    ],
+    "open_app_whatsapp_response": [
+      "Apro WhatsApp per te! 📱",
+      "Sto aprendo WhatsApp... un attimo!",
+      "WhatsApp in arrivo! ✅"
+    ],
+    "open_app_telegram_response": [
+      "Apro Telegram! ✈️",
+      "Telegram in apertura...",
+      "Ecco Telegram! Pronto per chattare?"
+    ],
+    "open_app_spotify_response": [
+      "Apro Spotify! 🎵 Pronto per la musica?",
+      "Spotify in arrivo! Che musica vuoi ascoltare?",
+      "Sto aprendo Spotify... preparati a cantare! 🎶"
+    ],
+    "open_app_chrome_response": [
+      "Apro Chrome! 🌐 Pronto a navigare?",
+      "Chrome in apertura...",
+      "Eccolo, Chrome è pronto! Cosa vuoi cercare?"
+    ],
+    "open_app_wait_response": [
+      "Quale app vuoi aprire? Ho WhatsApp, Telegram, Spotify, Chrome...",
+      "Dimmi il nome dell'app che vuoi aprire!",
+      "Quale applicazione devo avviare per te?"
+    ],
+    "open_app_unsupported_response": [
+      "Mi dispiace, non supporto ancora quell'app. Al momento posso aprire: WhatsApp, Telegram, Spotify o Chrome. Quale preferisci?",
+      "Quella app non è tra quelle che gestisco. Prova con WhatsApp, Telegram, Spotify o Chrome!",
+      "Non ho accesso a quell'applicazione. Posso aprire WhatsApp, Telegram, Spotify o Chrome per te?"
     ]
   }
 }

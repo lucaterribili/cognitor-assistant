@@ -37,10 +37,12 @@ class AnswerManager:
     def __init__(self, rules: dict):
         self.rules = rules
 
-    def set_slot(self, slots: dict, key: str, value: Any):
+    @staticmethod
+    def set_slot(slots: dict, key: str, value: Any):
         slots[key] = value
 
-    def _check_condition(self, condition: dict, slots: dict) -> bool:
+    @staticmethod
+    def _check_condition(condition: dict, slots: dict) -> bool:
         slot_value = slots.get(condition["slot"])
         operator = condition["operator"]
         expected_value = condition.get("value")
