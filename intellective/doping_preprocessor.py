@@ -54,13 +54,20 @@ class DopingPreprocessor:
         return f"{intent_name}_{safe_text}"
 
     def get_examples(self, nlu_data: dict) -> list[dict]:
+        """
+        Restituisce gli esempi SENZA pulirli - mantiene le annotazioni NER
+        """
         return [
-            {"text": self._clean_example(ex), "intent": intent_data["intent"]}
+            {"text": ex, "intent": intent_data["intent"]}
             for intent_data in nlu_data["nlu"]["intents"]
             for ex in intent_data["examples"]
         ]
 
     def process_dataset(self, nlu_data: dict) -> list[dict]:
+        """
+        Processa il dataset mantenendo le annotazioni NER nel testo originale.
+        Il doping viene applicato solo agli esempi duplicati, non al testo base.
+        """
         dataset = []
         for intent_data in nlu_data["nlu"]["intents"]:
             intent_name = intent_data["intent"]
@@ -68,15 +75,18 @@ class DopingPreprocessor:
             dope = self._should_dope(examples)
 
             for example in examples:
-                clean = self._clean_example(example)
-                tokens = clean.split()
+                # Mantieni l'esempio originale con annotazioni NER
+                dataset.append({"text": example, "intent": intent_name})
 
-                dataset.append({"text": clean, "intent": intent_name})
-
-                if dope and len(tokens) <= self.short_token_limit:
-                    example_id = self._make_example_id(intent_name, clean)
-                    prefixed = f"{intent_name} {example_id} {clean}"
-                    dataset.append({"text": prefixed, "intent": intent_name})
+                # Aggiungi versione "dopata" solo se necessario
+                # La versione dopata NON ha annotazioni NER (usa clean)
+                if dope:
+                    clean = self._clean_example(example)
+                    tokens = clean.split()
+                    if len(tokens) <= self.short_token_limit:
+                        example_id = self._make_example_id(intent_name, clean)
+                        prefixed = f"{intent_name} {example_id} {clean}"
+                        dataset.append({"text": prefixed, "intent": intent_name})
 
         return dataset
 
