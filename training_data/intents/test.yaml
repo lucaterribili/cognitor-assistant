@@ -1,0 +1,12 @@
+nlu:
+  intents:
+  - intent: ask_id_card_renew
+    examples:
+    - come si rinnova la carta d'identità
+    - rinnovo carta d'identità
+    - devo rinnovare la carta d'identità
+    - dove posso rinnovare la carta d'identità
+    - quanto costa rinnovare la carta d'identità
+    - carta d'identità scaduta
+    - rinnovare documento d'identità
+    - come fare per rinnovare la carta d'identità

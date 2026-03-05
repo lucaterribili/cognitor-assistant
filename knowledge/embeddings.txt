@@ -1120,3 +1120,7 @@ Che ne dici di andare al mercato domani mattina? Voglio comprare frutta e verdur
 Ti va di venire con me a comprare un regalo per mia sorella? Non so cosa regalarle!
 Facciamo un giro in bicicletta lungo il fiume? È una bellissima giornata!
 Che ne dici di andare a mangiare il gelato dopo cena? Offro io!
+Funziona. L'errore LSP rimanente è un false positive del type checker perché il parametro può essere None ma viene sempre gestito internamente con un valore di default.
+L'errore rimanente è un false positive del type checker perché config_path può essere None ma viene usato come str. Questo è accettabile perché il default viene sempre costruito internamente. Verifico che funzioni.
+L'utente vuole che il file ner_tag_builder.py legga ENTITY_TYPES dal file .cognitor/ner_tag_builder.json invece di averlo hardcoded.
+Devo prima leggere entrambi i file per capire la situazione.

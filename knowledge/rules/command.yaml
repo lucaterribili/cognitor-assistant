@@ -16,6 +16,22 @@ rules:
   book_hotel:
     default: book_hotel_response
 
+  generic_booking:
+    wait: generic_booking_ask_type
+    default: generic_booking_response
+    slots:
+      tipo_prenotazione:
+        required: true
+    cases:
+      ristorante:
+        restaurant_booking_response
+      hotel:
+        book_hotel_response
+      volo:
+        book_flight_response
+      taxi:
+        taxi_ride_response
+
   alarm_set:
     default: alarm_set_response
 

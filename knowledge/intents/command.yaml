@@ -17,8 +17,6 @@ nlu:
     - cerca ristorante
     - prenota al ristorante
     - tavolo per [stasera](TIME)
-    - prenota per [domani](DATE)
-    - prenota per [oggi](DATE)
     - tavolo per [sei](NUMBER) persone
     - prenota per [tre](NUMBER)
     - prenota un tavolo per [otto](NUMBER)
@@ -154,7 +152,6 @@ nlu:
     - hotel a [Roma](LOCATION)
     - prenota hotel a [Firenze](LOCATION)
     - cerca hotel in [Centro](LOCATION)
-    - prenota per [domani](DATE)
     - camera per [due](NUMBER) notti
     - hotel per [una](NUMBER) notte
     - prenota stanza dal [15](DATE) al [20](DATE)
@@ -163,6 +160,22 @@ nlu:
     - prenota hotel a [Milano](LOCATION) per [3](NUMBER) notti
     - camera d'albergo per [stasera](DATE)
     - cerca hotel economico
+  - intent: generic_booking
+    examples:
+    - prenota per [domani](DATE)
+    - prenota per [oggi](DATE)
+    - vorrei prenotare
+    - prenota
+    - prenotazione
+    - fai una prenotazione
+    - vorrei fare una prenotazione
+    - posso prenotare
+    - prenota qualcosa
+    - ho bisogno di una prenotazione
+    - vorrei riservare
+    - riserva per [domani](DATE)
+    - riserva per [due](NUMBER)
+    - prenota per [stasera](TIME)
   - intent: alarm_set
     examples:
     - imposta sveglia
@@ -193,9 +206,7 @@ nlu:
     - metti una canzone
     - suona una canzone
     - musica
-    - riproduci
     - metti della musica
-    - canzone
     - riproduci [Lucio Battisti](PERSON)
     - metti jazz
     - riproduci playlist

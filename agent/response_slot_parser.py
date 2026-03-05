@@ -17,7 +17,7 @@ class ResponseSlotParser:
         -> slots: {"LOCATION": "Roma"}
     """
 
-    PATTERN = re.compile(r'\{([^=]+)=([^}]+)\}')
+    PATTERN = re.compile(r'\{([^=]+)=([^}]+)}')
 
     @classmethod
     def parse(cls, response: str) -> Tuple[str, Dict]:
