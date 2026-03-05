@@ -1,0 +1,89 @@
+# Find Context Intents
+
+nlu:
+  intents:
+  - intent: what_is
+    examples:
+    - cos'è
+    - che cos'è
+    - cosa è
+    - che cosa è
+    - cos'è un
+    - che cos'è un
+    - cos'è una
+    - che cos'è una
+    - dimmi cos'è
+    - mi spieghi cos'è
+    - cos'è che
+    - cosa rappresenta
+    - che rappresenta
+    - definizione di
+    - cos'è esattamente
+    - che cos'è in pratica
+    - cos'è precisamente
+  - intent: more_info
+    examples:
+    - dammi maggiori informazioni
+    - dammi più informazioni
+    - informazioni aggiuntive
+    - altri dettagli
+    - dettagli in più
+    - dimmi di più
+    - fammi sapere di più
+    - vorrei sapere di più
+    - puoi darmi più dettagli
+    - approfondisci
+    - maggiori dettagli
+    - ulteriori informazioni
+    - altro
+    - qualcos'altro
+    - altri particolari
+    - fammi capire meglio
+    - spiegami meglio
+    - chiarimenti
+    - ulteriori dettagli
+    - più notizie
+  - intent: how_to_get
+    examples:
+    - come si ottiene
+    - come posso ottenere
+    - come posso fare per avere
+    - dove posso trovare
+    - come si fa a
+    - come si può
+    - in che modo si ottiene
+    - quale è la procedura per
+    - come posso averlo
+    - da dove viene
+    - come si ricava
+    - qual è il procedimento
+    - come posso procurarmi
+    - dove si reperisce
+    - come si trova
+    - dove trovo
+    - come posso ricevere
+    - quali sono i passaggi per
+    - cosa devo fare per ottenere
+    - come si ottiene l'accesso
+  - intent: where_is
+    examples:
+    - dove si trova
+    - dove si trovano
+    - dove posso trovare
+    - dove è
+    - dove sono
+    - dov'è
+    - dove
+    - in che posto si trova
+    - in che luogo
+    - qual è la posizione di
+    - indicami dove
+    - mi puoi dire dove
+    - si trova
+    - si trovano
+    - ubicazione di
+    - dove è situato
+    - dove è located
+    - indirizzo di
+    - posizione del
+    - posizione della

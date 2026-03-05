@@ -11,20 +11,17 @@ from pipeline.merge_data import merge_intents
 
 
 def run_full_pipeline(
-    data_path: str = "data/training_source.json",
-    merge_data: bool = True,
-    train_fasttext: bool = True,
     train_classifier: bool = True
 ):
     """
     Esegue la pipeline completa di training:
-    1. Merge dei dati da training_data/ (opzionale)
-    2. Genera i dati NLU (intent builder)
-    3. Addestra FastText (opzionale)
-    4. Addestra Intent Classifier (opzionale)
+    1. Genera corpus FastText (raw text, senza tokenizer)
+    2. Allena FastText (OBBLIGATORIO - il tokenizer ne ha bisogno)
+    3. Genera dataset NLU tokenizzato (usando FastText appena addestrato)
+    4. Allena Intent Classifier (opzionale)
     """
     print("=" * 50)
-    print("AVVIO PIPELINE COMPLETA")
+    print("AVVIO PIPELINE COMPLETA (YAML-based)")
     print("=" * 50)
 
     data_dir = os.path.join(BASE_DIR, "data")
@@ -38,21 +35,21 @@ def run_full_pipeline(
             import shutil
             shutil.rmtree(item_path)
 
-    if merge_data:
-        print("\n[1/4] Merge dei dati da training_data/...")
-        merge_intents(output_file=data_path)
-    else:
-        print("\n[1/4] Merge dei dati - SKIPPED")
+    # STEP 1: Carica intents da YAML e genera corpus FastText (RAW TEXT)
+    print("\n[1/4] Caricamento intents da YAML e generazione corpus FastText...")
+    from classes.dataset_generator import DatasetGenerator
+    generator = DatasetGenerator.load_from_yaml_files()
+    generator.generate_fasttext_corpus_only()
 
-    if train_fasttext:
-        print("\n[2/4] Training FastText...")
-        train_embedder()
-    else:
-        print("\n[2/4] Training FastText - SKIPPED")
+    # STEP 2: Allena FastText (OBBLIGATORIO)
+    print("\n[2/4] Training FastText (obbligatorio)...")
+    train_embedder()
 
-    print("\n[3/4] Generazione dati NLU...")
-    build_intents(data_path=data_path)
+    # STEP 3: Genera dataset NLU tokenizzato (usa FastText appena addestrato)
+    print("\n[3/4] Generazione dataset NLU tokenizzato...")
+    build_intents()
 
+    # STEP 4: Allena Intent Classifier
     if train_classifier:
         print("\n[4/4] Training Intent Classifier...")
         train_main_model()

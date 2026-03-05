@@ -15,6 +15,7 @@ from agent.session_manager import SessionManager
 from agent.answer_manager import AnswerManager, SlotValidator
 from agent.model_loader import ModelLoader, KnowledgeLoader
 from agent.slot_manager import SlotManager
+from agent.rule_interpreter import RuleInterpreter
 
 
 class Agent:
@@ -54,6 +55,9 @@ class Agent:
         # Slot management (data-driven)
         self.slot_manager = None
 
+        # Rule interpreter (runtime DSL)
+        self.rule_interpreter = None
+
     def load_models(self) -> bool:
         """
         Carica tutti i modelli ML necessari.
@@ -76,17 +80,21 @@ class Agent:
         """Carica rules, responses e costruisce la lookup table per doping."""
         self.rules, self.responses = self.knowledge_loader.load_all()
 
+        # Inizializza il RuleInterpreter (nuovo runtime DSL)
+        self.rule_interpreter = RuleInterpreter(self.rules, self.responses)
+
+        # Answer manager legacy (da deprecare gradualmente)
         self.answer_manager = AnswerManager(self.rules)
         self.slot_validator = SlotValidator(self.rules)
         
-        # Inizializza il nuovo SlotManager (completamente data-driven)
-        self.slot_manager = SlotManager(self.rules)
+        # Inizializza il nuovo SlotManager con il RuleInterpreter
+        self.slot_manager = SlotManager(self.rules, self.rule_interpreter)
 
         self.knowledge_loader.build_doping_lookup_table(self.doping_preprocessor)
 
     def get_response(self, intent_name: str, slots: dict = None) -> tuple[str, str | None]:
         """
-        Ottiene una risposta per l'intent specificato.
+        Ottiene una risposta per l'intent specificato usando il RuleInterpreter.
 
         Args:
             intent_name: Nome dell'intent
@@ -98,8 +106,9 @@ class Agent:
         if slots is None:
             slots = {}
         
-        return self.answer_manager.get_response(intent_name, slots, self.responses)
-    
+        # Usa il nuovo RuleInterpreter (runtime DSL)
+        return self.rule_interpreter.handle_intent(intent_name, slots)
+
     def predict(self, text: str) -> dict:
         """
         Predice intent ed entità per il testo fornito.

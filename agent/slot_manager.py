@@ -10,41 +10,41 @@ from typing import Optional, Any
 class SlotExtractor:
     """
     Estrae automaticamente i valori degli slot dalle entità NER
-    basandosi sulle rules definite nei JSON.
+    basandosi sulle rules definite nei JSON/YAML.
     """
 
-    def __init__(self, rules: dict):
+    def __init__(self, rules: dict, rule_interpreter=None):
         """
         Args:
-            rules: Dizionario delle rules caricato dai JSON
+            rules: Dizionario delle rules caricato dai JSON/YAML
+            rule_interpreter: Opzionale RuleInterpreter per delegare validazione
         """
         self.rules = rules
+        self.rule_interpreter = rule_interpreter
         self._slot_entity_mapping = self._build_slot_entity_mapping()
         self._valid_values_cache = {}
 
     def _build_slot_entity_mapping(self) -> dict[str, str]:
         """
         Costruisce automaticamente il mapping slot_name -> entity_type
-        analizzando le rules.
+        analizzando le rules (formato DSL YAML).
 
-        Per ora usa convenzioni di naming (LOCATION -> LOCATION, PERSON -> PERSON)
-        ma può essere esteso con configurazione esplicita.
+        Estrae dall'attributo 'entity' nella configurazione degli slot.
 
         Returns:
             dict: mapping slot_name -> entity_type
         """
         mapping = {}
 
-        # Analizza tutte le rules per trovare gli slot usati
+        # Analizza tutte le rules per trovare gli slot
         for intent_name, rule in self.rules.items():
-            conditions = rule.get('conditions', [])
-            for branch in conditions:
-                for condition in branch.get('if', []):
-                    slot_name = condition.get('slot')
-                    if slot_name and not slot_name.endswith('_UNSUPPORTED'):
-                        # Per ora, assumiamo che il nome dello slot corrisponda al tipo di entità
-                        # LOCATION -> LOCATION, PERSON -> PERSON, etc.
-                        mapping[slot_name] = slot_name
+            # Nuovo formato DSL YAML
+            slots_config = rule.get('slots', {})
+            for slot_name, slot_config in slots_config.items():
+                if not slot_name.endswith('_UNSUPPORTED'):
+                    # Usa l'entity specificata o fallback al nome dello slot
+                    entity_type = slot_config.get('entity', slot_name)
+                    mapping[slot_name] = entity_type
 
         return mapping
 
@@ -85,7 +85,7 @@ class SlotExtractor:
     def get_valid_values_for_slot(self, intent: str, slot_name: str) -> list[str]:
         """
         Estrae tutti i valori validi per uno slot da un intent,
-        analizzando le conditions nelle rules.
+        analizzando le conditions nelle rules o delegando al RuleInterpreter.
 
         Args:
             intent: Nome dell'intent
@@ -94,6 +94,11 @@ class SlotExtractor:
         Returns:
             Lista di valori validi
         """
+        # Se abbiamo il RuleInterpreter, delega a lui
+        if self.rule_interpreter:
+            return self.rule_interpreter.get_valid_values_for_slot(intent, slot_name)
+
+        # Altrimenti usa la logica legacy
         cache_key = f"{intent}:{slot_name}"
         if cache_key in self._valid_values_cache:
             return self._valid_values_cache[cache_key]
@@ -105,13 +110,17 @@ class SlotExtractor:
             self._valid_values_cache[cache_key] = valid_values
             return valid_values
 
-        # Analizza le conditions
-        for branch in rule.get('conditions', []):
-            for condition in branch.get('if', []):
-                if condition.get('slot') == slot_name and condition.get('operator') == 'eq':
-                    value = condition.get('value')
-                    if value and isinstance(value, str):
-                        valid_values.append(value)
+        # Nuovo formato DSL (YAML)
+        if "cases" in rule:
+            valid_values = list(rule["cases"].keys())
+        # Vecchio formato (JSON con conditions)
+        else:
+            for branch in rule.get('conditions', []):
+                for condition in branch.get('if', []):
+                    if condition.get('slot') == slot_name and condition.get('operator') == 'eq':
+                        value = condition.get('value')
+                        if value and isinstance(value, str):
+                            valid_values.append(value)
 
         self._valid_values_cache[cache_key] = valid_values
         return valid_values
@@ -128,6 +137,11 @@ class SlotExtractor:
         Returns:
             True se il valore è valido
         """
+        # Se abbiamo il RuleInterpreter, delega a lui
+        if self.rule_interpreter:
+            return self.rule_interpreter.is_valid_value(intent, slot_name, value)
+
+        # Altrimenti usa la logica legacy
         if not value:
             return False
 
@@ -156,6 +170,7 @@ class SlotContextManager:
     def get_slots_for_intent(self, intent: str) -> set[str]:
         """
         Ottiene tutti gli slot utilizzati da un intent analizzando le rules.
+        Supporta sia il nuovo formato DSL YAML che il vecchio formato JSON.
 
         Args:
             intent: Nome dell'intent
@@ -168,11 +183,23 @@ class SlotContextManager:
             return set()
 
         slots = set()
-        for branch in rule.get('conditions', []):
-            for condition in branch.get('if', []):
-                slot_name = condition.get('slot')
-                if slot_name:
-                    slots.add(slot_name)
+
+        # Nuovo formato DSL (YAML) - ha attributo 'slots'
+        if 'slots' in rule:
+            for slot_name in rule['slots'].keys():
+                slots.add(slot_name)
+                # Aggiungi anche il flag _UNSUPPORTED se lo slot è required
+                slot_config = rule['slots'][slot_name]
+                if slot_config.get('required', False):
+                    slots.add(f"{slot_name}_UNSUPPORTED")
+
+        # Vecchio formato JSON (legacy) - ha 'conditions'
+        elif 'conditions' in rule:
+            for branch in rule.get('conditions', []):
+                for condition in branch.get('if', []):
+                    slot_name = condition.get('slot')
+                    if slot_name:
+                        slots.add(slot_name)
 
         return slots
 
@@ -202,10 +229,14 @@ class SlotContextManager:
         current_slots = self.get_slots_for_intent(intent)
         previous_slots = self.get_slots_for_intent(previous_intent) if previous_intent else set()
 
-        # Se ci sono slot in comune tra intent consecutivi
-        consecutive_slots = current_slots & previous_slots
+        # Filtra solo gli slot veri (non i flag _UNSUPPORTED)
+        current_slots_real = {s for s in current_slots if not s.endswith('_UNSUPPORTED')}
+        previous_slots_real = {s for s in previous_slots if not s.endswith('_UNSUPPORTED')}
 
-        for slot_name in current_slots:
+        # Se ci sono slot in comune tra intent consecutivi
+        consecutive_slots = current_slots_real & previous_slots_real
+
+        for slot_name in current_slots_real:
             # Estrai valore dalle entità
             extracted_value = self.slot_extractor.extract_from_entities(slot_name, entities)
 
@@ -278,17 +309,18 @@ class SlotContextManager:
 class SlotManager:
     """
     Facade principale per la gestione degli slot.
-    Sistema completamente data-driven basato sulle rules JSON.
+    Sistema completamente data-driven basato sulle rules JSON/YAML.
 
     Non richiede configurazioni hardcoded: tutto viene dedotto dalle rules.
     """
 
-    def __init__(self, rules: dict):
+    def __init__(self, rules: dict, rule_interpreter=None):
         """
         Args:
-            rules: Dizionario delle rules caricato dai JSON
+            rules: Dizionario delle rules caricato dai JSON/YAML
+            rule_interpreter: Opzionale RuleInterpreter per validazione avanzata
         """
-        self.extractor = SlotExtractor(rules)
+        self.extractor = SlotExtractor(rules, rule_interpreter)
         self.context_manager = SlotContextManager(self.extractor)
 
     def update_session_from_prediction(
