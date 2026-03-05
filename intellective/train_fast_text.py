@@ -10,7 +10,7 @@ def train_embedder():
     MODEL_PATH = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
 
     # Usa il corpus generato dalla pipeline
-    corpus_path = os.path.join(BASE_DIR, 'data', 'fast-text.txt')
+    corpus_path = os.path.join(BASE_DIR, '.cognitor', 'fast-text.txt')
 
     # Fallback se non esiste (legacy)
     if not os.path.exists(corpus_path):
@@ -20,7 +20,7 @@ def train_embedder():
         raise FileNotFoundError(
             f"Corpus non trovato! Esegui prima: python -m pipeline.intent_builder\n"
             f"Path cercati:\n"
-            f"  - {os.path.join(BASE_DIR, 'data', 'fast-text.txt')}\n"
+            f"  - {os.path.join(BASE_DIR, '.cognitor', 'fast-text.txt')}\n"
             f"  - {os.path.join(BASE_DIR, 'knowledge', 'embeddings.txt')}"
         )
 

@@ -21,7 +21,7 @@ class ModelLoader:
         self.device = device
 
         self.fasttext_model_path = os.path.join(base_dir, 'models', 'fasttext_model.bin')
-        self.intent_dict_path = os.path.join(base_dir, 'data', 'intent_dict.json')
+        self.intent_dict_path = os.path.join(base_dir, '.cognitor', 'intent_dict.json')
         self.model_path = os.path.join(base_dir, 'models', 'intent_model_fast.pth')
 
     def load_fasttext(self) -> fasttext.FastText._FastText:

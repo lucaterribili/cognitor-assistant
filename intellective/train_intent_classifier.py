@@ -128,8 +128,8 @@ def train_main_model():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Dispositivo in uso: {device}")
 
-    npy_path = os.path.join(BASE_DIR, 'data', 'tokenized_data.npy')
-    intent_dict_path = os.path.join(BASE_DIR, 'data', 'intent_dict.json')
+    npy_path = os.path.join(BASE_DIR, '.cognitor', 'tokenized_data.npy')
+    intent_dict_path = os.path.join(BASE_DIR, '.cognitor', 'intent_dict.json')
 
     with open(intent_dict_path, 'r') as f:
         intent_dict = json.load(f)

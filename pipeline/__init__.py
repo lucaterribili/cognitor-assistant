@@ -24,10 +24,9 @@ def run_full_pipeline(
     print("AVVIO PIPELINE COMPLETA (YAML-based)")
     print("=" * 50)
 
-    data_dir = os.path.join(BASE_DIR, "data")
+    data_dir = os.path.join(BASE_DIR, ".cognitor")
+    os.makedirs(data_dir, exist_ok=True)
     for item in os.listdir(data_dir):
-        if item == ".gitkeep":
-            continue
         item_path = os.path.join(data_dir, item)
         if os.path.isfile(item_path):
             os.remove(item_path)

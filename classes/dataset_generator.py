@@ -20,7 +20,8 @@ class DatasetGenerator:
 
     def __init__(self, data):
         self.data = data
-        self.data_path = os.path.join(BASE_DIR, 'data')
+        self.data_path = os.path.join(BASE_DIR, '.cognitor')
+        os.makedirs(self.data_path, exist_ok=True)
         self.normalizer = IntentNormalizer()
         fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
         self.tokenizer = SimpleTokenizer(fasttext_model_path)
