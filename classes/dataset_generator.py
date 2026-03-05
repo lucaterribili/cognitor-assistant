@@ -2,6 +2,8 @@ import json
 import os
 import csv
 import numpy as np
+import yaml
+from pathlib import Path
 from classes.intent_normalizer import IntentNormalizer
 from classes.simple_tokenizer import SimpleTokenizer
 from classes.ner_markup_parser import NERMarkupParser
@@ -11,6 +13,10 @@ from config import BASE_DIR, DOPING_ACTIVE
 
 
 class DatasetGenerator:
+    """
+    Genera dataset per training da file YAML.
+    Sistema completamente basato su YAML - JSON deprecato.
+    """
 
     def __init__(self, data):
         self.data = data
@@ -22,6 +28,48 @@ class DatasetGenerator:
         self.ner_tag_builder = NERTagBuilder()
         self.doping_preprocessor = DopingPreprocessor()
         self.doping_preprocessor.build_lookup_table(data)
+
+    @staticmethod
+    def load_from_yaml_files(intents_dir: str = None) -> 'DatasetGenerator':
+        """
+        Carica tutti gli intents dai file YAML e crea un DatasetGenerator.
+
+        Args:
+            intents_dir: Directory degli intents (default: knowledge/intents)
+
+        Returns:
+            DatasetGenerator istanziato con i dati YAML
+        """
+        if intents_dir is None:
+            intents_dir = os.path.join(BASE_DIR, 'knowledge', 'intents')
+
+        # Merge di tutti gli intents YAML
+        all_intents = []
+        intents_path = Path(intents_dir)
+
+        for yaml_file in sorted(intents_path.glob('*.yaml')):
+            with open(yaml_file, 'r', encoding='utf-8') as f:
+                data = yaml.safe_load(f)
+                if data and 'nlu' in data and 'intents' in data['nlu']:
+                    all_intents.extend(data['nlu']['intents'])
+                    print(f"✓ Caricati intents da: {yaml_file.name}")
+
+        # Crea la struttura dati completa
+        merged_data = {
+            'nlu': {
+                'intents': all_intents
+            }
+        }
+
+        print(f"\n✓ Totale intents caricati: {len(all_intents)}")
+        return DatasetGenerator(merged_data)
+
+    def generate_fasttext_corpus_only(self):
+        """
+        Genera SOLO il corpus FastText (da usare PRIMA del training FastText).
+        Non richiede il modello FastText addestrato.
+        """
+        self.generate_fasttext_corpus()
 
     def generate_nlu(self):
         nlu_data = self.data['nlu']
@@ -75,6 +123,10 @@ class DatasetGenerator:
         print(f"NER tag builder salvato in: {tag_builder_path}")
 
     def generate_fasttext_corpus(self):
+        """
+        Genera il corpus per FastText (RAW TEXT senza tokenizzazione).
+        FastText tokenizza internamente usando subword information.
+        """
         fasttext_path = os.path.join(self.data_path, 'fast-text.txt')
         training_phrases_path = os.path.join(BASE_DIR, 'knowledge', 'embeddings.txt')
         
@@ -104,12 +156,13 @@ class DatasetGenerator:
                         seen.add(line)
                         lines_to_write.append(line)
 
+        # Scrivi RAW TEXT - FastText tokenizza internamente
         with open(fasttext_path, mode='w', encoding='utf-8') as f:
             for text in lines_to_write:
-                tokens = self.tokenizer(text)
-                f.write(" ".join(tokens) + "\n")
+                f.write(text + "\n")
 
-        print(f"FastText corpus salvato in: {fasttext_path}")
+        print(f"FastText corpus (raw text) salvato in: {fasttext_path}")
+        print(f"Totale frasi: {len(lines_to_write)}")
 
     def tokenize_and_save_npy(self, csv_path):
         tokenized_data = []

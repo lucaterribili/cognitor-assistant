@@ -1,13 +1,17 @@
-import json
 import os
 from classes.dataset_generator import DatasetGenerator
 
 
-def build_intents(data_path: str = "data/training_source.json", output_dir: str = "data"):
-    with open(data_path, 'r', encoding='utf-8') as file:
-        data = json.load(file)
+def build_intents(intents_dir: str = None, output_dir: str = "data"):
+    """
+    Genera i dataset NLU da file YAML.
 
-    dataset_generator = DatasetGenerator(data)
+    Args:
+        intents_dir: Directory contenente i file YAML degli intents (default: knowledge/intents)
+        output_dir: Directory di output per i file generati
+    """
+    # Carica da YAML
+    dataset_generator = DatasetGenerator.load_from_yaml_files(intents_dir)
     dataset_generator.generate_nlu()
     print(f"Intent builder completato. File generati in: {output_dir}")
 

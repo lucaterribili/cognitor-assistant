@@ -1,0 +1,15 @@
+# Find context rules - Intent per richieste contestuali
+
+rules:
+  what_is:
+    default: what_is_response
+
+  more_info:
+    default: more_info_response
+
+  how_to_get:
+    default: how_to_get_response
+
+  where_is:
+    default: where_is_response
+

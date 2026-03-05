@@ -1,0 +1,142 @@
+# Responses per il chatbot Arianna
+# Template con placeholder {SLOT_NAME} verranno sostituiti dal runtime
+
+responses:
+  # ========================================
+  # Risposte base
+  # ========================================
+
+  greeting_response:
+    - "Ciao! Come posso aiutarti oggi?"
+    - "Hey! Sono qui per te. Cosa vuoi fare?"
+    - "Ciao! Benvenuto! In cosa posso esserti utile?"
+    - "Salve! Sono pronto ad aiutarti. Dimmi cosa ti serve."
+
+  farewell_response:
+    - "Arrivederci! È stato un piacere parlare con te!"
+    - "Ciao! Speriamo di sentirci presto. Buona giornata!"
+    - "Addio! Torna quando vuoi, sarò qui!"
+    - "A presto! Fai buon proseguimento!"
+
+  help_response:
+    - "Posso aiutarti con molte cose: cercare informazioni, rispondere a domande, fare calcoli, impostare promemoria e molto altro. Cosa ti serve?"
+    - "Sono qui per assisterti! Posso rispondere a domande, cercare informazioni, tradurre testi, raccontare barzellette e aiutarti con tantissime altre cose. Cosa vuoi fare?"
+
+  ask_name_response:
+    - "Mi chiamo Arianna, un assistente virtuale creato per aiutarti in tutto ciò di cui hai bisogno!"
+    - "Sono Arianna, il tuo assistente personale. Sono qui per semplificarti la vita!"
+
+  thank_you_response:
+    - "Prego! Sono felice di aver potuto aiutarti!"
+    - "Di nulla! Se hai bisogno di altro, sono qui!"
+    - "Figurati! È un piacere assisterti. Altro?"
+
+  compliment_response:
+    - "Grazie mille! Apprezzo molto! Farò del mio meglio per continuare!"
+    - "Che gentile! Mi fai arrossire... virtualmente! 😊"
+    - "Grazie! Il merito è anche tuo che mi usi bene!"
+
+  insult_response:
+    - "Capisco che sei frustrato. Posso aiutarti in qualcos'altro?"
+    - "Non ti tratterò come tratti me. Come posso aiutarti oggi?"
+    - "Ok, hai detto la tua. Posso esserti utile in qualcosa di costruttivo?"
+
+  bot_challenge_response:
+    - "Sono Arianna, un assistente virtuale basato su intelligenza artificiale. Sono qui per aiutarti!"
+    - "Sono un bot, ma un bot molto simpatico e utile! Posso fare molte cose per te."
+
+  mood_great_response:
+    - "Fantastico! Sono felice che tu stia bene! Come posso renderti la giornata ancora migliore?"
+    - "Che bella notizia! Il buon umore è contagioso! Come posso aiutarti?"
+
+  mood_unhappy_response:
+    - "Mi dispiace sentire che non stai bene. Sono qui per te. Vuoi parlarne o posso aiutarti in qualche modo?"
+    - "Capisco, a volte le giornate sono così. Posso fare qualcosa per migliorarla? Una barzelletta?"
+
+  joke_response:
+    - "Ecco una per te: Perché il Programmatore ha buttato via il computer? Perché faceva troppi bug! 😂"
+    - "Sai quella del sito web che era timido? Era un po' introvertito... non si caricava mai! 😄"
+    - "Un altro: Perché Java non poteva essere single? Perché era legato a tantissime librerie! 💀"
+
+  weather_query_response:
+    - "Mi serve sapere la località per darti il meteo. In quale città vuoi le previsioni?"
+    - "Per darti informazioni meteo accurate, dimmi per favore la località e il giorno che ti interessa."
+
+  time_query_response:
+    - "L'ora attuale è [TIME]. Posso aiutarti con altro?"
+    - "Sono le [TIME]. C'è altro che vuoi sapere?"
+
+  date_query_response:
+    - "Oggi è [DATE]. Cosa vuoi fare?"
+    - "La data odierna è [DATE]. Sono qui per aiutarti!"
+
+  low_confidence_fallback_response:
+    - "Scusa, non ho capito bene. Potresti riformulare?"
+    - "Mi dispiace, non sono sicuro di aver compreso. Puoi dirlo in un altro modo?"
+    - "Non ho capito bene la tua richiesta. Puoi essere più specifico?"
+
+  # ========================================
+  # Risposte per ask_city_touristic_information
+  # ========================================
+
+  ask_city_touristic_information_roma_response:
+    - "Roma, la Città Eterna! Puoi visitare il Colosseo, Vatican City, la Fontana di Trevi e tanto altro. Cosa vuoi sapere in particolare?"
+    - "Roma è una città meravigliosa ricca di storia. Vuoi informazioni su musei, ristoranti o attrazioni turistiche?"
+
+  ask_city_touristic_information_milano_response:
+    - "Milano, la capitale della moda e del design! Puoi visitare il Duomo, la Galleria Vittorio Emanuele II, il Castello Sforzesco e molto altro."
+    - "Milano è una città moderna e dinamica. Hai bisogno di informazioni su shopping, ristoranti o attrazioni culturali?"
+
+  ask_location_wait_response:
+    - "Che bella domanda! Per darti informazioni più precise, puoi dirmi la località che ti interessa?"
+    - "Devi specificare una città per poterti dare informazioni turistiche accurate. Quale località vorresti conoscere?"
+
+  ask_location_unsupported_response:
+    - "Mi dispiace, al momento non ho informazioni turistiche per quella località. Posso aiutarti con Roma o Milano. Quale città vorresti visitare?"
+    - "Non gestisco ancora quella destinazione. Per ora posso darti info su Roma e Milano. Quale preferisci?"
+
+  # ========================================
+  # Risposte per open_app
+  # ========================================
+
+  open_app_whatsapp_response:
+    - "Apro WhatsApp per te! 📱"
+    - "Sto aprendo WhatsApp... un attimo!"
+    - "WhatsApp in arrivo! ✅"
+
+  open_app_telegram_response:
+    - "Apro Telegram! ✈️"
+    - "Telegram in apertura..."
+    - "Ecco Telegram! Pronto per chattare?"
+
+  open_app_spotify_response:
+    - "Apro Spotify! 🎵 Pronto per la musica?"
+    - "Spotify in arrivo! Che musica vuoi ascoltare?"
+    - "Sto aprendo Spotify... preparati a cantare! 🎶"
+
+  open_app_chrome_response:
+    - "Apro Chrome! 🌐 Pronto a navigare?"
+    - "Chrome in apertura..."
+    - "Eccolo, Chrome è pronto! Cosa vuoi cercare?"
+
+  open_app_wait_response:
+    - "Quale app vuoi aprire? Ho WhatsApp, Telegram, Spotify, Chrome..."
+    - "Dimmi il nome dell'app che vuoi aprire!"
+    - "Quale applicazione devo avviare per te?"
+
+  open_app_unsupported_response:
+    - "Mi dispiace, non supporto ancora quell'app. Al momento posso aprire: WhatsApp, Telegram, Spotify o Chrome. Quale preferisci?"
+    - "Quella app non è tra quelle che gestisco. Prova con WhatsApp, Telegram, Spotify o Chrome!"
+    - "Non ho accesso a quell'applicazione. Posso aprire WhatsApp, Telegram, Spotify o Chrome per te?"
+
+  # ========================================
+  # Risposte per introduce_user
+  # ========================================
+
+  introduce_user_response:
+    - "Ciao {PERSON}! Piacere di conoscerti, sono Arianna!"
+    - "Hey {PERSON}! Che bello che ti presenti! Sono qui per aiutarti!"
+    - "Ciao {PERSON}! Benvenuto! Sono Arianna, il tuo assistente virtuale!"
+    - "Non ho capito bene il tuo nome, potresti ripeterlo?"
+    - "Scusa, non ho afferrato bene il tuo nome. Come ti chiami?"
+

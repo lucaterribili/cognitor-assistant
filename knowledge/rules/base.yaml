@@ -1,0 +1,104 @@
+# Rules per gli intent del chatbot Arianna
+# Formato DSL dichiarativo - Runtime interpreterà queste regole
+
+rules:
+  # ========================================
+  # Intent semplici (solo default response)
+  # ========================================
+
+  greeting:
+    default: greeting_response
+
+  farewell:
+    default: farewell_response
+
+  help:
+    default: help_response
+
+  ask_name:
+    default: ask_name_response
+
+  thank_you:
+    default: thank_you_response
+
+  compliment:
+    default: compliment_response
+
+  insult:
+    default: insult_response
+
+  bot_challenge:
+    default: bot_challenge_response
+
+  mood_great:
+    default: mood_great_response
+
+  mood_unhappy:
+    default: mood_unhappy_response
+
+  joke:
+    default: joke_response
+
+  weather_query:
+    default: weather_query_response
+
+  time_query:
+    default: time_query_response
+
+  date_query:
+    default: date_query_response
+
+  low_confidence_fallback:
+    default: low_confidence_fallback_response
+
+  # ========================================
+  # Intent con slot: ask_city_touristic_information
+  # ========================================
+
+  ask_city_touristic_information:
+    slots:
+      LOCATION:
+        required: true
+        type: string
+        entity: LOCATION
+
+    cases:
+      Roma: ask_city_touristic_information_roma_response
+      Milano: ask_city_touristic_information_milano_response
+
+    fallback: ask_location_unsupported_response
+    wait: ask_location_wait_response
+
+  # ========================================
+  # Intent con slot: open_app
+  # ========================================
+
+  open_app:
+    slots:
+      PRODUCT:
+        required: true
+        type: string
+        entity: PRODUCT
+
+    cases:
+      WhatsApp: open_app_whatsapp_response
+      Telegram: open_app_telegram_response
+      Spotify: open_app_spotify_response
+      Chrome: open_app_chrome_response
+
+    fallback: open_app_unsupported_response
+    wait: open_app_wait_response
+
+  # ========================================
+  # Intent con slot opzionale: introduce_user
+  # ========================================
+
+  introduce_user:
+    slots:
+      PERSON:
+        required: false
+        type: string
+        entity: PERSON
+
+    default: introduce_user_response
+

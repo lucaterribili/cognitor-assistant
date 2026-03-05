@@ -7,6 +7,7 @@ from typing import Dict
 
 import fasttext
 import torch
+import yaml
 
 from intellective.intent_classifier import IntentClassifier
 from intellective.doping_preprocessor import DopingPreprocessor
@@ -83,25 +84,53 @@ class KnowledgeLoader:
         self.intents_dir = os.path.join(base_dir, 'knowledge', 'intents')
 
     def load_rules(self) -> Dict[str, dict]:
-        """Carica tutte le rules dai file JSON."""
+        """
+        Carica tutte le rules dai file JSON o YAML.
+        Priorità: YAML > JSON (se esiste YAML, usa quello)
+        """
         rules = {}
         for filename in os.listdir(self.rules_dir):
-            if filename.endswith('.json'):
+            # Priorità a YAML
+            if filename.endswith('.yaml') or filename.endswith('.yml'):
                 file_path = os.path.join(self.rules_dir, filename)
-                with open(file_path, 'r') as f:
-                    rules_data = json.load(f)
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    rules_data = yaml.safe_load(f)
                     rules.update(rules_data.get('rules', {}))
+            # Supporto legacy JSON (se non c'è YAML)
+            elif filename.endswith('.json'):
+                yaml_name = filename.replace('.json', '.yaml')
+                yaml_path = os.path.join(self.rules_dir, yaml_name)
+                # Salta JSON se esiste già il corrispondente YAML
+                if not os.path.exists(yaml_path):
+                    file_path = os.path.join(self.rules_dir, filename)
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        rules_data = json.load(f)
+                        rules.update(rules_data.get('rules', {}))
         return rules
 
     def load_responses(self) -> Dict[str, list]:
-        """Carica tutte le responses dai file JSON."""
+        """
+        Carica tutte le responses dai file JSON o YAML.
+        Priorità: YAML > JSON (se esiste YAML, usa quello)
+        """
         responses = {}
         for filename in os.listdir(self.responses_dir):
-            if filename.endswith('.json'):
+            # Priorità a YAML
+            if filename.endswith('.yaml') or filename.endswith('.yml'):
                 file_path = os.path.join(self.responses_dir, filename)
-                with open(file_path, 'r') as f:
-                    responses_data = json.load(f)
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    responses_data = yaml.safe_load(f)
                     responses.update(responses_data.get('responses', {}))
+            # Supporto legacy JSON (se non c'è YAML)
+            elif filename.endswith('.json'):
+                yaml_name = filename.replace('.json', '.yaml')
+                yaml_path = os.path.join(self.responses_dir, yaml_name)
+                # Salta JSON se esiste già il corrispondente YAML
+                if not os.path.exists(yaml_path):
+                    file_path = os.path.join(self.responses_dir, filename)
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        responses_data = json.load(f)
+                        responses.update(responses_data.get('responses', {}))
         return responses
 
     def build_doping_lookup_table(self, doping_preprocessor: DopingPreprocessor) -> None:
