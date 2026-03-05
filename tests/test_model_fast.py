@@ -13,6 +13,7 @@ fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
 ft_model = fasttext.load_model(fasttext_model_path)
 vocab_size = len(ft_model.words)
 
+vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
 intent_dict_path = os.path.join(BASE_DIR, '.cognitor', 'intent_dict.json')
 
 with open(intent_dict_path, 'r') as f:
@@ -28,6 +29,7 @@ model = IntentClassifier(
     output_dim=intents_number,
     dropout_prob=0.3,
     fasttext_model_path=fasttext_model_path,
+    vocab_path=vocab_path,
     freeze_embeddings=True
 )
 

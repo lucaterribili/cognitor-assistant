@@ -46,6 +46,8 @@ class ModelLoader:
         print("Caricamento modello Intent Classifier...")
         vocab_size = len(ft_model.words)
 
+        vocab_path = os.path.join(self.base_dir, '.cognitor', 'vocab.json')
+
         model = IntentClassifier(
             vocab_size=vocab_size,
             embed_dim=300,
@@ -53,6 +55,7 @@ class ModelLoader:
             output_dim=intents_number,
             dropout_prob=0.3,
             fasttext_model_path=self.fasttext_model_path,
+            vocab_path=vocab_path,
             freeze_embeddings=True
         )
 

@@ -17,6 +17,7 @@ print("="*80)
 
 # Carica modello FastText
 fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
+vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
 ft_model = fasttext.load_model(fasttext_model_path)
 vocab_size = len(ft_model.words)
 
@@ -38,6 +39,7 @@ model = IntentClassifier(
     output_dim=intents_number,
     dropout_prob=0.3,
     fasttext_model_path=fasttext_model_path,
+    vocab_path=vocab_path,
     freeze_embeddings=True
 )
 

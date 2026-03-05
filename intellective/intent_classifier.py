@@ -27,12 +27,16 @@ class IntentClassifier(nn.Module):
             output_dim,
             dropout_prob,
             fasttext_model_path,
+            vocab_path=None,
             num_ner_tags=None,
             freeze_embeddings=False,
     ):
         super(IntentClassifier, self).__init__()
 
-        self.tokenizer = SimpleTokenizer(fasttext_model_path)
+        # Tokenizer usa solo il vocabolario
+        self.tokenizer = SimpleTokenizer(vocab_path)
+
+        # FastText solo per caricare gli embeddings
         self.ft_model = fasttext.load_model(fasttext_model_path)
 
         # Inizializza NER tag builder

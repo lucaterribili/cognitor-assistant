@@ -32,10 +32,10 @@ def test_ner_components():
 
     # Test allineamento token -> BIO tags
     from classes.simple_tokenizer import SimpleTokenizer
-    fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
+    vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
 
-    if os.path.exists(fasttext_model_path):
-        tokenizer = SimpleTokenizer(fasttext_model_path)
+    if os.path.exists(vocab_path):
+        tokenizer = SimpleTokenizer(vocab_path)
         tokens = tokenizer(clean_text)
         tag_ids = builder.align_tokens_to_bio(clean_text, tokens, entities)
         tags = [builder.id2tag[tid] for tid in tag_ids]
@@ -47,7 +47,7 @@ def test_ner_components():
         for token, tag in zip(tokens, tags):
             print(f"      {token:15s} -> {tag}")
     else:
-        print(f"\n   ⚠ FastText model non trovato in {fasttext_model_path}")
+        print(f"\n   ⚠ Vocabolario non trovato in {vocab_path}")
         print("   Esegui prima il training di FastText")
 
 
@@ -57,6 +57,7 @@ def test_model_structure():
     print("=" * 80)
 
     fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
+    vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
 
     if not os.path.exists(fasttext_model_path):
         print(f"⚠ FastText model non trovato in {fasttext_model_path}")
@@ -70,6 +71,7 @@ def test_model_structure():
         output_dim=8,  # numero di intent
         dropout_prob=0.3,
         fasttext_model_path=fasttext_model_path,
+        vocab_path=vocab_path,
         freeze_embeddings=True
     )
 
@@ -105,6 +107,7 @@ def test_prediction():
 
     model_path = os.path.join(BASE_DIR, 'models', 'intent_model_fast.pth')
     fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
+    vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
 
     if not os.path.exists(model_path):
         print(f"⚠ Modello non trovato in {model_path}")
@@ -123,6 +126,7 @@ def test_prediction():
         output_dim=8,
         dropout_prob=0.3,
         fasttext_model_path=fasttext_model_path,
+        vocab_path=vocab_path,
         freeze_embeddings=True
     )
 

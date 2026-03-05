@@ -6,8 +6,8 @@ from classes.simple_tokenizer import SimpleTokenizer
 
 class IntentNormalizer:
     def __init__(self):
-        fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
-        self.tokenizer = SimpleTokenizer(fasttext_model_path)
+        vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+        self.tokenizer = SimpleTokenizer(vocab_path)
         self.entity_pattern = re.compile(r'\[(.*?)]\((.*?)\)')
         self.multiple_spaces_pattern = re.compile(r'\s+')
         self.stop_words = {'di', 'a', 'da', 'in', 'con', 'per', 'su', 'tra', 'fra',

@@ -4,9 +4,7 @@ Crea un mini-dataset e verifica che tutto funzioni
 """
 
 import torch
-import json
 import os
-import numpy as np
 from config import BASE_DIR
 from classes.ner_markup_parser import NERMarkupParser
 from classes.ner_tag_builder import NERTagBuilder
@@ -19,9 +17,9 @@ def test_data_pipeline():
     print("TEST PIPELINE DATI CON NER")
     print("=" * 80)
 
-    fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
-    if not os.path.exists(fasttext_model_path):
-        print(f"\n❌ FastText model non trovato: {fasttext_model_path}")
+    vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+    if not os.path.exists(vocab_path):
+        print(f"\n❌ Vocabolario non trovato: {vocab_path}")
         print("   Esegui prima il training di FastText")
         return False
 
@@ -35,7 +33,7 @@ def test_data_pipeline():
 
     parser = NERMarkupParser()
     builder = NERTagBuilder()
-    tokenizer = SimpleTokenizer(fasttext_model_path)
+    tokenizer = SimpleTokenizer(vocab_path)
 
     print("\n1. Test Parsing & Tag Generation:")
     print("-" * 80)
@@ -93,6 +91,7 @@ def test_data_pipeline():
     import fasttext
 
     # Carica FastText per determinare vocab_size
+    fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
     ft_model = fasttext.load_model(fasttext_model_path)
     vocab_size = len(ft_model.words)
 
@@ -125,6 +124,7 @@ def test_data_pipeline():
         output_dim=4,  # 4 intents di test
         dropout_prob=0.3,
         fasttext_model_path=fasttext_model_path,
+        vocab_path=vocab_path,
         freeze_embeddings=True
     )
 

@@ -142,6 +142,8 @@ def train_main_model():
     ft_model = fasttext.load_model(fasttext_model_path)
     vocab_size = len(ft_model.words)
 
+    vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+
     model = IntentClassifier(
         vocab_size=vocab_size,
         embed_dim=300,
@@ -149,6 +151,7 @@ def train_main_model():
         output_dim=intents_number,
         dropout_prob=0.3,
         fasttext_model_path=fasttext_model_path,
+        vocab_path=vocab_path,
         freeze_embeddings=True
     )
     model.to(device)

@@ -10,6 +10,7 @@ from intellective.intent_classifier import IntentClassifier
 # Setup
 device = torch.device("cpu")
 fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
+vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
 
 if not os.path.exists(fasttext_model_path):
     print("❌ FastText model non trovato")
@@ -38,6 +39,7 @@ model = IntentClassifier(
     output_dim=intents_number,
     dropout_prob=0.3,
     fasttext_model_path=fasttext_model_path,
+    vocab_path=vocab_path,
     freeze_embeddings=True
 )
 model.to(device)
