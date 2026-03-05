@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
 from pipeline.intent_builder import build_intents
-from pipeline.merge_data import merge_intents
+from pipeline.merge_data import merge_intents, merge_rules, merge_responses
 from pipeline.validator import DatasetValidator
 
 
@@ -59,6 +59,26 @@ def run_full_pipeline(
     generator = DatasetGenerator.load_from_yaml_files()
     generator.generate_fasttext_corpus_only()
 
+    # STEP 1.5: Merge rules e responses in .cognitor
+    print("\n[1.5/5] Merge rules e responses in .cognitor...")
+    rules_summary = merge_rules(
+        input_dirs=[
+            os.path.join(BASE_DIR, 'knowledge', 'rules'),
+            os.path.join(BASE_DIR, 'training_data', 'rules')
+        ],
+        output_file=os.path.join(BASE_DIR, '.cognitor', 'rules.yaml')
+    )
+    print(f"  ✓ Rules mergiati: {rules_summary['rules_total']} da {rules_summary['files_ok']} file(s)")
+
+    responses_summary = merge_responses(
+        input_dirs=[
+            os.path.join(BASE_DIR, 'knowledge', 'responses'),
+            os.path.join(BASE_DIR, 'training_data', 'responses')
+        ],
+        output_file=os.path.join(BASE_DIR, '.cognitor', 'responses.yaml')
+    )
+    print(f"  ✓ Responses mergiati: {responses_summary['responses_total']} da {responses_summary['files_ok']} file(s)")
+
     # STEP 2: Allena FastText (OBBLIGATORIO)
     print("\n[2/5] Training FastText (obbligatorio)...")
     train_embedder()
@@ -82,4 +102,4 @@ def run_full_pipeline(
     return True
 
 
-__all__ = ['run_full_pipeline', 'build_intents', 'merge_intents']
+__all__ = ['run_full_pipeline', 'build_intents', 'merge_intents', 'merge_rules', 'merge_responses']

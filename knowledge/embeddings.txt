@@ -1120,7 +1120,10 @@ Che ne dici di andare al mercato domani mattina? Voglio comprare frutta e verdur
 Ti va di venire con me a comprare un regalo per mia sorella? Non so cosa regalarle!
 Facciamo un giro in bicicletta lungo il fiume? È una bellissima giornata!
 Che ne dici di andare a mangiare il gelato dopo cena? Offro io!
-Funziona. L'errore LSP rimanente è un false positive del type checker perché il parametro può essere None ma viene sempre gestito internamente con un valore di default.
-L'errore rimanente è un false positive del type checker perché config_path può essere None ma viene usato come str. Questo è accettabile perché il default viene sempre costruito internamente. Verifico che funzioni.
-L'utente vuole che il file ner_tag_builder.py legga ENTITY_TYPES dal file .cognitor/ner_tag_builder.json invece di averlo hardcoded.
-Devo prima leggere entrambi i file per capire la situazione.
+Chiamami un taxi o un Uber, per favore, devo andare a casa adesso.
+Ti va di venire a fare una passeggiata in centro? Voglio mostrarti un posto nuovo che ho scoperto.
+Perché non andiamo a vedere un film al cinema? C'è un nuovo film che mi piacerebbe vedere!
+Che ne dici di andare a fare una gita fuori porta questo weekend? Potremmo visitare un borgo medievale vicino.
+Ti va di venirmi a prendere stasera? Altrimenti prendo un taxi, ma sarebbe più bello se venissi tu.
+Ciao Ciao, vado via perchè mi aspettano a casa per mangiare la zuppa di fagioli con le cotiche.
+Mi piacciono molto le cotiche, sono un piatto tipico della tradizione italiana, soprattutto in alcune regioni come la Campania e la Puglia.

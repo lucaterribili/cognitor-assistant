@@ -5,7 +5,7 @@ from config import BASE_DIR
 def train_embedder():
     """
     Allena il modello FastText per gli embeddings.
-    Usa il corpus generato da DatasetGenerator (data/fast-text.txt).
+    Usa il corpus generato da DatasetGenerator (.cognitor/fast-text.txt).
     """
     MODEL_PATH = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
 
