@@ -79,57 +79,60 @@ class KnowledgeLoader:
 
     def __init__(self, base_dir: str):
         self.base_dir = base_dir
-        self.rules_dir = os.path.join(base_dir, 'knowledge', 'rules')
-        self.responses_dir = os.path.join(base_dir, 'knowledge', 'responses')
+        self.cognitor_dir = os.path.join(base_dir, '.cognitor')
+        self.rules_file = os.path.join(self.cognitor_dir, 'rules.yaml')
+        self.responses_file = os.path.join(self.cognitor_dir, 'responses.yaml')
         self.intents_dir = os.path.join(base_dir, 'knowledge', 'intents')
+
+        # Legacy paths for fallback
+        self.legacy_rules_dir = os.path.join(base_dir, 'knowledge', 'rules')
+        self.legacy_responses_dir = os.path.join(base_dir, 'knowledge', 'responses')
 
     def load_rules(self) -> Dict[str, dict]:
         """
-        Carica tutte le rules dai file JSON o YAML.
-        Priorità: YAML > JSON (se esiste YAML, usa quello)
+        Carica le rules dal file mergiato in .cognitor/rules.yaml.
+        Fallback: se il file non esiste, prova a leggere da knowledge/rules (legacy).
         """
+        # Prova prima il file mergiato
+        if os.path.exists(self.rules_file):
+            print(f"Caricamento rules da: {self.rules_file}")
+            with open(self.rules_file, 'r', encoding='utf-8') as f:
+                rules_data = yaml.safe_load(f)
+                return rules_data.get('rules', {})
+
+        # Fallback: leggi dai file separati (legacy)
+        print(f"File {self.rules_file} non trovato, usando modalità legacy da {self.legacy_rules_dir}")
         rules = {}
-        for filename in os.listdir(self.rules_dir):
-            # Priorità a YAML
-            if filename.endswith('.yaml') or filename.endswith('.yml'):
-                file_path = os.path.join(self.rules_dir, filename)
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    rules_data = yaml.safe_load(f)
-                    rules.update(rules_data.get('rules', {}))
-            # Supporto legacy JSON (se non c'è YAML)
-            elif filename.endswith('.json'):
-                yaml_name = filename.replace('.json', '.yaml')
-                yaml_path = os.path.join(self.rules_dir, yaml_name)
-                # Salta JSON se esiste già il corrispondente YAML
-                if not os.path.exists(yaml_path):
-                    file_path = os.path.join(self.rules_dir, filename)
+        if os.path.exists(self.legacy_rules_dir):
+            for filename in os.listdir(self.legacy_rules_dir):
+                if filename.endswith('.yaml') or filename.endswith('.yml'):
+                    file_path = os.path.join(self.legacy_rules_dir, filename)
                     with open(file_path, 'r', encoding='utf-8') as f:
-                        rules_data = json.load(f)
+                        rules_data = yaml.safe_load(f)
                         rules.update(rules_data.get('rules', {}))
         return rules
 
     def load_responses(self) -> Dict[str, list]:
         """
-        Carica tutte le responses dai file JSON o YAML.
-        Priorità: YAML > JSON (se esiste YAML, usa quello)
+        Carica le responses dal file mergiato in .cognitor/responses.yaml.
+        Fallback: se il file non esiste, prova a leggere da knowledge/responses (legacy).
         """
+        # Prova prima il file mergiato
+        if os.path.exists(self.responses_file):
+            print(f"Caricamento responses da: {self.responses_file}")
+            with open(self.responses_file, 'r', encoding='utf-8') as f:
+                responses_data = yaml.safe_load(f)
+                return responses_data.get('responses', {})
+
+        # Fallback: leggi dai file separati (legacy)
+        print(f"File {self.responses_file} non trovato, usando modalità legacy da {self.legacy_responses_dir}")
         responses = {}
-        for filename in os.listdir(self.responses_dir):
-            # Priorità a YAML
-            if filename.endswith('.yaml') or filename.endswith('.yml'):
-                file_path = os.path.join(self.responses_dir, filename)
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    responses_data = yaml.safe_load(f)
-                    responses.update(responses_data.get('responses', {}))
-            # Supporto legacy JSON (se non c'è YAML)
-            elif filename.endswith('.json'):
-                yaml_name = filename.replace('.json', '.yaml')
-                yaml_path = os.path.join(self.responses_dir, yaml_name)
-                # Salta JSON se esiste già il corrispondente YAML
-                if not os.path.exists(yaml_path):
-                    file_path = os.path.join(self.responses_dir, filename)
+        if os.path.exists(self.legacy_responses_dir):
+            for filename in os.listdir(self.legacy_responses_dir):
+                if filename.endswith('.yaml') or filename.endswith('.yml'):
+                    file_path = os.path.join(self.legacy_responses_dir, filename)
                     with open(file_path, 'r', encoding='utf-8') as f:
-                        responses_data = json.load(f)
+                        responses_data = yaml.safe_load(f)
                         responses.update(responses_data.get('responses', {}))
         return responses
 

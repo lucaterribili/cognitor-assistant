@@ -68,7 +68,7 @@ def normalize_for_fasttext(text: str) -> str:
     return ' '.join(text.split()).replace('\t', ' ')
 
 
-def merge_intents(input_dir: str = "knowledge/intents", output_file: str = "data/training_source.json", fasttext_output: str = "data/fast-text.txt", fasttext_base: str = "knowledge/embeddings.txt", write_fasttext: bool = True) -> Dict[str, int]:
+def merge_intents(input_dir: str = "knowledge/intents", output_file: str = ".cognitor/training_source.json", fasttext_output: str = ".cognitor/fast-text.txt", fasttext_base: str = "knowledge/embeddings.txt", write_fasttext: bool = True) -> Dict[str, int]:
     """Merge intent files from `input_dir` into a single JSON file and optionally produce a FastText training file.
 
     The FastText output file is created by:
@@ -212,14 +212,174 @@ def merge_intents(input_dir: str = "knowledge/intents", output_file: str = "data
     return summary
 
 
+def merge_rules(input_dirs: List[str] = None, output_file: str = ".cognitor/rules.yaml") -> Dict[str, int]:
+    """Merge rule files from multiple directories into a single YAML file.
+
+    Args:
+        input_dirs: Lista di directory da cui leggere (default: [knowledge/rules, training_data/rules])
+        output_file: File YAML di output
+
+    Returns a summary dict with counters for testing.
+    """
+    import yaml
+
+    if input_dirs is None:
+        input_dirs = ["knowledge/rules", "training_data/rules"]
+
+    summary = {
+        'files_total': 0,
+        'files_ok': 0,
+        'files_failed': 0,
+        'rules_total': 0,
+    }
+
+    all_rules = {}
+
+    for input_dir in input_dirs:
+        input_path = Path(input_dir)
+
+        if not input_path.exists():
+            logger.warning(f"Directory {input_path} non trovata, skip")
+            continue
+
+        logger.info(f"Scansione directory: {input_dir}")
+
+        for yaml_file in sorted(input_path.glob('*.yaml')) + sorted(input_path.glob('*.yml')):
+            summary['files_total'] += 1
+            try:
+                logger.info(f"  Caricando rules da: {yaml_file}")
+                with yaml_file.open('r', encoding='utf-8') as f:
+                    data = yaml.safe_load(f)
+
+                if data and 'rules' in data:
+                    rules = data['rules']
+                    for rule_name, rule_config in rules.items():
+                        if rule_name in all_rules:
+                            logger.warning(f"  Rule '{rule_name}' già presente, sovrascritta da {yaml_file}")
+                        all_rules[rule_name] = rule_config
+                        summary['rules_total'] += 1
+
+                summary['files_ok'] += 1
+            except Exception as e:
+                logger.exception(f"Errore processando {yaml_file}")
+                summary['files_failed'] += 1
+
+    # Write merged YAML
+    out_path = Path(output_file)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    merged_data = {"rules": all_rules}
+    try:
+        with out_path.open('w', encoding='utf-8') as f:
+            yaml.dump(merged_data, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+        logger.info(f"Rules mergiati salvati in: {output_file}")
+        logger.info(f"Numero totale rules: {len(all_rules)}")
+    except Exception:
+        logger.exception(f"Errore scrivendo {output_file}")
+
+    return summary
+
+
+def merge_responses(input_dirs: List[str] = None, output_file: str = ".cognitor/responses.yaml") -> Dict[str, int]:
+    """Merge response files from multiple directories into a single YAML file.
+
+    Args:
+        input_dirs: Lista di directory da cui leggere (default: [knowledge/responses, training_data/responses])
+        output_file: File YAML di output
+
+    Returns a summary dict with counters for testing.
+    """
+    import yaml
+
+    if input_dirs is None:
+        input_dirs = ["knowledge/responses", "training_data/responses"]
+
+    summary = {
+        'files_total': 0,
+        'files_ok': 0,
+        'files_failed': 0,
+        'responses_total': 0,
+    }
+
+    all_responses = {}
+
+    for input_dir in input_dirs:
+        input_path = Path(input_dir)
+
+        if not input_path.exists():
+            logger.warning(f"Directory {input_path} non trovata, skip")
+            continue
+
+        logger.info(f"Scansione directory: {input_dir}")
+
+        for yaml_file in sorted(input_path.glob('*.yaml')) + sorted(input_path.glob('*.yml')):
+            summary['files_total'] += 1
+            try:
+                logger.info(f"  Caricando responses da: {yaml_file}")
+                with yaml_file.open('r', encoding='utf-8') as f:
+                    data = yaml.safe_load(f)
+
+                if data and 'responses' in data:
+                    responses = data['responses']
+                    for response_name, response_list in responses.items():
+                        if response_name in all_responses:
+                            logger.warning(f"  Response '{response_name}' già presente, sovrascritta da {yaml_file}")
+                        all_responses[response_name] = response_list
+                        summary['responses_total'] += 1
+
+                summary['files_ok'] += 1
+            except Exception as e:
+                logger.exception(f"Errore processando {yaml_file}")
+                summary['files_failed'] += 1
+
+    # Write merged YAML
+    out_path = Path(output_file)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    merged_data = {"responses": all_responses}
+    try:
+        with out_path.open('w', encoding='utf-8') as f:
+            yaml.dump(merged_data, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+        logger.info(f"Responses mergiati salvati in: {output_file}")
+        logger.info(f"Numero totale responses: {len(all_responses)}")
+    except Exception:
+        logger.exception(f"Errore scrivendo {output_file}")
+
+    return summary
+
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Merge intent files from knowledge/intents")
-    parser.add_argument("-i", "--input", default="knowledge/intents", help="Directory input con file JSON degli intent")
-    parser.add_argument("-o", "--output", default="data/training_source.json", help="File JSON di output (default: data/training_source.json)")
-    parser.add_argument("-f", "--fasttext", default="data/fast-text.txt", help="File di output per fastText (default: data/fast-text.txt)")
-    parser.add_argument("-b", "--fasttext-base", default="knowledge/embeddings.txt", help="File base di frasi per fastText (default: knowledge/embeddings.txt)")
-    parser.add_argument("--no-fasttext", action="store_true", help="Non generare il file per fastText")
+    parser = argparse.ArgumentParser(description="Merge knowledge files (intents, rules, responses)")
+    parser.add_argument("--type", choices=['intents', 'rules', 'responses', 'all'], default='all',
+                       help="Tipo di file da mergiare (default: all)")
+    parser.add_argument("-i", "--input", help="Directory input (opzionale, usa default basato su --type)")
+    parser.add_argument("-o", "--output", help="File di output (opzionale, usa default basato su --type)")
+    parser.add_argument("-f", "--fasttext", default=".cognitor/fast-text.txt", help="File di output per fastText (solo per intents)")
+    parser.add_argument("-b", "--fasttext-base", default="knowledge/embeddings.txt", help="File base di frasi per fastText (solo per intents)")
+    parser.add_argument("--no-fasttext", action="store_true", help="Non generare il file per fastText (solo per intents)")
     args = parser.parse_args()
 
-    summary = merge_intents(args.input, args.output, args.fasttext, args.fasttext_base, write_fasttext=not args.no_fasttext)
-    print(summary)
+    if args.type == 'intents' or args.type == 'all':
+        input_dir = args.input or "knowledge/intents"
+        output_file = args.output or ".cognitor/training_source.json"
+        summary = merge_intents(input_dir, output_file, args.fasttext, args.fasttext_base,
+                               write_fasttext=not args.no_fasttext)
+        print("Intents:", summary)
+
+    if args.type == 'rules' or args.type == 'all':
+        if args.input:
+            input_dirs = [args.input]
+        else:
+            input_dirs = ["knowledge/rules", "training_data/rules"]
+        output_file = args.output or ".cognitor/rules.yaml"
+        summary = merge_rules(input_dirs, output_file)
+        print("Rules:", summary)
+
+    if args.type == 'responses' or args.type == 'all':
+        if args.input:
+            input_dirs = [args.input]
+        else:
+            input_dirs = ["knowledge/responses", "training_data/responses"]
+        output_file = args.output or ".cognitor/responses.yaml"
+        summary = merge_responses(input_dirs, output_file)
+        print("Responses:", summary)

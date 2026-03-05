@@ -37,6 +37,11 @@ nlu:
     - ci sentiamo
     - a presto
     - ciao ciao
+    - me ne vado
+    - vado via
+    - ci sentiamo
+    - grazie di tutto, a presto
+    - ti ringrazio, ci vediamo
   - intent: help
     examples:
     - aiuto
