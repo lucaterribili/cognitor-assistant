@@ -77,7 +77,13 @@ class ConversationHandler:
         session.agent_mode = "predictable"
 
         # Genera risposta
-        response, wait_for_slot = self.agent.get_response(pending_intent, session.context)
+        response, wait_for_slot, bot_slots = self.agent.get_response(
+            pending_intent, session.context
+        )
+
+        if bot_slots:
+            self._apply_bot_slots(session, bot_slots)
+
         print(f"\nArianna: {response}\n")
 
         # Se necessario, attende un altro slot
@@ -89,31 +95,45 @@ class ConversationHandler:
 
     def handle_prediction(self, user_input: str, session) -> None:
         """Gestisce la predizione e risposta normale."""
-        # Predici intent
         prediction = self.agent.predict(user_input)
 
-        # Stampa debug info
         print(f"\nIntent: {prediction['intent']} ({prediction['confidence']:.1%})")
         entities_str = ', '.join([e['value'] for e in prediction['entities']]) or "nessuna"
         print(f"Entita: {entities_str}")
 
-        # Gestione location
         self._handle_location_update(user_input, session, prediction)
 
-        # Genera risposta
-        response, wait_for_slot = self.agent.get_response(prediction['intent'], session.context)
+        response, wait_for_slot, bot_slots = self.agent.get_response(
+            prediction['intent'], session.context
+        )
+
+        if bot_slots:
+            self._apply_bot_slots(session, bot_slots)
+
         print(f"\nArianna: {response}\n")
 
-        # Gestione modalità inputable
         if wait_for_slot:
             session.waiting_for_slot = {"intent": prediction['intent'], "slot": wait_for_slot}
             session.agent_mode = "inputable"
 
-        # Salva nella cronologia
         session.add_message("user", user_input, prediction['intent'], prediction.get('entities', []))
         session.add_message("assistant", response, prediction['intent'])
 
         print(f"Cronologia: {len(session.history)} messaggi | Contesto: {session.context}")
+
+    def _apply_bot_slots(self, session, bot_slots: dict) -> None:
+        """
+        Applica gli slot impostati dal bot al contesto della sessione.
+
+        Args:
+            session: Sessione corrente
+            bot_slots: Dizionario degli slot da impostare
+        """
+        for slot_name, slot_value in bot_slots.items():
+            if slot_value:
+                session.update_context(slot_name, slot_value)
+                session.update_context(f"{slot_name}_UNSUPPORTED", False)
+                print(f"[BotSlot] Impostato {slot_name} = {slot_value}")
 
     def _handle_location_update(self, user_input: str, session, prediction: dict) -> None:
         """

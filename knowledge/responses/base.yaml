@@ -140,3 +140,19 @@ responses:
     - "Non ho capito bene il tuo nome, potresti ripeterlo?"
     - "Scusa, non ho afferrato bene il tuo nome. Come ti chiami?"
 
+  # ========================================
+  # Esempio: Risposta con slot inline
+  # ========================================
+
+  confirmed_roma_response:
+    - "Ho impostato Roma come località. Vuoi informazioni turistiche?"
+    - "Perfetto! Località impostata a Roma. Cosa vuoi sapere?"
+
+  # ========================================
+  # Esempio: Risposta con slot inline {SLOT=value}
+  # ========================================
+
+  inline_slot_example_response:
+    - "Imposto la località a {LOCATION=Milano}. Confermi?"
+    - "Ho impostato {LOCATION=Firenze} come destinazione. Procediamo?"
+
