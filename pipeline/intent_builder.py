@@ -2,7 +2,7 @@ import os
 from classes.dataset_generator import DatasetGenerator
 
 
-def build_intents(intents_dir: str = None, output_dir: str = "data"):
+def build_intents(intents_dir: str = None, output_dir: str = ".cognitor"):
     """
     Genera i dataset NLU da file YAML.
 

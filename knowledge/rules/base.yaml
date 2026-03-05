@@ -102,3 +102,20 @@ rules:
 
     default: introduce_user_response
 
+  # ========================================
+  # Esempio: Bot imposta slot via set_slots (confirm)
+  # ========================================
+
+  confirm_roma:
+    default: confirmed_roma_response
+    set_slots:
+      LOCATION: "Roma"
+      CONFIRMATION: true
+
+  # ========================================
+  # Esempio: Bot imposta slot via risposta inline
+  # ========================================
+
+  inline_slot_example:
+    default: inline_slot_example_response
+

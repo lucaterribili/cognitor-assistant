@@ -12,8 +12,8 @@ print("ANALISI DATI DI TRAINING - DISTRIBUZIONE LUNGHEZZE")
 print("="*80)
 
 # Carica dati tokenizzati
-npy_path = os.path.join(BASE_DIR, 'data', 'tokenized_data.npy')
-intent_dict_path = os.path.join(BASE_DIR, 'data', 'intent_dict.json')
+npy_path = os.path.join(BASE_DIR, '.cognitor', 'tokenized_data.npy')
+intent_dict_path = os.path.join(BASE_DIR, '.cognitor', 'intent_dict.json')
 
 data = np.load(npy_path, allow_pickle=True)
 with open(intent_dict_path, 'r') as f:

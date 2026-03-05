@@ -16,7 +16,7 @@ if not os.path.exists(fasttext_model_path):
     exit(1)
 
 # Carica intent dict
-intent_dict_path = os.path.join(BASE_DIR, 'data', 'intent_dict.json')
+intent_dict_path = os.path.join(BASE_DIR, '.cognitor', 'intent_dict.json')
 if os.path.exists(intent_dict_path):
     with open(intent_dict_path, 'r') as f:
         intent_dict = json.load(f)

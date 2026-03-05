@@ -13,7 +13,7 @@ fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
 ft_model = fasttext.load_model(fasttext_model_path)
 vocab_size = len(ft_model.words)
 
-intent_dict_path = os.path.join(BASE_DIR, 'data', 'intent_dict.json')
+intent_dict_path = os.path.join(BASE_DIR, '.cognitor', 'intent_dict.json')
 
 with open(intent_dict_path, 'r') as f:
     intent_dict = json.load(f)

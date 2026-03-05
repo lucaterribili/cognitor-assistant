@@ -13,7 +13,7 @@ from config import BASE_DIR
 class ValidationDatasetGenerator:
     def __init__(self, validation_data_path):
         self.validation_data_path = validation_data_path
-        self.data_path = os.path.join(BASE_DIR, 'data')
+        self.data_path = os.path.join(BASE_DIR, '.cognitor')
         self.validation_data_output = os.path.join(BASE_DIR, 'training_data', 'validation')
         
         os.makedirs(self.validation_data_output, exist_ok=True)

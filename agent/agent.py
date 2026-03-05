@@ -92,7 +92,7 @@ class Agent:
 
         self.knowledge_loader.build_doping_lookup_table(self.doping_preprocessor)
 
-    def get_response(self, intent_name: str, slots: dict = None) -> tuple[str, str | None]:
+    def get_response(self, intent_name: str, slots: dict = None) -> tuple[str, str | None, dict]:
         """
         Ottiene una risposta per l'intent specificato usando il RuleInterpreter.
 
@@ -101,13 +101,12 @@ class Agent:
             slots: Dizionario degli slot disponibili
 
         Returns:
-            tuple: (risposta, slot_da_attendere)
+            tuple: (risposta, slot_da_attendere, slot_da_impostare_dal_bot)
         """
         if slots is None:
             slots = {}
         
-        # Usa il nuovo RuleInterpreter (runtime DSL)
-        return self.rule_interpreter.handle_intent(intent_name, slots)
+        return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots)
 
     def predict(self, text: str) -> dict:
         """

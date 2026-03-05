@@ -48,7 +48,6 @@ nlu:
     - come si ottiene
     - come posso ottenere
     - come posso fare per avere
-    - dove posso trovare
     - come si fa a
     - come si può
     - in che modo si ottiene
@@ -68,7 +67,7 @@ nlu:
   - intent: where_is
     examples:
     - dove si trova
-    - dove si trovano
+    - dove sta
     - dove posso trovare
     - dove è
     - dove sono

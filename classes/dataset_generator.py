@@ -20,7 +20,8 @@ class DatasetGenerator:
 
     def __init__(self, data):
         self.data = data
-        self.data_path = os.path.join(BASE_DIR, 'data')
+        self.data_path = os.path.join(BASE_DIR, '.cognitor')
+        os.makedirs(self.data_path, exist_ok=True)
         self.normalizer = IntentNormalizer()
         fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
         self.tokenizer = SimpleTokenizer(fasttext_model_path)
@@ -30,31 +31,37 @@ class DatasetGenerator:
         self.doping_preprocessor.build_lookup_table(data)
 
     @staticmethod
-    def load_from_yaml_files(intents_dir: str = None) -> 'DatasetGenerator':
+    def load_from_yaml_files(intents_dirs: list = None) -> 'DatasetGenerator':
         """
         Carica tutti gli intents dai file YAML e crea un DatasetGenerator.
 
         Args:
-            intents_dir: Directory degli intents (default: knowledge/intents)
+            intents_dirs: Lista di directory degli intents (default: [knowledge/intents, training_data/intents])
 
         Returns:
             DatasetGenerator istanziato con i dati YAML
         """
-        if intents_dir is None:
-            intents_dir = os.path.join(BASE_DIR, 'knowledge', 'intents')
+        if intents_dirs is None:
+            intents_dirs = [
+                os.path.join(BASE_DIR, 'knowledge', 'intents'),
+                os.path.join(BASE_DIR, 'training_data', 'intents')
+            ]
 
-        # Merge di tutti gli intents YAML
         all_intents = []
-        intents_path = Path(intents_dir)
 
-        for yaml_file in sorted(intents_path.glob('*.yaml')):
-            with open(yaml_file, 'r', encoding='utf-8') as f:
-                data = yaml.safe_load(f)
-                if data and 'nlu' in data and 'intents' in data['nlu']:
-                    all_intents.extend(data['nlu']['intents'])
-                    print(f"✓ Caricati intents da: {yaml_file.name}")
+        for intents_dir in intents_dirs:
+            intents_path = Path(intents_dir)
+            if not intents_path.exists():
+                print(f"⚠ Directory non trovata: {intents_dir}")
+                continue
 
-        # Crea la struttura dati completa
+            for yaml_file in sorted(intents_path.glob('*.yaml')):
+                with open(yaml_file, 'r', encoding='utf-8') as f:
+                    data = yaml.safe_load(f)
+                    if data and 'nlu' in data and 'intents' in data['nlu']:
+                        all_intents.extend(data['nlu']['intents'])
+                        print(f"✓ Caricati intents da: {yaml_file.name}")
+
         merged_data = {
             'nlu': {
                 'intents': all_intents

@@ -15,11 +15,11 @@ def main():
     print("=" * 80)
 
     # Carica i dati tokenizzati
-    npy_path = os.path.join(BASE_DIR, 'data', 'tokenized_data.npy')
+    npy_path = os.path.join(BASE_DIR, '.cognitor', 'tokenized_data.npy')
     data = np.load(npy_path, allow_pickle=True)
 
     # Carica NER tag builder
-    tag_builder_path = os.path.join(BASE_DIR, 'data', 'ner_tag_builder.json')
+    tag_builder_path = os.path.join(BASE_DIR, '.cognitor', 'ner_tag_builder.json')
     if os.path.exists(tag_builder_path):
         ner_tag_builder = NERTagBuilder.load(tag_builder_path)
     else:

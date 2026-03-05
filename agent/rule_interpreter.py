@@ -10,6 +10,9 @@ Separazione pulita:
 """
 from typing import Optional, Any
 import random
+from datetime import datetime
+
+from agent.response_slot_parser import ResponseSlotParser
 
 
 class RuleInterpreter:
@@ -128,16 +131,43 @@ class RuleInterpreter:
         if not response_list:
             return f"Risposta non definita per {response_key}"
 
-        # Scegli una risposta random
         response = random.choice(response_list)
 
-        # Sostituisci placeholder {SLOT_NAME} con valori
         for slot_name, slot_value in slots.items():
             if slot_value and not slot_name.endswith("_UNSUPPORTED"):
                 placeholder = f"{{{slot_name}}}"
                 response = response.replace(placeholder, str(slot_value))
 
         return response
+
+    def _get_response_with_slots(
+        self, response_key: str, slots: dict
+    ) -> tuple[str, dict]:
+        """
+        Ottiene una risposta random, sostituisce placeholder ed estrae slot inline.
+
+        Args:
+            response_key: Chiave della response
+            slots: Dizionario degli slot
+
+        Returns:
+            tuple: (risposta_processata, slot_inline_trovati)
+        """
+        response_list = self.responses.get(response_key, [])
+
+        if not response_list:
+            return f"Risposta non definita per {response_key}", {}
+
+        response = random.choice(response_list)
+
+        for slot_name, slot_value in slots.items():
+            if slot_value and not slot_name.endswith("_UNSUPPORTED"):
+                placeholder = f"{{{slot_name}}}"
+                response = response.replace(placeholder, str(slot_value))
+
+        cleaned_response, inline_slots = ResponseSlotParser.parse(response)
+
+        return cleaned_response, inline_slots
 
     def get_valid_values_for_slot(self, intent_name: str, slot_name: str) -> list[str]:
         """
@@ -218,4 +248,145 @@ class RuleInterpreter:
         slots_config = self.get_slots_for_intent(intent_name)
         slot_config = slots_config.get(slot_name, {})
         return slot_config.get("required", False)
+
+    def extract_set_slots(self, intent_name: str, current_slots: dict = None) -> dict:
+        """
+        Estrae le azioni set_slots definite nella rule.
+
+        Args:
+            intent_name: Nome dell'intent
+            current_slots: Slot attuali per risolvere riferimenti dinamici
+
+        Returns:
+            Dizionario {slot_name: valore} da impostare
+        """
+        if current_slots is None:
+            current_slots = {}
+
+        rule = self.rules.get(intent_name)
+        if not rule:
+            return {}
+
+        set_slots_config = rule.get("set_slots", {})
+        if not set_slots_config:
+            return {}
+
+        resolved_slots = {}
+        for slot_name, value in set_slots_config.items():
+            resolved_value = self._resolve_slot_value(value, current_slots)
+            resolved_slots[slot_name] = resolved_value
+
+        return resolved_slots
+
+    def _resolve_slot_value(self, value: Any, current_slots: dict) -> Any:
+        """
+        Risolve un valore che può essere statico o dinamico.
+
+        Valori supportati:
+        - Valori statici: "Roma", true, 123
+        - Riferimenti a slot: "{ALTRO_SLOT}"
+        - Variabili speciali: $timestamp, $session_id
+
+        Args:
+            value: Valore da risolvere
+            current_slots: Slot attuali
+
+        Returns:
+            Valore risolto
+        """
+        if not isinstance(value, str):
+            return value
+
+        # Riferimento a slot esistente {SLOT_NAME}
+        if value.startswith("{") and value.endswith("}"):
+            ref_slot = value[1:-1]
+            return current_slots.get(ref_slot)
+
+        # Variabile speciale: $timestamp
+        if value == "$timestamp":
+            return datetime.now().isoformat()
+
+        # Ritorna il valore così com'è
+        return value
+
+    def handle_intent_with_bot_slots(
+        self, intent_name: str, slots: dict = None
+    ) -> tuple[str, Optional[str], dict]:
+        """
+        Interpreta una rule e restituisce la risposta + slot da impostare dal bot.
+
+        Args:
+            intent_name: Nome dell'intent
+            slots: Dizionario degli slot disponibili
+
+        Returns:
+            tuple: (risposta, slot_da_attendere, slot_da_impostare)
+        """
+        if slots is None:
+            slots = {}
+
+        rule = self.rules.get(intent_name)
+        if not rule:
+            return "Intent non trovato nel DSL", None, {}
+
+        bot_slots = self.extract_set_slots(intent_name, slots)
+
+        if "default" in rule and "slots" not in rule:
+            response_key = rule["default"]
+            response, inline_slots = self._get_response_with_slots(response_key, slots)
+            all_bot_slots = {**bot_slots, **inline_slots}
+            return response, None, all_bot_slots
+
+        if "slots" in rule:
+            response, wait_slot = self._handle_slot_based_intent_with_slots(rule, slots)
+            all_bot_slots = {**bot_slots}
+            return response, wait_slot, all_bot_slots
+
+        return "Configurazione intent non valida", None, bot_slots
+
+    def _handle_slot_based_intent_with_slots(
+        self, rule: dict, slots: dict
+    ) -> tuple[str, Optional[str]]:
+        """
+        Gestisce intent che richiedono slot, restituendo anche slot inline.
+        """
+        rule_slots = rule.get("slots", {})
+
+        for slot_name, slot_config in rule_slots.items():
+            if slot_config.get("required", False):
+                slot_value = slots.get(slot_name)
+                unsupported_flag = slots.get(f"{slot_name}_UNSUPPORTED")
+
+                if not slot_value or unsupported_flag:
+                    wait_key = rule.get("wait")
+                    if wait_key:
+                        response, inline_slots = self._get_response_with_slots(wait_key, slots)
+                        return response, slot_name
+                    fallback_key = rule.get("fallback", rule.get("default"))
+                    if fallback_key:
+                        response, _ = self._get_response_with_slots(fallback_key, slots)
+                        return response, None
+                    return "Slot richiesto non fornito", None
+
+        for slot_name, slot_config in rule_slots.items():
+            slot_value = slots.get(slot_name)
+            if slot_value:
+                cases = rule.get("cases", {})
+
+                for case_key, response_key in cases.items():
+                    if str(slot_value).lower() == str(case_key).lower():
+                        response, inline_slots = self._get_response_with_slots(response_key, slots)
+                        return response, None
+
+                fallback_key = rule.get("fallback")
+                if fallback_key:
+                    response, _ = self._get_response_with_slots(fallback_key, slots)
+                    return response, None
+
+        default_key = rule.get("default")
+        if default_key:
+            response, _ = self._get_response_with_slots(default_key, slots)
+            return response, None
+
+        return "Nessuna risposta configurata", None
 

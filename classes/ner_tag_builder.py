@@ -1,17 +1,86 @@
 import json
+import os
+import re
+import yaml
+from pathlib import Path
 
 
 class NERTagBuilder:
 
-    ENTITY_TYPES = ["PERSON", "LOCATION", "DATE", "TIME", "NUMBER", "PRODUCT", "COMMAND", "TOPIC", "EMAIL", "TEAM"]
+    def __init__(self, config_path: str = None):
+        if config_path is None:
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            config_path = os.path.join(base_dir, ".cognitor", "ner_tag_builder.json")
 
-    def __init__(self):
-        self.tag2id = {"O": 0}
-        for ent in self.ENTITY_TYPES:
-            self.tag2id[f"B-{ent}"] = len(self.tag2id)
-            self.tag2id[f"I-{ent}"] = len(self.tag2id)
+        # Se il file non esiste, crealo
+        if not os.path.exists(config_path):
+            print(f"⚠ File {config_path} non trovato, creazione automatica...")
+            self._initialize_from_yaml(config_path)
+
+        with open(config_path, 'r', encoding='utf-8') as f:
+            self.tag2id = json.load(f)
         self.id2tag = {v: k for k, v in self.tag2id.items()}
         self.num_tags = len(self.tag2id)
+        self.ENTITY_TYPES = self._extract_entity_types()
+
+    @staticmethod
+    def _initialize_from_yaml(config_path: str):
+        """
+        Scansiona i file YAML degli intents per estrarre tutti i tipi di entità
+        e crea il file ner_tag_builder.json
+        """
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        intents_dirs = [
+            os.path.join(base_dir, 'knowledge', 'intents'),
+            os.path.join(base_dir, 'training_data', 'intents')
+        ]
+
+        entity_types = set()
+        pattern = re.compile(r'\[([^]]+)]\(([^)]+)\)')
+
+        for intents_dir in intents_dirs:
+            intents_path = Path(intents_dir)
+            if not intents_path.exists():
+                continue
+
+            for yaml_file in intents_path.glob('*.yaml'):
+                with open(yaml_file, 'r', encoding='utf-8') as f:
+                    data = yaml.safe_load(f)
+                    if data and 'nlu' in data and 'intents' in data['nlu']:
+                        for intent in data['nlu']['intents']:
+                            if 'examples' in intent:
+                                examples = intent['examples']
+                                if isinstance(examples, str):
+                                    examples = [ex.strip() for ex in examples.strip().split('\n') if ex.strip()]
+                                for example in examples:
+                                    # Estrae tutti i tipi di entità da [testo](TIPO)
+                                    matches = pattern.findall(example)
+                                    for _, entity_type in matches:
+                                        entity_types.add(entity_type)
+
+        # Costruisce tag2id: O, poi B-* e I-* per ogni tipo di entità
+        tag2id = {"O": 0}
+        tag_id = 1
+        for entity_type in sorted(entity_types):
+            tag2id[f"B-{entity_type}"] = tag_id
+            tag_id += 1
+            tag2id[f"I-{entity_type}"] = tag_id
+            tag_id += 1
+
+        # Salva il file
+        os.makedirs(os.path.dirname(config_path), exist_ok=True)
+        with open(config_path, 'w', encoding='utf-8') as f:
+            json.dump(tag2id, f, ensure_ascii=False, indent=4)
+
+        print(f"✓ Creato {config_path} con {len(entity_types)} tipi di entità: {sorted(entity_types)}")
+
+    def _extract_entity_types(self) -> list[str]:
+        """Estrae i tipi di entità dai tag BIO presenti nel file."""
+        entity_types = set()
+        for tag in self.tag2id.keys():
+            if tag.startswith("B-") or tag.startswith("I-"):
+                entity_types.add(tag[2:])
+        return sorted(list(entity_types))
 
     def align_tokens_to_bio(self, clean_text: str, tokens: list[str], entities: list[dict]) -> list[int]:
         """
@@ -81,9 +150,10 @@ class NERTagBuilder:
 
     @classmethod
     def load(cls, path: str):
-        instance = cls()
+        instance = cls.__new__(cls)
         with open(path, 'r', encoding='utf-8') as f:
             instance.tag2id = json.load(f)
         instance.id2tag = {v: k for k, v in instance.tag2id.items()}
         instance.num_tags = len(instance.tag2id)
+        instance.ENTITY_TYPES = instance._extract_entity_types()
         return instance

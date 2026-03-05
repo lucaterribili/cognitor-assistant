@@ -1,0 +1,5 @@
+# Rules per ask_id_card_renew
+
+rules:
+  ask_id_card_renew:
+    default: ask_id_card_renew_response

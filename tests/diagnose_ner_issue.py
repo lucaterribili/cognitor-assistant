@@ -19,7 +19,7 @@ def main():
     # Carica configurazione dal modello salvato
     model_path = os.path.join(BASE_DIR, 'models', 'intent_model_fast.pth')
     fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
-    intent_dict_path = os.path.join(BASE_DIR, 'data', 'intent_dict.json')
+    intent_dict_path = os.path.join(BASE_DIR, '.cognitor', 'intent_dict.json')
 
     if not os.path.exists(model_path):
         print(f"❌ Modello non trovato: {model_path}")

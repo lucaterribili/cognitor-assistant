@@ -26,6 +26,14 @@ responses:
     - "Posso aiutarti a trovare un hotel. Dove vorresti alloggiare?"
     - "Prenotiamo un alloggio! Dimmi la città e le date."
 
+  generic_booking_response:
+    - "Cosa vorresti prenotare? Un ristorante, un hotel, un volo o un taxi?"
+
+  generic_booking_ask_type:
+    - "Che tipo di prenotazione vuoi fare? (ristorante, hotel, volo, taxi)"
+    - "Dimmi cosa vuoi prenotare: ristorante, hotel, volo o taxi?"
+    - "Posso aiutarti con la prenotazione. Cosa vorresti prenotare?"
+
   alarm_set_response:
     - "A che ora vuoi la sveglia?"
     - "Imposto la sveglia per te. Qual è l'orario desiderato?"

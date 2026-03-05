@@ -1,0 +1,7 @@
+# Responses per ask_id_card_renew
+
+responses:
+  ask_id_card_renew_response:
+    - "Per rinnovare la carta d'identità devi recarti all'anagrafe del tuo comune di residenza. Porta con te una foto formato tessera e il vecchio documento, se ancora in tuo possesso."
+    - "Puoi rinnovare la carta d'identità presso l'ufficio anagrafe del comune dove risiedi. Ti serviranno: una foto formato tessera e il vecchio documento, se non è scaduto."
+    - "Il rinnovo della carta d'identità si fa all'anagrafe comunale. Ricorda di portare una fototessera recente!"

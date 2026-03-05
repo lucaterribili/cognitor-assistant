@@ -25,7 +25,7 @@ print(f"   • Vocabolario: {vocab_size} parole")
 print(f"   • Dimensione embedding: {ft_model.get_dimension()}")
 
 # Carica intent classifier trainato
-intent_dict_path = os.path.join(BASE_DIR, 'data', 'intent_dict.json')
+intent_dict_path = os.path.join(BASE_DIR, '.cognitor', 'intent_dict.json')
 with open(intent_dict_path, 'r') as f:
     intent_dict = json.load(f)
 intents_number = len(intent_dict)
