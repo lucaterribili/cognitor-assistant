@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
 from pipeline.intent_builder import build_intents
-from pipeline.merge_data import merge_intents, merge_rules, merge_responses
+from pipeline.merge_data import merge_intents, merge_rules, merge_responses, merge_conversations
 from pipeline.validator import DatasetValidator
 
 
@@ -79,6 +79,15 @@ def run_full_pipeline(
     )
     print(f"  ✓ Responses mergiati: {responses_summary['responses_total']} da {responses_summary['files_ok']} file(s)")
 
+    conversations_summary = merge_conversations(
+        input_dirs=[
+            os.path.join(BASE_DIR, 'knowledge', 'conversations'),
+            os.path.join(BASE_DIR, 'training_data', 'conversations')
+        ],
+        output_file=os.path.join(BASE_DIR, '.cognitor', 'conversations.yaml')
+    )
+    print(f"  ✓ Conversations mergiati: {conversations_summary['conversations_total']} da {conversations_summary['files_ok']} file(s)")
+
     # STEP 2: Allena FastText (OBBLIGATORIO)
     print("\n[2/5] Training FastText (obbligatorio)...")
     train_embedder()
@@ -102,4 +111,4 @@ def run_full_pipeline(
     return True
 
 
-__all__ = ['run_full_pipeline', 'build_intents', 'merge_intents', 'merge_rules', 'merge_responses']
+__all__ = ['run_full_pipeline', 'build_intents', 'merge_intents', 'merge_rules', 'merge_responses', 'merge_conversations']

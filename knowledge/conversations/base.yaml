@@ -1,0 +1,17 @@
+# Conversations base del chatbot Cognitor
+# Definisce i flussi di conversazione attesi
+
+conversations:
+  greeting_flow:
+    description: "Flusso di saluto iniziale"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_name
+        bot: ask_name_response
+
+  farewell_flow:
+    description: "Flusso di congedo"
+    steps:
+      - user: farewell
+        bot: farewell_response

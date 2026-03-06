@@ -17,6 +17,7 @@ from agent.model_loader import ModelLoader, KnowledgeLoader
 from agent.slot_manager import SlotManager
 from agent.rule_interpreter import RuleInterpreter
 from agent.operations.manager import OperationManager
+from agent.conversation_balancer import ConversationBalancer
 
 
 class Agent:
@@ -61,6 +62,9 @@ class Agent:
         # Operations
         self.operation_manager = None
 
+        # Conversation balancer
+        self.conversation_balancer = None
+
     def load_models(self) -> bool:
         """
         Carica tutti i modelli ML necessari.
@@ -80,8 +84,11 @@ class Agent:
         return model_loaded
     
     def load_knowledge(self) -> None:
-        """Carica rules, responses e costruisce la lookup table per doping."""
-        self.rules, self.responses = self.knowledge_loader.load_all()
+        """Carica rules, responses, conversations e costruisce la lookup table per doping."""
+        self.rules, self.responses, conversations = self.knowledge_loader.load_all()
+
+        # Inizializza il ConversationBalancer con i dati delle conversations
+        self.conversation_balancer = ConversationBalancer(conversations)
 
         # Inizializza l'OperationManager con auto-discovery
         self.operation_manager = OperationManager(
@@ -122,12 +129,13 @@ class Agent:
         
         return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots)
 
-    def predict(self, text: str) -> dict:
+    def predict(self, text: str, history: list = None) -> dict:
         """
         Predice intent ed entità per il testo fornito.
 
         Args:
             text: Testo dell'utente
+            history: Storico della conversazione (lista di messaggi)
 
         Returns:
             dict: {
@@ -153,6 +161,14 @@ class Agent:
         intent_idx = result['intent_idx']
         intent_name = self.intent_dict[str(intent_idx)]
         confidence = result['intent_confidence']
+
+        # ConversationBalancer: applicato tra predizione e output.
+        # Nota: per ora il balancer è un no-op. Quando la logica di bilanciamento
+        # verrà implementata, dovrà ricalcolare intent_idx, intent_name e confidence
+        # a partire dai logits bilanciati.
+        logits = result.get('intent_logits', [])
+        if self.conversation_balancer is not None:
+            logits = self.conversation_balancer.balance(logits, history or [])
         
         # Fallback per bassa confidenza
         if confidence < MIN_INTENT_CONFIDENCE:
@@ -163,7 +179,7 @@ class Agent:
             'confidence': confidence,
             'entities': result.get('entities', []),
             'doped': is_doped,
-            'intent_logits': result.get('intent_logits', []),
+            'intent_logits': logits,
             'intent_probs': result.get('intent_probs', [])
         }
     

@@ -1,0 +1,10 @@
+# Conversations di test per il chatbot Cognitor
+
+conversations:
+  test_flow:
+    description: "Flusso di test"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: help
+        bot: help_response
