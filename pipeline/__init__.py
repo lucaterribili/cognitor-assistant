@@ -2,6 +2,7 @@ import os
 import sys
 from intellective.train_fast_text import train_embedder
 from intellective.train_intent_classifier import train_main_model
+from intellective.train_dialogue_policy import train_dialogue_policy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
@@ -12,7 +13,8 @@ from pipeline.validator import DatasetValidator
 
 
 def run_full_pipeline(
-    train_classifier: bool = True
+    train_classifier: bool = True,
+    train_policy: bool = True,
 ):
     """
     Esegue la pipeline completa di training:
@@ -21,6 +23,7 @@ def run_full_pipeline(
     2. Allena FastText (OBBLIGATORIO - il tokenizer ne ha bisogno)
     3. Genera dataset NLU tokenizzato (usando FastText appena addestrato)
     4. Allena Intent Classifier (opzionale)
+    5. Allena Dialogue Policy ML (opzionale)
     """
     print("=" * 50)
     print("AVVIO PIPELINE COMPLETA (YAML-based)")
@@ -104,6 +107,13 @@ def run_full_pipeline(
     else:
         print("\n[4/5] Training Intent Classifier - SKIPPED")
 
+    # STEP 5: Allena Dialogue Policy ML
+    if train_policy:
+        print("\n[5/5] Training Dialogue Policy ML...")
+        train_dialogue_policy()
+    else:
+        print("\n[5/5] Training Dialogue Policy ML - SKIPPED")
+
     print("\n" + "=" * 50)
     print("PIPELINE COMPLETATA")
     print("=" * 50)
@@ -111,4 +121,12 @@ def run_full_pipeline(
     return True
 
 
-__all__ = ['run_full_pipeline', 'build_intents', 'merge_intents', 'merge_rules', 'merge_responses', 'merge_conversations']
+__all__ = [
+    'run_full_pipeline',
+    'build_intents',
+    'merge_intents',
+    'merge_rules',
+    'merge_responses',
+    'merge_conversations',
+    'train_dialogue_policy',
+]

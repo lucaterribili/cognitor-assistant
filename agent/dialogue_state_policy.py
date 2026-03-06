@@ -1,36 +1,35 @@
 """
 DialogueStatePolicy: gestisce lo stato della conversazione e predice la prossima azione.
 
-Ispirata alla TED (Transformer Embedding Dialogue) Policy di Rasa:
-- TED rappresenta il dialogo come sequenza di features (intent + entità + azioni precedenti)
-- Usa un dual encoder (dialogo + azione) con confronto di similarità
-- Viene addestrata su "storie" di conversazione
+Implementa una policy di dialogo basata su un modello ML (DialoguePolicy) addestrato
+sulla storia delle conversazioni presenti nei file YAML.
 
-Questa implementazione adatta il principio TED all'architettura del progetto:
-- Usa le "stories" (conversations YAML) come Rasa usa le storie
+Ispirata alla TED (Transformer Embedding Dialogue) Policy di Rasa:
+- Addestrata su "storie" di conversazione (conversations YAML)
 - Rappresenta lo stato come sequenza di intent utente recenti
-- Calcola la similarità tramite longest-suffix match (efficiente, nessun training richiesto)
-- Predice la prossima azione bot con un confidence score
+- Predice la prossima azione tramite un GRU encoder + classificatore
 - Opera a livello di gestione del dialogo (DM), non NLU
 
-A differenza del ConversationBalancer (che modificava i logits NLU), questa policy
-determina la risposta direttamente a partire dallo stato dialogico.
+Se il modello addestrato non è disponibile (prima esecuzione della pipeline),
+ricade su un approccio euristico basato su longest-suffix match per garantire
+la retrocompatibilità.
 """
+
+import json
+import os
+
+import torch
 
 
 class DialogueStatePolicy:
     """
-    Policy TED-inspired per la gestione dello stato della conversazione.
+    Policy ML per la gestione dello stato della conversazione.
 
-    Dato lo storico della conversazione e l'intent corrente dell'utente,
-    predice la prossima azione (response key) che il bot dovrebbe eseguire.
+    Usa il modello DialoguePolicy (GRU encoder + classificatore) addestrato
+    nella pipeline per predire la prossima azione del bot.
 
-    Architettura:
-    - Stato = sequenza degli ultimi HISTORY_WINDOW intent utente
-    - Transizioni = tabella (contesto, intent_corrente) → prossima_azione
-      costruita dalle storie YAML
-    - Score = rapporto di corrispondenza del suffisso più lungo
-    - Predizione = azione con score massimo se >= MIN_CONFIDENCE
+    Fallback: approccio euristico basato su longest-suffix match delle storie YAML,
+    usato quando il modello addestrato non è ancora disponibile.
     """
 
     # Numero massimo di turni utente recenti da considerare come contesto
@@ -39,14 +38,135 @@ class DialogueStatePolicy:
     # Confidence minima per applicare la predizione della policy
     MIN_CONFIDENCE = 0.4
 
-    def __init__(self, conversations: dict = None):
+    def __init__(self, conversations: dict = None, base_dir: str = None):
         """
         Args:
             conversations: Dizionario delle conversations caricate dai file YAML.
                            Struttura: {flow_name: {'steps': [{'user': ..., 'bot': ...}]}}
+            base_dir:      Directory base del progetto. Se None, usa config.BASE_DIR.
         """
+        from config import BASE_DIR as _BASE_DIR
+
         self.conversations = conversations or {}
+        _base_dir = base_dir or _BASE_DIR
+
+        # Percorsi per il modello ML e i dizionari
+        self._model_path = os.path.join(_base_dir, 'models', 'dialogue_policy.pth')
+        self._intent_dict_path = os.path.join(_base_dir, '.cognitor', 'dialogue_intent_dict.json')
+        self._action_dict_path = os.path.join(_base_dir, '.cognitor', 'dialogue_action_dict.json')
+
+        # Stato del modello ML
+        self._model = None
+        self._intent_dict: dict[str, int] = {}    # nome → id (1-indexed)
+        self._action_dict: dict[str, int] = {}    # nome → id (1-indexed)
+        self._action_dict_inv: dict[int, str] = {}  # id → nome
+
+        # Tenta di caricare il modello ML addestrato
+        self._use_ml = False
+        self._load_ml_model()
+
+        # Costruisci le transizioni euristiche (usate come fallback)
         self._story_transitions = self._build_story_transitions()
+
+    # ------------------------------------------------------------------ #
+    #  Caricamento modello ML                                              #
+    # ------------------------------------------------------------------ #
+
+    def _load_ml_model(self) -> None:
+        """
+        Carica il modello DialoguePolicy addestrato dalla pipeline.
+
+        Se i file del modello non esistono o il caricamento fallisce,
+        _use_ml rimane False e si userà l'approccio euristico.
+        """
+        required = [self._model_path, self._intent_dict_path, self._action_dict_path]
+        if not all(os.path.exists(p) for p in required):
+            return
+
+        try:
+            from intellective.dialogue_policy import (
+                DialoguePolicy,
+                DIALOGUE_POLICY_EMBED_DIM,
+                DIALOGUE_POLICY_HIDDEN_DIM,
+                DIALOGUE_POLICY_DROPOUT,
+            )
+
+            with open(self._intent_dict_path, 'r', encoding='utf-8') as f:
+                self._intent_dict = json.load(f)
+            with open(self._action_dict_path, 'r', encoding='utf-8') as f:
+                self._action_dict = json.load(f)
+
+            self._action_dict_inv = {v: k for k, v in self._action_dict.items()}
+
+            model = DialoguePolicy(
+                num_intents=len(self._intent_dict),
+                num_actions=len(self._action_dict),
+                embed_dim=DIALOGUE_POLICY_EMBED_DIM,
+                hidden_dim=DIALOGUE_POLICY_HIDDEN_DIM,
+                dropout=DIALOGUE_POLICY_DROPOUT,
+            )
+            state_dict = torch.load(self._model_path, map_location='cpu')
+            model.load_state_dict(state_dict)
+            model.eval()
+
+            self._model = model
+            self._use_ml = True
+            print("OK Dialogue Policy ML caricata")
+
+        except Exception as e:
+            print(f"WARNING Dialogue Policy ML non disponibile: {e}")
+            self._use_ml = False
+
+    # ------------------------------------------------------------------ #
+    #  Predizione ML                                                       #
+    # ------------------------------------------------------------------ #
+
+    def _ml_predict(self, current_intent: str, history: list) -> dict | None:
+        """
+        Predice la prossima azione usando il modello ML addestrato.
+
+        Args:
+            current_intent: Intent utente corrente.
+            history:        Storico della conversazione.
+
+        Returns:
+            dict con 'action' e 'confidence', oppure None.
+        """
+        if current_intent not in self._intent_dict:
+            return None
+
+        # Estrai la sequenza degli intent utente precedenti
+        context_ids = [
+            self._intent_dict[intent]
+            for intent in self._extract_user_intent_sequence(history)
+            if intent in self._intent_dict
+        ]
+
+        # Tensori di input (batch size 1)
+        if context_ids:
+            context_tensor = torch.tensor(context_ids, dtype=torch.long).unsqueeze(0)
+        else:
+            # Nessun contesto: usa un singolo token di padding
+            context_tensor = torch.zeros(1, 1, dtype=torch.long)
+
+        current_tensor = torch.tensor(
+            [self._intent_dict[current_intent]], dtype=torch.long
+        )
+
+        # Predizione (action_idx è 0-indexed per CrossEntropyLoss)
+        action_idx, confidence = self._model.predict(context_tensor, current_tensor)
+
+        # Il dizionario usa id 1-indexed → aggiungi 1
+        action_name = self._action_dict_inv.get(action_idx + 1)
+
+        if action_name and confidence >= self.MIN_CONFIDENCE:
+            return {'action': action_name, 'confidence': confidence}
+
+        return None
+
+    # ------------------------------------------------------------------ #
+    #  Approccio euristico (fallback / backward compatibility)             #
+    # ------------------------------------------------------------------ #
 
     def _build_story_transitions(self) -> list:
         """
@@ -142,20 +262,19 @@ class DialogueStatePolicy:
         # Punteggio normalizzato rispetto alla lunghezza del contesto story
         return max_match / len(story_context)
 
-    def predict_next_action(self, current_intent: str, history: list) -> dict | None:
+    def _heuristic_predict(self, current_intent: str, history: list) -> dict | None:
         """
-        Predice la prossima azione del bot dato l'intent corrente e lo storico.
+        Predice la prossima azione usando l'approccio euristico (fallback).
 
-        Cerca tra tutte le transizioni quelle con user_intent corrispondente
-        e seleziona quella il cui contesto ha il punteggio di match più alto.
+        Cerca tra tutte le transizioni quella con user_intent corrispondente
+        e il contesto con lo score longest-suffix più alto.
 
         Args:
-            current_intent: Intent utente appena predetto dal modello NLU.
-            history: Storico della conversazione (lista di messaggi).
+            current_intent: Intent utente corrente.
+            history:        Storico della conversazione.
 
         Returns:
-            dict con 'action' (str) e 'confidence' (float), oppure None se
-            nessuna transizione supera MIN_CONFIDENCE.
+            dict con 'action' e 'confidence', oppure None.
         """
         if not current_intent or not self._story_transitions:
             return None
@@ -179,3 +298,26 @@ class DialogueStatePolicy:
             return {'action': best_action, 'confidence': best_score}
 
         return None
+
+    def predict_next_action(self, current_intent: str, history: list) -> dict | None:
+        """
+        Predice la prossima azione del bot dato l'intent corrente e lo storico.
+
+        Usa il modello ML addestrato se disponibile; altrimenti ricade
+        sull'approccio euristico (longest-suffix match sulle storie YAML).
+
+        Args:
+            current_intent: Intent utente appena predetto dal modello NLU.
+            history:        Storico della conversazione (lista di messaggi).
+
+        Returns:
+            dict con 'action' (str) e 'confidence' (float), oppure None se
+            nessuna predizione supera MIN_CONFIDENCE.
+        """
+        if not current_intent:
+            return None
+
+        if self._use_ml:
+            return self._ml_predict(current_intent, history)
+
+        return self._heuristic_predict(current_intent, history)
