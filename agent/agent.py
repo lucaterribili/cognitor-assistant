@@ -2,8 +2,8 @@
 Agent principale per il chatbot Cognitor.
 Coordina i modelli ML, la gestione delle sessioni e le risposte.
 """
-import math
 import os
+import random
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -18,7 +18,7 @@ from agent.model_loader import ModelLoader, KnowledgeLoader
 from agent.slot_manager import SlotManager
 from agent.rule_interpreter import RuleInterpreter
 from agent.operations.manager import OperationManager
-from agent.conversation_balancer import ConversationBalancer
+from agent.dialogue_state_policy import DialogueStatePolicy
 
 
 class Agent:
@@ -63,8 +63,8 @@ class Agent:
         # Operations
         self.operation_manager = None
 
-        # Conversation balancer
-        self.conversation_balancer = None
+        # Dialogue state policy (TED-inspired)
+        self.dialogue_state_policy = None
 
     def load_models(self) -> bool:
         """
@@ -88,8 +88,8 @@ class Agent:
         """Carica rules, responses, conversations e costruisce la lookup table per doping."""
         self.rules, self.responses, conversations = self.knowledge_loader.load_all()
 
-        # Inizializza il ConversationBalancer con i dati delle conversations e l'intent dict
-        self.conversation_balancer = ConversationBalancer(conversations, self.intent_dict)
+        # Inizializza la DialogueStatePolicy con i dati delle conversations
+        self.dialogue_state_policy = DialogueStatePolicy(conversations)
 
         # Inizializza l'OperationManager con auto-discovery
         self.operation_manager = OperationManager(
@@ -114,29 +114,41 @@ class Agent:
 
         self.knowledge_loader.build_doping_lookup_table(self.doping_preprocessor)
 
-    def get_response(self, intent_name: str, slots: dict = None) -> tuple[str, str | None, dict]:
+    def get_response(self, intent_name: str, slots: dict = None, history: list = None) -> tuple[str, str | None, dict]:
         """
-        Ottiene una risposta per l'intent specificato usando il RuleInterpreter.
+        Ottiene una risposta per l'intent specificato.
+
+        Usa la DialogueStatePolicy per predire la prossima azione in base allo
+        storico della conversazione. Se la policy è sufficientemente sicura,
+        usa l'azione suggerita come response key; altrimenti usa il RuleInterpreter.
 
         Args:
             intent_name: Nome dell'intent
             slots: Dizionario degli slot disponibili
+            history: Storico della conversazione (opzionale, per la dialogue policy)
 
         Returns:
             tuple: (risposta, slot_da_attendere, slot_da_impostare_dal_bot)
         """
         if slots is None:
             slots = {}
-        
+
+        if history and self.dialogue_state_policy:
+            policy_action = self.dialogue_state_policy.predict_next_action(intent_name, history)
+            if policy_action:
+                action_key = policy_action['action']
+                response_list = self.responses.get(action_key)
+                if response_list:
+                    return random.choice(response_list), None, {}
+
         return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots)
 
-    def predict(self, text: str, history: list = None) -> dict:
+    def predict(self, text: str) -> dict:
         """
         Predice intent ed entità per il testo fornito.
 
         Args:
             text: Testo dell'utente
-            history: Storico della conversazione (lista di messaggi)
 
         Returns:
             dict: {
@@ -163,24 +175,9 @@ class Agent:
         intent_name = self.intent_dict[str(intent_idx)]
         confidence = result['intent_confidence']
 
-        # ConversationBalancer: quando i logits sono incerti (il secondo logit ha una
-        # percentuale alta), confronta lo storico con i pattern YAML e boosta il logit
-        # dell'intent atteso nel passo successivo del pattern.
-        # Se il balancer modifica i logits, ricalcola intent_idx, intent_name e confidence.
         logits = result.get('intent_logits', [])
         intent_probs = result.get('intent_probs', [])
-        if self.conversation_balancer is not None:
-            balanced_logits = self.conversation_balancer.balance(logits, history or [])
-            if balanced_logits is not logits:
-                max_logit = max(balanced_logits)
-                exp_logits = [math.exp(l - max_logit) for l in balanced_logits]
-                sum_exp = sum(exp_logits)
-                intent_probs = [e / sum_exp for e in exp_logits]
-                intent_idx = intent_probs.index(max(intent_probs))
-                intent_name = self.intent_dict[str(intent_idx)]
-                confidence = intent_probs[intent_idx]
-                logits = balanced_logits
-        
+
         # Fallback per bassa confidenza
         if confidence < MIN_INTENT_CONFIDENCE:
             intent_name = 'low_confidence_fallback'
