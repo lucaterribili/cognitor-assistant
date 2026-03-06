@@ -95,7 +95,7 @@ class ConversationHandler:
 
     def handle_prediction(self, user_input: str, session) -> None:
         """Gestisce la predizione e risposta normale."""
-        prediction = self.agent.predict(user_input, session.history)
+        prediction = self.agent.predict(user_input)
 
         print(f"\nIntent: {prediction['intent']} ({prediction['confidence']:.1%})")
         entities_str = ', '.join([e['value'] for e in prediction['entities']]) or "nessuna"
@@ -131,7 +131,7 @@ class ConversationHandler:
         self._handle_location_update(user_input, session, prediction)
 
         response, wait_for_slot, bot_slots = self.agent.get_response(
-            prediction['intent'], session.context
+            prediction['intent'], session.context, session.history
         )
 
         if bot_slots:
