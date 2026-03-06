@@ -9,11 +9,13 @@ from intellective.intent_classifier import IntentClassifier
 
 # Setup
 device = torch.device("cpu")
-fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
+vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
 
-if not os.path.exists(fasttext_model_path):
-    print("❌ FastText model non trovato")
-    exit(1)
+# Carica vocab_size da vocab.json
+with open(vocab_path, 'r') as f:
+    vocab = json.load(f)
+vocab_size = len(vocab)
 
 # Carica intent dict
 intent_dict_path = os.path.join(BASE_DIR, '.cognitor', 'intent_dict.json')
@@ -26,18 +28,14 @@ else:
 
 intents_number = len(intent_dict)
 
-# Crea modello (non caricato, solo per test struttura)
-import fasttext
-ft_model = fasttext.load_model(fasttext_model_path)
-vocab_size = len(ft_model.words)
-
 model = IntentClassifier(
     vocab_size=vocab_size,
     embed_dim=300,
     hidden_dim=256,
     output_dim=intents_number,
     dropout_prob=0.3,
-    fasttext_model_path=fasttext_model_path,
+    wordvectors_path=wordvectors_path,
+    vocab_path=vocab_path,
     freeze_embeddings=True
 )
 model.to(device)

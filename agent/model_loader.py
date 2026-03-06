@@ -5,7 +5,6 @@ import json
 import os
 from typing import Dict
 
-import fasttext
 import torch
 import yaml
 
@@ -20,14 +19,16 @@ class ModelLoader:
         self.base_dir = base_dir
         self.device = device
 
-        self.fasttext_model_path = os.path.join(base_dir, 'models', 'fasttext_model.bin')
+        self.vocab_path = os.path.join(base_dir, '.cognitor', 'vocab.json')
         self.intent_dict_path = os.path.join(base_dir, '.cognitor', 'intent_dict.json')
         self.model_path = os.path.join(base_dir, 'models', 'intent_model_fast.pth')
 
-    def load_fasttext(self) -> fasttext.FastText._FastText:
-        """Carica il modello FastText."""
-        print("Caricamento modello FastText...")
-        return fasttext.load_model(self.fasttext_model_path)
+    def load_vocab_size(self) -> int:
+        """Carica la dimensione del vocabolario da vocab.json."""
+        print("Caricamento vocabolario...")
+        with open(self.vocab_path, 'r') as f:
+            vocab = json.load(f)
+        return len(vocab)
 
     def load_intent_dict(self) -> Dict[str, str]:
         """Carica il dizionario degli intent."""
@@ -35,7 +36,7 @@ class ModelLoader:
         with open(self.intent_dict_path, 'r') as f:
             return json.load(f)
 
-    def load_intent_classifier(self, ft_model: fasttext.FastText._FastText,
+    def load_intent_classifier(self, vocab_size: int,
                                intents_number: int) -> tuple[IntentClassifier, bool]:
         """
         Carica il modello Intent Classifier.
@@ -44,7 +45,9 @@ class ModelLoader:
             tuple: (modello, success_flag)
         """
         print("Caricamento modello Intent Classifier...")
-        vocab_size = len(ft_model.words)
+
+        vocab_path = os.path.join(self.base_dir, '.cognitor', 'vocab.json')
+        wordvectors_path = os.path.join(self.base_dir, '.cognitor', 'wordvectors.vec')
 
         model = IntentClassifier(
             vocab_size=vocab_size,
@@ -52,7 +55,8 @@ class ModelLoader:
             hidden_dim=256,
             output_dim=intents_number,
             dropout_prob=0.3,
-            fasttext_model_path=self.fasttext_model_path,
+            wordvectors_path=wordvectors_path,
+            vocab_path=vocab_path,
             freeze_embeddings=True
         )
 

@@ -34,6 +34,9 @@ def main():
     ft_model = fasttext.load_model(fasttext_model_path)
     vocab_size = len(ft_model.words)
 
+    vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+    wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
+
     print(f"\n1. Configurazione:")
     print(f"   - Vocab size: {vocab_size}")
     print(f"   - Num intents: {num_intents}")
@@ -45,7 +48,8 @@ def main():
         hidden_dim=256,
         output_dim=num_intents,
         dropout_prob=0.3,
-        fasttext_model_path=fasttext_model_path,
+        wordvectors_path=wordvectors_path,
+        vocab_path=vocab_path,
         freeze_embeddings=True
     )
 

@@ -2,7 +2,6 @@ import json
 import os
 import csv
 import numpy as np
-import fasttext
 from classes.intent_normalizer import IntentNormalizer
 from classes.simple_tokenizer import SimpleTokenizer
 from classes.ner_tag_builder import NERTagBuilder
@@ -22,8 +21,8 @@ class ValidationDatasetGenerator:
             self.data = json.load(f)
         
         self.normalizer = IntentNormalizer()
-        fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
-        self.tokenizer = SimpleTokenizer(fasttext_model_path)
+        vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+        self.tokenizer = SimpleTokenizer(vocab_path)
         self.ner_builder = NERTagBuilder.load(os.path.join(self.data_path, 'ner_tag_dict.json'))
         self.markup_parser = NERMarkupParser()
         

@@ -4,9 +4,7 @@ Crea un mini-dataset e verifica che tutto funzioni
 """
 
 import torch
-import json
 import os
-import numpy as np
 from config import BASE_DIR
 from classes.ner_markup_parser import NERMarkupParser
 from classes.ner_tag_builder import NERTagBuilder
@@ -19,9 +17,9 @@ def test_data_pipeline():
     print("TEST PIPELINE DATI CON NER")
     print("=" * 80)
 
-    fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
-    if not os.path.exists(fasttext_model_path):
-        print(f"\n❌ FastText model non trovato: {fasttext_model_path}")
+    vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+    if not os.path.exists(vocab_path):
+        print(f"\n❌ Vocabolario non trovato: {vocab_path}")
         print("   Esegui prima il training di FastText")
         return False
 
@@ -35,7 +33,7 @@ def test_data_pipeline():
 
     parser = NERMarkupParser()
     builder = NERTagBuilder()
-    tokenizer = SimpleTokenizer(fasttext_model_path)
+    tokenizer = SimpleTokenizer(vocab_path)
 
     print("\n1. Test Parsing & Tag Generation:")
     print("-" * 80)
@@ -90,11 +88,10 @@ def test_data_pipeline():
 
     # Pad sequences
     from torch.nn.utils.rnn import pad_sequence
-    import fasttext
+    import json
 
-    # Carica FastText per determinare vocab_size
-    ft_model = fasttext.load_model(fasttext_model_path)
-    vocab_size = len(ft_model.words)
+    # Carica vocab_size da vocab.json
+    vocab_size = len(json.load(open(vocab_path, 'r')))
 
     # Clip token IDs al vocab_size (per sicurezza)
     token_ids_clipped = [[min(tid, vocab_size-1) for tid in tids] for tids in token_ids_batch]
@@ -117,6 +114,8 @@ def test_data_pipeline():
 
     from intellective.intent_classifier import IntentClassifier
 
+    wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
+
     # Crea modello con vocab_size corretto
     model = IntentClassifier(
         vocab_size=vocab_size,
@@ -124,7 +123,8 @@ def test_data_pipeline():
         hidden_dim=64,
         output_dim=4,  # 4 intents di test
         dropout_prob=0.3,
-        fasttext_model_path=fasttext_model_path,
+        wordvectors_path=wordvectors_path,
+        vocab_path=vocab_path,
         freeze_embeddings=True
     )
 
