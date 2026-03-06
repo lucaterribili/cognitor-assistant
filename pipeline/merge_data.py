@@ -348,9 +348,77 @@ def merge_responses(input_dirs: List[str] = None, output_file: str = ".cognitor/
     return summary
 
 
+def merge_conversations(input_dirs: List[str] = None, output_file: str = ".cognitor/conversations.yaml") -> Dict[str, int]:
+    """Merge conversation files from multiple directories into a single YAML file.
+
+    Args:
+        input_dirs: Lista di directory da cui leggere (default: [knowledge/conversations, training_data/conversations])
+        output_file: File YAML di output
+
+    Returns a summary dict with counters for testing.
+    """
+    import yaml
+
+    if input_dirs is None:
+        input_dirs = ["knowledge/conversations", "training_data/conversations"]
+
+    summary = {
+        'files_total': 0,
+        'files_ok': 0,
+        'files_failed': 0,
+        'conversations_total': 0,
+    }
+
+    all_conversations = {}
+
+    for input_dir in input_dirs:
+        input_path = Path(input_dir)
+
+        if not input_path.exists():
+            logger.warning(f"Directory {input_path} non trovata, skip")
+            continue
+
+        logger.info(f"Scansione directory: {input_dir}")
+
+        for yaml_file in sorted(input_path.glob('*.yaml')) + sorted(input_path.glob('*.yml')):
+            summary['files_total'] += 1
+            try:
+                logger.info(f"  Caricando conversations da: {yaml_file}")
+                with yaml_file.open('r', encoding='utf-8') as f:
+                    data = yaml.safe_load(f)
+
+                if data and 'conversations' in data:
+                    conversations = data['conversations']
+                    for conv_name, conv_config in conversations.items():
+                        if conv_name in all_conversations:
+                            logger.warning(f"  Conversation '{conv_name}' già presente, sovrascritta da {yaml_file}")
+                        all_conversations[conv_name] = conv_config
+                        summary['conversations_total'] += 1
+
+                summary['files_ok'] += 1
+            except Exception as e:
+                logger.exception(f"Errore processando {yaml_file}")
+                summary['files_failed'] += 1
+
+    # Write merged YAML
+    out_path = Path(output_file)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    merged_data = {"conversations": all_conversations}
+    try:
+        with out_path.open('w', encoding='utf-8') as f:
+            yaml.dump(merged_data, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+        logger.info(f"Conversations mergiati salvati in: {output_file}")
+        logger.info(f"Numero totale conversations: {len(all_conversations)}")
+    except Exception:
+        logger.exception(f"Errore scrivendo {output_file}")
+
+    return summary
+
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Merge knowledge files (intents, rules, responses)")
-    parser.add_argument("--type", choices=['intents', 'rules', 'responses', 'all'], default='all',
+    parser = argparse.ArgumentParser(description="Merge knowledge files (intents, rules, responses, conversations)")
+    parser.add_argument("--type", choices=['intents', 'rules', 'responses', 'conversations', 'all'], default='all',
                        help="Tipo di file da mergiare (default: all)")
     parser.add_argument("-i", "--input", help="Directory input (opzionale, usa default basato su --type)")
     parser.add_argument("-o", "--output", help="File di output (opzionale, usa default basato su --type)")
@@ -383,3 +451,12 @@ if __name__ == "__main__":
         output_file = args.output or ".cognitor/responses.yaml"
         summary = merge_responses(input_dirs, output_file)
         print("Responses:", summary)
+
+    if args.type == 'conversations' or args.type == 'all':
+        if args.input:
+            input_dirs = [args.input]
+        else:
+            input_dirs = ["knowledge/conversations", "training_data/conversations"]
+        output_file = args.output or ".cognitor/conversations.yaml"
+        summary = merge_conversations(input_dirs, output_file)
+        print("Conversations:", summary)

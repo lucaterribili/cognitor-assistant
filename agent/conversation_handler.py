@@ -95,7 +95,7 @@ class ConversationHandler:
 
     def handle_prediction(self, user_input: str, session) -> None:
         """Gestisce la predizione e risposta normale."""
-        prediction = self.agent.predict(user_input)
+        prediction = self.agent.predict(user_input, session.history)
 
         print(f"\nIntent: {prediction['intent']} ({prediction['confidence']:.1%})")
         entities_str = ', '.join([e['value'] for e in prediction['entities']]) or "nessuna"
