@@ -40,7 +40,6 @@ class Agent:
         self.knowledge_loader = KnowledgeLoader(self.base_dir)
 
         # Modelli e dati (caricati successivamente)
-        self.ft_model = None
         self.model = None
         self.intent_dict = None
 
@@ -65,12 +64,12 @@ class Agent:
         Returns:
             bool: True se il modello è stato caricato correttamente, False se usa pesi random
         """
-        self.ft_model = self.model_loader.load_fasttext()
+        vocab_size = self.model_loader.load_vocab_size()
         self.intent_dict = self.model_loader.load_intent_dict()
 
         intents_number = len(self.intent_dict)
         self.model, model_loaded = self.model_loader.load_intent_classifier(
-            self.ft_model,
+            vocab_size,
             intents_number
         )
 

@@ -50,6 +50,7 @@ def train_embedder():
     # Salva modello completo
     model.save_model(MODEL_PATH)
     print(f"✓ Modello FastText salvato: {MODEL_PATH}")
+    print(f"  (Può essere eliminato dopo l'estrazione dei vectors)")
 
     # Estrai vocabolario
     words = model.get_words()
@@ -70,3 +71,5 @@ def train_embedder():
 
     print(f"✓ Vocabolario salvato: {VOCAB_PATH}")
     print(f"\nFastText training completato. {len(words)} parole, {dim} dimensioni.")
+    print(f"\n💡 Nota: Il file {MODEL_PATH} può essere eliminato.")
+    print(f"   Il sistema ora usa solo vocab.json e wordvectors.vec")

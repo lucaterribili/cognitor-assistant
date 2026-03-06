@@ -88,12 +88,10 @@ def test_data_pipeline():
 
     # Pad sequences
     from torch.nn.utils.rnn import pad_sequence
-    import fasttext
+    import json
 
-    # Carica FastText per determinare vocab_size
-    fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
-    ft_model = fasttext.load_model(fasttext_model_path)
-    vocab_size = len(ft_model.words)
+    # Carica vocab_size da vocab.json
+    vocab_size = len(json.load(open(vocab_path, 'r')))
 
     # Clip token IDs al vocab_size (per sicurezza)
     token_ids_clipped = [[min(tid, vocab_size-1) for tid in tids] for tids in token_ids_batch]
@@ -116,6 +114,8 @@ def test_data_pipeline():
 
     from intellective.intent_classifier import IntentClassifier
 
+    wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
+
     # Crea modello con vocab_size corretto
     model = IntentClassifier(
         vocab_size=vocab_size,
@@ -123,7 +123,7 @@ def test_data_pipeline():
         hidden_dim=64,
         output_dim=4,  # 4 intents di test
         dropout_prob=0.3,
-        fasttext_model_path=fasttext_model_path,
+        wordvectors_path=wordvectors_path,
         vocab_path=vocab_path,
         freeze_embeddings=True
     )

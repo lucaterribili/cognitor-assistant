@@ -6,7 +6,6 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
 from torch.nn.utils.rnn import pad_sequence
-import fasttext
 from tqdm import tqdm
 
 from config import BASE_DIR
@@ -138,11 +137,13 @@ def train_main_model():
     dataset = IntentDataset(npy_path)
     dataloader = DataLoader(dataset, batch_size=8, shuffle=True, collate_fn=collate_fn)
 
-    fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
-    ft_model = fasttext.load_model(fasttext_model_path)
-    vocab_size = len(ft_model.words)
-
+    # Carica vocab_size da vocab.json invece di FastText
     vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+    with open(vocab_path, 'r') as f:
+        vocab = json.load(f)
+    vocab_size = len(vocab)
+
+    wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
 
     model = IntentClassifier(
         vocab_size=vocab_size,
@@ -150,7 +151,7 @@ def train_main_model():
         hidden_dim=256,
         output_dim=intents_number,
         dropout_prob=0.3,
-        fasttext_model_path=fasttext_model_path,
+        wordvectors_path=wordvectors_path,
         vocab_path=vocab_path,
         freeze_embeddings=True
     )

@@ -58,6 +58,7 @@ def test_model_structure():
 
     fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
     vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+    wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
 
     if not os.path.exists(fasttext_model_path):
         print(f"⚠ FastText model non trovato in {fasttext_model_path}")
@@ -70,7 +71,7 @@ def test_model_structure():
         hidden_dim=128,
         output_dim=8,  # numero di intent
         dropout_prob=0.3,
-        fasttext_model_path=fasttext_model_path,
+        wordvectors_path=wordvectors_path,
         vocab_path=vocab_path,
         freeze_embeddings=True
     )
@@ -108,6 +109,7 @@ def test_prediction():
     model_path = os.path.join(BASE_DIR, 'models', 'intent_model_fast.pth')
     fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
     vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+    wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
 
     if not os.path.exists(model_path):
         print(f"⚠ Modello non trovato in {model_path}")
@@ -125,7 +127,7 @@ def test_prediction():
         hidden_dim=256,
         output_dim=8,
         dropout_prob=0.3,
-        fasttext_model_path=fasttext_model_path,
+        wordvectors_path=wordvectors_path,
         vocab_path=vocab_path,
         freeze_embeddings=True
     )

@@ -1,10 +1,47 @@
 import torch.nn as nn
 import torch
 import torch.nn.functional as F
-import fasttext
+import numpy as np
 from torchcrf import CRF
 from classes.simple_tokenizer import SimpleTokenizer
 from classes.ner_tag_builder import NERTagBuilder
+
+
+def load_word_vectors(vec_path, vocab_size=None):
+    """
+    Carica word vectors da file .vec (formato word2vec standard).
+
+    Args:
+        vec_path: path al file wordvectors.vec
+        vocab_size: numero massimo di vettori da caricare (default: tutti)
+
+    Returns:
+        torch.Tensor: matrice di embedding (vocab_size, embed_dim)
+    """
+    embeddings = []
+
+    with open(vec_path, 'r', encoding='utf-8') as f:
+        # Prima riga: num_words embed_dim
+        first_line = f.readline().strip().split()
+        total_words = int(first_line[0])
+
+        if vocab_size is None:
+            vocab_size = total_words
+
+        # Leggi i vettori
+        for i, line in enumerate(f):
+            if i >= vocab_size:
+                break
+
+            parts = line.strip().split()
+            # parts[0] è la parola, parts[1:] sono i valori del vettore
+            vector = np.array([float(x) for x in parts[1:]], dtype=np.float32)
+            embeddings.append(vector)
+
+    # Converti in tensor PyTorch
+    embedding_matrix = torch.from_numpy(np.array(embeddings))
+
+    return embedding_matrix
 
 
 class Attention(nn.Module):
@@ -26,7 +63,7 @@ class IntentClassifier(nn.Module):
             hidden_dim,
             output_dim,
             dropout_prob,
-            fasttext_model_path,
+            wordvectors_path,
             vocab_path=None,
             num_ner_tags=None,
             freeze_embeddings=False,
@@ -36,19 +73,14 @@ class IntentClassifier(nn.Module):
         # Tokenizer usa solo il vocabolario
         self.tokenizer = SimpleTokenizer(vocab_path)
 
-        # FastText solo per caricare gli embeddings
-        self.ft_model = fasttext.load_model(fasttext_model_path)
+        # Carica word vectors dal file .vec (niente più FastText!)
+        embedding_matrix = load_word_vectors(wordvectors_path, vocab_size)
 
         # Inizializza NER tag builder
         self.ner_tag_builder = NERTagBuilder()
         if num_ner_tags is None:
             num_ner_tags = self.ner_tag_builder.num_tags
 
-        embedding_matrix = torch.zeros((vocab_size, embed_dim))
-        vocab_tokens = self.ft_model.words[:vocab_size]
-
-        for i, token in enumerate(vocab_tokens):
-            embedding_matrix[i] = torch.tensor(self.ft_model.get_word_vector(token))
 
         self.embedding = nn.Embedding.from_pretrained(
             embedding_matrix,

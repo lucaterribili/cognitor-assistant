@@ -1,7 +1,6 @@
 import json
 import os
 import torch
-import fasttext
 
 from config import BASE_DIR
 from intellective.intent_classifier import IntentClassifier
@@ -9,11 +8,13 @@ from intellective.intent_classifier import IntentClassifier
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Device: {device}")
 
-fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
-ft_model = fasttext.load_model(fasttext_model_path)
-vocab_size = len(ft_model.words)
-
+# Carica vocab_size da vocab.json
 vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+with open(vocab_path, 'r') as f:
+    vocab = json.load(f)
+vocab_size = len(vocab)
+
+wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
 intent_dict_path = os.path.join(BASE_DIR, '.cognitor', 'intent_dict.json')
 
 with open(intent_dict_path, 'r') as f:
@@ -28,7 +29,7 @@ model = IntentClassifier(
     hidden_dim=256,
     output_dim=intents_number,
     dropout_prob=0.3,
-    fasttext_model_path=fasttext_model_path,
+    wordvectors_path=wordvectors_path,
     vocab_path=vocab_path,
     freeze_embeddings=True
 )
