@@ -134,7 +134,9 @@ class Agent:
                 'intent': nome_intent,
                 'confidence': probabilità,
                 'entities': lista_entità,
-                'doped': bool
+                'doped': bool,
+                'intent_logits': logits grezzi,
+                'intent_probs': probabilità per tutti gli intent
             }
         """
         # Doping del testo se attivo
@@ -160,7 +162,9 @@ class Agent:
             'intent': intent_name,
             'confidence': confidence,
             'entities': result.get('entities', []),
-            'doped': is_doped
+            'doped': is_doped,
+            'intent_logits': result.get('intent_logits', []),
+            'intent_probs': result.get('intent_probs', [])
         }
     
     def chat(self) -> None:

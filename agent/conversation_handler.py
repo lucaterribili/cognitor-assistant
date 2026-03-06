@@ -101,6 +101,33 @@ class ConversationHandler:
         entities_str = ', '.join([e['value'] for e in prediction['entities']]) or "nessuna"
         print(f"Entita: {entities_str}")
 
+        # Debug: mostra top intent con probabilità e logits (solo prob > 0.0001, max 5)
+        if 'intent_probs' in prediction and prediction['intent_probs']:
+            intent_probs = prediction['intent_probs']
+            intent_logits = prediction.get('intent_logits', [])
+
+            # Ordina per probabilità discendente
+            sorted_indices = sorted(
+                range(len(intent_probs)),
+                key=lambda i: intent_probs[i],
+                reverse=True
+            )
+
+            # Filtra solo intent con probabilità significativa (> 0.0001) e limita a 5
+            significant_intents = [
+                idx for idx in sorted_indices
+                if intent_probs[idx] > 0.0001
+            ][:5]  # Massimo 5
+
+            if significant_intents:
+                print(f"\n[DEBUG] Top {len(significant_intents)} Intent (prob > 0.0001):")
+                for rank, idx in enumerate(significant_intents, 1):
+                    intent_name = self.agent.intent_dict.get(str(idx), f"unknown_{idx}")
+                    prob = intent_probs[idx]
+                    logit = intent_logits[idx] if idx < len(intent_logits) else 0.0
+                    print(f"  {rank}. {intent_name}: {prob:.4f} (logit: {logit:.4f})")
+                print()
+
         self._handle_location_update(user_input, session, prediction)
 
         response, wait_for_slot, bot_slots = self.agent.get_response(
