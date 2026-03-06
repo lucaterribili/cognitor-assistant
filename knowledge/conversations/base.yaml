@@ -2,16 +2,40 @@
 # Definisce i flussi di conversazione attesi
 
 conversations:
-  greeting_flow:
-    description: "Flusso di saluto iniziale"
+  simple_flow:
+    description: "Flusso di conversazione minimale"
     steps:
       - user: greeting
         bot: greeting_response
       - user: ask_name
         bot: ask_name_response
+      - user: farewell
+        bot: farewell_response
 
-  farewell_flow:
-    description: "Flusso di congedo"
+  help_flow:
+    description: "Flusso per richiesta aiuto"
     steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_help
+        bot: help_options_response
+      - user: select_help_option
+        bot: detailed_help_response
+      - user: follow_up_question
+        bot: follow_up_response
+      - user: farewell
+        bot: farewell_response
+
+  information_flow:
+    description: "Flusso per richiesta informazioni"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_information
+        bot: information_response
+      - user: more_details
+        bot: detailed_information_response
+      - user: confirmation
+        bot: confirmation_response
       - user: farewell
         bot: farewell_response
