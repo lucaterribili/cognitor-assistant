@@ -112,9 +112,10 @@ def test_generate_training_samples_first_step_empty_context():
 
     # I campioni con intent 'greeting' (primo passo) devono avere contesto vuoto
     greeting_id = intent_dict["greeting"]
-    first_steps = [s for s in samples if s[1] == greeting_id]
-    for context_ids, _, _ in first_steps:
-        assert context_ids == [], f"Primo step deve avere contesto vuoto, trovato: {context_ids}"
+    first_steps = [s for s in samples if s[2] == greeting_id]
+    for context_intent_ids, context_action_ids, _, _ in first_steps:
+        assert context_intent_ids == [], f"Primo step deve avere contesto intent vuoto, trovato: {context_intent_ids}"
+        assert context_action_ids == [], f"Primo step deve avere contesto azioni vuoto, trovato: {context_action_ids}"
     print(f"✓ Primi step hanno contesto vuoto ({len(first_steps)} trovati)")
 
 
@@ -123,7 +124,7 @@ def test_generate_training_samples_target_range():
     intent_dict, action_dict = build_dicts(CONVERSATIONS)
     samples = generate_training_samples(CONVERSATIONS, intent_dict, action_dict)
     num_actions = len(action_dict)
-    for _, _, target_id in samples:
+    for _, _, _, target_id in samples:
         assert 1 <= target_id <= num_actions, (
             f"Target id {target_id} fuori range [1, {num_actions}]"
         )
@@ -147,10 +148,11 @@ def test_model_forward_shape():
 
     batch_size = 3
     seq_len = 2
-    context = torch.randint(1, len(intent_dict) + 1, (batch_size, seq_len))
+    context_intents = torch.randint(1, len(intent_dict) + 1, (batch_size, seq_len))
+    context_actions = torch.randint(1, len(action_dict) + 1, (batch_size, seq_len))
     current = torch.randint(1, len(intent_dict) + 1, (batch_size,))
 
-    logits = model(context, current)
+    logits = model(context_intents, context_actions, current)
     assert logits.shape == (batch_size, len(action_dict)), (
         f"Shape attesa: ({batch_size}, {len(action_dict)}), trovata: {logits.shape}"
     )
@@ -168,10 +170,11 @@ def test_model_forward_empty_context():
         dropout=0.0,
     )
 
-    context = torch.zeros(1, 1, dtype=torch.long)   # padding
+    context_intents = torch.zeros(1, 1, dtype=torch.long)   # padding
+    context_actions = torch.zeros(1, 1, dtype=torch.long)   # padding
     current = torch.tensor([1], dtype=torch.long)
 
-    logits = model(context, current)
+    logits = model(context_intents, context_actions, current)
     assert logits.shape == (1, len(action_dict))
     print("✓ Forward con contesto padding funziona")
 
@@ -187,10 +190,11 @@ def test_model_predict_returns_valid_action():
         dropout=0.0,
     )
 
-    context = torch.zeros(1, 1, dtype=torch.long)
+    context_intents = torch.zeros(1, 1, dtype=torch.long)
+    context_actions = torch.zeros(1, 1, dtype=torch.long)
     current = torch.tensor([1], dtype=torch.long)
 
-    action_idx, confidence = model.predict(context, current)
+    action_idx, confidence = model.predict(context_intents, context_actions, current)
     assert 0 <= action_idx < len(action_dict), (
         f"action_idx {action_idx} fuori range [0, {len(action_dict) - 1}]"
     )
@@ -229,8 +233,8 @@ def test_training_reduces_loss():
     # Loss prima del training
     model.eval()
     with torch.no_grad():
-        for ctx, curr, tgt in dataloader:
-            logits_before = model(ctx, curr)
+        for ctx_intents, ctx_actions, curr, tgt in dataloader:
+            logits_before = model(ctx_intents, ctx_actions, curr)
             loss_before = criterion(logits_before, tgt).item()
             break
 
@@ -242,8 +246,8 @@ def test_training_reduces_loss():
     # Loss dopo il training
     model.eval()
     with torch.no_grad():
-        for ctx, curr, tgt in dataloader:
-            logits_after = model(ctx, curr)
+        for ctx_intents, ctx_actions, curr, tgt in dataloader:
+            logits_after = model(ctx_intents, ctx_actions, curr)
             loss_after = criterion(logits_after, tgt).item()
             break
 
@@ -280,9 +284,10 @@ def test_trained_model_predicts_greeting():
     train_dialogue_policy_model(model, dataloader, epochs=100, lr=0.01, device=device, patience=100)
 
     # Predici: contesto vuoto + intent greeting
-    context = torch.zeros(1, 1, dtype=torch.long)
+    context_intents = torch.zeros(1, 1, dtype=torch.long)
+    context_actions = torch.zeros(1, 1, dtype=torch.long)
     current = torch.tensor([intent_dict["greeting"]], dtype=torch.long)
-    action_idx, confidence = model.predict(context, current)
+    action_idx, confidence = model.predict(context_intents, context_actions, current)
 
     predicted_action = action_dict_inv.get(action_idx + 1, "unknown")
     print(f"✓ greeting → {predicted_action} (confidence={confidence:.3f})")
