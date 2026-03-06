@@ -119,3 +119,13 @@ rules:
   inline_slot_example:
     default: inline_slot_example_response
 
+  # ========================================
+  # Operations (prefisso __)
+  # ========================================
+
+  calculate:
+    default: __calculate
+
+  location_query:
+    default: __location_query
+

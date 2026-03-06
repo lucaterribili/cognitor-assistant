@@ -19,7 +19,7 @@ class ConversationHandler:
     def print_header(self, session_id: str, active_sessions_count: int) -> None:
         """Stampa l'header della chat."""
         print("\n" + "="*50)
-        print("ARIANNA AGENT - Interfaccia Testuale")
+        print("COGNITOR AGENT - Interfaccia Testuale")
         print("="*50)
         print(f"Session ID: {session_id}")
         print(f"Sessioni attive: {active_sessions_count}")
@@ -51,7 +51,7 @@ class ConversationHandler:
             True se l'input è stato cancellato, False altrimenti
         """
         if user_input.lower() in self.CANCEL_COMMANDS:
-            print("\nArianna: Input annullato. Puoi fornire un nuovo comando.\n")
+            print("\nCOGNITOR: Input annullato. Puoi fornire un nuovo comando.\n")
             session.waiting_for_slot = None
             session.agent_mode = "predictable"
             session.add_message("user", user_input)
@@ -66,7 +66,7 @@ class ConversationHandler:
 
         # Valida l'input usando lo SlotManager (data-driven)
         if not self.agent.slot_manager.validate_slot_value(pending_intent, slot_name, user_input):
-            print("\nArianna: Selezione non valida. Riprova.\n")
+            print("\nCOGNITOR: Selezione non valida. Riprova.\n")
             session.add_message("user", user_input)
             return
 
@@ -84,7 +84,7 @@ class ConversationHandler:
         if bot_slots:
             self._apply_bot_slots(session, bot_slots)
 
-        print(f"\nArianna: {response}\n")
+        print(f"\nCOGNITOR: {response}\n")
 
         # Se necessario, attende un altro slot
         if wait_for_slot:
@@ -101,6 +101,33 @@ class ConversationHandler:
         entities_str = ', '.join([e['value'] for e in prediction['entities']]) or "nessuna"
         print(f"Entita: {entities_str}")
 
+        # Debug: mostra top intent con probabilità e logits (solo prob > 0.0001, max 5)
+        if 'intent_probs' in prediction and prediction['intent_probs']:
+            intent_probs = prediction['intent_probs']
+            intent_logits = prediction.get('intent_logits', [])
+
+            # Ordina per probabilità discendente
+            sorted_indices = sorted(
+                range(len(intent_probs)),
+                key=lambda i: intent_probs[i],
+                reverse=True
+            )
+
+            # Filtra solo intent con probabilità significativa (> 0.0001) e limita a 5
+            significant_intents = [
+                idx for idx in sorted_indices
+                if intent_probs[idx] > 0.0001
+            ][:5]  # Massimo 5
+
+            if significant_intents:
+                print(f"\n[DEBUG] Top {len(significant_intents)} Intent (prob > 0.0001):")
+                for rank, idx in enumerate(significant_intents, 1):
+                    intent_name = self.agent.intent_dict.get(str(idx), f"unknown_{idx}")
+                    prob = intent_probs[idx]
+                    logit = intent_logits[idx] if idx < len(intent_logits) else 0.0
+                    print(f"  {rank}. {intent_name}: {prob:.4f} (logit: {logit:.4f})")
+                print()
+
         self._handle_location_update(user_input, session, prediction)
 
         response, wait_for_slot, bot_slots = self.agent.get_response(
@@ -110,7 +137,7 @@ class ConversationHandler:
         if bot_slots:
             self._apply_bot_slots(session, bot_slots)
 
-        print(f"\nArianna: {response}\n")
+        print(f"\nCOGNITOR: {response}\n")
 
         if wait_for_slot:
             session.waiting_for_slot = {"intent": prediction['intent'], "slot": wait_for_slot}

@@ -167,6 +167,8 @@ class IntentClassifier(nn.Module):
                 - intent: nome dell'intent predetto
                 - intent_confidence: confidenza della predizione
                 - entities: lista di entità riconosciute
+                - intent_logits: logits grezzi per tutti gli intent
+                - intent_probs: probabilità per tutti gli intent
         """
         self.eval()
         with torch.no_grad():
@@ -191,7 +193,9 @@ class IntentClassifier(nn.Module):
                 'intent_confidence': intent_conf,
                 'entities': entities,
                 'tokens': tokens,
-                'ner_tags': ner_tags
+                'ner_tags': ner_tags,
+                'intent_logits': intent_logits[0].tolist(),  # Converti in lista Python
+                'intent_probs': intent_probs[0].tolist()     # Converti in lista Python
             }
 
     def _extract_entities(self, tokens, ner_tags):

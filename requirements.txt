@@ -16,3 +16,4 @@ passlib[bcrypt]
 python-multipart
 pyyaml
 numpy
+requests
