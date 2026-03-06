@@ -2,6 +2,7 @@
 Agent principale per il chatbot Cognitor.
 Coordina i modelli ML, la gestione delle sessioni e le risposte.
 """
+import math
 import os
 import sys
 
@@ -87,8 +88,8 @@ class Agent:
         """Carica rules, responses, conversations e costruisce la lookup table per doping."""
         self.rules, self.responses, conversations = self.knowledge_loader.load_all()
 
-        # Inizializza il ConversationBalancer con i dati delle conversations
-        self.conversation_balancer = ConversationBalancer(conversations)
+        # Inizializza il ConversationBalancer con i dati delle conversations e l'intent dict
+        self.conversation_balancer = ConversationBalancer(conversations, self.intent_dict)
 
         # Inizializza l'OperationManager con auto-discovery
         self.operation_manager = OperationManager(
@@ -162,13 +163,23 @@ class Agent:
         intent_name = self.intent_dict[str(intent_idx)]
         confidence = result['intent_confidence']
 
-        # ConversationBalancer: applicato tra predizione e output.
-        # Nota: per ora il balancer è un no-op. Quando la logica di bilanciamento
-        # verrà implementata, dovrà ricalcolare intent_idx, intent_name e confidence
-        # a partire dai logits bilanciati.
+        # ConversationBalancer: quando i logits sono incerti (il secondo logit ha una
+        # percentuale alta), confronta lo storico con i pattern YAML e boosta il logit
+        # dell'intent atteso nel passo successivo del pattern.
+        # Se il balancer modifica i logits, ricalcola intent_idx, intent_name e confidence.
         logits = result.get('intent_logits', [])
+        intent_probs = result.get('intent_probs', [])
         if self.conversation_balancer is not None:
-            logits = self.conversation_balancer.balance(logits, history or [])
+            balanced_logits = self.conversation_balancer.balance(logits, history or [])
+            if balanced_logits is not logits:
+                max_logit = max(balanced_logits)
+                exp_logits = [math.exp(l - max_logit) for l in balanced_logits]
+                sum_exp = sum(exp_logits)
+                intent_probs = [e / sum_exp for e in exp_logits]
+                intent_idx = intent_probs.index(max(intent_probs))
+                intent_name = self.intent_dict[str(intent_idx)]
+                confidence = intent_probs[intent_idx]
+                logits = balanced_logits
         
         # Fallback per bassa confidenza
         if confidence < MIN_INTENT_CONFIDENCE:
@@ -180,7 +191,7 @@ class Agent:
             'entities': result.get('entities', []),
             'doped': is_doped,
             'intent_logits': logits,
-            'intent_probs': result.get('intent_probs', [])
+            'intent_probs': intent_probs
         }
     
     def chat(self) -> None:
