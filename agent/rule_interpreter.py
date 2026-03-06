@@ -13,6 +13,7 @@ import random
 from datetime import datetime
 
 from agent.response_slot_parser import ResponseSlotParser
+from agent.operations.manager import OperationManager
 
 
 class RuleInterpreter:
@@ -23,14 +24,16 @@ class RuleInterpreter:
     basandosi sugli slot disponibili.
     """
 
-    def __init__(self, rules: dict, responses: dict):
+    def __init__(self, rules: dict, responses: dict, operation_manager: OperationManager | None = None):
         """
         Args:
             rules: Dizionario delle rules caricato da YAML
             responses: Dizionario delle responses caricato da YAML
+            operation_manager: Gestore delle operations (opzionale)
         """
         self.rules = rules
         self.responses = responses
+        self.operation_manager = operation_manager
 
     def handle_intent(self, intent_name: str, slots: dict = None) -> tuple[str, Optional[str]]:
         """
@@ -329,7 +332,21 @@ class RuleInterpreter:
         if not rule:
             return "Intent non trovato nel DSL", None, {}
 
+        operation_result = None
+        if self.operation_manager:
+            default_key = rule.get("default", "")
+            if default_key.startswith("__"):
+                operation_name = default_key[2:]
+                if self.operation_manager.has_operation(operation_name):
+                    operation_result = self.operation_manager.execute(
+                        operation_name, operation_name, slots
+                    )
+
         bot_slots = self.extract_set_slots(intent_name, slots)
+
+        if operation_result:
+            all_bot_slots = {**bot_slots, **operation_result.get("slots", {})}
+            return operation_result["response"], None, all_bot_slots
 
         if "default" in rule and "slots" not in rule:
             response_key = rule["default"]

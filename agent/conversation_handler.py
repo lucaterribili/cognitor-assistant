@@ -19,7 +19,7 @@ class ConversationHandler:
     def print_header(self, session_id: str, active_sessions_count: int) -> None:
         """Stampa l'header della chat."""
         print("\n" + "="*50)
-        print("ARIANNA AGENT - Interfaccia Testuale")
+        print("COGNITOR AGENT - Interfaccia Testuale")
         print("="*50)
         print(f"Session ID: {session_id}")
         print(f"Sessioni attive: {active_sessions_count}")
@@ -51,7 +51,7 @@ class ConversationHandler:
             True se l'input è stato cancellato, False altrimenti
         """
         if user_input.lower() in self.CANCEL_COMMANDS:
-            print("\nArianna: Input annullato. Puoi fornire un nuovo comando.\n")
+            print("\nCOGNITOR: Input annullato. Puoi fornire un nuovo comando.\n")
             session.waiting_for_slot = None
             session.agent_mode = "predictable"
             session.add_message("user", user_input)
@@ -66,7 +66,7 @@ class ConversationHandler:
 
         # Valida l'input usando lo SlotManager (data-driven)
         if not self.agent.slot_manager.validate_slot_value(pending_intent, slot_name, user_input):
-            print("\nArianna: Selezione non valida. Riprova.\n")
+            print("\nCOGNITOR: Selezione non valida. Riprova.\n")
             session.add_message("user", user_input)
             return
 
@@ -84,7 +84,7 @@ class ConversationHandler:
         if bot_slots:
             self._apply_bot_slots(session, bot_slots)
 
-        print(f"\nArianna: {response}\n")
+        print(f"\nCOGNITOR: {response}\n")
 
         # Se necessario, attende un altro slot
         if wait_for_slot:
@@ -110,7 +110,7 @@ class ConversationHandler:
         if bot_slots:
             self._apply_bot_slots(session, bot_slots)
 
-        print(f"\nArianna: {response}\n")
+        print(f"\nCOGNITOR: {response}\n")
 
         if wait_for_slot:
             session.waiting_for_slot = {"intent": prediction['intent'], "slot": wait_for_slot}

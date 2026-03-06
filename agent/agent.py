@@ -1,5 +1,5 @@
 """
-Agent principale per il chatbot Arianna.
+Agent principale per il chatbot Cognitor.
 Coordina i modelli ML, la gestione delle sessioni e le risposte.
 """
 import os
@@ -16,6 +16,7 @@ from agent.answer_manager import AnswerManager, SlotValidator
 from agent.model_loader import ModelLoader, KnowledgeLoader
 from agent.slot_manager import SlotManager
 from agent.rule_interpreter import RuleInterpreter
+from agent.operations.manager import OperationManager
 
 
 class Agent:
@@ -57,6 +58,9 @@ class Agent:
         # Rule interpreter (runtime DSL)
         self.rule_interpreter = None
 
+        # Operations
+        self.operation_manager = None
+
     def load_models(self) -> bool:
         """
         Carica tutti i modelli ML necessari.
@@ -79,8 +83,19 @@ class Agent:
         """Carica rules, responses e costruisce la lookup table per doping."""
         self.rules, self.responses = self.knowledge_loader.load_all()
 
+        # Inizializza l'OperationManager con auto-discovery
+        self.operation_manager = OperationManager(
+            session_manager=self.session_manager,
+            entity_manager=self.session_manager.entity_manager,
+            auto_discover=True  # Scopre automaticamente tutte le operations
+        )
+
         # Inizializza il RuleInterpreter (nuovo runtime DSL)
-        self.rule_interpreter = RuleInterpreter(self.rules, self.responses)
+        self.rule_interpreter = RuleInterpreter(
+            self.rules,
+            self.responses,
+            operation_manager=self.operation_manager
+        )
 
         # Answer manager legacy (da deprecare gradualmente)
         self.answer_manager = AnswerManager(self.rules)

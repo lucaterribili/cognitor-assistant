@@ -156,3 +156,10 @@ responses:
     - "Imposto la località a {LOCATION=Milano}. Confermi?"
     - "Ho impostato {LOCATION=Firenze} come destinazione. Procediamo?"
 
+  # ========================================
+  # Risposte per Operations
+  # ========================================
+
+  operation_fallback_response:
+    - "Funzionalità in fase di sviluppo."
+
