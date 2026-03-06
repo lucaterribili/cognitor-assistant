@@ -38,3 +38,8 @@ build/
 
 models/
 !models/.gitkeep
+
+# Website
+website/node_modules/
+website/.vitepress/dist/
+website/.vitepress/cache/

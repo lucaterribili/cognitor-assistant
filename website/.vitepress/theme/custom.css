@@ -1,0 +1,81 @@
+/* ============================================================
+   Mobile navbar: assicura che il pulsante hamburger sia a destra
+   ============================================================ */
+@media (max-width: 767px) {
+  .VPNav .VPNavBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Il pulsante hamburger deve stare sempre all'estrema destra */
+  .VPNav .VPNavBar .VPNavBarHamburger {
+    order: 999;
+    margin-left: auto;
+  }
+
+  /* Il logo/titolo deve stare a sinistra */
+  .VPNav .VPNavBar .VPNavBarTitle {
+    order: 0;
+    margin-right: auto;
+  }
+}
+
+/* ============================================================
+   Copy-to-clipboard: feedback visivo "Copiato!"
+   ============================================================ */
+
+/* Stato del pulsante quando il testo è stato copiato */
+.vp-code-group .copy,
+div[class*='language-'] .copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--vp-code-copy-code-bg);
+  transition: background-color 0.25s, opacity 0.25s;
+}
+
+/* Etichetta "Copiato!" che appare dopo la copia */
+div[class*='language-'] .copy.copied::before,
+.vp-code-group .copy.copied::before {
+  content: 'Copiato!';
+  position: absolute;
+  top: -1px;
+  right: 52px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--vp-c-brand-1);
+  background-color: var(--vp-code-copy-code-bg);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Community nav link: stile visivo per link esterno
+   ============================================================ */
+.VPNavBarMenu .VPNavBarMenuLink[href*='github.com/lucaterribili/cognitor-assistant/issues'] {
+  color: var(--vp-c-brand-1);
+}
+
+/* ============================================================
+   Generale: migliora la leggibilità degli snippet di codice
+   ============================================================ */
+div[class*='language-'] {
+  position: relative;
+}
+
+div[class*='language-'] pre {
+  overflow-x: auto;
+}
