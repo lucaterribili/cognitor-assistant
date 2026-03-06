@@ -84,23 +84,25 @@ def generate_training_samples(
     intent_dict: dict,
     action_dict: dict,
     history_window: int = _HISTORY_WINDOW,
-) -> list[tuple[list[int], int, int]]:
+) -> list[tuple[list[int], list[int], int, int]]:
     """
     Genera campioni di training dalle storie.
 
-    Per ogni passo i di ogni storia, produce la tripla:
-        (context_intents, current_intent_id, target_action_id)
+    Per ogni passo i di ogni storia, produce la quadrupla:
+        (context_intent_ids, context_action_ids, current_intent_id, target_action_id)
 
     dove:
-        context_intents  = id degli ultimi `history_window` intent utente
-                           prima del passo i (può essere vuota)
-        current_intent   = id dell'intent utente al passo i
-        target_action    = id dell'azione bot al passo i (1-indexed)
+        context_intent_ids = id degli ultimi `history_window` intent utente
+                             prima del passo i (può essere vuota)
+        context_action_ids = id delle ultime `history_window` azioni bot
+                             prima del passo i (può essere vuota)
+        current_intent     = id dell'intent utente al passo i
+        target_action      = id dell'azione bot al passo i (1-indexed)
 
     Returns:
-        Lista di triple (context_ids, current_id, target_id).
+        Lista di quadruple (context_intent_ids, context_action_ids, current_id, target_id).
     """
-    samples: list[tuple[list[int], int, int]] = []
+    samples: list[tuple[list[int], list[int], int, int]] = []
 
     for flow_data in conversations.values():
         steps = flow_data.get('steps', [])
@@ -117,18 +119,23 @@ def generate_training_samples(
             if user_intent not in intent_dict or bot_action not in action_dict:
                 continue
 
-            # Contesto: ultimi history_window intent precedenti
+            # Contesto: ultimi history_window passi precedenti
             context_start = max(0, i - history_window)
-            context_ids = [
+            context_intent_ids = [
                 intent_dict[u]
                 for u, _ in pairs[context_start:i]
                 if u in intent_dict
+            ]
+            context_action_ids = [
+                action_dict[a]
+                for _, a in pairs[context_start:i]
+                if a in action_dict
             ]
 
             current_id = intent_dict[user_intent]
             target_id = action_dict[bot_action]  # 1-indexed
 
-            samples.append((context_ids, current_id, target_id))
+            samples.append((context_intent_ids, context_action_ids, current_id, target_id))
 
     return samples
 
@@ -140,35 +147,39 @@ def generate_training_samples(
 class DialoguePolicyDataset(Dataset):
     """Dataset PyTorch per il training della Dialogue Policy."""
 
-    def __init__(self, samples: list[tuple[list[int], int, int]]):
+    def __init__(self, samples: list[tuple[list[int], list[int], int, int]]):
         self.samples = samples
 
     def __len__(self) -> int:
         return len(self.samples)
 
-    def __getitem__(self, idx: int) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-        context_ids, current_id, target_id = self.samples[idx]
+    def __getitem__(self, idx: int) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        context_intent_ids, context_action_ids, current_id, target_id = self.samples[idx]
         return (
-            torch.tensor(context_ids, dtype=torch.long),
+            torch.tensor(context_intent_ids, dtype=torch.long),
+            torch.tensor(context_action_ids, dtype=torch.long),
             torch.tensor(current_id, dtype=torch.long),
             torch.tensor(target_id - 1, dtype=torch.long),  # 0-indexed per CrossEntropyLoss
         )
 
 
 def collate_dialogue_fn(
-    batch: list[tuple[torch.Tensor, torch.Tensor, torch.Tensor]],
-) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    batch: list[tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]],
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
     """Collate con padding del contesto storico."""
-    contexts, curr_intents, targets = zip(*batch)
+    ctx_intents, ctx_actions, curr_intents, targets = zip(*batch)
 
     # Sequenze vuote → tensor di lunghezza 1 con padding
-    padded_contexts = [c if len(c) > 0 else torch.zeros(1, dtype=torch.long) for c in contexts]
-    contexts_padded = pad_sequence(padded_contexts, batch_first=True, padding_value=_PAD_IDX)
+    padded_ctx_intents = [c if len(c) > 0 else torch.zeros(1, dtype=torch.long) for c in ctx_intents]
+    padded_ctx_actions = [c if len(c) > 0 else torch.zeros(1, dtype=torch.long) for c in ctx_actions]
+
+    ctx_intents_padded = pad_sequence(padded_ctx_intents, batch_first=True, padding_value=_PAD_IDX)
+    ctx_actions_padded = pad_sequence(padded_ctx_actions, batch_first=True, padding_value=_PAD_IDX)
 
     curr_intents = torch.stack(list(curr_intents))
     targets = torch.stack(list(targets))
 
-    return contexts_padded, curr_intents, targets
+    return ctx_intents_padded, ctx_actions_padded, curr_intents, targets
 
 
 # ---------------------------------------------------------------------------
@@ -209,13 +220,14 @@ def train_dialogue_policy_model(
         total_loss = 0.0
 
         epoch_iter = tqdm(dataloader, desc=f"Epoch {epoch + 1}/{epochs}", leave=False)
-        for contexts, curr_intents, targets in epoch_iter:
-            contexts = contexts.to(device)
+        for ctx_intents, ctx_actions, curr_intents, targets in epoch_iter:
+            ctx_intents = ctx_intents.to(device)
+            ctx_actions = ctx_actions.to(device)
             curr_intents = curr_intents.to(device)
             targets = targets.to(device)
 
             optimizer.zero_grad()
-            logits = model(contexts, curr_intents)
+            logits = model(ctx_intents, ctx_actions, curr_intents)
             loss = criterion(logits, targets)
             loss.backward()
             optimizer.step()

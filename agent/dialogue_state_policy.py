@@ -136,25 +136,32 @@ class DialogueStatePolicy:
             return None
 
         # Estrai la sequenza degli intent utente precedenti
-        context_ids = [
+        context_intent_ids = [
             self._intent_dict[intent]
             for intent in self._extract_user_intent_sequence(history)
             if intent in self._intent_dict
         ]
 
         # Tensori di input (batch size 1)
-        if context_ids:
-            context_tensor = torch.tensor(context_ids, dtype=torch.long).unsqueeze(0)
+        if context_intent_ids:
+            context_intent_tensor = torch.tensor(context_intent_ids, dtype=torch.long).unsqueeze(0)
         else:
             # Nessun contesto: usa un singolo token di padding
-            context_tensor = torch.zeros(1, 1, dtype=torch.long)
+            context_intent_tensor = torch.zeros(1, 1, dtype=torch.long)
+
+        # Le azioni bot precedenti non sono tracciate nello storico della conversazione:
+        # usa padding (zeri) come placeholder.
+        # TODO: tracciare il nome dell'azione bot in history per sfruttare appieno questo input.
+        context_action_tensor = torch.zeros_like(context_intent_tensor)
 
         current_tensor = torch.tensor(
             [self._intent_dict[current_intent]], dtype=torch.long
         )
 
         # Predizione (action_idx è 0-indexed per CrossEntropyLoss)
-        action_idx, confidence = self._model.predict(context_tensor, current_tensor)
+        action_idx, confidence = self._model.predict(
+            context_intent_tensor, context_action_tensor, current_tensor
+        )
 
         # Il dizionario usa id 1-indexed → aggiungi 1
         action_name = self._action_dict_inv.get(action_idx + 1)
