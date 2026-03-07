@@ -105,7 +105,7 @@ def test_web_search_real_request():
     """Test: ricerca reale su DuckDuckGo (richiede connessione internet)."""
     print("TEST 6: Ricerca reale su DuckDuckGo")
     try:
-        result = action_web_search("web_search", slots={"query": "Python programming language"})
+        result = action_web_search("web_search", slots={"query": "Come programmare in Python"})
         print(f"  Metadata query: {result['metadata']['query']}")
         print(f"  Risultati: {len(result['metadata'].get('results', []))}")
         print(f"  Response (prime 200 chars): {result['response'][:200]}")
@@ -113,7 +113,7 @@ def test_web_search_real_request():
         if "error" in result["metadata"]:
             print(f"  ⚠ Errore di rete (normale in ambienti sandbox): {result['metadata']['error']}")
         else:
-            assert result["metadata"]["query"] == "Python programming language"
+            assert result["metadata"]["query"] == "Come programmare in Python"
             assert isinstance(result["metadata"]["results"], list)
             print("  ✓ Passato")
     except Exception as e:
