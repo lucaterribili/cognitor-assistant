@@ -95,6 +95,9 @@ class ConversationHandler:
 
     def handle_prediction(self, user_input: str, session) -> None:
         """Gestisce la predizione e risposta normale."""
+        print("\n" + "─" * 60)
+        print(f"[PIPELINE] Turno #{len(session.history) // 2 + 1} | Modalità: {session.agent_mode}")
+        print("─" * 60)
         prediction = self.agent.predict(user_input)
 
         print(f"\nIntent: {prediction['intent']} ({prediction['confidence']:.1%})")
@@ -131,7 +134,7 @@ class ConversationHandler:
         self._handle_location_update(user_input, session, prediction)
 
         response, wait_for_slot, bot_slots = self.agent.get_response(
-            prediction['intent'], session.context
+            prediction['intent'], session.context, session.history
         )
 
         if bot_slots:

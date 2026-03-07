@@ -86,11 +86,13 @@ class KnowledgeLoader:
         self.cognitor_dir = os.path.join(base_dir, '.cognitor')
         self.rules_file = os.path.join(self.cognitor_dir, 'rules.yaml')
         self.responses_file = os.path.join(self.cognitor_dir, 'responses.yaml')
+        self.conversations_file = os.path.join(self.cognitor_dir, 'conversations.yaml')
         self.intents_dir = os.path.join(base_dir, 'knowledge', 'intents')
 
         # Legacy paths for fallback
         self.legacy_rules_dir = os.path.join(base_dir, 'knowledge', 'rules')
         self.legacy_responses_dir = os.path.join(base_dir, 'knowledge', 'responses')
+        self.legacy_conversations_dir = os.path.join(base_dir, 'knowledge', 'conversations')
 
     def load_rules(self) -> Dict[str, dict]:
         """
@@ -140,6 +142,30 @@ class KnowledgeLoader:
                         responses.update(responses_data.get('responses', {}))
         return responses
 
+    def load_conversations(self) -> Dict[str, dict]:
+        """
+        Carica le conversations dal file mergiato in .cognitor/conversations.yaml.
+        Fallback: se il file non esiste, prova a leggere da knowledge/conversations (legacy).
+        """
+        # Prova prima il file mergiato
+        if os.path.exists(self.conversations_file):
+            print(f"Caricamento conversations da: {self.conversations_file}")
+            with open(self.conversations_file, 'r', encoding='utf-8') as f:
+                conversations_data = yaml.safe_load(f)
+                return conversations_data.get('conversations', {})
+
+        # Fallback: leggi dai file separati (legacy)
+        print(f"File {self.conversations_file} non trovato, usando modalità legacy da {self.legacy_conversations_dir}")
+        conversations = {}
+        if os.path.exists(self.legacy_conversations_dir):
+            for filename in os.listdir(self.legacy_conversations_dir):
+                if filename.endswith('.yaml') or filename.endswith('.yml'):
+                    file_path = os.path.join(self.legacy_conversations_dir, filename)
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        conversations_data = yaml.safe_load(f)
+                        conversations.update(conversations_data.get('conversations', {}))
+        return conversations
+
     def build_doping_lookup_table(self, doping_preprocessor: DopingPreprocessor) -> None:
         """Costruisce la lookup table per il doping preprocessor."""
         print("Costruzione lookup table per doping...")
@@ -151,16 +177,17 @@ class KnowledgeLoader:
                     doping_preprocessor.build_lookup_table(nlu_data)
         print("OK Lookup table costruita")
 
-    def load_all(self) -> tuple[Dict[str, dict], Dict[str, list]]:
+    def load_all(self) -> tuple[Dict[str, dict], Dict[str, list], Dict[str, dict]]:
         """
-        Carica rules e responses.
+        Carica rules, responses e conversations.
 
         Returns:
-            tuple: (rules, responses)
+            tuple: (rules, responses, conversations)
         """
-        print("Caricamento rules e responses...")
+        print("Caricamento rules, responses e conversations...")
         rules = self.load_rules()
         responses = self.load_responses()
-        print(f"OK Caricate {len(rules)} rules e {len(responses)} response keys")
-        return rules, responses
+        conversations = self.load_conversations()
+        print(f"OK Caricate {len(rules)} rules, {len(responses)} response keys e {len(conversations)} conversations")
+        return rules, responses, conversations
 

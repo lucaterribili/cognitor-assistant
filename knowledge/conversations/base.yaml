@@ -1,0 +1,167 @@
+# Conversations base del chatbot Cognitor
+# Definisce i flussi di conversazione attesi
+
+conversations:
+  simple_flow:
+    description: "Flusso di conversazione minimale"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_name
+        bot: ask_name_response
+      - user: farewell
+        bot: farewell_response
+
+  help_flow:
+    description: "Flusso per richiesta aiuto"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_help
+        bot: help_options_response
+      - user: select_help_option
+        bot: detailed_help_response
+      - user: follow_up_question
+        bot: follow_up_response
+      - user: farewell
+        bot: farewell_response
+
+  information_flow:
+    description: "Flusso per richiesta informazioni"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_information
+        bot: information_response
+      - user: more_details
+        bot: detailed_information_response
+      - user: confirmation
+        bot: confirmation_response
+      - user: farewell
+        bot: farewell_response
+
+  quick_greeting_flow:
+    description: "Flusso minimale di saluto e congedo (2 step)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: farewell
+        bot: farewell_response
+
+  weather_check_flow:
+    description: "Flusso per controllo meteo (3 step)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: weather_query
+        bot: weather_query_response
+      - user: farewell
+        bot: farewell_response
+
+  music_flow:
+    description: "Flusso per riproduzione musica (4 step)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: play_music
+        bot: play_music_response
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
+
+  restaurant_booking_flow:
+    description: "Flusso per prenotazione ristorante (5 step)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: restaurant_booking
+        bot: restaurant_booking_response
+      - user: date_query
+        bot: date_query_response
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
+
+  news_flow:
+    description: "Flusso per lettura notizie con approfondimento (4 step)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: read_news
+        bot: read_news_response
+      - user: more_info
+        bot: more_info_response
+      - user: farewell
+        bot: farewell_response
+
+  mood_support_flow:
+    description: "Flusso di supporto per umore negativo (3 step)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: mood_unhappy
+        bot: mood_unhappy_response
+      - user: farewell
+        bot: farewell_response
+
+  taxi_booking_flow:
+    description: "Flusso per prenotazione taxi (4 step)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: taxi_ride
+        bot: taxi_ride_response
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
+
+  flight_booking_flow:
+    description: "Flusso per prenotazione volo (6 step)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: book_flight
+        bot: book_flight_response
+      - user: date_query
+        bot: date_query_response
+      - user: time_query
+        bot: time_query_response
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
+
+  culture_flow:
+    description: "Flusso culturale con storia e arte (5 step)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_history
+        bot: ask_history_response
+      - user: more_info
+        bot: more_info_response
+      - user: ask_art
+        bot: ask_art_response
+      - user: farewell
+        bot: farewell_response
+
+  meeting_flow:
+    description: "Flusso completo per organizzazione riunione (7 step)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: schedule_meeting
+        bot: schedule_meeting_response
+      - user: date_query
+        bot: date_query_response
+      - user: time_query
+        bot: time_query_response
+      - user: ask_name
+        bot: ask_name_response
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response

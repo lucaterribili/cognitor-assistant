@@ -3,6 +3,7 @@ Agent principale per il chatbot Cognitor.
 Coordina i modelli ML, la gestione delle sessioni e le risposte.
 """
 import os
+import random
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -17,6 +18,7 @@ from agent.model_loader import ModelLoader, KnowledgeLoader
 from agent.slot_manager import SlotManager
 from agent.rule_interpreter import RuleInterpreter
 from agent.operations.manager import OperationManager
+from agent.dialogue_state_policy import DialogueStatePolicy
 
 
 class Agent:
@@ -61,6 +63,9 @@ class Agent:
         # Operations
         self.operation_manager = None
 
+        # Dialogue state policy (TED-inspired)
+        self.dialogue_state_policy = None
+
     def load_models(self) -> bool:
         """
         Carica tutti i modelli ML necessari.
@@ -80,8 +85,11 @@ class Agent:
         return model_loaded
     
     def load_knowledge(self) -> None:
-        """Carica rules, responses e costruisce la lookup table per doping."""
-        self.rules, self.responses = self.knowledge_loader.load_all()
+        """Carica rules, responses, conversations e costruisce la lookup table per doping."""
+        self.rules, self.responses, conversations = self.knowledge_loader.load_all()
+
+        # Inizializza la DialogueStatePolicy con i dati delle conversations
+        self.dialogue_state_policy = DialogueStatePolicy(conversations)
 
         # Inizializza l'OperationManager con auto-discovery
         self.operation_manager = OperationManager(
@@ -106,20 +114,49 @@ class Agent:
 
         self.knowledge_loader.build_doping_lookup_table(self.doping_preprocessor)
 
-    def get_response(self, intent_name: str, slots: dict = None) -> tuple[str, str | None, dict]:
+    def get_response(self, intent_name: str, slots: dict = None, history: list = None) -> tuple[str, str | None, dict]:
         """
-        Ottiene una risposta per l'intent specificato usando il RuleInterpreter.
+        Ottiene una risposta per l'intent specificato.
+
+        Usa la DialogueStatePolicy per predire la prossima azione in base allo
+        storico della conversazione. Se la policy è sufficientemente sicura,
+        usa l'azione suggerita come response key; altrimenti usa il RuleInterpreter.
 
         Args:
             intent_name: Nome dell'intent
             slots: Dizionario degli slot disponibili
+            history: Storico della conversazione (opzionale, per la dialogue policy)
 
         Returns:
             tuple: (risposta, slot_da_attendere, slot_da_impostare_dal_bot)
         """
         if slots is None:
             slots = {}
-        
+
+        _history = history or []
+        print(f"\n[PIPELINE] get_response chiamato → intent='{intent_name}' | slots={list(slots.keys())} | history_len={len(_history)}")
+
+        # --- TED / Dialogue State Policy (interviene sempre) ---
+        if not self.dialogue_state_policy:
+            print("[PIPELINE] TED Policy SALTATA → dialogue_state_policy non inizializzata")
+        else:
+            policy_action = self.dialogue_state_policy.predict_next_action(intent_name, _history)
+            if policy_action:
+                action_key = policy_action['action']
+                confidence = policy_action['confidence']
+                response_list = self.responses.get(action_key)
+                print(f"[PIPELINE] TED Policy ATTIVA → azione='{action_key}' | confidenza={confidence:.3f} | risposte_disponibili={len(response_list) if response_list else 0}")
+                if response_list:
+                    chosen = random.choice(response_list)
+                    print(f"[PIPELINE] Risposta sorgente: TED Policy")
+                    return chosen, None, {}
+                else:
+                    print(f"[PIPELINE] TED Policy → azione '{action_key}' non ha risposte nel dizionario responses, fallback a RuleInterpreter")
+            else:
+                print(f"[PIPELINE] TED Policy NON INTERVENUTA → nessuna azione trovata per intent '{intent_name}'")
+
+        # --- Fallback RuleInterpreter ---
+        print("[PIPELINE] Risposta sorgente: RuleInterpreter")
         return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots)
 
     def predict(self, text: str) -> dict:
@@ -153,7 +190,10 @@ class Agent:
         intent_idx = result['intent_idx']
         intent_name = self.intent_dict[str(intent_idx)]
         confidence = result['intent_confidence']
-        
+
+        logits = result.get('intent_logits', [])
+        intent_probs = result.get('intent_probs', [])
+
         # Fallback per bassa confidenza
         if confidence < MIN_INTENT_CONFIDENCE:
             intent_name = 'low_confidence_fallback'
@@ -163,8 +203,8 @@ class Agent:
             'confidence': confidence,
             'entities': result.get('entities', []),
             'doped': is_doped,
-            'intent_logits': result.get('intent_logits', []),
-            'intent_probs': result.get('intent_probs', [])
+            'intent_logits': logits,
+            'intent_probs': intent_probs
         }
     
     def chat(self) -> None:
