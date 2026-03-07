@@ -35,8 +35,8 @@ class DialogueStatePolicy:
     # Numero massimo di turni utente recenti da considerare come contesto
     HISTORY_WINDOW = 5
 
-    # Confidence minima per applicare la predizione della policy
-    MIN_CONFIDENCE = 0.4
+    # Confidence minima per applicare la predizione della policy (0.0 = interviene sempre)
+    MIN_CONFIDENCE = 0.0
 
     def __init__(self, conversations: dict = None, base_dir: str = None):
         """
@@ -133,14 +133,19 @@ class DialogueStatePolicy:
             dict con 'action' e 'confidence', oppure None.
         """
         if current_intent not in self._intent_dict:
+            print(f"[TED-ML] Intent '{current_intent}' non nel dizionario intent della policy → skip")
             return None
 
         # Estrai la sequenza degli intent utente precedenti
+        context_intents = self._extract_user_intent_sequence(history)
         context_intent_ids = [
             self._intent_dict[intent]
-            for intent in self._extract_user_intent_sequence(history)
+            for intent in context_intents
             if intent in self._intent_dict
         ]
+
+        print(f"[TED-ML] Contesto intent: {context_intents} → IDs: {context_intent_ids}")
+        print(f"[TED-ML] Intent corrente: '{current_intent}' → ID: {self._intent_dict[current_intent]}")
 
         # Tensori di input (batch size 1)
         if context_intent_ids:
@@ -148,6 +153,7 @@ class DialogueStatePolicy:
         else:
             # Nessun contesto: usa un singolo token di padding
             context_intent_tensor = torch.zeros(1, 1, dtype=torch.long)
+            print("[TED-ML] Nessun contesto valido → padding tensor")
 
         # Le azioni bot precedenti non sono tracciate nello storico della conversazione:
         # usa padding (zeri) come placeholder.
@@ -166,9 +172,12 @@ class DialogueStatePolicy:
         # Il dizionario usa id 1-indexed → aggiungi 1
         action_name = self._action_dict_inv.get(action_idx + 1)
 
-        if action_name and confidence >= self.MIN_CONFIDENCE:
+        print(f"[TED-ML] Azione predetta: idx={action_idx} → '{action_name}' | confidenza={confidence:.3f}")
+
+        if action_name:
             return {'action': action_name, 'confidence': confidence}
 
+        print("[TED-ML] Predizione scartata → azione None (action_idx non nel dizionario)")
         return None
 
     # ------------------------------------------------------------------ #
@@ -284,26 +293,34 @@ class DialogueStatePolicy:
             dict con 'action' e 'confidence', oppure None.
         """
         if not current_intent or not self._story_transitions:
+            print(f"[TED-HEURISTIC] Skip → intent='{current_intent}' | transizioni disponibili={len(self._story_transitions)}")
             return None
 
         current_context = self._extract_user_intent_sequence(history)
 
         best_action = None
         best_score = 0.0
+        candidates = 0
+
+        print(f"[TED-HEURISTIC] Intent='{current_intent}' | contesto={current_context} | transizioni totali={len(self._story_transitions)}")
 
         for transition in self._story_transitions:
             if transition['user_intent'] != current_intent:
                 continue
 
+            candidates += 1
             score = self._score_context_match(current_context, transition['context'])
 
             if score > best_score:
                 best_score = score
                 best_action = transition['next_action']
 
-        if best_action and best_score >= self.MIN_CONFIDENCE:
+        print(f"[TED-HEURISTIC] Candidati per intent='{current_intent}': {candidates} | miglior azione='{best_action}' | score={best_score:.3f}")
+
+        if best_action:
             return {'action': best_action, 'confidence': best_score}
 
+        print(f"[TED-HEURISTIC] Predizione scartata → nessun candidato trovato per intent '{current_intent}'")
         return None
 
     def predict_next_action(self, current_intent: str, history: list) -> dict | None:
@@ -325,6 +342,8 @@ class DialogueStatePolicy:
             return None
 
         if self._use_ml:
+            print(f"[TED] Modalità: ML | intent='{current_intent}'")
             return self._ml_predict(current_intent, history)
 
+        print(f"[TED] Modalità: EURISTICA | intent='{current_intent}' | transizioni_disponibili={len(self._story_transitions)}")
         return self._heuristic_predict(current_intent, history)

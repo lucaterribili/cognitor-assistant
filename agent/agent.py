@@ -133,14 +133,30 @@ class Agent:
         if slots is None:
             slots = {}
 
-        if history and self.dialogue_state_policy:
-            policy_action = self.dialogue_state_policy.predict_next_action(intent_name, history)
+        _history = history or []
+        print(f"\n[PIPELINE] get_response chiamato → intent='{intent_name}' | slots={list(slots.keys())} | history_len={len(_history)}")
+
+        # --- TED / Dialogue State Policy (interviene sempre) ---
+        if not self.dialogue_state_policy:
+            print("[PIPELINE] TED Policy SALTATA → dialogue_state_policy non inizializzata")
+        else:
+            policy_action = self.dialogue_state_policy.predict_next_action(intent_name, _history)
             if policy_action:
                 action_key = policy_action['action']
+                confidence = policy_action['confidence']
                 response_list = self.responses.get(action_key)
+                print(f"[PIPELINE] TED Policy ATTIVA → azione='{action_key}' | confidenza={confidence:.3f} | risposte_disponibili={len(response_list) if response_list else 0}")
                 if response_list:
-                    return random.choice(response_list), None, {}
+                    chosen = random.choice(response_list)
+                    print(f"[PIPELINE] Risposta sorgente: TED Policy")
+                    return chosen, None, {}
+                else:
+                    print(f"[PIPELINE] TED Policy → azione '{action_key}' non ha risposte nel dizionario responses, fallback a RuleInterpreter")
+            else:
+                print(f"[PIPELINE] TED Policy NON INTERVENUTA → nessuna azione trovata per intent '{intent_name}'")
 
+        # --- Fallback RuleInterpreter ---
+        print("[PIPELINE] Risposta sorgente: RuleInterpreter")
         return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots)
 
     def predict(self, text: str) -> dict:

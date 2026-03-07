@@ -95,6 +95,9 @@ class ConversationHandler:
 
     def handle_prediction(self, user_input: str, session) -> None:
         """Gestisce la predizione e risposta normale."""
+        print("\n" + "─" * 60)
+        print(f"[PIPELINE] Turno #{len(session.history) // 2 + 1} | Modalità: {session.agent_mode}")
+        print("─" * 60)
         prediction = self.agent.predict(user_input)
 
         print(f"\nIntent: {prediction['intent']} ({prediction['confidence']:.1%})")

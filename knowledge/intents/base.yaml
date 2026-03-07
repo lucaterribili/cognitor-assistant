@@ -137,6 +137,7 @@ nlu:
     - vaffanculo
     - stronzo
     - imbecille
+    - stronzo non capisci niente
     - rotto in culo
     - testa di cazzo
     - cazzone
@@ -154,6 +155,7 @@ nlu:
     - brutto stronzo
     - merda di cane
     - sei un idiota
+    - sei un coglione
     - che scemo
     - fai i pompini
   - intent: compliment
