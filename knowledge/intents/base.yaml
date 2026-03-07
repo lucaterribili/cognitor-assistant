@@ -1043,3 +1043,26 @@ nlu:
     - audio più basso
     - zittisci
     - muta
+
+  - intent: web_search
+    examples:
+    - cerca
+    - cerca su internet
+    - fai una ricerca
+    - cerca online
+    - cerca in rete
+    - cerca sul web
+    - trova informazioni su
+    - cerca informazioni
+    - voglio sapere qualcosa su
+    - ricerca sul web
+    - fai una ricerca su internet
+    - dimmi qualcosa su
+    - cerca notizie su
+    - trova risultati per
+    - cerca nel web
+    - cerca su google
+    - fai una ricerca online
+    - voglio cercare
+    - cosa sai di
+    - cerca qualcosa su internet
