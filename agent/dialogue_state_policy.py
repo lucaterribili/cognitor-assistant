@@ -54,12 +54,14 @@ class DialogueStatePolicy:
         self._model_path = os.path.join(_base_dir, 'models', 'dialogue_policy.pth')
         self._intent_dict_path = os.path.join(_base_dir, '.cognitor', 'dialogue_intent_dict.json')
         self._action_dict_path = os.path.join(_base_dir, '.cognitor', 'dialogue_action_dict.json')
+        self._goal_dict_path = os.path.join(_base_dir, '.cognitor', 'dialogue_goal_dict.json')
 
         # Stato del modello ML
         self._model = None
         self._intent_dict: dict[str, int] = {}    # nome → id (1-indexed)
         self._action_dict: dict[str, int] = {}    # nome → id (1-indexed)
         self._action_dict_inv: dict[int, str] = {}  # id → nome
+        self._goal_dict_inv: dict[int, str] = {}    # id → nome
 
         # Tenta di caricare il modello ML addestrato
         self._use_ml = False
@@ -98,9 +100,20 @@ class DialogueStatePolicy:
 
             self._action_dict_inv = {v: k for k, v in self._action_dict.items()}
 
+            # Carica il dizionario goal se disponibile
+            if os.path.exists(self._goal_dict_path):
+                with open(self._goal_dict_path, 'r', encoding='utf-8') as f:
+                    goal_dict = json.load(f)
+                self._goal_dict_inv = {v: k for k, v in goal_dict.items()}
+                n_goals = len(goal_dict) + 1  # +1 per lo 0 riservato
+            else:
+                self._goal_dict_inv = {}
+                n_goals = 1
+
             model = DialoguePolicy(
                 num_intents=len(self._intent_dict),
                 num_actions=len(self._action_dict),
+                num_goals=n_goals,
                 embed_dim=DIALOGUE_POLICY_EMBED_DIM,
                 hidden_dim=DIALOGUE_POLICY_HIDDEN_DIM,
                 dropout=DIALOGUE_POLICY_DROPOUT,
@@ -121,16 +134,18 @@ class DialogueStatePolicy:
     #  Predizione ML                                                       #
     # ------------------------------------------------------------------ #
 
-    def _ml_predict(self, current_intent: str, history: list) -> dict | None:
+    def _ml_predict(self, current_intent: str, history: list, session: dict | None = None) -> dict | None:
         """
         Predice la prossima azione usando il modello ML addestrato.
 
         Args:
             current_intent: Intent utente corrente.
             history:        Storico della conversazione.
+            session:        Dizionario di sessione corrente (opzionale).
+                            Se fornito e il modello predice un goal, aggiorna session['main_goal'].
 
         Returns:
-            dict con 'action' e 'confidence', oppure None.
+            dict con 'action' e 'confidence' (e 'goal' se rilevato), oppure None.
         """
         if current_intent not in self._intent_dict:
             print(f"[TED-ML] Intent '{current_intent}' non nel dizionario intent della policy → skip")
@@ -165,7 +180,7 @@ class DialogueStatePolicy:
         )
 
         # Predizione (action_idx è 0-indexed per CrossEntropyLoss)
-        action_idx, confidence = self._model.predict(
+        action_idx, confidence, goal_idx = self._model.predict(
             context_intent_tensor, context_action_tensor, current_tensor
         )
 
@@ -174,11 +189,22 @@ class DialogueStatePolicy:
 
         print(f"[TED-ML] Azione predetta: idx={action_idx} → '{action_name}' | confidenza={confidence:.3f}")
 
-        if action_name:
-            return {'action': action_name, 'confidence': confidence}
+        if action_name is None:
+            print("[TED-ML] Predizione scartata → azione None (action_idx non nel dizionario)")
+            return None
 
-        print("[TED-ML] Predizione scartata → azione None (action_idx non nel dizionario)")
-        return None
+        result: dict = {'action': action_name, 'confidence': confidence}
+
+        # Gestione goal
+        if goal_idx != 0:
+            new_goal = self._goal_dict_inv.get(goal_idx)
+            if new_goal:
+                print(f"[TED-ML] Goal rilevato: idx={goal_idx} → '{new_goal}'")
+                if session is not None:
+                    session['main_goal'] = new_goal
+                result['goal'] = new_goal
+
+        return result
 
     # ------------------------------------------------------------------ #
     #  Approccio euristico (fallback / backward compatibility)             #
@@ -323,7 +349,7 @@ class DialogueStatePolicy:
         print(f"[TED-HEURISTIC] Predizione scartata → nessun candidato trovato per intent '{current_intent}'")
         return None
 
-    def predict_next_action(self, current_intent: str, history: list) -> dict | None:
+    def predict_next_action(self, current_intent: str, history: list, session: dict | None = None) -> dict | None:
         """
         Predice la prossima azione del bot dato l'intent corrente e lo storico.
 
@@ -333,6 +359,8 @@ class DialogueStatePolicy:
         Args:
             current_intent: Intent utente appena predetto dal modello NLU.
             history:        Storico della conversazione (lista di messaggi).
+            session:        Dizionario di sessione corrente (opzionale).
+                            Se fornito e il modello ML rileva un goal, aggiorna session['main_goal'].
 
         Returns:
             dict con 'action' (str) e 'confidence' (float), oppure None se
@@ -343,7 +371,7 @@ class DialogueStatePolicy:
 
         if self._use_ml:
             print(f"[TED] Modalità: ML | intent='{current_intent}'")
-            return self._ml_predict(current_intent, history)
+            return self._ml_predict(current_intent, history, session)
 
         print(f"[TED] Modalità: EURISTICA | intent='{current_intent}' | transizioni_disponibili={len(self._story_transitions)}")
         return self._heuristic_predict(current_intent, history)

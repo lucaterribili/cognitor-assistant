@@ -79,17 +79,40 @@ def build_dicts(conversations: dict) -> tuple[dict, dict]:
     return intent_dict, action_dict
 
 
+def build_goal_dict(conversations: dict) -> dict:
+    """
+    Costruisce il dizionario goal→id dalle storie.
+
+    L'indice 0 è riservato per "nessun goal nuovo"; gli id partono da 1.
+    I goal sono raccolti dal campo opzionale `goal` dei passi delle storie.
+
+    Returns:
+        goal_dict: {goal_name: id}  (id 1-indexed, 0 riservato)
+    """
+    all_goals: set[str] = set()
+
+    for flow_data in conversations.values():
+        for step in flow_data.get('steps', []):
+            g = step.get('goal')
+            if g:
+                all_goals.add(g)
+
+    # 0 = "nessun goal nuovo" (riservato, non mappare)
+    return {g: i + 1 for i, g in enumerate(sorted(all_goals))}
+
+
 def generate_training_samples(
     conversations: dict,
     intent_dict: dict,
     action_dict: dict,
+    goal_dict: dict | None = None,
     history_window: int = _HISTORY_WINDOW,
-) -> list[tuple[list[int], list[int], int, int]]:
+) -> list[tuple[list[int], list[int], int, int, int]]:
     """
     Genera campioni di training dalle storie.
 
-    Per ogni passo i di ogni storia, produce la quadrupla:
-        (context_intent_ids, context_action_ids, current_intent_id, target_action_id)
+    Per ogni passo i di ogni storia, produce la quintupla:
+        (context_intent_ids, context_action_ids, current_intent_id, target_action_id, target_goal_id)
 
     dove:
         context_intent_ids = id degli ultimi `history_window` intent utente
@@ -98,24 +121,28 @@ def generate_training_samples(
                              prima del passo i (può essere vuota)
         current_intent     = id dell'intent utente al passo i
         target_action      = id dell'azione bot al passo i (1-indexed)
+        target_goal        = id del goal al passo i (0 se assente)
 
     Returns:
-        Lista di quadruple (context_intent_ids, context_action_ids, current_id, target_id).
+        Lista di quintuple (context_intent_ids, context_action_ids, current_id, target_id, target_goal_id).
     """
-    samples: list[tuple[list[int], list[int], int, int]] = []
+    if goal_dict is None:
+        goal_dict = {}
+
+    samples: list[tuple[list[int], list[int], int, int, int]] = []
 
     for flow_data in conversations.values():
         steps = flow_data.get('steps', [])
 
-        # Estrai coppie (user_intent, bot_action) valide
-        pairs: list[tuple[str, str]] = []
+        # Estrai triple (user_intent, bot_action, goal) valide
+        triples: list[tuple[str, str, str | None]] = []
         for step in steps:
             user_intent = step.get('user')
             bot_action = step.get('bot')
             if user_intent and bot_action:
-                pairs.append((user_intent, bot_action))
+                triples.append((user_intent, bot_action, step.get('goal')))
 
-        for i, (user_intent, bot_action) in enumerate(pairs):
+        for i, (user_intent, bot_action, goal) in enumerate(triples):
             if user_intent not in intent_dict or bot_action not in action_dict:
                 continue
 
@@ -123,19 +150,20 @@ def generate_training_samples(
             context_start = max(0, i - history_window)
             context_intent_ids = [
                 intent_dict[u]
-                for u, _ in pairs[context_start:i]
+                for u, _, _ in triples[context_start:i]
                 if u in intent_dict
             ]
             context_action_ids = [
                 action_dict[a]
-                for _, a in pairs[context_start:i]
+                for _, a, _ in triples[context_start:i]
                 if a in action_dict
             ]
 
             current_id = intent_dict[user_intent]
             target_id = action_dict[bot_action]  # 1-indexed
+            target_goal_id = goal_dict.get(goal, 0)
 
-            samples.append((context_intent_ids, context_action_ids, current_id, target_id))
+            samples.append((context_intent_ids, context_action_ids, current_id, target_id, target_goal_id))
 
     return samples
 
@@ -147,27 +175,28 @@ def generate_training_samples(
 class DialoguePolicyDataset(Dataset):
     """Dataset PyTorch per il training della Dialogue Policy."""
 
-    def __init__(self, samples: list[tuple[list[int], list[int], int, int]]):
+    def __init__(self, samples: list[tuple[list[int], list[int], int, int, int]]):
         self.samples = samples
 
     def __len__(self) -> int:
         return len(self.samples)
 
-    def __getitem__(self, idx: int) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
-        context_intent_ids, context_action_ids, current_id, target_id = self.samples[idx]
+    def __getitem__(self, idx: int) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        context_intent_ids, context_action_ids, current_id, target_id, target_goal_id = self.samples[idx]
         return (
             torch.tensor(context_intent_ids, dtype=torch.long),
             torch.tensor(context_action_ids, dtype=torch.long),
             torch.tensor(current_id, dtype=torch.long),
             torch.tensor(target_id - 1, dtype=torch.long),  # 0-indexed per CrossEntropyLoss
+            torch.tensor(target_goal_id, dtype=torch.long),
         )
 
 
 def collate_dialogue_fn(
-    batch: list[tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]],
-) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    batch: list[tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]],
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
     """Collate con padding del contesto storico."""
-    ctx_intents, ctx_actions, curr_intents, targets = zip(*batch)
+    ctx_intents, ctx_actions, curr_intents, targets, goal_targets = zip(*batch)
 
     # Sequenze vuote → tensor di lunghezza 1 con padding
     padded_ctx_intents = [c if len(c) > 0 else torch.zeros(1, dtype=torch.long) for c in ctx_intents]
@@ -178,8 +207,9 @@ def collate_dialogue_fn(
 
     curr_intents = torch.stack(list(curr_intents))
     targets = torch.stack(list(targets))
+    goal_targets = torch.stack(list(goal_targets))
 
-    return ctx_intents_padded, ctx_actions_padded, curr_intents, targets
+    return ctx_intents_padded, ctx_actions_padded, curr_intents, targets, goal_targets
 
 
 # ---------------------------------------------------------------------------
@@ -193,17 +223,19 @@ def train_dialogue_policy_model(
     lr: float,
     device: torch.device,
     patience: int = 15,
+    goal_loss_weight: float = 0.5,
 ) -> None:
     """
     Addestra il modello DialoguePolicy con early stopping.
 
     Args:
-        model:      Modello da addestrare.
-        dataloader: DataLoader del training set.
-        epochs:     Numero massimo di epoche.
-        lr:         Learning rate iniziale.
-        device:     Dispositivo (cpu/cuda).
-        patience:   Numero di epoche senza miglioramento prima dello stop.
+        model:            Modello da addestrare.
+        dataloader:       DataLoader del training set.
+        epochs:           Numero massimo di epoche.
+        lr:               Learning rate iniziale.
+        device:           Dispositivo (cpu/cuda).
+        patience:         Numero di epoche senza miglioramento prima dello stop.
+        goal_loss_weight: Peso della loss sul goal rispetto alla loss sull'azione.
     """
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
@@ -220,15 +252,20 @@ def train_dialogue_policy_model(
         total_loss = 0.0
 
         epoch_iter = tqdm(dataloader, desc=f"Epoch {epoch + 1}/{epochs}", leave=False)
-        for ctx_intents, ctx_actions, curr_intents, targets in epoch_iter:
+        for ctx_intents, ctx_actions, curr_intents, targets, goal_targets in epoch_iter:
             ctx_intents = ctx_intents.to(device)
             ctx_actions = ctx_actions.to(device)
             curr_intents = curr_intents.to(device)
             targets = targets.to(device)
+            goal_targets = goal_targets.to(device)
 
             optimizer.zero_grad()
-            logits = model(ctx_intents, ctx_actions, curr_intents)
-            loss = criterion(logits, targets)
+            action_logits, goal_logits = model(ctx_intents, ctx_actions, curr_intents)
+
+            loss_action = criterion(action_logits, targets)
+            loss_goal   = criterion(goal_logits, goal_targets)
+            loss        = loss_action + goal_loss_weight * loss_goal
+
             loss.backward()
             optimizer.step()
 
@@ -264,7 +301,7 @@ def train_dialogue_policy() -> None:
     Entry point per il training della Dialogue Policy.
 
     1. Carica le conversations dal file mergiato (.cognitor/conversations.yaml)
-    2. Costruisce i dizionari intent→id e action→id
+    2. Costruisce i dizionari intent→id, action→id e goal→id
     3. Genera i campioni di training dalle storie
     4. Addestra il modello DialoguePolicy
     5. Salva il modello e i dizionari in models/ e .cognitor/
@@ -282,15 +319,18 @@ def train_dialogue_policy() -> None:
 
     # Costruisci dizionari
     intent_dict, action_dict = build_dicts(conversations)
+    goal_dict = build_goal_dict(conversations)
+    n_goals = len(goal_dict) + 1  # +1 per lo 0 riservato
     print(f"  Intenti trovati: {len(intent_dict)}")
     print(f"  Azioni trovate:  {len(action_dict)}")
+    print(f"  Goal trovati:    {len(goal_dict)}")
 
     if len(intent_dict) == 0 or len(action_dict) == 0:
         print("⚠️  Intent o azioni mancanti. Skipping training Dialogue Policy.")
         return
 
     # Genera campioni di training
-    samples = generate_training_samples(conversations, intent_dict, action_dict)
+    samples = generate_training_samples(conversations, intent_dict, action_dict, goal_dict)
     print(f"  Campioni di training: {len(samples)}")
 
     if not samples:
@@ -301,11 +341,14 @@ def train_dialogue_policy() -> None:
     cognitor_dir = os.path.join(BASE_DIR, '.cognitor')
     intent_dict_path = os.path.join(cognitor_dir, 'dialogue_intent_dict.json')
     action_dict_path = os.path.join(cognitor_dir, 'dialogue_action_dict.json')
+    goal_dict_path = os.path.join(cognitor_dir, 'dialogue_goal_dict.json')
 
     with open(intent_dict_path, 'w', encoding='utf-8') as f:
         json.dump(intent_dict, f, indent=2, ensure_ascii=False)
     with open(action_dict_path, 'w', encoding='utf-8') as f:
         json.dump(action_dict, f, indent=2, ensure_ascii=False)
+    with open(goal_dict_path, 'w', encoding='utf-8') as f:
+        json.dump(goal_dict, f, indent=2, ensure_ascii=False)
 
     print(f"  Dizionari salvati in: {cognitor_dir}")
 
@@ -322,6 +365,7 @@ def train_dialogue_policy() -> None:
     model = DialoguePolicy(
         num_intents=len(intent_dict),
         num_actions=len(action_dict),
+        num_goals=n_goals,
         embed_dim=DIALOGUE_POLICY_EMBED_DIM,
         hidden_dim=DIALOGUE_POLICY_HIDDEN_DIM,
         dropout=DIALOGUE_POLICY_DROPOUT,
