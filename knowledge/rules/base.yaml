@@ -129,3 +129,6 @@ rules:
   location_query:
     default: __location_query
 
+  web_search:
+    default: __web_search
+

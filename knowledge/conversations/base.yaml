@@ -165,3 +165,12 @@ conversations:
         bot: thank_you_response
       - user: farewell
         bot: farewell_response
+  web_search_flow:
+    description: "Flusso per ricerca web tramite DuckDuckGo"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: web_search
+        bot: __web_search
+      - user: farewell
+        bot: farewell_response

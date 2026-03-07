@@ -163,3 +163,12 @@ responses:
   operation_fallback_response:
     - "Funzionalità in fase di sviluppo."
 
+  # ========================================
+  # Risposte per web_search
+  # ========================================
+
+  web_search_wait_response:
+    - "Cosa vuoi cercare? Dimmi pure l'argomento!"
+    - "Su cosa vuoi che faccia una ricerca?"
+    - "Dimmi cosa cercare e lo trovo subito!"
+
