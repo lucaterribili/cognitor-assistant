@@ -83,29 +83,6 @@ nlu:
     - rifiuta la telefonata
     - voglio chiamare
     - chiamata in arrivo
-  - intent: search
-    examples:
-    - cerca informazioni su [Renato Zero](PERSON)
-    - cerca su google
-    - cerca notizie su [Vladimir Putin](PERSON)
-    - cosa sai di [Donald Trump](PERSON)
-    - dimmi qualcosa su [Elon Musk](PERSON)
-    - informami su [Mario](PERSON)
-    - cercami qualcosa
-    - cerca qualcosa per me
-    - dimmi di più su
-    - info su
-    - cerca online
-    - fammi una ricerca su google
-    - cerca su wikipedia
-    - cerca nel web
-    - voglio cercare
-    - fammi cercare
-    - fai una ricerca
-    - cerco informazioni
-    - trova informazioni
-    - cerca informazioni su [Python](PRODUCT)
-    - cercami notizie su [Italia](LOCATION)
   - intent: football
     examples:
     - cosa sta facendo la [Juventus](TEAM)
@@ -121,6 +98,9 @@ nlu:
     examples:
     - il mio nome è [Luca](PERSON)
     - mi chiamo [Marco](PERSON)
+    - ciao io mi chiamo [Luca](PERSON)
+    - buongiorno, io sono [Vladimir Putin](PERSON)
+    - piacere di conoscerti, sono [Giorgia Meloni](PERSON)
     - sono [Giulia](PERSON)
     - vorrei presentarmi, sono [Alessandro](PERSON)
     - posso dirti il mio nome? [Francesca](PERSON)
@@ -1043,26 +1023,41 @@ nlu:
     - audio più basso
     - zittisci
     - muta
-
   - intent: web_search
     examples:
     - cerca
-    - cerca su internet
+    - cerca qualcosa
     - fai una ricerca
+    - fai una ricerca online
+    - fai una ricerca su internet
+    - cerca su internet
     - cerca online
     - cerca in rete
     - cerca sul web
-    - trova informazioni su
-    - cerca informazioni
-    - voglio sapere qualcosa su
-    - ricerca sul web
-    - fai una ricerca su internet
-    - dimmi qualcosa su
-    - cerca notizie su
-    - trova risultati per
-    - cerca nel web
     - cerca su google
-    - fai una ricerca online
-    - voglio cercare
-    - cosa sai di
-    - cerca qualcosa su internet
+    - cerca su wikipedia
+    - fammi una ricerca
+    - fammi una ricerca su google
+    - cercami qualcosa
+    - cerca qualcosa per me
+    - voglio fare una ricerca
+    - voglio cercare qualcosa
+    - cerco informazioni
+    - cerca informazioni
+    - dimmi qualcosa
+    - dimmi qualcosa su [Elon Musk](QUERY)
+    - dimmi qualcosa su [Donald Trump](QUERY)
+    - dimmi di più su [Python](QUERY)
+    - cosa sai di [Renato Zero](QUERY)
+    - cosa sai di [Vladimir Putin](QUERY)
+    - info su [Italia](QUERY)
+    - trova informazioni su [Donald Trump](QUERY)
+    - trova informazioni su [Python](QUERY)
+    - cerca informazioni su [Renato Zero](QUERY)
+    - cerca informazioni su [Italia](QUERY)
+    - cerca notizie sulla [guerra in Ucraina](QUERY)
+    - cerca notizie su [Giorgia Meloni](QUERY)
+    - cercami notizie su [Italia](QUERY)
+    - trova risultati per [Python](QUERY)
+    - fai una ricerca su [Donald Trump](QUERY)
+    - fai una ricerca su [Renato Zero](QUERY)

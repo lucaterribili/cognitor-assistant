@@ -8,6 +8,9 @@ def action_web_search(intent_name: str, slots: dict = None) -> dict:
     """
     Esegue una ricerca web tramite DuckDuckGo.
 
+    Lo slot 'query' è required: se assente, il sistema entra in modalità
+    inputable (gestita dalla rule YAML) e chiede all'utente cosa cercare.
+
     Args:
         intent_name: Nome dell'intent
         slots: Slot disponibili, si aspetta la chiave 'query' con il termine di ricerca
@@ -18,6 +21,8 @@ def action_web_search(intent_name: str, slots: dict = None) -> dict:
     slots = slots or {}
     query = slots.get("query") or slots.get("QUERY") or slots.get("search_query")
 
+    # Questo caso non dovrebbe più verificarsi grazie alla modalità inputable,
+    # ma viene mantenuto come fallback di sicurezza.
     if not query:
         return {
             "response": "Cosa vuoi che cerchi? Dimmi l'argomento della ricerca.",
@@ -27,10 +32,10 @@ def action_web_search(intent_name: str, slots: dict = None) -> dict:
 
     try:
         with DDGS() as ddgs:
-            results = list(ddgs.text(query, max_results=3))
+            results = list(ddgs.text(query, max_results=3, region="it-it"))
     except Exception as e:
         return {
-            "response": f"Mi dispiace, non riesco a effettuare la ricerca in questo momento. Riprova più tardi.",
+            "response": "Mi dispiace, non riesco a effettuare la ricerca in questo momento. Riprova più tardi.",
             "slots": {},
             "metadata": {"operation": "web_search", "query": query, "error": str(e)}
         }

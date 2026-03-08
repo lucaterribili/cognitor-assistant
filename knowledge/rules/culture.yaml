@@ -1,12 +1,6 @@
 # Culture rules - Intent per cultura, arte, storia
 
 rules:
-  ask_history:
-    default: ask_history_response
-
-  ask_art:
-    default: ask_art_response
-
   ask_literature:
     default: ask_literature_response
 

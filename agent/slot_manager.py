@@ -75,9 +75,10 @@ class SlotExtractor:
         if not entity_type:
             return None
 
-        # Cerca la prima entità del tipo corretto
+        # Cerca la prima entità del tipo corretto (case-insensitive)
+        entity_type_lower = entity_type.lower()
         for entity in entities:
-            if entity.get('entity') == entity_type:
+            if entity.get('entity', '').lower() == entity_type_lower:
                 return entity.get('value')
 
         return None
@@ -233,12 +234,16 @@ class SlotContextManager:
         current_slots_real = {s for s in current_slots if not s.endswith('_UNSUPPORTED')}
         previous_slots_real = {s for s in previous_slots if not s.endswith('_UNSUPPORTED')}
 
+        print(f"[SlotManager] intent='{intent}' | slot attesi={current_slots_real} | entità NER={[(e.get('entity'), e.get('value')) for e in entities]}")
+        print(f"[SlotManager] mapping slot→entity: { {s: self.slot_extractor.get_slot_entity_type(s) for s in current_slots_real} }")
+
         # Se ci sono slot in comune tra intent consecutivi
         consecutive_slots = current_slots_real & previous_slots_real
 
         for slot_name in current_slots_real:
             # Estrai valore dalle entità
             extracted_value = self.slot_extractor.extract_from_entities(slot_name, entities)
+            print(f"[SlotManager] slot='{slot_name}' → extracted='{extracted_value}' | consecutivo={slot_name in consecutive_slots}")
 
             # Caso 1: Intent consecutivi con stesso slot
             if slot_name in consecutive_slots:

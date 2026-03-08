@@ -6,21 +6,6 @@ rules:
   # Intent semplici (solo default response)
   # ========================================
 
-  greeting:
-    default: greeting_response
-
-  farewell:
-    default: farewell_response
-
-  help:
-    default: help_response
-
-  ask_name:
-    default: ask_name_response
-
-  thank_you:
-    default: thank_you_response
-
   compliment:
     default: compliment_response
 
@@ -96,11 +81,12 @@ rules:
   introduce_user:
     slots:
       PERSON:
-        required: false
+        required: true
         type: string
         entity: PERSON
 
     default: introduce_user_response
+    wait: introduce_user_wait_response
 
   # ========================================
   # Esempio: Bot imposta slot via set_slots (confirm)
@@ -130,4 +116,12 @@ rules:
     default: __location_query
 
   web_search:
+    slots:
+      query:
+        required: true
+        type: string
+        entity: QUERY
+
     default: __web_search
+    wait: web_search_wait_response
+

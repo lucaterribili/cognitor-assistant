@@ -201,7 +201,9 @@ class DialogueStatePolicy:
             if new_goal:
                 print(f"[TED-ML] Goal rilevato: idx={goal_idx} → '{new_goal}'")
                 if session is not None:
+                    old_goal = session.get('main_goal')
                     session['main_goal'] = new_goal
+                    print(f"[SESSION] Goal settato: '{old_goal}' → '{new_goal}'")
                 result['goal'] = new_goal
 
         return result
