@@ -19,6 +19,7 @@ conversations:
         bot: greeting_response
       - user: ask_help
         bot: help_options_response
+        goal: get_help
       - user: select_help_option
         bot: detailed_help_response
       - user: follow_up_question
@@ -33,6 +34,7 @@ conversations:
         bot: greeting_response
       - user: ask_information
         bot: information_response
+        goal: get_information
       - user: more_details
         bot: detailed_information_response
       - user: confirmation
@@ -55,6 +57,7 @@ conversations:
         bot: greeting_response
       - user: weather_query
         bot: weather_query_response
+        goal: get_weather
       - user: farewell
         bot: farewell_response
 
@@ -65,6 +68,7 @@ conversations:
         bot: greeting_response
       - user: play_music
         bot: play_music_response
+        goal: play_music
       - user: thank_you
         bot: thank_you_response
       - user: farewell
@@ -77,6 +81,7 @@ conversations:
         bot: greeting_response
       - user: restaurant_booking
         bot: restaurant_booking_response
+        goal: book_restaurant
       - user: date_query
         bot: date_query_response
       - user: thank_you
@@ -91,6 +96,7 @@ conversations:
         bot: greeting_response
       - user: read_news
         bot: read_news_response
+        goal: read_news
       - user: more_info
         bot: more_info_response
       - user: farewell
@@ -103,6 +109,7 @@ conversations:
         bot: greeting_response
       - user: mood_unhappy
         bot: mood_unhappy_response
+        goal: get_support
       - user: farewell
         bot: farewell_response
 
@@ -113,6 +120,7 @@ conversations:
         bot: greeting_response
       - user: taxi_ride
         bot: taxi_ride_response
+        goal: book_taxi
       - user: thank_you
         bot: thank_you_response
       - user: farewell
@@ -125,6 +133,7 @@ conversations:
         bot: greeting_response
       - user: book_flight
         bot: book_flight_response
+        goal: book_flight
       - user: date_query
         bot: date_query_response
       - user: time_query
@@ -141,10 +150,12 @@ conversations:
         bot: greeting_response
       - user: ask_history
         bot: ask_history_response
+        goal: explore_culture
       - user: more_info
         bot: more_info_response
       - user: ask_art
         bot: ask_art_response
+        goal: explore_art
       - user: farewell
         bot: farewell_response
 
@@ -155,6 +166,7 @@ conversations:
         bot: greeting_response
       - user: schedule_meeting
         bot: schedule_meeting_response
+        goal: schedule_meeting
       - user: date_query
         bot: date_query_response
       - user: time_query
@@ -163,5 +175,15 @@ conversations:
         bot: ask_name_response
       - user: thank_you
         bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
+  web_search_flow:
+    description: "Flusso per ricerca web tramite DuckDuckGo"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: web_search
+        bot: __web_search
+        goal: web_search
       - user: farewell
         bot: farewell_response

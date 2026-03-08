@@ -137,8 +137,11 @@ responses:
     - "Ciao {PERSON}! Piacere di conoscerti, sono Arianna!"
     - "Hey {PERSON}! Che bello che ti presenti! Sono qui per aiutarti!"
     - "Ciao {PERSON}! Benvenuto! Sono Arianna, il tuo assistente virtuale!"
+
+  introduce_user_wait_response:
     - "Non ho capito bene il tuo nome, potresti ripeterlo?"
     - "Scusa, non ho afferrato bene il tuo nome. Come ti chiami?"
+    - "Piacere! Come ti chiami?"
 
   # ========================================
   # Esempio: Risposta con slot inline
@@ -162,4 +165,13 @@ responses:
 
   operation_fallback_response:
     - "Funzionalità in fase di sviluppo."
+
+  # ========================================
+  # Risposte per web_search
+  # ========================================
+
+  web_search_wait_response:
+    - "Cosa vuoi cercare? Dimmi pure l'argomento!"
+    - "Su cosa vuoi che faccia una ricerca?"
+    - "Dimmi cosa cercare e lo trovo subito!"
 

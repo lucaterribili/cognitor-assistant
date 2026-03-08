@@ -136,7 +136,19 @@ class Agent:
         _history = history or []
         print(f"\n[PIPELINE] get_response chiamato → intent='{intent_name}' | slots={list(slots.keys())} | history_len={len(_history)}")
 
-        # --- TED / Dialogue State Policy (interviene sempre) ---
+        # --- Priorità 1: RuleInterpreter ---
+        # Se esiste una rule nel DSL per questo intent, il RuleInterpreter
+        # ha sempre la precedenza sulla TED Policy. Questo garantisce che:
+        # - slot filling e modalità inputable funzionino sempre
+        # - le operations vengano eseguite
+        # - la logica di business dichiarativa non venga bypassata
+        rule = self.rules.get(intent_name)
+        if rule is not None:
+            print(f"[PIPELINE] RuleInterpreter PRIORITARIO → rule trovata per '{intent_name}'")
+            print("[PIPELINE] Risposta sorgente: RuleInterpreter")
+            return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots)
+
+        # --- Priorità 2: TED / Dialogue State Policy (solo se nessuna rule) ---
         if not self.dialogue_state_policy:
             print("[PIPELINE] TED Policy SALTATA → dialogue_state_policy non inizializzata")
         else:
@@ -151,11 +163,11 @@ class Agent:
                     print(f"[PIPELINE] Risposta sorgente: TED Policy")
                     return chosen, None, {}
                 else:
-                    print(f"[PIPELINE] TED Policy → azione '{action_key}' non ha risposte nel dizionario responses, fallback a RuleInterpreter")
+                    print(f"[PIPELINE] TED Policy → azione '{action_key}' non trovata nelle responses, fallback a RuleInterpreter")
             else:
-                print(f"[PIPELINE] TED Policy NON INTERVENUTA → nessuna azione trovata per intent '{intent_name}'")
+                print(f"[PIPELINE] TED Policy NON INTERVENUTA → nessuna azione per intent '{intent_name}'")
 
-        # --- Fallback RuleInterpreter ---
+        # --- Priorità 3: Fallback RuleInterpreter (intent senza rule né TED) ---
         print("[PIPELINE] Risposta sorgente: RuleInterpreter")
         return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots)
 

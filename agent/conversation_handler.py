@@ -75,10 +75,11 @@ class ConversationHandler:
         session.update_context(f"{slot_name}_UNSUPPORTED", False)
         session.waiting_for_slot = None
         session.agent_mode = "predictable"
+        print(f"[INPUTABLE] Slot '{slot_name}' impostato manualmente = '{user_input}'")
 
-        # Genera risposta
+        # Genera risposta (passa la history completa per la TED policy)
         response, wait_for_slot, bot_slots = self.agent.get_response(
-            pending_intent, session.context
+            pending_intent, session.context, session.history
         )
 
         if bot_slots:
@@ -101,7 +102,13 @@ class ConversationHandler:
         prediction = self.agent.predict(user_input)
 
         print(f"\nIntent: {prediction['intent']} ({prediction['confidence']:.1%})")
-        entities_str = ', '.join([e['value'] for e in prediction['entities']]) or "nessuna"
+        if prediction['entities']:
+            entities_str = ', '.join(
+                [f"{e['value']} [tipo={e.get('entity', '?')} conf={e.get('confidence', 0):.2f}]"
+                 for e in prediction['entities']]
+            )
+        else:
+            entities_str = "nessuna"
         print(f"Entita: {entities_str}")
 
         # Debug: mostra top intent con probabilità e logits (solo prob > 0.0001, max 5)

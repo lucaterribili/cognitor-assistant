@@ -332,32 +332,30 @@ class RuleInterpreter:
         if not rule:
             return "Intent non trovato nel DSL", None, {}
 
-        operation_result = None
-        if self.operation_manager:
-            default_key = rule.get("default", "")
-            if default_key.startswith("__"):
-                operation_name = default_key[2:]
-                if self.operation_manager.has_operation(operation_name):
-                    operation_result = self.operation_manager.execute(
-                        operation_name, operation_name, slots
-                    )
-
         bot_slots = self.extract_set_slots(intent_name, slots)
 
-        if operation_result:
-            all_bot_slots = {**bot_slots, **operation_result.get("slots", {})}
-            return operation_result["response"], None, all_bot_slots
+        # Intent con slot: la gestione dell'operation (dopo aver raccolto gli slot)
+        # è delegata a _handle_slot_based_intent_with_slots
+        if "slots" in rule:
+            response, wait_slot = self._handle_slot_based_intent_with_slots(rule, slots)
+            return response, wait_slot, bot_slots
 
-        if "default" in rule and "slots" not in rule:
+        # Intent semplice senza slot: esegui l'operation se present
+        default_key = rule.get("default", "")
+        if default_key.startswith("__") and self.operation_manager:
+            operation_name = default_key[2:]
+            if self.operation_manager.has_operation(operation_name):
+                operation_result = self.operation_manager.execute(
+                    operation_name, operation_name, slots
+                )
+                all_bot_slots = {**bot_slots, **operation_result.get("slots", {})}
+                return operation_result["response"], None, all_bot_slots
+
+        if "default" in rule:
             response_key = rule["default"]
             response, inline_slots = self._get_response_with_slots(response_key, slots)
             all_bot_slots = {**bot_slots, **inline_slots}
             return response, None, all_bot_slots
-
-        if "slots" in rule:
-            response, wait_slot = self._handle_slot_based_intent_with_slots(rule, slots)
-            all_bot_slots = {**bot_slots}
-            return response, wait_slot, all_bot_slots
 
         return "Configurazione intent non valida", None, bot_slots
 
@@ -385,6 +383,15 @@ class RuleInterpreter:
                         return response, None
                     return "Slot richiesto non fornito", None
 
+        # Tutti gli slot required sono presenti.
+        # Se è definita un'operation (default: __<name>), eseguila ora.
+        default_key = rule.get("default", "")
+        if default_key.startswith("__") and self.operation_manager:
+            operation_name = default_key[2:]
+            if self.operation_manager.has_operation(operation_name):
+                op_result = self.operation_manager.execute(operation_name, operation_name, slots)
+                return op_result["response"], None
+
         for slot_name, slot_config in rule_slots.items():
             slot_value = slots.get(slot_name)
             if slot_value:
@@ -400,8 +407,7 @@ class RuleInterpreter:
                     response, _ = self._get_response_with_slots(fallback_key, slots)
                     return response, None
 
-        default_key = rule.get("default")
-        if default_key:
+        if default_key and not default_key.startswith("__"):
             response, _ = self._get_response_with_slots(default_key, slots)
             return response, None
 
