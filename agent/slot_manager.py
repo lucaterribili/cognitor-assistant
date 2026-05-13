@@ -268,28 +268,23 @@ class SlotContextManager:
         """
         Gestisce l'aggiornamento di uno slot quando due intent consecutivi
         utilizzano lo stesso slot.
-
-        Logica completamente data-driven:
-        - Se NER estrae un valore valido -> lo aggiorna
-        - Se NER estrae un valore non valido -> invalida e chiede di nuovo
-        - Se NER non estrae nulla -> MANTIENE il valore precedente (l'utente sta solo facendo domande)
         """
-        current_value = session.get_context(slot_name)
-
         if extracted_value:
             # Valida il nuovo valore
             if self.slot_extractor.is_valid_value(intent, slot_name, extracted_value):
-                session.update_context(slot_name, extracted_value)
+                # Esegui il casting prima di salvare nel contesto
+                casted_value = extracted_value
+                if self.slot_extractor.rule_interpreter:
+                    casted_value = self.slot_extractor.rule_interpreter.cast_slot_value(intent, slot_name, extracted_value)
+                
+                session.update_context(slot_name, casted_value)
                 session.update_context(f"{slot_name}_UNSUPPORTED", False)
-                print(f"[SlotManager] Slot '{slot_name}' aggiornato: {extracted_value}")
+                print(f"[SlotManager] Slot '{slot_name}' aggiornato: {casted_value} (type: {type(casted_value).__name__})")
             else:
                 # Valore estratto ma non valido -> invalida
                 session.update_context(slot_name, None)
                 session.update_context(f"{slot_name}_UNSUPPORTED", True)
                 print(f"[SlotManager] Slot '{slot_name}' non supportato: {extracted_value}")
-
-        # Se NER non estrae nulla, MANTIENE il valore precedente
-        # (l'utente probabilmente sta solo facendo altre domande sulla stessa location)
 
     def _handle_new_slot_value(
         self,
@@ -302,9 +297,14 @@ class SlotContextManager:
         Gestisce l'aggiornamento di uno slot con un nuovo valore estratto.
         """
         if self.slot_extractor.is_valid_value(intent, slot_name, extracted_value):
-            session.update_context(slot_name, extracted_value)
+            # Esegui il casting prima di salvare nel contesto
+            casted_value = extracted_value
+            if self.slot_extractor.rule_interpreter:
+                casted_value = self.slot_extractor.rule_interpreter.cast_slot_value(intent, slot_name, extracted_value)
+            
+            session.update_context(slot_name, casted_value)
             session.update_context(f"{slot_name}_UNSUPPORTED", False)
-            print(f"[SlotManager] Slot '{slot_name}' impostato: {extracted_value}")
+            print(f"[SlotManager] Slot '{slot_name}' impostato: {casted_value} (type: {type(casted_value).__name__})")
         else:
             session.update_context(slot_name, extracted_value)
             session.update_context(f"{slot_name}_UNSUPPORTED", True)

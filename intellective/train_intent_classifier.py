@@ -48,79 +48,73 @@ def collate_fn(batch):
     return sentences_padded, labels, ner_tags_padded, masks
 
 
-def train_model(model, dataloader, epochs, lr, device, intent_weight=1.0, ner_weight=0.5, patience=10):
+def train_with_validation(model, train_dataloader, val_dataloader, epochs, lr, device, intent_weight=1.0, ner_weight=0.5, patience=10):
     intent_criterion = nn.CrossEntropyLoss()
     optimizer = optim.AdamW(model.parameters(), lr=lr)
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=2)
 
     # Early stopping variables
-    best_loss = float('inf')
+    best_val_loss = float('inf')
     patience_counter = 0
     best_model_state = None
 
     for epoch in range(epochs):
         print(f"Epoch {epoch + 1}/{epochs}")
-        epoch_progress = tqdm(dataloader, desc="Training", leave=False)
+        
+        # Training phase
         model.train()
-        total_loss = 0
-        total_intent_loss = 0
-        total_ner_loss = 0
-
-        for inputs, intent_labels, ner_tags, masks in epoch_progress:
-            inputs = inputs.to(device)
-            intent_labels = intent_labels.to(device)
-            ner_tags = ner_tags.to(device)
-            masks = masks.to(device)
-
+        total_train_loss = 0
+        train_progress = tqdm(train_dataloader, desc="Training", leave=False)
+        for inputs, intent_labels, ner_tags, masks in train_progress:
+            inputs, intent_labels, ner_tags, masks = inputs.to(device), intent_labels.to(device), ner_tags.to(device), masks.to(device)
             optimizer.zero_grad()
-
-            # Forward pass con NER tags per training
             intent_logits, ner_loss = model(inputs, ner_tags=ner_tags, mask=masks)
-
-            # Calcola loss intent
             intent_loss = intent_criterion(intent_logits, intent_labels)
-
-            # Loss combinato pesato
             loss = intent_weight * intent_loss + ner_weight * ner_loss
-
             loss.backward()
             optimizer.step()
+            total_train_loss += loss.item()
 
-            total_loss += loss.item()
-            total_intent_loss += intent_loss.item()
-            total_ner_loss += ner_loss.item()
+        # Validation phase
+        model.eval()
+        total_val_loss = 0
+        total_val_intent_loss = 0
+        total_val_ner_loss = 0
+        with torch.no_grad():
+            for inputs, intent_labels, ner_tags, masks in val_dataloader:
+                inputs, intent_labels, ner_tags, masks = inputs.to(device), intent_labels.to(device), ner_tags.to(device), masks.to(device)
+                intent_logits, ner_loss = model(inputs, ner_tags=ner_tags, mask=masks)
+                intent_loss = intent_criterion(intent_logits, intent_labels)
+                loss = intent_weight * intent_loss + ner_weight * ner_loss
+                total_val_loss += loss.item()
+                total_val_intent_loss += intent_loss.item()
+                total_val_ner_loss += ner_loss.item()
 
-            epoch_progress.set_postfix(
-                loss=loss.item(),
-                intent_loss=intent_loss.item(),
-                ner_loss=ner_loss.item()
-            )
+        avg_train_loss = total_train_loss / len(train_dataloader)
+        avg_val_loss = total_val_loss / len(val_dataloader)
+        avg_val_intent_loss = total_val_intent_loss / len(val_dataloader)
+        avg_val_ner_loss = total_val_ner_loss / len(val_dataloader)
 
-        avg_loss = total_loss / len(dataloader)
-        avg_intent_loss = total_intent_loss / len(dataloader)
-        avg_ner_loss = total_ner_loss / len(dataloader)
+        scheduler.step(avg_val_loss)
+        print(f"Epoch {epoch + 1}/{epochs}: Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f} (Intent: {avg_val_intent_loss:.4f}, NER: {avg_val_ner_loss:.4f})")
 
-        scheduler.step(avg_loss)
-        print(f"Epoch {epoch + 1}/{epochs}, Loss: {avg_loss:.4f}, Intent Loss: {avg_intent_loss:.4f}, NER Loss: {avg_ner_loss:.4f}")
-
-        # Early stopping check
-        if avg_loss < best_loss:
-            best_loss = avg_loss
+        # Early stopping check on validation loss
+        if avg_val_loss < best_val_loss:
+            best_val_loss = avg_val_loss
             patience_counter = 0
             best_model_state = model.state_dict().copy()
-            print(f"✓ Miglioramento! Nuovo best loss: {best_loss:.4f}")
+            print(f"✓ Miglioramento Val Loss! Nuovo best: {best_val_loss:.4f}")
         else:
             patience_counter += 1
-            print(f"Nessun miglioramento. Pazienza: {patience_counter}/{patience}")
+            print(f"Pazienza: {patience_counter}/{patience}")
 
             if patience_counter >= patience:
-                print(f"\n⚠️  Early stopping attivato dopo {epoch + 1} epoche")
-                print(f"Best loss: {best_loss:.4f}")
-                # Ripristina il miglior modello
-                if best_model_state is not None:
-                    model.load_state_dict(best_model_state)
-                    print("✓ Ripristinato il miglior modello")
+                print(f"\n⚠️  Early stopping dopo {epoch + 1} epoche")
                 break
+    
+    if best_model_state is not None:
+        model.load_state_dict(best_model_state)
+        print("✓ Ripristinato il miglior modello basato sulla validation loss")
 
 
 def train_main_model():
@@ -134,8 +128,18 @@ def train_main_model():
         intent_dict = json.load(f)
         intents_number = len(intent_dict)
 
-    dataset = IntentDataset(npy_path)
-    dataloader = DataLoader(dataset, batch_size=8, shuffle=True, collate_fn=collate_fn)
+    full_dataset = IntentDataset(npy_path)
+    
+    # Split train/validation (80/20)
+    train_size = int(0.8 * len(full_dataset))
+    val_size = len(full_dataset) - train_size
+    train_dataset, val_dataset = torch.utils.data.random_split(
+        full_dataset, [train_size, val_size], 
+        generator=torch.Generator().manual_seed(42)
+    )
+
+    train_dataloader = DataLoader(train_dataset, batch_size=8, shuffle=True, collate_fn=collate_fn)
+    val_dataloader = DataLoader(val_dataset, batch_size=8, shuffle=False, collate_fn=collate_fn)
 
     # Carica vocab_size da vocab.json invece di FastText
     vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
@@ -157,13 +161,6 @@ def train_main_model():
     )
     model.to(device)
 
-    train_model(model, dataloader, epochs=50, lr=0.001, device=device)
+    train_with_validation(model, train_dataloader, val_dataloader, epochs=50, lr=0.001, device=device)
 
     torch.save(model.state_dict(), os.path.join(BASE_DIR, 'models', 'intent_model_fast.pth'))
-
-    def predict(sentence_ids):
-        model.eval()
-        with torch.no_grad():
-            tokens = torch.tensor(sentence_ids, dtype=torch.long).unsqueeze(0).to(device)
-            output = model(tokens)
-            return torch.argmax(output, dim=1).item()
