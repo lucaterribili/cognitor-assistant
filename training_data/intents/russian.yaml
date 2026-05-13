@@ -1,0 +1,146 @@
+nlu:
+  intents:
+
+  # ── Avvio percorso guidato ──────────────────────────────────────────────────
+  - intent: russian_learn_start
+    examples:
+    - voglio imparare il russo
+    - inizia il corso di russo
+    - insegnami il russo
+    - voglio studiare la lingua russa
+    - come si studia il russo
+    - inizia percorso russo
+    - percorso guidato russo
+    - guida all'apprendimento del russo
+    - inizia a insegnarmi il russo
+    - voglio cominciare a studiare russo
+
+  # ── Alfabeto cirillico ──────────────────────────────────────────────────────
+  - intent: russian_learn_alphabet
+    examples:
+    - come funziona l'alfabeto russo
+    - voglio imparare l'alfabeto cirillico
+    - insegnami il cirillico
+    - quali sono le lettere russe
+    - come si chiama l'alfabeto russo
+    - mostrami l'alfabeto russo
+    - voglio conoscere le lettere dell'alfabeto russo
+    - alfabeto russo
+    - cirillico
+
+  # ── Saluti ──────────────────────────────────────────────────────────────────
+  - intent: russian_learn_greetings
+    examples:
+    - come si dice ciao in russo
+    - come si saluta in russo
+    - insegnami a salutare in russo
+    - come si dice buongiorno in russo
+    - come si dice buonasera in russo
+    - come si dice arrivederci in russo
+    - saluti in russo
+    - voglio imparare a salutare in russo
+    - come si dice piacere di conoscerti in russo
+    - come si dice come stai in russo
+
+  # ── Numeri ──────────────────────────────────────────────────────────────────
+  - intent: russian_learn_numbers
+    examples:
+    - come si contano i numeri in russo
+    - insegnami i numeri in russo
+    - voglio imparare a contare in russo
+    - numeri in russo
+    - come si dice uno in russo
+    - come si dice dieci in russo
+    - voglio sapere i numeri russi
+    - conta in russo
+    - numeri da uno a dieci in russo
+
+  # ── Frasi utili ─────────────────────────────────────────────────────────────
+  - intent: russian_learn_phrases
+    examples:
+    - insegnami frasi utili in russo
+    - voglio frasi di base in russo
+    - frasi comuni in russo
+    - come si chiede dove si trova qualcosa in russo
+    - come si chiede aiuto in russo
+    - frasi di sopravvivenza in russo
+    - frasi essenziali in russo
+    - come si dice per favore in russo
+    - come si dice grazie in russo
+    - come si dice scusa in russo
+    - voglio imparare frasi quotidiane in russo
+
+  # ── Traduzione generica ─────────────────────────────────────────────────────
+  - intent: russian_translate_word
+    examples:
+    - come si dice casa in russo
+    - come si dice mamma in russo
+    - come si dice acqua in russo
+    - come si dice pane in russo
+    - come si dice amore in russo
+    - come si dice amico in russo
+    - come si dice buono in russo
+    - come si dice grande in russo
+    - come si dice nuovo in russo
+    - come si traduce la parola città in russo
+    - come si dice tempo in russo
+    - traduci la parola libro in russo
+    - come si dice lavoro in russo
+    - come si dice scuola in russo
+    - come si dice macchina in russo
+
+  # ── Traduzione di una frase ─────────────────────────────────────────────────
+  - intent: russian_translate_phrase
+    examples:
+    - traduci in russo dove si trova la stazione
+    - come si dice non capisco in russo
+    - come si dice parla più lentamente in russo
+    - come si dice mi puoi aiutare in russo
+    - come si dice non parlo russo in russo
+    - come si dice quanto costa in russo
+    - traduci dove è il bagno in russo
+    - come si dice ho bisogno di un medico in russo
+    - traduzione di buona fortuna in russo
+    - come si dice mi chiamo in russo
+
+  # ── Grammatica ──────────────────────────────────────────────────────────────
+  - intent: russian_learn_grammar
+    examples:
+    - come funziona la grammatica russa
+    - spiegami i casi della lingua russa
+    - cos'è il caso nominativo in russo
+    - come si coniugano i verbi in russo
+    - differenza tra russo formale e informale
+    - come funzionano i generi in russo
+    - cos'è il caso accusativo in russo
+    - grammatica di base in russo
+    - come si fa il plurale in russo
+    - voglio capire la grammatica russa
+
+  # ── Passo successivo nel percorso ───────────────────────────────────────────
+  - intent: russian_next_lesson
+    examples:
+    - prossima lezione
+    - continua
+    - vai avanti
+    - lezione successiva
+    - cosa imparo dopo
+    - prossimo argomento
+    - avanti
+    - continua il corso
+    - prossimo passo
+    - cosa c'è dopo
+
+  # ── Riepilogo / ripetizione ──────────────────────────────────────────────────
+  - intent: russian_repeat_lesson
+    examples:
+    - ripeti
+    - ripeti la lezione
+    - ripeti ancora
+    - puoi ripetere
+    - non ho capito ripeti
+    - torna indietro
+    - lezione precedente
+    - rispiega
+    - mostrami di nuovo
+    - ripasso
