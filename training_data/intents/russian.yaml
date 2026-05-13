@@ -134,10 +134,8 @@ nlu:
   # ── Riepilogo / ripetizione ──────────────────────────────────────────────────
   - intent: russian_repeat_lesson
     examples:
-    - ripeti
     - ripeti la lezione
     - ripeti ancora
-    - puoi ripetere
     - non ho capito ripeti
     - torna indietro
     - lezione precedente

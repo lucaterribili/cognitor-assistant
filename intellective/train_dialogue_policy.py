@@ -306,7 +306,7 @@ def train_dialogue_policy() -> None:
     4. Addestra il modello DialoguePolicy
     5. Salva il modello e i dizionari in models/ e .cognitor/
     """
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cpu")
     print(f"Dispositivo in uso: {device}")
 
     # Carica conversations
