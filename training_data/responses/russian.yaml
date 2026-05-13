@@ -1,0 +1,168 @@
+# Responses per il modulo di apprendimento della lingua russa
+
+responses:
+
+  # ── Avvio percorso guidato ──────────────────────────────────────────────────
+  russian_learn_start_response:
+    - "Benvenuto nel percorso guidato di russo! 🇷🇺 Inizieremo dall'alfabeto cirillico, poi passeremo ai saluti, ai numeri e alle frasi utili. Scrivi 'prossima lezione' per avanzare o fammi una domanda di traduzione in qualsiasi momento!"
+    - "Ottima scelta! Il russo è una lingua affascinante. Il percorso guidato si svolge così: 1️⃣ Alfabeto cirillico → 2️⃣ Saluti → 3️⃣ Numeri → 4️⃣ Frasi utili → 5️⃣ Grammatica di base. Cominciamo? Scrivi 'prossima lezione' per partire!"
+    - "Ciao futuro slavista! 🎓 Ti guiderò passo dopo passo nell'apprendimento del russo. Puoi seguire il percorso guidato (scrivi 'prossima lezione') oppure chiedermi direttamente come si dice qualcosa in russo. Pronto?"
+
+  # ── Alfabeto cirillico ──────────────────────────────────────────────────────
+  russian_learn_alphabet_response:
+    - |
+      L'alfabeto russo si chiama **cirillico** e conta 33 lettere. Eccone alcune fondamentali:
+
+      А а → suono "a"   |  Б б → suono "b"   |  В в → suono "v"
+      Г г → suono "g"   |  Д д → suono "d"   |  Е е → suono "ye"
+      З з → suono "z"   |  И и → suono "i"   |  К к → suono "k"
+      Л л → suono "l"   |  М м → suono "m"   |  Н н → suono "n"
+      О о → suono "o"   |  П п → suono "p"   |  Р р → suono "r" (moscia)
+      С с → suono "s"   |  Т т → suono "t"   |  У у → suono "u"
+      Х х → suono "h"   |  Ц ц → suono "ts"  |  Ш ш → suono "sc"
+      Я я → suono "ya"
+
+      Scrivi 'prossima lezione' per passare ai saluti! 😊
+    - |
+      L'alfabeto cirillico ha 33 lettere. Alcune sembrano simili all'italiano ma si pronunciano diversamente!
+      Ad esempio: **Р** si pronuncia come la 'r' moscia, **Н** come la nostra 'n', **С** come la 's'.
+      Lettere speciali: **Ж** (zh), **Щ** (shch), **Ъ** (segno duro), **Ь** (segno molle).
+      Con un po' di pratica lo impari in pochi giorni! Scrivi 'prossima lezione' per continuare.
+
+  # ── Saluti ──────────────────────────────────────────────────────────────────
+  russian_learn_greetings_response:
+    - |
+      Ecco i **saluti di base in russo** 🤝
+
+      • Привет! (Privet!) → Ciao! (informale)
+      • Здравствуйте! (Zdravstvuyte!) → Buongiorno / Salve (formale)
+      • Доброе утро! (Dobroye utro!) → Buongiorno (mattina)
+      • Добрый день! (Dobryy den'!) → Buon pomeriggio
+      • Добрый вечер! (Dobryy vecher!) → Buonasera
+      • До свидания! (Do svidaniya!) → Arrivederci
+      • Пока! (Poka!) → Ciao! / A presto! (informale)
+      • Как дела? (Kak dela?) → Come stai?
+      • Меня зовут… (Menya zovut…) → Mi chiamo…
+      • Приятно познакомиться! (Priyatno poznakomit'sya!) → Piacere di conoscerti!
+
+      Prova a usarli! Scrivi 'prossima lezione' per i numeri.
+    - |
+      Salutare in russo è facile! I più usati:
+      👋 "Привет" (Privet) = Ciao (tra amici)
+      🎩 "Здравствуйте" (Zdravstvuyte) = Buongiorno/Salve (formale)
+      ❓ "Как дела?" (Kak dela?) = Come stai?
+      ✅ "Хорошо, спасибо" (Khorosho, spasibo) = Bene, grazie
+      👋 "До свидания" (Do svidaniya) = Arrivederci
+      Scrivi 'prossima lezione' per passare ai numeri!
+
+  # ── Numeri ──────────────────────────────────────────────────────────────────
+  russian_learn_numbers_response:
+    - |
+      I **numeri in russo** da 1 a 10 🔢
+
+      1 → один (odin)
+      2 → два (dva)
+      3 → три (tri)
+      4 → четыре (chetyre)
+      5 → пять (pyat')
+      6 → шесть (shest')
+      7 → семь (sem')
+      8 → восемь (vosem')
+      9 → девять (devyat')
+      10 → десять (desyat')
+
+      Prova a ripeterli ad alta voce! Scrivi 'prossima lezione' per le frasi utili.
+    - |
+      Numeri russi 1-10: один, два, три, четыре, пять, шесть, семь, восемь, девять, десять.
+      In traslitterazione: odin, dva, tri, chetyre, pyat', shest', sem', vosem', devyat', desyat'.
+      Numeri speciali: 11 = одиннадцать (odinnadtsat'), 20 = двадцать (dvadtsat'), 100 = сто (sto), 1000 = тысяча (tysyacha).
+      Scrivi 'prossima lezione' per continuare!
+
+  # ── Frasi utili ─────────────────────────────────────────────────────────────
+  russian_learn_phrases_response:
+    - |
+      **Frasi utili in russo** per viaggiare e comunicare 🗣️
+
+      • Пожалуйста (Pozhaluysta) → Per favore / Prego
+      • Спасибо (Spasibo) → Grazie
+      • Извините (Izvinite) → Scusi / Mi scusi
+      • Да (Da) → Sì
+      • Нет (Net) → No
+      • Я не понимаю (Ya ne ponimayu) → Non capisco
+      • Говорите медленнее (Govorite medlennee) → Parli più lentamente
+      • Где находится…? (Gde nakhoditsya…?) → Dove si trova…?
+      • Сколько стоит? (Skol'ko stoit?) → Quanto costa?
+      • Помогите! (Pomogite!) → Aiuto!
+      • Мне нужен врач (Mne nuzhen vrach) → Ho bisogno di un medico
+      • Я не говорю по-русски (Ya ne govoryu po-russki) → Non parlo russo
+
+      Scrivi 'prossima lezione' per la grammatica di base!
+    - |
+      Frasi essenziali in russo:
+      ✅ Да / Нет = Sì / No
+      🙏 Спасибо = Grazie | Пожалуйста = Prego / Per favore
+      😕 Я не понимаю = Non capisco
+      🐢 Говорите медленнее = Parli più lentamente
+      📍 Где…? = Dove…?
+      💰 Сколько стоит? = Quanto costa?
+      🚨 Помогите! = Aiuto!
+      Scrivi 'prossima lezione' per la grammatica!
+
+  # ── Grammatica ──────────────────────────────────────────────────────────────
+  russian_learn_grammar_response:
+    - |
+      **Grammatica russa di base** 📚
+
+      Il russo usa **6 casi grammaticali** che modificano le desinenze dei nomi:
+      1. Nominativo (soggetto): Книга (il libro)
+      2. Genitivo (possesso/negazione): Книги (del libro)
+      3. Dativo (destinatario): Книге (al libro)
+      4. Accusativo (oggetto diretto): Книгу (il libro [come oggetto])
+      5. Strumentale (mezzo/compagnia): Книгой (con il libro)
+      6. Prepositivo (luogo/argomento): О книге (del libro)
+
+      I verbi si coniugano in base alla persona e al numero.
+      Esempio con "говорить" (parlare):
+      Я говорю (io parlo) | Ты говоришь (tu parli) | Он/она говорит (lui/lei parla)
+
+      Hai completato il percorso base! 🎉 Continua a esercitarti con le traduzioni.
+    - |
+      La grammatica russa ha alcune caratteristiche uniche:
+      📌 6 casi: nominativo, genitivo, dativo, accusativo, strumentale, prepositivo
+      📌 3 generi: maschile, femminile, neutro
+      📌 Aspetto verbale: perfettivo (azione completata) vs imperfettivo (azione in corso)
+      📌 Non esiste l'articolo determinativo/indeterminativo
+      Es: "Это книга" = "Questo è un libro" / "Questo è il libro"
+      Con la pratica diventerà naturale! 🚀
+
+  # ── Traduzione parola ───────────────────────────────────────────────────────
+  russian_translate_word_response:
+    - "Eccoti alcune traduzioni comuni in russo: 🏠 casa = дом (dom) | 💧 acqua = вода (voda) | 🍞 pane = хлеб (khleb) | ❤️ amore = любовь (lyubov') | 👫 amico = друг (drug) | 📚 libro = книга (kniga) | 🏙️ città = город (gorod) | ⏰ tempo = время (vremya) | 🚗 macchina = машина (mashina) | 🏫 scuola = школа (shkola). Dimmi quale parola vuoi sapere e ti aiuto!"
+    - "Per le traduzioni in russo puoi chiedermi qualsiasi parola! Ecco alcune tra le più richieste: мама (mama) = mamma | папа (papa) = papà | хорошо (khorosho) = bene/buono | новый (novyy) = nuovo | большой (bol'shoy) = grande | работа (rabota) = lavoro. Quale parola ti serve?"
+
+  # ── Traduzione frase ────────────────────────────────────────────────────────
+  russian_translate_phrase_response:
+    - |
+      Ecco alcune traduzioni di frasi utili in russo:
+
+      • "Dove si trova la stazione?" → Где находится вокзал? (Gde nakhoditsya vokzal?)
+      • "Non capisco" → Я не понимаю (Ya ne ponimayu)
+      • "Parla più lentamente" → Говорите медленнее (Govorite medlennee)
+      • "Mi puoi aiutare?" → Вы можете мне помочь? (Vy mozhete mne pomoch'?)
+      • "Non parlo russo" → Я не говорю по-русски (Ya ne govoryu po-russki)
+      • "Quanto costa?" → Сколько стоит? (Skol'ko stoit?)
+      • "Dov'è il bagno?" → Где туалет? (Gde tualet?)
+      • "Ho bisogno di un medico" → Мне нужен врач (Mne nuzhen vrach)
+      • "Buona fortuna!" → Удачи! (Udachi!)
+      • "Mi chiamo…" → Меня зовут… (Menya zovut…)
+    - "Dimmi la frase che vuoi tradurre e farò del mio meglio! Alcune frasi frequenti: 'Non capisco' = Я не понимаю | 'Quanto costa?' = Сколько стоит? | 'Dove si trova…?' = Где находится…? | 'Aiuto!' = Помогите! | 'Mi chiamo…' = Меня зовут…"
+
+  # ── Prossima lezione ────────────────────────────────────────────────────────
+  russian_next_lesson_response:
+    - "Ottimo! Procediamo con la lezione successiva. Dimmi da dove vuoi continuare: 1️⃣ Alfabeto cirillico | 2️⃣ Saluti | 3️⃣ Numeri | 4️⃣ Frasi utili | 5️⃣ Grammatica di base. Scrivi il numero o il nome dell'argomento!"
+    - "Bene! Il percorso guidato continua. Vuoi passare ai 📖 Saluti, ai 🔢 Numeri, alle 💬 Frasi utili o alla 📚 Grammatica? Dimmi dove vuoi andare!"
+
+  # ── Ripetizione lezione ─────────────────────────────────────────────────────
+  russian_repeat_lesson_response:
+    - "Nessun problema! La ripetizione è la chiave dell'apprendimento. 🔄 Di' quale argomento vuoi ripassare: Alfabeto, Saluti, Numeri, Frasi utili o Grammatica?"
+    - "Certo, ripetiamo! Quale lezione vuoi rivedere? 1️⃣ Alfabeto cirillico | 2️⃣ Saluti | 3️⃣ Numeri | 4️⃣ Frasi utili | 5️⃣ Grammatica di base"
