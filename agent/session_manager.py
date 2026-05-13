@@ -1,9 +1,12 @@
 import uuid
+import os
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any
 
 from agent.entity_manager import EntityManager
+from agent.persistence import SessionPersistence
+from config import BASE_DIR
 
 
 @dataclass
@@ -16,6 +19,7 @@ class ConversationSession:
     metadata: dict[str, Any] = field(default_factory=dict)
     waiting_for_slot: dict | None = None
     agent_mode: str = "predictable"
+    persistence: Any = None
 
     def add_message(self, role: str, content: str, intent: str | None = None, entities: list | None = None):
         self.history.append({
@@ -26,6 +30,8 @@ class ConversationSession:
             'timestamp': datetime.now().isoformat()
         })
         self.updated_at = datetime.now()
+        if self.persistence:
+            self.persistence.save_session(self)
 
     def get_history(self, limit: int | None = None) -> list[dict[str, Any]]:
         if limit:
@@ -35,10 +41,14 @@ class ConversationSession:
     def clear_history(self):
         self.history = []
         self.updated_at = datetime.now()
+        if self.persistence:
+            self.persistence.save_session(self)
 
     def update_context(self, key: str, value: Any):
         self.context[key] = value
         self.updated_at = datetime.now()
+        if self.persistence:
+            self.persistence.save_session(self)
 
     def get_context(self, key: str, default: Any = None) -> Any:
         return self.context.get(key, default)
@@ -54,6 +64,11 @@ class SessionManager:
             cls._instance._max_sessions = 1000
             cls._instance._session_timeout = 3600
             cls._instance._entity_manager = entity_manager or EntityManager()
+            
+            # Persistence
+            db_path = os.path.join(BASE_DIR, ".cognitor", "sessions.db")
+            cls._instance.persistence = SessionPersistence(db_path)
+            
         return cls._instance
 
     @property
@@ -67,27 +82,50 @@ class SessionManager:
             session_id=session_id,
             created_at=datetime.now(),
             updated_at=datetime.now(),
-            metadata=metadata or {'user_id': user_id}
+            metadata=metadata or {'user_id': user_id},
+            persistence=self.persistence
         )
         
         self._sessions[session_id] = session
+        self.persistence.save_session(session)
         self._cleanup_old_sessions()
         
         return session_id
 
     def get_session(self, session_id: str) -> ConversationSession | None:
+        # Prima prova in memoria
         session = self._sessions.get(session_id)
-        if session and self._is_session_valid(session):
-            return session
-        elif session:
-            del self._sessions[session_id]
+        if session:
+            if self._is_session_valid(session):
+                return session
+            else:
+                del self._sessions[session_id]
+                self.persistence.delete_session(session_id)
+                return None
+
+        # Poi prova da DB
+        session_data = self.persistence.load_session(session_id)
+        if session_data:
+            session = ConversationSession(
+                persistence=self.persistence,
+                **session_data
+            )
+            if self._is_session_valid(session):
+                self._sessions[session_id] = session
+                return session
+            else:
+                self.persistence.delete_session(session_id)
+        
         return None
 
     def delete_session(self, session_id: str) -> bool:
+        deleted = False
         if session_id in self._sessions:
             del self._sessions[session_id]
-            return True
-        return False
+            deleted = True
+        
+        self.persistence.delete_session(session_id)
+        return deleted
 
     def _is_session_valid(self, session: ConversationSession) -> bool:
         elapsed = (datetime.now() - session.updated_at).total_seconds()
@@ -104,7 +142,7 @@ class SessionManager:
                 del self._sessions[session_id]
 
     def get_active_sessions(self) -> list[str]:
-        self._cleanup_old_sessions()
+        # Qui potremmo voler interrogare anche il DB per sessioni non in memoria ma valide
         return list(self._sessions.keys())
 
     def set_session_timeout(self, seconds: int):

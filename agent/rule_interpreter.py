@@ -196,9 +196,48 @@ class RuleInterpreter:
         cases = rule.get("cases", {})
         return list(cases.keys())
 
+    def cast_slot_value(self, intent_name: str, slot_name: str, value: Any) -> Any:
+        """
+        Converte il valore dello slot nel tipo configurato nel DSL.
+
+        Supportati: string, integer, float, boolean, list.
+
+        Args:
+            intent_name: Nome dell'intent
+            slot_name: Nome dello slot
+            value: Valore grezzo
+
+        Returns:
+            Valore convertito o valore originale se conversione fallisce
+        """
+        if value is None:
+            return None
+
+        slots_config = self.get_slots_for_intent(intent_name)
+        slot_config = slots_config.get(slot_name, {})
+        target_type = slot_config.get("type", "string").lower()
+
+        try:
+            if target_type == "integer":
+                return int(value)
+            elif target_type == "float":
+                return float(str(value).replace(',', '.'))
+            elif target_type == "boolean":
+                if isinstance(value, bool):
+                    return value
+                return str(value).lower() in ("true", "1", "si", "sì", "yes", "ok")
+            elif target_type == "list":
+                if isinstance(value, list):
+                    return value
+                return [s.strip() for s in str(value).split(',')]
+            else:
+                return str(value)
+        except (ValueError, TypeError):
+            return value
+
     def is_valid_value(self, intent_name: str, slot_name: str, value: Any) -> bool:
         """
-        Valida un valore per uno slot.
+        Valida un valore per uno slot, considerando anche il tipo.
 
         Args:
             intent_name: Nome dell'intent
@@ -208,16 +247,29 @@ class RuleInterpreter:
         Returns:
             True se valido
         """
-        if not value:
+        if value is None:
+            return False
+
+        # Tenta il casting per validare il tipo
+        casted_value = self.cast_slot_value(intent_name, slot_name, value)
+        
+        slots_config = self.get_slots_for_intent(intent_name)
+        slot_config = slots_config.get(slot_name, {})
+        target_type = slot_config.get("type", "string").lower()
+
+        # Se il casting ha fallito il cambio di tipo quando richiesto
+        if target_type == "integer" and not isinstance(casted_value, int):
+            return False
+        if target_type == "float" and not isinstance(casted_value, (int, float)):
             return False
 
         valid_values = self.get_valid_values_for_slot(intent_name, slot_name)
 
-        # Se non ci sono vincoli espliciti, accetta qualsiasi valore
+        # Se non ci sono vincoli espliciti sui valori (cases), accetta qualsiasi valore del tipo corretto
         if not valid_values:
             return True
 
-        # Case-insensitive match
+        # Case-insensitive match per stringhe
         value_lower = str(value).lower()
         return any(value_lower == str(valid).lower() for valid in valid_values)
 

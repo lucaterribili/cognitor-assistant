@@ -70,12 +70,15 @@ class ConversationHandler:
             session.add_message("user", user_input)
             return
 
+        # Esegui il casting prima di salvare nel contesto
+        casted_value = self.agent.rule_interpreter.cast_slot_value(pending_intent, slot_name, user_input)
+
         # Aggiorna il contesto usando SlotManager per consistenza
-        session.update_context(slot_name, user_input)
+        session.update_context(slot_name, casted_value)
         session.update_context(f"{slot_name}_UNSUPPORTED", False)
         session.waiting_for_slot = None
         session.agent_mode = "predictable"
-        print(f"[INPUTABLE] Slot '{slot_name}' impostato manualmente = '{user_input}'")
+        print(f"[INPUTABLE] Slot '{slot_name}' impostato manualmente = '{casted_value}' (type: {type(casted_value).__name__})")
 
         # Genera risposta (passa la history completa per la TED policy)
         response, wait_for_slot, bot_slots = self.agent.get_response(
