@@ -1,0 +1,3 @@
+rules:
+  russian_learn_cases:
+    default: russian_learn_cases_response

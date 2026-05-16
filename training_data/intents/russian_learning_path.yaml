@@ -1,0 +1,65 @@
+nlu:
+  intents:
+
+  - intent: russian_learn_start
+    examples:
+    - voglio imparare il russo
+    - inizia il corso di russo
+    - insegnami il russo
+    - voglio studiare la lingua russa
+    - come si studia il russo
+    - inizia percorso russo
+    - percorso guidato russo
+    - guida all'apprendimento del russo
+    - inizia a insegnarmi il russo
+    - voglio cominciare a studiare russo
+
+  - intent: russian_learn_alphabet
+    examples:
+    - come funziona l'alfabeto russo
+    - voglio imparare l'alfabeto cirillico
+    - insegnami il cirillico
+    - quali sono le lettere russe
+    - come si chiama l'alfabeto russo
+    - mostrami l'alfabeto russo
+    - voglio conoscere le lettere dell'alfabeto russo
+    - alfabeto russo
+    - cirillico
+
+  - intent: russian_learn_phrases
+    examples:
+    - insegnami frasi utili in russo
+    - voglio frasi di base in russo
+    - frasi comuni in russo
+    - come si chiede dove si trova qualcosa in russo
+    - come si chiede aiuto in russo
+    - frasi di sopravvivenza in russo
+    - frasi essenziali in russo
+    - come si dice per favore in russo
+    - come si dice grazie in russo
+    - come si dice scusa in russo
+    - voglio imparare frasi quotidiane in russo
+
+  - intent: russian_next_lesson
+    examples:
+    - prossima lezione
+    - continua
+    - vai avanti
+    - lezione successiva
+    - cosa imparo dopo
+    - prossimo argomento
+    - avanti
+    - continua il corso
+    - prossimo passo
+    - cosa c'è dopo
+
+  - intent: russian_repeat_lesson
+    examples:
+    - ripeti la lezione
+    - ripeti ancora
+    - non ho capito ripeti
+    - torna indietro
+    - lezione precedente
+    - rispiega
+    - mostrami di nuovo
+    - ripasso

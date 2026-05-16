@@ -1,0 +1,14 @@
+nlu:
+  intents:
+  - intent: russian_learn_grammar
+    examples:
+    - come funziona la grammatica russa
+    - spiegami la grammatica generale della lingua russa
+    - come si coniugano i verbi in russo
+    - differenza tra russo formale e informale
+    - come funzionano i generi in russo
+    - grammatica di base in russo
+    - come si fa il plurale in russo
+    - voglio capire la grammatica russa
+    - spiegami la struttura delle frasi in russo
+    - quali sono le basi grammaticali del russo

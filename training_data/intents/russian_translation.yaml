@@ -1,0 +1,32 @@
+nlu:
+  intents:
+  - intent: russian_translate_word
+    examples:
+    - come si dice [casa](TRANSLATION_TEXT) in russo
+    - come si dice [mamma](TRANSLATION_TEXT) in russo
+    - come si dice [acqua](TRANSLATION_TEXT) in russo
+    - come si dice [pane](TRANSLATION_TEXT) in russo
+    - come si dice [amore](TRANSLATION_TEXT) in russo
+    - come si dice [amico](TRANSLATION_TEXT) in russo
+    - come si dice [buono](TRANSLATION_TEXT) in russo
+    - come si dice [grande](TRANSLATION_TEXT) in russo
+    - come si dice [nuovo](TRANSLATION_TEXT) in russo
+    - come si traduce la parola [città](TRANSLATION_TEXT) in russo
+    - come si dice [tempo](TRANSLATION_TEXT) in russo
+    - traduci la parola [libro](TRANSLATION_TEXT) in russo
+    - come si dice [lavoro](TRANSLATION_TEXT) in russo
+    - come si dice [scuola](TRANSLATION_TEXT) in russo
+    - come si dice [macchina](TRANSLATION_TEXT) in russo
+
+  - intent: russian_translate_phrase
+    examples:
+    - traduci in russo [dove si trova la stazione](TRANSLATION_TEXT)
+    - come si dice [non capisco](TRANSLATION_TEXT) in russo
+    - come si dice [parla più lentamente](TRANSLATION_TEXT) in russo
+    - come si dice [mi puoi aiutare](TRANSLATION_TEXT) in russo
+    - come si dice [non parlo russo](TRANSLATION_TEXT) in russo
+    - come si dice [quanto costa](TRANSLATION_TEXT) in russo
+    - traduci [dove è il bagno](TRANSLATION_TEXT) in russo
+    - come si dice [ho bisogno di un medico](TRANSLATION_TEXT) in russo
+    - traduzione di [buona fortuna](TRANSLATION_TEXT) in russo
+    - come si dice [mi chiamo](TRANSLATION_TEXT) in russo
