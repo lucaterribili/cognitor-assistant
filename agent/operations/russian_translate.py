@@ -13,11 +13,7 @@ def action_russian_translate(intent_name: str, slots: dict = None) -> dict:
         dict con risposta, slot e metadati
     """
     slots = slots or {}
-    text_to_translate = (
-        slots.get("TRANSLATION_TEXT")
-        or slots.get("translation_text")
-        or slots.get("QUERY")
-    )
+    text_to_translate = slots.get("TRANSLATION_TEXT")
 
     if not text_to_translate:
         return {
