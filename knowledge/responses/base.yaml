@@ -175,3 +175,12 @@ responses:
     - "Su cosa vuoi che faccia una ricerca?"
     - "Dimmi cosa cercare e lo trovo subito!"
 
+  # ========================================
+  # Risposte per translate
+  # ========================================
+
+  translate_wait_response:
+    - "Cosa vuoi tradurre? Dimmi la parola o la frase e la lingua di destinazione!"
+    - "Qual è il testo da tradurre? Puoi dirmi anche la lingua in cui vuoi la traduzione."
+    - "Dimmi cosa tradurre e in quale lingua!"
+
