@@ -1,0 +1,81 @@
+conversations:
+  russian_alphabet_flow:
+    description: "L'utente vuole imparare solo l'alfabeto cirillico"
+    steps:
+      - user: russian_learn_alphabet
+        bot: russian_learn_alphabet_response
+        goal: learn_alphabet
+      - user: russian_next_lesson
+        bot: russian_learn_greetings_response
+        goal: learn_greetings
+
+  russian_greetings_flow:
+    description: "L'utente vuole imparare i saluti in russo"
+    steps:
+      - user: russian_learn_greetings
+        bot: russian_learn_greetings_response
+        goal: learn_greetings
+      - user: russian_next_lesson
+        bot: russian_learn_numbers_response
+        goal: learn_numbers
+
+  russian_numbers_flow:
+    description: "L'utente vuole imparare i numeri in russo"
+    steps:
+      - user: russian_learn_numbers
+        bot: russian_learn_numbers_response
+        goal: learn_numbers
+      - user: russian_next_lesson
+        bot: russian_learn_phrases_response
+        goal: learn_phrases
+
+  russian_phrases_flow:
+    description: "L'utente vuole imparare frasi utili in russo"
+    steps:
+      - user: russian_learn_phrases
+        bot: russian_learn_phrases_response
+        goal: learn_phrases
+      - user: russian_next_lesson
+        bot: russian_learn_grammar_response
+        goal: learn_grammar
+
+  russian_grammar_flow:
+    description: "L'utente vuole imparare la grammatica russa generale"
+    steps:
+      - user: russian_learn_grammar
+        bot: russian_learn_grammar_response
+        goal: learn_grammar
+      - user: russian_next_lesson
+        bot: russian_learn_cases_response
+        goal: learn_cases
+
+  russian_cases_flow:
+    description: "L'utente vuole imparare i casi in russo"
+    steps:
+      - user: russian_learn_cases
+        bot: russian_learn_cases_response
+        goal: learn_cases
+
+  russian_mixed_flow:
+    description: >
+      L'utente alterna domande di traduzione e lezioni del percorso guidato.
+      Mostra come i due flussi coesistono nella stessa conversazione.
+    steps:
+      - user: russian_translate_word
+        bot: __russian_translate
+        goal: translate_word
+      - user: russian_learn_start
+        bot: russian_learn_start_response
+        goal: start_learning
+      - user: russian_next_lesson
+        bot: russian_learn_alphabet_response
+        goal: learn_alphabet
+      - user: russian_translate_phrase
+        bot: __russian_translate
+        goal: translate_phrase
+      - user: russian_next_lesson
+        bot: russian_learn_greetings_response
+        goal: learn_greetings
+      - user: russian_repeat_lesson
+        bot: russian_repeat_lesson_response
+        goal: repeat_lesson

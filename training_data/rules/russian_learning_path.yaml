@@ -1,0 +1,15 @@
+rules:
+  russian_learn_start:
+    default: russian_learn_start_response
+
+  russian_learn_alphabet:
+    default: russian_learn_alphabet_response
+
+  russian_learn_phrases:
+    default: russian_learn_phrases_response
+
+  russian_next_lesson:
+    default: russian_next_lesson_response
+
+  russian_repeat_lesson:
+    default: russian_repeat_lesson_response

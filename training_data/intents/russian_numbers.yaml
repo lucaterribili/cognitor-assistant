@@ -1,0 +1,13 @@
+nlu:
+  intents:
+  - intent: russian_learn_numbers
+    examples:
+    - come si contano i numeri in russo
+    - insegnami i numeri in russo
+    - voglio imparare a contare in russo
+    - numeri in russo
+    - come si dice uno in russo
+    - come si dice dieci in russo
+    - voglio sapere i numeri russi
+    - conta in russo
+    - numeri da uno a dieci in russo

@@ -1,0 +1,37 @@
+conversations:
+  russian_guided_learning_flow:
+    description: >
+      Percorso guidato di apprendimento del russo dall'inizio alla fine:
+      avvio → alfabeto → saluti → numeri → frasi utili → grammatica generale → casi
+    steps:
+      - user: russian_learn_start
+        bot: russian_learn_start_response
+        goal: start_russian_learning
+      - user: russian_next_lesson
+        bot: russian_learn_alphabet_response
+        goal: learn_alphabet
+      - user: russian_next_lesson
+        bot: russian_learn_greetings_response
+        goal: learn_greetings
+      - user: russian_next_lesson
+        bot: russian_learn_numbers_response
+        goal: learn_numbers
+      - user: russian_next_lesson
+        bot: russian_learn_phrases_response
+        goal: learn_phrases
+      - user: russian_next_lesson
+        bot: russian_learn_grammar_response
+        goal: learn_grammar
+      - user: russian_next_lesson
+        bot: russian_learn_cases_response
+        goal: learn_cases
+
+  russian_repeat_flow:
+    description: "L'utente vuole ripetere o ripassare una lezione"
+    steps:
+      - user: russian_repeat_lesson
+        bot: russian_repeat_lesson_response
+        goal: repeat_lesson
+      - user: russian_learn_alphabet
+        bot: russian_learn_alphabet_response
+        goal: learn_alphabet
