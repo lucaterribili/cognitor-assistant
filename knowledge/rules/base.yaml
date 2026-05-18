@@ -125,3 +125,21 @@ rules:
     default: __web_search
     wait: web_search_wait_response
 
+  # ========================================
+  # Intent con slot: translate
+  # ========================================
+
+  translate:
+    slots:
+      TRANSLATION_TEXT:
+        required: true
+        type: string
+        entity: TRANSLATION_TEXT
+      LANGUAGE:
+        required: false
+        type: string
+        entity: LANGUAGE
+
+    default: __cognitor_translate
+    wait: translate_wait_response
+

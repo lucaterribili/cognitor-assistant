@@ -61,8 +61,8 @@ conversations:
       L'utente alterna domande di traduzione e lezioni del percorso guidato.
       Mostra come i due flussi coesistono nella stessa conversazione.
     steps:
-      - user: russian_translate_word
-        bot: __russian_translate
+      - user: translate
+        bot: __cognitor_translate
         goal: translate_word
       - user: russian_learn_start
         bot: russian_learn_start_response
@@ -70,8 +70,8 @@ conversations:
       - user: russian_next_lesson
         bot: russian_learn_alphabet_response
         goal: learn_alphabet
-      - user: russian_translate_phrase
-        bot: __russian_translate
+      - user: translate
+        bot: __cognitor_translate
         goal: translate_phrase
       - user: russian_next_lesson
         bot: russian_learn_greetings_response
