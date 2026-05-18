@@ -118,7 +118,7 @@ def train_with_validation(model, train_dataloader, val_dataloader, epochs, lr, d
 
 
 def train_main_model():
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cpu")
     print(f"Dispositivo in uso: {device}")
 
     npy_path = os.path.join(BASE_DIR, '.cognitor', 'tokenized_data.npy')
