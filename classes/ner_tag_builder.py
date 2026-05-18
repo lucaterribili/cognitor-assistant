@@ -53,10 +53,11 @@ class NERTagBuilder:
                                 if isinstance(examples, str):
                                     examples = [ex.strip() for ex in examples.strip().split('\n') if ex.strip()]
                                 for example in examples:
+                                    example = str(example)
                                     # Estrae tutti i tipi di entità da [testo](TIPO)
                                     matches = pattern.findall(example)
-                                    for _, entity_type in matches:
-                                        entity_types.add(entity_type)
+                                for _, entity_type in matches:
+                                    entity_types.add(entity_type)
 
         # Costruisce tag2id: O, poi B-* e I-* per ogni tipo di entità
         tag2id = {"O": 0}

@@ -20,6 +20,7 @@ class ConversationSession:
     waiting_for_slot: dict | None = None
     agent_mode: str = "predictable"
     persistence: Any = None
+    log_path: str | None = None
 
     def add_message(self, role: str, content: str, intent: str | None = None, entities: list | None = None):
         self.history.append({
@@ -30,8 +31,26 @@ class ConversationSession:
             'timestamp': datetime.now().isoformat()
         })
         self.updated_at = datetime.now()
+        self._append_log_entry(role, content, intent)
         if self.persistence:
             self.persistence.save_session(self)
+
+    def _format_log_entry(self, role: str, content: str, intent: str | None) -> str:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        role_label = role.upper()
+        intent_label = f" intent={intent}" if intent else ""
+        return f"[{timestamp}] {role_label}{intent_label}: {content}\n"
+
+    def _append_log_entry(self, role: str, content: str, intent: str | None):
+        if not self.log_path:
+            return
+
+        try:
+            os.makedirs(os.path.dirname(self.log_path), exist_ok=True)
+            with open(self.log_path, 'a', encoding='utf-8') as f:
+                f.write(self._format_log_entry(role, content, intent))
+        except OSError:
+            pass
 
     def get_history(self, limit: int | None = None) -> list[dict[str, Any]]:
         if limit:
@@ -75,15 +94,22 @@ class SessionManager:
     def entity_manager(self) -> EntityManager:
         return self._entity_manager
 
+    def _get_session_log_path(self, session_id: str) -> str:
+        sessions_dir = os.path.join(BASE_DIR, 'sessions')
+        os.makedirs(sessions_dir, exist_ok=True)
+        return os.path.join(sessions_dir, f"{session_id}.txt")
+
     def create_session(self, user_id: str | None = None, metadata: dict | None = None) -> str:
         session_id = str(uuid.uuid4())
-        
+        log_path = self._get_session_log_path(session_id)
+
         session = ConversationSession(
             session_id=session_id,
             created_at=datetime.now(),
             updated_at=datetime.now(),
             metadata=metadata or {'user_id': user_id},
-            persistence=self.persistence
+            persistence=self.persistence,
+            log_path=log_path
         )
         
         self._sessions[session_id] = session
@@ -110,6 +136,7 @@ class SessionManager:
                 persistence=self.persistence,
                 **session_data
             )
+            session.log_path = self._get_session_log_path(session_id)
             if self._is_session_valid(session):
                 self._sessions[session_id] = session
                 return session

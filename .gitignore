@@ -38,3 +38,5 @@ build/
 
 models/
 !models/.gitkeep
+sessions/
+!sessions/.gitkeep

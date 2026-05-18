@@ -1,17 +1,13 @@
 """Operation per la traduzione verso lingue target (default: russo)."""
 
-_LANGUAGE_ALIASES = {
-    "russo": "ru",
-    "inglese": "en",
-    "francese": "fr",
-    "spagnolo": "es",
-    "tedesco": "de",
-    "italiano": "it",
-    "cinese": "zh",
-    "arabo": "ar",
-    "giapponese": "ja",
-    "portoghese": "pt",
-}
+from agent.operations.tools.translator import (
+    load_translator,
+    normalize_language,
+    resolve_translation_paths,
+    translate_text,
+)
+
+_SOURCE_LANGUAGE = "it"
 
 
 def action_cognitor_translate(intent_name: str, slots: dict = None) -> dict:
@@ -19,7 +15,7 @@ def action_cognitor_translate(intent_name: str, slots: dict = None) -> dict:
     Gestisce le richieste di traduzione estratte dall'intent `translate`.
 
     Legge i slot TRANSLATION_TEXT (obbligatorio) e LANGUAGE (opzionale,
-    default "russo") e prepara i dati per il modulo di traduzione esterno.
+    default "russo"), carica il modello e restituisce la traduzione.
 
     Args:
         intent_name: Nome dell'intent che attiva la traduzione
@@ -31,7 +27,7 @@ def action_cognitor_translate(intent_name: str, slots: dict = None) -> dict:
     slots = slots or {}
     text_to_translate = slots.get("TRANSLATION_TEXT")
     language_raw = (slots.get("LANGUAGE") or "russo").strip().lower()
-    language_code = _LANGUAGE_ALIASES.get(language_raw, language_raw)
+    target_language = normalize_language(language_raw)
 
     if not text_to_translate:
         return {
@@ -39,28 +35,89 @@ def action_cognitor_translate(intent_name: str, slots: dict = None) -> dict:
             "slots": {},
             "metadata": {
                 "operation": "cognitor_translate",
-                "target_language": language_code,
+                "target_language": target_language,
                 "target_language_name": language_raw,
                 "source_text": None,
                 "status": "missing_input",
             },
         }
 
+    if target_language is None:
+        return {
+            "response": (
+                "Non ho riconosciuto la lingua di destinazione. Prova con 'russo' o 'ru'."
+            ),
+            "slots": {
+                "LAST_TRANSLATION_TEXT": text_to_translate,
+                "LAST_TRANSLATION_LANGUAGE": language_raw,
+            },
+            "metadata": {
+                "operation": "cognitor_translate",
+                "intent": intent_name,
+                "target_language": None,
+                "target_language_name": language_raw,
+                "source_text": text_to_translate,
+                "status": "unsupported_language",
+            },
+        }
+
+    if resolve_translation_paths(target_language, _SOURCE_LANGUAGE) is None:
+        return {
+            "response": (
+                f"Al momento posso tradurre solo dall'italiano al russo. Prova a chiedere una traduzione in russo."
+            ),
+            "slots": {
+                "LAST_TRANSLATION_TEXT": text_to_translate,
+                "LAST_TRANSLATION_LANGUAGE": language_raw,
+            },
+            "metadata": {
+                "operation": "cognitor_translate",
+                "intent": intent_name,
+                "target_language": target_language,
+                "target_language_name": language_raw,
+                "source_text": text_to_translate,
+                "status": "unsupported_language_pair",
+            },
+        }
+
+    try:
+        model, tokenizer = load_translator(target_language, _SOURCE_LANGUAGE)
+        translated_text = translate_text(model, tokenizer, text_to_translate)
+    except Exception as exc:
+        return {
+            "response": (
+                "Si è verificato un errore durante la traduzione. Riprova tra un attimo."
+            ),
+            "slots": {
+                "LAST_TRANSLATION_TEXT": text_to_translate,
+                "LAST_TRANSLATION_LANGUAGE": language_raw,
+            },
+            "metadata": {
+                "operation": "cognitor_translate",
+                "intent": intent_name,
+                "target_language": target_language,
+                "target_language_name": language_raw,
+                "source_text": text_to_translate,
+                "status": "translation_error",
+                "error": str(exc),
+            },
+        }
+
     return {
-        "response": (
-            f"Perfetto, ho ricevuto '{text_to_translate}' da tradurre in {language_raw}. "
-            "Il traduttore automatico non è ancora integrato, ma il testo è pronto per essere inviato al modulo di traduzione."
-        ),
+        "response": translated_text,
         "slots": {
             "LAST_TRANSLATION_TEXT": text_to_translate,
             "LAST_TRANSLATION_LANGUAGE": language_raw,
+            "TRANSLATED_TEXT": translated_text,
         },
         "metadata": {
             "operation": "cognitor_translate",
             "intent": intent_name,
-            "target_language": language_code,
+            "source_language": _SOURCE_LANGUAGE,
+            "target_language": target_language,
             "target_language_name": language_raw,
             "source_text": text_to_translate,
-            "status": "queued_for_translator",
+            "translated_text": translated_text,
+            "status": "translated",
         },
     }

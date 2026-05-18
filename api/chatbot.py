@@ -56,13 +56,24 @@ def send_message(
         slot_name = session.waiting_for_slot["slot"]
         pending_intent = session.waiting_for_slot["intent"]
 
-        if not agent.slot_manager.validate_slot_value(pending_intent, slot_name, user_message):
+        # Usa il modello anche in inputable per estrarre entità dal testo utente
+        prediction = agent.predict(user_message)
+        entities = prediction.get('entities', [])
+        extracted_slot_value = agent.slot_manager.extractor.extract_from_entities(
+            slot_name, entities
+        )
+
+        slot_value = extracted_slot_value if extracted_slot_value else user_message
+        if extracted_slot_value:
+            print(f"[INPUTABLE] Estratto valore slot '{slot_name}' da NER: {extracted_slot_value}")
+
+        if not agent.slot_manager.validate_slot_value(pending_intent, slot_name, slot_value):
             response_text = "Selezione non valida. Riprova."
             session.add_message("user", user_message)
             return ChatResponse(response=response_text, session_id=session_id)
 
         # Esegui il casting
-        casted_value = agent.rule_interpreter.cast_slot_value(pending_intent, slot_name, user_message)
+        casted_value = agent.rule_interpreter.cast_slot_value(pending_intent, slot_name, slot_value)
 
         session.update_context(slot_name, casted_value)
         session.update_context(f"{slot_name}_UNSUPPORTED", False)

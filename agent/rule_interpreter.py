@@ -73,14 +73,15 @@ class RuleInterpreter:
         Gestisce intent che richiedono slot.
 
         Logica dell'interprete:
-        1. Controlla se ci sono slot required non forniti → wait
-        2. Controlla se lo slot ha un valore con unsupported → fallback
-        3. Cerca il valore dello slot nei cases → risposta specifica
+        1. Controlla se ci sono slot required non forniti → wait (per-slot o globale)
+        2. Prova chiave composita SLOT1|SLOT2 nei cases (multi-slot)
+        3. Matching singolo sul primo slot con valore
         4. Altrimenti → fallback o default
         """
         rule_slots = rule.get("slots", {})
+        wait_config = rule.get("wait")
 
-        # Step 1: Controlla slot required
+        # Step 1: Controlla slot required nell'ordine di definizione
         for slot_name, slot_config in rule_slots.items():
             if slot_config.get("required", False):
                 slot_value = slots.get(slot_name)
@@ -88,20 +89,35 @@ class RuleInterpreter:
 
                 # Slot non fornito o unsupported → wait
                 if not slot_value or unsupported_flag:
-                    wait_key = rule.get("wait")
+                    # Supporta wait come dict per-slot o stringa globale
+                    if isinstance(wait_config, dict):
+                        wait_key = wait_config.get(slot_name)
+                    else:
+                        wait_key = wait_config
                     if wait_key:
                         return self._get_random_response(wait_key, slots), slot_name
                     # Fallback se non c'è wait definito
                     fallback_key = rule.get("fallback", rule.get("default"))
                     return self._get_random_response(fallback_key, slots), None
 
-        # Step 2: Slot fornito, cerca nei cases
+        cases = rule.get("cases", {})
+
+        # Step 2: Prova chiave composita (tutti i required slot con valore, nell'ordine)
+        required_values = [
+            slots.get(s)
+            for s, c in rule_slots.items()
+            if c.get("required", False) and slots.get(s)
+        ]
+        if len(required_values) > 1:
+            composite_key = "|".join(str(v) for v in required_values)
+            for case_key, response_key in cases.items():
+                if composite_key.lower() == str(case_key).lower():
+                    return self._get_random_response(response_key, slots), None
+
+        # Step 3: Matching singolo (primo slot con valore)
         for slot_name, slot_config in rule_slots.items():
             slot_value = slots.get(slot_name)
             if slot_value:
-                cases = rule.get("cases", {})
-
-                # Case-insensitive match
                 for case_key, response_key in cases.items():
                     if str(slot_value).lower() == str(case_key).lower():
                         return self._get_random_response(response_key, slots), None
@@ -111,7 +127,7 @@ class RuleInterpreter:
                 if fallback_key:
                     return self._get_random_response(fallback_key, slots), None
 
-        # Step 3: Default se disponibile
+        # Step 4: Default se disponibile
         default_key = rule.get("default")
         if default_key:
             return self._get_random_response(default_key, slots), None
@@ -140,6 +156,11 @@ class RuleInterpreter:
             if slot_value and not slot_name.endswith("_UNSUPPORTED"):
                 placeholder = f"{{{slot_name}}}"
                 response = response.replace(placeholder, str(slot_value))
+
+        # Sostituisce i placeholder temporali con i valori reali
+        now = datetime.now()
+        response = response.replace("[TIME]", now.strftime("%H:%M"))
+        response = response.replace("[DATE]", now.strftime("%d/%m/%Y"))
 
         return response
 
@@ -175,6 +196,8 @@ class RuleInterpreter:
     def get_valid_values_for_slot(self, intent_name: str, slot_name: str) -> list[str]:
         """
         Estrae i valori validi per uno slot dai cases del DSL.
+        Supporta chiavi composite (es. "Roma|musei") estraendo il valore
+        nella posizione corretta per il dato slot.
 
         Args:
             intent_name: Nome dell'intent
@@ -187,13 +210,28 @@ class RuleInterpreter:
         if not rule:
             return []
 
-        # Controlla che lo slot sia definito
         rule_slots = rule.get("slots", {})
         if slot_name not in rule_slots:
             return []
 
-        # Estrai i case keys
         cases = rule.get("cases", {})
+        if not cases:
+            return []
+
+        # Se ci sono chiavi composite (contengono |), estrai i valori per la posizione del slot
+        has_composite = any("|" in str(k) for k in cases.keys())
+        if has_composite:
+            required_slots = [s for s, c in rule_slots.items() if c.get("required", False)]
+            if slot_name in required_slots:
+                slot_position = required_slots.index(slot_name)
+                values = set()
+                for case_key in cases.keys():
+                    parts = str(case_key).split("|")
+                    if slot_position < len(parts):
+                        values.add(parts[slot_position])
+                return list(values)
+
+        # Formato semplice: restituisce tutti i case keys
         return list(cases.keys())
 
     def cast_slot_value(self, intent_name: str, slot_name: str, value: Any) -> Any:
@@ -416,16 +454,23 @@ class RuleInterpreter:
     ) -> tuple[str, Optional[str]]:
         """
         Gestisce intent che richiedono slot, restituendo anche slot inline.
+        Supporta wait per-slot (dict) e case compositi multi-slot (SLOT1|SLOT2).
         """
         rule_slots = rule.get("slots", {})
+        wait_config = rule.get("wait")
 
+        # Step 1: Controlla slot required nell'ordine di definizione
         for slot_name, slot_config in rule_slots.items():
             if slot_config.get("required", False):
                 slot_value = slots.get(slot_name)
                 unsupported_flag = slots.get(f"{slot_name}_UNSUPPORTED")
 
                 if not slot_value or unsupported_flag:
-                    wait_key = rule.get("wait")
+                    # Supporta wait come dict per-slot o stringa globale
+                    if isinstance(wait_config, dict):
+                        wait_key = wait_config.get(slot_name)
+                    else:
+                        wait_key = wait_config
                     if wait_key:
                         response, inline_slots = self._get_response_with_slots(wait_key, slots)
                         return response, slot_name
@@ -444,11 +489,25 @@ class RuleInterpreter:
                 op_result = self.operation_manager.execute(operation_name, operation_name, slots)
                 return op_result["response"], None
 
+        cases = rule.get("cases", {})
+
+        # Step 2: Prova chiave composita (tutti i required slot con valore, nell'ordine)
+        required_values = [
+            slots.get(s)
+            for s, c in rule_slots.items()
+            if c.get("required", False) and slots.get(s)
+        ]
+        if len(required_values) > 1:
+            composite_key = "|".join(str(v) for v in required_values)
+            for case_key, response_key in cases.items():
+                if composite_key.lower() == str(case_key).lower():
+                    response, inline_slots = self._get_response_with_slots(response_key, slots)
+                    return response, None
+
+        # Step 3: Matching singolo (primo slot con valore)
         for slot_name, slot_config in rule_slots.items():
             slot_value = slots.get(slot_name)
             if slot_value:
-                cases = rule.get("cases", {})
-
                 for case_key, response_key in cases.items():
                     if str(slot_value).lower() == str(case_key).lower():
                         response, inline_slots = self._get_response_with_slots(response_key, slots)

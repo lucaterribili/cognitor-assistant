@@ -62,10 +62,6 @@ responses:
     - "Mi serve sapere la località per darti il meteo. In quale città vuoi le previsioni?"
     - "Per darti informazioni meteo accurate, dimmi per favore la località e il giorno che ti interessa."
 
-  time_query_response:
-    - "L'ora attuale è [TIME]. Posso aiutarti con altro?"
-    - "Sono le [TIME]. C'è altro che vuoi sapere?"
-
   date_query_response:
     - "Oggi è [DATE]. Cosa vuoi fare?"
     - "La data odierna è [DATE]. Sono qui per aiutarti!"
@@ -74,6 +70,21 @@ responses:
     - "Scusa, non ho capito bene. Potresti riformulare?"
     - "Mi dispiace, non sono sicuro di aver compreso. Puoi dirlo in un altro modo?"
     - "Non ho capito bene la tua richiesta. Puoi essere più specifico?"
+
+  out_of_scope_response:
+    - "Mi dispiace, non posso aiutarti con questo. Sono qui per cose utili e rispettose. Posso fare qualcos'altro per te?"
+    - "Questo è fuori dal mio campo d'azione. Posso aiutarti con informazioni, prenotazioni, consigli e molto altro!"
+    - "Non sono in grado di assisterti su questo argomento. C'è qualcos'altro che posso fare per te?"
+
+  ask_health_status_response:
+    - "Sto benissimo, grazie per aver chiesto! Sono pronto ad aiutarti. Tu come stai?"
+    - "Sono in forma, grazie! Ogni giorno è una nuova opportunità per essere utile. E tu, come stai?"
+    - "Non mi posso lamentare! Sono qui per te. Come posso aiutarti oggi?"
+
+  change_topic_response:
+    - "Certo! Di cosa vuoi parlare?"
+    - "Nessun problema! Cambiamo pure argomento. Cosa hai in mente?"
+    - "Perfetto, lasciamo perdere e partiamo da capo. Come posso aiutarti?"
 
   # ========================================
   # Risposte per ask_city_touristic_information
@@ -86,6 +97,35 @@ responses:
   ask_city_touristic_information_milano_response:
     - "Milano, la capitale della moda e del design! Puoi visitare il Duomo, la Galleria Vittorio Emanuele II, il Castello Sforzesco e molto altro."
     - "Milano è una città moderna e dinamica. Hai bisogno di informazioni su shopping, ristoranti o attrazioni culturali?"
+
+  ask_category_wait_response:
+    - "{LOCATION} è una destinazione meravigliosa! Cosa ti interessa di più: musei, ristoranti o attrazioni turistiche?"
+    - "Ottima scelta, {LOCATION}! Preferisci esplorare musei, ristoranti o attrazioni turistiche?"
+    - "Perfetto, {LOCATION}! Cosa vuoi scoprire: musei, ristoranti o attrazioni?"
+
+  ask_city_touristic_information_roma_musei_response:
+    - "Roma è una capitale mondiale dei musei! I Musei Vaticani con la Cappella Sistina, la Galleria Borghese, i Musei Capitolini e il Colosseo sono esperienze imperdibili."
+    - "I musei di Roma ti lasceranno senza fiato! Non perdere i Musei Vaticani, la Galleria Borghese e il Palazzo Massimo alle Terme per un viaggio nell'antichità."
+
+  ask_city_touristic_information_roma_ristoranti_response:
+    - "La cucina romana è un'esperienza unica! Cerca una trattoria autentica a Trastevere o Testaccio per gustare carbonara, cacio e pepe e amatriciana doc."
+    - "Roma offre tantissime delizie! Da Trastevere ai Prati, troverai trattorie tipiche con i piatti della tradizione. Ti consiglio di prenotare in anticipo nei locali più rinomati."
+
+  ask_city_touristic_information_roma_attrazioni_response:
+    - "Le attrazioni di Roma sono infinite! Il Colosseo, il Foro Romano, la Fontana di Trevi, Piazza Navona e il Pantheon sono solo alcune delle meraviglie da visitare."
+    - "Roma è una città aperta all'aria aperta! Passeggia per il centro storico, visita il Castel Sant'Angelo e ammira la vista panoramica dal Gianicolo."
+
+  ask_city_touristic_information_milano_musei_response:
+    - "Milano ha musei di fama mondiale! Il Cenacolo Vinciano con l'Ultima Cena di Leonardo, la Pinacoteca di Brera e il Castello Sforzesco sono da non perdere."
+    - "I musei di Milano ti sorprenderanno! Visita la Pinacoteca Ambrosiana, il Museo del Novecento e la Triennale per un'esperienza culturale completa."
+
+  ask_city_touristic_information_milano_ristoranti_response:
+    - "La scena gastronomica milanese è eccezionale! Prova l'aperitivo nei Navigli e poi cena in uno dei tanti ristoranti del centro. Risotto e ossobuco sono i must."
+    - "Milano è la capitale del bon vivant! Da Brera ai Navigli, troverai ristoranti di ogni tipo, dai classici milanesi ai locali più trendy e innovativi."
+
+  ask_city_touristic_information_milano_attrazioni_response:
+    - "Milano ha tanto da offrire! Il Duomo, la Galleria Vittorio Emanuele II, il Castello Sforzesco e il Parco Sempione sono le attrazioni principali da visitare."
+    - "Tra architettura moderna e monumenti storici, Milano non delude! Visita il Quadrilatero della Moda e il quartiere di Brera per un'esperienza completa."
 
   ask_location_wait_response:
     - "Che bella domanda! Per darti informazioni più precise, puoi dirmi la località che ti interessa?"
