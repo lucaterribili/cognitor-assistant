@@ -1127,3 +1127,2295 @@ Che ne dici di andare a fare una gita fuori porta questo weekend? Potremmo visit
 Ti va di venirmi a prendere stasera? Altrimenti prendo un taxi, ma sarebbe più bello se venissi tu.
 Ciao Ciao, vado via perchè mi aspettano a casa per mangiare la zuppa di fagioli con le cotiche.
 Mi piacciono molto le cotiche, sono un piatto tipico della tradizione italiana, soprattutto in alcune regioni come la Campania e la Puglia.
+Dimmi.
+Come ti chiami?
+ciao! come va?
+Mi chiamo Luca.
+Il nostro gatto dorme tutto il giorno sul divano.
+Va bene, allora aspetto un tuo messaggio.
+Buonasera, sono pronto, allora a domani
+Noi affittiamo un appartamento per l'estate.
+come stai anna
+grazie per il tuo aiuto.
+No, non ho capito niente.
+È bellissimo.
+Dove hai messo le chiavi della macchina? Non le trovo.
+Grazie, allora ci vediamo al ristorante.
+Il loro ufficio è al quinto piano.
+mi chiamo michela
+Il mouse non si muove.
+Il cammello vive nel deserto.
+va bene, ci vediamo dopo.
+Oggi fa caldo
+Il suo sogno è viaggiare.
+Piacere, tutto a posto, buona giornata
+Ho fame, andiamo al ristorante?
+Mi chiamo Francesca
+Loro giocano a calcio ogni domenica.
+Ehi, sono pronto, allora a stasera
+No, non è vero.
+Piacere, tutto ok, buona giornata!
+Cosa bevi?
+dove vai?
+Ehi, sto bene, allora a stasera!
+Sì, grazie.
+Buonanotte, a domani
+Ho prenotato il volo online.
+voglio solo dire grazie.
+Ciao, a dopo.
+La scrofa allatta i maialini.
+Vai via.
+L'aquila vola molto in alto.
+mi chiamo marina
+Vecchio.
+Scusa, non capisco
+di niente
+In primavera ci sono i fiori.
+Il tempo è bello.
+parlo un po di russo
+mi chiamo Luca
+Il frontend è scritto in React.
+Il suo cane è molto ubbidiente.
+La signora Bianchi abita al secondo piano.
+domani è martedì.
+Prego.
+Piacere, tutto ok, a presto
+Sto bene, e tu?
+grazie per tutto quello che fai
+Spero che domani ci sia il sole perché andiamo in montagna.
+Dov'è la fermata del bus?
+Scendo alla prossima fermata.
+Voglio andare in vacanza.
+Sì, lo so.
+buongiorno!
+mi chiamo Giulia.
+Buon compleanno!
+mi chiamo Giulia
+buona fortuna!
+Buongiorno, sto bene, buona giornata!
+andiamo via
+Che ora è?
+Sono pronto.
+Studio ogni giorno.
+scusa se ti disturbo
+Il suo gatto mangia solo pesce fresco.
+La cerva è molto agile e veloce.
+buongiorno a tutti voi.
+Quando arrivi?
+Ho trovato un bellissimo libro sulla storia di Roma in quella libreria.
+Sì, apri la finestra.
+Siamo una bella famiglia.
+tu hai fame?
+Non lo so.
+Ciao, va tutto bene, buona giornata
+Mi dispiace, ma non posso venire alla tua festa sabato.
+Accettate contanti?
+Vostro zio lavora in fabbrica.
+No, non siamo ancora pronti.
+Ehi, tutto a posto, buona giornata!
+Anch'io sto bene.
+Ehi, tutto a posto, a presto
+Il treno è in ritardo di mezz'ora, che noia!
+No, per niente.
+Ehi, va tutto bene, ci vediamo dopo
+Ciao, sto bene, ci vediamo dopo!
+Sei molto gentile.
+Andiamo subito.
+No, domani non pioverà.
+Il caprone è molto testardo.
+Noi studiamo insieme ogni pomeriggio.
+Il gatto di Marco è molto pigro.
+grazie per il tuo aiuto luca.
+come va
+Oggi è lunedì.
+Lui come si chiama?
+sono pronto
+Ho sete, vorrei un'acqua fredda.
+Sono stanco.
+Buona serata a te.
+Voi potete venire alla festa domani?
+Non ci credo.
+lei come si chiama?
+grazie mille stefano.
+Sì, è vero.
+Galina e Igor studiano per l'esame di architettura.
+mi aiuti
+io ho fame
+Buongiorno Luca.
+Mi chiamo Natalia
+mi chiamo Stefano
+Elena e Pietro guardano le foto del loro viaggio.
+Grazie per il tuo aiuto Luca.
+chiudi la porta
+Buongiorno, sono pronto, a presto
+per cortesia
+Per cortesia.
+Convalida il biglietto sulla macchinetta.
+buon appetito
+per favore aiutami con questo
+Cosa hai detto?
+Voglio dormire, sono stanco
+La coniglia scava una buca.
+grazie ancora.
+No, non vorrei nulla.
+L'orso bruno vive nella foresta.
+voi siete pronti?
+buongiorno a tutti voi
+Devo prelevare dei soldi al bancomat.
+Bevo un bicchiere d'acqua.
+grazie per il tuo aiuto luca
+Il museo è di fronte alla chiesa.
+Sì, è una storia vera.
+Mi sento molto meglio dopo aver fatto quella lunga passeggiata.
+Sto bene.
+tu sei felice?
+mi chiamo ivan
+Ehi, tutto a posto, a presto.
+Vostra madre parla bene l'inglese?
+Il signor Moretti fischia una canzone allegra.
+Non gridare.
+mi piace la pizza
+Ciao, sto bene, allora a domani!
+Oggi mi sento pieno di energia e ho voglia di fare molte cose.
+Vieni qui.
+Ho dimenticato l'ombrello a casa.
+Buongiorno, tutto ok, ci vediamo dopo!
+Il signor Morozov legge il giornale al bar della stazione.
+è tardi
+Marco e Sara studiano all'università di Roma.
+Mi sono fatto male.
+Lui non sa guidare la macchina.
+Chi è?
+Paola e Michele vanno in vacanza in Sicilia.
+Sì, è possibile.
+Tua sorella è più alta di te.
+Il dottor Longo riceve i pazienti alle nove.
+Lo scorpione ha un pungiglione.
+Gennady e Michela corrono nel parco della città.
+Oggi è il mio ultimo giorno di lavoro prima delle vacanze estive.
+apri la finestra
+C'è troppa luce qui dentro, puoi chiudere un po' la finestra?
+siamo pronti
+Piacere, tutto ok, allora a stasera!
+ci vediamo dopo.
+Lei legge poesie.
+ottimo lavoro
+grazie per l'aiuto
+Il signor Leone fuma una sigaretta fuori.
+Francesca chiama spesso sua nonna Caterina.
+Buonanotte e sogni d'oro!
+Voi avete fame dopo la lunga passeggiata?
+Piacere, sto bene, allora a stasera
+Lei aspetta il bus alla fermata.
+grazie mille stefano
+Non capisco niente.
+Ciao, tutto ok, allora a stasera.
+buona serata.
+Quanto costa questo?
+Va bene, allora facciamo così.
+Non trovo più il mio telefono, puoi chiamarmi per favore?
+La civetta riposa sull'albero.
+ciao a tutti.
+Buongiorno, tutto a posto, ci vediamo dopo!
+Ciao a tutti!
+Va bene, allora a mercoledì.
+L'anatra cammina sulla terra.
+Ciao, allora ci vediamo alla stazione.
+buongiorno luca
+L'hai ricevuta?
+Dove sono le mie chiavi?
+e tardi
+Dove vai?
+fa freddo
+aiuto
+e giusto
+Tutto a posto, non ti preoccupare, non è successo niente di grave.
+Tu come ti chiami?
+Grazie di tutto.
+Noi abbiamo tempo.
+Il compilatore non trova la libreria.
+come stai?
+Hai già visto il nuovo film di cui tutti parlano bene?
+Sì, Anna studia molto.
+Alle otto e mezza.
+Loro vogliono comprare un appartamento in città.
+Lei manda messaggi tutto il giorno.
+Per favore, apri la finestra perché fa molto caldo.
+ciao mi chiamo kristina
+Il treno parte alle cinque.
+No, lo chiamo dopo.
+Daniela e Paolo camminano lungo il fiume.
+Ivan e Elena visitano il Colosseo a Roma.
+Puoi parlare un po' più forte? C'è troppo rumore qui dentro.
+La lupa protegge i suoi cuccioli.
+Grazie per il tuo consiglio, è stato davvero molto utile per me.
+non mi piace il caffè.
+ti amo
+Buongiorno, sto bene, a presto.
+mi chiamo matteo
+grazie per l'aiuto.
+In ufficio.
+Piacere, sto bene, allora a stasera.
+Sto bene, allora a stasera.
+Devo rinnovare i documenti.
+Sì, è qui.
+No, niente è a posto.
+Voi credete ai fantasmi?
+Loredana e Claudio mangiano il gelato in piazza.
+A che ora apre il museo?
+Puoi dirmi dove si trova la fermata del tram più vicina?
+Piacere, sono pronto, a presto.
+Secondo me, Marco ha ragione su questo punto.
+Buona giornata.
+va bene
+Mi chiamo Giorgio
+Posso farti una domanda personale o preferisci di no?
+per favore.
+Sta piovendo forte.
+L'architetto Ferrari ha progettato la casa.
+buona notte a tutti
+Nessun problema.
+Buonasera!
+Il signor Bruno pulisce il giardino ogni sabato.
+Il mio cane abbaia molto.
+Ho un esame domani.
+tutto ok.
+Al lavoro.
+sono stanco
+Ti va un gelato? C'è una gelateria ottima qui vicino.
+Sì, lo chiamo subito.
+Lei vende fiori al mercato.
+Quanto costano queste cartoline?
+La stampante non ha più carta.
+Il signor Galli legge il giornale al bar.
+Il tacchino apre la coda.
+Buonasera, va tutto bene, allora a domani!
+Piacere, mi chiamo Valentina e sono una tua collega.
+Ho dimenticato la mia password.
+Fai attenzione.
+È tardi.
+Voi vi alzate tardi la domenica?
+No, non c'è nessun problema.
+La finestra è aperta.
+cosa e?
+Ciao!
+Il nostro vicino di casa è una persona molto simpatica.
+Mi scusi.
+Capisco tutto.
+Vengo dall'Italia.
+Tu hai fame?
+cosa succede
+Ciao, mi chiamo Giulia
+piove oggi.
+Il coniglio mangia la carota.
+Il signor Novikov vende la sua vecchia automobile.
+buongiorno e buona giornata
+Buonasera, tutto ok, ci vediamo dopo
+che ore sono?
+sono di Roma.
+Buongiorno, va tutto bene, allora a stasera
+perche?
+Sì, lei è felice.
+L'acqua del mare è fredda.
+grazie per il tuo aiuto
+Ehi, sono pronto, allora a stasera
+Buonanotte a tutti.
+Buonanotte!
+Devo imbarcare la valigia.
+Mi chiamo Dmitri
+scusami ancora
+Kira e Tommaso parlano della loro vacanza in Russia.
+Nikolai e Francesca giocano a calcio ogni lunedì.
+Tutto ok, non ti preoccupare.
+Ho molto lavoro da fare.
+come stai
+Tutto bene, grazie.
+per favore mi aiuti.
+Il topo scappa dal gatto.
+mi chiamo tatiana
+scusa.
+A presto!
+Prima vado a fare la spesa, poi torno subito a casa.
+Aiuto!
+Lui lavora come cameriere in un ristorante.
+Oggi fa un freddo incredibile, meglio mettersi un maglione pesante.
+Piacere, sto bene, a presto
+Lo voglio.
+Falso.
+dove?
+Piacere, tutto a posto, a presto.
+Mi chiamo Kristina.
+Noi laviamo la macchina ogni sabato.
+Grazie dell'aiuto, sei un amico.
+Cameriere, il conto per favore.
+Buona sera!
+A domani.
+noi siamo stanchi
+Buongiorno, tutto a posto, allora a domani
+Abbastanza.
+va tutto bene
+È troppo caro.
+Fai il merge della pull request.
+Buongiorno, sono pronto, allora a stasera
+Va bene.
+Tutto a posto, allora a dopo pranzo.
+Vorrei un caffè.
+Il loro cane abbaia a tutti i vicini.
+Il passaporto scade l'anno prossimo.
+quanto costa?
+Ehi, sono pronto, buona giornata
+Buonasera, va tutto bene, a presto
+Buongiorno, tutto a posto, ci vediamo dopo!
+dimmi cosa ne pensi
+Il bagaglio a mano è troppo pesante.
+Perfetto, allora a stasera alle otto.
+Buon giorno e buona giornata!
+Siamo pronti per andare
+Accendi la luce, per favore.
+Piacere, sto bene, allora a stasera!
+Aspetta.
+L'erba è verde.
+Dobbiamo finire questo progetto importante entro oggi.
+No, vai via.
+Manuela e Alberto bevono un caffè con Mario.
+Lui scrive un blog sulla tecnologia.
+Non aver paura.
+non parlo bene russo.
+Oggi vado al lavoro
+Molto piacere.
+Domani è martedì.
+Per favore mi aiuti?
+Ieri era domenica.
+Il signor Villa vende la sua vecchia casa.
+Sì, sono stanco.
+Piacere, sto bene, allora a stasera!
+No, chiudi la finestra.
+Ciao, sto bene, allora a stasera
+buongiorno a te
+Noi camminiamo molto.
+No, è ancora presto.
+Mi piace la natura.
+non c'è di che.
+Tua sorella studia molto duramente per l'esame di medicina a Milano.
+Il suo ufficio è molto moderno.
+Dov'è il bagno? Grazie.
+Oggi è mercoledì.
+Dimitri lavora in un ristorante vicino alla stazione.
+Olga e Paolo vanno a fare la spesa al supermercato.
+Dammi la mano.
+A dopo!
+Il biglietto d'ingresso è gratuito per i bambini.
+buon giorno a te
+Ciao, tutto ok, buona giornata!
+Mi chiamo Chiara
+Ehi, tutto ok, allora a domani
+Io ho un cane.
+Lo squalo è un pesce pericoloso.
+Il lunedì è chiuso.
+Ho bisogno di un caffè forte per iniziare bene questa lunga giornata.
+Oggi è domenica.
+mi chiamo Paolo
+mi chiamo natalia
+Sì, ho capito tutto.
+cosa succede?
+Il tricheco ha lunghe zanne.
+Piacere, sono pronto, a presto.
+Voglio spedire una lettera.
+Ciao a tutti, io vado via.
+non importa
+Il mio cane è molto ubbidiente, ma ha paura dei temporali.
+Il signor Sokolov aspetta l'autobus per il centro città.
+Lui pulisce la sua camera ogni settimana.
+Mi chiamo Marta
+Mi chiamo Michela
+loro hanno una casa
+Auguri!
+Ciao Luca, allora tutto bene ieri?
+Lui scrive poesie.
+Il signor Fedorov fischia una melodia russa.
+Buongiorno, sto bene, ci vediamo dopo!
+non lo so.
+Lui porta sempre gli occhiali.
+Va bene così.
+Dove vai?
+Voi sapete dove si trova l'ufficio?
+Il cane di Alessandro corre veloce.
+Ciao mi chiamo Giulia
+non c'è di che
+Le tue chiavi sono sul tavolo in cucina.
+perfetto.
+Il biglietto costa tre euro.
+Il canarino canta nella gabbia.
+Io mi chiamo Luca
+I tuoi amici sono molto divertenti.
+Perfetto, allora ci vediamo in piazza.
+Mi chiamo Elena
+Noi andiamo a dormire presto.
+Ciao, mi chiamo Stefano
+Ciao, tutto ok, a presto
+Piacere, va tutto bene, a presto!
+Ehi, sto bene, allora a domani.
+Fa un bel sole oggi, perché non pranziamo fuori in terrazza?
+Il film è molto interessante.
+voglio solo dire grazie
+Sì, domani pioverà.
+Mi chiamo Ivan
+ciao mi chiamo luca
+Vostro padre guida un camion.
+Aleksei e Beatrice cenano in una pizzeria tipica.
+Va tutto bene, è stato solo un piccolo malinteso.
+Lo struzzo corre velocemente.
+ciao mi chiamo anna
+Salute!
+Tutti.
+Lei dipinge quadri meravigliosi.
+Tu vai a scuola?
+Lui va in ufficio.
+Voi andate al cinema?
+È tardi, devo andare.
+Cosa succede?
+Lui ripara computer nel tempo libero.
+buon weekend!
+mi chiamo antonio
+quanto costa
+Pietro e Paolo giocano a scacchi al parco.
+Ho dimenticato il nome di quella ragazza che abbiamo incontrato ieri.
+Tuo fratello è una persona molto intelligente e simpatica, mi piace.
+Piove oggi.
+Ehi, sono pronto, allora a domani.
+Sono le dieci.
+Sì, Marco è mio amico.
+Ho mal di testa, forse ho preso troppo sole oggi.
+lei va al lavoro
+Quanti anni hai?
+Buon weekend!
+Dov'è il bagno?
+Alzati.
+La signora Fontana aspetta il bus con Cristina.
+CIAO
+Sì, è pronto.
+Il signor Voronin beve una tazza di tè caldo.
+piacere marco
+Larisa e Massimo ballano il valzer al matrimonio.
+Dobbiamo finire questo rapporto entro stasera, altrimenti il capo si arrabbia.
+Buongiorno, tutto a posto, a presto.
+Buongiorno, tutto a posto, allora a domani!
+La talpa scava gallerie.
+Il sole è giallo.
+Sì, il film è finito.
+mi chiamo luca.
+Cosa fai?
+Loro vanno via.
+Ci vediamo davanti al teatro alle otto meno un quarto, va bene?
+Mi chiamo Luca Rossi.
+Spero di no.
+Lui compra sempre vestiti costosi.
+Tutto a posto, allora a domani sera.
+Ho venti anni.
+Mi chiamo Marina
+Oggi è giovedì.
+Tutto ok.
+Loro lavorano sodo.
+Vostra madre lavora in un ospedale?
+Sì, è troppo tardi.
+Sì, oggi è lunedì.
+quando arrivi?
+mi chiamo Stefano.
+Va bene, allora buona serata a te.
+Buongiorno, tutto a posto, allora a stasera!
+La vostra bambina ride.
+Tanti auguri.
+No, non mangio la carne.
+buonasera
+Siamo amici.
+Buona sera.
+Buongiorno e buona giornata!
+Yevgeny e Silvia giocano a tennis nel fine settimana.
+Domani è il compleanno di Sofia, cosa le regaliamo?
+Vostra sorella ha trovato un nuovo lavoro.
+L'elefante ha una memoria incredibile.
+Piacere, va tutto bene, ci vediamo dopo.
+ti piace?
+La mia macchina è rotta, devo prendere l'autobus.
+Il pane è fresco di giornata, ne prendo due filoncini grazie.
+Sono in ufficio.
+ciao, come va
+L'ho lasciato in macchina.
+Cosa fai nel tempo libero?
+mi chiamo Kristina
+Buonasera, va tutto bene, allora a domani
+Conosco un buon ristorante.
+Ciao, tutto ok, buona giornata.
+Piacere, tutto ok, ci vediamo dopo.
+Perfetto, allora rimaniamo così e ci vediamo direttamente lì sul posto.
+Non importa quello che dicono gli altri, io ti credo.
+per favore mi aiuti
+Cos'è?
+Sì, dimmi la verità.
+Yury e Roberta bevono un bicchiere di vodka ghiacciata.
+Tutto a posto, ci vediamo in ufficio.
+Il merlo ha il becco giallo.
+buon weekend
+Lei ha una borsa.
+Perché sei arrabbiato?
+Mi piace la neve.
+no.
+La volpe è furba e veloce.
+fa freddo fuori.
+Lei porta la borsa.
+Il nostro gatto ha paura dei cani.
+Dimmi cosa ne pensi.
+Ho trovato un posto perfetto per le nostre vacanze.
+e troppo caro
+Mi chiamo Stefano.
+Ci vediamo tra un'ora davanti al cinema, non tardare!
+Quanto costa questo libro?
+come?
+Lyubov e Valerio comprano i souvenir per gli amici.
+che fai
+Buona notte e sogni d'oro!
+A dopo.
+mi chiamo Valentina
+Ciao, sto bene, allora a stasera!
+Mi dispiace, ma oggi proprio non posso venire al cinema con voi.
+mi chiamo Vladimir
+niente di speciale
+io ho un cane
+mi chiamo chiara
+La salamandra è colorata.
+Guarda questo!
+Va bene, ci vediamo dopo.
+auguri
+Buon giorno.
+Allora andiamo a mangiare una pizza.
+Ho pushato il codice su GitHub.
+come
+Grazie.
+Ciao, sto bene, ci vediamo dopo
+Buongiorno, tutto a posto, a presto!
+Piacere, mi chiamo Alessandro e sono un amico di tuo fratello Marco.
+Buona giornata!
+Lei canta in un coro.
+Devo resettare il sistema.
+Loro ascoltano la radio in macchina.
+Ciao Luca, tutto bene?
+Dobbiamo migliorare la documentazione.
+ieri era domenica.
+Giorgio e Anna partono per Mosca domani.
+Noi andiamo in vacanza in montagna quest'anno.
+Lucia ha comprato un libro di Tolstoj.
+mi chiamo vladimir
+Posso pagare con carta di credito?
+Sì, Maria è a casa.
+La signora Kuznetsova parla con il direttore della banca.
+Ho un appuntamento stasera.
+Siamo pronti per andare.
+Preferisco andare al mare.
+Buonasera, tutto ok, allora a domani!
+Ottima idea!
+A casa.
+mi dispiace molto
+I tuoi genitori sono già arrivati?
+Mangio la pasta al pomodoro.
+mi scusi.
+non capisco niente.
+I vostri figli giocano sempre in giardino.
+buona notte e sogni d'oro
+Perfetto, allora a domani.
+Buongiorno, va tutto bene, allora a domani!
+Loro passeggiano nel bosco.
+mi piace la pizza.
+Il film che abbiamo visto ieri sera era davvero emozionante.
+mi chiamo Elena
+niente
+Buongiorno, va tutto bene, ci vediamo dopo.
+Il signor Marchetti porta il cane a spasso.
+Scusami se non ho risposto subito alla tua chiamata, ero in riunione.
+mi chiamo Marta
+L'applicazione si è bloccata.
+Mio nonno è molto vecchio.
+Sì, ho un criceto.
+Il caricamento della pagina è veloce.
+dove si trova il bagno
+Leggi.
+Le sue amiche sono andate a fare shopping.
+ciao a tutti
+Aspetta un momento, per favore.
+Lui ha una nuova bicicletta.
+scusami ancora.
+Apri la finestra.
+Loro non hanno capito la lezione di oggi.
+Ti voglio bene.
+Tu hai un cane?
+mi chiamo giulia
+Tuo cugino vive a Parigi da due anni.
+mi sento male
+Ehi, va tutto bene, a presto!
+La connessione è molto lenta.
+mi chiamo marta
+Buongiorno, sto bene, ci vediamo dopo
+Sì, va bene. Buonanotte.
+Grazie di tutto, a domani mattina.
+Tutto bene?
+Ciao, sto bene, allora a stasera!
+Vostra nonna è molto gentile.
+Buongiorno, va tutto bene, allora a domani!
+cos'è?
+Ho mal di testa.
+buon giorno
+sono di roma
+Sì, Luca lavora oggi.
+Il nostro bambino dorme.
+mi chiamo Francesca
+Piacere Sofia, come stai?
+La tigre è un predatore solitario.
+Ehi, sto bene, allora a stasera!
+Buonasera, sono pronto, allora a domani!
+Piacere, mi chiamo Luca.
+vieni qui
+SI
+Buona fortuna.
+Domani vado al ristorante.
+C'è un bel sole.
+Il signor Rossi lavora in banca.
+ieri era domenica
+La tastiera è sporca.
+mi chiamo Marina
+Ciao, sto bene, allora a stasera.
+Voglio comprare un regalo speciale per il compleanno di mia madre.
+Leggo sempre il giornale la mattina mentre faccio colazione.
+Sì, per favore.
+Sono un po' triste.
+Ci vediamo direttamente al ristorante alle otto e mezza, va bene?
+Il film inizia tra dieci minuti, dobbiamo sbrigarci.
+Alessandro e Maria vanno a cena da Leonardo.
+Il signor Smirnov guida un camion per le consegne.
+L'oca grida molto forte.
+Il tasso vive nel bosco.
+Quanto costa?
+Non importa se non sei pronto adesso, ti aspetto ancora dieci minuti.
+Erica e Tommaso parlano con il signor Bianchi.
+Sto imparando.
+Buongiorno, va tutto bene, allora a stasera!
+Matteo ha scritto un'email a Stefano.
+Non parlo bene il russo.
+vengo dall'Italia.
+dove
+Il signor Riva ripara la bicicletta di Fabio.
+Cattivo.
+Basta.
+Piacere, sono pronto, ci vediamo dopo!
+No, non dirmi bugie.
+Fa freddo fuori, mettiti la giacca.
+non mi piace il caffe
+Cosa?
+mi chiamo luca rossi
+Ho preparato le slide.
+Sì, bevo l'acqua.
+Mi chiamo Tatiana
+Ho mal di schiena perché ho dormito male stanotte sul divano.
+La tartaruga cammina lentamente.
+C'è il sole.
+È proprio lì, accanto alla banca.
+Piacere, tutto ok, a presto.
+Ehi, tutto a posto, buona giornata!
+Ehi, tutto a posto, allora a stasera!
+Ehi, tutto ok, ci vediamo dopo!
+Il tavolo è grande.
+Perfetto, allora ci aggiorniamo domani mattina per i dettagli.
+Marta e Roberto mangiano la pizza con Antonio.
+Va bene, allora a sabato prossimo.
+chi e?
+non lo voglio
+Buongiorno, sto bene, a presto
+aspetta
+Posso offrirti un caffè o preferisci un tè caldo?
+Il database è lento oggi.
+Grazie per l'invito, verrò con molto piacere.
+La farfalla ha ali colorate.
+mi chiamo Matteo
+mi chiamo Alessandro
+Il panda mangia il bamboo.
+Entra pure.
+Va bene, allora a domenica mattina.
+mi dispiace molto per questo.
+Mandami la foto su WhatsApp.
+Mi chiamo Anna.
+Tutto a posto, non ti preoccupare.
+L'API restituisce un errore quattrocentoquattro.
+Ho sonno, vado a dormire.
+Parla più piano.
+Il mio gatto ha paura dei rumori forti, quindi si nasconde sotto il letto.
+Tuo padre è un uomo molto colto e interessante, mi ha raccontato molte storie.
+Guardo un film alla televisione.
+Dove vai adesso?
+Va bene, ci vediamo lì.
+No, non scrivere niente.
+Prendo un taxi per andare in hotel.
+buon giorno a tutti
+Spero che tutto vada per il meglio per il tuo nuovo progetto.
+mi chiamo stefano
+Buongiorno, va tutto bene, a presto
+Ci vediamo domani mattina alle nove.
+Sono di Roma.
+Il signor Abramov chiude la porta del garage a chiave.
+fa freddo fuori
+Lei usa troppo profumo.
+Sorridi!
+Devo aggiornare le dipendenze.
+Mia nonna si sente molto meglio oggi, grazie per avermelo chiesto.
+Il signor Mikhailov fuma una sigaretta sul balcone.
+NO
+No, il cane non è nel giardino.
+Ehi, sto bene, a presto
+mi aiuti?
+ancora
+Non sono arrabbiato, sono solo stanco.
+Tua madre è davvero brava a cucinare, questa pasta è deliziosa.
+Mi manchi.
+Non vedo l'ora di vederti e di passare un po' di tempo insieme a te.
+Non c'è di che.
+Piacere, va tutto bene, allora a stasera.
+I tuoi cugini vivono in America.
+Noi visitiamo spesso i musei.
+perché ridi?
+I fiori sono profumati.
+Piacere, tutto a posto, a presto
+Mi sento male.
+No, è molto economico.
+Lo scoiattolo mangia le noci.
+Vostra figlia ha vinto il primo premio.
+Mi piace molto ascoltare la radio mentre guido nel traffico della città.
+Da dove vieni?
+buonanotte.
+Lui piange spesso.
+Il professor Romano spiega la lezione di storia.
+Noi aspettiamo la risposta.
+Il signor Marino vende fiori al mercato.
+Mi chiamo Marco
+I tuoi vicini sono rumorosi.
+Loro non sanno ancora la verità.
+Buonasera, sto bene, allora a stasera.
+Maxim e Sofia mangiano il sushi in un ristorante a Milano.
+Febbraio è un mese corto.
+Buon giorno a te!
+Noi beviamo birra fresca.
+La mosca vola nella stanza.
+Ehi, tutto a posto, allora a domani!
+Sto arrivando.
+Sì, certo.
+Mi chiamo Federica
+La vostra scuola è molto grande.
+La signora Colombo cerca il suo gatto.
+Vostra zia è stata molto gentile a portarci questo regalo.
+domani e martedi
+Come va?
+Mario e Giulia si sposano a giugno.
+La signora Ricci prepara la cena per la famiglia.
+No, è impossibile.
+Il russo è una lingua difficile.
+Mi sento un po' stanco, vado a fare un riposino.
+mi chiamo Marco
+Mi dispiace molto per quello che è successo ieri, è stato un errore mio.
+Piacere, tutto ok, a presto
+Il signor Volkov vive in una casa grande con la sua famiglia.
+Ciao, buonasera
+lei ha una borsa
+Il dottor Verdi ha visitato il paziente.
+Buongiorno, va tutto bene, buona giornata
+Tu sei felice?
+Sì, scrivi il tuo nome.
+Ieri era giovedì.
+Parla lentamente, per favore.
+Piacere, sono pronto, a presto.
+Buonasera, sono pronto, allora a stasera.
+mi chiamo Sergei
+Ehi, tutto a posto, ci vediamo dopo.
+Vieni qui subito.
+Oggi è il mio compleanno, festeggiamo?
+Cosa vuoi?
+dimmi cosa ne pensi.
+Giuro!
+che ora è?
+Ciao, a dopo
+Buonasera, va tutto bene, allora a domani!
+Vostro nonno racconta sempre storie divertenti.
+Non fa niente.
+Ascolta.
+Torno tra un minuto.
+Ehi, va tutto bene, ci vediamo dopo!
+Il daino corre tra gli alberi.
+loro vanno via
+vieni subito
+Lei come si chiama?
+Configura le variabili d'ambiente.
+mi chiamo sergei
+Il signor Molinari beve un bicchiere di vino rosso.
+Ciao Anna, piacere di conoscerti.
+Ciao, tutto ok, allora a domani!
+Non so dove ho messo gli occhiali, puoi aiutarmi a cercarli?
+Buongiorno, tutto ok, a presto
+Nadia e Valerio comprano i biglietti da Luca.
+Non mi piace il caffè.
+quando
+mi piace.
+Il montone ha corna ricurve.
+Dov'è il supermercato più vicino? Devo comprare il pane.
+Buongiorno, tutto a posto, allora a stasera.
+mi chiamo valentina
+come stai anna?
+Io ho fame.
+Vado a casa
+Piacere, sto bene, allora a stasera.
+La medusa scotta nell'acqua.
+Il granchio cammina di lato.
+Devo andare.
+mi dispiace molto.
+noi andiamo al ristorante
+Lei parla tre lingue straniere.
+Buongiorno, sono pronto, ci vediamo dopo.
+Ciao, sono pronto, ci vediamo dopo!
+Stasera usciamo con gli amici.
+Domani.
+di niente.
+Buonasera, va tutto bene, ci vediamo dopo
+dove è il bagno
+Fa bel tempo oggi.
+Piacere, sono il tuo nuovo vicino.
+Fa freddo.
+Installa i pacchetti con npm.
+Buongiorno, va tutto bene, allora a domani.
+Noi perdiamo sempre il bus.
+Il koala dorme sull'eucalipto.
+Devo fare il commit delle modifiche.
+Buonasera, va tutto bene, a presto.
+dove si trova il bagno?
+tutto bene?
+Qualcuno.
+Lei insegna matematica a scuola.
+Aiutami!
+Scusa se ti disturbo.
+a dopo.
+Non capisco.
+Scusa, mi puoi dire che ore sono?
+Sì, siamo pronti.
+Il treno è stato cancellato, quindi dovrò prendere l'autobus per tornare a casa.
+quando arrivi
+Veramente.
+Saluta tua madre da parte mia, per favore.
+Grazie, buona giornata.
+Sì, ti aiuto io.
+Che ore sono adesso?
+Ehi, tutto a posto, ci vediamo dopo
+La signora Vasilyeva aspetta il bus con la sua amica.
+Sì, puoi entrare.
+No, Marco non è mio amico.
+Sì, è molto caro.
+Sì, ascolta la musica.
+La neve è bianca.
+Mia madre cucina molto bene.
+Ciao, sono pronto, ci vediamo dopo!
+Noi mangiamo fuori una volta a settimana.
+dimmi
+non capisco niente
+Il giraffino beve l'acqua del fiume.
+Scusa, non volevo interrompere la tua conversazione.
+Ne prendo cinque, grazie.
+buona giornata
+Il mio vicino di casa fa molto rumore.
+Buongiorno, sto bene, a presto.
+Non voglio un caffè adesso, preferisco un tè caldo.
+Loro sono già partiti.
+Ciao, tutto a posto, buona giornata.
+Alessia e Gabriele comprano il pane da Marco.
+Grazie mille, a dopo.
+non ho capito
+in ufficio
+Il signor Russo compra sempre il giornale lì.
+No, lei è molto triste.
+chi
+voglio dormire
+Devo andare in banca a parlare con qualcuno.
+ottimo lavoro, grazie mille.
+Prego!
+Voglio dormire fino a tardi domenica mattina.
+I vostri amici hanno portato il vino.
+Le chiavi sono nella tasca.
+per favore giulia.
+prego
+Lei è bella.
+La giraffa raggiunge le foglie alte.
+Sergei e Valentina cenano al ristorante giapponese.
+che cosa fai
+Oggi vado a scuola.
+Il maiale mangia molto.
+Chi?
+Ehi, sono pronto, buona giornata.
+Voglio imparare il russo perché mi piace la cultura russa.
+perfetto, allora a domani.
+L'asino porta carichi pesanti.
+c'è il sole
+ho capito
+Buonanotte.
+Il leone è il re della savana.
+Il delfino nuota nel mare.
+Forse.
+loro sono qui
+Attento alla macchina!
+No, non mi piace.
+La pecora produce la lana.
+Cinzia e Roberto invitano Fabio alla festa.
+Oggi è venerdì.
+Ho dimenticato le chiavi di casa.
+Piacere, va tutto bene, ci vediamo dopo!
+No, non va bene.
+È un film d'azione.
+cosa?
+La lumaca porta la sua casa.
+Piacere!
+Devo comprare un nuovo portatile.
+Tuo fratello è molto bravo a suonare la chitarra.
+Ciao, tutto ok, allora a stasera
+Artem compra un biglietto per il treno ad alta velocità.
+lo voglio
+Buongiorno, va tutto bene, allora a stasera!
+Voglio comprare dei souvenir.
+Tutto a posto, ci vediamo dopo.
+Sì, vieni qui subito.
+al lavoro
+sto bene.
+ci vediamo dopo
+vai via
+La vostra casa è molto accogliente.
+Hai mai provato la cucina russa? È molto saporita e particolare.
+No, faccio da solo.
+Grande.
+Arrivo subito.
+Lui disegna molto bene.
+Andiamo in montagna?
+L'orsa cerca il cibo per l'inverno.
+Grazie per il tuo aiuto.
+Buona fortuna!
+Non capisco, puoi ripetere per favore?
+Chiamate un medico.
+Il cinghiale è pericoloso.
+Aspettami qui.
+Per favore aiuto!
+Guarda l'arcobaleno!
+Aspetta un attimo.
+Ottima idea, allora facciamo così e ci aggiorniamo più tardi.
+Lei ha perso il suo ombrello sul treno.
+mi piace molto
+Non lo voglio.
+Grazie per l'aiuto.
+Loro sono vegetariani.
+No, il gatto non ha fame.
+lui è bravo
+Buonasera, va tutto bene, a presto
+Come stai?
+Capisco un po' di russo.
+Non vedo l'ora di andare in vacanza e di rilassarmi un po'.
+Buonasera, va tutto bene, ci vediamo dopo
+La tua borsa è molto pesante, ti aiuto?
+Nulla.
+Grazie mille, sei stato gentilissimo.
+Il rospo vive vicino all'acqua.
+La cicogna costruisce il nido.
+non lo so
+buongiorno luca.
+La gatta di Sofia dorme sul divano.
+Mi chiamo Sergei
+Smettila.
+tutto bene
+non mi piace
+Il dottor Lebedev riceve i pazienti nel suo studio.
+No, il dottore è in ritardo.
+L'aereo è in ritardo di due ore.
+Va bene, allora a domani.
+Il signor Solovyov compra sempre i fiori al mercato.
+Ciao, mi chiamo Anna
+Tuo fratello lavora a Londra?
+Sì, andiamo al cinema.
+Il mare è blu.
+ciao mi chiamo giulia
+La rana salta nello stagno.
+Chi è quel signore?
+mi dispiace molto per questo
+La tua macchina ha bisogno di benzina.
+La pizza lì è buonissima.
+No, è una brutta giornata.
+Noi aiutiamo i nostri genitori.
+Ciao, io vado a casa adesso.
+mi chiamo svetlana
+Loro cenano sempre alle sette.
+La scimmia mangia una banana.
+Lui fuma troppo, dovrebbe smettere.
+La vipera è un serpente velenoso.
+Buongiorno, tutto ok, a presto!
+Buonasera, tutto a posto, buona giornata!
+vi piace?
+Sì, Pietro parla bene.
+Mi piace la pizza.
+Buongiorno, va tutto bene, buona giornata.
+Lei va al lavoro.
+Mi chiamo Alessandro
+Buongiorno, sono pronto, buona giornata!
+Oggi è sabato.
+Uso il computer per lavoro.
+Non ho sentito.
+Ehi, sto bene, ci vediamo dopo
+mi chiamo Ivan
+Ciao, tutto ok, ci vediamo dopo!
+Noi andiamo a teatro.
+Ciao, va tutto bene, allora a domani.
+Buongiorno, tutto a posto, a presto.
+Dobbiamo ottimizzare la query.
+cosa fai
+Parlo un po' di russo.
+No, mi dispiace.
+Sì, lo compro.
+Ehi, sto bene, allora a stasera.
+No, Anna non studia mai.
+piacere di conoscerti
+Va bene, allora a lunedì.
+Andiamo al cinema?
+No, fa molto freddo.
+mi chiamo Luca Rossi.
+Noi preferiamo la pizza alla pasta.
+Avete uno sconto?
+Scusa Maria.
+Lei ricorda ogni dettaglio.
+mi chiamo Federica
+Il signor Zakharov lavora come ingegnere civile.
+Il cervo ha corna ramificate.
+Ciao, va tutto bene, buona giornata
+scusa se ti disturbo.
+A domani mattina, dormi bene e sogni d'oro.
+ho bisogno di tempo
+Yelena e Roberto vanno a sciare in montagna.
+Spero che la tua presentazione vada bene, in bocca al lupo!
+Dov'è la farmacia più vicina?
+il tempo è bello.
+Svetlana lavora come interprete per una ditta italiana.
+Poi vada dritto per duecento metri.
+voi avete tempo?
+Scusa Maria, non ho sentito bene.
+Ciao, sono pronto, ci vediamo dopo!
+scusami
+prego.
+Voglio dormire.
+tutto ok
+Mi piace ascoltare musica.
+Sono in ritardo, scusa.
+Hai un animale domestico?
+No, ho perso le chiavi.
+Lei sorride sempre.
+Buonasera, sono pronto, allora a stasera!
+quanto costa
+Perfetto, allora rimaniamo così.
+Mi chiamo Valentina
+mi chiamo Olga
+L'ippopotamo vive nel fiume.
+Perché?
+I suoi cugini sono molto alti.
+Il tè è troppo caldo.
+Tutto bene.
+Vostra zia cucina una torta deliziosa.
+C'è un problema.
+Sì, il cane è nel giardino.
+buona fortuna
+Tutto.
+Ho paura.
+Sì, sono d'accordo.
+Preferisco andare a piedi invece di prendere la macchina oggi.
+Ho dimenticato il mio ombrello sul treno ieri sera.
+Buonanotte, a domani.
+Devo andare dal medico.
+Per fortuna c'è il sole adesso.
+Mi piace molto questa canzone, come si chiama?
+e presto
+lui va in ufficio
+grazie di tutto
+Cosa c'è che non va?
+Sì, il gatto ha fame.
+Buonasera, sto bene, a presto!
+C'è un bar qui vicino?
+Quando?
+Vado in ufficio con Luca domani mattina alle nove.
+Mai.
+Devo comprare l'inchiostro.
+Per favore.
+Mi piace nuotare.
+chi è
+Vieni subito.
+Voi andate ai concerti?
+Mi piace.
+No, Pietro non parla bene.
+Mi mancano molto i miei genitori, andrò a trovarli il prossimo weekend.
+Il signor Costa affitta un appartamento a Venezia.
+Siamo pronti.
+Vero.
+Ciao, sono pronto, a presto!
+Esegui lo script di test.
+Buona notte!
+Sono a casa.
+vorrei un'acqua.
+Il signor Popova ripara la radio del signor Rossi.
+Il lupo ulula alla luna.
+Il coccodrillo ha denti affilati.
+Voglio dormire, sono stanco.
+Ti va di andare a mangiare una pizza stasera?
+Loro festeggiano il loro anniversario.
+Il mio computer è rotto.
+La nostra squadra ha perso la partita.
+Il signor Kuzmin studia la storia dell'arte italiana.
+Mi piace molto ascoltare la musica classica mentre studio.
+Oggi è il primo gennaio.
+ho bisogno di tempo.
+No, non è qui.
+Andiamo a vedere quella mostra d'arte moderna sabato pomeriggio?
+come va?
+No, non aspettare.
+Elena ha incontrato il signor Moretti in centro.
+Loro viaggiano sempre in aereo.
+Crea un nuovo branch per questa feature.
+Ciao, tutto ok, allora a domani
+buongiorno
+Domani è sabato.
+Ti piace?
+Lui dimentica tutto.
+Ehi, sto bene, allora a domani.
+tu hai un gatto?
+Buongiorno, tutto a posto, a presto
+Buonasera, sono pronto, buona giornata
+ottimo lavoro, grazie mille
+Sto male.
+Loro studiano per l'esame finale.
+Ciao mi chiamo Stefano
+buonanotte
+Costa quindici euro.
+mi chiamo Luca.
+Andiamo a fare una passeggiata al parco se non piove.
+Giulia e Federico hanno un cane di nome Max.
+Scusa, sono un po' in ritardo.
+Piacere di conoscerti, Luca
+Sì, tutto è a posto.
+Andiamo a ballare in discoteca.
+Simone e Veronica guardano un film di Fellini.
+Tutto a posto, grazie dell'aiuto.
+Spero che domani faccia bel tempo per la nostra gita fuori città.
+Siamo arrivati a destinazione.
+Sì, loro sono russi.
+Perché ridi?
+grazie mille.
+Tenete il resto, è per voi.
+In estate fa molto caldo.
+Barbara e Massimo ballano la salsa con Elena.
+Ho capito.
+Guarda.
+Domani è sabato
+Cosa fai oggi?
+Prendo un cornetto e un cappuccino.
+Va bene, te la mando subito.
+Mi chiamo Giulia
+Grazie per il tuo aiuto Anna.
+Scusa Stefano, ho dimenticato le chiavi.
+Devo andare in banca prima che chiuda alle quattro.
+mi chiamo Michela
+Loro abitano vicino alla chiesa.
+sto bene
+posso entrare?
+Mi sento molto bene.
+Non mi piace.
+Buonasera, va tutto bene, allora a stasera
+Oggi fa caldo, andiamo al mare?
+Il mio amico è qui.
+Boris e Claudia ascoltano musica classica alla radio.
+Buonasera, sto bene, allora a domani!
+Controlla i log del server.
+Dov'è il gate d'imbarco?
+Buon appetito.
+Loro saltano la corda.
+Vostra zia è una pittrice.
+Mi chiamo Giulia.
+Che ore sono? Sono le tre.
+Lui cerca le sue chiavi.
+mi chiamo Dmitri
+Andiamo.
+perfetto
+tu come ti chiami?
+La batteria del mio telefono è quasi scarica, devo caricarlo subito.
+Aspetta un momento
+Il signor Kozlov parla molto bene la lingua italiana.
+grazie!
+Perfetto, allora ci sentiamo dopo.
+Sì, mi piace.
+Internet non funziona bene oggi.
+Molto.
+Piacere, sto bene, ci vediamo dopo
+tutto bene.
+Il cane è nero e il gatto è bianco.
+Oggi fa molto caldo.
+Sì, c'è un problema.
+Il cane ha fame, puoi dargli da mangiare tu?
+Sì, accendi la luce.
+per favore giulia
+scusa per il ritardo.
+per favore
+Piacere, va tutto bene, allora a stasera.
+Il signor Orlov porta a spasso il suo pastore tedesco.
+Giacomo e Beatrice cenano al ristorante.
+Andiamo a dormire, sono esausto.
+Buonasera, va tutto bene, allora a domani!
+Grazie mille Stefano.
+Loro suonano la chitarra.
+La marmotta fischia forte.
+Che cosa fai?
+Dov'è la stazione?
+a dopo
+Sì, fa molto caldo.
+chi è?
+Il dromedario ha una sola gobba.
+No, il film non è finito.
+Piacere, tutto ok, allora a domani.
+No, non lo so.
+mi chiamo Anna.
+Ho bisogno di un consiglio su questo nuovo lavoro.
+quanto
+Ciao, tutto ok, a presto.
+che cosa fai?
+Dobbiamo sbrigarci perché il museo chiude tra mezz'ora.
+Il falco caccia le sue prede.
+Il rinoceronte ha un grosso corno.
+Ehi, tutto ok, allora a stasera.
+mi chiamo Tatiana
+Lei scatta molte foto durante i viaggi.
+cosa
+Lei sta scrivendo una lettera importante.
+Grazie mille.
+per favore aiuto.
+Mi chiamo Paolo
+I test sono passati correttamente.
+perfetto, allora a domani
+Buongiorno, sono pronto, allora a stasera
+Il nostro capo è in riunione.
+La mela è rossa.
+È troppo caro per me.
+per favore aiuto
+Buonasera.
+La tua maestra è molto brava.
+mi chiamo Giorgio
+buonanotte a tutti
+Noi siamo stanchi.
+Il pipistrello vola nel buio.
+Ehi, sto bene, ci vediamo dopo
+Ciao, sono pronto, buona giornata!
+Dove si trova il bagno?
+ciao
+Dritto.
+auguri!
+Davvero?
+mi chiamo Svetlana
+mi chiamo Simone
+Il signor Greco parla molto bene l'inglese.
+Non capisco perché lui sia sempre così arrabbiato.
+Ancora.
+fa caldo
+No, è falso.
+Ciao, mi chiamo Kristina
+Il parco è molto grande.
+Vostra figlia è molto intelligente.
+Grazie per il tuo aiuto!
+scusami.
+Ci sono molti alberi.
+Ehi, tutto a posto, ci vediamo dopo
+Buonasera, sono pronto, ci vediamo dopo.
+Che giorno è oggi?
+Il capo è molto severo oggi.
+Andiamo via.
+Mio padre è un dottore.
+Il caffè è molto buono in Italia.
+che ora e?
+capisco tutto
+BUONGIORNO
+Lei beve molta acqua durante il giorno.
+I suoi genitori vivono in Italia.
+Non è vero.
+Il canguro salta molto lontano.
+Piacere, sono pronto, buona giornata.
+sto bene
+Buongiorno, sto bene, allora a stasera!
+lei è bella
+mi chiamo federica
+Piacere Marco.
+Ehi, sto bene, ci vediamo dopo
+Buongiorno, tutto ok, a presto.
+mi chiamo Antonio
+mi chiamo Anna
+Tutto ok, allora a venerdì.
+Piacere, va tutto bene, buona giornata
+Di niente.
+Buona serata.
+Oggi fa molto freddo.
+ciao come va
+Ciao Giulia, come va il lavoro?
+Mi chiamo Anna
+Ludmila e Michele visitano il museo del Vaticano.
+Voi siete pronti?
+Piacere, sto bene, buona giornata!
+Dov'è finito il telecomando della televisione? Non riesco a trovarlo.
+Il pinguino vive nel freddo.
+Sì, ho trovato le chiavi.
+per favore aiutami con questo.
+Mi sono perso, puoi aiutarmi?
+grazie per il tuo aiuto anna
+Lui si sveglia sempre molto tardi il sabato.
+Lui ha un libro.
+Che ore sono?
+La mia amica è lì.
+Il design è molto pulito.
+Sì, è la verità.
+Ehi, sono pronto, allora a stasera!
+scusa per il ritardo
+Scusate.
+Domani è sabato, ci vediamo?
+Buongiorno, tutto a posto, a presto!
+È mezzanotte passata, è tardi.
+Ciao mi chiamo Anna
+ottimo lavoro.
+Ciao, va tutto bene, allora a stasera
+La topolina mangia il formaggio.
+Ieri.
+Ho molta fame.
+Noi siamo stanchi di aspettare il treno.
+perché?
+Ciao, tutto ok, ci vediamo dopo!
+La zanzara punge di notte.
+buon compleanno
+La signora Romanova prepara i blini per gli ospiti.
+Ciao, tutto ok, allora a stasera.
+buona serata
+Brutto.
+Cosa ne pensi di questo vestito? Ti piace il colore?
+Ciao a tutti, è stato un piacere conoscervi.
+Buonasera, sto bene, allora a domani.
+Scusa, puoi parlare più lentamente?
+Sì, capisco.
+Cadi sempre!
+Giovanni e Michela corrono nel parco ogni mattina.
+Non ho capito.
+scusate.
+A destra.
+tutto a posto, non ti preoccupare.
+Eccomi qui.
+I tuoi fratelli sono gemelli?
+io mi chiamo luca
+Come si fa?
+Troppo.
+Siamo arrivati in anticipo, allora prendiamo un caffè.
+si.
+Il libro è sul tavolo.
+Loro vivono in una casa molto piccola.
+Sì, il libro è interessante.
+La banana è gialla.
+Sonia e Giorgio ascoltano la radio in cucina.
+Il signor Belov aspetta sua figlia all'uscita di scuola.
+Buonasera, sto bene, buona giornata
+No, non sono d'accordo.
+Mi chiamo Kristina
+Mi piace molto scattare foto quando viaggio in posti nuovi.
+Cerco via Roma, è lontana?
+Voi correte veloci?
+Andiamo a bere qualcosa insieme dopo il lavoro domani sera?
+Mi chiamo luca.
+Lo spero anch'io.
+Natalia e Luca guardano un film russo al cinema.
+Quale scegli?
+il tempo e bello
+buona giornata.
+Buonasera, tutto a posto, a presto
+Che sfortuna!
+è troppo caro.
+Grazie di cuore per tutto quello che hai fatto per me.
+Grazie di cuore, a presto.
+Prendi l'ombrello.
+Ciao.
+Piacere di conoscerti.
+Il castoro costruisce dighe.
+si
+Buon viaggio!
+La formica lavora tutto il giorno.
+buonanotte e sogni d'oro
+capisco tutto.
+grazie per tutto quello che fai.
+buon compleanno!
+Voi avete tempo?
+Sì, ho molta fame.
+La mia macchina è rossa.
+Enrico e Silvia giocano a tennis con Carlo.
+Scusami ancora.
+Mi chiamo Stefano
+Taisiya e Renato visitano la Piazza Rossa a Mosca.
+Voglio un gelato.
+buonasera a tutti voi
+Tutto andrà bene.
+Il signor Conti chiude la porta a chiave.
+Il suo compleanno è a maggio.
+I tuoi libri sono sparsi sul pavimento.
+Sì, vorrei un caffè.
+Ho visto dei bellissimi pantaloni neri, ma costano troppo per me.
+chi sei?
+aiutami
+Nessun problema.
+mi piace
+Ma è molto bella.
+Ho bisogno di un francobollo.
+Mi chiamo Matteo
+Lui telefona a sua madre ogni sera.
+ciao mi chiamo stefano
+mi sento bene
+grazie ancora
+Grazie ancora.
+mi chiamo giorgio
+grazie per il tuo aiuto!
+Come?
+forse
+Divertiti.
+Nuovo.
+Spero che tu stia bene e che la tua famiglia sia felice.
+Mi chiamo Antonio
+No, lui è un medico.
+Vado a prenderlo.
+Buongiorno, sto bene, allora a domani.
+ci vediamo.
+Grazie di tutto cuore per la tua gentilezza e per il tuo aiuto.
+No, Luca non lavora oggi.
+Buon appetito! Grazie altrettanto.
+piacere marco.
+Cosa facciamo adesso?
+buona notte!
+Non importa quello che è successo, l'importante è che ora stai bene.
+Prendo l'ascensore.
+vengo dall'italia
+Come sta?
+Andiamo a fare una passeggiata.
+Piacere, sono pronto, buona giornata.
+Tiziana e Renato visitano la galleria d'arte.
+mi chiamo Natalia
+buona sera
+io mi chiamo Luca
+mi chiamo kristina
+come si fa
+È economico.
+Buongiorno!
+Vorrei un caffè, grazie.
+Ho bisogno di tempo.
+non parlo bene russo
+Io vado a casa.
+Puoi passarmi il sale, per favore? Questa minestra è un po' sciapa.
+La mia carta non funziona.
+mi chiamo Kristina.
+No, non è un buon ristorante.
+Amo gli animali.
+Ehi, tutto a posto, ci vediamo dopo.
+Scusa.
+grazie per il tuo aiuto anna.
+Noi abbiamo comprato una nuova televisione.
+Lì.
+Salva il documento prima di uscire.
+Piacere, sono pronto, a presto.
+Ho fame, andiamo a mangiare?
+Il bus arriva tra dieci minuti.
+Scusa, non capisco.
+Ehi, tutto ok, ci vediamo dopo
+I tuoi zii hanno tre figli.
+Scusami, non sapevo che fossi qui.
+Preferisco le commedie.
+Prenoto un tavolo per due.
+Mia sorella studia medicina.
+scusa!
+io sono felice
+mi dispiace
+La capra mangia le foglie.
+Ottimo lavoro, sono davvero orgoglioso di te.
+C'è un errore di sintassi alla riga quaranta.
+Inna e Giorgio ascoltano le canzoni di Sanremo.
+Buongiorno, sto bene, a presto!
+Ciao, va tutto bene, allora a stasera.
+La vostra azienda è molto importante.
+Sì, voglio venire.
+Mia nonna vive in campagna.
+È vero?
+Fermati!
+Sì, è scritta sotto il router.
+Il nostro cane corre dietro alla palla.
+buona notte
+Vorrei un caffè
+Buongiorno, tutto ok, allora a domani
+Voi andate al cinema stasera?
+Ho dimenticato di comprare il latte, puoi passare tu al supermercato?
+No, non ascoltare la radio.
+Buono.
+Ho perso le mie chiavi di casa, spero di averle lasciate in ufficio.
+Ho perso il portafoglio.
+piacere.
+Mio figlio va all'asilo.
+Loro hanno una casa.
+scusa maria.
+Ehi, tutto ok, a presto.
+aiutami.
+Vorrei un'acqua.
+Piacere, sto bene, allora a stasera
+L'endpoint non è raggiungibile.
+Ehi, va tutto bene, a presto
+Serena e Nicola guardano le stelle in giardino.
+Che rumore è questo?
+L'ape produce il miele.
+Voglio comprare una macchina nuova.
+Il nostro insegnante spiega bene.
+Parla.
+come sta
+Buongiorno, sono pronto, buona giornata!
+per cortesia.
+Va tutto bene.
+Grazie mille, allora a più tardi.
+Non trovo più il mio caricabatterie, l'hai visto per caso in salotto?
+Buonasera, tutto a posto, allora a domani.
+Sai nuotare?
+Scusami.
+Mi dispiace.
+La mucca mangia l'erba nel campo.
+Lo scimpanzé è molto intelligente.
+Mi sento bene.
+Lui ha dimenticato il suo zaino sul bus.
+La stazione è vicina.
+Ho fame, cerchiamo un posto dove mangiare.
+mi chiamo dmitri
+Non lo so, chiedi a lui.
+No, deve girare a sinistra al semaforo.
+Dove sei?
+grazie
+nessun problema.
+Mi aiuti?
+Buonasera, sto bene, a presto
+Bevi molta acqua.
+Tutto è possibile se ci credi veramente.
+Buongiorno, va tutto bene, buona giornata.
+Ciao, sono pronto, buona giornata.
+Il gallo canta all'alba.
+tutto a posto, non ti preoccupare
+Buongiorno a tutti voi.
+Bello.
+Sì, il negozio è aperto.
+Ciao, tutto ok, buona giornata!
+La porta è chiusa.
+Mi serve una penna per scrivere questo messaggio.
+I tuoi amici sono arrivati.
+Fa freddo fuori.
+a presto
+Buongiorno, va tutto bene, a presto!
+La foca nuota nell'oceano.
+Buonasera a tutti voi.
+mi chiamo Igor
+Cosa facciamo stasera?
+ho bisogno di aiuto
+Oggi.
+Chiudi la porta.
+Ho fame.
+Il nostro piano è perfetto.
+A presto, spero di rivederti il prima possibile.
+L'aeroporto è lontano.
+Oksana e Alberto bevono un tè con i biscotti.
+Il verme vive nella terra.
+quanto?
+mi chiamo igor
+cosa è?
+mi chiamo boris
+non capisco
+Niente.
+Il professor Ivanov corregge i compiti di italiano.
+Qui.
+Noi andiamo al ristorante.
+Guarda dove vai.
+Non capisco questo messaggio, è scritto in una lingua che non conosco.
+Mi chiamo Boris
+Mio fratello ha dieci anni.
+È presto.
+Puoi ripetere?
+Buonasera, sto bene, allora a stasera!
+La farmacia è dietro l'angolo.
+perché
+Usciamo un momento a prendere aria.
+Loro hanno una casa al mare.
+Ciao, tutto ok, allora a domani!
+Lei lavora come segretaria in uno studio.
+La leonessa caccia per il branco.
+Ottimo.
+Daria e Stefano visitano la galleria d'arte moderna.
+ho sete
+Ciao, tutto a posto, buona giornata!
+La vostra città è molto antica.
+va bene così
+noi abbiamo tempo
+scusate
+Mi piace molto passeggiare nel bosco quando c'è il sole.
+basta
+La tigre siberiana vive nella neve.
+Oggi vado al lavoro.
+Filippo e Claudia ascoltano musica jazz.
+Mi sento molto felice oggi perché ho ricevuto una bellissima notizia.
+Vado a casa.
+Il server è andato in crash.
+Lei indossa un vestito rosso bellissimo.
+Il mio ufficio è al terzo piano.
+È la mia vicina di casa.
+Io mi chiamo Anna
+Noi cerchiamo un posto tranquillo per cenare.
+Che cosa mangi a pranzo?
+Oleg e Paola affittano un appartamento per le vacanze.
+Va bene, allora rimaniamo così e ci sentiamo tra qualche giorno.
+Va bene, allora a domani mattina alle nove in punto davanti alla stazione.
+Va bene, allora a tra poco.
+Piove.
+vorrei un acqua
+Lui beve solo tè senza zucchero.
+Ehi, va tutto bene, allora a domani!
+Hai la password del Wi-Fi?
+La lontra nuota nel fiume.
+Il suo zaino è blu.
+Piccolo.
+Ciao mi chiamo Kristina
+piacere
+Scusa per il ritardo, c'era un incidente sulla strada principale.
+Come ti chiami? Mi chiamo Anna.
+Il signor Serra aspetta sua moglie davanti al cinema.
+chi sei
+ciao anna.
+No, restiamo a casa.
+Sempre.
+Cosa è?
+No, il libro è noioso.
+I suoi amici sono partiti ieri.
+Piacere, sto bene, allora a stasera.
+Prego, arrivederci.
+Spero che la tua famiglia stia bene, salutali tutti da parte mia.
+A sinistra.
+Dobbiamo chiamare il fabbro.
+Grazie per tutto quello che fai.
+Come ti senti oggi?
+Ciao, tutto a posto, allora a stasera
+nessun problema
+quanto costa questo
+Dov'è la buca delle lettere?
+No, loro non sono russi.
+Sì, so nuotare bene.
+Sì, parla russo.
+Piacere, tutto ok, allora a stasera
+Ho sonno, allora vado a dormire.
+GRAZIE
+a domani.
+voglio dormire.
+Buongiorno, va tutto bene, allora a domani!
+Il bambino piange.
+Poco.
+La tua amica ha un vestito nuovo.
+come si fa?
+Pensa.
+no
+Piacere, va tutto bene, allora a stasera
+Piacere, sto bene, a presto!
+cosa fai?
+Voglio solo dire grazie.
+tu vai a scuola?
+Voglio imparare a suonare il pianoforte, è il mio sogno da bambino.
+Lei stira le camicie per suo marito.
+Il volpacchiotto esce dalla tana.
+È caro.
+buona sera a tutti
+La gallina fa le uova ogni mattina.
+A che ora?
+mi chiamo Chiara
+Non siamo sicuri di andare in vacanza quest'anno a causa del lavoro.
+Perfetto!
+Ho molti amici.
+Spero che tu possa venire alla mia festa di compleanno venerdì sera.
+Il nostro professore è molto severo oggi.
+Va bene, andiamo.
+Lui è bravo.
+mi scusi
+Andrò in Russia con la mia famiglia.
+come sta?
+dov'è il bagno
+C'è troppa gente in questo ristorante, andiamo via.
+perché ridi
+Il serpente striscia sull'erba.
+Piacere, sono pronto, a presto
+Chi è quella signora?
+Chi chiama?
+Lui corre ogni mattina nel parco vicino casa.
+mi chiamo simone
+Ho un cane e un gatto.
+Svetlana e Claudio mangiano una fetta di torta.
+dove vai
+Mi dispiace molto per questo.
+Faccio colazione alle otto.
+Buonasera, sono pronto, allora a stasera
+Il nostro giardino è pieno di fiori.
+Ho trovato un bug nel codice.
+Lei trova sempre tutto.
+che ore sono
+ciao anna
+ottimo
+Riccardo e Roberta vivono a Milano.
+Certo.
+Crepi il lupo!
+buonasera a tutti
+Ci vediamo!
+Mandami un'email con i dettagli.
+Grazie di tutto, sei stata veramente gentilissima con me oggi.
+No, non bevo il vino.
+Il ragno tesse la sua tela.
+Il signor De Luca lavora come avvocato.
+Faccio gli straordinari questa settimana.
+Un poco.
+va bene, ci vediamo dopo
+ho fame
+dove sei?
+La zebra ha le strisce nere.
+Ci vediamo dopo!
+Ehi, sono pronto, allora a domani
+Lavoro in un ufficio.
+lui come si chiama?
+Domani vado all'università.
+chi?
+Buona notte.
+Cosa fai?
+Piacere, sono pronto, buona giornata
+Oggi è il mio anniversario di matrimonio, andiamo a cena fuori.
+Sì, va bene.
+Ottimo lavoro, grazie mille.
+aspetta un attimo
+Voi mangiate carne?
+Fa caldo.
+Fabiana e Igor studiano per l'esame di russo.
+Mia figlia va alle elementari.
+No, non puoi entrare.
+L'interfaccia utente è intuitiva.
+Il cigno nuota nel laghetto.
+buon giorno
+capisco
+Anton e Daniela camminano nel bosco di betulle.
+Il toro è forte e coraggioso.
+Lo stambecco vive in montagna.
+Il nostro nuovo collega è molto bravo e impara tutto velocemente.
+mi chiamo anna
+mi chiamo olga
+Io sono felice.
+Puoi aiutarmi a portare queste borse pesanti fino al terzo piano?
+buonanotte!
+Ehi, tutto ok, allora a domani!
+Ciao, tutto a posto, buona giornata.
+No, grazie.
+Vi piace?
+No, spegni la luce.
+A domani
+Spero di sì.
+e vero
+Quando torni?
+Piacere, mi chiamo Elena e vivo a Roma.
+Alina e Gabriele comprano il pane fresco dal panettiere.
+Ehi, sono pronto, allora a stasera!
+Facciamo una foto.
+Oggi è martedì.
+Mi chiamo Igor
+Scusa, mi puoi prestare una penna? Ho bisogno di scrivere un appunto.
+Il backend usa Node.js.
+a domani
+Ciao, va tutto bene, buona giornata.
+Vostro padre è un uomo molto gentile.
+Cripta la password nel database.
+Per favore Giulia.
+Tutto andrà bene, devi solo avere un po' più di pazienza e fiducia.
+Buongiorno.
+Buongiorno, sto bene, buona giornata!
+Sì.
+vorrei un caffè
+andiamo
+Voi guardate la televisione la sera?
+Mi piace leggere libri.
+La cavalla di Elena corre nel prato.
+Ciao, tutto ok, ci vediamo dopo
+La riunione inizia tra cinque minuti.
+Il mio gatto dorme sempre.
+Ehi, tutto a posto, buona giornata!
+Buonasera a tutti.
+Il mio computer non si accende, puoi aiutarmi a capire perché?
+Grazie per tutto.
+Mi chiamo Luca
+Mi dispiace molto.
+Ciao, mi chiamo Luca
+grazie per tutto
+Ho bisogno di aiuto.
+L'agnello gioca nel prato.
+davvero?
+Dov'è il mio telefono?
+Scrivi.
+Parli russo?
+Sì, mangio la pasta.
+Buongiorno, va tutto bene, buona giornata
+Sofia studia russo con l'insegnante Petrov.
+non e vero
+oggi e lunedi
+Sì, lui è un architetto.
+Come stai Anna?
+Stampo il file e te lo porto.
+Domani nevicherà.
+Sì, aspetta un momento.
+No, non parla russo.
+Studio l'informatica.
+Sì, è un buon ristorante.
+Ciao, sto bene, ci vediamo dopo!
+Loro dicono sempre la verità.
+Anastasia e Davide prendono un caffè in piazza.
+Quanto?
+Vostra zia ci ha mandato un regalo.
+Lui legge il giornale ogni mattina.
+C'è un ottimo ristorante di pesce proprio dietro l'angolo della banca.
+Puoi chiamarmi quando arrivi alla stazione?
+Spegni la luce.
+Dopo.
+scusa
+perche
+mi chiamo luca
+io vado a casa
+parlo un po' di russo.
+Grazie mille per la bellissima serata, mi sono divertito molto.
+No.
+No, il negozio è chiuso.
+mi manchi
+Il suo capo è molto soddisfatto del lavoro.
+In bocca al lupo!
+Ciao, sto bene, ci vediamo dopo!
+Buonasera, sono pronto, a presto
+Buon giorno!
+Che bella foto.
+Hai visto il mio portafoglio? Era qui sul tavolo.
+Voglio imparare il russo.
+Puoi ripetere per favore?
+Ho visto un bellissimo arcobaleno dopo la pioggia di oggi.
+Mi fa male la gola.
+nulla
+Buonasera, tutto a posto, a presto.
+La banca apre alle nove e chiude alle quattro.
+La balena è un mammifero gigante.
+buongiorno a tutti
+Qualcosa.
+Il tigrotto gioca con la madre.
+Mi chiamo Simone
+Il cavallo di Pietro è marrone.
+Scusa per il ritardo.
+Niente di speciale.
+Questa borsa è troppo pesante per te, la porto io.
+mi chiamo francesca
+A presto
+mi chiamo alessandro
+dove sei
+È incredibile.
+Buongiorno, tutto ok, ci vediamo dopo.
+I tuoi colleghi sono molto simpatici.
+molto piacere
+sono stanca
+Il volo è stato tranquillo.
+Lei cucina per tutta la famiglia.
+grazie mille
+I miei genitori sono giovani.
+Mi piace molto.
+Piacere, sono pronto, allora a stasera!
+Ehi, sono pronto, buona giornata!
+È il mio insegnante.
+È il vento tra gli alberi.
+Voi studiate russo da molto tempo?
+In inverno fa molto freddo.
+che fai?
+voi andate al cinema?
+Tutto ok, allora buon lavoro a tutti.
+No, non è pronto.
+Loro sono qui.
+ciao!
+L'elefantessa guida la mandria.
+Oggi è una bella giornata, vero?
+Mi manchi tanto, quando ci vediamo di nuovo?
+Noi compriamo il pane fresco ogni giorno.
+piove oggi
+No, Maria non è a casa.
+Voi preferite il mare o la montagna?
+La signora Pavlova insegna musica al conservatorio.
+Sì, il dottore è arrivato.
+Per favore aiutami con questo.
+Dovrò chiedere il visto.
+Zitto, per favore.
+Che film danno?
+lui ha un libro
+Buonasera, sto bene, allora a domani
+Piacere, tutto a posto, allora a domani
+No, non guardare.
+Sì, è una bella giornata.
+grazie per tutto.
+Ottimo lavoro!
+sto male
+No, voglio restare.
+Ciao Anna.
+Sono stanca.
+Ciao, scusa se ti disturbo ancora.
+Il mio gatto dorme sempre sulla mia tastiera.
+In autunno piove spesso.
+Andrei e Giulia passeggiano lungo il fiume Neva.
+Siamo tutti bagnati.
+Le scale sono stancanti.
+Vera e Michele vanno a teatro a vedere un'opera.
+Il professor Barbieri corregge i compiti di Elena.
+Sono felice perché oggi è finalmente venerdì.
+Ecco il resto.
+Oggi piove, restiamo a casa.
+Piacere, sto bene, ci vediamo dopo.
+Ti va di venire a fare shopping con me sabato pomeriggio?
+Chiara e Davide aspettano il treno per Napoli.
+Piacere, sono pronto, a presto!
+La rondine torna in primavera.
+Le vostre macchine sono parcheggiate fuori.
+buon viaggio
+Se ti senti stanco, dovresti riposare un po' di più questo weekend.
+Buongiorno, tutto a posto, allora a domani
+buon viaggio.
+Mi chiamo Svetlana
+Il computer è molto lento oggi, forse devo riavviarlo.
+Lui mi ha dato il suo numero di telefono.
+La dottoressa Gatti lavora in questo ospedale.
+Piacere, tutto a posto, allora a domani.
+Buongiorno a tutti.
+quando?
+Capisco.
+Piacere, sono pronto, buona giornata.
+Buongiorno, va tutto bene, ci vediamo dopo
+La penna è nello zaino.
+Buon viaggio e divertiti!
+Igor e Anna prendono un taxi per andare all'aeroporto.
+Mi chiamo Vladimir
+Mi sveglio alle sette.
+ci vediamo
+I suoi fratelli studiano medicina a Roma.
+Il pappagallo ripete le parole.
+Il gufo vede bene di notte.
+Io sono Luca.
+È vero.
+Sei pronto per la presentazione?
+Siediti.
+piove
+Grazie, allora a domani pomeriggio.
+Tutto ok, allora ci vediamo lì.
+Ciao, sono pronto, buona giornata
+Valentina e Luca visitano il museo con Lorenzo.
+non mi piace.
+La musica è troppo forte, non sento niente.
+Ekaterina scrive un'email importante al signor Ferrari.
+Sto scaricando un file importante.
+Il pavone mostra le sue penne.
+Il caffè in questo bar è il migliore di tutta la città.
+Piacere, io sono Marco e tu?
+a casa
+Adesso.
+Tatiana legge un romanzo di Italo Calvino.
+grazie.
+Ciao, sto bene, a presto
+andiamo subito
+io mi chiamo Anna
+va bene così.
+Il riccio si chiude a palla.
+No, è una storia inventata.
+Oggi è lunedì
+Dove?
+Il caffè è amaro.
+C'è un ufficio postale qui vicino?
+oggi è lunedì.
+scusa maria
+Voi giocate a tennis nel fine settimana?
+È presto, c'è tempo.
+a presto.
+La bambina ride.
+Buonasera, va tutto bene, buona giornata.
+C'è molto vento.
+La giraffa ha un collo lunghissimo.
+Il nostro quartiere è molto silenzioso.
+buon giorno!
+quanto costa questo?
+La cagna di Maria è molto dolce.
+Ho sete.
+Sposiamoci!
+Quanto costa?
+Aspetto il tuo messaggio per sapere a che ora ci vediamo.
+Noi balliamo la salsa.
+Mi chiamo Olga
+Buongiorno a te!
+Riavvia il computer.
+Sto bene.
+Ti va di venire a correre con me domani mattina presto?
+buona notte.
+Ciao, buonasera.
+Ciao, come va?
+buon giorno e buona giornata
+Il signor Esposito guida una macchina blu.
+Piacere di conoscerti, Luca.
+La vostra idea è geniale.
+Posso entrare?
+Piacere, sono pronto, buona giornata
+Buonasera, tutto ok, allora a stasera
+buonasera a tutti voi.
+Perfetto, allora a presto.
+Anch'io sono felice di conoscerti.
+Piacere.
+Tutto ok, non è successo niente di grave, non ti preoccupare più.
+La lucertola prende il sole.
+Questa sedia è scomoda.
+mi chiamo Boris
+Buonasera, sto bene, ci vediamo dopo
+posso entrare
+veramente
+mi chiamo paolo
+mi chiamo elena
+Buonasera, va tutto bene, a presto!
+No, non lo compro.
+No, non capisco.
+No, oggi non è lunedì.
+Ciao mi chiamo Luca
+Chi sei?
+Nessuno.
+Sì, guarda quel cane.
+Stasera cucino io, cosa preferisci mangiare?
+Marina e Roberto invitano Viktor alla loro festa.
+Dove andrai quest'estate?
+mi chiamo marco
+Non importa.
+Grazie mille per il tuo aiuto prezioso, non avrei saputo come fare senza di te.
+Ti amo.
+Ho passato tutto il pomeriggio a leggere un libro bellissimo.
+Viktoria e Marco studiano la lingua italiana a scuola.
+Irina e Nicola guardano il tramonto sul mare.
+che ora è
+Prendi questa medicina due volte al giorno.
+No, non sono stanco.
+Che fai?
+Noi portiamo il cibo.
+Ieri ho mangiato una pizza molto buona.
+Domani andrò al mare con i miei amici.
+Settimana scorsa abbiamo visto un film bellissimo.
+L'anno prossimo visiterò la Russia per la prima volta.
+Stamattina ho bevuto un caffè amaro.
+Stasera uscirò a cena con mia moglie.
+Ieri era giovedì e pioveva molto forte.
+Tra due giorni sarà il compleanno di mio fratello.
+Ho già finito il lavoro che dovevo fare.
+Comprerò una macchina nuova tra qualche mese.
+Ho incontrato Luca in centro due ore fa.
+Andremo al cinema sabato sera, ti va?
+Ho dormito molto bene stanotte, mi sento riposato.
+Farà molto caldo la prossima settimana.
+Abbiamo parlato a lungo di questo progetto ieri.
+Ti chiamerò appena arriverò alla stazione.
+L'estate scorsa siamo andati in vacanza in Sicilia.
+Dovrò studiare molto per l'esame di lunedì.
+Ho perdere il portafoglio ieri sera al ristorante.
+Tutto andrà bene, vedrai.
+Ho scritto un'email al capo stamattina presto.
+Ci vedremo presto, spero.
+Ieri il mio gatto ha dormito tutto il giorno.
+Domenica prossima faremo una gita in montagna.
+Ho comprato questo libro un mese fa a Parigi.
+Ti manderò un messaggio tra dieci minuti.
+Abbiamo passato una bellissima serata insieme.
+Il treno partirà tra cinque minuti, corriamo!
+Ho dimenticato le chiavi in ufficio ieri.
+Spero che domani ci sia il sole.
+Ho parlato con tua madre stamattina al telefono.
+Quando tornerai a casa stasera?
+Ho visto un arcobaleno meraviglioso ieri pomeriggio.
+Cosa farai durante le vacanze di Natale?
+Abbiamo mangiato troppo alla festa di ieri.
+Mio figlio inizierà la scuola l'anno prossimo.
+Ho trovato un bug nel codice un'ora fa.
+Risolverò il problema domani mattina.
+Ieri faceva molto freddo fuori.
+Sarò pronto tra un attimo, aspettami.
+Ho ricevuto il tuo pacco proprio adesso.
+Ti piacerà molto quel film, ne sono sicuro.
+Siamo stati molto felici di vedervi ieri.
+Andrò in farmacia prima di tornare a casa.
+Ho preso una medicina per il mal di testa.
+Ti sentirai meglio dopo un po' di riposo.
+Ieri sera ho letto un libro molto interessante.
+Invierò il file entro stasera alle sei.
+Abbiamo camminato molto nel parco stamattina.
+Ci divertiremo molto alla festa di domani.
+Mio fratello andrà all'università l'anno prossimo.
+Sua sorella ha comprato una casa bellissima due anni fa.
+I nostri genitori sono partiti per le vacanze ieri mattina.
+Vostra zia cucinerà una torta deliziosa per la festa.
+Il loro cane ha abbaiato tutta la notte scorsa.
+Il signor Rossi ha lavorato in banca per trent'anni.
+La signora Bianchi abiterà in centro città da domani.
+Luca e Anna si sono sposati sabato scorso a Roma.
+Sofia studierà russo a Mosca durante l'estate.
+Alessandro ha scritto un libro sulla sua vita.
+Francesca ha chiamato sua nonna Caterina ieri sera.
+Pietro e Paolo giocheranno a scacchi domani pomeriggio.
+Elena incontrerà il signor Moretti alle dieci in punto.
+Il professor Romano ha spiegato la lezione di storia ieri.
+Giorgio e Anna visiteranno il museo del Louvre a Parigi.
+Lucia ha perso il suo ombrello sul treno stamattina.
+Riccardo e Roberta vivranno a Milano l'anno prossimo.
+La signora Colombo ha trovato il suo gatto nel giardino.
+Marco e Sara hanno studiato tutto il giorno in biblioteca.
+Il signor Esposito ha venduto la sua vecchia macchina rossa.
+Chiara e Davide aspetteranno il bus alla fermata.
+Matteo ha inviato un'email importante al suo capo.
+Giulia e Federico hanno adottato un cane di nome Max.
+Il signor Marino venderà i fiori al mercato domani.
+Marta e Roberto hanno mangiato la pizza ieri sera.
+La dottoressa Gatti visiterà il paziente tra un'ora.
+Simone e Veronica hanno guardato un film di Fellini.
+Il signor Bruno ha pulito tutto il giardino sabato.
+Valentina e Luca andranno al concerto di musica jazz.
+Il professor Barbieri correggerà i compiti entro lunedì.
+Filippo e Claudia hanno ascoltato la radio stamattina.
+La signora Ricci ha preparato una cena squisita ieri.
+Giovanni e Michela hanno corso nel parco due ore fa.
+Il signor Galli leggerà il giornale al bar domani.
+Alessia e Gabriele hanno comprato il pane fresco.
+Il signor Costa ha affittato un appartamento a Venezia.
+Paola e Michele andranno in vacanza in Sicilia a luglio.
+Il dottor Longo ha ricevuto molti pazienti oggi.
+Enrico e Silvia hanno giocato a tennis ieri pomeriggio.
+La signora Fontana ha aspettato il bus per mezz'ora.
+Giacomo e Beatrice ceneranno al ristorante stasera.
+Il signor Riva ha riparato la mia bicicletta rotta.
+Erica e Tommaso hanno parlato a lungo del loro futuro.
+Il signor Leone ha fumato l'ultima sigaretta ieri.
+Serena e Nicola guarderanno le stelle stanotte.
+Il signor Villa ha venduto la sua vecchia casa in campagna.
+Manuela e Alberto hanno bevuto un caffè insieme.
+Il signor Moretti ha fischiato una canzone tutto il giorno.
+Cinzia e Roberto hanno invitato tutti alla loro festa.
+Il signor Russo ha comprato il giornale stamattina presto.
+Ieri Ivan ha visitato il Cremlino a Mosca.
+La signora Kuznetsova parlerà con il direttore domani.
+Dimitri ha lavorato tutto il giorno al ristorante.
+Olga e Paolo sono andati a fare la spesa ieri pomeriggio.
+Il signor Sokolov aspetterà l'autobus delle otto.
+Ekaterina ha scritto una lettera per il suo amico italiano.
+Maxim e Sofia hanno mangiato il sushi sabato scorso.
+Tatiana leggerà il nuovo romanzo la prossima settimana.
+Igor e Anna hanno preso un taxi per tornare a casa.
+Svetlana lavorerà come interprete alla fiera di Milano.
+Andrei e Giulia hanno passeggiato nel parco ieri.
+Il signor Volkov vivrà in Italia per tre mesi.
+Viktoria e Marco hanno studiato l'italiano per due anni.
+Artem ha comprato i biglietti per il teatro ieri sera.
+Natalia e Luca guarderanno un film russo stasera.
+Yury e Roberta hanno bevuto una tazza di tè caldo.
+La signora Pavlova insegnerà musica il prossimo anno.
+Daria e Stefano hanno visitato la mostra fotografica.
+Nikolai e Francesca hanno giocato a calcio lunedì scorso.
+Anastasia e Davide prenderanno un caffè in centro.
+Il signor Smirnov ha guidato il camion tutta la notte.
+Yelena e Roberto hanno sciato molto durante le vacanze.
+Sergei e Valentina ceneranno a casa di amici domani.
+Ludmila e Michele hanno visitato il museo ieri mattina.
+Il professor Ivanov correggerà i test entro domani sera.
+Boris e Claudia hanno ascoltato un concerto jazz.
+La signora Romanova preparerà i blini per la festa.
+Gennady e Michela hanno corso la maratona un mese fa.
+Il signor Morozov ha letto il giornale stamattina al bar.
+Alina e Gabriele compreranno il pane fresco domani.
+Oleg e Paola hanno affittato una casa al mare.
+Vera e Michele andranno a teatro sabato sera.
+Il dottor Lebedev ha ricevuto molti pazienti ieri.
+Yevgeny e Silvia giocheranno a tennis domani mattina.
+La signora Vasilyeva ha aspettato la sua amica per un'ora.
+Aleksei e Beatrice hanno cenato in una pizzeria ieri.
+Il signor Popova ha riparato la televisione rotta.
+Kira e Tommaso parleranno del loro viaggio in Russia.
+Il signor Mikhailov ha fumato una sigaretta sul balcone.
+Irina e Nicola hanno guardato il tramonto sulla spiaggia.
+Il signor Novikov venderà la sua vecchia macchina rossa.
+Oksana e Alberto hanno bevuto un caffè al bar.
+Il signor Fedorov ha fischiato una melodia russa.
+Marina e Roberto inviteranno Viktor alla loro festa.
+Il signor Solovyov ha comprato dei fiori bellissimi.
+Anton e Daniela hanno camminato nel bosco di betulle.
+Il signor Kozlov parlerà in italiano durante la riunione.
+Larisa e Massimo hanno ballato il valzer ieri sera.
+Il signor Abramov ha chiuso la porta con la chiave.
+Galina e Igor studieranno per l'esame di architettura.
+Il signor Belov ha aspettato sua figlia fuori da scuola.
+Lyubov e Valerio hanno comprato i souvenir per noi.
+Il signor Voronin berrà una tazza di tè tra poco.
+Inna e Giorgio hanno ascoltato le canzoni di Sanremo.
+Il signor Zakharov ha lavorato come ingegnere per anni.
+Taisiya e Renato visiteranno la Piazza Rossa a giugno.
+Il signor Orlov ha portato il cane nel parco ieri.
+Svetlana e Claudio hanno mangiato una fetta di torta.
+Il signor Kuzmin ha studiato la storia dell'arte italiana.
+Elena e Pietro hanno guardato le foto ieri sera.
+In passato leggevo molti fumetti, ora preferisco i romanzi.
+L'anno prossimo compreremo una casa più grande in periferia.
+Ieri sera ho visto una stella cadente nel cielo limpido.
+Tra un mese inizierò un nuovo corso di lingua russa online.
+Stamattina ho dimenticato di spegnere la luce in cucina.
+Stasera cucinerò un piatto tipico italiano per i miei ospiti.
+Due anni fa siamo andati in vacanza in Portogallo.
+Domani mattina dovrò andare dal dentista alle otto.
+Ho già preparato tutto per il nostro viaggio di domani.
+Tra pochi minuti il film inizierà, mettiamoci a sedere.
+Ieri ho incontrato un vecchio amico che non vedevo da anni.
+Sabato prossimo andremo a visitare una mostra d'arte moderna.
+Ho dormito male stanotte a causa del forte vento fuori.
+Domenica farà bel tempo, quindi faremo una gita al lago.
+Abbiamo parlato molto ieri del nostro futuro lavorativo.
+Ti scriverò un messaggio appena avrò finito la riunione.
+L'estate scorsa è stata la più calda degli ultimi dieci anni.
+Dovrò studiare molto per superare l'esame di informatica.
+Ho perso le chiavi di casa proprio davanti alla porta ieri.
+Tutto si risolverà per il meglio, ne sono assolutamente certo.
+Ho inviato l'email al professore questa mattina presto.
+Ci vedremo di nuovo molto presto, promesso!
+Ieri il mio cane ha giocato tutto il giorno con la palla.
+La prossima settimana faremo un'escursione in montagna.
+Ho comprato questo orologio tre anni fa in Svizzera.
+Ti richiamerò tra circa mezz'ora, va bene?
+Abbiamo passato un weekend indimenticabile al mare.
+Il treno arriverà tra poco, prepariamo i bagagli.
+Ieri ho dimenticato l'ombrello sul bus e mi sono bagnato.
+Spero che il tempo sia bello durante il nostro weekend.
+Ho parlato con mio padre ieri sera e mi ha salutato.
+Quando tornerai a trovarci? Ci manchi molto.
+Ho visto un documentario molto interessante ieri in TV.
+Cosa farai per capodanno quest'anno? Hai già programmi?
+Abbiamo mangiato una pizza deliziosa in quel nuovo locale.
+Mio figlio inizierà a suonare il violino l'anno prossimo.
+Ho trovato un errore nel rapporto proprio all'ultimo momento.
+Correggerò tutto domani mattina appena arrivo in ufficio.
+Ieri sera faceva un freddo pungente e c'era molta nebbia.
+Sarò pronto tra cinque minuti, puoi aspettarmi un attimo?
+Ho ricevuto la tua lettera proprio oggi pomeriggio.
+Ti piacerà molto il regalo che ho scelto per te.
+Siamo stati davvero felici di aver passato del tempo con voi.
+Andrò a fare la spesa prima che il supermercato chiuda.
+Ho preso un'aspirina perché avevo un forte mal di testa.
+Ti sentirai molto meglio dopo una bella dormita.
+Ieri sera ho letto un articolo di giornale molto profondo.
+Invierò la candidatura entro la scadenza di domani.
+Abbiamo camminato per ore nel bosco stamattina.
+Ci divertiremo un sacco alla festa di compleanno di sabato.
+Anastasia è una bella ragazza
+Marika è una brutta ragazza
+Katia è una donna affascinante
+Livia è una donna veramente sensuale

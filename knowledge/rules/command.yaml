@@ -11,7 +11,20 @@ rules:
     default: taxi_ride_response
 
   book_flight:
-    default: book_flight_response
+    slots:
+      LOCATION:
+        required: true
+        type: string
+        entity: LOCATION
+      DEPARTURE:
+        required: true
+        type: string
+        entity: DEPARTURE
+    wait:
+      LOCATION: book_flight_ask_destination_response
+      DEPARTURE: book_flight_ask_departure_response
+    default: __book_flight
+    fallback: book_flight_unsupported_response
 
   book_hotel:
     default: book_hotel_response

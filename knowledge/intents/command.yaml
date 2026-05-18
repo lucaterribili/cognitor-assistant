@@ -121,18 +121,92 @@ nlu:
     - volo per [Roma](LOCATION)
     - prenota per [Milano](LOCATION)
     - cerca biglietti
-    - prenota volo da [Roma](LOCATION) a [Londra](LOCATION)
+    - prenota volo da [Roma](DEPARTURE) a [Londra](LOCATION)
     - volo per [domani](DATE)
     - biglietto aereo per [oggi](DATE)
-    - cerca voli da [Venezia](LOCATION)
+    - cerca voli da [Venezia](DEPARTURE)
     - prenota andata e ritorno per [Paris](LOCATION)
     - vorrei un volo [martedì](DATE)
-    - biglietto aereo da [Milano](LOCATION) a [Barcellona](LOCATION)
+    - biglietto aereo da [Milano](DEPARTURE) a [Barcellona](LOCATION)
     - prenota un volo per [stasera](TIME)
     - cerca voli per [giugno](DATE)
     - prenota volo di ritorno
     - volo solo andata
     - biglietto aereo andata e ritorno
+
+  - intent: choose_flight_destination
+    examples:
+    - "[Roma](LOCATION)"
+    - "[Milano](LOCATION)"
+    - "[Napoli](LOCATION)"
+    - "[Torino](LOCATION)"
+    - "[Venezia](LOCATION)"
+    - "[Firenze](LOCATION)"
+    - "[Palermo](LOCATION)"
+    - "[Londra](LOCATION)"
+    - "[Parigi](LOCATION)"
+    - "[Madrid](LOCATION)"
+    - "[Berlino](LOCATION)"
+    - "[Barcellona](LOCATION)"
+    - "[New York](LOCATION)"
+    - "[Tokyo](LOCATION)"
+    - "[Mosca](LOCATION)"
+    - "[Amsterdam](LOCATION)"
+    - "[Dublino](LOCATION)"
+    - "[Vienna](LOCATION)"
+    - "[Praga](LOCATION)"
+    - "[Lisbona](LOCATION)"
+    - arrivo a [Roma](LOCATION)
+    - arrivo a [Milano](LOCATION)
+    - arrivo a [Londra](LOCATION)
+    - arrivo a [Parigi](LOCATION)
+    - voglio arrivare a [Roma](LOCATION)
+    - voglio arrivare a [Milano](LOCATION)
+    - voglio arrivare a [Barcellona](LOCATION)
+    - destinazione [Roma](LOCATION)
+    - destinazione [Milano](LOCATION)
+    - destinazione [Londra](LOCATION)
+    - la destinazione è [Roma](LOCATION)
+    - vado a [Roma](LOCATION)
+    - vado a [Londra](LOCATION)
+    - vado a [Parigi](LOCATION)
+    - vado a [Tokyo](LOCATION)
+    - vado a [Amsterdam](LOCATION)
+
+  - intent: choose_flight_departure
+    examples:
+    - da [Roma](DEPARTURE)
+    - da [Milano](DEPARTURE)
+    - da [Napoli](DEPARTURE)
+    - da [Venezia](DEPARTURE)
+    - da [Torino](DEPARTURE)
+    - da [Firenze](DEPARTURE)
+    - da [Palermo](DEPARTURE)
+    - da [Bologna](DEPARTURE)
+    - da [Londra](DEPARTURE)
+    - da [Parigi](DEPARTURE)
+    - da [Madrid](DEPARTURE)
+    - da [Barcellona](DEPARTURE)
+    - da [Mosca](DEPARTURE)
+    - da [Berlino](DEPARTURE)
+    - parto da [Roma](DEPARTURE)
+    - parto da [Milano](DEPARTURE)
+    - parto da [Napoli](DEPARTURE)
+    - parto da [Palermo](DEPARTURE)
+    - parto da [Mosca](DEPARTURE)
+    - parto da [Berlino](DEPARTURE)
+    - io parto da [Roma](DEPARTURE)
+    - io parto da [Milano](DEPARTURE)
+    - io parto da [Firenze](DEPARTURE)
+    - partenza da [Roma](DEPARTURE)
+    - partenza da [Milano](DEPARTURE)
+    - partenza da [Venezia](DEPARTURE)
+    - mi trovo a [Roma](DEPARTURE)
+    - mi trovo a [Milano](DEPARTURE)
+    - sono a [Roma](DEPARTURE)
+    - sono a [Napoli](DEPARTURE)
+
+
   - intent: book_hotel
     examples:
     - prenota hotel

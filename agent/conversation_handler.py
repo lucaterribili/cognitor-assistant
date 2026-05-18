@@ -64,21 +64,33 @@ class ConversationHandler:
         slot_name = session.waiting_for_slot["slot"]
         pending_intent = session.waiting_for_slot["intent"]
 
+        # Prova a estrarre il valore dello slot tramite NER
+        prediction = self.agent.predict(user_input)
+        entities = prediction.get('entities', [])
+        ner_value = self.agent.slot_manager.extractor.extract_from_entities(slot_name, entities)
+
+        # Usa il valore NER se trovato, altrimenti cade back sul testo grezzo
+        slot_value = ner_value if ner_value else user_input
+        if ner_value:
+            print(f"[INPUTABLE] NER → slot '{slot_name}' estratto: '{ner_value}'")
+        else:
+            print(f"[INPUTABLE] NER non ha trovato '{slot_name}', uso testo grezzo")
+
         # Valida l'input usando lo SlotManager (data-driven)
-        if not self.agent.slot_manager.validate_slot_value(pending_intent, slot_name, user_input):
+        if not self.agent.slot_manager.validate_slot_value(pending_intent, slot_name, slot_value):
             print("\nCOGNITOR: Selezione non valida. Riprova.\n")
             session.add_message("user", user_input)
             return
 
         # Esegui il casting prima di salvare nel contesto
-        casted_value = self.agent.rule_interpreter.cast_slot_value(pending_intent, slot_name, user_input)
+        casted_value = self.agent.rule_interpreter.cast_slot_value(pending_intent, slot_name, slot_value)
 
         # Aggiorna il contesto usando SlotManager per consistenza
         session.update_context(slot_name, casted_value)
         session.update_context(f"{slot_name}_UNSUPPORTED", False)
         session.waiting_for_slot = None
         session.agent_mode = "predictable"
-        print(f"[INPUTABLE] Slot '{slot_name}' impostato manualmente = '{casted_value}' (type: {type(casted_value).__name__})")
+        print(f"[INPUTABLE] Slot '{slot_name}' impostato = '{casted_value}' (type: {type(casted_value).__name__})")
 
         # Genera risposta (passa la history completa per la TED policy)
         response, wait_for_slot, bot_slots = self.agent.get_response(

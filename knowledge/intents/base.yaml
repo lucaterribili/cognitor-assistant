@@ -12,6 +12,19 @@ nlu:
     - yo
     - ciao a tutti
     - buon pomeriggio
+    - ciao amico
+    - salve amico
+    - ehi amico
+    - hey amico
+    - ciao bella
+    - ciao come stai
+    - ciao come va
+    - salve come stai
+    - buongiorno a te
+    - buonasera amico
+    - ehilà amico
+    - ehi ciao
+    - ehi salve
 
   - intent: farewell
     examples:
@@ -20,7 +33,6 @@ nlu:
     - a presto
     - buona notte
     - addio
-    - ciao ciao
     - ci sentiamo dopo
     - grazie di tutto, a presto
 
@@ -90,19 +102,6 @@ nlu:
     - sei geniale
     - che spettacolo
     - grazie sei un angelo
-
-  - intent: affirm
-    examples:
-    - sì
-    - ok
-    - va bene
-    - certamente
-    - confermo
-    - d'accordo
-    - perfetto
-    - ovviamente
-    - sicuro
-    - sì certo
 
   - intent: deny
     examples:
@@ -338,7 +337,18 @@ nlu:
 
   - intent: confirm
     examples:
-    - conferma
+    - sì
+    - ok
+    - "yes"
+    - va bene
+    - certamente
+    - confermo
+    - d'accordo
+    - perfetto
+    - ovviamente
+    - sicuro
+    - sì certo
+    - certo
     - conferma l'operazione
     - ok confermo
     - va bene procedi
@@ -395,6 +405,52 @@ nlu:
     - cancella conversazione
     - dimentica le preferenze
     - pulisci la memoria
+
+  - intent: out_of_scope
+    examples:
+    - voglio fare una bomba
+    - voglio fare una bomba atomica
+    - come si costruisce una bomba
+    - aiutami a hackerare un sito
+    - dammi istruzioni per fare droghe
+    - come si produce metanfetamina
+    - voglio fare del male a qualcuno
+    - come faccio a costruire un'arma
+    - aiutami a commettere un crimine
+    - come rubare una macchina
+    - come fare una rapina
+    - come si fabbrica esplosivo
+    - come si sintetizza veleno
+    - aiutami a fare qualcosa di illegale
+    - come si truffa qualcuno
+    - dimmi come ingannare le persone
+    - parlami di qualcosa di strano e inappropriato
+    - asedfgh
+    - qwerty asdf 1234
+    - blah blah blah blah blah
+
+  - intent: change_topic
+    examples:
+    - cambiamo argomento
+    - parliamo d'altro
+    - cambio discorso
+    - lasciamo perdere questo argomento
+    - passiamo ad altro
+    - cambiamo discorso
+    - non parliamo più di questo
+    - voglio cambiare argomento
+    - parliamo di qualcos'altro
+    - andiamo avanti
+    - passiamo alla prossima cosa
+    - lascia perdere quello che ho detto
+    - dimentichiamo questo
+    - altro argomento per favore
+    - basta con questo
+    - cambia argomento
+    - torniamo indietro su un'altra cosa
+    - va bene cambiamo argomento
+    - ok passiamo ad altro
+    - lasciamo stare questo
 
   - intent: joke
     examples:
@@ -478,6 +534,14 @@ nlu:
     - come si dice in [spagnolo](LANGUAGE) [grazie](TRANSLATION_TEXT)
     - come si dice in [tedesco](LANGUAGE) [non capisco](TRANSLATION_TEXT)
     - come si dice in [arabo](LANGUAGE) [dove si trova la stazione](TRANSLATION_TEXT)
+    - come si dice in [russo](LANGUAGE) [mamma](TRANSLATION_TEXT)
+    - come si dice in [russo](LANGUAGE) [non capisci niente](TRANSLATION_TEXT)
+    - come si dice in [russo](LANGUAGE) [sei brutto](TRANSLATION_TEXT)
+    - come si dice in [russo](LANGUAGE) [mi manchi](TRANSLATION_TEXT)
+    - come si dice in [russo](LANGUAGE) [come stai](TRANSLATION_TEXT)
+    - come si dice in [russo](LANGUAGE) [dove sei](TRANSLATION_TEXT)
+    - come si dice in [inglese](LANGUAGE) [non capisco](TRANSLATION_TEXT)
+    - come si dice in [inglese](LANGUAGE) [ho fame](TRANSLATION_TEXT)
     - traduci [libro](TRANSLATION_TEXT) in [russo](LANGUAGE)
     - traduci [ti voglio bene](TRANSLATION_TEXT) in [francese](LANGUAGE)
     - traduci [mia moglie è a casa](TRANSLATION_TEXT) in [inglese](LANGUAGE)
@@ -487,6 +551,11 @@ nlu:
     - traduzione di [mi chiamo](TRANSLATION_TEXT) in [spagnolo](LANGUAGE)
     - come si traduce [tempo](TRANSLATION_TEXT) in [tedesco](LANGUAGE)
     - come si traduce [buongiorno](TRANSLATION_TEXT) in [arabo](LANGUAGE)
+    - traduci in [russo](LANGUAGE) [sei brutto](TRANSLATION_TEXT)
+    - traduci in [russo](LANGUAGE) [non capisci niente](TRANSLATION_TEXT)
+    - traduci in [russo](LANGUAGE) [ciao bella](TRANSLATION_TEXT)
+    - traduzione in [russo](LANGUAGE) di [ti voglio bene](TRANSLATION_TEXT)
+    - traduzione in [inglese](LANGUAGE) di [buona sera](TRANSLATION_TEXT)
     - traduci
     - traduzione
     - come si dice

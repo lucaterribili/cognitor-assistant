@@ -18,6 +18,7 @@ class NERMarkupParser:
                     {"start": 18, "end": 22, "entity": "LOCATION", "value": "Roma"},
                 ])
         """
+        text = str(text)
         clean_text = ""
         entities = []
         last_end = 0

@@ -4,6 +4,7 @@ Questo modulo sostituisce la logica hardcoded con un approccio data-driven.
 
 Completamente autonomo: deduce tutto dalle rules JSON senza configurazioni esterne.
 """
+import re
 from typing import Optional, Any
 
 
@@ -82,6 +83,36 @@ class SlotExtractor:
                 return entity.get('value')
 
         return None
+
+    def extract_from_entities_and_index(
+        self,
+        slot_name: str,
+        entities: list[dict],
+        exclude_indexes: set[int] | None = None
+    ) -> tuple[Optional[str], int | None]:
+        """
+        Estrae il valore di uno slot dalle entità NER e ritorna anche l'indice dell'entità usata.
+
+        Args:
+            slot_name: Nome dello slot da estrarre
+            entities: Lista di entità dal NER
+            exclude_indexes: Indici delle entità già utilizzate
+
+        Returns:
+            Tuple[value, index] dove index è None se non trovato
+        """
+        entity_type = self.get_slot_entity_type(slot_name)
+        if not entity_type:
+            return None, None
+
+        entity_type_lower = entity_type.lower()
+        for idx, entity in enumerate(entities):
+            if exclude_indexes and idx in exclude_indexes:
+                continue
+            if entity.get('entity', '').lower() == entity_type_lower:
+                return entity.get('value'), idx
+
+        return None, None
 
     def get_valid_values_for_slot(self, intent: str, slot_name: str) -> list[str]:
         """
@@ -239,10 +270,29 @@ class SlotContextManager:
 
         # Se ci sono slot in comune tra intent consecutivi
         consecutive_slots = current_slots_real & previous_slots_real
+        used_entity_indexes: set[int] = set()
+
+        # Pre-estrai lingua per il fallback translate (usata sotto)
+        ner_language = next(
+            (e.get('value') for e in entities if e.get('entity', '').upper() == 'LANGUAGE'),
+            None
+        )
 
         for slot_name in current_slots_real:
-            # Estrai valore dalle entità
-            extracted_value = self.slot_extractor.extract_from_entities(slot_name, entities)
+            # Estrai valore dalle entità, evitando di riutilizzare la stessa entità per più slot
+            extracted_value, extracted_index = self.slot_extractor.extract_from_entities_and_index(
+                slot_name, entities, exclude_indexes=used_entity_indexes
+            )
+            if extracted_index is not None:
+                used_entity_indexes.add(extracted_index)
+
+            # Fallback intelligente per TRANSLATION_TEXT quando il NER è insufficiente
+            if intent == 'translate' and slot_name == 'TRANSLATION_TEXT':
+                regex_value = self._extract_translate_fallback(user_input, ner_language or session.context.get('LANGUAGE'))
+                if regex_value and (not extracted_value or len(regex_value) > len(extracted_value)):
+                    extracted_value = regex_value
+                    print(f"[SlotManager] TRANSLATION_TEXT: regex fallback → '{extracted_value}'")
+
             print(f"[SlotManager] slot='{slot_name}' → extracted='{extracted_value}' | consecutivo={slot_name in consecutive_slots}")
 
             # Caso 1: Intent consecutivi con stesso slot
@@ -256,6 +306,57 @@ class SlotContextManager:
                 self._handle_new_slot_value(
                     session, intent, slot_name, extracted_value
                 )
+            elif intent == 'translate' and slot_name == 'TRANSLATION_TEXT' and previous_intent != 'translate':
+                # Nuova richiesta di traduzione da un intent diverso e NER non ha trovato nulla:
+                # azzera il valore precedente per forzare il bot a chiedere cosa tradurre
+                session.update_context(slot_name, None)
+                print(f"[SlotManager] TRANSLATION_TEXT azzerato (nuova richiesta translate senza estrazione)")
+
+    def _extract_translate_fallback(self, user_input: str, language: str = None) -> str | None:
+        """
+        Estrae il testo da tradurre tramite regex quando il NER è insufficiente.
+
+        Strategie (in ordine di priorità):
+        1. Testo tra virgolette/apici → es. traduci in russo 'Sei brutto'
+        2. Testo dopo il nome della lingua → es. come si dice in russo non capisci niente
+        3. Testo dopo trigger words, rimosse lingua e preposizioni
+        """
+        text = user_input.strip()
+
+        # Priorità 1: testo tra virgolette o apici
+        match = re.search(r'["""\'](.+?)["""\']', text)
+        if match:
+            return match.group(1).strip()
+
+        # Priorità 2: testo dopo la lingua → "in LANGUAGE <testo>"
+        known_langs = [
+            'russo', 'inglese', 'francese', 'spagnolo', 'tedesco', 'arabo',
+            'cinese', 'italiano', 'portoghese', 'giapponese', 'coreano', 'olandese',
+        ]
+        langs_to_check = [language.lower()] if language else known_langs
+        for lang in langs_to_check:
+            pattern = rf'\b{re.escape(lang)}\b\s+(.+?)(?:\s*[?!.]?\s*$)'
+            m = re.search(pattern, text, re.IGNORECASE)
+            if m:
+                candidate = m.group(1).strip(' ?!.,')
+                if candidate:
+                    return candidate
+
+        # Priorità 3: rimuovi trigger words e lingua, il resto è il testo
+        cleaned = text
+        triggers = [
+            'come si dice in', 'come si traduce in', 'come si dice',
+            'come si traduce', 'traduzione di', 'traduzione', 'traduci in', 'traduci',
+        ]
+        for trigger in sorted(triggers, key=len, reverse=True):
+            cleaned = re.sub(rf'(?i)\b{re.escape(trigger)}\b', '', cleaned)
+
+        for lang in langs_to_check:
+            cleaned = re.sub(rf'(?i)\bin\s+{re.escape(lang)}\b', '', cleaned)
+            cleaned = re.sub(rf'(?i)\b{re.escape(lang)}\b', '', cleaned)
+
+        cleaned = cleaned.strip(' ?!.,')
+        return cleaned if cleaned else None
 
     def _handle_consecutive_intent_slot(
         self,

@@ -17,9 +17,22 @@ responses:
     - "Prenoto subito un taxi. Da dove e per dove?"
 
   book_flight_response:
-    - "Posso cercare voli per te. Da dove parti e qual è la destinazione?"
-    - "Dimmi città di partenza, destinazione e date per cercare i migliori voli."
+    - "Posso cercare voli per te. Da dove parti e qual è la location?"
+    - "Dimmi città di partenza, location e date per cercare i migliori voli."
     - "Cercando voli! Da dove vuoi partire?"
+
+  book_flight_ask_destination_response:
+    - "Qual è la location del tuo volo?"
+    - "Dove vuoi andare?"
+    - "Dimmi la città di arrivo per il tuo volo."
+
+  book_flight_ask_departure_response:
+    - "Da quale città parti?"
+    - "Indicami la città di partenza."
+    - "Da dove vuoi prendere il volo?"
+
+  book_flight_unsupported_response:
+    - "Non ho capito la città. Puoi ripetere la destinazione o il luogo di partenza?"
 
   book_hotel_response:
     - "Certo! In quale città vuoi prenotare e per quante notti?"
