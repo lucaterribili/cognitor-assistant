@@ -14,6 +14,7 @@ nlu:
     - buon pomeriggio
     - ciao amico
     - salve amico
+    - ciao bello
     - ehi amico
     - hey amico
     - ciao bella
@@ -84,11 +85,17 @@ nlu:
     - che idiota
     - sei una merda
     - imbecille
+    - ciao stronzo
+    - buonasera coglione
     - testa di cazzo
     - mi fai schifo
     - vai a fare in culo
     - brutto stronzo
     - fottiti
+    - hey merdaccia
+    - sei un idiota
+    - sei un cretino
+    - sei un imbecille
 
   - intent: compliment
     examples:
