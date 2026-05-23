@@ -1,18 +1,9 @@
 # Culture rules - Intent per cultura, arte, storia
 
 rules:
-  ask_literature:
-    default: ask_literature_response
+  ask_culture:
+    default: ask_culture_response
 
-  ask_music:
-    default: ask_music_response
-
-  ask_philosophy:
-    default: ask_philosophy_response
-
-  ask_mythology:
-    default: ask_mythology_response
-
-  what_is_ai:
-    default: what_is_ai_response
+  ask_definition:
+    default: ask_definition_response
 

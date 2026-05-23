@@ -47,16 +47,6 @@ responses:
     - "Dimmi cosa vuoi prenotare: ristorante, hotel, volo o taxi?"
     - "Posso aiutarti con la prenotazione. Cosa vorresti prenotare?"
 
-  alarm_set_response:
-    - "A che ora vuoi la sveglia?"
-    - "Imposto la sveglia per te. Qual è l'orario desiderato?"
-    - "Ti sveglio! Dimmi a che ora."
-
-  play_music_response:
-    - "Cosa vuoi ascoltare? Dimmi il titolo, l'artista o il genere."
-    - "Riproduco musica per te! Cosa preferisci sentire?"
-    - "Che musica ti va? Dimmi artista o brano."
-
   read_news_response:
     - "Su quale argomento vuoi le notizie? Posso cercare news su vari temi."
     - "Che tipo di notizie ti interessano? Politica, sport, tecnologia, ecc."

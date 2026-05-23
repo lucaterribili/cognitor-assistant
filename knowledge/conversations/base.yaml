@@ -61,19 +61,6 @@ conversations:
       - user: farewell
         bot: farewell_response
 
-  music_flow:
-    description: "Flusso per riproduzione musica (4 step)"
-    steps:
-      - user: greeting
-        bot: greeting_response
-      - user: play_music
-        bot: play_music_response
-        goal: play_music
-      - user: thank_you
-        bot: thank_you_response
-      - user: farewell
-        bot: farewell_response
-
   restaurant_booking_flow:
     description: "Flusso per prenotazione ristorante (5 step)"
     steps:
@@ -143,19 +130,29 @@ conversations:
       - user: farewell
         bot: farewell_response
 
-  culture_flow:
-    description: "Flusso culturale con storia e arte (5 step)"
+  culture_search_flow:
+    description: "Flusso di ricerca culturale con estrazione entità e retrieval"
     steps:
       - user: greeting
         bot: greeting_response
-      - user: ask_history
-        bot: ask_history_response
-        goal: explore_culture
-      - user: more_info
-        bot: more_info_response
-      - user: ask_art
-        bot: ask_art_response
-        goal: explore_art
+      - user: ask_culture
+        bot: ask_culture_response
+        goal: culture_search
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
+
+  definition_search_flow:
+    description: "Flusso di ricerca definizioni tecniche"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_definition
+        bot: ask_definition_response
+        goal: definition_search
+      - user: thank_you
+        bot: thank_you_response
       - user: farewell
         bot: farewell_response
 
