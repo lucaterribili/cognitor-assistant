@@ -45,12 +45,6 @@ rules:
       taxi:
         taxi_ride_response
 
-  alarm_set:
-    default: alarm_set_response
-
-  play_music:
-    default: play_music_response
-
   read_news:
     default: read_news_response
 
