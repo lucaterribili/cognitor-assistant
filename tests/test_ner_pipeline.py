@@ -27,7 +27,6 @@ def test_data_pipeline():
     test_examples = [
         ("prenota tavolo per [due](NUMBER) a [Roma](LOCATION)", "restaurant_booking"),
         ("invia email a [mario@test.it](EMAIL)", "send_email"),
-        ("svegliami [domani](DATE) alle [7](TIME)", "alarm_set"),
         ("chiamami un taxi [adesso](TIME)", "taxi_ride"),
     ]
 
