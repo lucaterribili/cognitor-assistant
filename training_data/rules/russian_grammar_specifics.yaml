@@ -1,0 +1,7 @@
+rules:
+  russian_grammar_genders:
+    default: russian_grammar_genders_response
+  russian_grammar_plural:
+    default: russian_grammar_plural_response
+  russian_grammar_verbs:
+    default: russian_grammar_verbs_response

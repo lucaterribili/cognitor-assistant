@@ -1,0 +1,5 @@
+rules:
+  russian_pronouns_personal:
+    default: russian_pronouns_personal_response
+  russian_pronouns_possessive:
+    default: russian_pronouns_possessive_response

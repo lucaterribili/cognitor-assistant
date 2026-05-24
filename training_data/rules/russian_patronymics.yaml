@@ -1,0 +1,3 @@
+rules:
+  russian_patronymics:
+    default: russian_patronymics_response

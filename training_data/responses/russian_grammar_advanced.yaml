@@ -1,0 +1,34 @@
+responses:
+  russian_verbs_motion_response:
+    - |
+      **Verbi di Moto in Russo** 🚶‍♂️🚗
+
+      I verbi di moto russi si dividono in due gruppi:
+
+      1. **Unidirezionali:** azione in un'unica direzione, in corso ora.
+         *   *Идти* (Andare a piedi) -> *Я иду в школу* (Sto andando a scuola).
+      2. **Multidirezionali:** azione abituale, andata e ritorno, o movimento senza direzione specifica.
+         *   *Ходить* (Andare a piedi) -> *Я хожу in школу каждый день* (Vado a scuola ogni giorno).
+
+      **A piedi vs Con mezzi:**
+      *   A piedi: *Идти / Ходить*
+      *   Con mezzi: *Ехать / Ездить*
+
+      I **prefissi** (come *по-, при-, у-, вы-*) cambiano il significato: *Прийти* (Arrivare), *Уйти* (Andarsene).
+
+  russian_verbs_aspect_response:
+    - |
+      **Aspetti Verbali: Imperfettivo e Perfettivo** ⏳✅
+
+      In russo, quasi ogni verbo ha una "coppia aspettuale".
+
+      1. **Imperfettivo (НСВ):**
+         *   Azione in corso (*Я читал* - Leggevo).
+         *   Azione abituale (*Я часто читаю* - Leggo spesso).
+         *   Processo.
+      2. **Perfettivo (СВ):**
+         *   Azione conclusa con un risultato (*Я прочитал* - Ho finito di leggere).
+         *   Azione puntuale, avvenuta una sola volta.
+         *   *Nota:* Il perfettivo NON ha il tempo presente.
+
+      Il perfettivo si forma spesso aggiungendo un prefisso (*Писать -> Написать*) o cambiando il suffisso.

@@ -1,0 +1,25 @@
+nlu:
+  intents:
+  - intent: russian_grammar_genders
+    examples:
+    - come funzionano i generi in russo
+    - maschile femminile e neutro in russo
+    - come riconosco il genere di una parola in russo
+    - genere dei sostantivi russi
+    - spiegami i generi russi
+    - desinenze generi russo
+  - intent: russian_grammar_plural
+    examples:
+    - come si fa il plurale in russo
+    - plurale dei sostantivi russi
+    - come volgere al plurale in russo
+    - desinenze del plurale in russo
+    - spiegami il plurale russo
+  - intent: russian_grammar_verbs
+    examples:
+    - come si coniugano i verbi in russo
+    - coniugazione dei verbi russi
+    - come funzionano i verbi al presente in russo
+    - verbi russi prima e seconda coniugazione
+    - spiegami la coniugazione russa
+    - come si dicono le azioni in russo

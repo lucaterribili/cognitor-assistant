@@ -1,0 +1,28 @@
+responses:
+  russian_pronouns_personal_response:
+    - |
+      **Pronomi Personali Russi (Soggetto)** 👤
+
+      *   **Я** (Ya) - Io
+      *   **Ты** (Ty) - Tu (informale)
+      *   **Он** (On) - Lui / Egli
+      *   **Она** (Ona) - Lei / Ella
+      *   **Оно** (Ono) - Esso (neutro)
+      *   **Мы** (My) - Noi
+      *   **Вы** (Vy) - Voi / Lei (formale di cortesia)
+      *   **Они** (Oni) - Loro / Essi
+
+      *Nota:* Si usa **Вы** (sempre con la maiuscola se scritto) per dare del "Lei".
+
+  russian_pronouns_possessive_response:
+    - |
+      **Pronomi Possessivi in Russo** 🏠
+
+      I possessivi concordano in genere e numero con l'oggetto posseduto:
+
+      *   **Mio:** Мой (m), Моя (f), Моё (n), Мои (pl)
+      *   **Tuo:** Твой (m), Твоя (f), Твоё (n), Твои (pl)
+      *   **Nostro:** Наш (m), Наша (f), Наше (n), Наши (pl)
+      *   **Vostro:** Ваш (m), Ваша (f), Ваше (n), Ваши (pl)
+
+      Per "Suo/Loro" si usano forme invariabili: **Его** (di lui), **Её** (di lei), **Их** (di loro).

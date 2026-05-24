@@ -1,0 +1,7 @@
+rules:
+  russian_vocabulary_days:
+    default: russian_vocabulary_days_response
+  russian_vocabulary_months:
+    default: russian_vocabulary_months_response
+  russian_vocabulary_colors:
+    default: russian_vocabulary_colors_response

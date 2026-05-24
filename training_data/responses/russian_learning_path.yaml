@@ -1,7 +1,7 @@
 responses:
   russian_learn_start_response:
-    - "Benvenuto nel percorso guidato di russo! 🇷🇺 Inizieremo dall'alfabeto cirillico, poi passeremo ai saluti, ai numeri, alle frasi utili, alla grammatica generale e ai casi. Scrivi 'prossima lezione' per avanzare o fammi una domanda di traduzione in qualsiasi momento!"
-    - "Ottima scelta! Il russo è una lingua affascinante. Il percorso guidato si svolge così: 1️⃣ Alfabeto cirillico → 2️⃣ Saluti → 3️⃣ Numeri → 4️⃣ Frasi utili → 5️⃣ Grammatica generale → 6️⃣ Casi russi. Cominciamo? Scrivi 'prossima lezione' per partire!"
+    - "Benvenuto nel percorso guidato di russo! 🇷🇺 Inizieremo dall'alfabeto cirillico, poi passeremo ai saluti, ai numeri, alle frasi utili, ai pronomi e patronimici, alla grammatica generale e ai casi. Scrivi 'prossima lezione' per avanzare o fammi una domanda di traduzione in qualsiasi momento!"
+    - "Ottima scelta! Il russo è una lingua affascinante. Il percorso guidato si svolge così: 1️⃣ Alfabeto cirillico → 2️⃣ Saluti → 3️⃣ Numeri → 4️⃣ Frasi utili → 5️⃣ Pronomi e Patronimici → 6️⃣ Grammatica generale → 7️⃣ Casi russi. Cominciamo? Scrivi 'prossima lezione' per partire!"
 
   russian_learn_alphabet_response:
     - |
@@ -27,18 +27,18 @@ responses:
       • Извините (Izvinite) → Scusi / Mi scusi
       • Да (Da) → Sì
       • Нет (Net) → No
-      • Я не понимаю (Ya ne ponimayu) → Non capisco
-      • Говорите медленнее (Govorite medlennee) → Parli più lentamente
-      • Где находится…? (Gde nakhoditsya…?) → Dove si trova…?
-      • Сколько стоит? (Skol'ko stoit?) → Quanto costa?
-      • Помогите! (Pomogite!) → Aiuto!
-      • Мне нужен врач (Mne nuzhen vrach) → Ho bisogno di un medico
-      • Я не говорю по-русски (Ya ne govoryu po-russki) → Non parlo russo
+      • Я ne ponimayu (Ya ne ponimayu) → Non capisco
+      • Govorite medlennee (Govorite medlennee) → Parli più lentamente
+      • Gde nakhoditsya…? (Gde nakhoditsya…?) → Dove si trova…?
+      • Skol'ko stoit? (Skol'ko stoit?) → Quanto costa?
+      • Pomogite! (Pomogite!) → Aiuto!
+      • Mne nuzhen vrach (Mne nuzhen vrach) → Ho bisogno di un medico
+      • Ya ne govoryu po-russki (Ya ne govoryu po-russki) → Non parlo russo
 
-      Scrivi 'prossima lezione' per la grammatica generale!
+      Scrivi 'prossima lezione' per i pronomi e i patronimici!
 
   russian_next_lesson_response:
-    - "Ottimo! Procediamo con la lezione successiva. Dimmi da dove vuoi continuare: 1️⃣ Alfabeto cirillico | 2️⃣ Saluti | 3️⃣ Numeri | 4️⃣ Frasi utili | 5️⃣ Grammatica generale | 6️⃣ Casi russi. Scrivi il numero o il nome dell'argomento!"
+    - "Ottimo! Procediamo con la lezione successiva. Dimmi da dove vuoi continuare: 1️⃣ Alfabeto | 2️⃣ Saluti | 3️⃣ Numeri | 4️⃣ Frasi utili | 5️⃣ Pronomi e Patronimici | 6️⃣ Grammatica (Generi, Plurale, Verbi) | 7️⃣ Casi Russi | 8️⃣ Verbi di Moto e Aspetti | 9️⃣ Vocabolario (Giorni, Mesi, Colori). Scrivi il numero o l'argomento!"
 
   russian_repeat_lesson_response:
-    - "Nessun problema! La ripetizione è la chiave dell'apprendimento. 🔄 Di' quale argomento vuoi ripassare: Alfabeto, Saluti, Numeri, Frasi utili, Grammatica generale o Casi russi."
+    - "Nessun problema! La ripetizione è la chiave dell'apprendimento. 🔄 Di' quale argomento vuoi ripassare: Alfabeto, Saluti, Numeri, Frasi utili, Pronomi, Patronimici, Grammatica, Casi, Verbi di Moto o Vocabolario."

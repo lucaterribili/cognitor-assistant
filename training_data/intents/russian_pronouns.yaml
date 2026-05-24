@@ -1,0 +1,21 @@
+nlu:
+  intents:
+  - intent: russian_pronouns_personal
+    examples:
+    - quali sono i pronomi personali in russo
+    - pronomi soggetto in russo
+    - elenco dei pronomi personali russi
+    - spiegami i pronomi personali russi
+    - io e te in russo
+    - lei formale in russo
+    - differenza tra ty e vy
+  - intent: russian_pronouns_possessive
+    examples:
+    - quali sono i pronomi possessivi in russo
+    - pronomi possessivi russi
+    - come funziona mio mia mio in russo
+    - moj moja mojo russi
+    - spiegami i possessivi in russo
+    - come si esprime il possesso in russo
+    - il mio libro in russo
+    - la mia casa in russo

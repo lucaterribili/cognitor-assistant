@@ -1,0 +1,5 @@
+rules:
+  russian_verbs_motion:
+    default: russian_verbs_motion_response
+  russian_verbs_aspect:
+    default: russian_verbs_aspect_response

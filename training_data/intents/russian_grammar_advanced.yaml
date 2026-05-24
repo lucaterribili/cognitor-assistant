@@ -1,0 +1,19 @@
+nlu:
+  intents:
+  - intent: russian_verbs_motion
+    examples:
+    - spiegami i verbi di moto in russo
+    - differenza tra idti e khodit
+    - verbi di movimento russi
+    - moto a luogo vs moto per luogo in russo
+    - come funzionano i verbi di moto con i prefissi
+    - verbi unidirezionali e multidirezionali russi
+    - andare in russo a piedi o con mezzi
+  - intent: russian_verbs_aspect
+    examples:
+    - differenza tra perfettivo e imperfettivo in russo
+    - aspetti verbali russi spiegazione
+    - quando si usa il perfettivo in russo
+    - coppia aspettuale russa
+    - come si forma il perfettivo in russo
+    - azioni concluse vs azioni abituali in russo

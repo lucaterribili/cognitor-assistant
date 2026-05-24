@@ -1,0 +1,13 @@
+rules:
+  russian_cases_nominative:
+    default: russian_cases_nominative_response
+  russian_cases_genitive:
+    default: russian_cases_genitive_response
+  russian_cases_dative:
+    default: russian_cases_dative_response
+  russian_cases_accusative:
+    default: russian_cases_accusative_response
+  russian_cases_instrumental:
+    default: russian_cases_instrumental_response
+  russian_cases_prepositional:
+    default: russian_cases_prepositional_response

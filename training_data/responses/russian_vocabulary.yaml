@@ -1,0 +1,45 @@
+responses:
+  russian_vocabulary_days_response:
+    - |
+      **Giorni della Settimana (Дни недели)** 🗓️
+
+      *   Понедельник (Ponedel'nik) - Lunedì
+      *   Вторник (Vtornik) - Martedì
+      *   Среда (Sreda) - Mercoledì
+      *   Четверг (Chetverg) - Giovedì
+      *   Пятница (Pyatnitsa) - Venerdì
+      *   Суббота (Subbota) - Sabato
+      *   Воскресенье (Voskresen'ye) - Domenica
+
+      *Ricorda:* I giorni della settimana in russo iniziano con la lettera minuscola.
+
+  russian_vocabulary_months_response:
+    - |
+      **Mesi dell'Anno (Месяцы)** 📅
+
+      *   Январь (Yanvar') - Gennaio
+      *   Февраль (Fevral') - Febbraio
+      *   Март (Mart) - Marzo
+      *   Апрель (Aprel') - Aprile
+      *   Май (May) - Maggio
+      *   Июнь (Iyun') - Giugno
+      *   Июль (Iyul') - Luglio
+      *   Август (Avgust) - Agosto
+      *   Сентябрь (Sentyabr') - Settembre
+      *   Октябрь (Oktyabr') - Ottobre
+      *   Ноябрь (Noyabr') - Novembre
+      *   Декабрь (Dekabr') - Dicembre
+
+  russian_vocabulary_colors_response:
+    - |
+      **Colori (Цвета)** 🎨
+
+      *   Красный (Krasnyy) - Rosso
+      *   Синий (Siniy) - Blu (scuro)
+      *   Голубой (Goluboy) - Azzurro / Blu (chiaro)
+      *   Зелёный (Zelyonyy) - Verde
+      *   Жёлтый (Zhyoltyy) - Giallo
+      *   Чёрный (Chyornyy) - Nero
+      *   Белый (Belyy) - Bianco
+      *   Оранжевый (Oranzhevyy) - Arancione
+      *   Фиолетовый (Fioletovyy) - Viola

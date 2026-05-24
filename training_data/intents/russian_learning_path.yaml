@@ -20,7 +20,7 @@ nlu:
     - voglio imparare l'alfabeto cirillico
     - insegnami il cirillico
     - quali sono le lettere russe
-    - come si chiama l'alfabeto russo
+    - nome dell'alfabeto russo
     - mostrami l'alfabeto russo
     - voglio conoscere le lettere dell'alfabeto russo
     - alfabeto russo
@@ -35,9 +35,6 @@ nlu:
     - come si chiede aiuto in russo
     - frasi di sopravvivenza in russo
     - frasi essenziali in russo
-    - come si dice per favore in russo
-    - come si dice grazie in russo
-    - come si dice scusa in russo
     - voglio imparare frasi quotidiane in russo
 
   - intent: russian_next_lesson

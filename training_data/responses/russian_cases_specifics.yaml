@@ -1,0 +1,51 @@
+responses:
+  russian_cases_nominative_response:
+    - |
+      **Caso Nominativo (Именительный падеж)** 🏷️
+      È il caso del **soggetto**. Risponde alle domande: **Кто?** (Chi?) / **Что?** (Che cosa?).
+      È la forma base che trovi sul dizionario.
+
+  russian_cases_genitive_response:
+    - |
+      **Caso Genitivo (Родительный падеж)** 🗝️
+      Risponde a: **Кого? Чего?** (Di chi? Di che cosa?).
+      Si usa per:
+      1. **Possesso:** *Книга Ивана* (Il libro di Ivan).
+      2. **Negazione:** *У меня нет машины* (Non ho la macchina).
+      3. **Quantità:** Dopo i numeri (es. *5 яблок*).
+      4. **Preposizioni:** *из, от, без, для, около*.
+
+  russian_cases_dative_response:
+    - |
+      **Caso Dativo (Дательный падеж)** 🎁
+      Risponde a: **Кому? Чему?** (A chi? A che cosa?).
+      Si usa per:
+      1. **Termine:** *Я пишу письмо другу* (Scrivo una lettera all'amico).
+      2. **Età:** *Мне 20 лет* (Ho 20 anni - lett. 'A me sono 20 anni').
+      3. **Preposizioni:** **К** (verso), **По** (lungo/per).
+
+  russian_cases_accusative_response:
+    - |
+      **Caso Accusativo (Винительный падеж)** 🎯
+      Risponde a: **Кого? Что?** (Chi? Che cosa? - come oggetto).
+      Si usa per:
+      1. **Complemento Oggetto:** *Я читаю книгу* (Leggo un libro).
+      2. **Moto a luogo:** *Я иду в парк* (Vado al parco).
+      *Nota:* Per gli inanimati maschili è uguale al nominativo, per gli animati è uguale al genitivo.
+
+  russian_cases_instrumental_response:
+    - |
+      **Caso Strumentale (Творительный падеж)** 🛠️
+      Risponde a: **Кем? Чем?** (Con chi? Con che cosa?).
+      Si usa per:
+      1. **Mezzo/Strumento:** *Я пишу ручкой* (Scrivo con la penna).
+      2. **Compagnia:** Con la preposizione **С** (*С другом* - con l'amico).
+      3. **Professione:** *Он работает врачом* (Lavora come medico).
+
+  russian_cases_prepositional_response:
+    - |
+      **Caso Prepositivo (Предложный падеж)** 📍
+      Risponde a: **О ком? О чём?** (Di chi? Di che cosa? - argomento) / **Где?** (Dove?).
+      Si usa *sempre* con una preposizione:
+      1. **Argomento:** **О** (di/su).
+      2. **Stato in luogo:** **В** (in), **На** (su/a).

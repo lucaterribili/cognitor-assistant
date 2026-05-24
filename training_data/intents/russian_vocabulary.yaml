@@ -1,0 +1,18 @@
+nlu:
+  intents:
+  - intent: russian_vocabulary_days
+    examples:
+    - giorni della settimana in russo
+    - i nomi dei giorni in russo
+    - che giorno è oggi in russo
+    - fine settimana in russo
+  - intent: russian_vocabulary_months
+    examples:
+    - i mesi in russo
+    - elenco dei mesi russi
+    - stagioni e mesi in russo
+  - intent: russian_vocabulary_colors
+    examples:
+    - i colori in russo
+    - blu verde giallo in russo
+    - elenco colori russi

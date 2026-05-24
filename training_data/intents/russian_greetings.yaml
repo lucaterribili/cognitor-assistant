@@ -2,13 +2,10 @@ nlu:
   intents:
   - intent: russian_learn_greetings
     examples:
-    - come si dice ciao in russo
     - come si saluta in russo
     - insegnami a salutare in russo
-    - come si dice buongiorno in russo
-    - come si dice buonasera in russo
-    - come si dice arrivederci in russo
     - saluti in russo
     - voglio imparare a salutare in russo
-    - come si dice piacere di conoscerti in russo
-    - come si dice come stai in russo
+    - saluti di base in russo
+    - imparare a dire piacere di conoscerti
+    - imparare a chiedere come stai

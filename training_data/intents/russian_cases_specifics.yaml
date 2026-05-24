@@ -1,0 +1,45 @@
+nlu:
+  intents:
+  - intent: russian_cases_nominative
+    examples:
+    - cos'è il caso nominativo in russo
+    - quando si usa il nominativo in russo
+    - il soggetto in russo che caso è
+    - nomi al nominativo russo
+    - spiegami il nominativo
+  - intent: russian_cases_genitive
+    examples:
+    - spiegami il caso genitivo russo
+    - quando si usa il genitivo in russo
+    - come si esprime il possesso in russo
+    - genitivo per la negazione in russo
+    - preposizioni del genitivo russo
+    - del della in russo
+  - intent: russian_cases_dative
+    examples:
+    - come funziona il caso dativo in russo
+    - quando si usa il dativo in russo
+    - a chi al dativo russo
+    - verbi che reggono il dativo in russo
+    - preposizioni k e po in russo
+  - intent: russian_cases_accusative
+    examples:
+    - cos'è il caso accusativo in russo
+    - complemento oggetto in russo
+    - quando si usa l'accusativo in russo
+    - differenza tra nominativo e accusativo
+    - preposizioni dell'accusativo russo
+  - intent: russian_cases_instrumental
+    examples:
+    - quando si usa il caso strumentale in russo
+    - con chi con che cosa in russo
+    - caso strumentale russo spiegazione
+    - preposizione s in russo
+    - lo strumentale per i mezzi di trasporto
+  - intent: russian_cases_prepositional
+    examples:
+    - spiegami il caso prepositivo in russo
+    - caso locativo in russo
+    - dove si trova in che caso va
+    - preposizioni v e na in russo
+    - parlare di qualcuno in russo che caso è

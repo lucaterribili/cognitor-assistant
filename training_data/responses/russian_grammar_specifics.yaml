@@ -1,0 +1,38 @@
+responses:
+  russian_grammar_genders_response:
+    - |
+      **I Generi in Russo** 🚻
+
+      In russo ci sono tre generi. Puoi riconoscerli dalla desinenza del sostantivo al nominativo:
+
+      *   **Maschile:** terminano in consonante, **-й** o **-ь** (es. *Стол* - tavolo).
+      *   **Femminile:** terminano in **-а**, **-я** o **-ь** (es. *Мама* - mamma).
+      *   **Neutro:** terminano in **-о**, **-е** o **-мя** (es. *Окно* - finestra).
+
+      *Attenzione:* Il segno dolce (**-ь**) può essere sia maschile che femminile!
+
+  russian_grammar_plural_response:
+    - |
+      **Il Plurale in Russo** 👥
+
+      La formazione del plurale dipende dal genere e dalla terminazione:
+
+      *   **Maschili e Femminili:** di solito prendono **-ы** o **-и**.
+          *   *Мама -> Мамы*
+          *   *Стол -> Столы*
+      *   **Neutri:** di solito cambiano la desinenza in **-а** o **-я**.
+          *   *Окно -> Окна*
+
+      Ci sono diverse eccezioni e regole ortografiche (come dopo le consonanti sibilanti) che richiedono sempre **-и**.
+
+  russian_grammar_verbs_response:
+    - |
+      **Coniugazione dei Verbi** ⚙️
+
+      I verbi russi si dividono in due coniugazioni principali:
+
+      *   **I Coniugazione:** verbi che terminano spesso in **-ать**, **-ять**. Usano le desinenze: *-ю, -ешь, -ет, -ем, -ете, -ют*.
+      *   **II Coniugazione:** verbi che terminano spesso in **-ить**. Usano le desinenze: *-ю (-у), -ишь, -ит, -им, -ите, -ят (-ат)*.
+
+      Esempio (Parlare - Говорить): *Я говорю, Ты говоришь, Он говорит...*
+      Esiste anche il concetto di **Aspetto** (Perfettivo e Imperfettivo)!

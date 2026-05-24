@@ -1,0 +1,13 @@
+nlu:
+  intents:
+  - intent: russian_patronymics
+    examples:
+    - cosa sono i patronimici russi
+    - spiegami il patronimico
+    - come si forma il patronimico in russo
+    - perché i russi hanno tre nomi
+    - cos'è il otchestvo
+    - come funziona il secondo nome in russia
+    - nomi russi e patronimici
+    - suffissi patronimico russo
+    - il nome del padre nel nome russo
