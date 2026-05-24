@@ -1,6 +1,11 @@
 # Culture responses - Risposte su cultura, arte, storia
 
 responses:
+  ask_culture_wait_response:
+    - "Su quale argomento culturale vuoi informazioni? Dimmi un personaggio, un'opera, un evento o un movimento artistico."
+    - "Cosa vuoi sapere? Parlami di arte, storia, letteratura, musica, filosofia o mitologia."
+    - "Dimmi l'argomento di cui vuoi parlare e cercherò informazioni per te."
+
   ask_culture_response:
     - "Ecco quello che ho trovato su questo argomento."
     - "Ho cercato e trovato informazioni rilevanti per te."
