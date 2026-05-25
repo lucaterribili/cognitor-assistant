@@ -287,11 +287,16 @@ class SlotContextManager:
                 used_entity_indexes.add(extracted_index)
 
             # Fallback intelligente per TRANSLATION_TEXT quando il NER è insufficiente
-            if intent == 'translate' and slot_name == 'TRANSLATION_TEXT':
+            if intent in ('translate', 'pluralize') and slot_name == 'TRANSLATION_TEXT':
                 regex_value = self._extract_translate_fallback(user_input, ner_language or session.context.get('LANGUAGE'))
-                if regex_value and (not extracted_value or len(regex_value) > len(extracted_value)):
-                    extracted_value = regex_value
-                    print(f"[SlotManager] TRANSLATION_TEXT: regex fallback → '{extracted_value}'")
+                # Usa il fallback solo se il NER non ha trovato nulla o se il fallback ha trovato un testo significativamente più lungo
+                # (es. il NER ha preso solo una parola ma la frase da tradurre era più lunga)
+                if regex_value:
+                    if not extracted_value or len(regex_value) > (len(extracted_value) + 2):
+                        extracted_value = regex_value
+                        print(f"[SlotManager] TRANSLATION_TEXT: regex fallback → '{extracted_value}'")
+                    else:
+                        print(f"[SlotManager] TRANSLATION_TEXT: NER preferito ('{extracted_value}') rispetto a regex ('{regex_value}')")
 
             print(f"[SlotManager] slot='{slot_name}' → extracted='{extracted_value}' | consecutivo={slot_name in consecutive_slots}")
 
@@ -306,11 +311,11 @@ class SlotContextManager:
                 self._handle_new_slot_value(
                     session, intent, slot_name, extracted_value
                 )
-            elif intent == 'translate' and slot_name == 'TRANSLATION_TEXT' and previous_intent != 'translate':
-                # Nuova richiesta di traduzione da un intent diverso e NER non ha trovato nulla:
-                # azzera il valore precedente per forzare il bot a chiedere cosa tradurre
+            elif intent in ('translate', 'pluralize') and slot_name == 'TRANSLATION_TEXT' and previous_intent != intent:
+                # Nuova richiesta (translate o pluralize) da un intent diverso e NER non ha trovato nulla:
+                # azzera il valore precedente per forzare il bot a chiedere cosa tradurre/pluralizzare
                 session.update_context(slot_name, None)
-                print(f"[SlotManager] TRANSLATION_TEXT azzerato (nuova richiesta translate senza estrazione)")
+                print(f"[SlotManager] TRANSLATION_TEXT azzerato (nuova richiesta {intent} senza estrazione)")
 
     def _extract_translate_fallback(self, user_input: str, language: str = None) -> str | None:
         """
@@ -347,6 +352,12 @@ class SlotContextManager:
         triggers = [
             'come si dice in', 'come si traduce in', 'come si dice',
             'come si traduce', 'traduzione di', 'traduzione', 'traduci in', 'traduci',
+            'qual è il plurale di', "qual è il plurale della parola",
+            'quale è il plurale di', 'quale è il plurale della parola',
+            'qual è il plurale', 'quale è il plurale',
+            'dimmi il plurale di', 'come si dice il plurale di', 'come si scrive il plurale di',
+            'volgi al plurale', 'vogli al plurale', 'plurale di', 'plurale della parola',
+            'il plurale di', 'plurale',
         ]
         for trigger in sorted(triggers, key=len, reverse=True):
             cleaned = re.sub(rf'(?i)\b{re.escape(trigger)}\b', '', cleaned)
@@ -355,7 +366,10 @@ class SlotContextManager:
             cleaned = re.sub(rf'(?i)\bin\s+{re.escape(lang)}\b', '', cleaned)
             cleaned = re.sub(rf'(?i)\b{re.escape(lang)}\b', '', cleaned)
 
+        # Pulizia finale: rimuove articoli determinativi residui all'inizio (es. "il cane" -> "cane")
         cleaned = cleaned.strip(' ?!.,')
+        cleaned = re.sub(r'(?i)^(il|lo|la|i|gli|le)\s+', '', cleaned)
+        
         return cleaned if cleaned else None
 
     def _handle_consecutive_intent_slot(

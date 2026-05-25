@@ -62,3 +62,8 @@ responses:
     - "Componiamo l'email. Chi è il destinatario e cosa vuoi scrivere?"
     - "Ti aiuto a mandare l'email. Destinatario e contenuto?"
 
+  pluralize_wait_response:
+    - "Quale parola vuoi volgere al plurale?"
+    - "Dimmi la parola di cui vuoi il plurale."
+    - "Certo! Qual è la parola che vuoi mettere al plurale?"
+
