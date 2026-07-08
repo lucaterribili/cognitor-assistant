@@ -54,16 +54,3 @@ rules:
   send_email:
     default: send_email_response
 
-  pluralize:
-    slots:
-      TRANSLATION_TEXT:
-        required: true
-        type: string
-        entity: TRANSLATION_TEXT
-      LANGUAGE:
-        required: false
-        type: string
-        entity: LANGUAGE
-    default: __pluralize
-    wait: pluralize_wait_response
-
