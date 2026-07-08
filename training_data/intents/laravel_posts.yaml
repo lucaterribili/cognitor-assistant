@@ -1,0 +1,16 @@
+nlu:
+  intents:
+  - intent: search_post
+    examples:
+    - cerca un articolo
+    - cerca un articolo su [motori elettrici](POST_QUERY)
+    - trova un articolo che parla di [intelligenza artificiale](POST_QUERY)
+    - cerca l'articolo intitolato [guida al noleggio](POST_QUERY)
+    - hai un articolo su [fotovoltaico](POST_QUERY)?
+    - cerca nel blog [auto elettriche](POST_QUERY)
+    - trovami un post su [batterie al litio](POST_QUERY)
+    - c'è un articolo che tratta di [ricarica veloce](POST_QUERY)
+    - cerca articoli con titolo [sicurezza stradale](POST_QUERY)
+    - dammi un articolo su [manutenzione auto](POST_QUERY)
+    - fammi vedere gli articoli su [assicurazione auto](POST_QUERY)
+    - cerca post riguardanti [normativa emissioni](POST_QUERY)

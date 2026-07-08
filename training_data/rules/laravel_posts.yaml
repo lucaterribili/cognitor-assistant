@@ -1,0 +1,13 @@
+# Rules per search_post (integrazione Laravel/Programmato Backoffice)
+
+rules:
+  search_post:
+    slots:
+      query:
+        required: true
+        type: string
+        entity: POST_QUERY
+
+    default: __search_post
+    wait: search_post_wait_response
+    fallback: search_post_unsupported_response

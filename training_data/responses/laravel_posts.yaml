@@ -1,0 +1,10 @@
+# Responses per search_post (integrazione Laravel/Programmato Backoffice)
+
+responses:
+  search_post_wait_response:
+    - "Cosa devo cercare tra gli articoli?"
+    - "Dimmi il titolo o l'argomento dell'articolo da cercare."
+    - "Su quale argomento cerco l'articolo?"
+
+  search_post_unsupported_response:
+    - "Al momento non riesco a cercare articoli, riprova più tardi."
