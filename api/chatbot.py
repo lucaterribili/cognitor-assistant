@@ -21,6 +21,18 @@ class ChatResponse(BaseModel):
     intent: Optional[str] = None
     confidence: Optional[float] = None
     entities: Optional[list] = None
+    options: Optional[list] = None
+
+
+def _pop_options(bot_slots: dict) -> Optional[list]:
+    """
+    Estrae le opzioni (bottoni) dal canale riservato `__options__` in bot_slots,
+    rimuovendole prima che vengano applicate al contesto sessione come se fossero
+    uno slot vero e proprio (vedi RuleInterpreter.handle_intent_with_bot_slots).
+    """
+    if not bot_slots:
+        return None
+    return bot_slots.pop("__options__", None)
 
 
 @router.post("/message", response_model=ChatResponse)
@@ -84,6 +96,8 @@ def send_message(
             pending_intent, session.context, session.history
         )
 
+        options = _pop_options(bot_slots)
+
         if bot_slots:
             for s_name, s_val in bot_slots.items():
                 if s_val:
@@ -100,7 +114,8 @@ def send_message(
         return ChatResponse(
             response=response_text,
             session_id=session_id,
-            intent=pending_intent
+            intent=pending_intent,
+            options=options
         )
 
     # Modalità normale
@@ -116,6 +131,8 @@ def send_message(
     response_text, wait_for_slot, bot_slots = agent.get_response(
         prediction['intent'], session.context, session.history
     )
+
+    options = _pop_options(bot_slots)
 
     if bot_slots:
         for s_name, s_val in bot_slots.items():
@@ -135,5 +152,6 @@ def send_message(
         session_id=session_id,
         intent=prediction['intent'],
         confidence=prediction['confidence'],
-        entities=prediction.get('entities', [])
+        entities=prediction.get('entities', []),
+        options=options
     )

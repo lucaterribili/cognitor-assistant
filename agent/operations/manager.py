@@ -27,6 +27,7 @@ class OperationManager:
             auto_discover: Se True, scopre automaticamente tutte le operations
         """
         self._operations: dict[str, Operation] = {}
+        self._options_providers: dict[str, callable] = {}
         self._session_manager = session_manager
         self._entity_manager = entity_manager
 
@@ -94,11 +95,55 @@ class OperationManager:
     def list_operations(self) -> list[str]:
         """
         Lista tutte le operazioni registrate.
-        
+
         Returns:
             Lista dei nomi delle operazioni
         """
         return list(self._operations.keys())
+
+    def has_options_provider(self, name: str) -> bool:
+        """
+        Verifica se esiste un provider di opzioni dinamiche registrato per questo nome.
+
+        Args:
+            name: Nome del provider (vedi `options_source` nella rule DSL)
+
+        Returns:
+            True se il provider esiste
+        """
+        return name in self._options_providers
+
+    def get_options(self, name: str, slots: dict = None) -> list[dict]:
+        """
+        Esegue un provider di opzioni dinamiche e ne ritorna il risultato.
+
+        Le opzioni servono a offrire all'utente una lista di scelte (bottoni) per uno
+        slot in attesa — es. domini/categorie recuperati da un'API esterna. Un fallimento
+        del provider non deve mai bloccare la conversazione: in quel caso si ritorna una
+        lista vuota e il bot ricade sulla normale attesa in testo libero.
+
+        Args:
+            name: Nome del provider
+            slots: Slot correnti (per opzioni dipendenti da uno slot già raccolto, es.
+                   categorie filtrate per il dominio già scelto)
+
+        Returns:
+            Lista di opzioni, es. [{"value": ..., "label": ...}, ...]
+        """
+        provider = self._options_providers.get(name)
+        if not provider:
+            return []
+
+        try:
+            sig = inspect.signature(provider)
+            kwargs = {}
+            if "slots" in sig.parameters:
+                kwargs["slots"] = slots or {}
+            result = provider(**kwargs)
+            return result or []
+        except Exception as e:
+            print(f"⚠ Errore nel provider di opzioni '{name}': {e}")
+            return []
 
     def _discover_operations(self) -> None:
         """
@@ -159,6 +204,12 @@ class OperationManager:
                         operation_instance = self._create_function_operation(action_name, obj)
                         self.register(operation_instance)
                         print(f"✓ Operation '{action_name}' caricata da {file_path.name} (function)")
+
+                    # 3. Cerca provider di opzioni dinamiche (pattern options_<nome>)
+                    if name.startswith("options_"):
+                        options_name = name[8:]  # Rimuovi "options_"
+                        self._options_providers[options_name] = obj
+                        print(f"✓ Options provider '{options_name}' caricato da {file_path.name} (function)")
 
             except Exception as e:
                 print(f"⚠ Errore nel caricare operations da {file_path.name}: {e}")

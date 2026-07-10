@@ -97,10 +97,10 @@ class ConversationHandler:
             pending_intent, session.context, session.history
         )
 
-        if bot_slots:
-            self._apply_bot_slots(session, bot_slots)
+        options = self._apply_bot_slots(session, bot_slots) if bot_slots else None
 
         print(f"\nCOGNITOR: {response}\n")
+        self._print_options(options)
 
         # Se necessario, attende un altro slot
         if wait_for_slot:
@@ -159,10 +159,10 @@ class ConversationHandler:
             prediction['intent'], session.context, session.history
         )
 
-        if bot_slots:
-            self._apply_bot_slots(session, bot_slots)
+        options = self._apply_bot_slots(session, bot_slots) if bot_slots else None
 
         print(f"\nCOGNITOR: {response}\n")
+        self._print_options(options)
 
         if wait_for_slot:
             session.waiting_for_slot = {"intent": prediction['intent'], "slot": wait_for_slot}
@@ -173,19 +173,32 @@ class ConversationHandler:
 
         print(f"Cronologia: {len(session.history)} messaggi | Contesto: {session.context}")
 
-    def _apply_bot_slots(self, session, bot_slots: dict) -> None:
+    def _apply_bot_slots(self, session, bot_slots: dict) -> list | None:
         """
         Applica gli slot impostati dal bot al contesto della sessione.
 
         Args:
             session: Sessione corrente
             bot_slots: Dizionario degli slot da impostare
+
+        Returns:
+            Le opzioni (bottoni) eventualmente allegate dal canale riservato
+            `__options__`, o None se non presenti.
         """
+        options = bot_slots.pop("__options__", None) if bot_slots else None
         for slot_name, slot_value in bot_slots.items():
             if slot_value:
                 session.update_context(slot_name, slot_value)
                 session.update_context(f"{slot_name}_UNSUPPORTED", False)
                 print(f"[BotSlot] Impostato {slot_name} = {slot_value}")
+        return options
+
+    def _print_options(self, options: list | None) -> None:
+        """Stampa le opzioni (bottoni) offerte per lo slot in attesa, se presenti."""
+        if not options:
+            return
+        choices = "  ".join(f"[{i}] {opt.get('label', opt.get('value'))}" for i, opt in enumerate(options, 1))
+        print(f"Opzioni: {choices}\n")
 
     def _handle_location_update(self, user_input: str, session, prediction: dict) -> None:
         """
