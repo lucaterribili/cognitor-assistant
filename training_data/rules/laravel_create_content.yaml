@@ -1,0 +1,45 @@
+# Rules per create_content (integrazione Laravel/Programmato Backoffice)
+# Generalizza il vecchio create_articles per gestire anche i tutorial: lo slot
+# content_type (bottoni Articolo/Tutorial, vedi options nello slot) decide se lo slot
+# successivo richiesto è "category" o "tutorial" (vedi `when:` su ciascuno dei due).
+
+rules:
+  create_content:
+    slots:
+      content_type:
+        required: true
+        type: string
+        entity: CONTENT_TYPE
+        options:
+          - {value: article, label: "Articolo"}
+          - {value: tutorial, label: "Tutorial"}
+      domain:
+        required: true
+        type: string
+        entity: DOMAIN_NAME
+        options_source: domains
+      category:
+        required: true
+        type: string
+        entity: CATEGORY_NAME
+        options_source: categories
+        when: {content_type: article}
+      tutorial:
+        required: true
+        type: string
+        entity: TUTORIAL_NAME
+        options_source: tutorials
+        when: {content_type: tutorial}
+      titles:
+        required: true
+        type: list
+        entity: ARTICLE_TITLES
+
+    default: __create_content
+    wait:
+      content_type: create_content_wait_type
+      domain: create_content_wait_domain
+      category: create_content_wait_category
+      tutorial: create_content_wait_tutorial
+      titles: create_content_wait_titles
+    fallback: create_content_unsupported_response

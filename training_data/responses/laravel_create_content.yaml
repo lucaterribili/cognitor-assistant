@@ -1,0 +1,25 @@
+# Responses per create_content (integrazione Laravel/Programmato Backoffice)
+
+responses:
+  create_content_wait_type:
+    - "Vuoi generare articoli o un tutorial?"
+    - "Che tipo di contenuto vuoi creare, articoli o un tutorial?"
+
+  create_content_wait_domain:
+    - "Per quale dominio vuoi generare i contenuti?"
+    - "Dimmi il dominio per cui creare i contenuti."
+
+  create_content_wait_category:
+    - "Per quale categoria?"
+    - "Dimmi la categoria degli articoli."
+
+  create_content_wait_tutorial:
+    - "Sotto quale tutorial capostipite?"
+    - "Dimmi il tutorial capostipite a cui agganciare i nuovi contenuti."
+
+  create_content_wait_titles:
+    - "Scrivimi i titoli separati da virgola."
+    - "Dammi la lista dei titoli, separati da virgola."
+
+  create_content_unsupported_response:
+    - "Non sono riuscito a completare la richiesta, riprova più tardi."

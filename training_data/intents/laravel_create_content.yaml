@@ -1,0 +1,28 @@
+nlu:
+  intents:
+  - intent: create_content
+    examples:
+    - crea degli articoli
+    - voglio generare nuovi articoli
+    - devo scrivere nuovi contenuti
+    - crea 10 articoli
+    - genera degli articoli per me
+    - voglio creare articoli nuovi
+    - crea articoli per il dominio [pippo](DOMAIN_NAME) categoria [motori elettrici](CATEGORY_NAME)
+    - genera articoli per dominio [example.com](DOMAIN_NAME)
+    - crea contenuti per la categoria [viaggi](CATEGORY_NAME)
+    - genera 10 articoli per il dominio [laravel.programmato.it](DOMAIN_NAME) categoria [wordpress](CATEGORY_NAME)
+    - scrivi degli articoli nuovi per [pippo](DOMAIN_NAME)
+    - voglio pubblicare nuovi articoli sul dominio [example.com](DOMAIN_NAME)
+    - crea nuovi contenuti per categoria [linux](CATEGORY_NAME)
+    - genera articoli nuovi
+    - ho bisogno di nuovi articoli per il blog
+    - crea un [tutorial](CONTENT_TYPE)
+    - voglio generare un nuovo tutorial
+    - genera un [tutorial](CONTENT_TYPE) per il dominio [pippo](DOMAIN_NAME)
+    - crea un tutorial per il dominio [example.com](DOMAIN_NAME) capostipite [react avanzato](TUTORIAL_NAME)
+    - scrivi un nuovo tutorial su [linux](TUTORIAL_NAME)
+    - devo creare dei tutorial nuovi
+    - genera 5 tutorial per il dominio [laravel.programmato.it](DOMAIN_NAME)
+    - voglio pubblicare un tutorial nuovo
+    - crea contenuti didattici per [pippo](DOMAIN_NAME)
