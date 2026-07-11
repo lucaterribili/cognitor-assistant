@@ -4,12 +4,9 @@ nlu:
     examples:
     - ciao
     - salve
-    - hey
     - buongiorno
     - buonasera
     - ehilà
-    - hola
-    - yo
     - ciao a tutti
     - buon pomeriggio
     - ciao amico
@@ -17,15 +14,14 @@ nlu:
     - ciao bello
     - ehi amico
     - hey amico
-    - ciao bella
     - ciao come stai
     - ciao come va
     - salve come stai
     - buongiorno a te
     - buonasera amico
     - ehilà amico
-    - ehi ciao
     - ehi salve
+    - ciao a te
 
   - intent: farewell
     examples:
@@ -36,6 +32,19 @@ nlu:
     - addio
     - ci sentiamo dopo
     - grazie di tutto, a presto
+    - buona giornata
+    - alla prossima
+    - ci si vede presto
+    - a domani
+    - ci risentiamo
+    - buona serata
+    - ci vediamo presto
+    - a dopo
+    - buon proseguimento
+    - ci aggiorniamo dopo
+    - ti saluto
+    - ci vediamo alla prossima occasione
+    - un saluto e a presto
 
   - intent: help
     examples:
@@ -46,6 +55,19 @@ nlu:
     - ho bisogno di supporto
     - puoi darmi una mano
     - ho bisogno di te
+    - mi puoi aiutare per favore
+    - ho un problema, puoi aiutarmi
+    - mi serve una mano con una cosa
+    - puoi darmi assistenza
+    - mi aiuti per favore
+    - ho bisogno di una mano
+    - potresti aiutarmi con una cosa
+    - mi serve il tuo aiuto
+    - puoi supportarmi in questo
+    - ho bisogno di indicazioni
+    - mi dai una mano per favore
+    - potresti darmi supporto
+    - ho bisogno di assistenza urgente
 
   - intent: call
     examples:
@@ -59,6 +81,16 @@ nlu:
     - voglio fare una chiamata
     - richiamami
     - contatta qualcuno
+    - chiama [Anna](PERSON)
+    - telefona a [Giulia](PERSON)
+    - fai una videochiamata a [Marco](PERSON)
+    - metti in attesa la chiamata
+    - riattacca la chiamata
+    - chiama il numero di [Paolo](PERSON)
+    - avvia una chiamata vocale
+    - chiamami tra un'ora
+    - contatta [Elena](PERSON) per favore
+    - fai partire la chiamata
 
   - intent: football
     examples:
@@ -68,6 +100,20 @@ nlu:
     - come sta andando il campionato
     - chi ha vinto la partita di [ieri](DATE)
     - cosa sta facendo l'[Inter](TEAM)
+    - qual è la classifica di Serie A
+    - quando gioca la [Roma](TEAM)
+    - dimmi il risultato della partita di [ieri](DATE)
+    - chi gioca stasera in Champions League
+    - quanti gol ha fatto la [Juventus](TEAM) quest'anno
+    - chi allena il [Napoli](TEAM)
+    - quando gioca l'[Inter](TEAM) in trasferta
+    - qual è il prossimo avversario del [Milan](TEAM)
+    - come è andata la partita della [Roma](TEAM)
+    - chi è il capocannoniere del campionato
+    - quando inizia la prossima giornata di Serie A
+    - cosa sai della finale di Champions League
+    - chi ha segnato nella partita di [ieri](DATE)
+    - come si è classificata la [Lazio](TEAM) quest'anno
 
   - intent: introduce_user
     examples:
@@ -77,6 +123,20 @@ nlu:
     - buongiorno, io sono [Vladimir Putin](PERSON)
     - vorrei presentarmi, sono [Alessandro](PERSON)
     - io sono [Sara](PERSON), piacere di conoscerti
+    - piacere, mi chiamo [Francesca](PERSON)
+    - sono [Davide](PERSON), piacere di conoscerti
+    - il mio nome è [Elena](PERSON)
+    - ciao, sono [Roberto](PERSON)
+    - mi presento, sono [Chiara](PERSON)
+    - il mio nome è [Andrea](PERSON)
+    - piacere, sono [Federico](PERSON)
+    - mi chiamo [Valentina](PERSON)
+    - sono [Matteo](PERSON), piacere mio
+    - ciao, mi chiamo [Simone](PERSON)
+    - il mio nome è [Martina](PERSON)
+    - sono [Lorenzo](PERSON)
+    - piacere di conoscerti, sono [Beatrice](PERSON)
+    - buongiorno, il mio nome è [Cristina](PERSON)
 
   - intent: insult
     examples:
@@ -86,16 +146,20 @@ nlu:
     - sei una merda
     - imbecille
     - ciao stronzo
-    - buonasera coglione
     - testa di cazzo
     - mi fai schifo
     - vai a fare in culo
+    - sei un cretino
+    - buonasera coglione
     - brutto stronzo
     - fottiti
     - hey merdaccia
     - sei un idiota
-    - sei un cretino
     - sei un imbecille
+    - sei un cretino patentato
+    - che pezzo di ignorante
+    - sei proprio un deficiente
+    - non capisci niente, idiota
 
   - intent: compliment
     examples:
@@ -109,6 +173,16 @@ nlu:
     - sei geniale
     - che spettacolo
     - grazie sei un angelo
+    - sei incredibile
+    - complimenti per il lavoro svolto
+    - sei un grande
+    - che meraviglia
+    - sei davvero bravo
+    - ottimo risultato
+    - sei una persona speciale
+    - mi hai stupito
+    - sei eccezionale
+    - bravo davvero
 
   - intent: deny
     examples:
@@ -121,6 +195,17 @@ nlu:
     - mai
     - negativo
     - non proprio
+    - no, non voglio
+    - non credo proprio
+    - non se ne parla
+    - no, non mi va
+    - per niente
+    - non è così
+    - non sono convinto
+    - no, non ci sto
+    - decisamente no
+    - non ne ho voglia
+    - no, non è possibile
 
   - intent: stop
     examples:
@@ -132,6 +217,18 @@ nlu:
     - smetti
     - blocca tutto
     - non continuare
+    - ferma tutto
+    - basta così
+    - fermalo
+    - blocca l'operazione
+    - interrompi tutto
+    - smettila
+    - ferma qui
+    - annulla tutto
+    - basta, fermati
+    - stop a tutto
+    - taglia corto
+    - chiudi qui
 
   - intent: ask_name
     examples:
@@ -141,6 +238,20 @@ nlu:
     - chi ti ha creato
     - dimmi il tuo nome
     - presentati
+    - come devo chiamarti
+    - qual è il tuo nome per favore
+    - dimmi come ti chiami
+    - chi sei tu esattamente
+    - qual è il nome che usi
+    - come ti chiamano
+    - dimmi chi sei
+    - chi ti ha programmato
+    - presentati per favore
+    - qual è la tua identità
+    - sai dirmi il tuo nome
+    - chi sei realmente
+    - come posso chiamarti
+    - dimmi qualcosa su di te
 
   - intent: thank_you
     examples:
@@ -153,6 +264,17 @@ nlu:
     - apprezzo l'aiuto
     - grazie di cuore
     - molte grazie
+    - sei stato utile, grazie
+    - grazie infinite
+    - ti ringrazio tanto
+    - grazie per il supporto
+    - sei stato gentile, grazie
+    - grazie davvero
+    - ti sono molto grato
+    - grazie per tutto
+    - apprezzo molto il tuo aiuto
+    - grazie ancora
+    - mille grazie per l'aiuto
 
   - intent: mood_great
     examples:
@@ -165,6 +287,17 @@ nlu:
     - sono su di giri
     - '[oggi](DATE) è una gran giornata'
     - sono sereno
+    - mi sento alla grande
+    - sto benissimo
+    - mi sento carico
+    - sono raggiante
+    - tutto va per il meglio
+    - sono entusiasta
+    - mi sento in forma
+    - sono positivo oggi
+    - va tutto alla grande
+    - sono felicissimo
+    - mi sento pieno di energia
 
   - intent: mood_unhappy
     examples:
@@ -177,6 +310,17 @@ nlu:
     - mi sento a pezzi
     - sto attraversando un momento difficile
     - '[oggi](DATE) è una brutta giornata'
+    - non è stata una bella giornata
+    - mi sento demoralizzato
+    - sono di cattivo umore
+    - sto passando un brutto periodo
+    - mi sento scoraggiato
+    - non sto bene oggi
+    - sono stanco e stressato
+    - mi sento senza energie
+    - sono deluso
+    - mi sento un po' giù di morale
+    - la giornata non sta andando bene
 
   - intent: bot_challenge
     examples:
@@ -187,6 +331,19 @@ nlu:
     - sei artificiale
     - sei un assistente virtuale
     - cosa sei
+    - sei una macchina
+    - sto parlando con un'intelligenza artificiale
+    - sei reale o programmato
+    - sei un software
+    - sei fatto di codice
+    - sei una persona vera
+    - sei un'intelligenza artificiale
+    - sei un chatbot
+    - dall'altra parte c'è un umano
+    - sei un programma
+    - sei consapevole
+    - hai emozioni vere
+    - sei senziente
 
   - intent: ask_capital
     examples:
@@ -197,6 +354,19 @@ nlu:
     - cos'è la capitale del [Brasile](LOCATION)
     - dimmi la capitale dell'[Ucraina](LOCATION)
     - qual è la capitale della Repubblica Popolare [Cinese](LOCATION)
+    - qual è la capitale della [Spagna](LOCATION)
+    - qual è la capitale del [Regno Unito](LOCATION)
+    - dimmi la capitale del [Portogallo](LOCATION)
+    - qual è la capitale degli [Stati Uniti](LOCATION)
+    - qual è la capitale dell'[Australia](LOCATION)
+    - dimmi la capitale del [Canada](LOCATION)
+    - qual è la capitale della [Russia](LOCATION)
+    - qual è la capitale dell'[India](LOCATION)
+    - dove si trova la capitale del [Messico](LOCATION)
+    - qual è la capitale dell'[Egitto](LOCATION)
+    - qual è la capitale della [Grecia](LOCATION)
+    - dimmi la capitale dell'[Argentina](LOCATION)
+    - qual è la capitale della [Svizzera](LOCATION)
 
   - intent: ask_city_touristic_information
     examples:
@@ -209,6 +379,17 @@ nlu:
     - quali monumenti ci sono a [Venezia](LOCATION)
     - qual è l'attrazione più famosa di [Dubai](LOCATION)
     - dimmi qualche idea per un viaggio a [Civita di Bagnoregio](LOCATION)
+    - cosa vedere a [Firenze](LOCATION)
+    - cosa consigli di vedere a [Londra](LOCATION)
+    - quali sono i posti da non perdere a [Barcellona](LOCATION)
+    - cosa posso fare a [Amsterdam](LOCATION)
+    - quali luoghi visitare a [Praga](LOCATION)
+    - dammi consigli per un weekend a [Napoli](LOCATION)
+    - cosa vedere assolutamente a [Lisbona](LOCATION)
+    - quali sono le attrazioni principali di [Vienna](LOCATION)
+    - cosa c'è da vedere a [Bologna](LOCATION)
+    - dimmi cosa visitare a [Torino](LOCATION)
+    - quali sono i luoghi imperdibili di [Siviglia](LOCATION)
 
   - intent: ask_touristic_place_information
     examples:
@@ -219,6 +400,19 @@ nlu:
     - dove si trova il [Museo Egizio](LOCATION)
     - raccontami qualcosa sulla [Basilica di San Pietro](LOCATION)
     - hai informazioni sul [Castello di Neuschwanstein](LOCATION)
+    - cosa puoi dirmi sul [Duomo di Milano](LOCATION)
+    - quali sono gli orari di apertura del [Colosseo](LOCATION)
+    - dove si trova la [Fontana di Trevi](LOCATION)
+    - parlami della [Sagrada Familia](LOCATION)
+    - raccontami la storia del [Big Ben](LOCATION)
+    - cosa sai del [Partenone](LOCATION)
+    - dove si trova [Stonehenge](LOCATION)
+    - hai informazioni sulla [Statua della Libertà](LOCATION)
+    - quali sono gli orari degli [Uffizi](LOCATION)
+    - parlami del [Ponte di Rialto](LOCATION)
+    - cosa puoi dirmi sulla [Reggia di Caserta](LOCATION)
+    - raccontami qualcosa sul [Muro di Berlino](LOCATION)
+    - dove si trova il [Pantheon](LOCATION)
 
   - intent: ask_favorite_color
     examples:
@@ -227,6 +421,21 @@ nlu:
     - quale colore ti rappresenta meglio
     - se dovessi scegliere un colore per me, quale sceglieresti
     - c'è un colore che ti piace più degli altri
+    - che colore ti piace di più
+    - quale colore scegli tra tutti
+    - hai un colore preferito
+    - qual è il colore che ami di più
+    - ti piace il colore blu
+    - preferisci il rosso o il blu
+    - ti piace il verde
+    - qual è il tuo colore del cuore
+    - quale tonalità ti piace di più
+    - ti piacciono i colori accesi o pastello
+    - hai un colore che ti fa stare bene
+    - qual è il colore che ti ispira di più
+    - preferisci colori caldi o freddi
+    - quale colore useresti per descriverti
+    - ti piace il colore giallo
 
   - intent: ask_generic_stuff
     examples:
@@ -237,6 +446,19 @@ nlu:
     - quanto tempo ci vuole per fare una torta
     - quanto costa un chilo di pane
     - quanto tempo serve per fare la spesa
+    - quanto costa un biglietto del treno
+    - quanto tempo ci vuole per arrivare in centro
+    - quanto costa un panino al bar
+    - quanto costa un biglietto dell'autobus
+    - quanto tempo ci vuole per cuocere la pasta
+    - quanto costa un caffè al distributore
+    - quanto tempo serve per fare il bucato
+    - quanto costa un litro di benzina
+    - quanto tempo ci vuole per andare in aeroporto
+    - quanto costa un menu al fast food
+    - quanto tempo serve per cuocere il riso
+    - quanto costa un biglietto aereo
+    - quanto tempo ci vuole per imparare l'inglese
 
   - intent: ask_preferences
     examples:
@@ -247,6 +469,19 @@ nlu:
     - qual è il tuo libro preferito
     - preferisci dolce o salato
     - quale stagione dell'anno preferisci
+    - preferisci il mare o la montagna
+    - quale sport ti piace di più
+    - ti piace di più leggere o guardare film
+    - preferisci l'estate o l'inverno
+    - quale film ti piace di più
+    - preferisci la città o la campagna
+    - ti piace più cucinare o mangiare fuori
+    - quale genere musicale preferisci
+    - preferisci viaggiare in aereo o in treno
+    - qual è il tuo piatto preferito
+    - preferisci uscire o stare a casa
+    - quale animale ti piace di più
+    - preferisci il tè o il caffè
 
   - intent: ask_sexual_orientation
     examples:
@@ -255,6 +490,21 @@ nlu:
     - sei etero gay o altro
     - ti interessano persone dello stesso sesso
     - hai un orientamento sessuale particolare
+    - sei attratto dagli uomini o dalle donne
+    - hai una preferenza sessuale
+    - ti piacciono più i ragazzi o le ragazze
+    - qual è la tua sessualità
+    - sei gay, etero o bisessuale
+    - sei bisessuale
+    - ti piacciono le persone dello stesso genere
+    - come definiresti il tuo orientamento
+    - sei pansessuale
+    - hai mai avuto una relazione
+    - ti identifichi come etero
+    - qual è il genere che preferisci
+    - sei omosessuale
+    - ti attraggono più gli uomini
+    - hai una vita sentimentale
 
   - intent: ask_health_status
     examples:
@@ -266,6 +516,18 @@ nlu:
     - sei malato
     - ti senti bene o male
     - come sta andando la tua salute ultimamente
+    - come ti senti oggi
+    - tutto bene con te
+    - stai attraversando un problema di salute
+    - come procede con la salute
+    - sei in buona forma
+    - ti senti in salute
+    - come stai fisicamente
+    - hai qualche acciacco
+    - stai meglio adesso
+    - come va la tua condizione
+    - sei guarito
+    - ti senti stanco o riposato
 
   - intent: weather_query
     examples:
@@ -273,20 +535,22 @@ nlu:
     - meteo
     - previsioni del tempo
     - che tempo farà [domani](DATE)
-    - bollettino meteo
-    - farà caldo o freddo
     - che tempo fa a [Roma](LOCATION)
-    - che tempo fa a [Milano](LOCATION)
     - meteo a [Napoli](LOCATION)
     - piove a [Torino](LOCATION)
-    - c'è nebbia a [Milano](LOCATION)
     - meteo [oggi](DATE) a [Roma](LOCATION)
+    - pioverà [domani](DATE) a [Roma](LOCATION)
+    - meteo weekend a [Napoli](LOCATION)
+    - bollettino meteo
+    - farà caldo o freddo
+    - che tempo fa a [Milano](LOCATION)
+    - c'è nebbia a [Milano](LOCATION)
     - tempo [domani](DATE) a [Napoli](LOCATION)
     - previsioni meteo a [Milano](LOCATION)
     - farà freddo a [Napoli](LOCATION)
-    - pioverà [domani](DATE) a [Roma](LOCATION)
     - temperature minime e massime a [Firenze](LOCATION)
-    - meteo weekend a [Napoli](LOCATION)
+    - che tempo farà nel weekend a [Milano](LOCATION)
+    - uscirà il sole [domani](DATE) a [Roma](LOCATION)
 
   - intent: location_query
     examples:
@@ -298,6 +562,18 @@ nlu:
     - dove siamo adesso
     - qual è la mia ubicazione
     - indicami dove sono
+    - fammi sapere dove sono
+    - qual è la mia posizione attuale
+    - dove sono in questo momento
+    - attiva il gps
+    - dimmi dove ci troviamo
+    - qual è la mia posizione esatta
+    - dove siamo geograficamente
+    - individua la mia posizione
+    - in che posto mi trovo
+    - mostrami dove sono sulla mappa
+    - qual è la mia posizione in questo istante
+    - localizza il dispositivo
 
   - intent: calculate
     examples:
@@ -311,6 +587,16 @@ nlu:
     - che risultato dà [8](NUMBER) per [5](NUMBER)
     - fai il calcolo di [25](NUMBER) più [15](NUMBER)
     - quanto fa [50](NUMBER) meno [30](NUMBER)
+    - quanto fa [20](NUMBER) per [4](NUMBER)
+    - calcola [9](NUMBER) più [11](NUMBER)
+    - quanto fa [144](NUMBER) diviso [12](NUMBER)
+    - risolvimi [30](NUMBER) meno [18](NUMBER)
+    - che risultato dà [3](NUMBER) per [9](NUMBER)
+    - quanto fa [1000](NUMBER) diviso [10](NUMBER)
+    - fai il calcolo di [45](NUMBER) meno [20](NUMBER)
+    - quanto fa [6](NUMBER) per [7](NUMBER)
+    - calcola [200](NUMBER) più [300](NUMBER)
+    - risolvimi [64](NUMBER) diviso [8](NUMBER)
 
   - intent: time_query
     examples:
@@ -321,16 +607,42 @@ nlu:
     - mi dici l'ora
     - hai l'ora
     - che ore fanno adesso
+    - sai dirmi che ore sono
+    - che ora fa il tuo orologio
+    - dimmi l'orario esatto
+    - che ore sono adesso
+    - mi sai dire l'ora
+    - qual è l'orario corrente
+    - dimmi che ore sono per favore
+    - hai l'orario esatto
+    - che ore segna l'orologio
+    - sapresti dirmi l'ora
+    - qual è l'ora in questo momento
+    - mi dici che ore sono
+    - dammi l'orario attuale
 
   - intent: date_query
     examples:
     - che giorno è oggi
+    - che giorno
+    - oggi quanti ne abbiamo
     - qual è la data di [oggi](DATE)
     - che giorno siamo
     - quanti ne abbiamo
     - che giorno della settimana è
     - data odierna
     - che data è oggi
+    - qual è la data odierna
+    - che giorno è oggi esattamente
+    - dimmi la data di oggi
+    - quanti ne abbiamo oggi
+    - qual è il giorno corrente
+    - sai dirmi che giorno è
+    - che data abbiamo oggi
+    - in che giorno siamo oggi
+    - dimmi che giorno della settimana è
+    - qual è la data attuale
+    - che giorno cade oggi
 
   - intent: year_query
     examples:
@@ -341,12 +653,24 @@ nlu:
     - in quale anno ci troviamo
     - siamo nell'anno
     - che anno è oggi
+    - dimmi l'anno corrente
+    - qual è l'anno attuale
+    - in che anno viviamo
+    - in che anno siamo adesso
+    - sai dirmi l'anno corrente
+    - qual è l'anno in cui viviamo
+    - che anno segna il calendario
+    - dimmi in che anno siamo
+    - qual è l'anno di oggi
+    - in quale anno ci troviamo ora
+    - che anno corre attualmente
+    - sapresti dirmi l'anno
+    - qual è l'anno corrente esatto
 
   - intent: confirm
     examples:
     - sì
     - ok
-    - "yes"
     - va bene
     - certamente
     - confermo
@@ -378,6 +702,16 @@ nlu:
     - dimmi di nuovo
     - puoi chiarire
     - non ho capito bene
+    - potresti ripetere per favore
+    - non ho sentito bene
+    - puoi ridire tutto
+    - ripeti ancora una volta
+    - scusa, non ho capito
+    - puoi essere più chiaro
+    - dimmi ancora
+    - puoi ripetere più lentamente
+    - non ho afferrato bene
+    - ripeti da capo
 
   - intent: wait
     examples:
@@ -389,6 +723,18 @@ nlu:
     - aspettami
     - rimani in linea
     - aspetta che verifico
+    - dammi un secondo
+    - un attimo per favore
+    - aspetta un istante
+    - dammi un minuto
+    - resta in attesa un attimo
+    - aspetta un attimo per favore
+    - dammi il tempo di controllare
+    - un momento per favore
+    - aspetta che controllo
+    - resta lì un secondo
+    - dammi solo un attimo
+    - aspetta ancora un po'
 
   - intent: retry
     examples:
@@ -400,6 +746,18 @@ nlu:
     - riprova la connessione
     - prova di nuovo da capo
     - riprova l'invio
+    - riprova ancora una volta
+    - esegui di nuovo il tentativo
+    - prova un'altra volta
+    - riprova per favore
+    - rifai il tentativo
+    - riesegui il comando
+    - prova a rifarlo
+    - riprova il download
+    - esegui ancora una volta
+    - ritenta l'operazione
+    - prova di nuovo per favore
+    - rifai partire il processo
 
   - intent: forget
     examples:
@@ -412,6 +770,17 @@ nlu:
     - cancella conversazione
     - dimentica le preferenze
     - pulisci la memoria
+    - elimina tutto quello che sai
+    - cancella tutti i dati
+    - dimentica quello che ho detto
+    - resetta la conversazione
+    - elimina la cronologia
+    - dimentica il mio nome
+    - cancella le informazioni salvate
+    - fai un reset completo
+    - dimentica tutto quello che sai di me
+    - elimina i miei dati
+    - azzera la memoria
 
   - intent: out_of_scope
     examples:
@@ -468,6 +837,19 @@ nlu:
     - raccontami qualcosa di divertente
     - fammi sorridere
     - sei divertente
+    - raccontami una barzelletta divertente
+    - dimmi qualcosa di comico
+    - hai qualche battuta pronta
+    - conosci qualche barzelletta
+    - dimmi qualcosa che mi faccia ridere
+    - hai una battuta simpatica
+    - raccontami una barzelletta corta
+    - fammi una battuta
+    - dimmi uno scherzo
+    - hai qualcosa di buffo da raccontare
+    - raccontami qualcosa di esilarante
+    - sai raccontare barzellette
+    - fammi divertire con una battuta
 
   - intent: sing
     examples:
@@ -477,6 +859,20 @@ nlu:
     - canta qualcosa di italiano
     - canta una canzone natalizia
     - fammi sentire una melodia
+    - canta qualcosa per me
+    - intonami una canzone
+    - canta una ninna nanna
+    - fammi ascoltare una canzone
+    - canta una canzone allegra
+    - intona una melodia
+    - canta qualcosa di rilassante
+    - fammi sentire una canzone italiana
+    - canta un ritornello
+    - cantami una filastrocca
+    - canta qualcosa di orecchiabile
+    - intonami una ninna nanna
+    - fammi sentire la tua voce cantando
+    - canta un motivetto
 
   - intent: play_game
     examples:
@@ -488,6 +884,18 @@ nlu:
     - indovinelli
     - gioco di logica
     - rompicapo
+    - vuoi giocare con me
+    - iniziamo un gioco
+    - facciamo una partita
+    - giochiamo a indovina la parola
+    - proponi un gioco
+    - sfidami a un gioco di logica
+    - facciamo un quiz a risposta multipla
+    - dammi un indovinello
+    - giochiamo a scacchi
+    - facciamo un gioco di parole
+    - iniziamo una partita a tris
+    - sfidiamoci a un quiz
 
   - intent: set_reminder
     examples:
@@ -499,6 +907,18 @@ nlu:
     - ricordami [alle 8](TIME) [domani](DATE)
     - avvisami quando [è ora](TIME)
     - imposta promemoria per [lunedì](DATE)
+    - ricordami di [fare la spesa](TOPIC) [domani](DATE)
+    - imposta un promemoria per [le 18](TIME)
+    - ricordami di [prendere le medicine](TOPIC)
+    - imposta un promemoria per [venerdì](DATE)
+    - ricordami [alle 15](TIME)
+    - promemoria per [il compleanno di mamma](TOPIC)
+    - ricordami di [portare fuori il cane](TOPIC)
+    - imposta un allarme per [le 7](TIME)
+    - avvisami [tra un'ora](TIME)
+    - ricordami di [inviare l'email](TOPIC) [domani](DATE)
+    - imposta un promemoria per [la riunione](TOPIC)
+    - ricordami [stasera](TIME) di [chiudere le finestre](TOPIC)
 
   - intent: open_app
     examples:
@@ -511,6 +931,17 @@ nlu:
     - apri [Zoom](PRODUCT)
     - apri [Discord](PRODUCT)
     - apri l'app di messaggistica
+    - apri [Instagram](PRODUCT)
+    - apri [Facebook](PRODUCT)
+    - apri [YouTube](PRODUCT)
+    - apri [Telegram](PRODUCT)
+    - apri [Twitter](PRODUCT)
+    - apri [TikTok](PRODUCT)
+    - apri [Amazon](PRODUCT)
+    - apri [Calendario](PRODUCT)
+    - apri [Fotocamera](PRODUCT)
+    - apri [Calcolatrice](PRODUCT)
+    - apri [Uber](PRODUCT)
 
   - intent: send_message
     examples:
@@ -521,6 +952,19 @@ nlu:
     - invia un messaggio telegram
     - mandami un messaggio
     - invia un sms
+    - invia un messaggio a [Giulia](PERSON)
+    - scrivi un sms a [Marco](PERSON)
+    - manda un messaggio whatsapp a [Sara](PERSON)
+    - manda un messaggio a [Elena](PERSON)
+    - scrivi un messaggio a [Davide](PERSON)
+    - invia un sms a [Chiara](PERSON)
+    - messaggio telegram per [Andrea](PERSON)
+    - scrivi su whatsapp a [Federico](PERSON)
+    - invia un messaggio vocale a [Martina](PERSON)
+    - manda un'email a [Lorenzo](PERSON)
+    - scrivi a [Beatrice](PERSON) su whatsapp
+    - invia un messaggio urgente a [Simone](PERSON)
+    - manda un sms a [Valentina](PERSON)
 
   - intent: make_note
     examples:
@@ -532,6 +976,18 @@ nlu:
     - salva questa nota
     - scrivi [ricetta](TOPIC) nel blocco note
     - voglio creare un appunto
+    - crea un appunto veloce
+    - scrivi una nota per dopo
+    - prendi nota di [questo indirizzo](TOPIC)
+    - scrivi un appunto su [la lista della spesa](TOPIC)
+    - salva un promemoria scritto
+    - crea una nota vocale
+    - annota [il numero di telefono](TOPIC)
+    - scrivi giù [questa idea](TOPIC)
+    - prendi nota di [questo pensiero](TOPIC)
+    - salva questo appunto per dopo
+    - scrivi una nota veloce
+    - crea un nuovo appunto nel blocco note
 
   - intent: translate
     examples:
@@ -542,11 +998,7 @@ nlu:
     - come si dice in [tedesco](LANGUAGE) [non capisco](TRANSLATION_TEXT)
     - come si dice in [arabo](LANGUAGE) [dove si trova la stazione](TRANSLATION_TEXT)
     - come si dice in [russo](LANGUAGE) [mamma](TRANSLATION_TEXT)
-    - come si dice in [russo](LANGUAGE) [non capisci niente](TRANSLATION_TEXT)
-    - come si dice in [russo](LANGUAGE) [sei brutto](TRANSLATION_TEXT)
-    - come si dice in [russo](LANGUAGE) [mi manchi](TRANSLATION_TEXT)
     - come si dice in [russo](LANGUAGE) [come stai](TRANSLATION_TEXT)
-    - come si dice in [russo](LANGUAGE) [dove sei](TRANSLATION_TEXT)
     - come si dice in [inglese](LANGUAGE) [non capisco](TRANSLATION_TEXT)
     - come si dice in [inglese](LANGUAGE) [ho fame](TRANSLATION_TEXT)
     - traduci [libro](TRANSLATION_TEXT) in [russo](LANGUAGE)
@@ -558,15 +1010,7 @@ nlu:
     - traduzione di [mi chiamo](TRANSLATION_TEXT) in [spagnolo](LANGUAGE)
     - come si traduce [tempo](TRANSLATION_TEXT) in [tedesco](LANGUAGE)
     - come si traduce [buongiorno](TRANSLATION_TEXT) in [arabo](LANGUAGE)
-    - traduci in [russo](LANGUAGE) [sei brutto](TRANSLATION_TEXT)
-    - traduci in [russo](LANGUAGE) [non capisci niente](TRANSLATION_TEXT)
-    - traduci in [russo](LANGUAGE) [ciao bella](TRANSLATION_TEXT)
-    - traduzione in [russo](LANGUAGE) di [ti voglio bene](TRANSLATION_TEXT)
     - traduzione in [inglese](LANGUAGE) di [buona sera](TRANSLATION_TEXT)
-    - traduci
-    - traduzione
-    - come si dice
-    - come si traduce
 
   - intent: count
     examples:
@@ -580,6 +1024,16 @@ nlu:
     - fammi un conteggio
     - quanti risultati ci sono
     - quante voci ha la lista
+    - quanti oggetti ci sono
+    - conta i caratteri del testo
+    - quante pagine ha il documento
+    - conta quante volte compare la parola
+    - quanti messaggi ho ricevuto
+    - conta gli elementi selezionati
+    - quante righe ha il file
+    - dimmi quanti sono
+    - conta quanti ne restano
+    - quante voci ci sono in totale
 
   - intent: measure
     examples:
@@ -593,6 +1047,16 @@ nlu:
     - quanti metri ci sono tra i due punti
     - quanto è distante
     - misura in centimetri
+    - quanto è largo
+    - misura la lunghezza del tavolo
+    - quanti chilometri ci sono da [Napoli](LOCATION) a [Torino](LOCATION)
+    - qual è il peso di questo oggetto
+    - misura lo spessore
+    - quanto pesa
+    - quali sono le misure esatte
+    - misura la larghezza della stanza
+    - quanto è profondo
+    - quanti metri quadrati sono
 
   - intent: volume_up
     examples:
@@ -603,6 +1067,19 @@ nlu:
     - volume massimo
     - metti più forte
     - suono più alto
+    - alza un po' il volume
+    - metti l'audio più alto
+    - volume a manetta
+    - aumenta il suono
+    - alza l'audio per favore
+    - porta il volume al massimo
+    - alza ancora il volume
+    - metti su il volume
+    - aumenta un po' l'audio
+    - alza il suono della musica
+    - voglio sentirlo più forte
+    - porta su il volume
+    - alza tutto il volume
 
   - intent: volume_down
     examples:
@@ -614,6 +1091,18 @@ nlu:
     - muta
     - zittisci
     - audio più basso
+    - abbassa un po' l'audio
+    - meno forte per favore
+    - abbassa l'audio per favore
+    - riduci il volume
+    - porta giù il volume
+    - silenzia tutto
+    - abbassa ancora il volume
+    - metti in silenzioso
+    - riduci un po' l'audio
+    - voglio sentirlo più piano
+    - porta giù il suono
+    - abbassa completamente il volume
 
   - intent: web_search
     examples:
@@ -628,3 +1117,12 @@ nlu:
     - cerca notizie sulla [guerra in Ucraina](QUERY)
     - cercami notizie su [Giorgia Meloni](QUERY)
     - fai una ricerca su [Donald Trump](QUERY)
+    - cerca informazioni su [Napoleone Bonaparte](QUERY)
+    - fai una ricerca su [intelligenza artificiale](QUERY)
+    - cerca notizie recenti su [cambiamento climatico](QUERY)
+    - dimmi cosa trovi su [Leonardo da Vinci](QUERY)
+    - cerca su internet [ricette di cucina](QUERY)
+    - trova notizie su [economia italiana](QUERY)
+    - cerca informazioni riguardo [storia romana](QUERY)
+    - fai una ricerca approfondita su [energie rinnovabili](QUERY)
+    - cerca notizie sportive di oggi

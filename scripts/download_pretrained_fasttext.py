@@ -8,7 +8,7 @@ from tqdm import tqdm
 import gzip
 import shutil
 
-BASE_DIR = '/home/luca/PycharmProjects/arianna-assistant'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def download_file(url, dest_path):
     """Download file con progress bar"""

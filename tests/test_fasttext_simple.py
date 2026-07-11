@@ -6,7 +6,7 @@ import fasttext
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
-BASE_DIR = '/home/luca/PycharmProjects/arianna-assistant'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 fasttext_model_path = os.path.join(BASE_DIR, 'models', 'fasttext_model.bin')
 
 print("="*80)

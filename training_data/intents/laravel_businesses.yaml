@@ -1,0 +1,15 @@
+nlu:
+  intents:
+  - intent: search_business
+    examples:
+    - cerca un'attività
+    - cerca un'attività chiamata [alice pizza](BUSINESS_QUERY)
+    - trova un'attività che si chiama [briciole di pane](BUSINESS_QUERY)
+    - cerca l'attività [pizzeria roma](BUSINESS_QUERY)
+    - c'è un'attività chiamata [bar centrale](BUSINESS_QUERY)?
+    - cerca il negozio [ferramenta rossi](BUSINESS_QUERY)
+    - trovami un'attività con nome [panetteria da mario](BUSINESS_QUERY)
+    - cerca tra le attività [gelateria artigianale](BUSINESS_QUERY)
+    - dammi informazioni sull'attività [ristorante da luigi](BUSINESS_QUERY)
+    - esiste un'attività chiamata [autofficina verdi](BUSINESS_QUERY)?
+    - cerca un business chiamato [studio legale bianchi](BUSINESS_QUERY)

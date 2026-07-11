@@ -1,23 +1,45 @@
+import os
+import secrets
 from datetime import datetime, timedelta
 from typing import Optional
 
+import bcrypt
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 from pydantic import BaseModel
 
+import config  # noqa: F401  (assicura che .env sia caricato prima di leggere le env var sotto)
+
 router = APIRouter()
 
-SECRET_KEY = "your-secret-key-change-in-production"
+SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    # Nessun default fisso in sorgente: un default fisso sarebbe pubblico (visibile
+    # a chiunque legga il repo) e permetterebbe di forgiare token anche in produzione
+    # se la env var viene dimenticata. In dev, meglio un segreto casuale per processo
+    # (i token restano validi solo finché il server non viene riavviato) che uno
+    # statico e noto.
+    SECRET_KEY = secrets.token_hex(32)
+    print("⚠ SECRET_KEY non impostata nell'ambiente: uso un segreto casuale generato "
+          "per questo processo. I token JWT non saranno validi dopo un riavvio. "
+          "Imposta SECRET_KEY nel .env per un valore stabile.")
+
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
+REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
 
 
 class Token(BaseModel):
     access_token: str
+    refresh_token: str
     token_type: str
+
+
+class RefreshRequest(BaseModel):
+    refresh_token: str
 
 
 class TokenData(BaseModel):
@@ -32,23 +54,30 @@ class User(BaseModel):
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    import hashlib
-    return hashlib.sha256(plain_password.encode()).hexdigest() == hashed_password
+    return bcrypt.checkpw(plain_password.encode(), hashed_password.encode())
 
 
 def get_password_hash(password: str) -> str:
-    import hashlib
-    return hashlib.sha256(password.encode()).hexdigest()
+    return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     to_encode = data.copy()
     expire = datetime.utcnow() + (expires_delta or timedelta(minutes=15))
-    to_encode.update({"exp": expire})
+    to_encode.update({"exp": expire, "type": "access"})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
+def create_refresh_token(data: dict) -> str:
+    to_encode = data.copy()
+    expire = datetime.utcnow() + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
+    to_encode.update({"exp": expire, "type": "refresh"})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+
+def _decode_token(token: str, expected_type: str) -> str:
+    """Decode e valida un JWT, verificando che sia del tipo atteso ('access' o 'refresh').
+    Ritorna lo username (claim 'sub') o solleva HTTPException 401."""
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -59,18 +88,34 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
         username = payload.get("sub")
         if username is None or not isinstance(username, str):
             raise credentials_exception
-        token_data = TokenData(username=username)
+        if payload.get("type") != expected_type:
+            raise credentials_exception
     except JWTError:
         raise credentials_exception
-    return User(username=token_data.username)  # type: ignore[arg-type]
+    return username
 
 
+def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
+    username = _decode_token(token, expected_type="access")
+    return User(username=username)  # type: ignore[arg-type]
+
+
+_ADMIN_USERNAME = os.getenv("AUTH_ADMIN_USERNAME", "admin")
+_ADMIN_PASSWORD = os.getenv("AUTH_ADMIN_PASSWORD")
+if not _ADMIN_PASSWORD:
+    _ADMIN_PASSWORD = secrets.token_hex(16)
+    print(f"⚠ AUTH_ADMIN_PASSWORD non impostata nell'ambiente: password generata per "
+          f"questo processo per l'utente '{_ADMIN_USERNAME}': {_ADMIN_PASSWORD}. "
+          f"Imposta AUTH_ADMIN_USERNAME/AUTH_ADMIN_PASSWORD nel .env per credenziali stabili.")
+
+# Utente unico di servizio (single-user demo auth). Le credenziali vengono da env,
+# non da valori hardcoded in sorgente.
 FAKE_USERS_DB = {
-    "admin": {
-        "username": "admin",
+    _ADMIN_USERNAME: {
+        "username": _ADMIN_USERNAME,
         "full_name": "Admin User",
         "email": "admin@example.com",
-        "hashed_password": get_password_hash("admin123"),
+        "hashed_password": get_password_hash(_ADMIN_PASSWORD),
         "disabled": False,
     }
 }
@@ -98,7 +143,31 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
     access_token = create_access_token(
         data={"sub": user["username"]}, expires_delta=access_token_expires
     )
-    return {"access_token": access_token, "token_type": "bearer"}
+    refresh_token = create_refresh_token(data={"sub": user["username"]})
+    return {"access_token": access_token, "refresh_token": refresh_token, "token_type": "bearer"}
+
+
+@router.post("/refresh", response_model=Token)
+def refresh(payload: RefreshRequest):
+    """
+    Scambia un refresh token valido (non scaduto, type=refresh) con una nuova coppia
+    access/refresh token, senza richiedere di nuovo username/password. Il refresh
+    token viene ruotato ad ogni uso (non riutilizzabile due volte).
+    """
+    username = _decode_token(payload.refresh_token, expected_type="refresh")
+    user = FAKE_USERS_DB.get(username)
+    if not user or user.get("disabled"):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": user["username"]}, expires_delta=access_token_expires
+    )
+    new_refresh_token = create_refresh_token(data={"sub": user["username"]})
+    return {"access_token": access_token, "refresh_token": new_refresh_token, "token_type": "bearer"}
 
 
 @router.get("/me", response_model=User)

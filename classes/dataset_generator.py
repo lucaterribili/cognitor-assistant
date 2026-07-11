@@ -1,6 +1,7 @@
 import json
 import os
 import csv
+import re
 import numpy as np
 import yaml
 from pathlib import Path
@@ -97,17 +98,21 @@ class DatasetGenerator:
 
         with open(csv_path, mode='w', encoding='utf-8', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            writer.writerow(['INPUT', 'OUTPUT', 'CLEAN_TEXT', 'ENTITIES'])
+            writer.writerow(['INPUT', 'OUTPUT', 'CLEAN_TEXT', 'ENTITIES', 'GROUP_ID'])
 
             seen = set()
             intent_name_to_id = {v: k for k, v in intent_dict.items()}
             for item in doped_dataset:
                 text = item['text']
                 intent = item['intent']
+                # group_id identifica l'esempio sorgente originale: tutte le
+                # varianti (clean_text/normalized/doping) devono restare
+                # insieme nello split train/val per evitare data leakage.
+                group_id = item.get('group_id', '')
                 intent_id = intent_name_to_id.get(intent)
                 if intent_id is None:
                     continue
-                    
+
                 clean_text, entities = self.ner_parser.parse(text)
                 normalized = self.normalizer.normalize(clean_text)
 
@@ -118,7 +123,8 @@ class DatasetGenerator:
                             text_variant,
                             intent_id,
                             clean_text,
-                            json.dumps(entities, ensure_ascii=False)
+                            json.dumps(entities, ensure_ascii=False),
+                            group_id
                         ])
 
         self.tokenize_and_save_npy(csv_path)
@@ -129,6 +135,39 @@ class DatasetGenerator:
         self.ner_tag_builder.save(tag_builder_path)
         print(f"NER tag builder salvato in: {tag_builder_path}")
 
+    @staticmethod
+    def _load_response_texts() -> list[str]:
+        """
+        Carica tutte le frasi di risposta da knowledge/responses e
+        training_data/responses, ripulite dai placeholder ({SLOT_NAME},
+        {SLOT=value}) usati dal RuleInterpreter, per usarle come testo grezzo
+        aggiuntivo nel corpus FastText: sono frasi in italiano naturale scritte
+        a mano, con vocabolario che può non comparire negli esempi NLU.
+        """
+        placeholder_pattern = re.compile(r'\{[^}]*\}')
+        responses_dirs = [
+            os.path.join(BASE_DIR, 'knowledge', 'responses'),
+            os.path.join(BASE_DIR, 'training_data', 'responses'),
+        ]
+
+        texts = []
+        for responses_dir in responses_dirs:
+            responses_path = Path(responses_dir)
+            if not responses_path.exists():
+                continue
+            for yaml_file in sorted(responses_path.glob('*.yaml')):
+                with open(yaml_file, 'r', encoding='utf-8') as f:
+                    data = yaml.safe_load(f)
+                if not data or 'responses' not in data:
+                    continue
+                for response_list in data['responses'].values():
+                    for response in response_list:
+                        cleaned = placeholder_pattern.sub('', str(response))
+                        cleaned = ' '.join(cleaned.split())
+                        if cleaned:
+                            texts.append(cleaned)
+        return texts
+
     def generate_fasttext_corpus(self):
         """
         Genera il corpus per FastText (RAW TEXT senza tokenizzazione).
@@ -136,7 +175,7 @@ class DatasetGenerator:
         """
         fasttext_path = os.path.join(self.data_path, 'fast-text.txt')
         training_phrases_path = os.path.join(BASE_DIR, 'knowledge', 'embeddings.txt')
-        
+
         if DOPING_ACTIVE:
             doped_dataset = self.doping_preprocessor.process_dataset(self.data)
         else:
@@ -163,6 +202,13 @@ class DatasetGenerator:
                         seen.add(line)
                         lines_to_write.append(line)
 
+        response_texts = self._load_response_texts()
+        print(f"Merge con {len(response_texts)} frasi di risposta da knowledge/responses e training_data/responses")
+        for line in response_texts:
+            if line not in seen:
+                seen.add(line)
+                lines_to_write.append(line)
+
         # Scrivi RAW TEXT - FastText tokenizza internamente
         with open(fasttext_path, mode='w', encoding='utf-8') as f:
             for text in lines_to_write:
@@ -181,6 +227,9 @@ class DatasetGenerator:
                 output_id = int(row['OUTPUT'])
                 clean_text = row['CLEAN_TEXT']
                 entities = json.loads(row['ENTITIES'])
+                # group_id dell'esempio sorgente originale (per split train/val
+                # group-aware, vedi train_intent_classifier.py)
+                group_id = row.get('GROUP_ID', '')
 
                 # Tokenizza
                 tokens = self.tokenizer(input_text)
@@ -189,8 +238,8 @@ class DatasetGenerator:
                 # Genera tag NER BIO
                 ner_tag_ids = self.ner_tag_builder.align_tokens_to_bio(clean_text, tokens, entities)
 
-                # Salva: [token_ids, intent_id, ner_tag_ids]
-                tokenized_data.append([token_ids, [output_id], ner_tag_ids])
+                # Salva: [token_ids, intent_id, ner_tag_ids, group_id]
+                tokenized_data.append([token_ids, [output_id], ner_tag_ids, group_id])
 
         np_tokenized_data = np.array(tokenized_data, dtype=object)
 

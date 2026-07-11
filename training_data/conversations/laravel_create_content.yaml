@@ -1,0 +1,30 @@
+# Conversations per create_content (integrazione Laravel/Programmato Backoffice)
+# Nota: i turni di raccolta slot (content_type, domain, category/tutorial, titles)
+# sono gestiti deterministicamente dal RuleInterpreter (vedi rules/laravel_create_content.yaml)
+# e non passano dal classificatore di intent, quindi non vanno modellati qui come step
+# separati: la story rappresenta solo il turno "create_content" a slot completati.
+
+conversations:
+  create_content_flow:
+    description: "Flusso di generazione contenuti (articoli o tutorial) su richiesta"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: create_content
+        bot: __create_content
+        goal: create_content
+      - user: farewell
+        bot: farewell_response
+
+  create_content_with_thanks_flow:
+    description: "Flusso di generazione contenuti con ringraziamento prima del congedo"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: create_content
+        bot: __create_content
+        goal: create_content
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response

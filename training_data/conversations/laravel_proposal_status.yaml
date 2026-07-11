@@ -1,0 +1,26 @@
+# Conversations per proposal_status (integrazione Laravel/Programmato Backoffice)
+
+conversations:
+  proposal_status_flow:
+    description: "Flusso di controllo stato di una richiesta di generazione contenuti"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: proposal_status
+        bot: __proposal_status
+        goal: proposal_status
+      - user: farewell
+        bot: farewell_response
+
+  proposal_status_check_only_flow:
+    description: "L'utente torna solo per controllare lo stato, senza altre richieste"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: proposal_status
+        bot: __proposal_status
+        goal: proposal_status
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response

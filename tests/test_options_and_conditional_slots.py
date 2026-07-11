@@ -6,53 +6,56 @@ from agent.rule_interpreter import RuleInterpreter
 from agent.operations.manager import OperationManager
 
 
+# Fixture generica: testa i meccanismi del DSL (options statiche/dinamiche, slot
+# condizionali "when") indipendentemente da un qualsiasi vocabolario di dominio,
+# così questo test resta identico su qualunque branch/dominio del progetto.
 RULES = {
-    "create_content": {
+    "demo_intent": {
         "slots": {
-            "content_type": {
+            "kind": {
                 "required": True,
                 "type": "string",
-                "entity": "CONTENT_TYPE",
+                "entity": "KIND",
                 "options": [
-                    {"value": "article", "label": "Articolo"},
-                    {"value": "tutorial", "label": "Tutorial"},
+                    {"value": "type_a", "label": "Tipo A"},
+                    {"value": "type_b", "label": "Tipo B"},
                 ],
             },
-            "domain": {
+            "target": {
                 "required": True,
                 "type": "string",
-                "entity": "DOMAIN_NAME",
-                "options_source": "domains",
+                "entity": "TARGET_NAME",
+                "options_source": "targets",
             },
-            "category": {
+            "detail_a": {
                 "required": True,
                 "type": "string",
-                "entity": "CATEGORY_NAME",
-                "when": {"content_type": "article"},
+                "entity": "DETAIL_A_NAME",
+                "when": {"kind": "type_a"},
             },
-            "tutorial": {
+            "detail_b": {
                 "required": True,
                 "type": "string",
-                "entity": "TUTORIAL_NAME",
-                "when": {"content_type": "tutorial"},
+                "entity": "DETAIL_B_NAME",
+                "when": {"kind": "type_b"},
             },
         },
-        "default": "__create_content",
+        "default": "__demo_intent",
         "wait": {
-            "content_type": "wait_content_type",
-            "domain": "wait_domain",
-            "category": "wait_category",
-            "tutorial": "wait_tutorial",
+            "kind": "wait_kind",
+            "target": "wait_target",
+            "detail_a": "wait_detail_a",
+            "detail_b": "wait_detail_b",
         },
         "fallback": "unsupported",
     }
 }
 
 RESPONSES = {
-    "wait_content_type": ["Vuoi generare articoli o un tutorial?"],
-    "wait_domain": ["Per quale dominio?"],
-    "wait_category": ["Per quale categoria?"],
-    "wait_tutorial": ["Per quale tutorial?"],
+    "wait_kind": ["Che tipo vuoi?"],
+    "wait_target": ["Per quale target?"],
+    "wait_detail_a": ["Dettaglio A?"],
+    "wait_detail_b": ["Dettaglio B?"],
     "unsupported": ["Non ho capito."],
 }
 
@@ -68,64 +71,64 @@ def test_static_options_attached_to_first_wait():
     interpreter = _make_interpreter()
 
     response, wait_slot, bot_slots = interpreter.handle_intent_with_bot_slots(
-        "create_content", {}
+        "demo_intent", {}
     )
 
-    assert wait_slot == "content_type"
+    assert wait_slot == "kind"
     assert bot_slots["__options__"] == [
-        {"value": "article", "label": "Articolo"},
-        {"value": "tutorial", "label": "Tutorial"},
+        {"value": "type_a", "label": "Tipo A"},
+        {"value": "type_b", "label": "Tipo B"},
     ]
 
 
 def test_dynamic_options_provider_is_called_with_current_slots():
     calls = []
 
-    def domains_provider(slots):
+    def targets_provider(slots):
         calls.append(dict(slots))
         return [{"value": "pippo", "label": "Pippo"}]
 
-    interpreter = _make_interpreter({"domains": domains_provider})
+    interpreter = _make_interpreter({"targets": targets_provider})
 
     response, wait_slot, bot_slots = interpreter.handle_intent_with_bot_slots(
-        "create_content", {"content_type": "article"}
+        "demo_intent", {"kind": "type_a"}
     )
 
-    assert wait_slot == "domain"
+    assert wait_slot == "target"
     assert bot_slots["__options__"] == [{"value": "pippo", "label": "Pippo"}]
-    assert calls == [{"content_type": "article"}]
+    assert calls == [{"kind": "type_a"}]
 
 
 def test_when_clause_skips_irrelevant_slot():
     interpreter = _make_interpreter()
 
-    # content_type=tutorial: "category" non si applica, deve chiedere "tutorial" e non "category"
+    # kind=type_b: "detail_a" non si applica, deve chiedere "detail_b" e non "detail_a"
     response, wait_slot, bot_slots = interpreter.handle_intent_with_bot_slots(
-        "create_content", {"content_type": "tutorial", "domain": "pippo"}
+        "demo_intent", {"kind": "type_b", "target": "pippo"}
     )
 
-    assert wait_slot == "tutorial"
+    assert wait_slot == "detail_b"
 
 
-def test_when_clause_requires_category_for_article():
+def test_when_clause_requires_detail_a_for_type_a():
     interpreter = _make_interpreter()
 
     response, wait_slot, bot_slots = interpreter.handle_intent_with_bot_slots(
-        "create_content", {"content_type": "article", "domain": "pippo"}
+        "demo_intent", {"kind": "type_a", "target": "pippo"}
     )
 
-    assert wait_slot == "category"
+    assert wait_slot == "detail_a"
 
 
 def test_provider_exception_falls_back_to_no_options():
     def broken_provider(slots):
         raise RuntimeError("boom")
 
-    interpreter = _make_interpreter({"domains": broken_provider})
+    interpreter = _make_interpreter({"targets": broken_provider})
 
     response, wait_slot, bot_slots = interpreter.handle_intent_with_bot_slots(
-        "create_content", {"content_type": "article"}
+        "demo_intent", {"kind": "type_a"}
     )
 
-    assert wait_slot == "domain"
+    assert wait_slot == "target"
     assert "__options__" not in bot_slots

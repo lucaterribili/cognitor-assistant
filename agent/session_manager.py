@@ -159,6 +159,10 @@ class SessionManager:
         return elapsed < self._session_timeout
 
     def _cleanup_old_sessions(self):
+        # Purga anche il DB dalle sessioni scadute per timeout, altrimenti quelle
+        # abbandonate (mai più riaccedute via get_session) restano in sqlite per sempre.
+        self.persistence.cleanup_old_sessions(self._session_timeout)
+
         if len(self._sessions) > self._max_sessions:
             sorted_sessions = sorted(
                 self._sessions.items(),

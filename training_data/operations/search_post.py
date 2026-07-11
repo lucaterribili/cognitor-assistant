@@ -29,24 +29,24 @@ def action_search_post(intent_name: str, slots: dict = None) -> dict:
             "metadata": {"operation": "search_post", "query": None},
         }
 
-    if not config.LARAVEL_API_TOKEN:
+    if not config.BACKEND_API_TOKEN:
         return {
             "response": "La ricerca articoli non è ancora configurata (manca il token di accesso al backoffice).",
             "slots": {},
             "metadata": {"operation": "search_post", "query": query, "error": "missing_token"},
         }
 
-    url = f"{config.LARAVEL_API_BASE_URL.rstrip('/')}/chatbot/posts"
+    url = f"{config.BACKEND_API_BASE_URL.rstrip('/')}/chatbot/posts"
 
     try:
         resp = requests.get(
             url,
             params={"title": query, "per_page": _MAX_RESULTS},
             headers={
-                "Authorization": f"Bearer {config.LARAVEL_API_TOKEN}",
+                "Authorization": f"Bearer {config.BACKEND_API_TOKEN}",
                 "Accept": "application/json",
             },
-            timeout=config.LARAVEL_API_TIMEOUT,
+            timeout=config.BACKEND_API_TIMEOUT,
         )
     except requests.RequestException as e:
         return {

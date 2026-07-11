@@ -10,18 +10,18 @@ import config
 
 
 def _get(endpoint: str, params: dict = None) -> list:
-    if not config.LARAVEL_API_TOKEN:
+    if not config.BACKEND_API_TOKEN:
         return []
 
-    url = f"{config.LARAVEL_API_BASE_URL.rstrip('/')}/chatbot/{endpoint}"
+    url = f"{config.BACKEND_API_BASE_URL.rstrip('/')}/chatbot/{endpoint}"
     resp = requests.get(
         url,
         params=params or {},
         headers={
-            "Authorization": f"Bearer {config.LARAVEL_API_TOKEN}",
+            "Authorization": f"Bearer {config.BACKEND_API_TOKEN}",
             "Accept": "application/json",
         },
-        timeout=config.LARAVEL_API_TIMEOUT,
+        timeout=config.BACKEND_API_TIMEOUT,
     )
     resp.raise_for_status()
     payload = resp.json()

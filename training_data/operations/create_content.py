@@ -57,24 +57,24 @@ def action_create_content(intent_name: str, slots: dict = None) -> dict:
             },
         }
 
-    if not config.LARAVEL_API_TOKEN:
+    if not config.BACKEND_API_TOKEN:
         return {
             "response": f"La creazione {label} non è ancora configurata (manca il token di accesso al backoffice).",
             "slots": {},
             "metadata": {"operation": "create_content", "error": "missing_token"},
         }
 
-    url = f"{config.LARAVEL_API_BASE_URL.rstrip('/')}/chatbot/{endpoint}"
+    url = f"{config.BACKEND_API_BASE_URL.rstrip('/')}/chatbot/{endpoint}"
 
     try:
         resp = requests.post(
             url,
             json={"domain": domain, content_key: content_slot, "titles": titles},
             headers={
-                "Authorization": f"Bearer {config.LARAVEL_API_TOKEN}",
+                "Authorization": f"Bearer {config.BACKEND_API_TOKEN}",
                 "Accept": "application/json",
             },
-            timeout=config.LARAVEL_API_TIMEOUT,
+            timeout=config.BACKEND_API_TIMEOUT,
         )
     except requests.RequestException as e:
         return {

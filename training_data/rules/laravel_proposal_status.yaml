@@ -1,0 +1,14 @@
+# Rules per proposal_status (integrazione Laravel/Programmato Backoffice)
+# Lo slot query è opzionale: se assente, l'operation elenca le proposal più recenti
+# create dal bot invece di filtrare per argomento (stesso pattern di LANGUAGE in translate).
+
+rules:
+  proposal_status:
+    slots:
+      query:
+        required: false
+        type: string
+        entity: PROPOSAL_QUERY
+
+    default: __proposal_status
+    fallback: proposal_status_unsupported_response

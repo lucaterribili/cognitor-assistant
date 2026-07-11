@@ -1,0 +1,26 @@
+# Conversations per search_tutorial (integrazione Laravel/Programmato Backoffice)
+
+conversations:
+  search_tutorial_flow:
+    description: "Flusso di ricerca tutorial/corsi nel backoffice"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: search_tutorial
+        bot: __search_tutorial
+        goal: search_tutorial
+      - user: farewell
+        bot: farewell_response
+
+  search_tutorial_with_thanks_flow:
+    description: "Flusso di ricerca tutorial con ringraziamento prima del congedo"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: search_tutorial
+        bot: __search_tutorial
+        goal: search_tutorial
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response

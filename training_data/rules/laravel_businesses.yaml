@@ -1,0 +1,13 @@
+# Rules per search_business (integrazione Laravel/Programmato Backoffice)
+
+rules:
+  search_business:
+    slots:
+      query:
+        required: true
+        type: string
+        entity: BUSINESS_QUERY
+
+    default: __search_business
+    wait: search_business_wait_response
+    fallback: search_business_unsupported_response

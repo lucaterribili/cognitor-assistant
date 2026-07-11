@@ -1,0 +1,10 @@
+# Responses per search_tutorial (integrazione Laravel/Programmato Backoffice)
+
+responses:
+  search_tutorial_wait_response:
+    - "Cosa devo cercare tra i tutorial?"
+    - "Dimmi il titolo o l'argomento del tutorial da cercare."
+    - "Su quale argomento cerco il tutorial?"
+
+  search_tutorial_unsupported_response:
+    - "Al momento non riesco a cercare tutorial, riprova più tardi."

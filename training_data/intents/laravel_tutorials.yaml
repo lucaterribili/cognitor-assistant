@@ -1,0 +1,18 @@
+nlu:
+  intents:
+  - intent: search_tutorial
+    examples:
+    - cerca un tutorial
+    - cerca un tutorial su [python](TUTORIAL_QUERY)
+    - trova un tutorial che parla di [react](TUTORIAL_QUERY)
+    - cerca il tutorial intitolato [guida a next.js](TUTORIAL_QUERY)
+    - hai un tutorial su [java](TUTORIAL_QUERY)?
+    - cerca nei tutorial [docker](TUTORIAL_QUERY)
+    - trovami un tutorial su [laravel](TUTORIAL_QUERY)
+    - c'è un tutorial che tratta di [git](TUTORIAL_QUERY)
+    - cerca tutorial con titolo [linux](TUTORIAL_QUERY)
+    - dammi un tutorial su [php](TUTORIAL_QUERY)
+    - fammi vedere i tutorial su [javascript](TUTORIAL_QUERY)
+    - cerca corsi riguardanti [intelligenza artificiale](TUTORIAL_QUERY)
+    - avete un corso su [python](TUTORIAL_QUERY)?
+    - esiste un tutorial per [wordpress](TUTORIAL_QUERY)

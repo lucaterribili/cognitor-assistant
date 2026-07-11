@@ -1,0 +1,5 @@
+# Responses per proposal_status (integrazione Laravel/Programmato Backoffice)
+
+responses:
+  proposal_status_unsupported_response:
+    - "Al momento non riesco a controllare lo stato delle richieste, riprova più tardi."

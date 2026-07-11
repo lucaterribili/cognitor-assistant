@@ -1,0 +1,9 @@
+# Responses per search_business (integrazione Laravel/Programmato Backoffice)
+
+responses:
+  search_business_wait_response:
+    - "Come si chiama l'attività da cercare?"
+    - "Dimmi il nome dell'attività da cercare."
+
+  search_business_unsupported_response:
+    - "Al momento non riesco a cercare attività, riprova più tardi."

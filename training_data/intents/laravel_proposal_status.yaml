@@ -1,0 +1,17 @@
+nlu:
+  intents:
+  - intent: proposal_status
+    examples:
+    - a che punto sono le mie richieste
+    - a che punto è la mia proposta su [assicurazione auto](PROPOSAL_QUERY)
+    - com'è andata la generazione degli articoli su [fotovoltaico](PROPOSAL_QUERY)
+    - hai generato gli articoli su [motori elettrici](PROPOSAL_QUERY)?
+    - controlla lo stato della proposta [react avanzato](PROPOSAL_QUERY)
+    - a che punto è il tutorial che ti ho chiesto su [python](PROPOSAL_QUERY)
+    - sono pronti gli articoli su [ricarica veloce](PROPOSAL_QUERY)?
+    - che fine ha fatto la richiesta di [linux](PROPOSAL_QUERY)
+    - come sta andando la generazione di [wordpress](PROPOSAL_QUERY)
+    - che proposte hai in corso
+    - dammi lo stato delle mie richieste
+    - a che punto sono i contenuti che hai generato
+    - controlla se hai finito di generare i contenuti

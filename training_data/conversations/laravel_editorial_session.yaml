@@ -1,0 +1,108 @@
+# Conversations composite per il dominio Laravel/Programmato Backoffice.
+#
+# Le flow "singole" (laravel_posts.yaml, laravel_tutorials.yaml, laravel_businesses.yaml,
+# laravel_create_content.yaml, laravel_proposal_status.yaml) coprono ciascuna un solo
+# intent backoffice circondato da saluto/congedo. Qui invece modelliamo sessioni realistiche
+# in cui un redattore concatena PIÙ azioni backoffice nella stessa conversazione, così la
+# Dialogue Policy impara transizioni dirette tra i nostri intent (es. dopo una ricerca è
+# plausibile una generazione di contenuti, dopo una generazione è plausibile un controllo
+# di stato) invece di vedere ogni intent solo isolato tra saluto e congedo.
+
+conversations:
+  search_then_create_flow:
+    description: "L'utente cerca un articolo esistente, non lo trova/gli basta e chiede di generarne di nuovi"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: search_post
+        bot: __search_post
+        goal: search_post
+      - user: create_content
+        bot: __create_content
+        goal: create_content
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
+
+  create_then_check_status_flow:
+    description: "L'utente genera contenuti e più avanti nella stessa sessione ne controlla lo stato"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: create_content
+        bot: __create_content
+        goal: create_content
+      - user: proposal_status
+        bot: __proposal_status
+        goal: proposal_status
+      - user: farewell
+        bot: farewell_response
+
+  tutorial_research_then_create_flow:
+    description: "L'utente cerca un tutorial capostipite esistente e poi chiede di generarne uno nuovo sull'argomento"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: search_tutorial
+        bot: __search_tutorial
+        goal: search_tutorial
+      - user: create_content
+        bot: __create_content
+        goal: create_content
+      - user: farewell
+        bot: farewell_response
+
+  mixed_search_session_flow:
+    description: "Sessione con più ricerche diverse (articoli, tutorial, attività) prima del congedo"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: search_post
+        bot: __search_post
+        goal: search_post
+      - user: search_tutorial
+        bot: __search_tutorial
+        goal: search_tutorial
+      - user: search_business
+        bot: __search_business
+        goal: search_business
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
+
+  status_check_after_break_flow:
+    description: "L'utente torna solo per sapere a che punto sono le richieste fatte in precedenza"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: proposal_status
+        bot: __proposal_status
+        goal: proposal_status
+      - user: create_content
+        bot: __create_content
+        goal: create_content
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
+
+  full_editorial_session_flow:
+    description: "Sessione editoriale completa: ricerca, generazione e verifica dello stato"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: search_post
+        bot: __search_post
+        goal: search_post
+      - user: create_content
+        bot: __create_content
+        goal: create_content
+      - user: proposal_status
+        bot: __proposal_status
+        goal: proposal_status
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response

@@ -1,0 +1,28 @@
+# Conversations per search_post (integrazione Laravel/Programmato Backoffice)
+# Allena la Dialogue Policy a inserire search_post in un flusso di conversazione
+# naturale (saluto -> ricerca -> congedo), non solo la meccanica di slot (vedi rules/laravel_posts.yaml).
+
+conversations:
+  search_post_flow:
+    description: "Flusso di ricerca articoli nel backoffice"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: search_post
+        bot: __search_post
+        goal: search_post
+      - user: farewell
+        bot: farewell_response
+
+  search_post_with_thanks_flow:
+    description: "Flusso di ricerca articoli con ringraziamento prima del congedo"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: search_post
+        bot: __search_post
+        goal: search_post
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response

@@ -1,0 +1,26 @@
+# Conversations per search_business (integrazione Laravel/Programmato Backoffice)
+
+conversations:
+  search_business_flow:
+    description: "Flusso di ricerca attività (Business) nel backoffice"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: search_business
+        bot: __search_business
+        goal: search_business
+      - user: farewell
+        bot: farewell_response
+
+  search_business_with_thanks_flow:
+    description: "Flusso di ricerca attività con ringraziamento prima del congedo"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: search_business
+        bot: __search_business
+        goal: search_business
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
