@@ -7,6 +7,10 @@ nlu:
     - buongiorno
     - buonasera
     - ehilà
+    - hey
+    - ehi
+    - yo
+    - buondì
     - ciao a tutti
     - buon pomeriggio
     - ciao amico
@@ -22,6 +26,30 @@ nlu:
     - ehilà amico
     - ehi salve
     - ciao a te
+    - ciao caro
+    - ciao cara
+    - ciao tesoro
+    - ciao amica
+    - ciao campione
+    - ciao ragazzi
+    - ciao vicino
+    - ciao piccolo
+    - buongiorno caro
+    - buongiorno amico
+    - buongiorno signora
+    - buongiorno collega
+    - buonasera caro
+    - buonasera signore
+    - buonasera vicina
+    - salve caro
+    - salve dottore
+    - salve collega
+    - ehi caro
+    - ehi bella
+    - hey caro
+    - hey bello
+    - yo amico
+    - yo bello
 
   - intent: farewell
     examples:
@@ -30,6 +58,8 @@ nlu:
     - a presto
     - buona notte
     - addio
+    - notte
+    - bye
     - ci sentiamo dopo
     - grazie di tutto, a presto
     - buona giornata
@@ -115,6 +145,25 @@ nlu:
     - chi ha segnato nella partita di [ieri](DATE)
     - come si è classificata la [Lazio](TEAM) quest'anno
 
+  - intent: team_cheer
+    examples:
+    - daje forza [Roma](TEAM)
+    - forza [Roma](TEAM)
+    - dai [Milan](TEAM)
+    - forza [Juve](TEAM)
+    - viva l'[Inter](TEAM)
+    - forza azzurri
+    - dai [Napoli](TEAM)
+    - grande [Roma](TEAM)
+    - forza [Juventus](TEAM)
+    - vai [Milan](TEAM)
+    - dajeeee [Roma](TEAM)
+    - grande [Milan](TEAM)
+    - forza [Napoli](TEAM)
+    - vinciamo [Inter](TEAM)
+    - andiamo [Juve](TEAM)
+    - siamo i più forti, forza [Lazio](TEAM)
+
   - intent: introduce_user
     examples:
     - il mio nome è [Luca](PERSON)
@@ -146,20 +195,34 @@ nlu:
     - sei una merda
     - imbecille
     - ciao stronzo
+    - ciao merda
+    - sei proprio uno stronzo
+    - razza di merda
     - testa di cazzo
     - mi fai schifo
     - vai a fare in culo
     - sei un cretino
     - buonasera coglione
+    - sei un gran coglione
     - brutto stronzo
     - fottiti
     - hey merdaccia
+    - che razza di merdaccia
     - sei un idiota
     - sei un imbecille
     - sei un cretino patentato
     - che pezzo di ignorante
     - sei proprio un deficiente
     - non capisci niente, idiota
+    - sei una merda di cane
+    - sei un cane
+    - sei un verme
+    - sei un porco
+    - sei un maiale
+    - sei proprio un coglione
+    - pezzo di merda
+    - sei un pagliaccio
+    - fai schifo come un cane
 
   - intent: compliment
     examples:
@@ -183,6 +246,13 @@ nlu:
     - mi hai stupito
     - sei eccezionale
     - bravo davvero
+    - grandissimo
+    - fantastico
+    - grande
+    - top
+    - favoloso
+    - mitico
+    - sei un mito
 
   - intent: deny
     examples:
@@ -393,7 +463,7 @@ nlu:
 
   - intent: ask_touristic_place_information
     examples:
-    - dove si trova la tomba di [Napoleone](PERSON)
+    - dove si trova la [tomba di Napoleone](LOCATION)
     - quali sono gli orari del [Louvre](LOCATION)
     - parlami del [Colosseo](LOCATION)
     - cosa puoi dirmi sulla [Torre Eiffel](LOCATION)
@@ -413,6 +483,13 @@ nlu:
     - cosa puoi dirmi sulla [Reggia di Caserta](LOCATION)
     - raccontami qualcosa sul [Muro di Berlino](LOCATION)
     - dove si trova il [Pantheon](LOCATION)
+    - dove si trova la [casa di Pirandello](LOCATION)
+    - dove si trova il [museo di Van Gogh](LOCATION)
+    - "[dove è nato Leonardo da Vinci](LOCATION)"
+    - in che città si trova la [Torre di Pisa](LOCATION)
+    - dove si trova la [casa natale di Mozart](LOCATION)
+    - "[dove è sepolto Dante Alighieri](LOCATION)"
+    - "[in che città è nato Leonardo da Vinci](LOCATION)"
 
   - intent: ask_favorite_color
     examples:
@@ -551,6 +628,10 @@ nlu:
     - temperature minime e massime a [Firenze](LOCATION)
     - che tempo farà nel weekend a [Milano](LOCATION)
     - uscirà il sole [domani](DATE) a [Roma](LOCATION)
+    - che tempo fa a [New York](LOCATION)
+    - meteo a [Los Angeles](LOCATION)
+    - che tempo fa a [Londra](LOCATION)
+    - previsioni meteo a [Parigi](LOCATION)
 
   - intent: location_query
     examples:
@@ -1126,3 +1207,11 @@ nlu:
     - cerca informazioni riguardo [storia romana](QUERY)
     - fai una ricerca approfondita su [energie rinnovabili](QUERY)
     - cerca notizie sportive di oggi
+    - trova informazioni su [WordPress](QUERY)
+    - trova informazioni su [Docker](QUERY)
+    - cerca informazioni su [Kubernetes](QUERY)
+    - cerca su google [React Native](QUERY)
+    - dimmi qualcosa su [Shopify](QUERY)
+    - cosa sai di [PostgreSQL](QUERY)
+    - info su [Laravel](QUERY)
+    - cerca notizie su [Tesla](QUERY)

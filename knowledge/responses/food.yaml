@@ -1,0 +1,7 @@
+# Food responses - Risposte su ricette e cucina
+
+responses:
+  ask_recipe_wait_response:
+    - "Quale piatto vuoi che ti cerchi la ricetta?"
+    - "Dimmi cosa vuoi cucinare e ti trovo la ricetta."
+    - "Di quale piatto ti serve la ricetta?"

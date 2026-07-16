@@ -149,7 +149,7 @@ conversations:
       - user: greeting
         bot: greeting_response
       - user: ask_definition
-        bot: ask_definition_response
+        bot: ask_culture_response
         goal: definition_search
       - user: thank_you
         bot: thank_you_response

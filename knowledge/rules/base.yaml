@@ -75,6 +75,19 @@ rules:
     fallback: ask_location_unsupported_response
 
   # ========================================
+  # Intent con slot: ask_touristic_place_information
+  # ========================================
+
+  ask_touristic_place_information:
+    slots:
+      query:
+        required: true
+        type: string
+        entity: LOCATION
+    default: __web_search
+    wait: ask_touristic_place_information_wait_response
+
+  # ========================================
   # Intent con slot: open_app
   # ========================================
 
@@ -162,4 +175,49 @@ rules:
 
     default: __cognitor_translate
     wait: translate_wait_response
+
+  # ========================================
+  # Funzionalità non ancora implementate
+  # ========================================
+
+  volume_up:
+    default: not_implemented_response
+
+  volume_down:
+    default: not_implemented_response
+
+  call:
+    default: not_implemented_response
+
+  football:
+    default: not_implemented_response
+
+  team_cheer:
+    slots:
+      TEAM:
+        required: false
+        type: string
+        entity: TEAM
+    default: team_cheer_response
+
+  set_reminder:
+    default: not_implemented_response
+
+  send_message:
+    default: not_implemented_response
+
+  make_note:
+    default: not_implemented_response
+
+  sing:
+    default: not_implemented_response
+
+  play_game:
+    default: not_implemented_response
+
+  count:
+    default: not_implemented_response
+
+  measure:
+    default: not_implemented_response
 

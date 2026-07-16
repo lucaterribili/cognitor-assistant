@@ -12,8 +12,12 @@ responses:
     - "Queste sono le informazioni più importanti su questo tema."
     - "Ti riassumo quello che ho trovato sulla tua richiesta culturale."
 
-  ask_definition_response:
-    - "Ecco una spiegazione chiara e sintetica del concetto richiesto."
-    - "Ti spiego brevemente come funziona questo termine."
-    - "Questo è il significato del termine che hai chiesto."
-    - "Ho trovato una definizione utile da condividere con te."
+  ask_definition_wait_response:
+    - "Di quale termine o concetto vuoi la definizione?"
+    - "Dimmi cosa vuoi che ti spieghi e cerco la definizione."
+    - "Su quale parola o concetto vuoi informazioni?"
+
+  ask_person_date_wait_response:
+    - "Di chi vuoi sapere la data di nascita o di morte?"
+    - "Dimmi il nome della persona e ti dico quando è nata o morta."
+    - "Su quale personaggio vuoi informazioni riguardo a nascita o morte?"

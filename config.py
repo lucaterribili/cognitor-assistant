@@ -11,6 +11,14 @@ DOPING_ACTIVE = False
 # Intent confidence threshold
 MIN_INTENT_CONFIDENCE = 0.20  # Soglia minima per accettare un intent (altrimenti fallback)
 
+# Soglia di confidenza per abbandonare la raccolta slot (modalità "inputable") quando
+# il messaggio dell'utente, pur non contenendo un valore utile per lo slot atteso,
+# classifica con questa confidenza come un intent diverso da quello in attesa: si
+# assume un cambio di argomento invece di forzare il testo come valore di slot non
+# valido. Più alta di MIN_INTENT_CONFIDENCE perché abbandonare uno slot in attesa è
+# una decisione più costosa di un semplice fallback.
+INPUTABLE_SWITCH_CONFIDENCE = 0.60
+
 # Integrazione con il backend REST del dominio corrente (specifico per branch,
 # es. il backoffice Laravel "Programmato"). Token di servizio scoped, generato
 # lato backend (per Programmato: php artisan chatbot:cognitor-token).

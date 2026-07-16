@@ -12,7 +12,7 @@ import re
 
 CANCEL_COMMANDS = {
     # forme storiche con prefisso "#" (compatibilità con la documentazione CLI)
-    '#exit', '#annulla', '#cancel', '#abort',
+    '#exit', '#annulla', '#cancel', '#abort', '#stop', '#basta', '#annullare', '#esci', '#cancella',
     # forme naturali senza prefisso, quelle che un utente scrive per davvero
     'stop', 'basta', 'annulla', 'annullare', 'esci', 'cancella', 'cancel', 'exit', 'abort',
 }

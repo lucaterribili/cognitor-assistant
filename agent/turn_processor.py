@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 from typing import Any, Optional
 
 from agent.cancel_commands import is_cancel_command
+from config import INPUTABLE_SWITCH_CONFIDENCE
 
 
 @dataclass
@@ -51,7 +52,7 @@ class TurnProcessor:
             return self._handle_cancel(user_input, session)
 
         if awaiting_slot:
-            return self._handle_slot_input(user_input, session)
+            return self._handle_slot_input(user_input, session, on_predict)
 
         return self._handle_prediction(user_input, session, on_predict)
 
@@ -63,14 +64,39 @@ class TurnProcessor:
         session.add_message("assistant", response_text, None)
         return TurnResult(kind="cancel", response=response_text)
 
-    def _handle_slot_input(self, user_input: str, session) -> TurnResult:
+    def _handle_slot_input(self, user_input: str, session, on_predict=None) -> TurnResult:
         slot_name = session.waiting_for_slot["slot"]
         pending_intent = session.waiting_for_slot["intent"]
 
         # Prova a estrarre il valore dello slot tramite NER, altrimenti usa il testo grezzo
         prediction = self.agent.predict(user_input)
         entities = prediction.get('entities', [])
-        ner_value = self.agent.slot_manager.extractor.extract_from_entities(slot_name, entities)
+        ner_value = self.agent.slot_manager.extractor.extract_from_entities(pending_intent, slot_name, entities)
+
+        # Via di fuga dalla modalità inputable: se il NER non trova nulla di
+        # pertinente per lo slot atteso E il messaggio classifica con alta
+        # confidenza come un intent diverso, l'utente ha quasi certamente
+        # cambiato argomento — non ha senso forzarlo come valore di slot
+        # (rischio di restare bloccati in loop "Selezione non valida").
+        # Controllo fatto DOPO il tentativo NER: se il NER trova comunque
+        # un'entità del tipo giusto (es. una città per lo slot LOCATION),
+        # quella resta prioritaria anche se l'intent complessivo della frase
+        # è un altro (es. "Roma" da solo classifica come
+        # choose_flight_destination ma è comunque una risposta valida allo
+        # slot LOCATION di book_flight).
+        if (
+            not ner_value
+            and prediction['intent'] != pending_intent
+            and prediction['intent'] != 'low_confidence_fallback'
+            and prediction['confidence'] >= INPUTABLE_SWITCH_CONFIDENCE
+        ):
+            print(f"[INPUTABLE] Cambio di contesto rilevato → '{prediction['intent']}' "
+                  f"(confidenza={prediction['confidence']:.2f}) abbandona lo slot '{slot_name}' "
+                  f"di '{pending_intent}'")
+            session.waiting_for_slot = None
+            session.agent_mode = "predictable"
+            return self._build_prediction_result(user_input, session, prediction, on_predict)
+
         slot_value = ner_value if ner_value else user_input
         if ner_value:
             print(f"[INPUTABLE] NER → slot '{slot_name}' estratto: '{ner_value}'")
@@ -127,6 +153,9 @@ class TurnProcessor:
 
     def _handle_prediction(self, user_input: str, session, on_predict=None) -> TurnResult:
         prediction = self.agent.predict(user_input)
+        return self._build_prediction_result(user_input, session, prediction, on_predict)
+
+    def _build_prediction_result(self, user_input: str, session, prediction: dict, on_predict=None) -> TurnResult:
         if on_predict:
             on_predict(prediction)
 

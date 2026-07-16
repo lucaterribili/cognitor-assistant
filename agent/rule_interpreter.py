@@ -238,6 +238,11 @@ class RuleInterpreter:
                 placeholder = f"{{{slot_name}}}"
                 response = response.replace(placeholder, str(slot_value))
 
+        # Sostituisce i placeholder temporali con i valori reali
+        now = datetime.now()
+        response = response.replace("[TIME]", now.strftime("%H:%M"))
+        response = response.replace("[DATE]", now.strftime("%d/%m/%Y"))
+
         cleaned_response, inline_slots = ResponseSlotParser.parse(response)
 
         return cleaned_response, inline_slots

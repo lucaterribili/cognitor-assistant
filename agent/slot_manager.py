@@ -25,17 +25,21 @@ class SlotExtractor:
         self._slot_entity_mapping = self._build_slot_entity_mapping()
         self._valid_values_cache = {}
 
-    def _build_slot_entity_mapping(self) -> dict[str, str]:
+    def _build_slot_entity_mapping(self) -> dict[str, dict[str, str]]:
         """
-        Costruisce automaticamente il mapping slot_name -> entity_type
+        Costruisce automaticamente il mapping intent_name -> slot_name -> entity_type
         analizzando le rules (formato DSL YAML).
+
+        Scoped per intent: due intent diversi possono dichiarare uno slot con lo
+        stesso nome (es. "query") ma associato a un'entità NER diversa (es.
+        web_search.query -> QUERY, ask_culture.query -> KEYWORD) senza collidere.
 
         Estrae dall'attributo 'entity' nella configurazione degli slot.
 
         Returns:
-            dict: mapping slot_name -> entity_type
+            dict: mapping intent_name -> {slot_name: entity_type}
         """
-        mapping = {}
+        mapping: dict[str, dict[str, str]] = {}
 
         # Analizza tutte le rules per trovare gli slot
         for intent_name, rule in self.rules.items():
@@ -45,34 +49,36 @@ class SlotExtractor:
                 if not slot_name.endswith('_UNSUPPORTED'):
                     # Usa l'entity specificata o fallback al nome dello slot
                     entity_type = slot_config.get('entity', slot_name)
-                    mapping[slot_name] = entity_type
+                    mapping.setdefault(intent_name, {})[slot_name] = entity_type
 
         return mapping
 
-    def get_slot_entity_type(self, slot_name: str) -> Optional[str]:
+    def get_slot_entity_type(self, intent_name: str, slot_name: str) -> Optional[str]:
         """
-        Ottiene il tipo di entità NER corrispondente allo slot.
+        Ottiene il tipo di entità NER corrispondente allo slot per un dato intent.
 
         Args:
+            intent_name: Nome dell'intent a cui appartiene lo slot
             slot_name: Nome dello slot (es. "LOCATION")
 
         Returns:
             Tipo di entità NER o None
         """
-        return self._slot_entity_mapping.get(slot_name)
+        return self._slot_entity_mapping.get(intent_name, {}).get(slot_name)
 
-    def extract_from_entities(self, slot_name: str, entities: list[dict]) -> Optional[str]:
+    def extract_from_entities(self, intent_name: str, slot_name: str, entities: list[dict]) -> Optional[str]:
         """
         Estrae il valore di uno slot dalle entità NER.
 
         Args:
+            intent_name: Nome dell'intent a cui appartiene lo slot
             slot_name: Nome dello slot da estrarre
             entities: Lista di entità dal NER
 
         Returns:
             Valore estratto o None
         """
-        entity_type = self.get_slot_entity_type(slot_name)
+        entity_type = self.get_slot_entity_type(intent_name, slot_name)
         if not entity_type:
             return None
 
@@ -86,6 +92,7 @@ class SlotExtractor:
 
     def extract_from_entities_and_index(
         self,
+        intent_name: str,
         slot_name: str,
         entities: list[dict],
         exclude_indexes: set[int] | None = None
@@ -94,6 +101,7 @@ class SlotExtractor:
         Estrae il valore di uno slot dalle entità NER e ritorna anche l'indice dell'entità usata.
 
         Args:
+            intent_name: Nome dell'intent a cui appartiene lo slot
             slot_name: Nome dello slot da estrarre
             entities: Lista di entità dal NER
             exclude_indexes: Indici delle entità già utilizzate
@@ -101,7 +109,7 @@ class SlotExtractor:
         Returns:
             Tuple[value, index] dove index è None se non trovato
         """
-        entity_type = self.get_slot_entity_type(slot_name)
+        entity_type = self.get_slot_entity_type(intent_name, slot_name)
         if not entity_type:
             return None, None
 
@@ -266,7 +274,7 @@ class SlotContextManager:
         previous_slots_real = {s for s in previous_slots if not s.endswith('_UNSUPPORTED')}
 
         print(f"[SlotManager] intent='{intent}' | slot attesi={current_slots_real} | entità NER={[(e.get('entity'), e.get('value')) for e in entities]}")
-        print(f"[SlotManager] mapping slot→entity: { {s: self.slot_extractor.get_slot_entity_type(s) for s in current_slots_real} }")
+        print(f"[SlotManager] mapping slot→entity: { {s: self.slot_extractor.get_slot_entity_type(intent, s) for s in current_slots_real} }")
 
         # Se ci sono slot in comune tra intent consecutivi
         consecutive_slots = current_slots_real & previous_slots_real
@@ -281,7 +289,7 @@ class SlotContextManager:
         for slot_name in current_slots_real:
             # Estrai valore dalle entità, evitando di riutilizzare la stessa entità per più slot
             extracted_value, extracted_index = self.slot_extractor.extract_from_entities_and_index(
-                slot_name, entities, exclude_indexes=used_entity_indexes
+                intent, slot_name, entities, exclude_indexes=used_entity_indexes
             )
             if extracted_index is not None:
                 used_entity_indexes.add(extracted_index)
