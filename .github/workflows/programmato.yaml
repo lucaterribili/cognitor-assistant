@@ -1,0 +1,26 @@
+name: Deploy Cognitor Assistant
+
+on:
+  push:
+    branches: [ programmato ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Deploy and restart cognitor.service
+        run: |
+          sshpass -p "${{ secrets.OVH_BACKOFFICE_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.OVH_BACKOFFICE_USER }}@${{ secrets.OVH_BACKOFFICE_HOST }} "
+            set -e
+            cd /opt/cognitor
+            git pull
+            source .venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            python -m pipeline
+            echo '${{ secrets.OVH_BACKOFFICE_PASSWORD }}' | sudo -S systemctl restart cognitor.service
+          "
