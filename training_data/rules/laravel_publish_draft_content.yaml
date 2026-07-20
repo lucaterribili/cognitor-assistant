@@ -1,0 +1,36 @@
+# Rules per publish_draft_content (integrazione Laravel/Programmato Backoffice)
+# Azione con effetto live e visibile (i contenuti vanno online): richiede conferma
+# esplicita (slot 'confirm') prima di eseguire la pubblicazione vera e propria.
+#
+# 'confirm' è dichiarato 'type: string' e NON 'type: boolean': RuleInterpreter tratta
+# uno slot required come "non ancora fornito" quando il suo valore è falsy
+# (`if not slot_value`), e un cast a boolean di "no" produrrebbe False, indistinguibile
+# da uno slot non ancora riempito (loop infinito di richiesta conferma). La Operation
+# stessa interpreta il testo raw dello slot per decidere se procedere.
+#
+# L'entity CONFIRMATION è annotata sugli esempi degli intent generici 'confirm'
+# (risposte affermative: sì/ok/va bene/...) e 'deny' (risposte negative: no/negativo)
+# in knowledge/intents/base.yaml: quando l'utente risponde il NER estrae l'entità e ha
+# priorità sulla "via di fuga" di TurnProcessor._handle_slot_input, che altrimenti
+# abbandonerebbe lo slot in attesa scambiando 'confirm' per un cambio di argomento
+# (vedi agent/turn_processor.py:87-98) — 'no' infatti è un esempio già addestrato
+# dell'intent 'deny', non solo un caso "senza intent riconosciuto".
+
+rules:
+  publish_draft_content:
+    slots:
+      domain:
+        required: true
+        type: string
+        entity: DOMAIN_NAME
+        options_source: domains
+      confirm:
+        required: true
+        type: string
+        entity: CONFIRMATION
+
+    default: __publish_draft_content
+    wait:
+      domain: publish_draft_content_wait_domain
+      confirm: publish_draft_content_wait_confirm
+    fallback: publish_draft_content_unsupported_response

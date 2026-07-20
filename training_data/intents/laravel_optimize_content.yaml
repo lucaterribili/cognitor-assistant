@@ -1,0 +1,16 @@
+nlu:
+  intents:
+  - intent: optimize_content
+    examples:
+    - ottimizza i contenuti da pubblicare per il dominio [pippo](DOMAIN_NAME)
+    - ottimizza le bozze del dominio [example.com](DOMAIN_NAME)
+    - ottimizza i contenuti di [laravel.programmato.it](DOMAIN_NAME)
+    - migliora i contenuti in bozza per [pippo](DOMAIN_NAME)
+    - ottimizza gli articoli in bozza del dominio [example.com](DOMAIN_NAME)
+    - fai l'ottimizzazione dei contenuti da pubblicare per [pippo](DOMAIN_NAME)
+    - ottimizzami i contenuti da pubblicare sul dominio [example.com](DOMAIN_NAME)
+    - migliora gli articoli in bozza sul dominio [laravel.programmato.it](DOMAIN_NAME)
+    - ottimizza i contenuti da pubblicare
+    - ottimizza le bozze
+    - migliora gli articoli in bozza
+    - ottimizza il contenuto per il dominio [example.com](DOMAIN_NAME)

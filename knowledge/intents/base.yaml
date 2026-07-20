@@ -256,14 +256,14 @@ nlu:
 
   - intent: deny
     examples:
-    - "no"
+    - "[no](CONFIRMATION)"
     - no grazie
     - non voglio
     - non mi interessa
     - non sono d'accordo
     - assolutamente no
     - mai
-    - negativo
+    - "[negativo](CONFIRMATION)"
     - non proprio
     - no, non voglio
     - non credo proprio
@@ -750,17 +750,17 @@ nlu:
 
   - intent: confirm
     examples:
-    - sì
-    - ok
-    - va bene
+    - "[sì](CONFIRMATION)"
+    - "[ok](CONFIRMATION)"
+    - "[va bene](CONFIRMATION)"
     - certamente
-    - confermo
-    - d'accordo
+    - "[confermo](CONFIRMATION)"
+    - "[d'accordo](CONFIRMATION)"
     - perfetto
     - ovviamente
     - sicuro
-    - sì certo
-    - certo
+    - "[sì](CONFIRMATION) certo"
+    - "[certo](CONFIRMATION)"
     - conferma l'operazione
     - ok confermo
     - va bene procedi

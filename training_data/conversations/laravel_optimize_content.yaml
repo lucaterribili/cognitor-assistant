@@ -1,0 +1,13 @@
+# Conversations per optimize_content (integrazione Laravel/Programmato Backoffice)
+
+conversations:
+  optimize_content_flow:
+    description: "Flusso di ottimizzazione dei contenuti in bozza di un dominio"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: optimize_content
+        bot: __optimize_content
+        goal: optimize_content
+      - user: farewell
+        bot: farewell_response

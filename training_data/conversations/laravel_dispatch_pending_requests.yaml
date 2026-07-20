@@ -1,0 +1,13 @@
+# Conversations per dispatch_pending_requests (integrazione Laravel/Programmato Backoffice)
+
+conversations:
+  dispatch_pending_requests_flow:
+    description: "Flusso di invio delle richieste in sospeso all'assistente"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: dispatch_pending_requests
+        bot: __dispatch_pending_requests
+        goal: dispatch_pending_requests
+      - user: farewell
+        bot: farewell_response

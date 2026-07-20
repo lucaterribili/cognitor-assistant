@@ -1,0 +1,13 @@
+# Conversations per publish_draft_content (integrazione Laravel/Programmato Backoffice)
+
+conversations:
+  publish_draft_content_flow:
+    description: "Flusso di pubblicazione dei contenuti in bozza di un dominio, con conferma"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: publish_draft_content
+        bot: __publish_draft_content
+        goal: publish_draft_content
+      - user: farewell
+        bot: farewell_response

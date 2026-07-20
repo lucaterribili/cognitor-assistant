@@ -1,0 +1,8 @@
+# Responses per dispatch_pending_requests (integrazione Laravel/Programmato Backoffice)
+# L'unica response effettivamente mostrata è quella restituita dall'Operation
+# (agent/rule_interpreter.py usa direttamente op_result["response"]); questa entry
+# esiste solo per coerenza con lo stile degli altri intent senza slot.
+
+responses:
+  dispatch_pending_requests_unsupported_response:
+    - "Non sono riuscito a completare la richiesta, riprova più tardi."

@@ -1,0 +1,6 @@
+# Rules per dispatch_pending_requests (integrazione Laravel/Programmato Backoffice)
+# Intent senza slot: trigger on-demand dello stesso job schedulato rabbit:preprocess.
+
+rules:
+  dispatch_pending_requests:
+    default: __dispatch_pending_requests

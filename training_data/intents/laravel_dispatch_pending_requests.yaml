@@ -1,0 +1,16 @@
+nlu:
+  intents:
+  - intent: dispatch_pending_requests
+    examples:
+    - invia le richieste in sospeso all'assistente
+    - manda le richieste in sospeso all'assistente
+    - invia le proposte in attesa all'assistente
+    - invia subito le richieste in sospeso
+    - manda in elaborazione le richieste in attesa
+    - invia all'assistente le richieste che sono in sospeso
+    - processa subito le richieste in sospeso
+    - inoltra le richieste pendenti all'assistente
+    - manda le richieste pendenti al friday agent
+    - invia le richieste in coda all'assistente
+    - fai partire l'elaborazione delle richieste in sospeso
+    - invia subito le proposte in attesa di elaborazione

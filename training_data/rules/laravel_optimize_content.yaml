@@ -1,0 +1,17 @@
+# Rules per optimize_content (integrazione Laravel/Programmato Backoffice)
+# Ottimizza (task AI "optimize" verso Friday Agent) tutti i Post in bozza di un dominio.
+# Il risultato viene salvato come Revision da rivedere, non pubblica nulla direttamente.
+
+rules:
+  optimize_content:
+    slots:
+      domain:
+        required: true
+        type: string
+        entity: DOMAIN_NAME
+        options_source: domains
+
+    default: __optimize_content
+    wait:
+      domain: optimize_content_wait_domain
+    fallback: optimize_content_unsupported_response

@@ -1,0 +1,15 @@
+nlu:
+  intents:
+  - intent: publish_draft_content
+    examples:
+    - pubblica i contenuti in bozza del dominio [pippo](DOMAIN_NAME)
+    - pubblica le bozze del dominio [example.com](DOMAIN_NAME)
+    - pubblica i contenuti in bozza di [laravel.programmato.it](DOMAIN_NAME)
+    - metti online i contenuti in bozza per [pippo](DOMAIN_NAME)
+    - pubblica gli articoli in bozza del dominio [example.com](DOMAIN_NAME)
+    - pubblica tutte le bozze di [pippo](DOMAIN_NAME)
+    - vai in pubblicazione con i contenuti in bozza di [example.com](DOMAIN_NAME)
+    - rendi pubblici i contenuti in bozza per il dominio [laravel.programmato.it](DOMAIN_NAME)
+    - pubblica i contenuti in bozza
+    - pubblica le bozze
+    - metti online le bozze del dominio [pippo](DOMAIN_NAME)

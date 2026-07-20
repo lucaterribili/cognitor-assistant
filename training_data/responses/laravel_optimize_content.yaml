@@ -1,0 +1,9 @@
+# Responses per optimize_content (integrazione Laravel/Programmato Backoffice)
+
+responses:
+  optimize_content_wait_domain:
+    - "Per quale dominio vuoi ottimizzare i contenuti in bozza?"
+    - "Dimmi il dominio di cui ottimizzare i contenuti."
+
+  optimize_content_unsupported_response:
+    - "Non sono riuscito a completare la richiesta, riprova più tardi."

@@ -1,0 +1,13 @@
+# Responses per publish_draft_content (integrazione Laravel/Programmato Backoffice)
+
+responses:
+  publish_draft_content_wait_domain:
+    - "Per quale dominio vuoi pubblicare i contenuti in bozza?"
+    - "Dimmi il dominio di cui pubblicare le bozze."
+
+  publish_draft_content_wait_confirm:
+    - "Vuoi che proceda a pubblicare tutti i contenuti in bozza di questo dominio? Rispondi sì o no."
+    - "Confermi la pubblicazione dei contenuti in bozza di questo dominio? (sì/no)"
+
+  publish_draft_content_unsupported_response:
+    - "Non sono riuscito a completare la richiesta, riprova più tardi."
