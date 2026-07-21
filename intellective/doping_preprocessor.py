@@ -1,3 +1,4 @@
+import hashlib
 import json
 import re
 
@@ -53,12 +54,27 @@ class DopingPreprocessor:
         safe_text = text.replace(" ", "_")
         return f"{intent_name}_{safe_text}"
 
+    def _make_group_id(self, intent_name: str, example: str) -> str:
+        """
+        Genera un group_id stabile per l'esempio SORGENTE originale (prima di
+        normalizzazione/doping). Tutte le varianti derivate dallo stesso
+        esempio sorgente (clean_text, normalizer.normalize(...), variante
+        "dopata") condividono lo stesso group_id, cosi' il train/val split
+        puo' tenerle sempre dalla stessa parte ed evitare data leakage.
+        """
+        key = f"{intent_name}|{example}"
+        return hashlib.md5(key.encode('utf-8')).hexdigest()[:12]
+
     def get_examples(self, nlu_data: dict) -> list[dict]:
         """
         Restituisce gli esempi SENZA pulirli - mantiene le annotazioni NER
         """
         return [
-            {"text": ex, "intent": intent_data["intent"]}
+            {
+                "text": ex,
+                "intent": intent_data["intent"],
+                "group_id": self._make_group_id(intent_data["intent"], ex),
+            }
             for intent_data in nlu_data["nlu"]["intents"]
             for ex in intent_data["examples"]
         ]
@@ -75,8 +91,10 @@ class DopingPreprocessor:
             dope = self._should_dope(examples)
 
             for example in examples:
+                group_id = self._make_group_id(intent_name, example)
+
                 # Mantieni l'esempio originale con annotazioni NER
-                dataset.append({"text": example, "intent": intent_name})
+                dataset.append({"text": example, "intent": intent_name, "group_id": group_id})
 
                 # Aggiungi versione "dopata" solo se necessario
                 # La versione dopata NON ha annotazioni NER (usa clean)
@@ -86,7 +104,9 @@ class DopingPreprocessor:
                     if len(tokens) <= self.short_token_limit:
                         example_id = self._make_example_id(intent_name, clean)
                         prefixed = f"{intent_name} {example_id} {clean}"
-                        dataset.append({"text": prefixed, "intent": intent_name})
+                        # Stessa group_id dell'esempio sorgente: e' una variante
+                        # near-duplicate, non un esempio indipendente.
+                        dataset.append({"text": prefixed, "intent": intent_name, "group_id": group_id})
 
         return dataset
 

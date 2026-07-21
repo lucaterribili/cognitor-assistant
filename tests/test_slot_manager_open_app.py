@@ -96,7 +96,7 @@ def test_slot_manager_open_app():
         {"entity": "PRODUCT", "value": "WhatsApp", "start": 5, "end": 13}
     ]
 
-    extracted = slot_manager.extractor.extract_from_entities("PRODUCT", entities)
+    extracted = slot_manager.extractor.extract_from_entities("open_app", "PRODUCT", entities)
     print(f"Entità NER: {entities}")
     print(f"Valore estratto: {extracted}")
     assert extracted == "WhatsApp", "Estrazione fallita"

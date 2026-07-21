@@ -134,6 +134,55 @@ class RuleInterpreter:
 
         return "Nessuna risposta configurata", None
 
+    def _slot_applies(self, slot_config: dict, slots: dict) -> bool:
+        """
+        Verifica se uno slot è pertinente nel turno corrente.
+
+        Uno slot può dichiarare `when: {altro_slot: valore}` per essere richiesto solo
+        quando un altro slot già raccolto ha un certo valore (es. lo slot "category" si
+        applica solo se "content_type" == "article"). Senza `when`, lo slot si applica
+        sempre. Usato per rendere condizionale la partecipazione di uno slot al flusso di
+        raccolta, non solo la sua obbligatorietà.
+
+        Args:
+            slot_config: Configurazione dello slot
+            slots: Slot correnti
+
+        Returns:
+            True se lo slot è pertinente nel turno corrente
+        """
+        when = slot_config.get("when")
+        if not when:
+            return True
+        return all(str(slots.get(k)) == str(v) for k, v in when.items())
+
+    def _get_slot_options(self, slot_config: dict, slots: dict) -> Optional[list]:
+        """
+        Calcola le opzioni (bottoni) disponibili per uno slot in attesa.
+
+        Supporta due sorgenti:
+        - `options`: lista statica dichiarata direttamente nella rule.
+        - `options_source`: nome di un provider dinamico registrato nell'OperationManager
+          (funzione `options_<nome>` in agent/operations/*.py), interrogato con gli slot
+          correnti (utile per opzioni dipendenti da uno slot già raccolto).
+
+        Args:
+            slot_config: Configurazione dello slot in attesa
+            slots: Slot correnti
+
+        Returns:
+            Lista di opzioni [{"value": ..., "label": ...}, ...] oppure None se lo slot
+            non ha opzioni configurate
+        """
+        if "options" in slot_config:
+            return slot_config["options"]
+
+        options_source = slot_config.get("options_source")
+        if options_source and self.operation_manager:
+            return self.operation_manager.get_options(options_source, slots)
+
+        return None
+
     def _get_random_response(self, response_key: str, slots: dict) -> str:
         """
         Ottiene una risposta random dalla lista e sostituisce i placeholder.
@@ -188,6 +237,11 @@ class RuleInterpreter:
             if slot_value and not slot_name.endswith("_UNSUPPORTED"):
                 placeholder = f"{{{slot_name}}}"
                 response = response.replace(placeholder, str(slot_value))
+
+        # Sostituisce i placeholder temporali con i valori reali
+        now = datetime.now()
+        response = response.replace("[TIME]", now.strftime("%H:%M"))
+        response = response.replace("[DATE]", now.strftime("%d/%m/%Y"))
 
         cleaned_response, inline_slots = ResponseSlotParser.parse(response)
 
@@ -427,7 +481,17 @@ class RuleInterpreter:
         # Intent con slot: la gestione dell'operation (dopo aver raccolto gli slot)
         # è delegata a _handle_slot_based_intent_with_slots
         if "slots" in rule:
-            response, wait_slot = self._handle_slot_based_intent_with_slots(rule, slots)
+            response, wait_slot, options, inline_slots = self._handle_slot_based_intent_with_slots(rule, slots)
+            # Gli slot inline (sintassi {SLOT=value} nel template di risposta) vengono
+            # fusi in bot_slots con la stessa strategia usata nel percorso "default" più
+            # sotto: inline_slots ha priorità sulle proprie chiavi, senza cancellare le
+            # altre eventualmente già impostate da extract_set_slots.
+            bot_slots.update(inline_slots)
+            # Le opzioni (bottoni) viaggiano nel canale bot_slots con una chiave riservata,
+            # per non allargare la tupla pubblica (response, wait_slot, bot_slots) — i
+            # chiamanti la estraggono e la rimuovono prima di applicare bot_slots al contesto.
+            if options:
+                bot_slots["__options__"] = options
             return response, wait_slot, bot_slots
 
         # Intent semplice senza slot: esegui l'operation se present
@@ -451,16 +515,23 @@ class RuleInterpreter:
 
     def _handle_slot_based_intent_with_slots(
         self, rule: dict, slots: dict
-    ) -> tuple[str, Optional[str]]:
+    ) -> tuple[str, Optional[str], Optional[list], dict]:
         """
         Gestisce intent che richiedono slot, restituendo anche slot inline.
-        Supporta wait per-slot (dict) e case compositi multi-slot (SLOT1|SLOT2).
+        Supporta wait per-slot (dict), case compositi multi-slot (SLOT1|SLOT2) e slot
+        condizionali (`when:`, vedi `_slot_applies`).
+
+        Returns:
+            tuple: (risposta, slot_da_attendere, opzioni, slot_inline_trovati)
         """
         rule_slots = rule.get("slots", {})
         wait_config = rule.get("wait")
 
-        # Step 1: Controlla slot required nell'ordine di definizione
+        # Step 1: Controlla slot required nell'ordine di definizione (saltando quelli
+        # non pertinenti nel turno corrente per via di un eventuale `when:`)
         for slot_name, slot_config in rule_slots.items():
+            if not self._slot_applies(slot_config, slots):
+                continue
             if slot_config.get("required", False):
                 slot_value = slots.get(slot_name)
                 unsupported_flag = slots.get(f"{slot_name}_UNSUPPORTED")
@@ -473,36 +544,37 @@ class RuleInterpreter:
                         wait_key = wait_config
                     if wait_key:
                         response, inline_slots = self._get_response_with_slots(wait_key, slots)
-                        return response, slot_name
+                        options = self._get_slot_options(slot_config, slots)
+                        return response, slot_name, options, inline_slots
                     fallback_key = rule.get("fallback", rule.get("default"))
                     if fallback_key:
-                        response, _ = self._get_response_with_slots(fallback_key, slots)
-                        return response, None
-                    return "Slot richiesto non fornito", None
+                        response, inline_slots = self._get_response_with_slots(fallback_key, slots)
+                        return response, None, None, inline_slots
+                    return "Slot richiesto non fornito", None, None, {}
 
-        # Tutti gli slot required sono presenti.
+        # Tutti gli slot required (pertinenti) sono presenti.
         # Se è definita un'operation (default: __<name>), eseguila ora.
         default_key = rule.get("default", "")
         if default_key.startswith("__") and self.operation_manager:
             operation_name = default_key[2:]
             if self.operation_manager.has_operation(operation_name):
                 op_result = self.operation_manager.execute(operation_name, operation_name, slots)
-                return op_result["response"], None
+                return op_result["response"], None, None, {}
 
         cases = rule.get("cases", {})
 
-        # Step 2: Prova chiave composita (tutti i required slot con valore, nell'ordine)
+        # Step 2: Prova chiave composita (tutti i required slot pertinenti con valore, nell'ordine)
         required_values = [
             slots.get(s)
             for s, c in rule_slots.items()
-            if c.get("required", False) and slots.get(s)
+            if self._slot_applies(c, slots) and c.get("required", False) and slots.get(s)
         ]
         if len(required_values) > 1:
             composite_key = "|".join(str(v) for v in required_values)
             for case_key, response_key in cases.items():
                 if composite_key.lower() == str(case_key).lower():
                     response, inline_slots = self._get_response_with_slots(response_key, slots)
-                    return response, None
+                    return response, None, None, inline_slots
 
         # Step 3: Matching singolo (primo slot con valore)
         for slot_name, slot_config in rule_slots.items():
@@ -511,16 +583,16 @@ class RuleInterpreter:
                 for case_key, response_key in cases.items():
                     if str(slot_value).lower() == str(case_key).lower():
                         response, inline_slots = self._get_response_with_slots(response_key, slots)
-                        return response, None
+                        return response, None, None, inline_slots
 
                 fallback_key = rule.get("fallback")
                 if fallback_key:
-                    response, _ = self._get_response_with_slots(fallback_key, slots)
-                    return response, None
+                    response, inline_slots = self._get_response_with_slots(fallback_key, slots)
+                    return response, None, None, inline_slots
 
         if default_key and not default_key.startswith("__"):
-            response, _ = self._get_response_with_slots(default_key, slots)
-            return response, None
+            response, inline_slots = self._get_response_with_slots(default_key, slots)
+            return response, None, None, inline_slots
 
-        return "Nessuna risposta configurata", None
+        return "Nessuna risposta configurata", None, None, {}
 

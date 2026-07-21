@@ -12,10 +12,11 @@ pytorch-crf
 fasttext-wheel
 torchcrf
 python-jose[cryptography]
-passlib[bcrypt]
+bcrypt
 python-multipart
 pyyaml
 numpy
 requests
 ddgs
 sentencepiece
+python-dotenv

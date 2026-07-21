@@ -6,6 +6,7 @@ nlu:
     examples:
     - parlami di [Mozart](KEYWORD)
     - cosa sai di [Leonardo da Vinci](KEYWORD)
+    - dimmi qualcosa su [Giuseppe Garibaldi](KEYWORD)
     - raccontami la storia dell'[Impero Romano](KEYWORD)
     - chi era [Socrate](KEYWORD)
     - parlami del mito di [Orfeo](KEYWORD)
@@ -29,15 +30,29 @@ nlu:
     - cosa sai di [Petrarca](KEYWORD)
     - chi era [Edipo](KEYWORD)
     - parlami della [Nascita di Venere](KEYWORD)
+
   - intent: ask_definition
     examples:
-    - cosa è l'intelligenza artificiale
-    - spiegami l'AI
-    - cosa significa AI
-    - come funziona l'AI
-    - cosa sono le reti neurali
-    - spiegami il machine learning
-    - cos'è il deep learning
-    - dimmi cos'è l'intelligenza artificiale
-    - che cos'è l'intelligenza artificiale
-    - AI cosa vuol dire
+    - cosa è l'[intelligenza artificiale](KEYWORD)
+    - spiegami l'[AI](KEYWORD)
+    - cosa significa [AI](KEYWORD)
+    - come funziona l'[AI](KEYWORD)
+    - cosa sono le [reti neurali](KEYWORD)
+    - spiegami il [machine learning](KEYWORD)
+    - cos'è il [deep learning](KEYWORD)
+    - dimmi cos'è l'[intelligenza artificiale](KEYWORD)
+    - che cos'è l'[intelligenza artificiale](KEYWORD)
+    - "[AI](KEYWORD) cosa vuol dire"
+
+  - intent: ask_person_date
+    examples:
+    - "[quando è nato Pippo](KEYWORD)"
+    - "[quando è nata Maria Callas](KEYWORD)"
+    - Voglio sapere [quando è morto Maradona](KEYWORD)
+    - "[in che anno è nato Dante Alighieri](KEYWORD)"
+    - "[quando è morto Napoleone](KEYWORD)"
+    - "[quando è nato Leonardo da Vinci](KEYWORD)"
+    - "[in che anno è morto Mozart](KEYWORD)"
+    - "[quando è nata Cleopatra](KEYWORD)"
+    - dimmi [in che anno è morto Van Gogh](KEYWORD)
+    - "[quando è nato Napoleone](KEYWORD)"

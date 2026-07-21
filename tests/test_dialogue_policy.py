@@ -341,10 +341,11 @@ def test_training_reduces_loss():
             loss_before = criterion(action_logits, tgt).item()
             break
 
-    # Training breve
+    # Training breve (stesso dataloader per train e val: qui si testa solo
+    # che il training riduca la loss, non la generalizzazione)
     device = torch.device("cpu")
     model.to(device)
-    train_dialogue_policy_model(model, dataloader, epochs=30, lr=0.01, device=device, patience=30)
+    train_dialogue_policy_model(model, dataloader, dataloader, epochs=30, lr=0.01, device=device, patience=30)
 
     # Loss dopo il training
     model.eval()
@@ -385,7 +386,7 @@ def test_trained_model_predicts_greeting():
 
     device = torch.device("cpu")
     model.to(device)
-    train_dialogue_policy_model(model, dataloader, epochs=100, lr=0.01, device=device, patience=100)
+    train_dialogue_policy_model(model, dataloader, dataloader, epochs=100, lr=0.01, device=device, patience=100)
 
     # Predici: contesto vuoto + intent greeting
     context_intents = torch.zeros(1, 1, dtype=torch.long)

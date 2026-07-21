@@ -1,5 +1,5 @@
 """
-Operations package - Custom actions per il bot Arianna.
+Operations package - Custom actions per il bot Cognitor.
 
 Le operations sono azioni personalizzate eseguite dal bot in risposta a specifici intent,
 simile al sistema di custom actions di Rasa.

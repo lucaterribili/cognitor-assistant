@@ -26,6 +26,12 @@ rules:
     default: __book_flight
     fallback: book_flight_unsupported_response
 
+  choose_flight_destination:
+    default: choose_flight_destination_standalone_response
+
+  choose_flight_departure:
+    default: choose_flight_departure_standalone_response
+
   book_hotel:
     default: book_hotel_response
 

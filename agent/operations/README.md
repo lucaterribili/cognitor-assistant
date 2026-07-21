@@ -1,6 +1,12 @@
 # Operations - Quick Reference
 
-Custom actions per il bot Arianna. Sistema con **auto-discovery** automatico.
+Custom actions per Cognitor. Sistema con **auto-discovery** automatico.
+
+Questa cartella contiene le operations **generiche**, condivise da tutti i
+branch/domini del progetto. Le operations specifiche di un singolo dominio
+(es. l'integrazione con un backoffice particolare) vanno invece in
+`training_data/operations/`, scansionata allo stesso modo — vedi
+`OperationManager._discover_operations`.
 
 ## Come Creare una Nuova Operation
 

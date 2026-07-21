@@ -1,0 +1,16 @@
+# Food Intents
+
+nlu:
+  intents:
+  - intent: ask_recipe
+    examples:
+    - dimmi [come cucinare il pollo](DISH)
+    - come si prepara la [carbonara](DISH)
+    - dammi la ricetta della [pizza margherita](DISH)
+    - come si cucina il [risotto ai funghi](DISH)
+    - ricetta per fare la [torta di mele](DISH)
+    - come faccio la [lasagna](DISH)
+    - dimmi come preparare il [tiramisù](DISH)
+    - come si cuoce il [salmone al forno](DISH)
+    - ricetta veloce per gli [spaghetti alle vongole](DISH)
+    - come si fa la [maionese](DISH)

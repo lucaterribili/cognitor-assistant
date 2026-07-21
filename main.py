@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="Arianna Assistant API")
+app = FastAPI(title="Cognitor Assistant API")
 
 app.add_middleware(
     CORSMiddleware,
