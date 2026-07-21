@@ -135,6 +135,11 @@ responses:
     - "Mi dispiace, al momento non ho informazioni turistiche per quella località. Posso aiutarti con Roma o Milano. Quale città vorresti visitare?"
     - "Non gestisco ancora quella destinazione. Per ora posso darti info su Roma e Milano. Quale preferisci?"
 
+  ask_touristic_place_information_wait_response:
+    - "Di quale luogo, monumento o edificio vuoi sapere di più?"
+    - "Dimmi il nome del posto che ti interessa e ti cerco le informazioni."
+    - "Su quale luogo vuoi informazioni?"
+
   # ========================================
   # Risposte per open_app
   # ========================================
@@ -205,6 +210,54 @@ responses:
 
   operation_fallback_response:
     - "Funzionalità in fase di sviluppo."
+
+  # ========================================
+  # Risposte per funzionalità non implementate
+  # ========================================
+
+  not_implemented_response:
+    - "Mi dispiace, ma non posso aiutarti per questo task."
+    - "Spiacente, questa funzionalità non è ancora disponibile."
+    - "Non sono in grado di gestire questa richiesta al momento. Riprova più tardi."
+    - "Mi dispiace, non posso aiutarti per questo task."
+
+  team_cheer_response:
+    - "Daje!! Forza! 💪"
+    - "Sìì, tifiamo insieme, forza!!"
+    - "Che grinta! Vai così!! ⚽"
+    - "Forza, dai che ce la facciamo!! 🔥"
+    - "Andiamo!! Tutti a tifare insieme!"
+    - "Grande!! Si vince tutti insieme!"
+
+  # ========================================
+  # Risposte per conversation stories TED
+  # ========================================
+
+  help_options_response:
+    - "Certo! Posso aiutarti con ricerca informazioni, prenotazioni, meteo, calcoli, traduzioni e molto altro. Cosa ti interessa?"
+    - "Ecco cosa so fare: cercare notizie, prenotare ristoranti/hotel/voli/taxi, darti il meteo, tradurre testi, rispondere a domande di cultura generale. Di cosa hai bisogno?"
+
+  detailed_help_response:
+    - "Posso aiutarti con: 1️⃣ Ricerche web e definizioni 2️⃣ Prenotazioni (ristoranti, hotel, voli, taxi) 3️⃣ Meteo e informazioni turistiche 4️⃣ Traduzioni e calcoli 5️⃣ Notizie e cultura generale. Cosa vuoi fare?"
+    - "Nel dettaglio: per le prenotazioni dimmi cosa e dove, per le ricerche dimmi l'argomento, per il meteo la città. Posso anche aiutarti con la posta e le riunioni. Cosa preferisci?"
+
+  follow_up_response:
+    - "Certo, dimmi pure!"
+    - "Procediamo! Di cosa hai bisogno ancora?"
+    - "Sono qui per aiutarti. Cosa altro vuoi sapere?"
+
+  information_response:
+    - "Certo! Che informazioni cerchi? Posso aiutarti con curiosità, dati, definizioni e molto altro."
+    - "Dimmi cosa vuoi sapere e cercherò le informazioni per te."
+
+  detailed_information_response:
+    - "Ecco più dettagli. Vuoi approfondire qualche aspetto in particolare?"
+    - "Posso cercare ulteriori informazioni se mi dai più indicazioni su cosa ti interessa."
+
+  confirmation_response:
+    - "Perfetto, confermato! Procedo con la richiesta."
+    - "Tutto confermato. Vado avanti!"
+    - "Ok, confermo. Ora procedo."
 
   # ========================================
   # Risposte per web_search

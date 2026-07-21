@@ -6,6 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
 from torch.nn.utils.rnn import pad_sequence
+from sklearn.model_selection import GroupShuffleSplit
 from tqdm import tqdm
 
 from config import BASE_DIR
@@ -30,6 +31,35 @@ class IntentDataset(Dataset):
             torch.tensor(output_id, dtype=torch.long),
             torch.tensor(ner_tags, dtype=torch.long)
         )
+
+    def get_group_ids(self) -> list:
+        """
+        Restituisce il group_id di ogni riga (esempio sorgente originale prima
+        di normalizzazione/doping). Usato per fare uno split train/val
+        group-aware ed evitare che varianti near-duplicate della stessa frase
+        finiscano su lati opposti dello split (data leakage).
+
+        Se il .npy e' stato generato prima dell'introduzione del group_id
+        (nessun 4° campo), ogni riga riceve un group_id univoco: si ricade
+        semplicemente nel comportamento precedente (split a livello di riga).
+        """
+        group_ids = []
+        for idx in range(len(self.data)):
+            item = self.data[idx]
+            group_id = item[3] if len(item) > 3 and item[3] else f"__row_{idx}"
+            group_ids.append(group_id)
+        return group_ids
+
+    def get_token_lengths(self) -> list:
+        """
+        Numero di token per ogni riga. Il tokenizer di questo progetto (vedi
+        SimpleTokenizer) splitta sugli spazi, quindi lunghezza 1 equivale a
+        un esempio di una sola parola (es. "ciao"). Usato per forzare questi
+        esempi-prototipo nel training set (vedi train_main_model): sono gli
+        esempi più rappresentativi di un intent e perderli per caso nello
+        split di validation lascia il modello incapace di classificarli.
+        """
+        return [len(self.data[idx][0]) for idx in range(len(self.data))]
 
 
 def collate_fn(batch):
@@ -129,14 +159,52 @@ def train_main_model():
         intents_number = len(intent_dict)
 
     full_dataset = IntentDataset(npy_path)
-    
-    # Split train/validation (80/20)
-    train_size = int(0.8 * len(full_dataset))
-    val_size = len(full_dataset) - train_size
-    train_dataset, val_dataset = torch.utils.data.random_split(
-        full_dataset, [train_size, val_size], 
-        generator=torch.Generator().manual_seed(42)
-    )
+
+    # Split train/validation (80/20) GROUP-AWARE: tutte le varianti
+    # (clean_text/normalizzato/doping) dello stesso esempio sorgente
+    # condividono un group_id e devono finire sempre dalla stessa parte
+    # dello split, altrimenti la validation accuracy e' gonfiata perche'
+    # il modello ha gia' visto in training una quasi-copia dell'esempio
+    # su cui viene "validato".
+    #
+    # I gruppi di UNA sola parola (es. "ciao") sono forzati in training e
+    # esclusi dal sorteggio: sono gli esempi-prototipo più rappresentativi
+    # di un intent, e lasciarli finire per caso in validation significa
+    # rischiare che il modello non impari mai a classificarli con sicurezza
+    # pur essendo l'esempio più semplice e comune per quell'intent.
+    group_ids = full_dataset.get_group_ids()
+    token_lengths = full_dataset.get_token_lengths()
+
+    single_word_groups = set()
+    for group_id, length in zip(group_ids, token_lengths):
+        if length <= 1:
+            single_word_groups.add(group_id)
+
+    splittable_mask = [group_id not in single_word_groups for group_id in group_ids]
+    splittable_indices = np.array([i for i, keep in enumerate(splittable_mask) if keep])
+    forced_train_indices = np.array([i for i, keep in enumerate(splittable_mask) if not keep])
+
+    unique_splittable_groups = {group_ids[i] for i in splittable_indices}
+    if len(splittable_indices) > 0 and len(unique_splittable_groups) >= 2:
+        splittable_group_ids = [group_ids[i] for i in splittable_indices]
+        splitter = GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
+        rel_train_idx, rel_val_idx = next(
+            splitter.split(np.zeros(len(splittable_group_ids)), groups=splittable_group_ids)
+        )
+        split_train_idx = splittable_indices[rel_train_idx]
+        val_idx = splittable_indices[rel_val_idx]
+    else:
+        # Troppo pochi gruppi "splittabili" per uno split sensato: tutto in training.
+        split_train_idx = splittable_indices
+        val_idx = np.array([], dtype=int)
+
+    train_idx = np.concatenate([forced_train_indices, split_train_idx])
+
+    train_dataset = torch.utils.data.Subset(full_dataset, train_idx.tolist())
+    val_dataset = torch.utils.data.Subset(full_dataset, val_idx.tolist())
+    print(f"Split group-aware: {len(train_dataset)} training, {len(val_dataset)} validation "
+          f"({len(set(group_ids))} gruppi unici, {len(single_word_groups)} forzati in training "
+          f"perché parola singola)")
 
     train_dataloader = DataLoader(train_dataset, batch_size=8, shuffle=True, collate_fn=collate_fn)
     val_dataloader = DataLoader(val_dataset, batch_size=8, shuffle=False, collate_fn=collate_fn)

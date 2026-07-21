@@ -19,7 +19,7 @@ import yaml
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset, random_split
 from torch.nn.utils.rnn import pad_sequence
 from tqdm import tqdm
 
@@ -218,7 +218,8 @@ def collate_dialogue_fn(
 
 def train_dialogue_policy_model(
     model: DialoguePolicy,
-    dataloader: DataLoader,
+    train_dataloader: DataLoader,
+    val_dataloader: DataLoader,
     epochs: int,
     lr: float,
     device: torch.device,
@@ -230,7 +231,12 @@ def train_dialogue_policy_model(
 
     Args:
         model:            Modello da addestrare.
-        dataloader:       DataLoader del training set.
+        train_dataloader: DataLoader del training set.
+        val_dataloader:   DataLoader del validation set (held-out, non usato
+                           per l'ottimizzazione dei pesi). Early stopping e
+                           checkpoint del "best model" si basano sulla loss
+                           calcolata qui, non sulla training loss, altrimenti
+                           non si puo' rilevare overfitting.
         epochs:           Numero massimo di epoche.
         lr:               Learning rate iniziale.
         device:           Dispositivo (cpu/cuda).
@@ -247,11 +253,17 @@ def train_dialogue_policy_model(
     patience_counter = 0
     best_model_state: dict | None = None
 
+    def _compute_loss(ctx_intents, ctx_actions, curr_intents, targets, goal_targets):
+        action_logits, goal_logits = model(ctx_intents, ctx_actions, curr_intents)
+        loss_action = criterion(action_logits, targets)
+        loss_goal = criterion(goal_logits, goal_targets)
+        return loss_action + goal_loss_weight * loss_goal
+
     for epoch in range(epochs):
         model.train()
-        total_loss = 0.0
+        total_train_loss = 0.0
 
-        epoch_iter = tqdm(dataloader, desc=f"Epoch {epoch + 1}/{epochs}", leave=False)
+        epoch_iter = tqdm(train_dataloader, desc=f"Epoch {epoch + 1}/{epochs}", leave=False)
         for ctx_intents, ctx_actions, curr_intents, targets, goal_targets in epoch_iter:
             ctx_intents = ctx_intents.to(device)
             ctx_actions = ctx_actions.to(device)
@@ -260,36 +272,49 @@ def train_dialogue_policy_model(
             goal_targets = goal_targets.to(device)
 
             optimizer.zero_grad()
-            action_logits, goal_logits = model(ctx_intents, ctx_actions, curr_intents)
-
-            loss_action = criterion(action_logits, targets)
-            loss_goal   = criterion(goal_logits, goal_targets)
-            loss        = loss_action + goal_loss_weight * loss_goal
-
+            loss = _compute_loss(ctx_intents, ctx_actions, curr_intents, targets, goal_targets)
             loss.backward()
             optimizer.step()
 
-            total_loss += loss.item()
+            total_train_loss += loss.item()
             epoch_iter.set_postfix(loss=f"{loss.item():.4f}")
 
-        avg_loss = total_loss / len(dataloader)
-        scheduler.step(avg_loss)
-        print(f"Epoch {epoch + 1}/{epochs}, Loss: {avg_loss:.4f}")
+        avg_train_loss = total_train_loss / len(train_dataloader)
 
-        if avg_loss < best_loss:
-            best_loss = avg_loss
+        # Validation phase: nessun backward/step, solo calcolo della loss
+        # su dati mai visti in training, per poter rilevare l'overfitting.
+        model.eval()
+        total_val_loss = 0.0
+        with torch.no_grad():
+            for ctx_intents, ctx_actions, curr_intents, targets, goal_targets in val_dataloader:
+                ctx_intents = ctx_intents.to(device)
+                ctx_actions = ctx_actions.to(device)
+                curr_intents = curr_intents.to(device)
+                targets = targets.to(device)
+                goal_targets = goal_targets.to(device)
+
+                loss = _compute_loss(ctx_intents, ctx_actions, curr_intents, targets, goal_targets)
+                total_val_loss += loss.item()
+
+        avg_val_loss = total_val_loss / len(val_dataloader)
+        scheduler.step(avg_val_loss)
+        print(f"Epoch {epoch + 1}/{epochs}, Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}")
+
+        if avg_val_loss < best_loss:
+            best_loss = avg_val_loss
             patience_counter = 0
             best_model_state = {k: v.clone() for k, v in model.state_dict().items()}
-            print(f"✓ Miglioramento! Nuovo best loss: {best_loss:.4f}")
+            print(f"✓ Miglioramento! Nuovo best val loss: {best_loss:.4f}")
         else:
             patience_counter += 1
             print(f"Nessun miglioramento. Pazienza: {patience_counter}/{patience}")
             if patience_counter >= patience:
                 print(f"\n⚠️  Early stopping attivato dopo {epoch + 1} epoche")
-                if best_model_state is not None:
-                    model.load_state_dict(best_model_state)
-                    print("✓ Ripristinato il miglior modello")
                 break
+
+    if best_model_state is not None:
+        model.load_state_dict(best_model_state)
+        print("✓ Ripristinato il miglior modello basato sulla validation loss")
 
 
 # ---------------------------------------------------------------------------
@@ -352,12 +377,38 @@ def train_dialogue_policy() -> None:
 
     print(f"  Dizionari salvati in: {cognitor_dir}")
 
-    # Crea dataset e DataLoader
+    # Crea dataset e split train/validation (80/20). Split casuale semplice:
+    # a differenza del dataset dell'intent classifier, qui non ci sono
+    # varianti near-duplicate dello stesso esempio sorgente, quindi non serve
+    # uno split group-aware.
     dataset = DialoguePolicyDataset(samples)
-    dataloader = DataLoader(
-        dataset,
-        batch_size=min(4, len(samples)),
+
+    val_size = max(1, int(0.2 * len(dataset))) if len(dataset) > 1 else 0
+    train_size = len(dataset) - val_size
+
+    if val_size == 0 or train_size == 0:
+        # Dataset troppo piccolo per uno split: usa tutto sia per train che
+        # per val (early stopping meno efficace ma il training non crasha).
+        print("⚠️  Dataset troppo piccolo per uno split train/val, uso lo stesso set per entrambi.")
+        train_dataset = dataset
+        val_dataset = dataset
+    else:
+        train_dataset, val_dataset = random_split(
+            dataset, [train_size, val_size],
+            generator=torch.Generator().manual_seed(42)
+        )
+    print(f"  Split train/val: {len(train_dataset)} training, {len(val_dataset)} validation")
+
+    train_dataloader = DataLoader(
+        train_dataset,
+        batch_size=min(4, len(train_dataset)),
         shuffle=True,
+        collate_fn=collate_dialogue_fn,
+    )
+    val_dataloader = DataLoader(
+        val_dataset,
+        batch_size=min(4, len(val_dataset)),
+        shuffle=False,
         collate_fn=collate_dialogue_fn,
     )
 
@@ -374,7 +425,7 @@ def train_dialogue_policy() -> None:
 
     # Training
     train_dialogue_policy_model(
-        model, dataloader, epochs=150, lr=0.001, device=device, patience=20
+        model, train_dataloader, val_dataloader, epochs=150, lr=0.001, device=device, patience=20
     )
 
     # Salva il modello

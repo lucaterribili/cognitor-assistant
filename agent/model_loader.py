@@ -26,15 +26,31 @@ class ModelLoader:
     def load_vocab_size(self) -> int:
         """Carica la dimensione del vocabolario da vocab.json."""
         print("Caricamento vocabolario...")
-        with open(self.vocab_path, 'r') as f:
-            vocab = json.load(f)
+        try:
+            with open(self.vocab_path, 'r') as f:
+                vocab = json.load(f)
+        except FileNotFoundError:
+            raise FileNotFoundError(
+                f"vocab.json non trovato in {self.vocab_path} — "
+                "esegui prima la pipeline di training: python -m pipeline"
+            )
+        except json.JSONDecodeError as e:
+            raise ValueError(f"vocab.json in {self.vocab_path} non è un JSON valido: {e}")
         return len(vocab)
 
     def load_intent_dict(self) -> Dict[str, str]:
         """Carica il dizionario degli intent."""
         print("Caricamento intent dictionary...")
-        with open(self.intent_dict_path, 'r') as f:
-            return json.load(f)
+        try:
+            with open(self.intent_dict_path, 'r') as f:
+                return json.load(f)
+        except FileNotFoundError:
+            raise FileNotFoundError(
+                f"intent_dict.json non trovato in {self.intent_dict_path} — "
+                "esegui prima la pipeline di training: python -m pipeline"
+            )
+        except json.JSONDecodeError as e:
+            raise ValueError(f"intent_dict.json in {self.intent_dict_path} non è un JSON valido: {e}")
 
     def load_intent_classifier(self, vocab_size: int,
                                intents_number: int) -> tuple[IntentClassifier, bool]:
@@ -169,12 +185,22 @@ class KnowledgeLoader:
     def build_doping_lookup_table(self, doping_preprocessor: DopingPreprocessor) -> None:
         """Costruisce la lookup table per il doping preprocessor."""
         print("Costruzione lookup table per doping...")
-        for filename in os.listdir(self.intents_dir):
+        try:
+            filenames = os.listdir(self.intents_dir)
+        except FileNotFoundError:
+            raise FileNotFoundError(
+                f"Directory intents non trovata in {self.intents_dir} — "
+                "esegui prima la pipeline di training: python -m pipeline"
+            )
+        for filename in filenames:
             if filename.endswith('.json'):
                 file_path = os.path.join(self.intents_dir, filename)
-                with open(file_path, 'r') as f:
-                    nlu_data = json.load(f)
-                    doping_preprocessor.build_lookup_table(nlu_data)
+                try:
+                    with open(file_path, 'r') as f:
+                        nlu_data = json.load(f)
+                except json.JSONDecodeError as e:
+                    raise ValueError(f"{file_path} non è un JSON valido: {e}")
+                doping_preprocessor.build_lookup_table(nlu_data)
         print("OK Lookup table costruita")
 
     def load_all(self) -> tuple[Dict[str, dict], Dict[str, list], Dict[str, dict]]:

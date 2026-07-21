@@ -186,7 +186,7 @@ class IntentClassifier(nn.Module):
 
             # NER - converti tag ids in etichette e raggruppa entità
             ner_tags = [self.ner_tag_builder.id2tag[tag_id] for tag_id in ner_predictions[0]]
-            entities = self._extract_entities(tokens, ner_tags)
+            entities = self._extract_entities(tokens, ner_tags, text)
 
             return {
                 'intent_idx': intent_idx,
@@ -198,12 +198,27 @@ class IntentClassifier(nn.Module):
                 'intent_probs': intent_probs[0].tolist()     # Converti in lista Python
             }
 
-    def _extract_entities(self, tokens, ner_tags):
+    def _extract_entities(self, tokens, ner_tags, original_text=None):
         """
-        Estrae entità da tokens e tag BIO
+        Estrae entità da tokens e tag BIO.
+
+        Se `original_text` è fornito, il valore di ogni entità viene ricavato come
+        sottostringa del testo originale (minuscolo) tra gli offset di carattere del
+        primo e ultimo token dell'entità, invece che unendo i token con uno spazio
+        letterale. Necessario perché `SimpleTokenizer` sostituisce ogni carattere di
+        punteggiatura (incluso '.') con uno spazio prima di tokenizzare: un dominio
+        come "ai.programmato.it" arriva a questa funzione già spezzato in token
+        ["ai", "programmato", "it"], e unirli con ' '.join produrrebbe "ai programmato
+        it", corrompendo il valore prima che raggiunga le Operation (es. il dominio
+        non verrebbe più trovato nel backoffice). Stessa tecnica di ricerca sequenziale
+        degli offset già usata in fase di training da
+        NERTagBuilder.align_tokens_to_bio.
 
         Returns:
-            lista di dict con start, end, entity, value
+            lista di dict con start, end, entity, value. Con `original_text`, start/end
+            sono offset di carattere nel testo originale; senza, restano indici di
+            token (comportamento legacy, per compatibilità con eventuali chiamanti che
+            non hanno il testo grezzo a disposizione).
         """
         entities = []
         current_entity = None
@@ -219,7 +234,9 @@ class IntentClassifier(nn.Module):
                     'start': idx,
                     'end': idx + 1,
                     'entity': entity_type,
-                    'value': token
+                    'value': token,
+                    '_token_start': idx,
+                    '_token_end': idx,
                 }
             elif tag.startswith('I-') and current_entity:
                 # Continua entità corrente
@@ -227,6 +244,7 @@ class IntentClassifier(nn.Module):
                 if entity_type == current_entity['entity']:
                     current_entity['end'] = idx + 1
                     current_entity['value'] += ' ' + token
+                    current_entity['_token_end'] = idx
             else:
                 # Tag O o fine entità
                 if current_entity:
@@ -237,5 +255,41 @@ class IntentClassifier(nn.Module):
         if current_entity:
             entities.append(current_entity)
 
+        if original_text is not None:
+            token_spans = self._token_char_spans(tokens, original_text)
+            for entity in entities:
+                start_tok = entity.pop('_token_start')
+                end_tok = entity.pop('_token_end')
+                char_start = token_spans[start_tok][0]
+                char_end = token_spans[end_tok][1]
+                entity['start'] = char_start
+                entity['end'] = char_end
+                entity['value'] = original_text.lower()[char_start:char_end]
+        else:
+            for entity in entities:
+                entity.pop('_token_start', None)
+                entity.pop('_token_end', None)
+
         return entities
+
+    @staticmethod
+    def _token_char_spans(tokens, text):
+        """
+        Trova gli offset di carattere (sul testo minuscolo) di ciascun token, cercandoli
+        in sequenza dall'ultima posizione trovata in poi — stessa tecnica di
+        `NERTagBuilder.align_tokens_to_bio` (classes/ner_tag_builder.py) usata in fase
+        di training, così i due layer restano coerenti.
+        """
+        text_lower = text.lower()
+        spans = []
+        search_from = 0
+        for token in tokens:
+            idx = text_lower.find(token, search_from)
+            if idx == -1:
+                # Non dovrebbe succedere (i token vengono dalla tokenizzazione dello
+                # stesso testo), ma non blocchiamo l'estrazione delle altre entità.
+                idx = search_from
+            spans.append((idx, idx + len(token)))
+            search_from = idx + len(token)
+        return spans
 

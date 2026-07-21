@@ -34,6 +34,14 @@ responses:
   book_flight_unsupported_response:
     - "Non ho capito la città. Puoi ripetere la destinazione o il luogo di partenza?"
 
+  choose_flight_destination_standalone_response:
+    - "Vuoi prenotare un volo? Dimmi da dove parti e qual è la destinazione."
+    - "Stai cercando un volo per quella città? Dimmi anche da dove parti e cerco subito."
+
+  choose_flight_departure_standalone_response:
+    - "Vuoi prenotare un volo da lì? Dimmi anche la destinazione e cerco subito."
+    - "Stai cercando un volo in partenza da quella città? Dimmi anche dove vuoi andare."
+
   book_hotel_response:
     - "Certo! In quale città vuoi prenotare e per quante notti?"
     - "Posso aiutarti a trovare un hotel. Dove vorresti alloggiare?"
