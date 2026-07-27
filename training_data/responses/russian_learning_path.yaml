@@ -42,3 +42,7 @@ responses:
 
   russian_repeat_lesson_response:
     - "Nessun problema! La ripetizione è la chiave dell'apprendimento. 🔄 Di' quale argomento vuoi ripassare: Alfabeto, Saluti, Numeri, Frasi utili, Pronomi, Patronimici, Grammatica, Casi, Verbi di Moto o Vocabolario."
+
+  russian_learn_difficulty_faq_response:
+    - "Il russo può sembrare impegnativo all'inizio, soprattutto per l'alfabeto cirillico e i casi grammaticali, ma con un po' di pratica quotidiana diventa molto più naturale! 💪 Ti conviene procedere un passo alla volta: scrivi 'voglio imparare il russo' per iniziare il percorso guidato, oppure 'prossima lezione' se hai già cominciato."
+    - "Non più difficile di altre lingue, solo diverso dall'italiano: l'alfabeto cirillico si impara in pochi giorni, mentre i casi grammaticali richiedono più pratica. Il percorso guidato ti accompagna passo passo — scrivi 'prossima lezione' per continuare da dove sei arrivato!"

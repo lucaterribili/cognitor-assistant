@@ -3,12 +3,7 @@ nlu:
   - intent: russian_learn_cases
     examples:
     - spiegami i casi della lingua russa
-    - cos'è il caso nominativo in russo
-    - cos'è il caso accusativo in russo
     - puoi spiegarmi il caso genitivo russo
-    - come funziona il caso dativo in russo
-    - quando si usa il caso strumentale in russo
-    - spiegami il caso prepositivo in russo
     - differenza tra nominativo e accusativo in russo
     - voglio imparare i casi russi
     - esempi di declinazione nei casi russi

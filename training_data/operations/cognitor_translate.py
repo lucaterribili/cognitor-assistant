@@ -1,6 +1,6 @@
 """Operation per la traduzione verso lingue target (default: russo)."""
 
-from agent.operations.tools.translator import (
+from training_data.operations.tools.translator import (
     load_translator,
     normalize_language,
     resolve_translation_paths,

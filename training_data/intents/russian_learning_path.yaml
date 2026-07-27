@@ -60,3 +60,18 @@ nlu:
     - rispiega
     - mostrami di nuovo
     - ripasso
+
+  - intent: russian_learn_difficulty_faq
+    examples:
+    - il russo è difficile?
+    - è difficile imparare il russo
+    - quanto è difficile il russo
+    - il russo è una lingua difficile da imparare
+    - imparare il russo è difficile?
+    - è dura imparare il russo
+    - il russo è complicato da imparare
+    - quanto è dura la grammatica russa
+    - il cirillico è difficile da imparare
+    - i casi russi sono difficili
+    - quanto tempo ci vuole per imparare il russo
+    - il russo è più difficile dell'inglese

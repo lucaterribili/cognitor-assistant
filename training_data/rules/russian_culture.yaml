@@ -1,0 +1,31 @@
+rules:
+  # Ridefinisce ask_culture/web_search (regole generiche in knowledge/rules,
+  # entrambe risolte di default con una ricerca web) per intercettare il topic
+  # "Russia": stesso comportamento per ogni altro argomento (default invariato),
+  # ma per questo dominio la Russia ha una risposta dedicata invece che una
+  # ricerca web generica. `cases` viene controllato prima del `default` dal
+  # RuleInterpreter, quindi basta aggiungere la entry senza toccare le regole
+  # generiche: pattern riusabile da qualsiasi altro dominio.
+  ask_culture:
+    slots:
+      query:
+        required: true
+        type: string
+        entity: KEYWORD
+    cases:
+      russia: russian_culture_intro_response
+      federazione russa: russian_culture_intro_response
+    default: __web_search
+    wait: ask_culture_wait_response
+
+  web_search:
+    slots:
+      query:
+        required: true
+        type: string
+        entity: QUERY
+    cases:
+      russia: russian_culture_intro_response
+      federazione russa: russian_culture_intro_response
+    default: __web_search
+    wait: web_search_wait_response

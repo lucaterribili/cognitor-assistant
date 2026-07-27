@@ -13,3 +13,6 @@ rules:
 
   russian_repeat_lesson:
     default: russian_repeat_lesson_response
+
+  russian_learn_difficulty_faq:
+    default: russian_learn_difficulty_faq_response

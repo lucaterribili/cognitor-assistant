@@ -253,6 +253,14 @@ class RuleInterpreter:
         Supporta chiavi composite (es. "Roma|musei") estraendo il valore
         nella posizione corretta per il dato slot.
 
+        Se il `default` della rule esegue un'operation (`__nome`), i cases sono
+        eccezioni puntuali sovrapposte a un catch-all generico (es. `ask_culture`/
+        `web_search` → `__web_search`), non un enum chiuso di valori ammessi come
+        in `open_app` (dove i cases SONO l'insieme esaustivo supportato, senza
+        operation di default). In quel caso lo slot resta libero: validarlo contro
+        i cases rifiuterebbe qualunque ricerca libera che non coincida con
+        un'eccezione elencata.
+
         Args:
             intent_name: Nome dell'intent
             slot_name: Nome dello slot
@@ -266,6 +274,9 @@ class RuleInterpreter:
 
         rule_slots = rule.get("slots", {})
         if slot_name not in rule_slots:
+            return []
+
+        if str(rule.get("default", "")).startswith("__"):
             return []
 
         cases = rule.get("cases", {})
@@ -521,11 +532,21 @@ class RuleInterpreter:
         Supporta wait per-slot (dict), case compositi multi-slot (SLOT1|SLOT2) e slot
         condizionali (`when:`, vedi `_slot_applies`).
 
+        I `cases` vengono controllati PRIMA dell'operation di `default`: questo
+        permette a un dominio di intercettare valori di slot specifici su un
+        intent generico a operation fissa (es. `ask_culture`/`web_search` →
+        `__web_search`) senza toccare il comportamento per tutti gli altri
+        valori. Un case può puntare a una response key statica oppure, con la
+        stessa convenzione `__nome` del default, a un'operation (vedi
+        `_resolve_case_target`).
+
         Returns:
             tuple: (risposta, slot_da_attendere, opzioni, slot_inline_trovati)
         """
         rule_slots = rule.get("slots", {})
         wait_config = rule.get("wait")
+        default_key = rule.get("default", "")
+        cases = rule.get("cases", {})
 
         # Step 1: Controlla slot required nell'ordine di definizione (saltando quelli
         # non pertinenti nel turno corrente per via di un eventuale `when:`)
@@ -552,17 +573,6 @@ class RuleInterpreter:
                         return response, None, None, inline_slots
                     return "Slot richiesto non fornito", None, None, {}
 
-        # Tutti gli slot required (pertinenti) sono presenti.
-        # Se è definita un'operation (default: __<name>), eseguila ora.
-        default_key = rule.get("default", "")
-        if default_key.startswith("__") and self.operation_manager:
-            operation_name = default_key[2:]
-            if self.operation_manager.has_operation(operation_name):
-                op_result = self.operation_manager.execute(operation_name, operation_name, slots)
-                return op_result["response"], None, None, {}
-
-        cases = rule.get("cases", {})
-
         # Step 2: Prova chiave composita (tutti i required slot pertinenti con valore, nell'ordine)
         required_values = [
             slots.get(s)
@@ -573,8 +583,7 @@ class RuleInterpreter:
             composite_key = "|".join(str(v) for v in required_values)
             for case_key, response_key in cases.items():
                 if composite_key.lower() == str(case_key).lower():
-                    response, inline_slots = self._get_response_with_slots(response_key, slots)
-                    return response, None, None, inline_slots
+                    return self._resolve_case_target(response_key, slots)
 
         # Step 3: Matching singolo (primo slot con valore)
         for slot_name, slot_config in rule_slots.items():
@@ -582,17 +591,46 @@ class RuleInterpreter:
             if slot_value:
                 for case_key, response_key in cases.items():
                     if str(slot_value).lower() == str(case_key).lower():
-                        response, inline_slots = self._get_response_with_slots(response_key, slots)
-                        return response, None, None, inline_slots
+                        return self._resolve_case_target(response_key, slots)
 
                 fallback_key = rule.get("fallback")
                 if fallback_key:
                     response, inline_slots = self._get_response_with_slots(fallback_key, slots)
                     return response, None, None, inline_slots
 
+        # Nessun case ha fatto match: tutti gli slot required (pertinenti) sono
+        # presenti. Se è definita un'operation (default: __<name>), eseguila ora.
+        if default_key.startswith("__") and self.operation_manager:
+            operation_name = default_key[2:]
+            if self.operation_manager.has_operation(operation_name):
+                op_result = self.operation_manager.execute(operation_name, operation_name, slots)
+                return op_result["response"], None, None, {}
+
         if default_key and not default_key.startswith("__"):
             response, inline_slots = self._get_response_with_slots(default_key, slots)
             return response, None, None, inline_slots
 
         return "Nessuna risposta configurata", None, None, {}
+
+    def _resolve_case_target(self, response_key: str, slots: dict) -> tuple[str, None, None, dict]:
+        """
+        Risolve il target di un `case` matchato: se usa la stessa convenzione
+        `__nome` del `default` esegue l'operation corrispondente, altrimenti
+        tratta `response_key` come una normale response key statica.
+
+        Args:
+            response_key: Valore del case matchato (response key o `__operation`)
+            slots: Slot correnti da passare all'operation o da interpolare nella response
+
+        Returns:
+            tuple: (risposta, None, None, slot_inline_trovati)
+        """
+        if response_key.startswith("__") and self.operation_manager:
+            operation_name = response_key[2:]
+            if self.operation_manager.has_operation(operation_name):
+                op_result = self.operation_manager.execute(operation_name, operation_name, slots)
+                return op_result["response"], None, None, {}
+
+        response, inline_slots = self._get_response_with_slots(response_key, slots)
+        return response, None, None, inline_slots
 
