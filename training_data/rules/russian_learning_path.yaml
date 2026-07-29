@@ -9,6 +9,37 @@ rules:
     default: russian_learn_phrases_response
 
   russian_next_lesson:
+    slots:
+      LESSON:
+        required: true
+        type: string
+        entity: NUMBER
+    cases:
+      "1": russian_learn_alphabet_response
+      alfabeto: russian_learn_alphabet_response
+      cirillico: russian_learn_alphabet_response
+      "2": russian_learn_greetings_response
+      saluti: russian_learn_greetings_response
+      "3": russian_learn_numbers_response
+      numeri: russian_learn_numbers_response
+      "4": russian_learn_phrases_response
+      frasi: russian_learn_phrases_response
+      "frasi utili": russian_learn_phrases_response
+      "5": russian_pronouns_personal_response
+      pronomi: russian_pronouns_personal_response
+      patronimici: russian_patronymics_response
+      "pronomi e patronimici": russian_pronouns_personal_response
+      "6": russian_learn_grammar_response
+      grammatica: russian_learn_grammar_response
+      "7": russian_learn_cases_response
+      casi: russian_learn_cases_response
+      "casi russi": russian_learn_cases_response
+      "8": russian_verbs_motion_response
+      "verbi di moto": russian_verbs_motion_response
+      aspetti: russian_verbs_aspect_response
+      "9": russian_vocabulary_days_response
+      vocabolario: russian_vocabulary_days_response
+    wait: russian_next_lesson_response
     default: russian_next_lesson_response
 
   russian_repeat_lesson:
