@@ -1,0 +1,3 @@
+rules:
+  count_posts:
+    default: __count_posts

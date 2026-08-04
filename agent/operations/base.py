@@ -30,14 +30,15 @@ class Operation(ABC):
         pass
 
     @abstractmethod
-    def execute(self, intent_name: str, slots: dict = None) -> dict:
+    def execute(self, intent_name: str, slots: dict = None, raw_text: str = None) -> dict:
         """
         Esegue l'operazione.
-        
+
         Args:
             intent_name: Nome dell'intent che ha triggerato l'operazione
             slots: Dizionario degli slot disponibili
-            
+            raw_text: Testo grezzo del turno corrente (opzionale)
+
         Returns:
             dict con chiavi:
                 - response: Risposta testuale da mostrare all'utente

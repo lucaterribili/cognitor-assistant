@@ -457,7 +457,7 @@ class RuleInterpreter:
         return value
 
     def handle_intent_with_bot_slots(
-        self, intent_name: str, slots: dict = None
+        self, intent_name: str, slots: dict = None, raw_text: str = None
     ) -> tuple[str, Optional[str], dict]:
         """
         Interpreta una rule e restituisce la risposta + slot da impostare dal bot.
@@ -465,6 +465,8 @@ class RuleInterpreter:
         Args:
             intent_name: Nome dell'intent
             slots: Dizionario degli slot disponibili
+            raw_text: Testo grezzo del turno corrente, inoltrato alle operation
+                che lo dichiarano nella propria signature
 
         Returns:
             tuple: (risposta, slot_da_attendere, slot_da_impostare)
@@ -481,7 +483,7 @@ class RuleInterpreter:
         # Intent con slot: la gestione dell'operation (dopo aver raccolto gli slot)
         # è delegata a _handle_slot_based_intent_with_slots
         if "slots" in rule:
-            response, wait_slot, options, inline_slots = self._handle_slot_based_intent_with_slots(rule, slots)
+            response, wait_slot, options, inline_slots = self._handle_slot_based_intent_with_slots(rule, slots, raw_text)
             # Gli slot inline (sintassi {SLOT=value} nel template di risposta) vengono
             # fusi in bot_slots con la stessa strategia usata nel percorso "default" più
             # sotto: inline_slots ha priorità sulle proprie chiavi, senza cancellare le
@@ -500,7 +502,7 @@ class RuleInterpreter:
             operation_name = default_key[2:]
             if self.operation_manager.has_operation(operation_name):
                 operation_result = self.operation_manager.execute(
-                    operation_name, operation_name, slots
+                    operation_name, operation_name, slots, raw_text
                 )
                 all_bot_slots = {**bot_slots, **operation_result.get("slots", {})}
                 return operation_result["response"], None, all_bot_slots
@@ -514,7 +516,7 @@ class RuleInterpreter:
         return "Configurazione intent non valida", None, bot_slots
 
     def _handle_slot_based_intent_with_slots(
-        self, rule: dict, slots: dict
+        self, rule: dict, slots: dict, raw_text: str = None
     ) -> tuple[str, Optional[str], Optional[list], dict]:
         """
         Gestisce intent che richiedono slot, restituendo anche slot inline.
@@ -558,7 +560,7 @@ class RuleInterpreter:
         if default_key.startswith("__") and self.operation_manager:
             operation_name = default_key[2:]
             if self.operation_manager.has_operation(operation_name):
-                op_result = self.operation_manager.execute(operation_name, operation_name, slots)
+                op_result = self.operation_manager.execute(operation_name, operation_name, slots, raw_text)
                 return op_result["response"], None, None, {}
 
         cases = rule.get("cases", {})

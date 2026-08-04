@@ -1,5 +1,4 @@
 import os
-import secrets
 from datetime import datetime, timedelta
 from typing import Optional
 
@@ -15,15 +14,16 @@ router = APIRouter()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
-    # Nessun default fisso in sorgente: un default fisso sarebbe pubblico (visibile
-    # a chiunque legga il repo) e permetterebbe di forgiare token anche in produzione
-    # se la env var viene dimenticata. In dev, meglio un segreto casuale per processo
-    # (i token restano validi solo finché il server non viene riavviato) che uno
-    # statico e noto.
-    SECRET_KEY = secrets.token_hex(32)
-    print("⚠ SECRET_KEY non impostata nell'ambiente: uso un segreto casuale generato "
-          "per questo processo. I token JWT non saranno validi dopo un riavvio. "
-          "Imposta SECRET_KEY nel .env per un valore stabile.")
+    # Un fallback a un segreto casuale per processo sembra innocuo in dev ma è
+    # esattamente quello che succede in produzione se la env var viene dimenticata
+    # in un redeploy: ogni riavvio rigenera la chiave e invalida silenziosamente
+    # tutti i token emessi in precedenza (falliscono con lo stesso errore di un
+    # token scaduto, anche se erano ben dentro la loro validità). Meglio fallire
+    # subito all'avvio che degradare in modo silenzioso.
+    raise RuntimeError(
+        "SECRET_KEY non impostata nell'ambiente. Imposta SECRET_KEY nel .env "
+        "(un valore stabile, non rigenerato ad ogni avvio) prima di avviare il servizio."
+    )
 
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -103,10 +103,14 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
 _ADMIN_USERNAME = os.getenv("AUTH_ADMIN_USERNAME", "admin")
 _ADMIN_PASSWORD = os.getenv("AUTH_ADMIN_PASSWORD")
 if not _ADMIN_PASSWORD:
-    _ADMIN_PASSWORD = secrets.token_hex(16)
-    print(f"⚠ AUTH_ADMIN_PASSWORD non impostata nell'ambiente: password generata per "
-          f"questo processo per l'utente '{_ADMIN_USERNAME}': {_ADMIN_PASSWORD}. "
-          f"Imposta AUTH_ADMIN_USERNAME/AUTH_ADMIN_PASSWORD nel .env per credenziali stabili.")
+    # Stesso motivo di SECRET_KEY sopra: una password rigenerata ad ogni riavvio
+    # non è recuperabile dai client (es. Laravel CognitorClient) che hanno la
+    # password attesa fissa nel proprio .env — dopo un riavvio anche il login
+    # pieno di ripiego fallirebbe, non solo il refresh del token.
+    raise RuntimeError(
+        "AUTH_ADMIN_PASSWORD non impostata nell'ambiente. Imposta "
+        "AUTH_ADMIN_USERNAME/AUTH_ADMIN_PASSWORD nel .env prima di avviare il servizio."
+    )
 
 # Utente unico di servizio (single-user demo auth). Le credenziali vengono da env,
 # non da valori hardcoded in sorgente.

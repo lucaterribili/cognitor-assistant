@@ -1,0 +1,17 @@
+nlu:
+  intents:
+  - intent: count_posts
+    examples:
+    - quanti articoli sono stati pubblicati
+    - quanti articoli sono stati pubblicati?
+    - quanti post sono stati pubblicati
+    - quanti articoli abbiamo pubblicato
+    - quanti articoli ci sono
+    - quanti post ci sono nel blog
+    - quanti articoli pubblicati abbiamo
+    - dimmi quanti articoli sono online
+    - quanti post sono online
+    - numero di articoli pubblicati
+    - quanti articoli abbiamo scritto finora
+    - conta gli articoli pubblicati
+    - quanti articoli sono usciti finora

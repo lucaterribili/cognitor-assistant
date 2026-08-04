@@ -1,0 +1,29 @@
+# Conversations per count_posts (integrazione Laravel/Programmato Backoffice)
+# Allena la Dialogue Policy a inserire count_posts in un flusso di conversazione
+# naturale (saluto -> conteggio -> congedo), non solo la meccanica dell'intent
+# (vedi rules/laravel_count_posts.yaml).
+
+conversations:
+  count_posts_flow:
+    description: "Flusso di conteggio articoli pubblicati nel backoffice"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: count_posts
+        bot: __count_posts
+        goal: count_posts
+      - user: farewell
+        bot: farewell_response
+
+  count_posts_with_thanks_flow:
+    description: "Flusso di conteggio articoli con ringraziamento prima del congedo"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: count_posts
+        bot: __count_posts
+        goal: count_posts
+      - user: thank_you
+        bot: thank_you_response
+      - user: farewell
+        bot: farewell_response
