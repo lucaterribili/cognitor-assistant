@@ -14,6 +14,16 @@ class SlotExtractor:
     basandosi sulle rules definite nei JSON/YAML.
     """
 
+    # Tipi di entità "a soggetto libero": usati da intent generici tipo
+    # "parlami di X"/"cerca X" (ask_culture, ask_definition, web_search, ...).
+    # Il NER può etichettare lo stesso testo con un tipo più specifico invece
+    # che con quello dichiarato per lo slot (es. "Russia" → LOCATION invece di
+    # KEYWORD, perché il modello lo riconosce anche come nome di luogo). Per
+    # questi slot si accetta comunque la prima entità disponibile di un altro
+    # tipo, dato che l'intent ha un solo slot "soggetto" e non c'è ambiguità
+    # su quale entità dovesse riempirlo.
+    _OPEN_TOPIC_ENTITY_TYPES = {"keyword", "query", "topic"}
+
     def __init__(self, rules: dict, rule_interpreter=None):
         """
         Args:
@@ -78,17 +88,8 @@ class SlotExtractor:
         Returns:
             Valore estratto o None
         """
-        entity_type = self.get_slot_entity_type(intent_name, slot_name)
-        if not entity_type:
-            return None
-
-        # Cerca la prima entità del tipo corretto (case-insensitive)
-        entity_type_lower = entity_type.lower()
-        for entity in entities:
-            if entity.get('entity', '').lower() == entity_type_lower:
-                return entity.get('value')
-
-        return None
+        value, _ = self.extract_from_entities_and_index(intent_name, slot_name, entities)
+        return value
 
     def extract_from_entities_and_index(
         self,
@@ -118,6 +119,15 @@ class SlotExtractor:
             if exclude_indexes and idx in exclude_indexes:
                 continue
             if entity.get('entity', '').lower() == entity_type_lower:
+                return entity.get('value'), idx
+
+        # Fallback per slot "a soggetto libero" (vedi _OPEN_TOPIC_ENTITY_TYPES):
+        # nessuna entità del tipo dichiarato, ma se lo slot atteso è generico
+        # accetta comunque la prima entità disponibile di un altro tipo.
+        if entity_type_lower in self._OPEN_TOPIC_ENTITY_TYPES:
+            for idx, entity in enumerate(entities):
+                if exclude_indexes and idx in exclude_indexes:
+                    continue
                 return entity.get('value'), idx
 
         return None, None

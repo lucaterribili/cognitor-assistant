@@ -38,5 +38,7 @@ build/
 
 models/
 !models/.gitkeep
+!models/translator/.gitkeep
+!models/translator/it-ru/.gitkeep
 sessions/
 !sessions/.gitkeep
