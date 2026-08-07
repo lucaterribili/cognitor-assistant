@@ -678,6 +678,13 @@ nlu:
     - quanto fa [6](NUMBER) per [7](NUMBER)
     - calcola [200](NUMBER) più [300](NUMBER)
     - risolvimi [64](NUMBER) diviso [8](NUMBER)
+    - '[2](NUMBER)+[2](NUMBER)'
+    - quanto fa [2](NUMBER)+[2](NUMBER)
+    - '[10](NUMBER)-[4](NUMBER)'
+    - '[7](NUMBER)*[8](NUMBER)'
+    - '[100](NUMBER)/[4](NUMBER)'
+    - quanto fa [5](NUMBER)x[3](NUMBER)
+    - calcola [50](NUMBER)-[20](NUMBER)
 
   - intent: time_query
     examples:
