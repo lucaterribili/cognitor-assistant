@@ -594,17 +594,23 @@ class RuleInterpreter:
                     return self._resolve_case_target(response_key, slots, raw_text)
 
         # Step 3: Matching singolo (primo slot con valore)
-        for slot_name, slot_config in rule_slots.items():
-            slot_value = slots.get(slot_name)
-            if slot_value:
-                for case_key, response_key in cases.items():
-                    if str(slot_value).lower() == str(case_key).lower():
-                        return self._resolve_case_target(response_key, slots, raw_text)
+        # Il fallback ha senso solo come esito di un case-lookup fallito: se la rule
+        # non definisce affatto `cases` (es. un default: __operation senza eccezioni,
+        # come publish_draft_content) non c'è nulla da far fallire, e il turno deve
+        # proseguire fino al check dell'operation di default più sotto invece di
+        # restituire subito il fallback.
+        if cases:
+            for slot_name, slot_config in rule_slots.items():
+                slot_value = slots.get(slot_name)
+                if slot_value:
+                    for case_key, response_key in cases.items():
+                        if str(slot_value).lower() == str(case_key).lower():
+                            return self._resolve_case_target(response_key, slots, raw_text)
 
-                fallback_key = rule.get("fallback")
-                if fallback_key:
-                    response, inline_slots = self._get_response_with_slots(fallback_key, slots)
-                    return response, None, None, inline_slots
+                    fallback_key = rule.get("fallback")
+                    if fallback_key:
+                        response, inline_slots = self._get_response_with_slots(fallback_key, slots)
+                        return response, None, None, inline_slots
 
         # Nessun case ha fatto match: tutti gli slot required (pertinenti) sono
         # presenti. Se è definita un'operation (default: __<name>), eseguila ora.
