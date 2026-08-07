@@ -114,7 +114,9 @@ class Agent:
 
         self.knowledge_loader.build_doping_lookup_table(self.doping_preprocessor)
 
-    def get_response(self, intent_name: str, slots: dict = None, history: list = None) -> tuple[str, str | None, dict]:
+    def get_response(
+        self, intent_name: str, slots: dict = None, history: list = None, raw_text: str = None
+    ) -> tuple[str, str | None, dict]:
         """
         Ottiene una risposta per l'intent specificato.
 
@@ -126,6 +128,10 @@ class Agent:
             intent_name: Nome dell'intent
             slots: Dizionario degli slot disponibili
             history: Storico della conversazione (opzionale, per la dialogue policy)
+            raw_text: Testo grezzo del turno corrente (opzionale), inoltrato alle
+                operation che lo dichiarano nella propria signature (es. calculate,
+                che deve parsare un'espressione aritmetica dal messaggio originale
+                invece che da uno slot NER)
 
         Returns:
             tuple: (risposta, slot_da_attendere, slot_da_impostare_dal_bot)
@@ -146,7 +152,7 @@ class Agent:
         if rule is not None:
             print(f"[PIPELINE] RuleInterpreter PRIORITARIO → rule trovata per '{intent_name}'")
             print("[PIPELINE] Risposta sorgente: RuleInterpreter")
-            return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots)
+            return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots, raw_text)
 
         # --- Priorità 2: TED / Dialogue State Policy (solo se nessuna rule) ---
         if not self.dialogue_state_policy:
@@ -169,7 +175,7 @@ class Agent:
 
         # --- Priorità 3: Fallback RuleInterpreter (intent senza rule né TED) ---
         print("[PIPELINE] Risposta sorgente: RuleInterpreter")
-        return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots)
+        return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots, raw_text)
 
     def predict(self, text: str) -> dict:
         """

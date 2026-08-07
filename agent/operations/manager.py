@@ -67,15 +67,16 @@ class OperationManager:
         """
         return name in self._operations
 
-    def execute(self, operation_name: str, intent_name: str, slots: dict = None) -> dict:
+    def execute(self, operation_name: str, intent_name: str, slots: dict = None, raw_text: str = None) -> dict:
         """
         Esegue un'operazione.
-        
+
         Args:
             operation_name: Nome dell'operazione da eseguire
             intent_name: Nome dell'intent che ha triggerato l'operazione
             slots: Dizionario degli slot disponibili
-            
+            raw_text: Testo grezzo del turno corrente (opzionale)
+
         Returns:
             dict con chiavi:
                 - response: Risposta testuale
@@ -90,7 +91,7 @@ class OperationManager:
                 "metadata": {}
             }
 
-        return operation.execute(intent_name, slots or {})
+        return operation.execute(intent_name, slots or {}, raw_text)
 
     def list_operations(self) -> list[str]:
         """
@@ -244,7 +245,7 @@ class OperationManager:
             def name(self) -> str:
                 return action_name
 
-            def execute(self, intent_name: str, slots: dict = None) -> dict:
+            def execute(self, intent_name: str, slots: dict = None, raw_text: str = None) -> dict:
                 """Esegue la funzione wrappata."""
                 # Controlla la signature della funzione per capire quali parametri accetta
                 sig = inspect.signature(func)
@@ -261,6 +262,8 @@ class OperationManager:
                     kwargs["session_manager"] = session_manager
                 if "entity_manager" in params:
                     kwargs["entity_manager"] = entity_manager
+                if "raw_text" in params:
+                    kwargs["raw_text"] = raw_text
 
                 # Esegui la funzione
                 result = func(**kwargs)

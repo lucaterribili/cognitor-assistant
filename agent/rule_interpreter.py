@@ -468,7 +468,7 @@ class RuleInterpreter:
         return value
 
     def handle_intent_with_bot_slots(
-        self, intent_name: str, slots: dict = None
+        self, intent_name: str, slots: dict = None, raw_text: str = None
     ) -> tuple[str, Optional[str], dict]:
         """
         Interpreta una rule e restituisce la risposta + slot da impostare dal bot.
@@ -476,6 +476,8 @@ class RuleInterpreter:
         Args:
             intent_name: Nome dell'intent
             slots: Dizionario degli slot disponibili
+            raw_text: Testo grezzo del turno corrente, inoltrato alle operation
+                che lo dichiarano nella propria signature
 
         Returns:
             tuple: (risposta, slot_da_attendere, slot_da_impostare)
@@ -492,7 +494,7 @@ class RuleInterpreter:
         # Intent con slot: la gestione dell'operation (dopo aver raccolto gli slot)
         # è delegata a _handle_slot_based_intent_with_slots
         if "slots" in rule:
-            response, wait_slot, options, inline_slots = self._handle_slot_based_intent_with_slots(rule, slots)
+            response, wait_slot, options, inline_slots = self._handle_slot_based_intent_with_slots(rule, slots, raw_text)
             # Gli slot inline (sintassi {SLOT=value} nel template di risposta) vengono
             # fusi in bot_slots con la stessa strategia usata nel percorso "default" più
             # sotto: inline_slots ha priorità sulle proprie chiavi, senza cancellare le
@@ -511,7 +513,7 @@ class RuleInterpreter:
             operation_name = default_key[2:]
             if self.operation_manager.has_operation(operation_name):
                 operation_result = self.operation_manager.execute(
-                    operation_name, operation_name, slots
+                    operation_name, operation_name, slots, raw_text
                 )
                 all_bot_slots = {**bot_slots, **operation_result.get("slots", {})}
                 return operation_result["response"], None, all_bot_slots
@@ -525,7 +527,7 @@ class RuleInterpreter:
         return "Configurazione intent non valida", None, bot_slots
 
     def _handle_slot_based_intent_with_slots(
-        self, rule: dict, slots: dict
+        self, rule: dict, slots: dict, raw_text: str = None
     ) -> tuple[str, Optional[str], Optional[list], dict]:
         """
         Gestisce intent che richiedono slot, restituendo anche slot inline.
@@ -539,6 +541,12 @@ class RuleInterpreter:
         valori. Un case può puntare a una response key statica oppure, con la
         stessa convenzione `__nome` del default, a un'operation (vedi
         `_resolve_case_target`).
+
+        Args:
+            rule: Definizione della rule per l'intent corrente
+            slots: Dizionario degli slot disponibili
+            raw_text: Testo grezzo del turno corrente, inoltrato alle operation
+                (di default o di case) che lo dichiarano nella propria signature
 
         Returns:
             tuple: (risposta, slot_da_attendere, opzioni, slot_inline_trovati)
@@ -583,7 +591,7 @@ class RuleInterpreter:
             composite_key = "|".join(str(v) for v in required_values)
             for case_key, response_key in cases.items():
                 if composite_key.lower() == str(case_key).lower():
-                    return self._resolve_case_target(response_key, slots)
+                    return self._resolve_case_target(response_key, slots, raw_text)
 
         # Step 3: Matching singolo (primo slot con valore)
         for slot_name, slot_config in rule_slots.items():
@@ -591,7 +599,7 @@ class RuleInterpreter:
             if slot_value:
                 for case_key, response_key in cases.items():
                     if str(slot_value).lower() == str(case_key).lower():
-                        return self._resolve_case_target(response_key, slots)
+                        return self._resolve_case_target(response_key, slots, raw_text)
 
                 fallback_key = rule.get("fallback")
                 if fallback_key:
@@ -603,7 +611,7 @@ class RuleInterpreter:
         if default_key.startswith("__") and self.operation_manager:
             operation_name = default_key[2:]
             if self.operation_manager.has_operation(operation_name):
-                op_result = self.operation_manager.execute(operation_name, operation_name, slots)
+                op_result = self.operation_manager.execute(operation_name, operation_name, slots, raw_text)
                 return op_result["response"], None, None, {}
 
         if default_key and not default_key.startswith("__"):
@@ -612,7 +620,9 @@ class RuleInterpreter:
 
         return "Nessuna risposta configurata", None, None, {}
 
-    def _resolve_case_target(self, response_key: str, slots: dict) -> tuple[str, None, None, dict]:
+    def _resolve_case_target(
+        self, response_key: str, slots: dict, raw_text: str = None
+    ) -> tuple[str, None, None, dict]:
         """
         Risolve il target di un `case` matchato: se usa la stessa convenzione
         `__nome` del `default` esegue l'operation corrispondente, altrimenti
@@ -621,6 +631,8 @@ class RuleInterpreter:
         Args:
             response_key: Valore del case matchato (response key o `__operation`)
             slots: Slot correnti da passare all'operation o da interpolare nella response
+            raw_text: Testo grezzo del turno corrente, inoltrato all'operation
+                se matchata (stessa semantica del `default`)
 
         Returns:
             tuple: (risposta, None, None, slot_inline_trovati)
@@ -628,7 +640,7 @@ class RuleInterpreter:
         if response_key.startswith("__") and self.operation_manager:
             operation_name = response_key[2:]
             if self.operation_manager.has_operation(operation_name):
-                op_result = self.operation_manager.execute(operation_name, operation_name, slots)
+                op_result = self.operation_manager.execute(operation_name, operation_name, slots, raw_text)
                 return op_result["response"], None, None, {}
 
         response, inline_slots = self._get_response_with_slots(response_key, slots)

@@ -127,7 +127,7 @@ class TurnProcessor:
               f"(type: {type(casted_value).__name__})")
 
         response_text, wait_for_slot, bot_slots = self.agent.get_response(
-            pending_intent, session.context, session.history
+            pending_intent, session.context, session.history, raw_text=user_input
         )
         options = self._apply_bot_slots(session, bot_slots)
 
@@ -167,7 +167,7 @@ class TurnProcessor:
         )
 
         response_text, wait_for_slot, bot_slots = self.agent.get_response(
-            prediction['intent'], session.context, session.history
+            prediction['intent'], session.context, session.history, raw_text=user_input
         )
         options = self._apply_bot_slots(session, bot_slots)
 
