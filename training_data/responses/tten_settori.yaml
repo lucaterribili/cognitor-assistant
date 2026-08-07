@@ -1,0 +1,78 @@
+responses:
+  tten_settore_overview_response:
+    - >-
+      Rispondiamo alle esigenze di ogni tipo di azienda in quattro settori di
+      mercato: bancario, assicurativo, pubblico e privato. Se vuoi puoi
+      chiedermi di uno di questi in particolare, oppure contattarci se non
+      trovi il tuo settore.
+    - >-
+      Operiamo in quattro settori principali: bancario, assicurativo,
+      pubblico e privato. Chiedimi di uno specifico per i dettagli su cosa
+      facciamo.
+
+  tten_settore_bancario_response:
+    - >-
+      Nel settore bancario abbiamo maturato, nel corso di due decenni,
+      competenze specifiche nelle applicazioni bancarie: sistemi di
+      pagamento e sicurezza. Tra i progetti realizzati ci sono i Conti
+      Accentrati in Titoli (CAT), la Banca d'Italia-Compensazione (BI-COMP),
+      la gestione degli Assegni Insoluti, il collocamento titoli (NEWCOL), il
+      portafoglio titoli (PORTIT), le piattaforme Target2 (TSSP e T2S), il
+      Check Image Truncation (CIT), il Nuovo Birel per la messaggistica RNI
+      e la Monetica (ciclo di vita delle carte di credito, ATM, help desk
+      per il gruppo Banche Popolari e Carta SI).
+    - >-
+      Per il settore bancario ci occupiamo di analisi funzionale e tecnica,
+      progettazione dell'architettura applicativa e della base dati,
+      sviluppo, installazione e test, assistenza al collaudo, stesura della
+      documentazione tecnica e manutenzione correttiva ed evolutiva.
+
+  tten_settore_assicurativo_response:
+    - >-
+      Nel settore assicurativo abbiamo acquisito competenze lavorando allo
+      sviluppo di importanti progetti al fianco della compagnia francese
+      Groupama Assicurazioni: un sistema di generazione e distribuzione di
+      stampe per la gestione online di moduli Sinistri, Danni e Vita, e un
+      sistema di gestione generalizzata per l'archiviazione documenti, con
+      integrazione WebServices verso il portale esterno autosoft.it
+      dedicato a fiduciari e periti auto, rami elementari, medici,
+      accertatori e legali.
+    - >-
+      Anche per il settore assicurativo seguiamo tutto il ciclo: analisi
+      funzionale e tecnica, progettazione dell'architettura e della base
+      dati, sviluppo, installazione e test, assistenza al collaudo,
+      documentazione tecnica e manutenzione.
+
+  tten_settore_pubblico_response:
+    - >-
+      Per la Pubblica Amministrazione abbiamo maturato grande competenza
+      nella gestione di progetti chiavi in mano, progettando e sviluppando
+      sistemi informativi di contabilità integrata. Tra i progetti: SICOGE
+      per la Ragioneria Generale dello Stato (con SOGEI/MEF), FondoMafia
+      (Fondo di rotazione per solidarietà alle vittime di mafia, estorsione
+      e usura), DebitiPA (Fondo di Garanzia sul Debito delle Pubbliche
+      Amministrazioni), GPecEU e GPecVS (richieste via PEC per i fondi
+      vittime di mafia e vittime della strada), GCInfo (Centro Informazioni
+      per risarcimenti sinistri stradali cross-border UE/SEE) e PortaleCura
+      (rinnovamento tecnologico del Portale Continuità della Cura per
+      l'amministrazione regionale del Friuli Venezia Giulia).
+    - >-
+      Nel settore pubblico ci occupiamo di analisi tecnica, progettazione
+      della base dati, sviluppo, disegno grafico dell'applicazione,
+      codifica HTML, installazione e test, e stesura della documentazione
+      tecnica.
+
+  tten_settore_privato_response:
+    - >-
+      Per il settore privato sviluppiamo soluzioni per la gestione e la
+      presentazione di piccole, medie e micro imprese, con architetture
+      web-based. Tra i nostri prodotti per questo settore ci sono Mercurius
+      (email marketing), PEasy (protocollazione documentale) e KEasy
+      (sicurezza e gestione chiavi crittografiche per banche e istituti
+      finanziari), oltre alla realizzazione di siti web e al loro
+      posizionamento.
+    - >-
+      Nel settore privato le nostre competenze coprono analisi orientata agli
+      oggetti, pianificazione del progetto, disegno della base dati,
+      progettazione di sistemi gestionali e portali (.NET, Java, PHP, ASP),
+      hosting e housing, mobile e m-business.

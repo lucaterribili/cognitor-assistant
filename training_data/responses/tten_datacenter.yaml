@@ -1,0 +1,28 @@
+responses:
+  tten_datacenter_response:
+    - >-
+      Il nostro Professional VPS è la soluzione ideale per aziende e liberi
+      professionisti che hanno bisogno di un sistema affidabile, performante
+      e sicuro ma dedicato esclusivamente a loro. Puoi installare il sistema
+      operativo e gli applicativi che preferisci, e ti supportiamo anche in
+      fase di configurazione.
+    - >-
+      Il nostro datacenter è utile per applicativi personalizzati come
+      gestionali, CRM ed ERP, per rivendere servizi (ad esempio la posta
+      elettronica), per realizzare nuovi applicativi o per fare hosting di
+      grossi portali. I vantaggi sono l'ottimizzazione delle risorse, la
+      scalabilità dei piani, la continuità operativa e la sicurezza con
+      backup.
+    - >-
+      Offriamo un SLA molto elevato, il 99,9% su base annua, che copre
+      l'infrastruttura fisica (router, switch, server, connettività). La
+      nostra infrastruttura è composta da tre sistemi server in cluster, 40
+      core CPU e uno storage ridondato con capacità totale di 96TB RAW.
+    - >-
+      Per l'affidabilità usiamo fault tolerance sullo storage (RAID 10 mirror
+      e clustering), servizio di High Availability, trasferimento delle
+      macchine virtuali tra i nodi senza downtime, replica su storage
+      differenti e backup completo sia locale che off-site su cloud. La
+      connettività è in fibra ottica verso carrier nazionali ed esteri e
+      passa dai nodi di interscambio MIX di Milano e Namex di Roma; siamo
+      certificati ISO/IEC 27000.

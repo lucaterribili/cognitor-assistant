@@ -1,0 +1,20 @@
+# TTen - Intent sul servizio Datacenter (Professional VPS)
+
+nlu:
+  intents:
+  - intent: ask_tten_datacenter
+    examples:
+    - parlami del vostro datacenter
+    - offrite server dedicati
+    - cos'è il professional VPS
+    - avete una virtual machine dedicata
+    - che SLA offrite sul datacenter
+    - quanto è affidabile il vostro datacenter
+    - come è fatta la vostra infrastruttura server
+    - avete un sistema di backup
+    - offrite housing per applicativi personalizzati
+    - posso installare il sistema operativo che voglio sul vostro VPS
+    - che connettività avete nel datacenter
+    - siete certificati ISO 27000
+    - avete ridondanza sui server
+    - cosa succede se un server si guasta

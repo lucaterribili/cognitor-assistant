@@ -1,0 +1,8 @@
+conversations:
+  tten_datacenter_flow:
+    description: "Domanda sul servizio datacenter/VPS"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_datacenter
+        bot: tten_datacenter_response

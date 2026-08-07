@@ -1,0 +1,49 @@
+# Nozioni base di programmazione (spiegazioni generiche, legate alle tecnologie usate da TTen)
+
+nlu:
+  intents:
+  - intent: ask_programming_concept
+    examples:
+    # Overview generica (nessun concetto specifico menzionato)
+    - spiegami qualche concetto di programmazione
+    - insegnami un po' di programmazione
+    - voglio capire meglio l'informatica
+    - spiegami dei termini informatici
+    # Linguaggio di programmazione
+    - cos'è un [linguaggio di programmazione](PROG_CONCEPT)
+    - spiegami cos'è un [linguaggio di programmazione](PROG_CONCEPT)
+    - a cosa serve un [linguaggio di programmazione](PROG_CONCEPT)
+    - come funziona un [linguaggio di programmazione](PROG_CONCEPT)
+    # Framework
+    - cos'è un [framework](PROG_CONCEPT)
+    - spiegami cos'è un [framework](PROG_CONCEPT)
+    - a cosa serve un [framework](PROG_CONCEPT)
+    - perché si usa un [framework](PROG_CONCEPT)
+    # CMS
+    - cos'è un [cms](PROG_CONCEPT)
+    - spiegami cos'è un [cms](PROG_CONCEPT)
+    - a cosa serve un [cms](PROG_CONCEPT)
+    - cosa vuol dire content management system, cioè [cms](PROG_CONCEPT)
+    # Backend
+    - cos'è il [backend](PROG_CONCEPT)
+    - spiegami cos'è il [backend](PROG_CONCEPT)
+    - cosa fa uno sviluppatore [backend](PROG_CONCEPT)
+    - a cosa serve il [backend](PROG_CONCEPT) di un sito
+    # Frontend
+    - cos'è il [frontend](PROG_CONCEPT)
+    - spiegami cos'è il [frontend](PROG_CONCEPT)
+    - cosa fa uno sviluppatore [frontend](PROG_CONCEPT)
+    - a cosa serve il [frontend](PROG_CONCEPT) di un sito
+    # Database
+    - cos'è un [database](PROG_CONCEPT)
+    - spiegami cos'è un [database](PROG_CONCEPT)
+    - a cosa serve un [database](PROG_CONCEPT)
+    - come funziona un [database](PROG_CONCEPT)
+    # PHP
+    - cos'è [php](PROG_CONCEPT)
+    - spiegami cos'è [php](PROG_CONCEPT)
+    - a cosa serve il linguaggio [php](PROG_CONCEPT)
+    # Laravel
+    - cos'è [laravel](PROG_CONCEPT)
+    - spiegami cos'è [laravel](PROG_CONCEPT)
+    - a cosa serve il framework [laravel](PROG_CONCEPT)

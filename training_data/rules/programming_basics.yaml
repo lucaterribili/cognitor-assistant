@@ -1,0 +1,21 @@
+# Overview generica sulle nozioni di programmazione se non viene menzionato un
+# concetto specifico, spiegazione puntuale via `cases` quando il NER riconosce
+# il termine (linguaggio di programmazione/framework/cms/backend/frontend/
+# database/php/laravel).
+rules:
+  ask_programming_concept:
+    slots:
+      concetto:
+        required: false
+        type: string
+        entity: PROG_CONCEPT
+    cases:
+      "linguaggio di programmazione": programming_concept_linguaggio_response
+      framework: programming_concept_framework_response
+      cms: programming_concept_cms_response
+      backend: programming_concept_backend_response
+      frontend: programming_concept_frontend_response
+      database: programming_concept_database_response
+      php: programming_concept_php_response
+      laravel: programming_concept_laravel_response
+    default: programming_concept_overview_response

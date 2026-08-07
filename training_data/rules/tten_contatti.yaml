@@ -1,0 +1,3 @@
+rules:
+  ask_tten_contatti:
+    default: tten_contatti_response

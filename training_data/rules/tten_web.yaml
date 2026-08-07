@@ -1,0 +1,3 @@
+rules:
+  ask_tten_web:
+    default: tten_web_response

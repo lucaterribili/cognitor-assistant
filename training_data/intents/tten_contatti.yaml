@@ -1,0 +1,18 @@
+# TTen - Intent sui contatti aziendali
+
+nlu:
+  intents:
+  - intent: ask_tten_contatti
+    examples:
+    - come posso contattarvi
+    - qual è il vostro indirizzo
+    - dove si trova la vostra sede
+    - qual è la vostra email
+    - avete una PEC
+    - come faccio a scrivervi
+    - voglio richiedere un preventivo
+    - dove siete
+    - qual è la vostra sede legale
+    - come vi trovo
+    - mi date i vostri contatti
+    - a che indirizzo email posso scrivervi

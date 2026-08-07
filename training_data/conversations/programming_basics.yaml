@@ -1,0 +1,16 @@
+conversations:
+  programming_concept_overview_flow:
+    description: "Domanda generica su nozioni di programmazione"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_programming_concept
+        bot: programming_concept_overview_response
+
+  programming_concept_laravel_flow:
+    description: "Domanda su un concetto di programmazione specifico (Laravel)"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_programming_concept
+        bot: programming_concept_laravel_response

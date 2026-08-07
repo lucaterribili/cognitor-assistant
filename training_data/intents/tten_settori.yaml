@@ -1,0 +1,44 @@
+# TTen - Intent sui settori di mercato (overview + dettaglio per settore)
+
+nlu:
+  intents:
+  - intent: ask_tten_settore
+    examples:
+    # Overview generica (nessun settore specifico menzionato)
+    - quali sono i vostri settori di mercato
+    - in che settori operate
+    - con quali settori lavorate
+    - per chi lavorate
+    - che tipo di clienti avete
+    - parlami dei settori di mercato
+    - quali mercati servite
+    - che tipo di aziende assistete
+    # Settore bancario
+    - parlami del settore [bancario](SETTORE)
+    - cosa fate nel settore [bancario](SETTORE)
+    - lavorate con le banche nel settore [bancario](SETTORE)
+    - che esperienza avete nel settore [bancario](SETTORE)
+    - offrite soluzioni per il settore [bancario](SETTORE)
+    - avete progetti nel settore [bancario](SETTORE)
+    - fate sistemi di pagamento per il settore [bancario](SETTORE)
+    # Settore assicurativo
+    - parlami del settore [assicurativo](SETTORE)
+    - cosa fate nel settore [assicurativo](SETTORE)
+    - lavorate con le assicurazioni nel settore [assicurativo](SETTORE)
+    - che esperienza avete nel settore [assicurativo](SETTORE)
+    - offrite soluzioni per il settore [assicurativo](SETTORE)
+    - avete progetti nel settore [assicurativo](SETTORE)
+    # Settore pubblico
+    - parlami del settore [pubblico](SETTORE)
+    - cosa fate nel settore [pubblico](SETTORE)
+    - lavorate con la pubblica amministrazione nel settore [pubblico](SETTORE)
+    - che esperienza avete nel settore [pubblico](SETTORE)
+    - offrite soluzioni per il settore [pubblico](SETTORE)
+    - avete progetti nel settore [pubblico](SETTORE)
+    # Settore privato
+    - parlami del settore [privato](SETTORE)
+    - cosa fate nel settore [privato](SETTORE)
+    - lavorate con le piccole e medie imprese nel settore [privato](SETTORE)
+    - che esperienza avete nel settore [privato](SETTORE)
+    - offrite soluzioni per il settore [privato](SETTORE)
+    - avete progetti nel settore [privato](SETTORE)

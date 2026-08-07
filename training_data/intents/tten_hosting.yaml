@@ -1,0 +1,17 @@
+# TTen - Intent sul servizio Hosting e Dominio
+
+nlu:
+  intents:
+  - intent: ask_tten_hosting
+    examples:
+    - offrite servizi di hosting
+    - posso registrare un dominio con voi
+    - che spazio hosting offrite
+    - avete caselle di posta elettronica professionali
+    - quanto è sicuro il vostro hosting
+    - avete un firewall sui server hosting
+    - offrite banda larga per il sito
+    - come funziona il vostro servizio di hosting
+    - posso avere un'email con il mio dominio
+    - registrate domini internet
+    - che assistenza tecnica offrite sull'hosting

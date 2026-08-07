@@ -1,0 +1,65 @@
+responses:
+  programming_concept_overview_response:
+    - >-
+      Posso spiegarti qualche nozione base di programmazione: cosa è un
+      linguaggio di programmazione, un framework, un CMS, il backend, il
+      frontend, un database, o le tecnologie che usiamo noi come PHP e
+      Laravel. Chiedimi di uno di questi termini.
+
+  programming_concept_linguaggio_response:
+    - >-
+      Un linguaggio di programmazione è un insieme di regole e parole chiave
+      che permette di scrivere istruzioni comprensibili da un computer, per
+      fargli eseguire un compito. Noi, ad esempio, usiamo linguaggi come
+      Java, PHP, C#, Cobol e JavaScript, a seconda del progetto.
+
+  programming_concept_framework_response:
+    - >-
+      Un framework è un insieme di librerie e strumenti già pronti che
+      aiutano a costruire un software più velocemente, senza dover
+      riscrivere da zero le parti comuni a tanti progetti (ad esempio la
+      gestione delle richieste web o l'accesso al database). Noi lo usiamo
+      ad esempio con Laravel e Symfony per il nostro CMS GeCo.
+
+  programming_concept_cms_response:
+    - >-
+      Un CMS, Content Management System, è un software che permette di
+      creare e gestire i contenuti di un sito (pagine, articoli, immagini)
+      senza dover scrivere codice ogni volta. Il nostro CMS si chiama GeCo
+      ed è basato su Laravel e Symfony.
+
+  programming_concept_backend_response:
+    - >-
+      Il backend è la parte "dietro le quinte" di un'applicazione: la
+      logica che gestisce i dati, il database e le regole di business, e che
+      risponde alle richieste che arrivano dal frontend. Nel nostro team, ad
+      esempio, Stefano si occupa di sviluppo PHP e Anselmo di sviluppo Java,
+      entrambi lato backend.
+
+  programming_concept_frontend_response:
+    - >-
+      Il frontend è la parte di un'applicazione con cui l'utente interagisce
+      direttamente: quello che vedi e clicchi in un sito o in un'app, come
+      il design, i testi e i pulsanti. Nel nostro team, ad esempio, Erminio
+      si occupa di graphic e web design.
+
+  programming_concept_database_response:
+    - >-
+      Un database è un archivio organizzato di dati, pensato per essere
+      salvato, cercato e aggiornato in modo efficiente. Noi lavoriamo con
+      diversi database, come Oracle, SQL Server, MySQL, PostgreSQL e IBM
+      DB2.
+
+  programming_concept_php_response:
+    - >-
+      PHP è un linguaggio di programmazione molto usato per creare siti e
+      applicazioni web lato backend. È uno dei linguaggi che usiamo in TTen:
+      il nostro CMS GeCo, ad esempio, è scritto in PHP con il framework
+      Laravel.
+
+  programming_concept_laravel_response:
+    - >-
+      Laravel è un framework PHP che offre strumenti già pronti per
+      costruire applicazioni web (gestione di database, autenticazione,
+      template delle pagine e molto altro). Il nostro CMS GeCo si basa
+      proprio su Laravel, insieme a Symfony.

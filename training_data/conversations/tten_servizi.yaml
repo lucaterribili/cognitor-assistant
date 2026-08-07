@@ -1,0 +1,8 @@
+conversations:
+  tten_servizi_flow:
+    description: "Domanda sui servizi offerti da TTen"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_servizi
+        bot: tten_servizi_response

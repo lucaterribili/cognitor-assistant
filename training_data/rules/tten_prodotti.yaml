@@ -1,0 +1,15 @@
+# Overview generica sui 4 prodotti se non viene menzionato un nome specifico,
+# dettaglio via `cases` quando il NER riconosce il nome del prodotto.
+rules:
+  ask_tten_prodotti:
+    slots:
+      prodotto:
+        required: false
+        type: string
+        entity: PRODOTTO_TTEN
+    cases:
+      keasy: tten_prodotti_keasy_response
+      peasy: tten_prodotti_peasy_response
+      mercurius: tten_prodotti_mercurius_response
+      geco: tten_prodotti_geco_response
+    default: tten_prodotti_overview_response

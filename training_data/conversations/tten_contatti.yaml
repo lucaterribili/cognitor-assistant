@@ -1,0 +1,8 @@
+conversations:
+  tten_contatti_flow:
+    description: "Domanda sui contatti di TTen"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_contatti
+        bot: tten_contatti_response

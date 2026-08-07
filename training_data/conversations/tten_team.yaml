@@ -1,0 +1,8 @@
+conversations:
+  tten_team_flow:
+    description: "Domanda sul team/staff di TTen"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_team
+        bot: tten_team_response

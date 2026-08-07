@@ -1,0 +1,8 @@
+conversations:
+  tten_cyber_security_flow:
+    description: "Domanda sui servizi di cyber security"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_cyber_security
+        bot: tten_cyber_security_response

@@ -1,0 +1,41 @@
+# TTen - Intent sui prodotti software (KEasy, PEasy, Mercurius Mail, GeCo)
+
+nlu:
+  intents:
+  - intent: ask_tten_prodotti
+    examples:
+    # Overview generica (nessun prodotto specifico menzionato)
+    - quali prodotti avete
+    - che software producete
+    - parlami dei vostri prodotti
+    - avete prodotti proprietari
+    - che strumenti avete sviluppato
+    # KEasy
+    - cos'è [keasy](PRODOTTO_TTEN)
+    - parlami di [keasy](PRODOTTO_TTEN)
+    - a cosa serve [keasy](PRODOTTO_TTEN)
+    - che funzionalità ha [keasy](PRODOTTO_TTEN)
+    - "[keasy](PRODOTTO_TTEN) è un software di sicurezza"
+    - come funziona [keasy](PRODOTTO_TTEN)
+    # PEasy
+    - cos'è [peasy](PRODOTTO_TTEN)
+    - parlami di [peasy](PRODOTTO_TTEN)
+    - a cosa serve [peasy](PRODOTTO_TTEN)
+    - che funzionalità ha [peasy](PRODOTTO_TTEN)
+    - "[peasy](PRODOTTO_TTEN) gestisce la protocollazione"
+    - come funziona [peasy](PRODOTTO_TTEN)
+    # Mercurius Mail
+    - cos'è [mercurius](PRODOTTO_TTEN)
+    - parlami di [mercurius](PRODOTTO_TTEN)
+    - a cosa serve [mercurius](PRODOTTO_TTEN)
+    - che funzionalità ha [mercurius](PRODOTTO_TTEN)
+    - "[mercurius](PRODOTTO_TTEN) serve per fare email marketing"
+    - come funziona [mercurius](PRODOTTO_TTEN)
+    # GeCo (CMS)
+    - cos'è [geco](PRODOTTO_TTEN)
+    - parlami di [geco](PRODOTTO_TTEN)
+    - a cosa serve [geco](PRODOTTO_TTEN)
+    - che funzionalità ha [geco](PRODOTTO_TTEN)
+    - "[geco](PRODOTTO_TTEN) è un CMS"
+    - come funziona [geco](PRODOTTO_TTEN)
+    - su cosa si basa [geco](PRODOTTO_TTEN)

@@ -1,0 +1,3 @@
+rules:
+  ask_tten_hosting:
+    default: tten_hosting_response

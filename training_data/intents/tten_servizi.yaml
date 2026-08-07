@@ -1,0 +1,24 @@
+# TTen - Intent sui servizi generali offerti
+
+nlu:
+  intents:
+  - intent: ask_tten_servizi
+    examples:
+    - quali servizi offrite
+    - che servizi fate
+    - cosa potete fare per la mia azienda
+    - parlami dei vostri servizi
+    - offrite consulenza informatica
+    - fate system integration
+    - cosa comprende la vostra offerta di servizi
+    - avete un servizio di formazione del personale
+    - fate project management
+    - cos'è il vostro servizio di PMO
+    - fate manutenzione di sistemi
+    - vi occupate di software factory
+    - fate gestione di infrastrutture
+    - che tipo di consulenza offrite
+    - avete un servizio di system and application management
+    - che risorse professionali avete
+    - avete database administrator
+    - avete sistemisti e progettisti

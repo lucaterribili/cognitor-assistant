@@ -1,0 +1,19 @@
+# TTen - Intent sul servizio Siti Web
+
+nlu:
+  intents:
+  - intent: ask_tten_web
+    examples:
+    - fate siti web
+    - realizzate siti internet
+    - avete una web agency
+    - potete fare il sito della mia azienda
+    - fate anche social media marketing
+    - vi occupate di SEO
+    - come fate il posizionamento sui motori di ricerca
+    - i vostri siti sono responsive
+    - quanto costa un sito web
+    - che caratteristiche hanno i vostri siti
+    - fate siti su misura
+    - vi occupate di comunicazione digitale
+    - i siti che fate sono ottimizzati

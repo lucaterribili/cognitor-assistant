@@ -1,0 +1,20 @@
+# TTen - Intent sui servizi di Cyber Security / Sicurezza Digitale
+
+nlu:
+  intents:
+  - intent: ask_tten_cyber_security
+    examples:
+    - fate cyber security
+    - vi occupate di sicurezza informatica
+    - offrite consulenza sulla sicurezza digitale
+    - cos'è il vostro servizio di security posture
+    - fate information security governance
+    - offrite servizi di cloud migration
+    - aiutate a ottenere la certificazione 27001
+    - fate devsecops
+    - fate penetration test
+    - fate test di sicurezza automatizzati
+    - come proteggete le aziende dai rischi cyber
+    - lavorate con SIETEL
+    - fate analisi del rischio informatico
+    - offrite un security manager on demand

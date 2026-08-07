@@ -1,0 +1,3 @@
+rules:
+  ask_tten_datacenter:
+    default: tten_datacenter_response

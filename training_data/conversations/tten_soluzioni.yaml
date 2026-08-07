@@ -1,0 +1,8 @@
+conversations:
+  tten_soluzioni_flow:
+    description: "Domanda sulle soluzioni offerte da TTen"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_soluzioni
+        bot: tten_soluzioni_response

@@ -1,0 +1,43 @@
+responses:
+  tten_prodotti_overview_response:
+    - >-
+      Abbiamo sviluppato quattro prodotti: KEasy (sicurezza e gestione delle
+      chiavi crittografiche), PEasy (protocollazione e gestione documentale),
+      Mercurius Mail (email ed SMS marketing) e GeCo, il CMS su cui si basa
+      anche questo stesso sito. Chiedimi di uno in particolare per i
+      dettagli.
+
+  tten_prodotti_keasy_response:
+    - >-
+      KEasy (Key Easy) è il nostro software di crittografia e sicurezza:
+      gestisce cifratura e transcifratura DES/3DES, XOR, check digit,
+      PIN/PVV/CVV, RSA, MAC e derivazione delle chiavi. È snello, facile da
+      installare, con un'interfaccia grafica intuitiva e viene aggiornato
+      costantemente.
+
+  tten_prodotti_peasy_response:
+    - >-
+      PEasy (Protocol Easy) è il software per gestire tutta la
+      documentazione aziendale, conforme alla normativa della Pubblica
+      Amministrazione (DPR 445/00). Gestisce la struttura organizzativa del
+      cliente, l'archiviazione automatica e manuale, il ciclo di vita della
+      pratica elettronica, la ricerca documenti, la dematerializzazione, il
+      workflow e la protocollazione massiva, con reportistica statistica.
+
+  tten_prodotti_mercurius_response:
+    - >-
+      Mercurius Mail è pensato come supporto professionale per le aziende
+      che vogliono fare email marketing: interfaccia grafica intuitiva,
+      importazione del database utenti, API personalizzate, template
+      grafici, invio sicuro anti-spam e anche SMS a bassa latenza con
+      mittente personalizzato. Il sito ufficiale è mercuriusmail.it.
+
+  tten_prodotti_geco_response:
+    - >-
+      GeCo è il Content Management System che usiamo anche per il nostro
+      sito: ha una grande flessibilità nella gestione dei contenuti e si
+      basa sui framework Laravel e Symfony. Supporta autenticazione multipla
+      (database o LDAP), diversi database (MySQL, PostgreSQL, SQL Server,
+      SQLite), temi multipli, aggiornamento dall'interno e package/moduli
+      personalizzati; usa il Blade Template Engine ed è gestito con
+      Composer.

@@ -1,0 +1,17 @@
+# Overview generica se non viene menzionato un settore specifico, dettaglio
+# via `cases` quando il NER riconosce l'aggettivo del settore (bancario/
+# assicurativo/pubblico/privato). Slot non required: senza settore specifico
+# la risposta è l'overview, non un wait.
+rules:
+  ask_tten_settore:
+    slots:
+      settore:
+        required: false
+        type: string
+        entity: SETTORE
+    cases:
+      bancario: tten_settore_bancario_response
+      assicurativo: tten_settore_assicurativo_response
+      pubblico: tten_settore_pubblico_response
+      privato: tten_settore_privato_response
+    default: tten_settore_overview_response

@@ -1,0 +1,3 @@
+rules:
+  ask_tten_soluzioni:
+    default: tten_soluzioni_response

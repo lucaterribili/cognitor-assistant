@@ -1,0 +1,16 @@
+conversations:
+  tten_prodotti_overview_flow:
+    description: "Domanda generica sui prodotti software di TTen"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_prodotti
+        bot: tten_prodotti_overview_response
+
+  tten_prodotti_geco_flow:
+    description: "Domanda sul CMS GeCo nello specifico"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_prodotti
+        bot: tten_prodotti_geco_response

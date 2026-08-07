@@ -1,0 +1,3 @@
+rules:
+  ask_tten_cyber_security:
+    default: tten_cyber_security_response

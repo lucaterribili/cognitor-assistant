@@ -1,0 +1,26 @@
+# TTen - Intent sull'azienda (chi è TTen, competenze, tecnologie)
+
+nlu:
+  intents:
+  - intent: ask_tten_azienda
+    examples:
+    - chi è TTen
+    - chi siete
+    - parlami di TTen
+    - raccontami di TTen
+    - cosa fa TTen
+    - di cosa si occupa la vostra azienda
+    - parlami della vostra azienda
+    - cosa fate come azienda
+    - qual è il vostro obiettivo
+    - qual è la vostra mission
+    - quali sono le vostre competenze
+    - che tecnologie usate
+    - che linguaggi di programmazione conoscete
+    - lavorate anche con i mainframe
+    - fate sviluppo Java
+    - vi occupate di help desk
+    - chi sono i vostri partner
+    - con chi collaborate
+    - siete una software house
+    - siete una società di consulenza informatica

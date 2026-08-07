@@ -1,0 +1,16 @@
+conversations:
+  tten_settori_overview_flow:
+    description: "Domanda generica sui settori di mercato"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_settore
+        bot: tten_settore_overview_response
+
+  tten_settore_bancario_flow:
+    description: "Domanda sul settore bancario nello specifico"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_settore
+        bot: tten_settore_bancario_response

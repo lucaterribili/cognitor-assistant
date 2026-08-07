@@ -1,0 +1,3 @@
+rules:
+  ask_tten_servizi:
+    default: tten_servizi_response

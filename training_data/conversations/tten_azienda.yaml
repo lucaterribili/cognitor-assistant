@@ -1,0 +1,8 @@
+conversations:
+  tten_azienda_flow:
+    description: "Domanda su chi è TTen"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_azienda
+        bot: tten_azienda_response

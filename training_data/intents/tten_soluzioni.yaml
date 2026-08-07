@@ -1,0 +1,14 @@
+# TTen - Intent sulle soluzioni (indice: datacenter, hosting, siti web, prodotti)
+
+nlu:
+  intents:
+  - intent: ask_tten_soluzioni
+    examples:
+    - quali soluzioni offrite
+    - che soluzioni avete per la mia azienda
+    - parlami delle vostre soluzioni
+    - cosa potete offrirmi per far crescere la mia azienda
+    - avete soluzioni per aziende
+    - che tipo di soluzioni tecnologiche proponete
+    - non trovo la soluzione adatta a me
+    - come scelgo la soluzione giusta per la mia azienda

@@ -1,0 +1,19 @@
+# TTen - Intent sul team/staff aziendale
+
+nlu:
+  intents:
+  - intent: ask_tten_team
+    examples:
+    - parlami del vostro team
+    - chi lavora in TTen
+    - chi fa parte del vostro staff
+    - avete sviluppatori PHP
+    - avete sviluppatori Java
+    - avete uno sviluppatore DOT.NET
+    - chi si occupa della qualità
+    - chi è il responsabile amministrativo
+    - avete un graphic designer
+    - avete un IT analyst
+    - com'è composto il vostro staff
+    - investite sulla crescita professionale del personale
+    - che filosofia aziendale avete sul team

@@ -1,0 +1,8 @@
+conversations:
+  tten_web_flow:
+    description: "Domanda sul servizio di realizzazione siti web"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: ask_tten_web
+        bot: tten_web_response
