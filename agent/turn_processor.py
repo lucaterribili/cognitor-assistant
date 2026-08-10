@@ -59,7 +59,7 @@ class TurnProcessor:
     def _handle_cancel(self, user_input: str, session) -> TurnResult:
         session.waiting_for_slot = None
         session.agent_mode = "predictable"
-        response_text = "Input annullato. Puoi fornire un nuovo comando."
+        response_text = "Ok, mi fermo! Dimmi pure se ti serve altro."
         session.add_message("user", user_input)
         session.add_message("assistant", response_text, None)
         return TurnResult(kind="cancel", response=response_text)
