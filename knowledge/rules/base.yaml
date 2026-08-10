@@ -45,22 +45,6 @@ rules:
   change_topic:
     default: change_topic_response
 
-  # Senza una rule, questi intent (correttamente classificati - vedi bug
-  # riportato per ask_name) dipendevano solo dalla Dialogue Policy ML per
-  # scegliere la risposta finale. Con poche decine di occorrenze nelle
-  # conversations (contro le 30 di greeting/14 di farewell) il modello li
-  # confondeva spesso con greeting/farewell, che dominano le stories. Una
-  # rule con semplice `default` li rende deterministici, bypassando del
-  # tutto la Dialogue Policy per questi intent (Priorità 1 in Agent.get_response).
-  ask_name:
-    default: ask_name_response
-
-  help:
-    default: help_response
-
-  thank_you:
-    default: thank_you_response
-
   # ========================================
   # Intent con slot: ask_city_touristic_information
   # ========================================
