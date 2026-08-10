@@ -1,3 +1,6 @@
+# default punta all'operation tten_contatti (training_data/operations/tten_contatti.py),
+# che recupera indirizzo/email/PEC dal vivo da GET /chatbot/company-info sul sito
+# Laravel invece di una response statica che potrebbe disallinearsi dal sito reale.
 rules:
   ask_tten_contatti:
-    default: tten_contatti_response
+    default: __tten_contatti

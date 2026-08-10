@@ -1,3 +1,6 @@
+# default punta all'operation tten_azienda (training_data/operations/tten_azienda.py)
+# invece che a una response statica: i fatti aziendali vivono in
+# training_data/config/tten_azienda.yaml, non nel training dataset.
 rules:
   ask_tten_azienda:
-    default: tten_azienda_response
+    default: __tten_azienda

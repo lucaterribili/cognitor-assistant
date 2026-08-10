@@ -1,0 +1,74 @@
+# Informazioni aziendali TTen (mission, competenze, tecnologie, partner).
+#
+# Vive qui invece che in training_data/responses/ perché non è testo di
+# training NLU: sono fatti aziendali che possono cambiare (nuova tecnologia
+# adottata, nuovo partner) senza che questo richieda di toccare il dataset
+# degli intent o rifare il training. L'operation action_tten_azienda (in
+# training_data/operations/tten_azienda.py) legge questo file a runtime e
+# compone la risposta.
+
+mission: "Progettare software per realizzare soluzioni sempre all'avanguardia"
+
+descrizione: >-
+  TTen è una società di consulenza informatica, impegnata nell'erogazione
+  di servizi informatici e nella formazione del personale. Il know-how
+  specifico acquisito negli anni consente all'azienda di accompagnare i
+  clienti nella crescita del proprio business.
+
+competenze:
+  - "Infrastrutture e Sistemi (Unix/Linux, Windows, z/OS)"
+  - "Sviluppo Java"
+  - "Help Desk"
+  - "Sviluppo Microsoft"
+  - "Mobile"
+  - "Pianificazione (PMO/Project Management)"
+  - "Sviluppo Host (COBOL, PL/I, JCL, ambienti Mainframe)"
+
+tecnologie:
+  database:
+    - "Oracle"
+    - "SQL Server"
+    - "Teradata"
+    - "Informix"
+    - "MySQL"
+    - "IBM DB2"
+  sistemi_operativi:
+    - "Windows"
+    - "MacOS"
+    - "Linux"
+    - "iOS"
+    - "Android"
+    - "IBM Mainframe (AS400/OS390/z/OS)"
+  linguaggi:
+    - "Java"
+    - "C"
+    - "C++"
+    - "PHP"
+    - "Swift"
+    - "C#"
+    - "ASP.NET"
+    - "VB.NET"
+    - "Cobol"
+    - "PL/SQL"
+    - "SQL"
+    - "HTML"
+    - "CSS"
+    - "JavaScript"
+  piattaforme:
+    - "Oracle WebLogic"
+    - "IBM WebSphere"
+    - "JBoss"
+    - "Microsoft .NET"
+    - "OpenStack Cloud"
+    - "IBM Mainframe"
+
+partner:
+  - "TopNetwork"
+  - "Pegaso2000"
+  - "ProgettoPA"
+  - "AGS Group"
+  - "TAS Group"
+  - "Intersistemi"
+  - "Softlab"
+  - "Aritmos"
+  - "3Net"
