@@ -30,7 +30,7 @@ class Operation(ABC):
         pass
 
     @abstractmethod
-    def execute(self, intent_name: str, slots: dict = None, raw_text: str = None) -> dict:
+    def execute(self, intent_name: str, slots: dict = None, raw_text: str = None, cancel_event: Any = None) -> dict:
         """
         Esegue l'operazione.
 
@@ -38,6 +38,11 @@ class Operation(ABC):
             intent_name: Nome dell'intent che ha triggerato l'operazione
             slots: Dizionario degli slot disponibili
             raw_text: Testo grezzo del turno corrente (opzionale)
+            cancel_event: threading.Event opzionale, impostato se l'utente ha
+                interrotto il turno mentre l'operazione era in corso (solo con
+                l'endpoint di streaming); le operation lente possono
+                controllarlo tra un tentativo e l'altro per interrompersi
+                in anticipo
 
         Returns:
             dict con chiavi:
