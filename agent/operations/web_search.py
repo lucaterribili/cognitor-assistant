@@ -1,5 +1,6 @@
 """Operation per l'intent web_search."""
 import time
+import threading
 
 from ddgs import DDGS
 
@@ -14,7 +15,7 @@ _MAX_ATTEMPTS = 3
 _RETRY_DELAY_SECONDS = 1.5
 
 
-def action_web_search(intent_name: str, slots: dict = None) -> dict:
+def action_web_search(intent_name: str, slots: dict = None, cancel_event: threading.Event = None) -> dict:
     """
     Esegue una ricerca web tramite DuckDuckGo.
 
@@ -24,6 +25,10 @@ def action_web_search(intent_name: str, slots: dict = None) -> dict:
     Args:
         intent_name: Nome dell'intent
         slots: Slot disponibili, si aspetta la chiave 'query' con il termine di ricerca
+        cancel_event: se impostato (utente ha premuto "Interrompi" mentre il
+            bot stava cercando, via endpoint di streaming), interrompe il
+            retry loop tra un tentativo e l'altro senza aspettare gli altri
+            backoff
 
     Returns:
         dict con la risposta
@@ -43,6 +48,12 @@ def action_web_search(intent_name: str, slots: dict = None) -> dict:
     results = None
     last_error = None
     for attempt in range(1, _MAX_ATTEMPTS + 1):
+        if cancel_event is not None and cancel_event.is_set():
+            return {
+                "response": "Ok, mi fermo! Dimmi pure se ti serve altro.",
+                "slots": {},
+                "metadata": {"operation": "web_search", "query": query, "cancelled": True}
+            }
         try:
             with DDGS() as ddgs:
                 results = list(ddgs.text(query, max_results=3, region="it-it"))

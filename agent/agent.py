@@ -115,7 +115,7 @@ class Agent:
         self.knowledge_loader.build_doping_lookup_table(self.doping_preprocessor)
 
     def get_response(
-        self, intent_name: str, slots: dict = None, history: list = None, raw_text: str = None
+        self, intent_name: str, slots: dict = None, history: list = None, raw_text: str = None, cancel_event=None
     ) -> tuple[str, str | None, dict]:
         """
         Ottiene una risposta per l'intent specificato.
@@ -132,6 +132,9 @@ class Agent:
                 operation che lo dichiarano nella propria signature (es. calculate,
                 che deve parsare un'espressione aritmetica dal messaggio originale
                 invece che da uno slot NER)
+            cancel_event: threading.Event opzionale (solo endpoint di streaming),
+                inoltrato alle operation lente che lo dichiarano nella propria
+                signature per interrompersi in anticipo se l'utente annulla
 
         Returns:
             tuple: (risposta, slot_da_attendere, slot_da_impostare_dal_bot)
@@ -152,7 +155,7 @@ class Agent:
         if rule is not None:
             print(f"[PIPELINE] RuleInterpreter PRIORITARIO → rule trovata per '{intent_name}'")
             print("[PIPELINE] Risposta sorgente: RuleInterpreter")
-            return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots, raw_text)
+            return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots, raw_text, cancel_event)
 
         # --- Priorità 2: TED / Dialogue State Policy (solo se nessuna rule) ---
         if not self.dialogue_state_policy:

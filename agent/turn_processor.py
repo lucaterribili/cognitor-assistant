@@ -40,21 +40,25 @@ class TurnProcessor:
     def __init__(self, agent):
         self.agent = agent
 
-    def process(self, user_input: str, session, on_predict=None) -> TurnResult:
+    def process(self, user_input: str, session, on_predict=None, cancel_event=None) -> TurnResult:
         """Elabora un turno. `on_predict`, se fornito, viene invocato con il dict di
         predizione subito dopo la classificazione (solo nel percorso non-inputable) e
         prima di eseguire get_response — permette all'adapter CLI di stampare il debug
         di intent/entità nello stesso punto cronologico in cui veniva stampato prima
-        di questo refactor, senza spargere formattazione da terminale in questa classe."""
+        di questo refactor, senza spargere formattazione da terminale in questa classe.
+
+        `cancel_event` (solo endpoint di streaming) viene inoltrato a get_response, che
+        lo passa alle operation lente in corso perché possano interrompersi in anticipo
+        se l'utente annulla mentre il turno è ancora in esecuzione."""
         awaiting_slot = session.agent_mode == "inputable" and session.waiting_for_slot
 
         if awaiting_slot and is_cancel_command(user_input):
             return self._handle_cancel(user_input, session)
 
         if awaiting_slot:
-            return self._handle_slot_input(user_input, session, on_predict)
+            return self._handle_slot_input(user_input, session, on_predict, cancel_event)
 
-        return self._handle_prediction(user_input, session, on_predict)
+        return self._handle_prediction(user_input, session, on_predict, cancel_event)
 
     def _handle_cancel(self, user_input: str, session) -> TurnResult:
         session.waiting_for_slot = None
@@ -64,7 +68,7 @@ class TurnProcessor:
         session.add_message("assistant", response_text, None)
         return TurnResult(kind="cancel", response=response_text)
 
-    def _handle_slot_input(self, user_input: str, session, on_predict=None) -> TurnResult:
+    def _handle_slot_input(self, user_input: str, session, on_predict=None, cancel_event=None) -> TurnResult:
         slot_name = session.waiting_for_slot["slot"]
         pending_intent = session.waiting_for_slot["intent"]
 
@@ -95,7 +99,7 @@ class TurnProcessor:
                   f"di '{pending_intent}'")
             session.waiting_for_slot = None
             session.agent_mode = "predictable"
-            return self._build_prediction_result(user_input, session, prediction, on_predict)
+            return self._build_prediction_result(user_input, session, prediction, on_predict, cancel_event)
 
         slot_value = ner_value if ner_value else user_input
         if ner_value:
@@ -127,7 +131,7 @@ class TurnProcessor:
               f"(type: {type(casted_value).__name__})")
 
         response_text, wait_for_slot, bot_slots = self.agent.get_response(
-            pending_intent, session.context, session.history, raw_text=user_input
+            pending_intent, session.context, session.history, raw_text=user_input, cancel_event=cancel_event
         )
         options = self._apply_bot_slots(session, bot_slots)
 
@@ -151,11 +155,13 @@ class TurnProcessor:
             casted_type=type(casted_value).__name__,
         )
 
-    def _handle_prediction(self, user_input: str, session, on_predict=None) -> TurnResult:
+    def _handle_prediction(self, user_input: str, session, on_predict=None, cancel_event=None) -> TurnResult:
         prediction = self.agent.predict(user_input)
-        return self._build_prediction_result(user_input, session, prediction, on_predict)
+        return self._build_prediction_result(user_input, session, prediction, on_predict, cancel_event)
 
-    def _build_prediction_result(self, user_input: str, session, prediction: dict, on_predict=None) -> TurnResult:
+    def _build_prediction_result(
+        self, user_input: str, session, prediction: dict, on_predict=None, cancel_event=None
+    ) -> TurnResult:
         if on_predict:
             on_predict(prediction)
 
@@ -167,7 +173,7 @@ class TurnProcessor:
         )
 
         response_text, wait_for_slot, bot_slots = self.agent.get_response(
-            prediction['intent'], session.context, session.history, raw_text=user_input
+            prediction['intent'], session.context, session.history, raw_text=user_input, cancel_event=cancel_event
         )
         options = self._apply_bot_slots(session, bot_slots)
 

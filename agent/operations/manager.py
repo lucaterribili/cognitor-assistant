@@ -67,7 +67,9 @@ class OperationManager:
         """
         return name in self._operations
 
-    def execute(self, operation_name: str, intent_name: str, slots: dict = None, raw_text: str = None) -> dict:
+    def execute(
+        self, operation_name: str, intent_name: str, slots: dict = None, raw_text: str = None, cancel_event: Any = None
+    ) -> dict:
         """
         Esegue un'operazione.
 
@@ -76,6 +78,8 @@ class OperationManager:
             intent_name: Nome dell'intent che ha triggerato l'operazione
             slots: Dizionario degli slot disponibili
             raw_text: Testo grezzo del turno corrente (opzionale)
+            cancel_event: threading.Event opzionale per interrompere in anticipo
+                operation lente (vedi Operation.execute)
 
         Returns:
             dict con chiavi:
@@ -91,7 +95,7 @@ class OperationManager:
                 "metadata": {}
             }
 
-        return operation.execute(intent_name, slots or {}, raw_text)
+        return operation.execute(intent_name, slots or {}, raw_text, cancel_event)
 
     def list_operations(self) -> list[str]:
         """
@@ -245,7 +249,7 @@ class OperationManager:
             def name(self) -> str:
                 return action_name
 
-            def execute(self, intent_name: str, slots: dict = None, raw_text: str = None) -> dict:
+            def execute(self, intent_name: str, slots: dict = None, raw_text: str = None, cancel_event: Any = None) -> dict:
                 """Esegue la funzione wrappata."""
                 # Controlla la signature della funzione per capire quali parametri accetta
                 sig = inspect.signature(func)
@@ -264,6 +268,8 @@ class OperationManager:
                     kwargs["entity_manager"] = entity_manager
                 if "raw_text" in params:
                     kwargs["raw_text"] = raw_text
+                if "cancel_event" in params:
+                    kwargs["cancel_event"] = cancel_event
 
                 # Esegui la funzione
                 result = func(**kwargs)
