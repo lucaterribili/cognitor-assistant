@@ -23,6 +23,11 @@ class ChatResponse(BaseModel):
     confidence: Optional[float] = None
     entities: Optional[list] = None
     options: Optional[list] = None
+    # True quando il turno lascia la sessione in modalità "inputable" (in attesa
+    # del valore di uno slot, session.waiting_for_slot popolato da TurnProcessor):
+    # il client può usarlo per mostrare un modo per interrompere il flusso invece
+    # di dover indovinare lo stato dall'assenza di altri segnali.
+    waiting_for_slot: bool = False
 
 
 @router.post("/message", response_model=ChatResponse)
@@ -52,4 +57,5 @@ def send_message(
         confidence=result.confidence,
         entities=result.entities or None,
         options=result.options,
+        waiting_for_slot=bool(result.wait_for_slot),
     )
