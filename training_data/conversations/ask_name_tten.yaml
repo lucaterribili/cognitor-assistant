@@ -1,0 +1,152 @@
+# Story del dominio tten che insegnano alla Dialogue Policy a rispondere a
+# ask_name con l'identita brandizzata TTen (ask_name_tten_response) invece
+# della risposta generica di knowledge/responses/base.yaml (ask_name_response).
+# Ogni story e triplicata (_v2/_v3, stesso contenuto) per aumentare il peso di
+# questo segnale nel training rispetto alle poche story generiche equivalenti
+# in knowledge/, che sulla stessa combinazione (contesto, ask_name) puntano alla
+# risposta generica: senza un peso schiacciante il modello, con un dataset cosi
+# piccolo, tendeva a preferire comunque la risposta generica.
+
+conversations:
+  ask_name_tten_standalone_flow: &id001
+    description: ask_name come primo turno sul dominio tten
+    steps:
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_greeting_flow: &id002
+    description: ask_name dopo un saluto
+    steps:
+    - user: greeting
+      bot: greeting_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_azienda_flow: &id003
+    description: ask_name dopo una domanda sull'azienda
+    steps:
+    - user: ask_tten_azienda
+      bot: tten_azienda_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_servizi_flow: &id004
+    description: ask_name dopo una domanda sui servizi
+    steps:
+    - user: ask_tten_servizi
+      bot: tten_servizi_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_settore_flow: &id005
+    description: ask_name dopo una domanda sui settori di mercato
+    steps:
+    - user: ask_tten_settore
+      bot: tten_settore_overview_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_datacenter_flow: &id006
+    description: ask_name dopo una domanda sul datacenter
+    steps:
+    - user: ask_tten_datacenter
+      bot: tten_datacenter_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_hosting_flow: &id007
+    description: ask_name dopo una domanda sull'hosting
+    steps:
+    - user: ask_tten_hosting
+      bot: tten_hosting_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_web_flow: &id008
+    description: ask_name dopo una domanda sui siti web
+    steps:
+    - user: ask_tten_web
+      bot: tten_web_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_prodotti_flow: &id009
+    description: ask_name dopo una domanda sui prodotti
+    steps:
+    - user: ask_tten_prodotti
+      bot: tten_prodotti_overview_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_team_flow: &id010
+    description: ask_name dopo una domanda sul team
+    steps:
+    - user: ask_tten_team
+      bot: tten_team_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_soluzioni_flow: &id011
+    description: ask_name dopo una domanda sulle soluzioni
+    steps:
+    - user: ask_tten_soluzioni
+      bot: tten_soluzioni_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_cyber_security_flow: &id012
+    description: ask_name dopo una domanda sulla cyber security
+    steps:
+    - user: ask_tten_cyber_security
+      bot: tten_cyber_security_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_contatti_flow: &id013
+    description: ask_name dopo una domanda sui contatti
+    steps:
+    - user: ask_tten_contatti
+      bot: tten_contatti_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_programming_concept_flow: &id014
+    description: ask_name dopo una domanda su nozioni di programmazione
+    steps:
+    - user: ask_programming_concept
+      bot: programming_concept_overview_response
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_after_calculate_flow: &id015
+    description: ask_name dopo un calcolo
+    steps:
+    - user: calculate
+      bot: __calculate
+    - user: ask_name
+      bot: ask_name_tten_response
+  ask_name_tten_before_farewell_flow: &id016
+    description: ask_name seguito da un congedo
+    steps:
+    - user: ask_name
+      bot: ask_name_tten_response
+    - user: farewell
+      bot: farewell_response
+  ask_name_tten_standalone_flow_v2: *id001
+  ask_name_tten_after_greeting_flow_v2: *id002
+  ask_name_tten_after_azienda_flow_v2: *id003
+  ask_name_tten_after_servizi_flow_v2: *id004
+  ask_name_tten_after_settore_flow_v2: *id005
+  ask_name_tten_after_datacenter_flow_v2: *id006
+  ask_name_tten_after_hosting_flow_v2: *id007
+  ask_name_tten_after_web_flow_v2: *id008
+  ask_name_tten_after_prodotti_flow_v2: *id009
+  ask_name_tten_after_team_flow_v2: *id010
+  ask_name_tten_after_soluzioni_flow_v2: *id011
+  ask_name_tten_after_cyber_security_flow_v2: *id012
+  ask_name_tten_after_contatti_flow_v2: *id013
+  ask_name_tten_after_programming_concept_flow_v2: *id014
+  ask_name_tten_after_calculate_flow_v2: *id015
+  ask_name_tten_before_farewell_flow_v2: *id016
+  ask_name_tten_standalone_flow_v3: *id001
+  ask_name_tten_after_greeting_flow_v3: *id002
+  ask_name_tten_after_azienda_flow_v3: *id003
+  ask_name_tten_after_servizi_flow_v3: *id004
+  ask_name_tten_after_settore_flow_v3: *id005
+  ask_name_tten_after_datacenter_flow_v3: *id006
+  ask_name_tten_after_hosting_flow_v3: *id007
+  ask_name_tten_after_web_flow_v3: *id008
+  ask_name_tten_after_prodotti_flow_v3: *id009
+  ask_name_tten_after_team_flow_v3: *id010
+  ask_name_tten_after_soluzioni_flow_v3: *id011
+  ask_name_tten_after_cyber_security_flow_v3: *id012
+  ask_name_tten_after_contatti_flow_v3: *id013
+  ask_name_tten_after_programming_concept_flow_v3: *id014
+  ask_name_tten_after_calculate_flow_v3: *id015
+  ask_name_tten_before_farewell_flow_v3: *id016

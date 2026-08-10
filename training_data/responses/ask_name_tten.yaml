@@ -1,0 +1,9 @@
+# Risposta brandizzata TTen per ask_name: sul dominio tten l'identità del bot
+# non è la generica "assistente virtuale" di knowledge/responses/base.yaml,
+# ma il sistema AI del sito TTen.
+
+responses:
+  ask_name_tten_response:
+    - "Sono Arianna, il sistema AI di TTen!"
+    - "Mi chiamo Arianna, sono il sistema di intelligenza artificiale di TTen."
+    - "Sono Arianna, l'assistente virtuale di TTen: sono qui per aiutarti su servizi, settori e prodotti dell'azienda."
