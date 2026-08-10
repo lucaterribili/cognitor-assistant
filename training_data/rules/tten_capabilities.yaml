@@ -1,0 +1,3 @@
+rules:
+  ask_capabilities:
+    default: tten_capabilities_response

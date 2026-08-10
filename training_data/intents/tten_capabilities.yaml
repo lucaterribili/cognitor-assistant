@@ -1,0 +1,24 @@
+# TTen - Intent "cosa sai fare" (capacità del bot, distinto da "help" generico
+# che chiede assistenza su qualcosa di specifico)
+
+nlu:
+  intents:
+  - intent: ask_capabilities
+    examples:
+    - cosa sai fare
+    - cosa puoi fare
+    - cosa puoi fare per me
+    - che cosa sai fare
+    - dimmi cosa sai fare
+    - come mi puoi aiutare
+    - come puoi aiutarmi
+    - in cosa puoi aiutarmi
+    - di cosa ti occupi
+    - a cosa servi
+    - come funzioni
+    - quali sono le tue funzionalità
+    - che tipo di domande posso farti
+    - cosa mi puoi dire
+    - quali informazioni puoi darmi
+    - che cosa sai dirmi
+    - cosa riesci a fare
