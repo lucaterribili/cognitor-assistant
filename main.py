@@ -3,7 +3,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-import config  # noqa: F401  (assicura che .env sia caricato prima di leggere le env var sotto)
+import config  # assicura che .env sia caricato prima di leggere le env var sotto
 
 app = FastAPI(title="Cognitor Assistant API")
 
@@ -30,6 +30,14 @@ from api import auth, chatbot
 
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(chatbot.router, prefix="/chatbot", tags=["chatbot"])
+
+# Endpoint di streaming, spento di default (config.STREAMING_ENABLED, abilitato
+# con COGNITOR_STREAMING_ENABLED=true all'avvio): un client che non lo sa deve
+# trovare un 404 pulito, non un endpoint montato ma inerte.
+if config.STREAMING_ENABLED:
+    from api import chatbot_stream
+
+    app.include_router(chatbot_stream.router, prefix="/chatbot", tags=["chatbot-stream"])
 
 
 @app.get("/health")

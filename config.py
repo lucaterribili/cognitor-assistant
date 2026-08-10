@@ -25,3 +25,9 @@ INPUTABLE_SWITCH_CONFIDENCE = 0.60
 BACKEND_API_BASE_URL = os.getenv("BACKEND_API_BASE_URL", "http://localhost/api")
 BACKEND_API_TOKEN = os.getenv("BACKEND_API_TOKEN", "")
 BACKEND_API_TIMEOUT = float(os.getenv("BACKEND_API_TIMEOUT", "5"))
+
+# L'endpoint di streaming (/chatbot/message/stream) è spento di default: va
+# accesa esplicitamente all'avvio (es. COGNITOR_STREAMING_ENABLED=true uvicorn
+# main:app) perché un client che non lo sa non deve trovarsi un endpoint che
+# risponde a metà e poi si comporta diversamente da /chatbot/message.
+STREAMING_ENABLED = os.getenv("COGNITOR_STREAMING_ENABLED", "false").strip().lower() in ("1", "true", "yes", "on")
