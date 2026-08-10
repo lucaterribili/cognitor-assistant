@@ -1,7 +1,17 @@
 """Operation per l'intent web_search."""
+import time
+
 from ddgs import DDGS
 
 _MAX_BODY_LENGTH = 200
+
+# ddgs fa scraping delle pagine di ricerca DuckDuckGo (non è un'API ufficiale):
+# occasionalmente un singolo tentativo fallisce per un rate-limit/blocco
+# transitorio anche quando il servizio è raggiungibile. Un paio di retry con
+# un piccolo backoff bastano a coprire questi casi senza introdurre una
+# latenza percepibile in caso di fallimento reale/persistente.
+_MAX_ATTEMPTS = 3
+_RETRY_DELAY_SECONDS = 1.5
 
 
 def action_web_search(intent_name: str, slots: dict = None) -> dict:
@@ -30,14 +40,28 @@ def action_web_search(intent_name: str, slots: dict = None) -> dict:
             "metadata": {"operation": "web_search", "query": None}
         }
 
-    try:
-        with DDGS() as ddgs:
-            results = list(ddgs.text(query, max_results=3, region="it-it"))
-    except Exception as e:
+    results = None
+    last_error = None
+    for attempt in range(1, _MAX_ATTEMPTS + 1):
+        try:
+            with DDGS() as ddgs:
+                results = list(ddgs.text(query, max_results=3, region="it-it"))
+            break
+        except Exception as e:
+            last_error = e
+            if attempt < _MAX_ATTEMPTS:
+                time.sleep(_RETRY_DELAY_SECONDS)
+
+    if results is None:
         return {
             "response": "Mi dispiace, non riesco a effettuare la ricerca in questo momento. Riprova più tardi.",
             "slots": {},
-            "metadata": {"operation": "web_search", "query": query, "error": str(e)}
+            "metadata": {
+                "operation": "web_search",
+                "query": query,
+                "error": str(last_error),
+                "attempts": _MAX_ATTEMPTS,
+            }
         }
 
     if not results:
