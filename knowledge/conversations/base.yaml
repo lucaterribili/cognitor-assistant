@@ -184,3 +184,59 @@ conversations:
         goal: web_search
       - user: farewell
         bot: farewell_response
+
+  # ========================================
+  # ask_name in contesti vari: con solo 2 occorrenze (sempre subito dopo
+  # greeting, o incastonato in meeting_flow) la Dialogue Policy ML aveva
+  # segnale troppo debole e confondeva ask_name con greeting/farewell,
+  # che dominano le stories (30 e 14 occorrenze). Queste story aggiuntive
+  # variano il contesto che precede ask_name per generalizzare meglio.
+  # ========================================
+
+  ask_name_standalone_flow:
+    description: "ask_name come primo turno, senza contesto precedente"
+    steps:
+      - user: ask_name
+        bot: ask_name_response
+
+  ask_name_after_calculate_flow:
+    description: "ask_name subito dopo un calcolo"
+    steps:
+      - user: calculate
+        bot: __calculate
+      - user: ask_name
+        bot: ask_name_response
+
+  ask_name_after_thank_you_flow:
+    description: "ask_name dopo un ringraziamento"
+    steps:
+      - user: greeting
+        bot: greeting_response
+      - user: thank_you
+        bot: thank_you_response
+      - user: ask_name
+        bot: ask_name_response
+
+  ask_name_after_joke_flow:
+    description: "ask_name dopo una barzelletta"
+    steps:
+      - user: joke
+        bot: joke_response
+      - user: ask_name
+        bot: ask_name_response
+
+  ask_name_before_farewell_flow:
+    description: "ask_name seguito da un congedo"
+    steps:
+      - user: ask_name
+        bot: ask_name_response
+      - user: farewell
+        bot: farewell_response
+
+  ask_name_after_weather_flow:
+    description: "ask_name dopo una richiesta meteo"
+    steps:
+      - user: weather_query
+        bot: weather_query_response
+      - user: ask_name
+        bot: ask_name_response
