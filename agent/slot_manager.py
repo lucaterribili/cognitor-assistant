@@ -22,7 +22,16 @@ class SlotExtractor:
     # questi slot si accetta comunque la prima entità disponibile di un altro
     # tipo, dato che l'intent ha un solo slot "soggetto" e non c'è ambiguità
     # su quale entità dovesse riempirlo.
-    _OPEN_TOPIC_ENTITY_TYPES = {"keyword", "query", "topic"}
+    #
+    # location/departure sono nello stesso set per un motivo diverso ma con lo
+    # stesso sintomo: un nome di città isolato ("Roma", senza "da"/"a" davanti)
+    # non dà al NER nessun segnale testuale per scegliere tra i due tag, e di
+    # fatto risolve quasi sempre a LOCATION. Senza questo fallback, rispondere
+    # con un nome di città nudo allo slot DEPARTURE di book_flight non trova
+    # match esatto (ner_value vuoto) e fa scattare la "via di fuga" per cambio
+    # di argomento in TurnProcessor._handle_slot_input, abbandonando il flow a
+    # metà con una risposta di un altro intent invece di accettare il valore.
+    _OPEN_TOPIC_ENTITY_TYPES = {"keyword", "query", "topic", "location", "departure"}
 
     def __init__(self, rules: dict, rule_interpreter=None):
         """
