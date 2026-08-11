@@ -1,0 +1,38 @@
+# Richiesta commerciale generica: sviluppo software, preventivi, essere
+# ricontattati per un servizio - prima ognuna di queste frasi finiva sulla
+# risposta di identità o su un intent a caso, nessun intent le copriva.
+# Deliberatamente generico invece di un intent per ogni tipo di richiesta
+# (sviluppo/preventivo/consulenza...): il flusso a valle è identico per tutte
+# (raccogli nome, recapito, messaggio, inoltra il lead) - un intent solo evita
+# di duplicare la stessa rule N volte.
+nlu:
+  intents:
+  - intent: ask_service
+    examples:
+    - ho bisogno di sviluppare un software
+    - vorrei realizzare un'applicazione
+    - mi serve un sito web
+    - avete un servizio di sviluppo software
+    - vorrei un preventivo per un progetto software
+    - dovrei sviluppare un gestionale
+    - cerco chi mi sviluppi un'app
+    - vorrei sviluppare un'applicazione con voi
+    - ho bisogno di realizzare un software su misura
+    - potete sviluppare un sito per la mia azienda
+    - vorrei commissionarvi lo sviluppo di un software
+    - mi serve sviluppare un applicativo
+    - vorrei parlare con voi per un progetto
+    - avete un team di sviluppo?
+    - fate sviluppo su commissione?
+    - vorrei un preventivo
+    - vorrei essere ricontattato
+    - potete ricontattarmi per un servizio
+    - vorrei richiedere una consulenza
+    - ho bisogno di una consulenza tecnica
+    - vorrei parlare con un vostro commerciale
+    - mi interessa un vostro servizio
+    - vorrei maggiori informazioni su un progetto
+    - vorrei essere contattato da voi
+    - potete mandarmi un preventivo
+    - vorrei avviare una collaborazione con voi
+    - ho un progetto da proporvi

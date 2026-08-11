@@ -1,0 +1,29 @@
+# NOME/RECAPITO/MESSAGGIO_RICHIESTA sono slot "a testo libero" (free_text:
+# true): qualunque cosa risponda l'utente È il valore, per definizione. Senza
+# free_text la "via di fuga" di TurnProcessor._handle_slot_input può abbandonare
+# lo slot se la risposta classifica con alta confidenza come un intent diverso
+# (osservato con "Mario Rossi" → send_email) - qui non deve succedere mai:
+# free_text disattiva quel controllo per questi slot.
+rules:
+  ask_service:
+    slots:
+      NOME:
+        required: true
+        type: string
+        entity: NOME
+        free_text: true
+      RECAPITO:
+        required: true
+        type: string
+        entity: RECAPITO
+        free_text: true
+      MESSAGGIO_RICHIESTA:
+        required: true
+        type: string
+        entity: MESSAGGIO_RICHIESTA
+        free_text: true
+    wait:
+      NOME: service_lead_ask_name_response
+      RECAPITO: service_lead_ask_contact_response
+      MESSAGGIO_RICHIESTA: service_lead_ask_message_response
+    default: __send_lead_email

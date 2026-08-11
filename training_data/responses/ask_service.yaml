@@ -1,0 +1,11 @@
+responses:
+  service_lead_ask_name_response:
+    - >-
+      Perfetto, per metterti in contatto con il team giusto mi servono
+      alcune informazioni. Come ti chiami?
+
+  service_lead_ask_contact_response:
+    - "Grazie {NOME}! Lasciami un recapito (email o telefono) a cui farti ricontattare."
+
+  service_lead_ask_message_response:
+    - "Ultima cosa: descrivimi brevemente di cosa hai bisogno."
