@@ -47,3 +47,27 @@ nlu:
     - cos'è [laravel](PROG_CONCEPT)
     - spiegami cos'è [laravel](PROG_CONCEPT)
     - a cosa serve il framework [laravel](PROG_CONCEPT)
+    # Java
+    - cos'è [java](PROG_CONCEPT)
+    - spiegami cos'è [java](PROG_CONCEPT)
+    - a cosa serve il linguaggio [java](PROG_CONCEPT)
+    - spiegami [java](PROG_CONCEPT)
+    # Spring Boot
+    - cos'è [spring boot](PROG_CONCEPT)
+    - spiegami cos'è [spring boot](PROG_CONCEPT)
+    - a cosa serve [spring boot](PROG_CONCEPT)
+    - spiegami [spring boot](PROG_CONCEPT)
+    # Risposte "nude" a una sola parola: succede quando il bot ha già chiesto
+    # "chiedimi di uno di questi termini" (wait di ask_programming_concept) e
+    # l'utente risponde con il solo nome del termine, senza wrapper ("cos'è",
+    # "spiegami"...) attorno.
+    - "[linguaggio di programmazione](PROG_CONCEPT)"
+    - "[framework](PROG_CONCEPT)"
+    - "[cms](PROG_CONCEPT)"
+    - "[backend](PROG_CONCEPT)"
+    - "[frontend](PROG_CONCEPT)"
+    - "[database](PROG_CONCEPT)"
+    - "[php](PROG_CONCEPT)"
+    - "[laravel](PROG_CONCEPT)"
+    - "[java](PROG_CONCEPT)"
+    - "[spring boot](PROG_CONCEPT)"

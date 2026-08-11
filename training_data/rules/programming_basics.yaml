@@ -1,14 +1,23 @@
 # Overview generica sulle nozioni di programmazione se non viene menzionato un
 # concetto specifico, spiegazione puntuale via `cases` quando il NER riconosce
 # il termine (linguaggio di programmazione/framework/cms/backend/frontend/
-# database/php/laravel).
+# database/php/laravel/java/spring boot).
+#
+# `concetto` è required con un `wait`: se l'utente lo specifica nella stessa
+# frase ("spiegami php") lo slot è già pieno e si risponde subito col case
+# giusto; se non lo specifica ("spiegami qualche nozione di programmazione")
+# il bot fa la domanda di wait e passa in modalità inputable, così una risposta
+# successiva anche di una sola parola ("php") viene raccolta come valore dello
+# slot invece di dover essere reinterpretata da zero come nuovo intent (prima
+# "php" da solo dopo l'overview non veniva riconosciuto).
 rules:
   ask_programming_concept:
     slots:
       concetto:
-        required: false
+        required: true
         type: string
         entity: PROG_CONCEPT
+    wait: programming_concept_overview_response
     cases:
       "linguaggio di programmazione": programming_concept_linguaggio_response
       framework: programming_concept_framework_response
@@ -18,4 +27,6 @@ rules:
       database: programming_concept_database_response
       php: programming_concept_php_response
       laravel: programming_concept_laravel_response
+      java: programming_concept_java_response
+      "spring boot": programming_concept_spring_boot_response
     default: programming_concept_overview_response

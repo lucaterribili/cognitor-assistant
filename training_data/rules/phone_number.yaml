@@ -1,0 +1,8 @@
+# TTen ha un solo significato reale per "numero di telefono": il contatto
+# aziendale. Sovrascrive la rule generica di knowledge/rules/phone_number.yaml
+# (stessa chiave, vince l'ultimo caricato) riusando l'operation già esistente
+# di ask_tten_contatti, che compone la risposta (indirizzo/telefono/email/PEC)
+# dai dati live di GET /chatbot/company-info invece che da un dataset statico.
+rules:
+  ask_phone_number:
+    default: __tten_contatti

@@ -1,0 +1,25 @@
+# Candidature: "voglio lavorare per voi" veniva prima confuso con ask_name
+# (nessun intent lo copriva, il classificatore ripiegava sul più vicino).
+nlu:
+  intents:
+  - intent: ask_job_application
+    examples:
+    - voglio lavorare per voi
+    - voglio lavorare con voi
+    - vorrei lavorare in tten
+    - come posso candidarmi
+    - come ci si candida
+    - cercate personale?
+    - siete alla ricerca di nuovi collaboratori?
+    - avete posizioni aperte?
+    - avete offerte di lavoro?
+    - come mi candido per una posizione
+    - vorrei mandare il mio curriculum
+    - posso inviare il cv?
+    - dove mando il curriculum
+    - lavorare in tten
+    - offerte di lavoro
+    - opportunità di lavoro
+    - cerco lavoro da voi
+    - assumete?
+    - state assumendo?

@@ -3,8 +3,8 @@ responses:
     - >-
       Posso spiegarti qualche nozione base di programmazione: cosa è un
       linguaggio di programmazione, un framework, un CMS, il backend, il
-      frontend, un database, o le tecnologie che usiamo noi come PHP e
-      Laravel. Chiedimi di uno di questi termini.
+      frontend, un database, o le tecnologie che usiamo noi come PHP,
+      Laravel, Java e Spring Boot. Chiedimi di uno di questi termini.
 
   programming_concept_linguaggio_response:
     - >-
@@ -63,3 +63,17 @@ responses:
       costruire applicazioni web (gestione di database, autenticazione,
       template delle pagine e molto altro). Il nostro CMS GeCo si basa
       proprio su Laravel, insieme a Symfony.
+
+  programming_concept_java_response:
+    - >-
+      Java è un linguaggio di programmazione orientato agli oggetti, molto
+      usato per applicazioni enterprise e backend robusti su larga scala.
+      È uno dei linguaggi che usiamo in TTen, ad esempio con il framework
+      Spring Boot.
+
+  programming_concept_spring_boot_response:
+    - >-
+      Spring Boot è un framework Java che semplifica la creazione di
+      applicazioni e servizi web pronti per la produzione, con
+      configurazione minima. Lo usiamo in TTen per alcuni dei nostri
+      progetti lato backend in Java.

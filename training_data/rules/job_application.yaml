@@ -1,0 +1,3 @@
+rules:
+  ask_job_application:
+    default: job_application_response

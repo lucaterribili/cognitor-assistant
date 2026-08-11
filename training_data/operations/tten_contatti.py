@@ -49,8 +49,9 @@ def action_tten_contatti(intent_name: str = None, slots: dict = None) -> dict:
     address = data.get("address")
     email = data.get("email")
     pec = data.get("pec")
+    phone = data.get("phone")
 
-    if not (address or email or pec):
+    if not (address or email or pec or phone):
         return {
             "response": "Non riesco a recuperare i contatti in questo momento. Riprova più tardi.",
             "slots": {},
@@ -60,6 +61,8 @@ def action_tten_contatti(intent_name: str = None, slots: dict = None) -> dict:
     parts = []
     if address:
         parts.append(f"Ci trovi in {address}.")
+    if phone:
+        parts.append(f"Ci puoi chiamare al {phone}.")
     if email:
         email_sentence = f"Puoi scriverci a {email}"
         email_sentence += f", oppure via PEC a {pec}." if pec else "."
