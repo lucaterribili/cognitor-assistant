@@ -110,8 +110,17 @@ class TurnProcessor:
         # è un altro (es. "Roma" da solo classifica come
         # choose_flight_destination ma è comunque una risposta valida allo
         # slot LOCATION di book_flight).
+        #
+        # Gli slot marcati `free_text: true` (es. nome/recapito/messaggio di
+        # ask_service) sono esenti: qualunque cosa scriva l'utente È il
+        # valore, per definizione - non ha senso "cambiare argomento" mentre si
+        # sta dettando il proprio nome. Senza questa eccezione una risposta
+        # come "Mario Rossi" può classificare con alta confidenza come un
+        # intent qualunque (osservato con send_email) e far abbandonare lo
+        # slot invece di accettarla.
         if (
             not ner_value
+            and not self._is_free_text_slot(pending_intent, slot_name)
             and prediction['intent'] != pending_intent
             and prediction['intent'] != 'low_confidence_fallback'
             and prediction['confidence'] >= INPUTABLE_SWITCH_CONFIDENCE
@@ -219,6 +228,11 @@ class TurnProcessor:
             wait_for_slot=wait_for_slot,
             prediction=prediction,
         )
+
+    def _is_free_text_slot(self, intent_name: str, slot_name: str) -> bool:
+        rule = self.agent.rules.get(intent_name) or {}
+        slot_config = (rule.get('slots') or {}).get(slot_name) or {}
+        return bool(slot_config.get('free_text'))
 
     @staticmethod
     def _has_pending_proposal(session) -> bool:
