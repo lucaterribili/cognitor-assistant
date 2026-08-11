@@ -63,7 +63,18 @@ responses:
     - "Un altro: Perché Java non poteva essere single? Perché era legato a tantissime librerie! 💀 {CHATBOT_PROPOSAL=done}"
 
   mood_support_talk_response:
-    - "Certo, sono qui ad ascoltarti. Raccontami pure cosa ti preoccupa. {CHATBOT_PROPOSAL=done}"
+    - "Certo, sono qui ad ascoltarti. Raccontami pure cosa ti preoccupa. {CHATBOT_PROPOSAL=talk_given}"
+
+  # talk_given (non "done") resta impostato apposta: se dopo questo l'utente
+  # esprime un'altra difficoltà (nuovo mood_unhappy), niente ripete l'offerta
+  # "vuoi parlarne?" da capo - vedi knowledge/rules/base.yaml.
+  mood_support_redirect_response:
+    - >-
+      Mi dispiace che tu stia attraversando un momento difficile. Non sono la
+      persona più adatta ad aiutarti con questo - ti consiglio di parlarne con
+      qualcuno di fiducia o un professionista. Nel frattempo, se vuoi, posso
+      aiutarti con altro: informazioni, prenotazioni o quello che ti serve.
+      {CHATBOT_PROPOSAL=talk_given}
 
   confirm_response:
     - "Perfetto! {CHATBOT_PROPOSAL=done}"
