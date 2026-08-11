@@ -59,3 +59,14 @@ def send_message(
         options=result.options,
         waiting_for_slot=bool(result.wait_for_slot),
     )
+
+
+@router.get("/intents")
+def list_intents(
+    current_user: User = Depends(get_current_user),
+    agent: Agent = Depends(get_agent),
+):
+    """Elenco degli intent noti al classificatore, usato dall'admin di
+    geco/chatbot per popolare la selezione degli intent da disabilitare
+    (vedi agent/disabled_intents.py)."""
+    return {"intents": sorted(set(agent.intent_dict.values()))}

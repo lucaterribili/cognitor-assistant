@@ -1,0 +1,27 @@
+# Intent generico "chiedo un numero di telefono": transversale perché la
+# domanda ricorre in molti domini, ma il significato di "quale numero" dipende
+# dal dominio - qui insegniamo solo a riconoscere la domanda, la risposta di
+# default è neutra (vedi knowledge/responses/phone_number.yaml); un dominio
+# che ha un numero reale da dare (es. tten) sovrascrive la rule in
+# training_data/rules per rispondere con quello specifico.
+
+nlu:
+  intents:
+  - intent: ask_phone_number
+    examples:
+    - numero di telefono?
+    - qual è il vostro numero di telefono
+    - hai un numero di telefono
+    - avete un numero di telefono
+    - che numero devo chiamare
+    - mi dai un numero di telefono
+    - vorrei un contatto telefonico
+    - come posso chiamarvi
+    - c'è un numero a cui telefonare
+    - dammi un recapito telefonico
+    - telefono?
+    - qual è il tuo numero
+    - dammi il tuo numero di telefono
+    - un numero per contattarvi
+    - un recapito telefonico
+    - posso avere un numero di telefono

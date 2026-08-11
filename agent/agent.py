@@ -12,6 +12,7 @@ import torch
 
 from config import BASE_DIR, DOPING_ACTIVE, MIN_INTENT_CONFIDENCE
 from intellective.doping_preprocessor import DopingPreprocessor
+from agent.disabled_intents import get_disabled_intents
 from agent.session_manager import SessionManager
 from agent.answer_manager import AnswerManager, SlotValidator
 from agent.model_loader import ModelLoader, KnowledgeLoader
@@ -218,6 +219,11 @@ class Agent:
         # Fallback per bassa confidenza
         if confidence < MIN_INTENT_CONFIDENCE:
             intent_name = 'low_confidence_fallback'
+        elif intent_name in get_disabled_intents():
+            # Classificato correttamente ma l'admin ha disattivato questo intent
+            # (vedi agent/disabled_intents.py): trattato come out_of_scope invece
+            # di eseguire normalmente la sua rule/risposta.
+            intent_name = 'out_of_scope'
 
         return {
             'intent': intent_name,
