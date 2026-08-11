@@ -1,5 +1,10 @@
 import os
+import random
 import sys
+
+import numpy as np
+import torch
+
 from intellective.train_fast_text import train_embedder
 from intellective.train_intent_classifier import train_main_model
 from intellective.train_dialogue_policy import train_dialogue_policy
@@ -10,6 +15,8 @@ sys.path.insert(0, BASE_DIR)
 from pipeline.intent_builder import build_intents
 from pipeline.merge_data import merge_intents, merge_rules, merge_responses, merge_conversations
 from pipeline.validator import DatasetValidator
+
+_SEED = 42
 
 
 def run_full_pipeline(
@@ -25,6 +32,16 @@ def run_full_pipeline(
     4. Allena Intent Classifier (opzionale)
     5. Allena Dialogue Policy ML (opzionale)
     """
+    # L'inizializzazione dei pesi (a differenza dello split train/val, già seedato
+    # a 42 nei due moduli di training) non era seedata da nessuna parte: due run
+    # consecutivi sullo stesso identico dataset potevano produrre modelli con
+    # confini decisionali diversi, al punto da far regredire classificazioni
+    # ovvie e mai toccate (es. "ciao" letto come insult) senza nessuna modifica
+    # reale al dataset di mezzo.
+    random.seed(_SEED)
+    np.random.seed(_SEED)
+    torch.manual_seed(_SEED)
+
     print("=" * 50)
     print("AVVIO PIPELINE COMPLETA (YAML-based)")
     print("=" * 50)

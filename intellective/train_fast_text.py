@@ -44,7 +44,13 @@ def train_embedder():
         wordNgrams=2,
         minn=2,
         maxn=5,
-        ws=5
+        ws=5,
+        # SGD asincrono multi-thread: anche con random.seed/torch.manual_seed fissi
+        # altrove nella pipeline, l'ordine di update tra thread resta non
+        # deterministico e produce embedding leggermente diversi ad ogni run (a
+        # cascata: classificatore e dialogue policy addestrati sopra). thread=1
+        # è più lento ma rende l'intera pipeline riproducibile a parità di dataset.
+        thread=1
     )
 
     # Salva modello completo
