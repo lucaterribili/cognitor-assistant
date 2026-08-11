@@ -5,7 +5,6 @@ fastapi
 uvicorn
 pandas
 scikit-learn
-fasttext
 nlpaug
 nltk
 pytorch-crf
