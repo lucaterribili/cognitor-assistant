@@ -1,0 +1,5 @@
+responses:
+  phone_number_generic_response:
+    - >-
+      Dipende dal numero che ti serve: dimmi il contesto (es. assistenza,
+      contatti aziendali) e provo ad aiutarti a trovarlo.
