@@ -14,7 +14,18 @@ from dataclasses import dataclass, field
 from typing import Any, Optional
 
 from agent.cancel_commands import is_cancel_command
+from agent.confirm_commands import is_confirm_command
 from config import INPUTABLE_SWITCH_CONFIDENCE
+
+# Quante volte di fila lo stesso intent deve ripetersi prima che il bot smetta
+# di rispondere come se fosse la prima volta e segnali il giro a vuoto: es.
+# "come stai" chiesto 3 volte di fila (anche con parole diverse, quello che
+# conta è l'intent classificato) senza che la conversazione vada avanti.
+LOOP_REPEAT_THRESHOLD = 3
+LOOP_DETECTED_RESPONSE = (
+    "Mi sembra che stiamo girando un po' in tondo su questo! "
+    "Prova a chiedermi qualcos'altro, o dimmi in un altro modo cosa ti serve."
+)
 
 
 @dataclass
@@ -57,6 +68,17 @@ class TurnProcessor:
 
         if awaiting_slot:
             return self._handle_slot_input(user_input, session, on_predict, cancel_event)
+
+        # Il classificatore ML fatica con parole cortissime come "sì"/"ok" (vedi
+        # agent/confirm_commands.py): quando il bot ha appena proposto qualcosa
+        # (CHATBOT_PROPOSAL, slot inline impostato dalla risposta precedente) e
+        # l'utente conferma in una delle forme brevi note, saltiamo la
+        # classificazione ML e risolviamo direttamente come intent 'confirm' -
+        # altrimenti "sì" rischia di finire su un intent qualunque a bassa
+        # confidenza invece di sbloccare la proposta in sospeso.
+        if self._has_pending_proposal(session) and is_confirm_command(user_input):
+            synthetic_prediction = {'intent': 'confirm', 'confidence': 1.0, 'entities': []}
+            return self._build_prediction_result(user_input, session, synthetic_prediction, on_predict, cancel_event)
 
         return self._handle_prediction(user_input, session, on_predict, cancel_event)
 
@@ -172,10 +194,13 @@ class TurnProcessor:
             user_input=user_input
         )
 
-        response_text, wait_for_slot, bot_slots = self.agent.get_response(
-            prediction['intent'], session.context, session.history, raw_text=user_input, cancel_event=cancel_event
-        )
-        options = self._apply_bot_slots(session, bot_slots)
+        if self._consecutive_same_intent_count(session, prediction['intent']) + 1 >= LOOP_REPEAT_THRESHOLD:
+            response_text, wait_for_slot, options = LOOP_DETECTED_RESPONSE, None, None
+        else:
+            response_text, wait_for_slot, bot_slots = self.agent.get_response(
+                prediction['intent'], session.context, session.history, raw_text=user_input, cancel_event=cancel_event
+            )
+            options = self._apply_bot_slots(session, bot_slots)
 
         if wait_for_slot:
             session.waiting_for_slot = {"intent": prediction['intent'], "slot": wait_for_slot}
@@ -194,6 +219,28 @@ class TurnProcessor:
             wait_for_slot=wait_for_slot,
             prediction=prediction,
         )
+
+    @staticmethod
+    def _has_pending_proposal(session) -> bool:
+        proposal = session.context.get('CHATBOT_PROPOSAL')
+        return bool(proposal) and proposal != 'done'
+
+    @staticmethod
+    def _consecutive_same_intent_count(session, intent_name: str) -> int:
+        """Conta da quanti turni utente consecutivi (a ritroso dalla fine dello
+        storico) è stato classificato lo stesso intent. Euristica semplice: non
+        distingue uno stesso intent ripetuto con slot diversi (es. spiegare tre
+        concetti di programmazione diversi) da un vero giro a vuoto - un
+        compromesso accettabile per intercettare il caso comune (stessa
+        domanda, nessun progresso) senza un modello dedicato."""
+        count = 0
+        for entry in reversed(session.history):
+            if entry.get('role') != 'user':
+                continue
+            if entry.get('intent') != intent_name:
+                break
+            count += 1
+        return count
 
     @staticmethod
     def _apply_bot_slots(session, bot_slots: Optional[dict[str, Any]]) -> Optional[list]:

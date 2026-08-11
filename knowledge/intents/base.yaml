@@ -376,6 +376,14 @@ nlu:
     - non benissimo, grazie
     - così così, grazie
     - non troppo bene, grazie per averlo chiesto
+    - male
+    - non bene
+    - non troppo bene
+    - non mi sento bene
+    - non molto bene
+    - non benissimo
+    - insomma
+    - così così
     - sono triste
     - non sto molto bene
     - mi sento giù
@@ -594,6 +602,12 @@ nlu:
     - come ti senti
     - stai bene
     - come va
+    - come va oggi
+    - ciao come va oggi
+    - ciao amico come va oggi
+    - ciao amico come stai oggi
+    - ciao come stai oggi
+    - salve come va oggi
     - come te la passi
     - sei malato
     - ti senti bene o male
@@ -763,6 +777,7 @@ nlu:
   - intent: confirm
     examples:
     - "[sì](CONFIRMATION)"
+    - "[si](CONFIRMATION)"
     - "[ok](CONFIRMATION)"
     - "[va bene](CONFIRMATION)"
     - certamente
