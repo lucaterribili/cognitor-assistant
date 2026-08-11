@@ -1,0 +1,23 @@
+# Segnali di rischio autolesionismo/suicidio: prima di questo intent, frasi come
+# "voglio morire" finivano misclassificate su intent qualunque (es. identità del
+# bot) - una risposta pratica in scenari così è più grave del solito "non ho
+# capito", per questo l'intent esiste a parte con una risposta sempre fissa
+# (mai scelta a caso, mai creativa) che indirizza a aiuto vero.
+nlu:
+  intents:
+  - intent: crisis_support
+    examples:
+    - voglio morire
+    - voglio sapere come morire
+    - non voglio più vivere
+    - voglio farla finita
+    - mi voglio uccidere
+    - non ce la faccio più a vivere
+    - voglio farmi del male
+    - penso al suicidio
+    - vorrei sparire per sempre
+    - la vita non ha più senso per me
+    - non ho più voglia di vivere
+    - voglio farmi male
+    - sto pensando di togliermi la vita
+    - non vedo più un motivo per andare avanti

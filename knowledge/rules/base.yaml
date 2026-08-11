@@ -24,6 +24,22 @@ rules:
   joke:
     default: joke_response
 
+  # "sì"/"ok" nudo (intent confirm) va interpretato in base a cosa il bot ha
+  # appena proposto (CHATBOT_PROPOSAL, slot inline impostato dalla risposta
+  # precedente - vedi knowledge/responses/base.yaml), non come conferma
+  # generica: altrimenti un "sì" a "vuoi una barzelletta?" veniva
+  # reinterpretato da zero come una frase qualsiasi.
+  confirm:
+    slots:
+      CHATBOT_PROPOSAL:
+        required: false
+        type: string
+        entity: CHATBOT_PROPOSAL
+    cases:
+      joke: joke_response
+      talk: mood_support_talk_response
+    default: confirm_response
+
   weather_query:
     default: weather_query_response
 

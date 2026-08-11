@@ -177,9 +177,19 @@ class Agent:
             else:
                 print(f"[PIPELINE] TED Policy NON INTERVENUTA → nessuna azione per intent '{intent_name}'")
 
-        # --- Priorità 3: Fallback RuleInterpreter (intent senza rule né TED) ---
-        print("[PIPELINE] Risposta sorgente: RuleInterpreter")
-        return self.rule_interpreter.handle_intent_with_bot_slots(intent_name, slots, raw_text)
+        # --- Priorità 3: intent senza rule e senza azione TED valida ---
+        # A questo punto sappiamo già che non esiste una rule per intent_name
+        # (altrimenti la Priorità 1 sarebbe già tornata): richiamare
+        # handle_intent_with_bot_slots su di esso restituirebbe sempre e solo
+        # il suo messaggio di errore interno "Intent non trovato nel DSL", che
+        # non deve mai arrivare all'utente. Trattiamo il caso come out_of_scope,
+        # riusando la sua rule/risposta invece di inventare un messaggio a parte.
+        print(f"[PIPELINE] Nessuna rule né azione TED valida per '{intent_name}' → fallback a out_of_scope")
+        if self.rules.get('out_of_scope') is not None:
+            print("[PIPELINE] Risposta sorgente: RuleInterpreter (out_of_scope)")
+            return self.rule_interpreter.handle_intent_with_bot_slots('out_of_scope', slots, raw_text, cancel_event)
+
+        return "Mi dispiace, non sono sicuro di come risponderti. Puoi riformulare?", None, {}
 
     def predict(self, text: str) -> dict:
         """

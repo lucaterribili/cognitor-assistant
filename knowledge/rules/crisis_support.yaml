@@ -1,0 +1,6 @@
+# Risposta sempre fissa (non scelta a caso tra varianti, non generata) di
+# proposito: in uno scenario di rischio autolesionismo la coerenza conta più
+# della varietà conversazionale.
+rules:
+  crisis_support:
+    default: crisis_support_response

@@ -49,14 +49,24 @@ responses:
     - "Fantastico! Sono felice che tu stia bene! Come posso renderti la giornata ancora migliore?"
     - "Che bella notizia! Il buon umore è contagioso! Come posso aiutarti?"
 
+  # {CHATBOT_PROPOSAL=...} è uno slot inline (agent/response_slot_parser.py):
+  # rimosso dal testo visibile, resta in sessione per il turno successivo così
+  # un "sì"/"ok" nudo (intent confirm) sa a cosa si riferisce invece di essere
+  # interpretato come conferma generica.
   mood_unhappy_response:
-    - "Mi dispiace sentire che non stai bene. Sono qui per te. Vuoi parlarne o posso aiutarti in qualche modo?"
-    - "Capisco, a volte le giornate sono così. Posso fare qualcosa per migliorarla? Una barzelletta?"
+    - "Mi dispiace sentire che non stai bene. Sono qui per te. Vuoi parlarne? {CHATBOT_PROPOSAL=talk}"
+    - "Capisco, a volte le giornate sono così. Posso fare qualcosa per migliorarla? Una barzelletta? {CHATBOT_PROPOSAL=joke}"
 
   joke_response:
-    - "Ecco una per te: Perché il Programmatore ha buttato via il computer? Perché faceva troppi bug! 😂"
-    - "Sai quella del sito web che era timido? Era un po' introvertito... non si caricava mai! 😄"
-    - "Un altro: Perché Java non poteva essere single? Perché era legato a tantissime librerie! 💀"
+    - "Ecco una per te: Perché il Programmatore ha buttato via il computer? Perché faceva troppi bug! 😂 {CHATBOT_PROPOSAL=done}"
+    - "Sai quella del sito web che era timido? Era un po' introvertito... non si caricava mai! 😄 {CHATBOT_PROPOSAL=done}"
+    - "Un altro: Perché Java non poteva essere single? Perché era legato a tantissime librerie! 💀 {CHATBOT_PROPOSAL=done}"
+
+  mood_support_talk_response:
+    - "Certo, sono qui ad ascoltarti. Raccontami pure cosa ti preoccupa. {CHATBOT_PROPOSAL=done}"
+
+  confirm_response:
+    - "Perfetto! {CHATBOT_PROPOSAL=done}"
 
   weather_query_response:
     - "Mi serve sapere la località per darti il meteo. In quale città vuoi le previsioni?"
