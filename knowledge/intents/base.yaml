@@ -18,9 +18,6 @@ nlu:
     - ciao bello
     - ehi amico
     - hey amico
-    - ciao come stai
-    - ciao come va
-    - salve come stai
     - buongiorno a te
     - buonasera amico
     - ehilà amico
@@ -349,6 +346,11 @@ nlu:
   - intent: mood_great
     examples:
     - sto bene grazie
+    - io bene, grazie
+    - bene grazie e tu
+    - sto bene, grazie mille
+    - benissimo grazie
+    - tutto bene grazie
     - sono felice
     - mi sento benissimo
     - sono di ottimo umore
@@ -371,6 +373,9 @@ nlu:
 
   - intent: mood_unhappy
     examples:
+    - non benissimo, grazie
+    - così così, grazie
+    - non troppo bene, grazie per averlo chiesto
     - sono triste
     - non sto molto bene
     - mi sento giù

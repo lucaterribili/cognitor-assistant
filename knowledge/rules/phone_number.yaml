@@ -1,0 +1,7 @@
+# Default generico e domain-agnostico: un dominio con un numero reale da dare
+# (es. tten) sovrascrive questa rule in training_data/rules/phone_number.yaml
+# (stessa chiave "ask_phone_number", vince l'ultimo caricato - vedi
+# pipeline/merge_data.py::merge_rules).
+rules:
+  ask_phone_number:
+    default: phone_number_generic_response
