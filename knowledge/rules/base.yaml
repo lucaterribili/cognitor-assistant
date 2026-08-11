@@ -18,7 +18,20 @@ rules:
   mood_great:
     default: mood_great_response
 
+  # Se l'utente ha già accettato di "parlarne" (CHATBOT_PROPOSAL=talk_given,
+  # impostato da mood_support_talk_response) e poi esprime un'ulteriore
+  # difficoltà, ripetere la stessa offerta "vuoi parlarne?" lo intrappola in un
+  # loop e lascia intendere che il bot possa fare da supporto psicologico reale
+  # - qui invece riconosciamo un ambito che il bot non copre e lo reindirizziamo,
+  # senza ripetere l'offerta da capo.
   mood_unhappy:
+    slots:
+      CHATBOT_PROPOSAL:
+        required: false
+        type: string
+        entity: CHATBOT_PROPOSAL
+    cases:
+      talk_given: mood_support_redirect_response
     default: mood_unhappy_response
 
   joke:
