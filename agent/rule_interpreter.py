@@ -262,6 +262,16 @@ class RuleInterpreter:
         i cases rifiuterebbe qualunque ricerca libera che non coincida con
         un'eccezione elencata.
 
+        Lo stesso vale quando il `default` è una response "overview" generica
+        invece di un'operation (es. `ask_programming_concept`: cases per i
+        concetti con spiegazione dedicata, default per tutto il resto) - il
+        flag esplicito `open_cases: true` sulla rule copre questo caso, dato
+        che qui il default non è riconoscibile dal solo prefisso `__`.
+        Senza, un utente che risponde "python" o "mysql" al wait si sentiva
+        rispondere "Selezione non valida" perché quei termini non sono tra i
+        pochi case con risposta dedicata, anche se la rule ha un fallback
+        generico pensato apposta per loro.
+
         Args:
             intent_name: Nome dell'intent
             slot_name: Nome dello slot
@@ -277,7 +287,7 @@ class RuleInterpreter:
         if slot_name not in rule_slots:
             return []
 
-        if str(rule.get("default", "")).startswith("__"):
+        if rule.get("open_cases") or str(rule.get("default", "")).startswith("__"):
             return []
 
         cases = rule.get("cases", {})
