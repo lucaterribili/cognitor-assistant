@@ -10,6 +10,7 @@ Separazione pulita:
 """
 from typing import Optional, Any
 import random
+import re
 from datetime import datetime
 
 from agent.response_slot_parser import ResponseSlotParser
@@ -364,6 +365,17 @@ class RuleInterpreter:
         if target_type == "integer" and not isinstance(casted_value, int):
             return False
         if target_type == "float" and not isinstance(casted_value, (int, float)):
+            return False
+
+        # Slot free_text (nome/recapito/messaggio...) non hanno "cases" da
+        # confrontare: senza un vincolo esplicito qualunque testo passa,
+        # anche palesemente non pertinente ("no", "boh", un insulto). Un
+        # `pattern` opzionale nella rule permette di validare il FORMATO
+        # senza reintrodurre l'enumerazione di valori validi che il
+        # free_text serve proprio a evitare (es. un'email o un telefono
+        # non si possono elencare come "cases").
+        pattern = slot_config.get("pattern")
+        if pattern and not re.search(pattern, str(value).strip(), re.IGNORECASE):
             return False
 
         valid_values = self.get_valid_values_for_slot(intent_name, slot_name)
