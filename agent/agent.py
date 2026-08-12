@@ -13,6 +13,7 @@ import torch
 from config import BASE_DIR, DOPING_ACTIVE, MIN_INTENT_CONFIDENCE
 from intellective.doping_preprocessor import DopingPreprocessor
 from agent.disabled_intents import get_disabled_intents
+from agent.crisis_keywords import is_crisis_signal
 from agent.session_manager import SessionManager
 from agent.answer_manager import AnswerManager, SlotValidator
 from agent.model_loader import ModelLoader, KnowledgeLoader
@@ -208,6 +209,20 @@ class Agent:
                 'intent_probs': probabilità per tutti gli intent
             }
         """
+        # Rilevamento deterministico dei segnali di rischio autolesionismo/
+        # suicidio, PRIMA del modello ML e del check disabled_intents: questo
+        # non deve mai dipendere dalla stabilità del classificatore tra
+        # retrain (vedi agent/crisis_keywords.py) né essere disattivabile.
+        if is_crisis_signal(text):
+            return {
+                'intent': 'crisis_support',
+                'confidence': 1.0,
+                'entities': [],
+                'doped': False,
+                'intent_logits': [],
+                'intent_probs': [],
+            }
+
         # Doping del testo se attivo
         if DOPING_ACTIVE:
             doped_text = self.doping_preprocessor.dope_input(text)
