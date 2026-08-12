@@ -1,0 +1,27 @@
+# TTen - Intent su referenze/casi di successo/portfolio clienti
+#
+# Prima non esisteva nessun intent per questo: "con quali aziende avete
+# lavorato" o "avete un case study" finivano sulla risposta di identità o su
+# ask_service. La risposta non inventa nomi di clienti specifici (nessuna
+# fonte verificata a disposizione) - riporta solo i settori realmente
+# indicati altrove nel dataset (tten_settori) e rimanda al contatto diretto
+# per referenze puntuali.
+
+nlu:
+  intents:
+  - intent: ask_tten_referenze
+    examples:
+    - con quali aziende avete lavorato
+    - avete dei casi di successo
+    - avete case study
+    - posso vedere un vostro progetto
+    - che clienti avete
+    - avete delle referenze
+    - avete un portfolio
+    - chi sono i vostri clienti
+    - potete mostrarmi dei lavori fatti
+    - avete esempi di progetti realizzati
+    - avete testimonianze di clienti
+    - avete lavorato con aziende conosciute
+    - che referenze potete darmi
+    - avete già lavorato con qualche brand importante

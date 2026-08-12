@@ -1,0 +1,3 @@
+rules:
+  ask_tten_referenze:
+    default: tten_referenze_response

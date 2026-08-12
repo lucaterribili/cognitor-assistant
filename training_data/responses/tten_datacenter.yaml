@@ -6,6 +6,9 @@ responses:
       e sicuro ma dedicato esclusivamente a loro. Puoi installare il sistema
       operativo e gli applicativi che preferisci, e ti supportiamo anche in
       fase di configurazione.
+
+      Il costo dipende dal piano e dalle risorse necessarie: scrivici per un
+      preventivo su misura.
     - >-
       Il nostro datacenter è utile per applicativi personalizzati come
       gestionali, CRM ed ERP, per rivendere servizi (ad esempio la posta
@@ -13,11 +16,17 @@ responses:
       grossi portali. I vantaggi sono l'ottimizzazione delle risorse, la
       scalabilità dei piani, la continuità operativa e la sicurezza con
       backup.
+
+      Il costo dipende dal piano e dalle risorse necessarie: scrivici per un
+      preventivo su misura.
     - >-
       Offriamo un SLA molto elevato, il 99,9% su base annua, che copre
       l'infrastruttura fisica (router, switch, server, connettività). La
       nostra infrastruttura è composta da tre sistemi server in cluster, 40
       core CPU e uno storage ridondato con capacità totale di 96TB RAW.
+
+      Il costo dipende dal piano e dalle risorse necessarie: scrivici per un
+      preventivo su misura.
     - >-
       Per l'affidabilità usiamo fault tolerance sullo storage (RAID 10 mirror
       e clustering), servizio di High Availability, trasferimento delle
@@ -26,3 +35,6 @@ responses:
       connettività è in fibra ottica verso carrier nazionali ed esteri e
       passa dai nodi di interscambio MIX di Milano e Namex di Roma; siamo
       certificati ISO/IEC 27000.
+
+      Il costo dipende dal piano e dalle risorse necessarie: scrivici per un
+      preventivo su misura.
