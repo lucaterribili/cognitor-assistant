@@ -18,6 +18,11 @@ rules:
         type: string
         entity: PROG_CONCEPT
     wait: programming_concept_overview_response
+    # I case sono le spiegazioni dedicate per i concetti più comuni, non
+    # l'insieme esaustivo di risposte valide al wait: "python"/"mysql"/altro
+    # devono comunque ricevere l'overview generica invece di essere respinti
+    # come "Selezione non valida" solo perché non hanno una spiegazione ad hoc.
+    open_cases: true
     cases:
       "linguaggio di programmazione": programming_concept_linguaggio_response
       framework: programming_concept_framework_response
