@@ -17,6 +17,10 @@ rules:
         type: string
         entity: RECAPITO
         free_text: true
+        # Email o telefono (min. 7 cifre, spazi/./-/+/parentesi tollerati):
+        # senza questo controllo "no"/"boh" venivano salvati e inviati come
+        # recapito letterale, dato che free_text accetta il testo grezzo.
+        pattern: '^[^@\s]+@[^@\s]+\.[^@\s]+$|^\+?[\d\s().-]{7,}$'
       MESSAGGIO_RICHIESTA:
         required: true
         type: string
