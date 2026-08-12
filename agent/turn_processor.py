@@ -27,6 +27,17 @@ LOOP_DETECTED_RESPONSE = (
     "Prova a chiedermi qualcos'altro, o dimmi in un altro modo cosa ti serve."
 )
 
+# Quanti tentativi falliti di fila su uno slot con validazione (`pattern`)
+# tolleriamo prima di abbandonare la raccolta: senza un tetto, uno slot che
+# continua a rifiutare l'input (es. RECAPITO che si aspetta email/telefono)
+# può intrappolare l'utente in un loop "Selezione non valida" senza via
+# d'uscita, dato che i free_text slot disattivano la via di fuga per cambio
+# di argomento e un "no"/risposta elusiva non è un cancel_command esplicito.
+SLOT_INVALID_RETRY_LIMIT = 2
+SLOT_INVALID_BAILOUT_RESPONSE = (
+    "Va bene, non è un problema: se vuoi puoi scriverci direttamente o riprovare più tardi."
+)
+
 
 @dataclass
 class TurnResult:
@@ -139,7 +150,38 @@ class TurnProcessor:
             print(f"[INPUTABLE] NER non ha trovato '{slot_name}', uso testo grezzo")
 
         if not self.agent.slot_manager.validate_slot_value(pending_intent, slot_name, slot_value):
-            response_text = "Selezione non valida. Riprova."
+            # Uno slot free_text con `pattern` (es. RECAPITO di ask_service) può
+            # continuare a rifiutare l'input all'infinito - a differenza della
+            # via di fuga per cambio-intent, qui non c'è nessun altro
+            # meccanismo che faccia uscire l'utente dal loop (i cancel_commands
+            # espliciti tipo "stop" restano validi, ma un "no"/risposta
+            # elusiva no). Dopo un paio di tentativi falliti abbandoniamo lo
+            # slot invece di ripetere "Selezione non valida" all'infinito.
+            attempts_key = f"__invalid_attempts__{pending_intent}__{slot_name}"
+            attempts = session.context.get(attempts_key, 0) + 1
+            if attempts >= SLOT_INVALID_RETRY_LIMIT:
+                session.update_context(attempts_key, 0)
+                session.waiting_for_slot = None
+                session.agent_mode = "predictable"
+                response_text = SLOT_INVALID_BAILOUT_RESPONSE
+                session.add_message("user", user_input)
+                session.add_message("assistant", response_text, pending_intent)
+                return TurnResult(
+                    kind="slot_invalid",
+                    response=response_text,
+                    intent=pending_intent,
+                    prediction=prediction,
+                    slot_name=slot_name,
+                    ner_slot_value=ner_value,
+                )
+
+            session.update_context(attempts_key, attempts)
+            slot_config = self.agent.rule_interpreter.get_slots_for_intent(pending_intent).get(slot_name, {})
+            response_text = (
+                "Non mi sembra un formato valido, riprova (es. un'email o un numero di telefono)."
+                if slot_config.get("pattern") else
+                "Selezione non valida. Riprova."
+            )
             session.add_message("user", user_input)
             session.add_message("assistant", response_text, pending_intent)
             return TurnResult(
@@ -150,6 +192,8 @@ class TurnProcessor:
                 slot_name=slot_name,
                 ner_slot_value=ner_value,
             )
+
+        session.update_context(f"__invalid_attempts__{pending_intent}__{slot_name}", 0)
 
         # Esegui il casting prima di salvare nel contesto
         casted_value = self.agent.rule_interpreter.cast_slot_value(pending_intent, slot_name, slot_value)
