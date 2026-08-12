@@ -9,9 +9,13 @@ nlu:
     examples:
     - voglio morire
     - voglio sapere come morire
+    - come si fa a morire
+    - voglio informazioni su come morire
     - non voglio più vivere
     - voglio farla finita
     - mi voglio uccidere
+    - voglio uccidermi
+    - mi vorrei uccidere
     - non ce la faccio più a vivere
     - voglio farmi del male
     - penso al suicidio
