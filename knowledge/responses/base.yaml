@@ -79,9 +79,9 @@ responses:
   confirm_response:
     - "Perfetto! {CHATBOT_PROPOSAL=done}"
 
-  weather_query_response:
+  weather_query_wait_location_response:
     - "Mi serve sapere la località per darti il meteo. In quale città vuoi le previsioni?"
-    - "Per darti informazioni meteo accurate, dimmi per favore la località e il giorno che ti interessa."
+    - "Per darti informazioni meteo accurate, dimmi per favore la località che ti interessa."
 
   date_query_response:
     - "Oggi è [DATE]. Cosa vuoi fare?"
@@ -106,6 +106,10 @@ responses:
     - "Certo! Di cosa vuoi parlare?"
     - "Nessun problema! Cambiamo pure argomento. Cosa hai in mente?"
     - "Perfetto, lasciamo perdere e partiamo da capo. Come posso aiutarti?"
+
+  ask_capital_wait_response:
+    - "Di quale paese vuoi sapere la capitale?"
+    - "Dimmi il nome del paese e ti dico la sua capitale."
 
   # ========================================
   # Risposte per ask_city_touristic_information

@@ -58,7 +58,13 @@ rules:
     default: confirm_response
 
   weather_query:
-    default: weather_query_response
+    slots:
+      LOCATION:
+        required: true
+      DATE:
+        required: false
+    wait: weather_query_wait_location_response
+    default: __weather_query
 
   time_query:
     default: __time_query_response
@@ -77,6 +83,17 @@ rules:
 
   change_topic:
     default: change_topic_response
+
+  # ========================================
+  # Intent con slot: ask_capital
+  # ========================================
+
+  ask_capital:
+    slots:
+      LOCATION:
+        required: true
+    wait: ask_capital_wait_response
+    default: __ask_capital
 
   # ========================================
   # Intent con slot: ask_city_touristic_information
