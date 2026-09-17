@@ -18,4 +18,5 @@ numpy
 requests
 ddgs
 sentencepiece
+gensim
 python-dotenv
