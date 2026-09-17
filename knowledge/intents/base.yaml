@@ -15,38 +15,17 @@ nlu:
     - buon pomeriggio
     - ciao amico
     - salve amico
-    - ciao bello
-    - ehi amico
-    - hey amico
     - buongiorno a te
     - buonasera amico
-    - ehilà amico
     - ehi salve
     - ciao a te
     - ciao caro
-    - ciao cara
     - ciao tesoro
-    - ciao amica
-    - ciao campione
-    - ciao ragazzi
-    - ciao vicino
-    - ciao piccolo
-    - buongiorno caro
-    - buongiorno amico
     - buongiorno signora
     - buongiorno collega
-    - buonasera caro
     - buonasera signore
-    - buonasera vicina
-    - salve caro
     - salve dottore
-    - salve collega
-    - ehi caro
-    - ehi bella
-    - hey caro
     - hey bello
-    - yo amico
-    - yo bello
 
   - intent: farewell
     examples:
@@ -160,6 +139,12 @@ nlu:
     - vinciamo [Inter](TEAM)
     - andiamo [Juve](TEAM)
     - siamo i più forti, forza [Lazio](TEAM)
+    - vai [Napoli](TEAM) vai
+    - daje [Roma](TEAM) daje
+    - forza ragazzi, ce la possiamo fare
+    - andiamo [Milan](TEAM), siamo con voi
+    - grande [Juventus](TEAM), siamo i migliori
+    - dai [Lazio](TEAM), non arrenderti
 
   - intent: introduce_user
     examples:
@@ -192,32 +177,22 @@ nlu:
     - sei una merda
     - imbecille
     - ciao stronzo
-    - ciao merda
     - sei proprio uno stronzo
-    - razza di merda
     - testa di cazzo
     - mi fai schifo
     - vai a fare in culo
     - sei un cretino
     - buonasera coglione
-    - sei un gran coglione
-    - brutto stronzo
     - fottiti
     - hey merdaccia
-    - che razza di merdaccia
     - sei un idiota
-    - sei un imbecille
-    - sei un cretino patentato
     - che pezzo di ignorante
     - sei proprio un deficiente
     - non capisci niente, idiota
-    - sei una merda di cane
     - sei un cane
     - sei un verme
     - sei un porco
-    - sei un maiale
     - sei proprio un coglione
-    - pezzo di merda
     - sei un pagliaccio
     - fai schifo come un cane
 
@@ -243,9 +218,6 @@ nlu:
     - mi hai stupito
     - sei eccezionale
     - bravo davvero
-    - grandissimo
-    - fantastico
-    - grande
     - top
     - favoloso
     - mitico
@@ -378,12 +350,9 @@ nlu:
     - non troppo bene, grazie per averlo chiesto
     - male
     - non bene
-    - non troppo bene
     - non mi sento bene
-    - non molto bene
     - non benissimo
     - insomma
-    - così così
     - sono triste
     - non sto molto bene
     - mi sento giù
@@ -398,12 +367,8 @@ nlu:
     - sono di cattivo umore
     - sto passando un brutto periodo
     - mi sento scoraggiato
-    - non sto bene oggi
     - sono stanco e stressato
-    - mi sento senza energie
     - sono deluso
-    - mi sento un po' giù di morale
-    - la giornata non sta andando bene
 
   - intent: bot_challenge
     examples:
@@ -484,7 +449,6 @@ nlu:
     - raccontami qualcosa sulla [Basilica di San Pietro](LOCATION)
     - hai informazioni sul [Castello di Neuschwanstein](LOCATION)
     - cosa puoi dirmi sul [Duomo di Milano](LOCATION)
-    - quali sono gli orari di apertura del [Colosseo](LOCATION)
     - dove si trova la [Fontana di Trevi](LOCATION)
     - parlami della [Sagrada Familia](LOCATION)
     - raccontami la storia del [Big Ben](LOCATION)
@@ -496,9 +460,7 @@ nlu:
     - cosa puoi dirmi sulla [Reggia di Caserta](LOCATION)
     - raccontami qualcosa sul [Muro di Berlino](LOCATION)
     - dove si trova il [Pantheon](LOCATION)
-    - dove si trova la [casa di Pirandello](LOCATION)
     - dove si trova il [museo di Van Gogh](LOCATION)
-    - "[dove è nato Leonardo da Vinci](LOCATION)"
     - in che città si trova la [Torre di Pisa](LOCATION)
     - dove si trova la [casa natale di Mozart](LOCATION)
     - "[dove è sepolto Dante Alighieri](LOCATION)"
@@ -604,8 +566,6 @@ nlu:
     - come va
     - come va oggi
     - ciao come va oggi
-    - ciao amico come va oggi
-    - ciao amico come stai oggi
     - ciao come stai oggi
     - salve come va oggi
     - come te la passi
@@ -692,18 +652,15 @@ nlu:
     - quanto fa [144](NUMBER) diviso [12](NUMBER)
     - risolvimi [30](NUMBER) meno [18](NUMBER)
     - che risultato dà [3](NUMBER) per [9](NUMBER)
-    - quanto fa [1000](NUMBER) diviso [10](NUMBER)
     - fai il calcolo di [45](NUMBER) meno [20](NUMBER)
     - quanto fa [6](NUMBER) per [7](NUMBER)
     - calcola [200](NUMBER) più [300](NUMBER)
     - risolvimi [64](NUMBER) diviso [8](NUMBER)
     - '[2](NUMBER)+[2](NUMBER)'
-    - quanto fa [2](NUMBER)+[2](NUMBER)
     - '[10](NUMBER)-[4](NUMBER)'
     - '[7](NUMBER)*[8](NUMBER)'
     - '[100](NUMBER)/[4](NUMBER)'
     - quanto fa [5](NUMBER)x[3](NUMBER)
-    - calcola [50](NUMBER)-[20](NUMBER)
 
   - intent: time_query
     examples:
@@ -1235,10 +1192,6 @@ nlu:
     - fai una ricerca approfondita su [energie rinnovabili](QUERY)
     - cerca notizie sportive di oggi
     - trova informazioni su [WordPress](QUERY)
-    - trova informazioni su [Docker](QUERY)
-    - cerca informazioni su [Kubernetes](QUERY)
-    - cerca su google [React Native](QUERY)
     - dimmi qualcosa su [Shopify](QUERY)
     - cosa sai di [PostgreSQL](QUERY)
-    - info su [Laravel](QUERY)
     - cerca notizie su [Tesla](QUERY)

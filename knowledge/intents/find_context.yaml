@@ -21,6 +21,11 @@ nlu:
     - cos'è esattamente
     - che cos'è in pratica
     - cos'è precisamente
+    - cosa vuol dire
+    - cos'è nello specifico
+    - che cosa significa
+    - mi spieghi che cos'è
+    - cos'è in sostanza
   - intent: more_info
     examples:
     - dammi maggiori informazioni
@@ -64,6 +69,9 @@ nlu:
     - quali sono i passaggi per
     - cosa devo fare per ottenere
     - come si ottiene l'accesso
+    - come si arriva a ottenere
+    - in che modo posso ottenerlo
+    - come faccio a procurarmelo
   - intent: where_is
     examples:
     - dove si trova

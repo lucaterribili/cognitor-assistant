@@ -27,7 +27,6 @@ nlu:
     - dimmi qualcosa su [Dostoevskij](KEYWORD)
     - dimmi qualcosa su [Dante Alighieri](KEYWORD)
     - parlami di [Van Gogh](KEYWORD)
-    - cosa sai di [Petrarca](KEYWORD)
     - chi era [Edipo](KEYWORD)
     - parlami della [Nascita di Venere](KEYWORD)
 
@@ -43,6 +42,17 @@ nlu:
     - dimmi cos'è l'[intelligenza artificiale](KEYWORD)
     - che cos'è l'[intelligenza artificiale](KEYWORD)
     - "[AI](KEYWORD) cosa vuol dire"
+    - cosa è la [blockchain](KEYWORD)
+    - spiegami cos'è il [cloud computing](KEYWORD)
+    - cosa significa [big data](KEYWORD)
+    - come funziona una [criptovaluta](KEYWORD)
+    - cos'è la [realtà virtuale](KEYWORD)
+    - spiegami cos'è l'[Internet of Things](KEYWORD)
+    - cosa sono gli [algoritmi](KEYWORD)
+    - dimmi cos'è un [database](KEYWORD)
+    - che cos'è una [API](KEYWORD)
+    - cosa significa [cybersecurity](KEYWORD)
+    - spiegami cos'è il [metaverso](KEYWORD)
 
   - intent: ask_person_date
     examples:
@@ -56,3 +66,14 @@ nlu:
     - "[quando è nata Cleopatra](KEYWORD)"
     - dimmi [in che anno è morto Van Gogh](KEYWORD)
     - "[quando è nato Napoleone](KEYWORD)"
+    - "[quando è nato Albert Einstein](KEYWORD)"
+    - "[quando è morta Maria Antonietta](KEYWORD)"
+    - "[in che anno è nato Galileo Galilei](KEYWORD)"
+    - "[quando è morto Giulio Cesare](KEYWORD)"
+    - "[quando è nata Frida Kahlo](KEYWORD)"
+    - "[in che anno è morto Leonardo da Vinci](KEYWORD)"
+    - dimmi [quando è nato Cristoforo Colombo](KEYWORD)
+    - "[quando è morto Michelangelo](KEYWORD)"
+    - "[quando è nato Charles Darwin](KEYWORD)"
+    - "[in che anno è nata Marie Curie](KEYWORD)"
+    - "[quando è morta Cleopatra](KEYWORD)"
