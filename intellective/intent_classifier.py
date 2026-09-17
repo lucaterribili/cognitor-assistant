@@ -4,6 +4,7 @@ import torch.nn.functional as F
 import numpy as np
 from torchcrf import CRF
 from classes.simple_tokenizer import SimpleTokenizer
+from classes.sentencepiece_tokenizer import SentencePieceTokenizer
 from classes.ner_tag_builder import NERTagBuilder
 
 
@@ -67,11 +68,17 @@ class IntentClassifier(nn.Module):
             vocab_path=None,
             num_ner_tags=None,
             freeze_embeddings=False,
+            sentencepiece_model_path=None,
     ):
         super(IntentClassifier, self).__init__()
 
-        # Tokenizer usa solo il vocabolario
-        self.tokenizer = SimpleTokenizer(vocab_path)
+        # Con sentencepiece_model_path: tokenizer a sotto-parola (nessuna
+        # parola mai "fuori vocabolario", vedi SentencePieceTokenizer).
+        # Altrimenti: tokenizer a parola intera basato solo sul vocabolario.
+        if sentencepiece_model_path:
+            self.tokenizer = SentencePieceTokenizer(sentencepiece_model_path)
+        else:
+            self.tokenizer = SimpleTokenizer(vocab_path)
 
         # Inizializza NER tag builder
         self.ner_tag_builder = NERTagBuilder()
@@ -167,8 +174,8 @@ class IntentClassifier(nn.Module):
             return intent_logits, ner_predictions
 
     def tokenize(self, text):
-        tokens = self.tokenizer(text)
-        return [self.tokenizer.get_word_index(token) for token in tokens]
+        _, token_ids = self.tokenizer.tokenize_with_ids(text)
+        return token_ids
 
     def predict(self, text):
         """
@@ -185,8 +192,8 @@ class IntentClassifier(nn.Module):
         self.eval()
         with torch.no_grad():
             # Tokenizza
-            tokens = self.tokenizer(text)
-            token_ids = torch.tensor([self.tokenizer.get_word_index(t) for t in tokens]).unsqueeze(0)
+            tokens, ids = self.tokenizer.tokenize_with_ids(text)
+            token_ids = torch.tensor(ids).unsqueeze(0)
 
             # Forward pass
             intent_logits, ner_predictions = self.forward(token_ids)

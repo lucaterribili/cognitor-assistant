@@ -4,9 +4,10 @@ import csv
 import numpy as np
 from classes.intent_normalizer import IntentNormalizer
 from classes.simple_tokenizer import SimpleTokenizer
+from classes.sentencepiece_tokenizer import SentencePieceTokenizer
 from classes.ner_tag_builder import NERTagBuilder
 from classes.ner_markup_parser import NERMarkupParser
-from config import BASE_DIR
+from config import BASE_DIR, USE_FASTTEXT
 
 
 class ValidationDatasetGenerator:
@@ -21,8 +22,12 @@ class ValidationDatasetGenerator:
             self.data = json.load(f)
         
         self.normalizer = IntentNormalizer()
-        vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
-        self.tokenizer = SimpleTokenizer(vocab_path)
+        if USE_FASTTEXT:
+            vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+            self.tokenizer = SimpleTokenizer(vocab_path)
+        else:
+            sp_model_path = os.path.join(BASE_DIR, '.cognitor', 'sentencepiece.model')
+            self.tokenizer = SentencePieceTokenizer(sp_model_path)
         self.ner_builder = NERTagBuilder.load(os.path.join(self.data_path, 'ner_tag_dict.json'))
         self.markup_parser = NERMarkupParser()
         
@@ -74,8 +79,7 @@ class ValidationDatasetGenerator:
                 input_text = row['INPUT']
                 output_id = int(row['OUTPUT'])
 
-                tokens = self.tokenizer(input_text)
-                token_ids = [self.tokenizer.get_word_index(t) for t in tokens]
+                tokens, token_ids = self.tokenizer.tokenize_with_ids(input_text)
 
                 entities = entity_map.get(input_text, [])
                 bio_tag_ids = self.ner_builder.align_tokens_to_bio(input_text, tokens, entities)

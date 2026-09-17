@@ -1,29 +1,23 @@
 """
-Addestra un embedding word-level (skip-gram + negative sampling, stile
-word2vec) sul corpus del dataset, come alternativa a FastText.
+Addestra un embedding di sotto-parola (skip-gram + negative sampling, stile
+word2vec, sopra un vocabolario SentencePiece/BPE) sul corpus del dataset,
+come alternativa a FastText.
 
 Stesso ruolo di train_fast_text.train_embedder() (fase di pre-training
 separata, prima del classifier) e stesso formato di output (.vec + vocab.json)
 - IntentClassifier.load_word_vectors() carica l'uno o l'altro senza saperne
-la provenienza.
-
-Differenza rispetto a FastText: nessuna informazione di sottoparola. FastText
-generalizza a parole mai viste nel corpus tramite n-grammi di carattere
-condivisi con parole simili (es. "lasagne" ~ "lasagna"); questo embedding
-word-level no - una parola assente dal corpus resta assente dal vocabolario,
-il tokenizer la tratta come sconosciuta (vedi classes/simple_tokenizer.py).
-Quello che guadagniamo rispetto a inizializzare l'embedding a caso e
-addestrarlo solo con il segnale di classificazione: le co-occorrenze
-osservate su TUTTO il corpus (non solo negli esempi etichettati) piazzano già
-parole semanticamente vicine vicine tra loro, prima ancora che il classifier
-inizi ad addestrarsi.
+la provenienza. In più, rispetto alla prima versione di questo modulo (skip-
+gram su parole intere), addestra anche il modello SentencePiece stesso: il
+vocabolario non è più fatto di parole intere ma di sotto-parole, quindi
+qualsiasi stringa - anche mai vista nel training - si scompone sempre in
+pezzi noti (fino al singolo byte come fallback estremo), invece di risultare
+"fuori vocabolario". Vedi classes/sentencepiece_tokenizer.py per il dettaglio
+del meccanismo e classes/dataset_generator.py per dove viene consumato.
 """
 import os
-import re
 import json
-import random
-from collections import Counter
 
+import sentencepiece as spm
 import numpy as np
 import torch
 import torch.nn as nn
@@ -31,8 +25,7 @@ import torch.nn.functional as F
 
 from config import BASE_DIR
 
-_PUNCT_PATTERN = re.compile(r'[^\w\s]')
-
+_SP_VOCAB_SIZE = 2000
 _EMBED_DIM = 300
 _WINDOW_SIZE = 5
 _NEGATIVE_SAMPLES = 5
@@ -41,49 +34,68 @@ _LR = 0.01
 _BATCH_SIZE = 512
 
 
-def _tokenize_corpus(corpus_path: str) -> list[list[str]]:
-    """Stessa tokenizzazione di SimpleTokenizer: lowercase, punteggiatura -> spazio, split."""
-    sentences = []
+def _train_sentencepiece(corpus_path: str) -> spm.SentencePieceProcessor:
+    """
+    Allena il modello SentencePiece (BPE) sul corpus e lo salva in
+    .cognitor/sentencepiece.model - stesso path che
+    classes/sentencepiece_tokenizer.py e agent/model_loader.py si aspettano.
+
+    Il corpus viene lowercased in un file temporaneo prima del training: resta
+    così coerente con il resto della pipeline, che lowercasa sempre il testo
+    prima di tokenizzare (vedi SentencePieceTokenizer.tokenize_with_ids).
+    """
+    model_prefix = os.path.join(BASE_DIR, '.cognitor', 'sentencepiece')
+    lower_corpus_path = os.path.join(BASE_DIR, '.cognitor', 'fast-text-lower.txt')
+
+    with open(corpus_path, 'r', encoding='utf-8') as src, \
+            open(lower_corpus_path, 'w', encoding='utf-8') as dst:
+        for line in src:
+            dst.write(line.lower())
+
+    spm.SentencePieceTrainer.train(
+        input=lower_corpus_path,
+        model_prefix=model_prefix,
+        vocab_size=_SP_VOCAB_SIZE,
+        model_type='bpe',
+        character_coverage=1.0,
+        # Qualsiasi carattere/simbolo mai visto nel training (emoji, alfabeti
+        # esteri, ...) si scompone in byte invece di diventare <unk>: nessun
+        # input risulta mai completamente fuori vocabolario.
+        byte_fallback=True,
+    )
+
+    print(f"✓ Modello SentencePiece salvato: {model_prefix}.model")
+    return spm.SentencePieceProcessor(model_file=f"{model_prefix}.model")
+
+
+def _encode_corpus(sp: spm.SentencePieceProcessor, corpus_path: str) -> list[list[int]]:
+    sequences = []
     with open(corpus_path, 'r', encoding='utf-8') as f:
         for line in f:
-            cleaned = _PUNCT_PATTERN.sub(' ', line.strip().lower())
-            tokens = cleaned.split()
-            if tokens:
-                sentences.append(tokens)
-    return sentences
+            line = line.strip().lower()
+            if line:
+                sequences.append(sp.encode(line, out_type=int))
+    return sequences
 
 
-def _build_vocab(sentences: list[list[str]]) -> tuple[list[str], dict[str, int], list[int]]:
+def _build_skipgram_pairs(sequences: list[list[int]], window_size: int) -> np.ndarray:
     """
-    Vocabolario ordinato per frequenza decrescente (alfabetico a parità), come
-    build_vocab_only() in train_fast_text.py - stesso ordine deterministico.
+    Genera coppie (centro, contesto) da tutte le sequenze del corpus, con
+    finestra dinamica (1..window_size per ogni id centro, trucco standard di
+    word2vec che pesa più i vicini immediati di quelli ai margini).
     """
-    counts = Counter(word for sentence in sentences for word in sentence)
-    words = [w for w, _ in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))]
-    word_to_idx = {w: i for i, w in enumerate(words)}
-    freqs = [counts[w] for w in words]
-    return words, word_to_idx, freqs
+    import random
 
-
-def _build_skipgram_pairs(
-    sentences: list[list[str]], word_to_idx: dict[str, int], window_size: int
-) -> np.ndarray:
-    """
-    Genera coppie (centro, contesto) da tutte le frasi del corpus, con
-    finestra dinamica (1..window_size per ogni parola centro, trucco standard
-    di word2vec che pesa più le parole vicine di quelle ai margini).
-    """
     pairs = []
-    for sentence in sentences:
-        indices = [word_to_idx[w] for w in sentence]
-        n = len(indices)
-        for i, center in enumerate(indices):
+    for ids in sequences:
+        n = len(ids)
+        for i, center in enumerate(ids):
             window = random.randint(1, window_size)
             start = max(0, i - window)
             end = min(n, i + window + 1)
             for j in range(start, end):
                 if j != i:
-                    pairs.append((center, indices[j]))
+                    pairs.append((center, ids[j]))
     return np.array(pairs, dtype=np.int64) if pairs else np.zeros((0, 2), dtype=np.int64)
 
 
@@ -119,8 +131,10 @@ def train_own_embedder():
     pipeline. Stesso ruolo/output di train_fast_text.train_embedder():
 
     Salva:
-    - .cognitor/wordvectors.vec: matrice statica parola -> vettore
-    - .cognitor/vocab.json: vocabolario puro per il tokenizer
+    - .cognitor/sentencepiece.model: modello di tokenizzazione a sotto-parola
+    - .cognitor/wordvectors.vec: matrice statica pezzo -> vettore
+    - .cognitor/vocab.json: vocabolario puro (i pezzi SentencePiece, in ordine
+      di id) per il tokenizer
     """
     VEC_PATH = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
     VOCAB_PATH = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
@@ -137,14 +151,16 @@ def train_own_embedder():
             f"  - {os.path.join(BASE_DIR, 'knowledge', 'embeddings.txt')}"
         )
 
-    print(f"Training embedder (skip-gram, no FastText) con corpus: {corpus_path}")
+    print(f"Training embedder (skip-gram su sotto-parole SentencePiece, no FastText) con corpus: {corpus_path}")
 
-    sentences = _tokenize_corpus(corpus_path)
-    words, word_to_idx, freqs = _build_vocab(sentences)
-    vocab_size = len(words)
-    print(f"Vocabolario: {vocab_size} parole, {len(sentences)} frasi")
+    sp = _train_sentencepiece(corpus_path)
+    vocab_size = sp.vocab_size()
+    words = [sp.id_to_piece(i) for i in range(vocab_size)]
 
-    pairs = _build_skipgram_pairs(sentences, word_to_idx, _WINDOW_SIZE)
+    sequences = _encode_corpus(sp, corpus_path)
+    print(f"Vocabolario: {vocab_size} pezzi, {len(sequences)} frasi")
+
+    pairs = _build_skipgram_pairs(sequences, _WINDOW_SIZE)
     print(f"Coppie skip-gram generate: {len(pairs)}")
 
     device = torch.device("cpu")
@@ -152,7 +168,12 @@ def train_own_embedder():
     optimizer = torch.optim.Adam(model.parameters(), lr=_LR)
 
     # Distribuzione di rumore per il negative sampling: frequenza^0.75, trucco
-    # standard di word2vec per non sovra-pescare le poche parole più comuni.
+    # standard di word2vec per non sovra-pescare i pochi pezzi più comuni.
+    freqs = np.zeros(vocab_size, dtype=np.float64)
+    for ids in sequences:
+        for token_id in ids:
+            freqs[token_id] += 1
+    freqs = np.maximum(freqs, 1.0)  # evita peso zero per pezzi mai centro/contesto
     noise_dist = torch.tensor(freqs, dtype=torch.float64) ** 0.75
     noise_dist = noise_dist / noise_dist.sum()
 
@@ -180,8 +201,8 @@ def train_own_embedder():
         avg_loss = total_loss / max(n_batches, 1)
         print(f"Epoch {epoch + 1}/{_EPOCHS}: loss={avg_loss:.4f}")
 
-    # Le vettore finali sono la matrice "centro" (in_embed), come da
-    # convenzione word2vec (quella usata più comunemente come embedding finale).
+    # I vettori finali sono la matrice "centro" (in_embed), come da convenzione
+    # word2vec (quella usata più comunemente come embedding finale).
     embedding_matrix = model.in_embed.weight.detach().cpu().numpy()
 
     with open(VEC_PATH, 'w') as f:
@@ -196,4 +217,4 @@ def train_own_embedder():
         json.dump(words, f)
 
     print(f"✓ Vocabolario salvato: {VOCAB_PATH}")
-    print(f"\nTraining embedder (no FastText) completato. {vocab_size} parole, {_EMBED_DIM} dimensioni.")
+    print(f"\nTraining embedder (no FastText) completato. {vocab_size} pezzi, {_EMBED_DIM} dimensioni.")

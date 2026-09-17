@@ -8,6 +8,7 @@ from typing import Dict
 import torch
 import yaml
 
+from config import USE_FASTTEXT
 from intellective.intent_classifier import IntentClassifier
 from intellective.doping_preprocessor import DopingPreprocessor
 
@@ -66,8 +67,13 @@ class ModelLoader:
         # Sia con FastText che con il nostro skip-gram (train_own_embedder) la
         # pipeline scrive wordvectors.vec allo step 2 - vedi
         # intellective/train_intent_classifier.py per lo stesso caricamento
-        # in fase di training.
+        # in fase di training. Con USE_FASTTEXT=False il tokenizer usato in
+        # training è a sotto-parola (SentencePiece), deve corrispondere anche
+        # qui.
         wordvectors_path = os.path.join(self.base_dir, '.cognitor', 'wordvectors.vec')
+        sentencepiece_model_path = None if USE_FASTTEXT else os.path.join(
+            self.base_dir, '.cognitor', 'sentencepiece.model'
+        )
 
         model = IntentClassifier(
             vocab_size=vocab_size,
@@ -77,7 +83,8 @@ class ModelLoader:
             dropout_prob=0.3,
             wordvectors_path=wordvectors_path,
             vocab_path=vocab_path,
-            freeze_embeddings=True
+            freeze_embeddings=True,
+            sentencepiece_model_path=sentencepiece_model_path,
         )
 
         model_loaded = False

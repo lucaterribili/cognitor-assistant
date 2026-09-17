@@ -7,10 +7,11 @@ import yaml
 from pathlib import Path
 from classes.intent_normalizer import IntentNormalizer
 from classes.simple_tokenizer import SimpleTokenizer
+from classes.sentencepiece_tokenizer import SentencePieceTokenizer
 from classes.ner_markup_parser import NERMarkupParser
 from classes.ner_tag_builder import NERTagBuilder
 from intellective.doping_preprocessor import DopingPreprocessor
-from config import BASE_DIR, DOPING_ACTIVE
+from config import BASE_DIR, DOPING_ACTIVE, USE_FASTTEXT
 
 
 class DatasetGenerator:
@@ -24,8 +25,16 @@ class DatasetGenerator:
         self.data_path = os.path.join(BASE_DIR, '.cognitor')
         os.makedirs(self.data_path, exist_ok=True)
         self.normalizer = IntentNormalizer()
-        vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
-        self.tokenizer = SimpleTokenizer(vocab_path)
+        # Con USE_FASTTEXT=False la pipeline addestra un tokenizer a
+        # sotto-parola (train_own_embedder.train_own_embedder) invece del
+        # vocabolario a parola intera di FastText - vedi
+        # classes/sentencepiece_tokenizer.py.
+        if USE_FASTTEXT:
+            vocab_path = os.path.join(BASE_DIR, '.cognitor', 'vocab.json')
+            self.tokenizer = SimpleTokenizer(vocab_path)
+        else:
+            sp_model_path = os.path.join(BASE_DIR, '.cognitor', 'sentencepiece.model')
+            self.tokenizer = SentencePieceTokenizer(sp_model_path)
         self.ner_parser = NERMarkupParser()
         self.ner_tag_builder = NERTagBuilder()
         self.doping_preprocessor = DopingPreprocessor()
@@ -232,8 +241,7 @@ class DatasetGenerator:
                 group_id = row.get('GROUP_ID', '')
 
                 # Tokenizza
-                tokens = self.tokenizer(input_text)
-                token_ids = [self.tokenizer.get_word_index(token) for token in tokens]
+                tokens, token_ids = self.tokenizer.tokenize_with_ids(input_text)
 
                 # Genera tag NER BIO
                 ner_tag_ids = self.ner_tag_builder.align_tokens_to_bio(clean_text, tokens, entities)

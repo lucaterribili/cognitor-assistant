@@ -9,7 +9,7 @@ from torch.nn.utils.rnn import pad_sequence
 from sklearn.model_selection import GroupShuffleSplit
 from tqdm import tqdm
 
-from config import BASE_DIR
+from config import BASE_DIR, USE_FASTTEXT
 from intellective.intent_classifier import IntentClassifier
 
 
@@ -218,8 +218,12 @@ def train_main_model():
     # Sia con FastText che con il nostro skip-gram (train_own_embedder), lo
     # step 2 della pipeline ha già scritto wordvectors.vec: l'embedding è
     # pre-addestrato e resta congelato durante il training del classifier,
-    # indipendentemente da config.USE_FASTTEXT.
+    # indipendentemente da config.USE_FASTTEXT. Con USE_FASTTEXT=False il
+    # tokenizer è invece a sotto-parola (SentencePiece) - vedi
+    # classes/dataset_generator.py, che ha già tokenizzato tokenized_data.npy
+    # con lo stesso modello.
     wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
+    sentencepiece_model_path = None if USE_FASTTEXT else os.path.join(BASE_DIR, '.cognitor', 'sentencepiece.model')
 
     model = IntentClassifier(
         vocab_size=vocab_size,
@@ -229,7 +233,8 @@ def train_main_model():
         dropout_prob=0.3,
         wordvectors_path=wordvectors_path,
         vocab_path=vocab_path,
-        freeze_embeddings=True
+        freeze_embeddings=True,
+        sentencepiece_model_path=sentencepiece_model_path,
     )
     model.to(device)
 

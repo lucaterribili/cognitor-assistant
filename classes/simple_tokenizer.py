@@ -35,3 +35,12 @@ class SimpleTokenizer:
     def get_word_index(self, word):
         """Ritorna l'indice della parola nel vocabolario, 0 se non trovata."""
         return self.word_to_idx.get(word, 0)
+
+    def tokenize_with_ids(self, text):
+        """
+        Token e relativi id nello stesso ordine - stessa interfaccia di
+        SentencePieceTokenizer.tokenize_with_ids, così chi tokenizza non deve
+        sapere quale dei due tokenizer è attivo (vedi config.USE_FASTTEXT).
+        """
+        tokens = self.tokenize(text)
+        return tokens, [self.get_word_index(token) for token in tokens]
