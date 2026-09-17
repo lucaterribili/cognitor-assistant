@@ -5,7 +5,8 @@ import sys
 import numpy as np
 import torch
 
-from intellective.train_fast_text import train_embedder
+from config import USE_FASTTEXT
+from intellective.train_fast_text import train_embedder, build_vocab_only
 from intellective.train_intent_classifier import train_main_model
 from intellective.train_dialogue_policy import train_dialogue_policy
 
@@ -26,9 +27,12 @@ def run_full_pipeline(
     """
     Esegue la pipeline completa di training:
     0. Valida il dataset (intenti ed entità NER)
-    1. Genera corpus FastText (raw text, senza tokenizer)
-    2. Allena FastText (OBBLIGATORIO - il tokenizer ne ha bisogno)
-    3. Genera dataset NLU tokenizzato (usando FastText appena addestrato)
+    1. Genera corpus del dataset (raw text, senza tokenizer)
+    2. Costruisce il vocabolario (config.USE_FASTTEXT decide come):
+       - True (default): allena FastText sul corpus e ne usa il vocabolario
+       - False: vocabolario diretto dal corpus, l'embedding verrà addestrato
+         end-to-end con l'Intent Classifier allo step 4 invece che qui
+    3. Genera dataset NLU tokenizzato (usando il vocabolario appena costruito)
     4. Allena Intent Classifier (opzionale)
     5. Allena Dialogue Policy ML (opzionale)
     """
@@ -108,11 +112,15 @@ def run_full_pipeline(
     )
     print(f"  ✓ Conversations mergiati: {conversations_summary['conversations_total']} da {conversations_summary['files_ok']} file(s)")
 
-    # STEP 2: Allena FastText (OBBLIGATORIO)
-    print("\n[2/5] Training FastText (obbligatorio)...")
-    train_embedder()
+    # STEP 2: Costruisce il vocabolario - con FastText (default) o senza
+    if USE_FASTTEXT:
+        print("\n[2/5] Training FastText...")
+        train_embedder()
+    else:
+        print("\n[2/5] Costruzione vocabolario senza FastText (embedding addestrato allo step 4)...")
+        build_vocab_only()
 
-    # STEP 3: Genera dataset NLU tokenizzato (usa FastText appena addestrato)
+    # STEP 3: Genera dataset NLU tokenizzato (usa il vocabolario appena costruito)
     print("\n[3/5] Generazione dataset NLU tokenizzato...")
     build_intents()
 

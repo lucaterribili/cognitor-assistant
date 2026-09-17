@@ -63,7 +63,7 @@ class IntentClassifier(nn.Module):
             hidden_dim,
             output_dim,
             dropout_prob,
-            wordvectors_path,
+            wordvectors_path=None,
             vocab_path=None,
             num_ner_tags=None,
             freeze_embeddings=False,
@@ -73,19 +73,23 @@ class IntentClassifier(nn.Module):
         # Tokenizer usa solo il vocabolario
         self.tokenizer = SimpleTokenizer(vocab_path)
 
-        # Carica word vectors dal file .vec (niente più FastText!)
-        embedding_matrix = load_word_vectors(wordvectors_path, vocab_size)
-
         # Inizializza NER tag builder
         self.ner_tag_builder = NERTagBuilder()
         if num_ner_tags is None:
             num_ner_tags = self.ner_tag_builder.num_tags
 
-
-        self.embedding = nn.Embedding.from_pretrained(
-            embedding_matrix,
-            freeze=freeze_embeddings,
-        )
+        if wordvectors_path:
+            # Carica word vectors dal file .vec (niente più FastText!)
+            embedding_matrix = load_word_vectors(wordvectors_path, vocab_size)
+            self.embedding = nn.Embedding.from_pretrained(
+                embedding_matrix,
+                freeze=freeze_embeddings,
+            )
+        else:
+            # config.USE_FASTTEXT=False: nessun embedding pre-addestrato, pesi
+            # casuali (init di default di nn.Embedding) addestrati end-to-end
+            # con il resto del classifier sul dataset degli intent.
+            self.embedding = nn.Embedding(vocab_size, embed_dim)
 
         # BiGRU condiviso per intent e NER
         self.bigru = nn.GRU(

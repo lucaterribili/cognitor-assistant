@@ -9,7 +9,7 @@ from torch.nn.utils.rnn import pad_sequence
 from sklearn.model_selection import GroupShuffleSplit
 from tqdm import tqdm
 
-from config import BASE_DIR
+from config import BASE_DIR, USE_FASTTEXT
 from intellective.intent_classifier import IntentClassifier
 
 
@@ -215,7 +215,10 @@ def train_main_model():
         vocab = json.load(f)
     vocab_size = len(vocab)
 
-    wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
+    # Con USE_FASTTEXT=False niente vettori pre-addestrati da caricare: embedding
+    # a pesi casuali, addestrato end-to-end (freeze_embeddings=False) insieme al
+    # resto del classifier - vedi IntentClassifier.__init__.
+    wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec') if USE_FASTTEXT else None
 
     model = IntentClassifier(
         vocab_size=vocab_size,
@@ -225,7 +228,7 @@ def train_main_model():
         dropout_prob=0.3,
         wordvectors_path=wordvectors_path,
         vocab_path=vocab_path,
-        freeze_embeddings=True
+        freeze_embeddings=USE_FASTTEXT
     )
     model.to(device)
 

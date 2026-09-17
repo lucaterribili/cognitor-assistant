@@ -8,6 +8,14 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DOPING_ACTIVE = False
 
+# Se True (default): l'embedding dell'Intent Classifier è pre-addestrato con
+# FastText (skipgram non supervisionato) sul corpus del dataset e poi
+# congelato (freeze_embeddings=True) durante il training del classifier.
+# Se False: niente FastText - l'embedding parte da pesi casuali e viene
+# addestrato end-to-end insieme al resto del classifier, quindi si adatta
+# solo agli esempi (e alle co-occorrenze) presenti nel dataset degli intent.
+USE_FASTTEXT = os.getenv("COGNITOR_USE_FASTTEXT", "true").strip().lower() in ("1", "true", "yes", "on")
+
 # Intent confidence threshold
 MIN_INTENT_CONFIDENCE = 0.20  # Soglia minima per accettare un intent (altrimenti fallback)
 
