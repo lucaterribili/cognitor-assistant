@@ -14,12 +14,8 @@ rules:
     slots:
       LOCATION:
         required: true
-        type: string
-        entity: LOCATION
       DEPARTURE:
         required: true
-        type: string
-        entity: DEPARTURE
     wait:
       LOCATION: book_flight_ask_destination_response
       DEPARTURE: book_flight_ask_departure_response

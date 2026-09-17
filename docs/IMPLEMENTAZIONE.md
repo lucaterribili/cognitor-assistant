@@ -62,6 +62,16 @@ python -m pipeline
 ## Aggiungere Slot agli Intent
 
 Gli slot permettono di raccogliere informazioni strutturate dall'utente.
+La chiave dello slot (es. `CITTA`, `query`) è anche il nome con cui il
+valore viene salvato nel contesto e passato alle operation/response.
+
+Campi minimi (aggiungi solo quello che serve, il resto ha un default):
+- `required`: true/false
+- `entity`: **solo se** il tag NER da cercare ha un nome diverso dalla
+  chiave dello slot (vedi esempio `CITTA` → `LOCATION` sotto). Se omesso,
+  usa la chiave stessa come nome dell'entità.
+- `type`: **solo se** diverso da `string` (il default): `integer`, `float`,
+  `boolean`, `list`.
 
 ### Slot Required
 
@@ -75,7 +85,6 @@ rules:
         type: integer
       DATA:
         required: true
-        type: string
     default: prenota_ristorante_default_response
     wait: prenota_ristorante_wait_response
     fallback: prenota_ristorante_fallback_response
@@ -89,8 +98,7 @@ rules:
     slots:
       CITTA:
         required: true
-        type: string
-        entity: LOCATION
+        entity: LOCATION  # il tag NER si chiama LOCATION, non CITTA
     cases:
       Roma: meteo_roma_response
       Milano: meteo_milano_response
@@ -107,11 +115,9 @@ rules:
     slots:
       DESTINATARIO:
         required: true
-        type: string
-        entity: PERSON
+        entity: PERSON  # tag NER PERSON, chiave slot DESTINATARIO
       MESSAGGIO:
         required: false
-        type: string
     default: invia_messaggio_response
 ```
 

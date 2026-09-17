@@ -1,5 +1,13 @@
 # Rules per gli intent del chatbot Arianna
 # Formato DSL dichiarativo - Runtime interpreterà queste regole
+#
+# Slot: la chiave (es. LOCATION, query) è anche il nome con cui il valore
+# viene salvato nel contesto/passato alle operation. Campi minimi:
+# - required: true/false
+# - entity: SOLO se il tag NER da cercare ha un nome diverso dalla chiave
+#   (es. slot "query" -> entity KEYWORD/QUERY/DISH, condiviso da più intent
+#   che puntano alla stessa operation ma con NER diversi)
+# - type: SOLO se diverso da "string" (default): integer, float, boolean, list
 
 rules:
   # ========================================
@@ -28,8 +36,6 @@ rules:
     slots:
       CHATBOT_PROPOSAL:
         required: false
-        type: string
-        entity: CHATBOT_PROPOSAL
     cases:
       talk_given: mood_support_redirect_response
     default: mood_unhappy_response
@@ -46,8 +52,6 @@ rules:
     slots:
       CHATBOT_PROPOSAL:
         required: false
-        type: string
-        entity: CHATBOT_PROPOSAL
     cases:
       joke: joke_response
       talk: mood_support_talk_response
@@ -82,12 +86,8 @@ rules:
     slots:
       LOCATION:
         required: true
-        type: string
-        entity: LOCATION
       CATEGORY:
         required: true
-        type: string
-        entity: CATEGORY
 
     cases:
       Roma|musei: ask_city_touristic_information_roma_musei_response
@@ -111,7 +111,6 @@ rules:
     slots:
       query:
         required: true
-        type: string
         entity: LOCATION
     default: __web_search
     wait: ask_touristic_place_information_wait_response
@@ -124,8 +123,6 @@ rules:
     slots:
       PRODUCT:
         required: true
-        type: string
-        entity: PRODUCT
 
     cases:
       WhatsApp: open_app_whatsapp_response
@@ -144,28 +141,9 @@ rules:
     slots:
       PERSON:
         required: true
-        type: string
-        entity: PERSON
 
     default: introduce_user_response
     wait: introduce_user_wait_response
-
-  # ========================================
-  # Esempio: Bot imposta slot via set_slots (confirm)
-  # ========================================
-
-  confirm_roma:
-    default: confirmed_roma_response
-    set_slots:
-      LOCATION: "Roma"
-      CONFIRMATION: true
-
-  # ========================================
-  # Esempio: Bot imposta slot via risposta inline
-  # ========================================
-
-  inline_slot_example:
-    default: inline_slot_example_response
 
   # ========================================
   # Operations (prefisso __)
@@ -181,7 +159,6 @@ rules:
     slots:
       query:
         required: true
-        type: string
         entity: QUERY
 
     default: __web_search
@@ -195,12 +172,8 @@ rules:
     slots:
       TRANSLATION_TEXT:
         required: true
-        type: string
-        entity: TRANSLATION_TEXT
       LANGUAGE:
         required: false
-        type: string
-        entity: LANGUAGE
 
     default: __cognitor_translate
     wait: translate_wait_response
@@ -225,8 +198,6 @@ rules:
     slots:
       TEAM:
         required: false
-        type: string
-        entity: TEAM
     default: team_cheer_response
 
   set_reminder:

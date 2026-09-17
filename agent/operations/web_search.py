@@ -34,7 +34,7 @@ def action_web_search(intent_name: str, slots: dict = None, cancel_event: thread
         dict con la risposta
     """
     slots = slots or {}
-    query = slots.get("query") or slots.get("QUERY") or slots.get("search_query")
+    query = slots.get("query")
 
     # Questo caso non dovrebbe più verificarsi grazie alla modalità inputable,
     # ma viene mantenuto come fallback di sicurezza.

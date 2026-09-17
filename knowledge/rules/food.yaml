@@ -5,7 +5,6 @@ rules:
     slots:
       query:
         required: true
-        type: string
         entity: DISH
     default: __web_search
     wait: ask_recipe_wait_response

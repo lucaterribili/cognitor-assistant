@@ -5,7 +5,6 @@ rules:
     slots:
       query:
         required: true
-        type: string
         entity: KEYWORD
     default: __web_search
     wait: ask_culture_wait_response
@@ -14,7 +13,6 @@ rules:
     slots:
       query:
         required: true
-        type: string
         entity: KEYWORD
     default: __web_search
     wait: ask_definition_wait_response
@@ -23,7 +21,6 @@ rules:
     slots:
       query:
         required: true
-        type: string
         entity: KEYWORD
     default: __web_search
     wait: ask_person_date_wait_response
