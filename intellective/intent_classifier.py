@@ -85,11 +85,19 @@ class IntentClassifier(nn.Module):
                 embedding_matrix,
                 freeze=freeze_embeddings,
             )
+            self.embed_dropout = nn.Identity()
         else:
             # config.USE_FASTTEXT=False: nessun embedding pre-addestrato, pesi
             # casuali (init di default di nn.Embedding) addestrati end-to-end
-            # con il resto del classifier sul dataset degli intent.
+            # con il resto del classifier sul dataset degli intent. Senza un
+            # prior semantico questi pesi sono l'unica parte del modello
+            # abbastanza grande (vocab_size * embed_dim) da poter "imparare a
+            # memoria" gli esempi di training in poche epoche (train loss
+            # crolla molto più in fretta di quanto migliori la val loss) -
+            # dropout applicato subito dopo l'embedding forza il resto della
+            # rete a non affidarsi al singolo vettore esatto di ogni parola.
             self.embedding = nn.Embedding(vocab_size, embed_dim)
+            self.embed_dropout = nn.Dropout(dropout_prob)
 
         # BiGRU condiviso per intent e NER
         self.bigru = nn.GRU(
@@ -131,7 +139,7 @@ class IntentClassifier(nn.Module):
         batch_size, seq_len = x.shape
 
         # Embedding
-        x_embedded = self.embedding(x)
+        x_embedded = self.embed_dropout(self.embedding(x))
 
         # GRU per tutte le sequenze (anche quelle di 1 token)
         gru_out, _ = self.bigru(x_embedded)
