@@ -6,7 +6,8 @@ import numpy as np
 import torch
 
 from config import USE_FASTTEXT
-from intellective.train_fast_text import train_embedder, build_vocab_only
+from intellective.train_fast_text import train_embedder
+from intellective.train_own_embedder import train_own_embedder
 from intellective.train_intent_classifier import train_main_model
 from intellective.train_dialogue_policy import train_dialogue_policy
 
@@ -28,11 +29,13 @@ def run_full_pipeline(
     Esegue la pipeline completa di training:
     0. Valida il dataset (intenti ed entità NER)
     1. Genera corpus del dataset (raw text, senza tokenizer)
-    2. Costruisce il vocabolario (config.USE_FASTTEXT decide come):
-       - True (default): allena FastText sul corpus e ne usa il vocabolario
-       - False: vocabolario diretto dal corpus, l'embedding verrà addestrato
-         end-to-end con l'Intent Classifier allo step 4 invece che qui
-    3. Genera dataset NLU tokenizzato (usando il vocabolario appena costruito)
+    2. Allena l'embedding sul corpus (config.USE_FASTTEXT decide con quale
+       algoritmo, stesso output in entrambi i casi: vocab.json + wordvectors.vec):
+       - True (default): FastText (skipgram, generalizza a parole mai viste
+         via n-grammi di carattere)
+       - False: skip-gram + negative sampling nostro, senza FastText (nessuna
+         generalizzazione a parole mai viste, vedi train_own_embedder.py)
+    3. Genera dataset NLU tokenizzato (usando l'embedding appena addestrato)
     4. Allena Intent Classifier (opzionale)
     5. Allena Dialogue Policy ML (opzionale)
     """
@@ -112,13 +115,13 @@ def run_full_pipeline(
     )
     print(f"  ✓ Conversations mergiati: {conversations_summary['conversations_total']} da {conversations_summary['files_ok']} file(s)")
 
-    # STEP 2: Costruisce il vocabolario - con FastText (default) o senza
+    # STEP 2: Allena l'embedding - con FastText (default) o con il nostro skip-gram
     if USE_FASTTEXT:
         print("\n[2/5] Training FastText...")
         train_embedder()
     else:
-        print("\n[2/5] Costruzione vocabolario senza FastText (embedding addestrato allo step 4)...")
-        build_vocab_only()
+        print("\n[2/5] Training embedder (skip-gram, no FastText)...")
+        train_own_embedder()
 
     # STEP 3: Genera dataset NLU tokenizzato (usa il vocabolario appena costruito)
     print("\n[3/5] Generazione dataset NLU tokenizzato...")

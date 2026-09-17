@@ -9,7 +9,7 @@ from torch.nn.utils.rnn import pad_sequence
 from sklearn.model_selection import GroupShuffleSplit
 from tqdm import tqdm
 
-from config import BASE_DIR, USE_FASTTEXT
+from config import BASE_DIR
 from intellective.intent_classifier import IntentClassifier
 
 
@@ -215,10 +215,11 @@ def train_main_model():
         vocab = json.load(f)
     vocab_size = len(vocab)
 
-    # Con USE_FASTTEXT=False niente vettori pre-addestrati da caricare: embedding
-    # a pesi casuali, addestrato end-to-end (freeze_embeddings=False) insieme al
-    # resto del classifier - vedi IntentClassifier.__init__.
-    wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec') if USE_FASTTEXT else None
+    # Sia con FastText che con il nostro skip-gram (train_own_embedder), lo
+    # step 2 della pipeline ha già scritto wordvectors.vec: l'embedding è
+    # pre-addestrato e resta congelato durante il training del classifier,
+    # indipendentemente da config.USE_FASTTEXT.
+    wordvectors_path = os.path.join(BASE_DIR, '.cognitor', 'wordvectors.vec')
 
     model = IntentClassifier(
         vocab_size=vocab_size,
@@ -228,7 +229,7 @@ def train_main_model():
         dropout_prob=0.3,
         wordvectors_path=wordvectors_path,
         vocab_path=vocab_path,
-        freeze_embeddings=USE_FASTTEXT
+        freeze_embeddings=True
     )
     model.to(device)
 
