@@ -361,6 +361,8 @@ Il repository è diviso per **branch di dominio** (`tten`, `programmato`, `porus
 - Il codice e `knowledge/` si modificano solo su `main`, poi `git merge main` nei branch di dominio; i branch toccano solo `training_data/` (più eventuale config di deploy).
 - Vincolo di coerenza: nulla in `knowledge/` può riferirsi a operations, modelli o entità presenti in un solo dominio.
 
+**Repository e visibilità.** I branch di dominio contengono dati riservati e vivono solo nel repository privato (remote `private`); il repository pubblico (`origin`) contiene solo `main`. Flusso: si modifica `main` e si pusha su entrambi (`git push origin main && git push private main`), poi `git merge main` nei branch di dominio, che si pushano solo su `private`.
+
 ### Formato Intents (`knowledge/intents/*.yaml`)
 
 ```yaml

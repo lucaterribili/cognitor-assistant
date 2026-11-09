@@ -337,6 +337,8 @@ Regole:
 - I branch di dominio aggiungono file **solo in `training_data/`** (e in `.github/` / config di deploy). `training_data/` viene mergiato con `knowledge/` da pipeline e `ModelLoader`; le operations di dominio sono scoperte da `training_data/operations/`.
 - Un file in `knowledge/` non deve dipendere da qualcosa che esiste solo in un dominio (es. un'operation o un modello): se serve a un solo dominio, va in `training_data/` del suo branch.
 
+**Repository e visibilità.** I branch di dominio contengono dati riservati e vivono solo nel repository privato (remote `private`); il repository pubblico (`origin`) contiene solo `main`. Flusso: si modifica `main` e si pusha su entrambi (`git push origin main && git push private main`), poi `git merge main` nei branch di dominio, che si pushano solo su `private`.
+
 ## Documentazione
 
 La documentazione dettagliata è disponibile nella cartella `docs/`:
