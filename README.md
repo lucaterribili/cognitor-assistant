@@ -310,34 +310,15 @@ pytest tests/test_dialogue_policy.py -v
 ## Struttura Knowledge Base
 
 ```
-knowledge/            # COMUNE a tutti i branch (chiacchiere di base, API esterne generiche)
+knowledge/            # Knowledge generica (chiacchiere di base, API esterne)
 ├── intents/          # Esempi NLU (YAML)
 ├── rules/            # Mappatura intent→risposte (YAML)
 ├── responses/        # Template risposte (YAML)
 └── conversations/    # Storie dialogo (YAML)
-training_data/        # SPECIFICO del dominio (stessa struttura + operations/)
+training_data/        # Dati aggiuntivi (stessa struttura + operations/)
 ├── intents/ rules/ responses/ conversations/
-└── operations/       # Operations del dominio (auto-discovery)
+└── operations/       # Operations aggiuntive (auto-discovery)
 ```
-
-## Branch e domini
-
-Il progetto è organizzato per **branch di dominio**, ognuno con i propri dati:
-
-| Branch      | Dominio                                              |
-|-------------|------------------------------------------------------|
-| `main`      | Framework + `knowledge/` comune; `training_data/` vuoto (solo `test.yaml`) |
-| `tten`      | Assistente aziendale TTen (azienda, prodotti, lead, programmazione base) |
-| `programmato` | Backoffice Laravel "Programmato" (contenuti, post, tutorial) |
-| `porusski`  | Tutor di russo (grammatica, vocabolario, traduzione) |
-
-Regole:
-
-- Il codice (`agent/`, `classes/`, `intellective/`, `pipeline/`, `config.py`, `docs/`) e `knowledge/` si modificano **solo su `main`** e si propagano ai branch con `git merge main`.
-- I branch di dominio aggiungono file **solo in `training_data/`** (e in `.github/` / config di deploy). `training_data/` viene mergiato con `knowledge/` da pipeline e `ModelLoader`; le operations di dominio sono scoperte da `training_data/operations/`.
-- Un file in `knowledge/` non deve dipendere da qualcosa che esiste solo in un dominio (es. un'operation o un modello): se serve a un solo dominio, va in `training_data/` del suo branch.
-
-**Repository e visibilità.** I branch di dominio contengono dati riservati e vivono solo nel repository privato (remote `private`); il repository pubblico (`origin`) contiene solo `main`. Flusso: si modifica `main` e si pusha su entrambi (`git push origin main && git push private main`), poi `git merge main` nei branch di dominio, che si pushano solo su `private`.
 
 ## Documentazione
 
