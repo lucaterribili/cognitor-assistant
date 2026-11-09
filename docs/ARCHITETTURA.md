@@ -189,15 +189,15 @@ Gestisce gli slot in modo data-driven basato sulle rules.
 
 ### 1. Embedding (FastText o skip-gram interno)
 
-**Scopo**: Generare rappresentazioni vettoriali per l'Intent Classifier. Lo switch è `USE_FASTTEXT` in `config.py` (env `COGNITOR_USE_FASTTEXT`, default `true`); entrambi i percorsi producono lo stesso output (`vocab.json` + `wordvectors.vec`), quindi il classifier non sa quale è stato usato.
+**Scopo**: Generare rappresentazioni vettoriali per l'Intent Classifier. Lo switch è `USE_FASTTEXT` in `config.py` (env `COGNITOR_USE_FASTTEXT`, default `false`); entrambi i percorsi producono lo stesso output (`vocab.json` + `wordvectors.vec`), quindi il classifier non sa quale è stato usato.
 
-| | `USE_FASTTEXT=true` (default) | `USE_FASTTEXT=false` |
+| | `USE_FASTTEXT=false` (default) | `USE_FASTTEXT=true` |
 |---|---|---|
-| Trainer | `intellective/train_fast_text.py` | `intellective/train_own_embedder.py` |
-| Algoritmo | FastText skip-gram | skip-gram + negative sampling scritto a mano (Adam) |
-| Vocabolario | parole + n-grammi | SentencePiece/BPE (`classes/sentencepiece_tokenizer.py`) |
-| Parole mai viste | generalizza via n-grammi | si scompongono in sotto-parole note |
-| Embedding nel classifier | pre-addestrato e congelato | pre-addestrato (con dropout sull'output) |
+| Trainer | `intellective/train_own_embedder.py` | `intellective/train_fast_text.py` |
+| Algoritmo | skip-gram + negative sampling scritto a mano (Adam) | FastText skip-gram |
+| Vocabolario | SentencePiece/BPE (`classes/sentencepiece_tokenizer.py`) | parole + n-grammi |
+| Parole mai viste | si scompongono in sotto-parole note | generalizza via n-grammi |
+| Embedding nel classifier | pre-addestrato (con dropout sull'output) | pre-addestrato e congelato |
 
 Nota: una versione con `gensim.Word2Vec` è stata provata e scartata (val loss del classifier peggiore: 1.99 contro 1.81 sul corpus piccolo del dataset).
 
@@ -281,8 +281,8 @@ python -m pipeline
 python -m pipeline.intent_builder
 
 # 2. Allena l'embedding (a seconda di USE_FASTTEXT)
-python -m intellective.train_fast_text      # FastText
-python -m intellective.train_own_embedder   # skip-gram interno + SentencePiece
+python -m intellective.train_own_embedder   # default: skip-gram interno + SentencePiece
+python -m intellective.train_fast_text      # USE_FASTTEXT=true
 
 # 3. Allena Intent Classifier
 python -m intellective.train_intent_classifier
@@ -308,8 +308,8 @@ python -m intellective.train_dialogue_policy
 - Output in `.cognitor/`
 
 **Step 2: Training Embedding**
+- `USE_FASTTEXT=false` (default): skip-gram + negative sampling su vocabolario SentencePiece
 - `USE_FASTTEXT=true`: FastText unsupervised sul corpus
-- `USE_FASTTEXT=false`: skip-gram + negative sampling su vocabolario SentencePiece
 - In entrambi i casi estrae `wordvectors.vec` e `vocab.json`
 
 **Step 3: Generazione Dataset NLU**
@@ -530,8 +530,8 @@ MIN_INTENT_CONFIDENCE = 0.20  # Soglia minima per accettare intent
 ## Dipendenze Principali
 
 - **torch**: PyTorch per modelli neurali
-- **fasttext-wheel**: Word embeddings (solo con `USE_FASTTEXT=true`)
-- **sentencepiece**: Vocabolario di sotto-parole (percorso senza FastText)
+- **sentencepiece**: Vocabolario di sotto-parole (percorso di default)
+- **fasttext-wheel**: Word embeddings (opzionale, solo con `USE_FASTTEXT=true`)
 - **spacy**: NLP (opzionale)
 - **fastapi**: API REST
 - **uvicorn**: Server ASGI

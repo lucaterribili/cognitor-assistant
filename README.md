@@ -17,8 +17,8 @@ Cognitor è un assistente virtuale che utilizza tecniche di Natural Language Pro
 Il sistema si basa su tecnologie open source:
 
 - **PyTorch**: Framework per il deep learning
-- **FastText** (default, `USE_FASTTEXT=true`): word embeddings con n-grammi di carattere
-- **SentencePiece**: vocabolario di sotto-parole per l'embedding interno (`USE_FASTTEXT=false`, nessuna dipendenza da FastText)
+- **SentencePiece** (default, `USE_FASTTEXT=false`): vocabolario di sotto-parole per l'embedding interno (skip-gram + negative sampling), senza dipendenza da FastText
+- **FastText** (opzionale, `COGNITOR_USE_FASTTEXT=true`): word embeddings con n-grammi di carattere
 - **PyTorch-CRF**: Conditional Random Field per sequence labeling
 - **FastAPI**: API REST per l'interfaccia
 - **YAML**: Formato per la configurazione dichiarativa
@@ -79,7 +79,7 @@ pip install -r requirements.txt
 
 Il file `requirements.txt` include:
 - torch
-- fasttext-wheel (necessario solo con `USE_FASTTEXT=true`)
+- fasttext-wheel (opzionale, solo con `COGNITOR_USE_FASTTEXT=true`)
 - sentencepiece
 - fastapi
 - uvicorn
@@ -90,7 +90,7 @@ Il file `requirements.txt` include:
 - python-jose
 - torchcrf
 
-### Download Pre-trained FastText (opzionale)
+### Download Pre-trained FastText (opzionale, solo con `USE_FASTTEXT=true`)
 
 ```bash
 python scripts/download_pretrained_fasttext.py
@@ -104,7 +104,7 @@ Esegui la pipeline completa che include:
 
 1. Validazione del dataset
 2. Generazione corpus per l'embedding
-3. Training embedding (FastText oppure skip-gram interno, vedi `USE_FASTTEXT`)
+3. Training embedding (skip-gram interno di default, FastText se `USE_FASTTEXT`)
 4. Generazione dataset NLU tokenizzato
 5. Training Intent Classifier
 6. Training Dialogue Policy
@@ -120,8 +120,8 @@ python -m pipeline
 python -m pipeline.intent_builder
 
 # 2. Allena l'embedding (uno dei due, a seconda di USE_FASTTEXT)
-python -m intellective.train_fast_text      # USE_FASTTEXT=true (default)
-python -m intellective.train_own_embedder   # USE_FASTTEXT=false
+python -m intellective.train_own_embedder   # USE_FASTTEXT=false (default)
+python -m intellective.train_fast_text      # USE_FASTTEXT=true
 
 # 3. Allena Intent Classifier
 python -m intellective.train_intent_classifier

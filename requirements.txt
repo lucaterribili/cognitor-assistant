@@ -8,6 +8,7 @@ scikit-learn
 nlpaug
 nltk
 pytorch-crf
+# opzionale, solo con COGNITOR_USE_FASTTEXT=true
 fasttext-wheel
 torchcrf
 python-jose[cryptography]
