@@ -132,14 +132,13 @@ python -m intellective.train_dialogue_policy
 
 ### Training Opzioni
 
-Puoi saltare alcuni step:
+`python -m pipeline` esegue sempre tutti gli step. Per saltare il training del classifier o della policy chiama la funzione da Python:
 
-```bash
-# Skip training Intent Classifier
-python -m pipeline --no-classifier
+```python
+from pipeline import run_full_pipeline
 
-# Skip training Dialogue Policy
-python -m pipeline --no-policy
+run_full_pipeline(train_classifier=False)  # salta l'Intent Classifier
+run_full_pipeline(train_policy=False)      # salta la Dialogue Policy
 ```
 
 ## Procedura di Avvio
