@@ -1,6 +1,6 @@
 # Cognitor Assistant
 
-Assistente virtuale conversazionale con classificazione di intenti e riconoscimento di entità, basato su PyTorch, FastText e NER.
+Assistente virtuale conversazionale con classificazione di intenti e riconoscimento di entità, basato su PyTorch, embedding di sotto-parola (FastText o skip-gram interno) e NER.
 
 ## Cos'è Cognitor
 
@@ -17,7 +17,8 @@ Cognitor è un assistente virtuale che utilizza tecniche di Natural Language Pro
 Il sistema si basa su tecnologie open source:
 
 - **PyTorch**: Framework per il deep learning
-- **FastText**: Per word embeddings e tokenizzazione
+- **FastText** (default, `USE_FASTTEXT=true`): word embeddings con n-grammi di carattere
+- **SentencePiece**: vocabolario di sotto-parole per l'embedding interno (`USE_FASTTEXT=false`, nessuna dipendenza da FastText)
 - **PyTorch-CRF**: Conditional Random Field per sequence labeling
 - **FastAPI**: API REST per l'interfaccia
 - **YAML**: Formato per la configurazione dichiarativa
@@ -40,7 +41,8 @@ Cognitor Assistant
 ├── intellective/         # Modelli ML
 │   ├── intent_classifier.py    # BiGRU + Attention
 │   ├── dialogue_policy.py       # GRU per dialogo
-│   ├── train_fast_text.py       # Training FastText
+│   ├── train_fast_text.py       # Training embedding (FastText)
+│   ├── train_own_embedder.py    # Training embedding alternativo (skip-gram + SentencePiece)
 │   ├── train_intent_classifier.py
 │   └── train_dialogue_policy.py
 ├── classes/              # Classi utility
@@ -77,7 +79,8 @@ pip install -r requirements.txt
 
 Il file `requirements.txt` include:
 - torch
-- fasttext
+- fasttext-wheel (necessario solo con `USE_FASTTEXT=true`)
+- sentencepiece
 - fastapi
 - uvicorn
 - pandas
@@ -100,8 +103,8 @@ python scripts/download_pretrained_fasttext.py
 Esegui la pipeline completa che include:
 
 1. Validazione del dataset
-2. Generazione corpus FastText
-3. Training FastText (word embeddings)
+2. Generazione corpus per l'embedding
+3. Training embedding (FastText oppure skip-gram interno, vedi `USE_FASTTEXT`)
 4. Generazione dataset NLU tokenizzato
 5. Training Intent Classifier
 6. Training Dialogue Policy
@@ -113,11 +116,12 @@ python -m pipeline
 ### Training Step-by-Step
 
 ```bash
-# 1. Genera corpus FastText
+# 1. Genera corpus per l'embedding
 python -m pipeline.intent_builder
 
-# 2. Allena FastText (obbligatorio)
-python -m intellective.train_fast_text
+# 2. Allena l'embedding (uno dei due, a seconda di USE_FASTTEXT)
+python -m intellective.train_fast_text      # USE_FASTTEXT=true (default)
+python -m intellective.train_own_embedder   # USE_FASTTEXT=false
 
 # 3. Allena Intent Classifier
 python -m intellective.train_intent_classifier
@@ -306,12 +310,32 @@ pytest tests/test_dialogue_policy.py -v
 ## Struttura Knowledge Base
 
 ```
-knowledge/
+knowledge/            # COMUNE a tutti i branch (chiacchiere di base, API esterne generiche)
 ├── intents/          # Esempi NLU (YAML)
 ├── rules/            # Mappatura intent→risposte (YAML)
 ├── responses/        # Template risposte (YAML)
 └── conversations/    # Storie dialogo (YAML)
+training_data/        # SPECIFICO del dominio (stessa struttura + operations/)
+├── intents/ rules/ responses/ conversations/
+└── operations/       # Operations del dominio (auto-discovery)
 ```
+
+## Branch e domini
+
+Il progetto è organizzato per **branch di dominio**, ognuno con i propri dati:
+
+| Branch      | Dominio                                              |
+|-------------|------------------------------------------------------|
+| `main`      | Framework + `knowledge/` comune; `training_data/` vuoto (solo `test.yaml`) |
+| `tten`      | Assistente aziendale TTen (azienda, prodotti, lead, programmazione base) |
+| `programmato` | Backoffice Laravel "Programmato" (contenuti, post, tutorial) |
+| `porusski`  | Tutor di russo (grammatica, vocabolario, traduzione) |
+
+Regole:
+
+- Il codice (`agent/`, `classes/`, `intellective/`, `pipeline/`, `config.py`, `docs/`) e `knowledge/` si modificano **solo su `main`** e si propagano ai branch con `git merge main`.
+- I branch di dominio aggiungono file **solo in `training_data/`** (e in `.github/` / config di deploy). `training_data/` viene mergiato con `knowledge/` da pipeline e `ModelLoader`; le operations di dominio sono scoperte da `training_data/operations/`.
+- Un file in `knowledge/` non deve dipendere da qualcosa che esiste solo in un dominio (es. un'operation o un modello): se serve a un solo dominio, va in `training_data/` del suo branch.
 
 ## Documentazione
 

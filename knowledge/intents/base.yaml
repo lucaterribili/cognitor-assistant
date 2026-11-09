@@ -1054,28 +1054,6 @@ nlu:
     - scrivi una nota veloce
     - crea un nuovo appunto nel blocco note
 
-  - intent: translate
-    examples:
-    - come si dice in [russo](LANGUAGE) [acqua](TRANSLATION_TEXT)
-    - come si dice in [inglese](LANGUAGE) [buongiorno](TRANSLATION_TEXT)
-    - come si dice in [francese](LANGUAGE) [mia sorella](TRANSLATION_TEXT)
-    - come si dice in [spagnolo](LANGUAGE) [grazie](TRANSLATION_TEXT)
-    - come si dice in [tedesco](LANGUAGE) [non capisco](TRANSLATION_TEXT)
-    - come si dice in [arabo](LANGUAGE) [dove si trova la stazione](TRANSLATION_TEXT)
-    - come si dice in [russo](LANGUAGE) [mamma](TRANSLATION_TEXT)
-    - come si dice in [russo](LANGUAGE) [come stai](TRANSLATION_TEXT)
-    - come si dice in [inglese](LANGUAGE) [non capisco](TRANSLATION_TEXT)
-    - come si dice in [inglese](LANGUAGE) [ho fame](TRANSLATION_TEXT)
-    - traduci [libro](TRANSLATION_TEXT) in [russo](LANGUAGE)
-    - traduci [ti voglio bene](TRANSLATION_TEXT) in [francese](LANGUAGE)
-    - traduci [mia moglie è a casa](TRANSLATION_TEXT) in [inglese](LANGUAGE)
-    - traduci in [russo](LANGUAGE) [ho bisogno di un medico](TRANSLATION_TEXT)
-    - traduci in [cinese](LANGUAGE) [grazie](TRANSLATION_TEXT)
-    - traduzione di [buona notte](TRANSLATION_TEXT) in [russo](LANGUAGE)
-    - traduzione di [mi chiamo](TRANSLATION_TEXT) in [spagnolo](LANGUAGE)
-    - come si traduce [tempo](TRANSLATION_TEXT) in [tedesco](LANGUAGE)
-    - come si traduce [buongiorno](TRANSLATION_TEXT) in [arabo](LANGUAGE)
-    - traduzione in [inglese](LANGUAGE) di [buona sera](TRANSLATION_TEXT)
 
   - intent: count
     examples:

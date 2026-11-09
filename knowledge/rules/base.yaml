@@ -182,20 +182,6 @@ rules:
     wait: web_search_wait_response
 
   # ========================================
-  # Intent con slot: translate
-  # ========================================
-
-  translate:
-    slots:
-      TRANSLATION_TEXT:
-        required: true
-      LANGUAGE:
-        required: false
-
-    default: __cognitor_translate
-    wait: translate_wait_response
-
-  # ========================================
   # Funzionalità non ancora implementate
   # ========================================
 

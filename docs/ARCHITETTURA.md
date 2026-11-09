@@ -187,11 +187,21 @@ Gestisce gli slot in modo data-driven basato sulle rules.
 
 ## Modelli ML
 
-### 1. FastText (Word Embeddings)
+### 1. Embedding (FastText o skip-gram interno)
 
-**Scopo**: Generare rappresentazioni vettoriali delle parole
+**Scopo**: Generare rappresentazioni vettoriali per l'Intent Classifier. Lo switch è `USE_FASTTEXT` in `config.py` (env `COGNITOR_USE_FASTTEXT`, default `true`); entrambi i percorsi producono lo stesso output (`vocab.json` + `wordvectors.vec`), quindi il classifier non sa quale è stato usato.
 
-**Configurazione:**
+| | `USE_FASTTEXT=true` (default) | `USE_FASTTEXT=false` |
+|---|---|---|
+| Trainer | `intellective/train_fast_text.py` | `intellective/train_own_embedder.py` |
+| Algoritmo | FastText skip-gram | skip-gram + negative sampling scritto a mano (Adam) |
+| Vocabolario | parole + n-grammi | SentencePiece/BPE (`classes/sentencepiece_tokenizer.py`) |
+| Parole mai viste | generalizza via n-grammi | si scompongono in sotto-parole note |
+| Embedding nel classifier | pre-addestrato e congelato | pre-addestrato (con dropout sull'output) |
+
+Nota: una versione con `gensim.Word2Vec` è stata provata e scartata (val loss del classifier peggiore: 1.99 contro 1.81 sul corpus piccolo del dataset).
+
+**Configurazione FastText:**
 - Modello: Skip-gram
 - Dimensione: 300
 - Epoch: 25
@@ -201,7 +211,7 @@ Gestisce gli slot in modo data-driven basato sulle rules.
 - minn: 2, maxn: 5 (subwords)
 
 **Output:**
-- `models/fasttext_model.bin`: Modello completo
+- `models/fasttext_model.bin`: Modello completo (solo percorso FastText)
 - `.cognitor/wordvectors.vec`: Matrice embeddings (word2vec format)
 - `.cognitor/vocab.json`: Vocabolario
 
@@ -212,7 +222,7 @@ Gestisce gli slot in modo data-driven basato sulle rules.
 Input Text
     │
     ▼
-Embedding Layer (FastText, freeze=True) ─── 300 dim
+Embedding Layer (FastText o skip-gram interno) ─── 300 dim
     │
     ▼
 BiGRU (hidden_dim=256, bidirectional)
@@ -229,7 +239,7 @@ Intent logits     NER tags            Intent predictions
 ```
 
 **Caratteristiche:**
-- Embedding inizializzato con FastText (congelato)
+- Embedding pre-addestrato (FastText congelato, oppure skip-gram interno con `USE_FASTTEXT=false`)
 - BiGRU bidirezionale per catturare contesto
 - Attention per focalizzarsi su parti rilevanti
 - CRF (Conditional Random Field) per NER sequence labeling
@@ -267,11 +277,12 @@ python -m pipeline
 ### Step Manuali
 
 ```bash
-# 1. Genera corpus FastText
+# 1. Genera corpus per l'embedding
 python -m pipeline.intent_builder
 
-# 2. Allena FastText
-python -m intellective.train_fast_text
+# 2. Allena l'embedding (a seconda di USE_FASTTEXT)
+python -m intellective.train_fast_text      # FastText
+python -m intellective.train_own_embedder   # skip-gram interno + SentencePiece
 
 # 3. Allena Intent Classifier
 python -m intellective.train_intent_classifier
@@ -286,8 +297,8 @@ python -m intellective.train_dialogue_policy
 - Valida intents ed entità NER
 - Controlla consistenza dei file YAML
 
-**Step 1: Generazione Corpus FastText**
-- Legge intents da `knowledge/intents/*.yaml`
+**Step 1: Generazione Corpus**
+- Legge intents da `knowledge/intents/*.yaml` e `training_data/intents/*.yaml`
 - Genera `.cognitor/fast-text.txt` (raw text)
 
 **Step 1.5: Merge Knowledge**
@@ -296,12 +307,13 @@ python -m intellective.train_dialogue_policy
 - Unisce conversations da `knowledge/conversations/` e `training_data/conversations/`
 - Output in `.cognitor/`
 
-**Step 2: Training FastText**
-- Train unsupervised su corpus
-- Estrae word vectors
+**Step 2: Training Embedding**
+- `USE_FASTTEXT=true`: FastText unsupervised sul corpus
+- `USE_FASTTEXT=false`: skip-gram + negative sampling su vocabolario SentencePiece
+- In entrambi i casi estrae `wordvectors.vec` e `vocab.json`
 
 **Step 3: Generazione Dataset NLU**
-- Tokenizza usando FastText
+- Tokenizza usando il vocabolario dell'embedding appena addestrato
 - Genera tag NER BIO
 - Salva `.cognitor/tokenized_data.npy`
 
@@ -338,6 +350,16 @@ knowledge/
 └── conversations/    # Storie di conversazione (YAML)
     └── base.yaml
 ```
+
+### Branch e domini
+
+Il repository è diviso per **branch di dominio** (`tten`, `programmato`, `porusski`); `main` contiene il framework e la knowledge comune.
+
+- `knowledge/` = comune a tutti i domini (small talk, intent generici, operations generiche in `agent/operations/` come meteo, valute, capitali, festività, nutrizione, web_search).
+- `training_data/` = specifico del dominio, stessa struttura (`intents/`, `rules/`, `responses/`, `conversations/`) più `operations/` (auto-discovery da `ModelLoader`/`OperationsManager`). Su `main` contiene solo file `test.yaml`.
+- Pipeline, validator, `ner_tag_builder` e `DatasetGenerator` leggono sempre **entrambe** le cartelle e le uniscono.
+- Il codice e `knowledge/` si modificano solo su `main`, poi `git merge main` nei branch di dominio; i branch toccano solo `training_data/` (più eventuale config di deploy).
+- Vincolo di coerenza: nulla in `knowledge/` può riferirsi a operations, modelli o entità presenti in un solo dominio.
 
 ### Formato Intents (`knowledge/intents/*.yaml`)
 
@@ -508,7 +530,8 @@ MIN_INTENT_CONFIDENCE = 0.20  # Soglia minima per accettare intent
 ## Dipendenze Principali
 
 - **torch**: PyTorch per modelli neurali
-- **fasttext**: Word embeddings e tokenizzazione
+- **fasttext-wheel**: Word embeddings (solo con `USE_FASTTEXT=true`)
+- **sentencepiece**: Vocabolario di sotto-parole (percorso senza FastText)
 - **spacy**: NLP (opzionale)
 - **fastapi**: API REST
 - **uvicorn**: Server ASGI
