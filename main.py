@@ -26,10 +26,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from api import auth, chatbot
+from api import auth, chatbot, arianna
 
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(chatbot.router, prefix="/chatbot", tags=["chatbot"])
+app.include_router(arianna.router, prefix="/webhooks/arianna", tags=["arianna"])
 
 # Endpoint di streaming, spento di default (config.STREAMING_ENABLED, abilitato
 # con COGNITOR_STREAMING_ENABLED=true all'avvio): un client che non lo sa deve

@@ -99,8 +99,8 @@ class SessionManager:
         os.makedirs(sessions_dir, exist_ok=True)
         return os.path.join(sessions_dir, f"{session_id}.txt")
 
-    def create_session(self, user_id: str | None = None, metadata: dict | None = None) -> str:
-        session_id = str(uuid.uuid4())
+    def create_session(self, user_id: str | None = None, metadata: dict | None = None, session_id: str | None = None) -> str:
+        session_id = session_id or str(uuid.uuid4())
         log_path = self._get_session_log_path(session_id)
 
         session = ConversationSession(
