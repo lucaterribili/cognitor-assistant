@@ -1,15 +1,14 @@
 """
-Contratto "Arianna v1" di chatbot-chat-api (Spring Boot), esposto direttamente da Cognitor.
-
-Obiettivo: un client (es. il plugin WordPress) configurato con Token URL + Chat URL
-funziona in modo identico sia puntando a Spring sia puntando a Cognitor, senza sapere
-quale dei due ha davanti.
+Contratto chat v1: l'unico punto di ingresso per token e messaggio.
 
     POST /api/oauth2/token   Basic client_id:secret + form grant_type=client_credentials&scope=CHAT
                              -> {access_token, token_type, expires_in}
     POST /api/v1/chat        Bearer, JSON {session_id, text}
                              -> [{session_id, text, link, options, waiting_for_slot}]
     POST /api/v1/chat/reset  Bearer, JSON {session_id}
+
+Un client (es. un plugin CMS) configurato con Token URL + Chat URL funziona allo stesso
+modo contro qualunque servizio che esponga questo contratto, con o senza un gateway davanti.
 
 Il client_id presente nel JWT (claim `sub`) fa da tenant: le sessioni sono isolate per
 client_id, quindi due siti (o due visitatori) non condividono mai stato di conversazione.

@@ -1,4 +1,4 @@
-"""Test del contratto Arianna v1 (api/arianna_v1.py): token OAuth2 client_credentials + chat."""
+"""Test del contratto chat v1 (api/chat_v1.py): token OAuth2 client_credentials + chat."""
 import base64
 import os
 from types import SimpleNamespace
@@ -10,7 +10,7 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from api import arianna_v1
+from api import chat_v1
 from api.dependencies import get_agent
 
 
@@ -43,10 +43,10 @@ def env(monkeypatch):
             seen.append((text, session))
             return SimpleNamespace(response=f"echo:{text}", options=None, wait_for_slot=None)
 
-    monkeypatch.setattr(arianna_v1, "TurnProcessor", FakeTurn)
+    monkeypatch.setattr(chat_v1, "TurnProcessor", FakeTurn)
     app = FastAPI()
-    app.include_router(arianna_v1.oauth_router, prefix="/api/oauth2")
-    app.include_router(arianna_v1.chat_router, prefix="/api/v1")
+    app.include_router(chat_v1.oauth_router, prefix="/api/oauth2")
+    app.include_router(chat_v1.chat_router, prefix="/api/v1")
     app.dependency_overrides[get_agent] = lambda: agent
     return SimpleNamespace(client=TestClient(app), agent=agent, seen=seen)
 
@@ -95,7 +95,7 @@ def test_token_accepts_credentials_in_body(env):
 
 def test_default_client_is_admin_user(env, monkeypatch):
     monkeypatch.delenv("COGNITOR_CLIENTS")
-    get_token(env.client, arianna_v1._ADMIN_USERNAME, arianna_v1._ADMIN_PASSWORD)
+    get_token(env.client, chat_v1._ADMIN_USERNAME, chat_v1._ADMIN_PASSWORD)
 
 
 def test_chat_requires_bearer(env):

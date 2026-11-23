@@ -231,6 +231,25 @@ curl -X POST http://localhost:8000/chatbot/message \
   -d '{"message": "Ciao!"}'
 ```
 
+#### Contratto chat v1 (token + messaggio)
+
+Un client che parla questo contratto (es. un plugin CMS) funziona con o senza un gateway davanti: bastano Token URL e Chat URL.
+
+```bash
+# token (OAuth2 client_credentials, client da COGNITOR_CLIENTS="id:secret,...")
+curl -X POST http://localhost:8000/api/oauth2/token \
+  -u site-a:secret -d "grant_type=client_credentials&scope=CHAT"
+# -> {"access_token": "...", "token_type": "Bearer", "expires_in": 1800}
+
+# messaggio
+curl -X POST http://localhost:8000/api/v1/chat \
+  -H "Authorization: Bearer <token>" -H "Content-Type: application/json" \
+  -d '{"session_id": "abc", "text": "Ciao!"}'
+# -> [{"session_id": "abc", "text": "...", "link": null, "options": null, "waiting_for_slot": false}]
+```
+
+`POST /api/v1/chat/reset` con `{"session_id": "abc"}` azzera la conversazione. Le sessioni sono isolate per `client_id`.
+
 #### Health Check
 
 ```bash
