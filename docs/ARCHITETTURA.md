@@ -112,16 +112,7 @@ class ConversationSession:
     agent_mode: str     # "predictable" o "inputable"
 ```
 
-### 3. Entity Manager (`agent/entity_manager.py`)
-
-Gestisce le entità estratte dalla conversazione.
-
-**Responsabilità:**
-- Storage delle entità riconosciute
-- Lookup per nome o etichetta
-- Gestione della confidence delle entità
-
-### 4. Model Loader (`agent/model_loader.py`)
+### 3. Model Loader (`agent/model_loader.py`)
 
 Carica i modelli ML e la knowledge base.
 

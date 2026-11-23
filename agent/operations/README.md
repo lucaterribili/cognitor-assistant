@@ -30,7 +30,8 @@ def action_my_action(intent_name: str, slots: dict = None) -> dict:
 - `intent_name` o `intent`: Nome dell'intent
 - `slots`: Dizionario degli slot
 - `session_manager`: SessionManager
-- `entity_manager`: EntityManager
+- `raw_text`: testo grezzo del turno
+- `cancel_event`: threading.Event per interrompere operation lente
 
 **Return format:**
 - Stringa semplice: `return "Ciao!"`

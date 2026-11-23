@@ -13,8 +13,7 @@ un'unica implementazione; CLI e API restano responsabili solo dell'I/O
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
-from agent.cancel_commands import is_cancel_command
-from agent.confirm_commands import is_confirm_command
+from agent.keywords import is_cancel_command, is_confirm_command
 from config import INPUTABLE_SWITCH_CONFIDENCE
 
 # Quante volte di fila lo stesso intent deve ripetersi prima che il bot smetta
@@ -81,7 +80,7 @@ class TurnProcessor:
             return self._handle_slot_input(user_input, session, on_predict, cancel_event)
 
         # Il classificatore ML fatica con parole cortissime come "sì"/"ok" (vedi
-        # agent/confirm_commands.py): quando il bot ha appena proposto qualcosa
+        # agent/keywords.py): quando il bot ha appena proposto qualcosa
         # (CHATBOT_PROPOSAL, slot inline impostato dalla risposta precedente) e
         # l'utente conferma in una delle forme brevi note, saltiamo la
         # classificazione ML e risolviamo direttamente come intent 'confirm' -
@@ -108,7 +107,7 @@ class TurnProcessor:
         # Prova a estrarre il valore dello slot tramite NER, altrimenti usa il testo grezzo
         prediction = self.agent.predict(user_input)
         entities = prediction.get('entities', [])
-        ner_value = self.agent.slot_manager.extractor.extract_from_entities(pending_intent, slot_name, entities)
+        ner_value = self.agent.slot_manager.extract_from_entities(pending_intent, slot_name, entities)
 
         # Via di fuga dalla modalità inputable: se il NER non trova nulla di
         # pertinente per lo slot atteso E il messaggio classifica con alta
@@ -153,7 +152,7 @@ class TurnProcessor:
             # Uno slot free_text con `pattern` (es. RECAPITO di ask_service) può
             # continuare a rifiutare l'input all'infinito - a differenza della
             # via di fuga per cambio-intent, qui non c'è nessun altro
-            # meccanismo che faccia uscire l'utente dal loop (i cancel_commands
+            # meccanismo che faccia uscire l'utente dal loop (i comandi di annullamento
             # espliciti tipo "stop" restano validi, ma un "no"/risposta
             # elusiva no). Dopo un paio di tentativi falliti abbandoniamo lo
             # slot invece di ripetere "Selezione non valida" all'infinito.

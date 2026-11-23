@@ -24,37 +24,30 @@ class ModelLoader:
         self.intent_dict_path = os.path.join(base_dir, '.cognitor', 'intent_dict.json')
         self.model_path = os.path.join(base_dir, 'models', 'intent_model_fast.pth')
 
-    def load_vocab_size(self) -> int:
-        """Carica la dimensione del vocabolario da vocab.json."""
-        print("Caricamento vocabolario...")
+    @staticmethod
+    def _load_json(path: str, label: str) -> dict:
         try:
-            with open(self.vocab_path, 'r') as f:
-                vocab = json.load(f)
+            with open(path, 'r', encoding='utf-8') as f:
+                return json.load(f)
         except FileNotFoundError:
             raise FileNotFoundError(
-                f"vocab.json non trovato in {self.vocab_path} — "
+                f"{label} non trovato in {path} — "
                 "esegui prima la pipeline di training: python -m pipeline"
             )
         except json.JSONDecodeError as e:
-            raise ValueError(f"vocab.json in {self.vocab_path} non è un JSON valido: {e}")
-        return len(vocab)
+            raise ValueError(f"{label} in {path} non è un JSON valido: {e}")
+
+    def load_vocab_size(self) -> int:
+        """Carica la dimensione del vocabolario da vocab.json."""
+        print("Caricamento vocabolario...")
+        return len(self._load_json(self.vocab_path, "vocab.json"))
 
     def load_intent_dict(self) -> Dict[str, str]:
         """Carica il dizionario degli intent."""
         print("Caricamento intent dictionary...")
-        try:
-            with open(self.intent_dict_path, 'r') as f:
-                return json.load(f)
-        except FileNotFoundError:
-            raise FileNotFoundError(
-                f"intent_dict.json non trovato in {self.intent_dict_path} — "
-                "esegui prima la pipeline di training: python -m pipeline"
-            )
-        except json.JSONDecodeError as e:
-            raise ValueError(f"intent_dict.json in {self.intent_dict_path} non è un JSON valido: {e}")
+        return self._load_json(self.intent_dict_path, "intent_dict.json")
 
-    def load_intent_classifier(self, vocab_size: int,
-                               intents_number: int) -> tuple[IntentClassifier, bool]:
+    def load_intent_classifier(self, vocab_size: int, intents_number: int) -> tuple[IntentClassifier, bool]:
         """
         Carica il modello Intent Classifier.
 
@@ -63,13 +56,6 @@ class ModelLoader:
         """
         print("Caricamento modello Intent Classifier...")
 
-        vocab_path = os.path.join(self.base_dir, '.cognitor', 'vocab.json')
-        # Sia con FastText che con il nostro skip-gram (train_own_embedder) la
-        # pipeline scrive wordvectors.vec allo step 2 - vedi
-        # intellective/train_intent_classifier.py per lo stesso caricamento
-        # in fase di training. Con USE_FASTTEXT=False il tokenizer usato in
-        # training è a sotto-parola (SentencePiece), deve corrispondere anche
-        # qui.
         wordvectors_path = os.path.join(self.base_dir, '.cognitor', 'wordvectors.vec')
         sentencepiece_model_path = None if USE_FASTTEXT else os.path.join(
             self.base_dir, '.cognitor', 'sentencepiece.model'
@@ -82,7 +68,7 @@ class ModelLoader:
             output_dim=intents_number,
             dropout_prob=0.3,
             wordvectors_path=wordvectors_path,
-            vocab_path=vocab_path,
+            vocab_path=self.vocab_path,
             freeze_embeddings=True,
             sentencepiece_model_path=sentencepiece_model_path,
         )
@@ -106,7 +92,7 @@ class ModelLoader:
 
 
 class KnowledgeLoader:
-    """Carica rules, responses e costruisce lookup table per doping."""
+    """Carica rules, responses, conversations e costruisce la lookup table per doping."""
 
     def __init__(self, base_dir: str):
         self.base_dir = base_dir
@@ -116,82 +102,39 @@ class KnowledgeLoader:
         self.conversations_file = os.path.join(self.cognitor_dir, 'conversations.yaml')
         self.intents_dir = os.path.join(base_dir, 'knowledge', 'intents')
 
-        # Legacy paths for fallback
         self.legacy_rules_dir = os.path.join(base_dir, 'knowledge', 'rules')
         self.legacy_responses_dir = os.path.join(base_dir, 'knowledge', 'responses')
         self.legacy_conversations_dir = os.path.join(base_dir, 'knowledge', 'conversations')
 
-    def load_rules(self) -> Dict[str, dict]:
-        """
-        Carica le rules dal file mergiato in .cognitor/rules.yaml.
-        Fallback: se il file non esiste, prova a leggere da knowledge/rules (legacy).
-        """
-        # Prova prima il file mergiato
-        if os.path.exists(self.rules_file):
-            print(f"Caricamento rules da: {self.rules_file}")
-            with open(self.rules_file, 'r', encoding='utf-8') as f:
-                rules_data = yaml.safe_load(f)
-                return rules_data.get('rules', {})
+    @staticmethod
+    def _load_yaml_section(merged_file: str, legacy_dir: str, section_key: str) -> dict:
+        """Carica una sezione YAML dal file mergiato in .cognitor/, con fallback
+        alla cartella di file separati in knowledge/<section> (modalità legacy)."""
+        if os.path.exists(merged_file):
+            print(f"Caricamento {section_key} da: {merged_file}")
+            with open(merged_file, 'r', encoding='utf-8') as f:
+                data = yaml.safe_load(f) or {}
+                return data.get(section_key, {})
 
-        # Fallback: leggi dai file separati (legacy)
-        print(f"File {self.rules_file} non trovato, usando modalità legacy da {self.legacy_rules_dir}")
-        rules = {}
-        if os.path.exists(self.legacy_rules_dir):
-            for filename in os.listdir(self.legacy_rules_dir):
-                if filename.endswith('.yaml') or filename.endswith('.yml'):
-                    file_path = os.path.join(self.legacy_rules_dir, filename)
+        print(f"File {merged_file} non trovato, usando modalità legacy da {legacy_dir}")
+        merged = {}
+        if os.path.exists(legacy_dir):
+            for filename in os.listdir(legacy_dir):
+                if filename.endswith(('.yaml', '.yml')):
+                    file_path = os.path.join(legacy_dir, filename)
                     with open(file_path, 'r', encoding='utf-8') as f:
-                        rules_data = yaml.safe_load(f)
-                        rules.update(rules_data.get('rules', {}))
-        return rules
+                        data = yaml.safe_load(f) or {}
+                        merged.update(data.get(section_key, {}))
+        return merged
+
+    def load_rules(self) -> Dict[str, dict]:
+        return self._load_yaml_section(self.rules_file, self.legacy_rules_dir, 'rules')
 
     def load_responses(self) -> Dict[str, list]:
-        """
-        Carica le responses dal file mergiato in .cognitor/responses.yaml.
-        Fallback: se il file non esiste, prova a leggere da knowledge/responses (legacy).
-        """
-        # Prova prima il file mergiato
-        if os.path.exists(self.responses_file):
-            print(f"Caricamento responses da: {self.responses_file}")
-            with open(self.responses_file, 'r', encoding='utf-8') as f:
-                responses_data = yaml.safe_load(f)
-                return responses_data.get('responses', {})
-
-        # Fallback: leggi dai file separati (legacy)
-        print(f"File {self.responses_file} non trovato, usando modalità legacy da {self.legacy_responses_dir}")
-        responses = {}
-        if os.path.exists(self.legacy_responses_dir):
-            for filename in os.listdir(self.legacy_responses_dir):
-                if filename.endswith('.yaml') or filename.endswith('.yml'):
-                    file_path = os.path.join(self.legacy_responses_dir, filename)
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        responses_data = yaml.safe_load(f)
-                        responses.update(responses_data.get('responses', {}))
-        return responses
+        return self._load_yaml_section(self.responses_file, self.legacy_responses_dir, 'responses')
 
     def load_conversations(self) -> Dict[str, dict]:
-        """
-        Carica le conversations dal file mergiato in .cognitor/conversations.yaml.
-        Fallback: se il file non esiste, prova a leggere da knowledge/conversations (legacy).
-        """
-        # Prova prima il file mergiato
-        if os.path.exists(self.conversations_file):
-            print(f"Caricamento conversations da: {self.conversations_file}")
-            with open(self.conversations_file, 'r', encoding='utf-8') as f:
-                conversations_data = yaml.safe_load(f)
-                return conversations_data.get('conversations', {})
-
-        # Fallback: leggi dai file separati (legacy)
-        print(f"File {self.conversations_file} non trovato, usando modalità legacy da {self.legacy_conversations_dir}")
-        conversations = {}
-        if os.path.exists(self.legacy_conversations_dir):
-            for filename in os.listdir(self.legacy_conversations_dir):
-                if filename.endswith('.yaml') or filename.endswith('.yml'):
-                    file_path = os.path.join(self.legacy_conversations_dir, filename)
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        conversations_data = yaml.safe_load(f)
-                        conversations.update(conversations_data.get('conversations', {}))
-        return conversations
+        return self._load_yaml_section(self.conversations_file, self.legacy_conversations_dir, 'conversations')
 
     def build_doping_lookup_table(self, doping_preprocessor: DopingPreprocessor) -> None:
         """Costruisce la lookup table per il doping preprocessor."""
@@ -207,7 +150,7 @@ class KnowledgeLoader:
             if filename.endswith('.json'):
                 file_path = os.path.join(self.intents_dir, filename)
                 try:
-                    with open(file_path, 'r') as f:
+                    with open(file_path, 'r', encoding='utf-8') as f:
                         nlu_data = json.load(f)
                 except json.JSONDecodeError as e:
                     raise ValueError(f"{file_path} non è un JSON valido: {e}")
@@ -215,16 +158,10 @@ class KnowledgeLoader:
         print("OK Lookup table costruita")
 
     def load_all(self) -> tuple[Dict[str, dict], Dict[str, list], Dict[str, dict]]:
-        """
-        Carica rules, responses e conversations.
-
-        Returns:
-            tuple: (rules, responses, conversations)
-        """
+        """Carica rules, responses e conversations."""
         print("Caricamento rules, responses e conversations...")
         rules = self.load_rules()
         responses = self.load_responses()
         conversations = self.load_conversations()
         print(f"OK Caricate {len(rules)} rules, {len(responses)} response keys e {len(conversations)} conversations")
         return rules, responses, conversations
-

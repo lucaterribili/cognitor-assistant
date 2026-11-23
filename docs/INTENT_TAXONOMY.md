@@ -1,0 +1,92 @@
+# Intenti base
+
+84 intenti, 3317 esempi. Sorgente di verita': `knowledge/intents/intents.yaml`.
+
+Si uniscono intenti solo quando un'entita' distingue i casi (o sono sinonimi). Rigenera con `python scripts/validate_intents.py --doc`.
+
+| Intento | Esempi | Entita |
+|---|---|---|
+| `ask_general_information` | 74 | FACILITY, DEPARTMENT, ORGANIZATION, TECHNOLOGY |
+| `ask_description` | 73 | FACILITY, HEALTH_SERVICE, DEPARTMENT, TECHNOLOGY |
+| `ask_definition` | 86 | DOCUMENT, MISC, TAX, HEALTH_SERVICE |
+| `ask_explanation` | 73 | TECH_CONCEPT, TECHNOLOGY, HEALTH_SERVICE, TAX |
+| `ask_history` | 72 | FACILITY, ORGANIZATION, TECHNOLOGY, ZONE |
+| `ask_mission` | 64 | ORGANIZATION, DEPARTMENT, FACILITY, HEALTH_SERVICE |
+| `ask_objectives` | 58 | DOCUMENT, DATE, HEALTH_SERVICE, FACILITY |
+| `ask_organization` | 71 | ORGANIZATION, FACILITY, DEPARTMENT, ZONE |
+| `ask_staff` | 71 | ROLE, DEPARTMENT, ORGANIZATION, PERSON |
+| `ask_services` | 73 | HEALTH_SERVICE, ORGANIZATION, FACILITY, DEPARTMENT |
+| `ask_products` | 60 | PRODUCT, DOCUMENT, HEALTH_SERVICE, ORGANIZATION |
+| `ask_activities` | 69 | DEPARTMENT, ORGANIZATION, HEALTH_SERVICE, EVENT |
+| `ask_how_to` | 96 | DOCUMENT, TECHNOLOGY, HEALTH_SERVICE, PROCEDURE |
+| `ask_procedures` | 68 | PROCEDURE, DOCUMENT, HEALTH_SERVICE, MEDICAL_PROCEDURE |
+| `ask_instructions` | 70 | DOCUMENT, MEDICAL_PROCEDURE, TECHNOLOGY, HEALTH_SERVICE |
+| `ask_requirements` | 68 | DOCUMENT, HEALTH_SERVICE, MISC, TECHNOLOGY |
+| `ask_eligibility` | 72 | DOCUMENT, HEALTH_SERVICE, MISC, FACILITY |
+| `ask_documentation` | 72 | DOCUMENT, HEALTH_SERVICE, PROCEDURE, MISC |
+| `ask_forms` | 66 | DOCUMENT, HEALTH_SERVICE, PROCEDURE, DEPARTMENT |
+| `ask_downloads` | 62 | DOCUMENT, TECHNOLOGY, MISC, DATE |
+| `ask_opening_hours` | 45 | FACILITY, DEPARTMENT, HEALTH_SERVICE, DATE |
+| `ask_schedule` | 33 | HEALTH_SERVICE, ZONE, DATE, FACILITY |
+| `ask_availability` | 34 | MEDICAL_PROCEDURE, ZONE, FACILITY, HEALTH_SERVICE |
+| `ask_deadlines` | 36 | DOCUMENT, TAX, PROCEDURE, ROLE |
+| `ask_duration` | 28 | MEDICAL_PROCEDURE, DOCUMENT, HEALTH_SERVICE, TECHNOLOGY |
+| `ask_waiting_times` | 33 | DOCUMENT, MEDICAL_PROCEDURE, PROCEDURE, FACILITY |
+| `ask_booking` | 34 | MEDICAL_PROCEDURE, FACILITY, HEALTH_SERVICE, DOCUMENT |
+| `ask_appointments` | 31 | DEPARTMENT, ROLE, HEALTH_SERVICE, MEDICAL_PROCEDURE |
+| `ask_registration` | 33 | HEALTH_SERVICE, DOCUMENT, MISC, ORGANIZATION |
+| `ask_location` | 39 | FACILITY, ZONE, DEPARTMENT, DOCUMENT |
+| `ask_address` | 29 | FACILITY, ORGANIZATION, DEPARTMENT, ZONE |
+| `ask_directions` | 31 | FACILITY, TRANSPORT, ZONE, ORGANIZATION |
+| `ask_contacts` | 31 | DEPARTMENT, ORGANIZATION, FACILITY, HEALTH_SERVICE |
+| `ask_phone` | 32 | DEPARTMENT, HEALTH_SERVICE, ORGANIZATION, FACILITY |
+| `ask_email` | 29 | DOCUMENT, DEPARTMENT, ORGANIZATION, FACILITY |
+| `ask_costs` | 35 | DOCUMENT, HEALTH_SERVICE, MEDICAL_PROCEDURE, FACILITY |
+| `ask_prices` | 32 | DOCUMENT, MEDICAL_PROCEDURE, TAX, MISC |
+| `ask_payments` | 32 | DOCUMENT, PAYMENT_METHOD, ORGANIZATION, TAX |
+| `ask_refunds` | 30 | DOCUMENT, TAX, HEALTH_SERVICE, MEDICAL_PROCEDURE |
+| `ask_discounts` | 32 | DOCUMENT, MISC, PROCEDURE, MEDICAL_PROCEDURE |
+| `ask_regulations` | 37 | DOCUMENT, HEALTH_SERVICE, PROCEDURE, ORGANIZATION |
+| `ask_rights` | 29 | DOCUMENT, PROCEDURE, HEALTH_SERVICE, ORGANIZATION |
+| `ask_obligations` | 27 | DOCUMENT, PROCEDURE, DEPARTMENT, ROLE |
+| `ask_accessibility` | 31 | FACILITY, HEALTH_SERVICE, ORGANIZATION, DEPARTMENT |
+| `ask_privacy` | 27 | DOCUMENT, ORGANIZATION, HEALTH_SERVICE, DEPARTMENT |
+| `ask_news` | 29 | ZONE, HEALTH_SERVICE, DOCUMENT, ORGANIZATION |
+| `ask_announcements` | 30 | ORGANIZATION, DOCUMENT, FACILITY, ZONE |
+| `ask_events` | 32 | ZONE, EVENT, ORGANIZATION, FACILITY |
+| `ask_changes` | 28 | DOCUMENT, FACILITY, HEALTH_SERVICE, DEPARTMENT |
+| `ask_status` | 28 | DOCUMENT, PROCEDURE, HEALTH_SERVICE, MISC |
+| `ask_tracking` | 27 | DOCUMENT, HEALTH_SERVICE, MISC, PROCEDURE |
+| `ask_complaints` | 33 | DOCUMENT, DEPARTMENT, HEALTH_SERVICE, FACILITY |
+| `ask_support` | 28 | HEALTH_SERVICE, DOCUMENT, MISC, DEPARTMENT |
+| `ask_troubleshooting` | 33 | TECHNOLOGY, DOCUMENT, HEALTH_SERVICE, ORGANIZATION |
+| `ask_comparison` | 29 | TECHNOLOGY, DOCUMENT, FACILITY, DEPARTMENT |
+| `ask_recommendations` | 29 | TECHNOLOGY, DOCUMENT, ZONE, MISC |
+| `ask_advantages` | 27 | TECHNOLOGY, HEALTH_SERVICE, TECH_CONCEPT, MISC |
+| `ask_disadvantages` | 26 | TECHNOLOGY, HEALTH_SERVICE, TECH_CONCEPT, DOCUMENT |
+| `ask_risks` | 28 | DOCUMENT, MEDICAL_PROCEDURE, MISC, TECH_CONCEPT |
+| `ask_statistics` | 29 | ORGANIZATION, FACILITY, DOCUMENT, HEALTH_SERVICE |
+| `ask_careers` | 29 | ORGANIZATION, DOCUMENT, ROLE, DEPARTMENT |
+| `ask_training` | 29 | TECHNOLOGY, ORGANIZATION, HEALTH_SERVICE, ROLE |
+| `ask_education` | 25 | TECHNOLOGY, LANGUAGE, ORGANIZATION, HEALTH_SERVICE |
+| `ask_safety` | 28 | MISC, TECHNOLOGY, ORGANIZATION, FACILITY |
+| `ask_maintenance` | 28 | TECHNOLOGY, ORGANIZATION, PRODUCT, FACILITY |
+| `ask_warranty` | 27 | DOCUMENT, PRODUCT, HEALTH_SERVICE, TECHNOLOGY |
+| `ask_delivery` | 27 | DOCUMENT, PRODUCT, HEALTH_SERVICE, ORGANIZATION |
+| `ask_causes` | 27 | DOCUMENT, MISC, TECHNOLOGY, HEALTH_SERVICE |
+| `ask_consequences` | 28 | DOCUMENT, PROCEDURE, TECHNOLOGY, MEDICAL_PROCEDURE |
+| `ask_examples` | 28 | DOCUMENT, TECHNOLOGY, TECH_CONCEPT, TAX |
+| `ask_alternatives` | 28 | DOCUMENT, TECHNOLOGY, HEALTH_SERVICE, FACILITY |
+| `ask_contact_human` | 26 | DEPARTMENT, ORGANIZATION, ROLE, HEALTH_SERVICE |
+| `ask_clarification` | 29 | DOCUMENT, TECHNOLOGY, FACILITY, ZONE |
+| `affirm_confirmation` | 30 | DOCUMENT, FACILITY, ZONE, MEDICAL_PROCEDURE |
+| `affirm_negation` | 25 | DOCUMENT, TECHNOLOGY, FACILITY, ZONE |
+| `affirm_greeting` | 22 |  |
+| `affirm_goodbye` | 20 |  |
+| `affirm_gratitude` | 25 |  |
+| `ask_help` | 27 | ORGANIZATION, DOCUMENT, FACILITY, TECHNOLOGY |
+| `affirm_insult` | 25 |  |
+| `ask_tax_deductions` | 30 | DOCUMENT, MISC, TAX, ROLE |
+| `ask_tax_return` | 30 | DOCUMENT, MISC, ORGANIZATION, ROLE |
+| `ask_tax_collection` | 30 | DOCUMENT, PROCEDURE, ORGANIZATION, MISC |
+| `ask_cadastral_services` | 30 | DOCUMENT, MISC, ORGANIZATION, PROCEDURE |

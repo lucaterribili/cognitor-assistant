@@ -5,22 +5,52 @@ Coordina i modelli ML, la gestione delle sessioni e le risposte.
 import os
 import random
 import sys
+import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import requests
 import torch
 
+import config
 from config import BASE_DIR, DOPING_ACTIVE, MIN_INTENT_CONFIDENCE
 from intellective.doping_preprocessor import DopingPreprocessor
-from agent.disabled_intents import get_disabled_intents
-from agent.crisis_keywords import is_crisis_signal
+from agent.keywords import is_crisis_signal
 from agent.session_manager import SessionManager
-from agent.answer_manager import AnswerManager, SlotValidator
 from agent.model_loader import ModelLoader, KnowledgeLoader
 from agent.slot_manager import SlotManager
 from agent.rule_interpreter import RuleInterpreter
 from agent.operations.manager import OperationManager
 from agent.dialogue_state_policy import DialogueStatePolicy
+
+
+# Intent disattivati dall'admin nel pannello del package geco/chatbot (Laravel,
+# GET /chatbot/disabled-intents). Cache con TTL breve: interrogare Laravel ad
+# ogni turno sarebbe latenza inutile per un dato che cambia raramente.
+_DISABLED_INTENTS_TTL_SECONDS = 30
+_disabled_intents_cache = {"set": set(), "fetched_at": 0.0}
+
+
+def get_disabled_intents() -> set:
+    now = time.time()
+    if now - _disabled_intents_cache["fetched_at"] < _DISABLED_INTENTS_TTL_SECONDS:
+        return _disabled_intents_cache["set"]
+
+    base_url = (config.BACKEND_API_BASE_URL or "").rstrip("/")
+    if not base_url:
+        return _disabled_intents_cache["set"]
+
+    try:
+        resp = requests.get(f"{base_url}/chatbot/disabled-intents", timeout=3)
+        resp.raise_for_status()
+        _disabled_intents_cache["set"] = set(resp.json().get("disabled") or [])
+        _disabled_intents_cache["fetched_at"] = now
+    except requests.RequestException:
+        # Laravel irraggiungibile: manteniamo l'ultimo valore noto (anche vuoto)
+        # invece di bloccare la conversazione o disabilitare tutto.
+        pass
+
+    return _disabled_intents_cache["set"]
 
 
 class Agent:
@@ -44,74 +74,35 @@ class Agent:
         self.model_loader = ModelLoader(self.base_dir, self.device)
         self.knowledge_loader = KnowledgeLoader(self.base_dir)
 
-        # Modelli e dati (caricati successivamente)
+        # Modelli e dati (caricati da load_models / load_knowledge)
         self.model = None
         self.intent_dict = None
-
-        # Knowledge base
         self.rules = {}
         self.responses = {}
-
-        # Answer management
-        self.answer_manager = None
-        self.slot_validator = None
-
-        # Slot management (data-driven)
         self.slot_manager = None
-
-        # Rule interpreter (runtime DSL)
         self.rule_interpreter = None
-
-        # Operations
         self.operation_manager = None
-
-        # Dialogue state policy (TED-inspired)
         self.dialogue_state_policy = None
 
     def load_models(self) -> bool:
         """
-        Carica tutti i modelli ML necessari.
+        Carica il classificatore di intent.
 
         Returns:
             bool: True se il modello è stato caricato correttamente, False se usa pesi random
         """
         vocab_size = self.model_loader.load_vocab_size()
         self.intent_dict = self.model_loader.load_intent_dict()
-
-        intents_number = len(self.intent_dict)
-        self.model, model_loaded = self.model_loader.load_intent_classifier(
-            vocab_size,
-            intents_number
-        )
-
+        self.model, model_loaded = self.model_loader.load_intent_classifier(vocab_size, len(self.intent_dict))
         return model_loaded
-    
+
     def load_knowledge(self) -> None:
         """Carica rules, responses, conversations e costruisce la lookup table per doping."""
         self.rules, self.responses, conversations = self.knowledge_loader.load_all()
 
-        # Inizializza la DialogueStatePolicy con i dati delle conversations
         self.dialogue_state_policy = DialogueStatePolicy(conversations)
-
-        # Inizializza l'OperationManager con auto-discovery
-        self.operation_manager = OperationManager(
-            session_manager=self.session_manager,
-            entity_manager=self.session_manager.entity_manager,
-            auto_discover=True  # Scopre automaticamente tutte le operations
-        )
-
-        # Inizializza il RuleInterpreter (nuovo runtime DSL)
-        self.rule_interpreter = RuleInterpreter(
-            self.rules,
-            self.responses,
-            operation_manager=self.operation_manager
-        )
-
-        # Answer manager legacy (da deprecare gradualmente)
-        self.answer_manager = AnswerManager(self.rules)
-        self.slot_validator = SlotValidator(self.rules)
-        
-        # Inizializza il nuovo SlotManager con il RuleInterpreter
+        self.operation_manager = OperationManager(session_manager=self.session_manager)
+        self.rule_interpreter = RuleInterpreter(self.rules, self.responses, operation_manager=self.operation_manager)
         self.slot_manager = SlotManager(self.rules, self.rule_interpreter)
 
         self.knowledge_loader.build_doping_lookup_table(self.doping_preprocessor)
@@ -212,7 +203,7 @@ class Agent:
         # Rilevamento deterministico dei segnali di rischio autolesionismo/
         # suicidio, PRIMA del modello ML e del check disabled_intents: questo
         # non deve mai dipendere dalla stabilità del classificatore tra
-        # retrain (vedi agent/crisis_keywords.py) né essere disattivabile.
+        # retrain (vedi agent/keywords.py) né essere disattivabile.
         if is_crisis_signal(text):
             return {
                 'intent': 'crisis_support',
@@ -246,7 +237,7 @@ class Agent:
             intent_name = 'low_confidence_fallback'
         elif intent_name in get_disabled_intents():
             # Classificato correttamente ma l'admin ha disattivato questo intent
-            # (vedi agent/disabled_intents.py): trattato come out_of_scope invece
+            # (vedi get_disabled_intents): trattato come out_of_scope invece
             # di eseguire normalmente la sua rule/risposta.
             intent_name = 'out_of_scope'
 
