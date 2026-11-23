@@ -12,8 +12,6 @@ from api.auth import (
     get_current_user,
     User,
     _ADMIN_USERNAME,
-    _ADMIN_PASSWORD,
-    FAKE_USERS_DB,
 )
 from api.dependencies import get_agent
 from agent.agent import Agent
@@ -75,10 +73,6 @@ async def webhook_token(request: Request):
             pass
 
     user = authenticate_user(username, password)
-    # Compatibilità con la password di default di chatbot-chat-api ("password" o admin123)
-    if not user and username == _ADMIN_USERNAME and password in (_ADMIN_PASSWORD, "password", "admin123"):
-        user = FAKE_USERS_DB.get(_ADMIN_USERNAME)
-
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
