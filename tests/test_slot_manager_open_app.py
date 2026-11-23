@@ -96,7 +96,7 @@ def test_slot_manager_open_app():
         {"entity": "PRODUCT", "value": "WhatsApp", "start": 5, "end": 13}
     ]
 
-    extracted = slot_manager.extractor.extract_from_entities("open_app", "PRODUCT", entities)
+    extracted = slot_manager.extract_from_entities("open_app", "PRODUCT", entities)
     print(f"Entità NER: {entities}")
     print(f"Valore estratto: {extracted}")
     assert extracted == "WhatsApp", "Estrazione fallita"
@@ -107,7 +107,7 @@ def test_slot_manager_open_app():
     print("TEST 5: Auto-discovery degli slot per intent")
     print("-"*60)
 
-    slots = slot_manager.context_manager.get_slots_for_intent("open_app")
+    slots = slot_manager.get_slots_for_intent("open_app")
     print(f"Slot rilevati per 'open_app': {slots}")
     assert "PRODUCT" in slots, "PRODUCT non trovato negli slot"
     assert "PRODUCT_UNSUPPORTED" in slots, "PRODUCT_UNSUPPORTED non trovato"
@@ -118,8 +118,8 @@ def test_slot_manager_open_app():
     print("TEST 6: Sistema generico - LOCATION vs PRODUCT")
     print("-"*60)
 
-    location_slots = slot_manager.context_manager.get_slots_for_intent("ask_city_touristic_information")
-    product_slots = slot_manager.context_manager.get_slots_for_intent("open_app")
+    location_slots = slot_manager.get_slots_for_intent("ask_city_touristic_information")
+    product_slots = slot_manager.get_slots_for_intent("open_app")
 
     print(f"Slot per LOCATION: {location_slots}")
     print(f"Slot per PRODUCT:  {product_slots}")

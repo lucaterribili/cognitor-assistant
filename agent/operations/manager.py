@@ -1,308 +1,153 @@
 import importlib
 import inspect
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from agent.operations.base import Operation
 
 
 class OperationManager:
     """
-    Manager per la registrazione e l'esecuzione delle operations.
-    
-    Tiene traccia di tutte le operations disponibili e le esegue
-    quando richiesto dal RuleInterpreter.
+    Registro ed esecutore delle operations, scoperte automaticamente in
+    agent/operations/ (generiche) e training_data/operations/ (specifiche del dominio).
 
-    Il manager scopre automaticamente tutte le operations nella cartella
-    operations, simile al sistema di custom actions di Rasa.
+    In ogni modulo vengono registrati:
+    - classi che ereditano da Operation
+    - funzioni `action_<nome>` / `<nome>_action` (wrappate in una Operation)
+    - funzioni `options_<nome>`: provider di opzioni dinamiche per gli slot
+      (`options_source` nella rule DSL)
     """
 
-    def __init__(self, session_manager: Any = None, entity_manager: Any = None, auto_discover: bool = True):
-        """
-        Inizializza il manager con i manager necessari.
-        
-        Args:
-            session_manager: Gestore delle sessioni
-            entity_manager: Gestore delle entità
-            auto_discover: Se True, scopre automaticamente tutte le operations
-        """
+    _EXCLUDED_FILES = {"__init__.py", "base.py", "manager.py"}
+
+    def __init__(self, session_manager: Any = None, auto_discover: bool = True):
         self._operations: dict[str, Operation] = {}
-        self._options_providers: dict[str, callable] = {}
+        self._options_providers: dict[str, Callable] = {}
         self._session_manager = session_manager
-        self._entity_manager = entity_manager
 
         if auto_discover:
             self._discover_operations()
 
     def register(self, operation: Operation) -> None:
-        """
-        Registra un'operazione.
-        
-        Args:
-            operation: Istanza dell'operazione da registrare
-        """
         self._operations[operation.name] = operation
 
-    def get_operation(self, name: str) -> Operation | None:
-        """
-        Ottiene un'operazione per nome.
-        
-        Args:
-            name: Nome dell'operazione
-            
-        Returns:
-            L'operazione registrata o None se non trovata
-        """
-        return self._operations.get(name)
-
     def has_operation(self, name: str) -> bool:
-        """
-        Verifica se un'operazione è registrata.
-        
-        Args:
-            name: Nome dell'operazione
-            
-        Returns:
-            True se l'operazione esiste
-        """
         return name in self._operations
+
+    def list_operations(self) -> list[str]:
+        return list(self._operations.keys())
 
     def execute(
         self, operation_name: str, intent_name: str, slots: dict = None, raw_text: str = None, cancel_event: Any = None
     ) -> dict:
-        """
-        Esegue un'operazione.
-
-        Args:
-            operation_name: Nome dell'operazione da eseguire
-            intent_name: Nome dell'intent che ha triggerato l'operazione
-            slots: Dizionario degli slot disponibili
-            raw_text: Testo grezzo del turno corrente (opzionale)
-            cancel_event: threading.Event opzionale per interrompere in anticipo
-                operation lente (vedi Operation.execute)
-
-        Returns:
-            dict con chiavi:
-                - response: Risposta testuale
-                - slots: Slot da impostare
-                - metadata: Metadati
-        """
-        operation = self.get_operation(operation_name)
+        """Esegue un'operazione; ritorna un dict con `response`, `slots`, `metadata`."""
+        operation = self._operations.get(operation_name)
         if not operation:
             return {
                 "response": f"Operazione {operation_name} non trovata",
                 "slots": {},
                 "metadata": {}
             }
-
         return operation.execute(intent_name, slots or {}, raw_text, cancel_event)
 
-    def list_operations(self) -> list[str]:
-        """
-        Lista tutte le operazioni registrate.
-
-        Returns:
-            Lista dei nomi delle operazioni
-        """
-        return list(self._operations.keys())
-
     def has_options_provider(self, name: str) -> bool:
-        """
-        Verifica se esiste un provider di opzioni dinamiche registrato per questo nome.
-
-        Args:
-            name: Nome del provider (vedi `options_source` nella rule DSL)
-
-        Returns:
-            True se il provider esiste
-        """
         return name in self._options_providers
 
     def get_options(self, name: str, slots: dict = None) -> list[dict]:
         """
-        Esegue un provider di opzioni dinamiche e ne ritorna il risultato.
-
-        Le opzioni servono a offrire all'utente una lista di scelte (bottoni) per uno
-        slot in attesa — es. domini/categorie recuperati da un'API esterna. Un fallimento
-        del provider non deve mai bloccare la conversazione: in quel caso si ritorna una
-        lista vuota e il bot ricade sulla normale attesa in testo libero.
-
-        Args:
-            name: Nome del provider
-            slots: Slot correnti (per opzioni dipendenti da uno slot già raccolto, es.
-                   categorie filtrate per il dominio già scelto)
-
-        Returns:
-            Lista di opzioni, es. [{"value": ..., "label": ...}, ...]
+        Esegue un provider di opzioni dinamiche (es. [{"value": ..., "label": ...}]).
+        Un fallimento del provider non deve mai bloccare la conversazione: in quel
+        caso si ritorna una lista vuota e il bot ricade sull'attesa in testo libero.
         """
         provider = self._options_providers.get(name)
         if not provider:
             return []
 
         try:
-            sig = inspect.signature(provider)
             kwargs = {}
-            if "slots" in sig.parameters:
+            if "slots" in inspect.signature(provider).parameters:
                 kwargs["slots"] = slots or {}
-            result = provider(**kwargs)
-            return result or []
+            return provider(**kwargs) or []
         except Exception as e:
             print(f"⚠ Errore nel provider di opzioni '{name}': {e}")
             return []
 
     def _discover_operations(self) -> None:
-        """
-        Scopre automaticamente tutte le operations nella cartella operations
-        (generiche) e in training_data/operations (specifiche del dominio),
-        allo stesso modo in cui knowledge/ e training_data/ vengono mergiate
-        per intents/rules/responses/conversations.
-
-        Supporta due modi di definire operations:
-        1. Classi che ereditano da Operation
-        2. Funzioni che seguono il pattern action_<nome> o <nome>_action
-
-        Le funzioni vengono automaticamente wrappate in una classe Operation.
-        """
-        # Trova i path delle cartelle operations: quella generica del framework
-        # e quella specifica del dominio (branch) corrente
         generic_dir = Path(__file__).parent
         domain_dir = generic_dir.parent.parent / "training_data" / "operations"
         operations_sources = [(generic_dir, "agent.operations")]
         if domain_dir.is_dir():
             operations_sources.append((domain_dir, "training_data.operations"))
 
-        # Elenca tutti i file Python (esclusi quelli speciali)
-        excluded_files = {"__init__.py", "base.py", "manager.py", "__pycache__"}
-
         for operations_dir, package_name in operations_sources:
             for file_path in sorted(operations_dir.glob("*.py")):
-                if file_path.name in excluded_files:
+                if file_path.name in self._EXCLUDED_FILES:
                     continue
-
-                # Costruisci il nome del modulo
                 module_name = f"{package_name}.{file_path.stem}"
-
                 try:
-                    # Importa il modulo
-                    module = importlib.import_module(module_name)
-
-                    # 1. Cerca tutte le classi che ereditano da Operation
-                    for name, obj in inspect.getmembers(module, inspect.isclass):
-                        # Verifica che sia una sottoclasse di Operation (ma non Operation stessa)
-                        if issubclass(obj, Operation) and obj is not Operation:
-                            # Verifica che la classe sia definita in questo modulo (non importata)
-                            if obj.__module__ == module_name:
-                                # Istanzia e registra
-                                operation_instance = obj(
-                                    session_manager=self._session_manager,
-                                    entity_manager=self._entity_manager
-                                )
-                                self.register(operation_instance)
-                                print(f"✓ Operation '{operation_instance.name}' caricata da {file_path.name} (classe)")
-
-                    # 2. Cerca tutte le funzioni che seguono il pattern action_*
-                    for name, obj in inspect.getmembers(module, inspect.isfunction):
-                        # Verifica che la funzione sia definita in questo modulo
-                        if obj.__module__ != module_name:
-                            continue
-
-                        # Estrai il nome dell'action
-                        action_name = None
-                        if name.startswith("action_"):
-                            action_name = name[7:]  # Rimuovi "action_"
-                        elif name.endswith("_action"):
-                            action_name = name[:-7]  # Rimuovi "_action"
-
-                        if action_name:
-                            # Wrappa la funzione in una classe Operation
-                            operation_instance = self._create_function_operation(action_name, obj)
-                            self.register(operation_instance)
-                            print(f"✓ Operation '{action_name}' caricata da {file_path.name} (function)")
-
-                        # 3. Cerca provider di opzioni dinamiche (pattern options_<nome>)
-                        if name.startswith("options_"):
-                            options_name = name[8:]  # Rimuovi "options_"
-                            self._options_providers[options_name] = obj
-                            print(f"✓ Options provider '{options_name}' caricato da {file_path.name} (function)")
-
+                    self._register_module(importlib.import_module(module_name), module_name, file_path.name)
                 except Exception as e:
                     print(f"⚠ Errore nel caricare operations da {file_path.name}: {e}")
 
-    def _create_function_operation(self, action_name: str, func: callable) -> Operation:
+    def _register_module(self, module, module_name: str, file_name: str) -> None:
+        # 1. Classi che ereditano da Operation, definite in questo modulo
+        for _, obj in inspect.getmembers(module, inspect.isclass):
+            if issubclass(obj, Operation) and obj is not Operation and obj.__module__ == module_name:
+                operation_instance = obj(session_manager=self._session_manager)
+                self.register(operation_instance)
+                print(f"✓ Operation '{operation_instance.name}' caricata da {file_name} (classe)")
+
+        # 2. Funzioni action_* / *_action e provider options_*
+        for name, obj in inspect.getmembers(module, inspect.isfunction):
+            if obj.__module__ != module_name:
+                continue
+
+            action_name = None
+            if name.startswith("action_"):
+                action_name = name[len("action_"):]
+            elif name.endswith("_action"):
+                action_name = name[:-len("_action")]
+
+            if action_name:
+                self.register(self._create_function_operation(action_name, obj))
+                print(f"✓ Operation '{action_name}' caricata da {file_name} (function)")
+
+            if name.startswith("options_"):
+                options_name = name[len("options_"):]
+                self._options_providers[options_name] = obj
+                print(f"✓ Options provider '{options_name}' caricato da {file_name} (function)")
+
+    def _create_function_operation(self, action_name: str, func: Callable) -> Operation:
         """
-        Crea una classe Operation a partire da una funzione.
-
-        Args:
-            action_name: Nome dell'action
-            func: Funzione da wrappare
-
-        Returns:
-            Istanza di Operation che wrappa la funzione
+        Wrappa una funzione in una Operation. La funzione riceve solo i parametri
+        che dichiara nella propria signature tra: intent_name (o intent), slots,
+        session_manager, raw_text, cancel_event. Può ritornare un dict completo o
+        una semplice stringa (usata come `response`).
         """
         session_manager = self._session_manager
-        entity_manager = self._entity_manager
+        params = set(inspect.signature(func).parameters)
 
         class FunctionOperation(Operation):
-            """Operation generata automaticamente da una funzione."""
-
             @property
             def name(self) -> str:
                 return action_name
 
             def execute(self, intent_name: str, slots: dict = None, raw_text: str = None, cancel_event: Any = None) -> dict:
-                """Esegue la funzione wrappata."""
-                # Controlla la signature della funzione per capire quali parametri accetta
-                sig = inspect.signature(func)
-                params = list(sig.parameters.keys())
-
                 kwargs = {}
-
-                # Passa i parametri in base alla signature
                 if "intent_name" in params or "intent" in params:
                     kwargs["intent_name"] = intent_name
                 if "slots" in params:
                     kwargs["slots"] = slots or {}
                 if "session_manager" in params:
                     kwargs["session_manager"] = session_manager
-                if "entity_manager" in params:
-                    kwargs["entity_manager"] = entity_manager
                 if "raw_text" in params:
                     kwargs["raw_text"] = raw_text
                 if "cancel_event" in params:
                     kwargs["cancel_event"] = cancel_event
 
-                # Esegui la funzione
                 result = func(**kwargs)
-
-                # Se la funzione ritorna solo una stringa, wrappa in un dict
                 if isinstance(result, str):
-                    return {
-                        "response": result,
-                        "slots": {},
-                        "metadata": {}
-                    }
-
-                # Altrimenti ritorna il risultato così com'è
+                    return {"response": result, "slots": {}, "metadata": {}}
                 return result
 
-        return FunctionOperation(
-            session_manager=session_manager,
-            entity_manager=entity_manager
-        )
-
-    def update_managers(self, session_manager: Any = None, entity_manager: Any = None) -> None:
-        """
-        Aggiorna i manager (utile quando vengono ricreati).
-        
-        Args:
-            session_manager: Nuovo session manager
-            entity_manager: Nuovo entity manager
-        """
-        if session_manager is not None:
-            self._session_manager = session_manager
-        if entity_manager is not None:
-            self._entity_manager = entity_manager
-
-        for operation in self._operations.values():
-            operation.session_manager = self._session_manager
-            operation.entity_manager = self._entity_manager
+        return FunctionOperation(session_manager=session_manager)

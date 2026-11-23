@@ -32,11 +32,12 @@ Cognitor Assistant
 │   └── chatbot.py         # Endpoint chatbot
 ├── agent/                 # Agent conversazionale
 │   ├── agent.py           # Coordinator principale
-│   ├── session_manager.py # Gestione sessioni
+│   ├── turn_processor.py  # Macchina a stati del turno (CLI + API)
+│   ├── session_manager.py # Gestione e persistenza sessioni
 │   ├── dialogue_state_policy.py  # Policy dialogo
 │   ├── rule_interpreter.py       # Runtime DSL
-│   ├── slot_manager.py    # Gestione slot
-│   ├── entity_manager.py # Gestione entità
+│   ├── slot_manager.py    # Gestione slot (estrazione NER e validazione)
+│   ├── keywords.py        # Comandi di annullamento/conferma e segnali di crisi
 │   └── operations/        # Operazioni custom
 ├── intellective/         # Modelli ML
 │   ├── intent_classifier.py    # BiGRU + Attention
@@ -140,6 +141,49 @@ from pipeline import run_full_pipeline
 run_full_pipeline(train_classifier=False)  # salta l'Intent Classifier
 run_full_pipeline(train_policy=False)      # salta la Dialogue Policy
 ```
+
+## Esportare il modello NLU in ONNX
+
+Per usare Intent Classifier e NER fuori da questo progetto (senza PyTorch) li si esporta in **un unico file ONNX**:
+
+```bash
+python -m intellective.export_onnx                              # scrive models/cognitor-intent.onnx
+python -m intellective.export_onnx --output <percorso>/cognitor-intent.onnx
+```
+
+Il grafo ha input `input_ids` `[batch, seq]` (int64) e due output: `probs` `[batch, n_intents]` (softmax degli
+intenti) e `ner_tags` `[batch, seq]` (int64, un tag per token: la decodifica CRF/Viterbi è dentro il grafo).
+Nei metadati (`custom_metadata_map`) c'è tutto il resto, perché modello e tokenizer vanno sempre insieme:
+
+| Chiave | Contenuto |
+|---|---|
+| `cognitor.manifest` | JSON: versione, nomi di input/output, tokenizer (`lowercase`), mappa indice → intento (`intents`), mappa indice → tag NER (`ner_tags`), `min_confidence` |
+| `cognitor.tokenizer` | `sentencepiece.model` in base64 |
+
+Le frasi vanno passate una alla volta (senza padding): il modello non usa maschere.
+
+```python
+session = onnxruntime.InferenceSession("cognitor-intent.onnx")
+meta = session.get_modelmeta().custom_metadata_map
+manifest = json.loads(meta["cognitor.manifest"])
+sp = SentencePieceProcessor(model_proto=base64.b64decode(meta["cognitor.tokenizer"]))
+ids = sp.encode(testo.lower(), out_type=int)
+probs, tag_ids = session.run(["probs", "ner_tags"], {"input_ids": [ids]})
+intent = manifest["intents"][str(probs[0].argmax())]
+tags = [manifest["ner_tags"][str(t)] for t in tag_ids[0]]      # "O", "B-DATE", "I-DATE", ...
+```
+
+**Ricostruire le entità** (stessa logica di `IntentClassifier._extract_entities`): i token sono i pezzi
+SentencePiece con il marcatore `▁` rimosso (`sp.id_to_piece(i).replace("▁", "")`). Un tag `B-X` apre un'entità di tipo
+X, un `I-X` dello stesso tipo la prosegue, ogni altro tag (o un `I-` di tipo diverso) la chiude. Gli offset di
+carattere si ottengono cercando i token in sequenza nel testo minuscolo, e il valore è la sottostringa del testo
+minuscolo tra l'inizio del primo token e la fine dell'ultimo. Poi inizio e fine si estendono ai confini di parola
+(finché il carattere accanto è alfanumerico): una parola spezzata in più pezzi, come "identità" → `i` + `dentità`, può avere
+il tag solo sui primi pezzi e l'entità resterebbe a metà (`carta d'i`).
+
+L'export confronta il file con il modello PyTorch su alcune frasi (leggendo il tokenizer dal file stesso) e
+fallisce se le probabilità o i tag divergono. Richiede `onnx` e `onnxruntime` e il tokenizer SentencePiece
+(`USE_FASTTEXT=false`). Test: `pytest tests/test_export_onnx.py`.
 
 ## Procedura di Avvio
 

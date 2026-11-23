@@ -279,8 +279,9 @@ class IntentClassifier(nn.Module):
             for entity in entities:
                 start_tok = entity.pop('_token_start')
                 end_tok = entity.pop('_token_end')
-                char_start = token_spans[start_tok][0]
-                char_end = token_spans[end_tok][1]
+                char_start, char_end = self._snap_to_word_boundaries(
+                    original_text.lower(), token_spans[start_tok][0], token_spans[end_tok][1]
+                )
                 entity['start'] = char_start
                 entity['end'] = char_end
                 entity['value'] = original_text.lower()[char_start:char_end]
@@ -290,6 +291,23 @@ class IntentClassifier(nn.Module):
                 entity.pop('_token_end', None)
 
         return entities
+
+    @staticmethod
+    def _snap_to_word_boundaries(text, start, end):
+        """
+        Estende [start, end) fino ai confini di parola del testo. Una parola spezzata in più pezzi
+        SentencePiece (es. "identità" -> "i" + "dentità") può avere il tag NER solo sui primi pezzi:
+        senza questa correzione l'entità finirebbe a metà parola ("carta d'i").
+        L'apostrofo e la punteggiatura sono confini di parola, gli spazi pure.
+        """
+        # SentencePiece normalizza alcuni caratteri (es. "’", "…"): gli offset possono sforare il testo
+        start = min(max(start, 0), len(text))
+        end = min(max(end, start), len(text))
+        while 0 < start < len(text) and text[start - 1].isalnum() and text[start].isalnum():
+            start -= 1
+        while 0 < end < len(text) and text[end].isalnum() and text[end - 1].isalnum():
+            end += 1
+        return start, end
 
     @staticmethod
     def _token_char_spans(tokens, text):

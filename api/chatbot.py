@@ -68,5 +68,5 @@ def list_intents(
 ):
     """Elenco degli intent noti al classificatore, usato dall'admin di
     geco/chatbot per popolare la selezione degli intent da disabilitare
-    (vedi agent/disabled_intents.py)."""
+    (vedi agent.agent.get_disabled_intents)."""
     return {"intents": sorted(set(agent.intent_dict.values()))}
