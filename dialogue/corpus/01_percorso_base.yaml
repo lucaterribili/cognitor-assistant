@@ -1,0 +1,110 @@
+# Corpus di conversazioni (seed, scritto da un LLM, da rivedere).
+# Formato di un turno, una riga:   {u: testo dell'utente, move: mossa, topic: argomento, ent: [tipi di entità
+# nominati], carry: [tipi di entità presi dai turni precedenti], rag: ok|low|none, bot: azione giusta}
+# `topic`, `ent`, `carry` e `rag` sono opzionali (rag: ok se omesso). Le azioni sono quelle di dialogue/actions.py.
+# `source`: hand | llm. `reviewed`: mettere true dopo averla letta e approvata.
+conversations:
+  - id: base-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "A che ora apre il pronto soccorso?", move: question, topic: opening_hours, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "No, nient'altro", move: deny, bot: goodbye}
+
+  - id: base-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "Qual è il numero di telefono dell'ospedale?", move: question, topic: phone, ent: [FACILITY], bot: answer}
+      - {u: "Perfetto, arrivederci", move: goodbye, bot: goodbye}
+
+  - id: base-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto costa il ticket per una visita specialistica?", move: question, topic: costs, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Ok grazie", move: thanks, bot: thanks_reply}
+      - {u: "Ciao", move: goodbye, bot: goodbye}
+
+  - id: base-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Come posso prenotare una visita cardiologica?", move: question, topic: booking, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "E quali documenti servono?", move: question, topic: documentation, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie, ho tutto", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: base-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si trova il centro prelievi?", move: question, topic: location, ent: [FACILITY], bot: answer}
+      - {u: "Ci sono i parcheggi?", move: question, topic: accessibility, carry: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: base-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Buonasera", move: greeting, bot: greet}
+      - {u: "Entro quando devo presentare la domanda per l'esenzione?", move: question, topic: deadlines, ent: [DOCUMENT], bot: answer}
+      - {u: "Ho capito, grazie", move: thanks, bot: thanks_reply}
+      - {u: "Basta così", move: deny, bot: goodbye}
+
+  - id: base-07
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Salve, vorrei sapere chi è il responsabile della radiologia", move: question, topic: staff, ent: [DEPARTMENT], bot: answer}
+      - {u: "E la sua email?", move: question, topic: email, carry: [DEPARTMENT], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Buona giornata", move: goodbye, bot: goodbye}
+
+  - id: base-08
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quali servizi offre il distretto?", move: question, topic: services, ent: [ORGANIZATION], bot: answer}
+      - {u: "Interessante", move: confirm, bot: offer_more}
+      - {u: "Sì, come si accede al servizio di fisioterapia?", move: question, topic: how_to, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Chiaro, grazie", move: thanks, bot: thanks_reply}
+
+  - id: base-09
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Posso pagare con il bancomat?", move: question, topic: payments, ent: [PAYMENT_METHOD], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "No grazie, è tutto", move: deny, bot: goodbye}
+
+  - id: base-10
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto si aspetta per una risonanza magnetica?", move: question, topic: waiting_times, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "Sì, e per un'ecografia?", move: question, topic: waiting_times, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+      - {u: "A posto così", move: deny, bot: goodbye}
+
+  - id: base-11
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao, chi può accedere al servizio di assistenza domiciliare?", move: question, topic: eligibility, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "E come si presenta la richiesta?", move: question, topic: procedures, carry: [HEALTH_SERVICE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: base-12
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "Dove posso scaricare il modulo per il rimborso?", move: question, topic: downloads, ent: [DOCUMENT], bot: answer}
+      - {u: "Grazie, arrivederci", move: goodbye, bot: goodbye}

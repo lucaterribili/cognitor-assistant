@@ -69,7 +69,13 @@ class IntentClassifier(nn.Module):
             num_ner_tags=None,
             freeze_embeddings=False,
             sentencepiece_model_path=None,
+            intent_factors=None,
     ):
+        """
+        `intent_factors` (IntentFactorizer, opzionale): con questo il classificatore ha due teste, argomento e tipo
+        di entità atteso, invece di un'unica uscita a `output_dim` classi. L'intento si ricostruisce combinando le due
+        distribuzioni sulle coppie valide, quindi `forward`/`predict` restituiscono comunque `output_dim` logits/prob.
+        """
         super(IntentClassifier, self).__init__()
 
         # Con sentencepiece_model_path: tokenizer a sotto-parola (nessuna
@@ -117,7 +123,18 @@ class IntentClassifier(nn.Module):
         # Branch per Intent Classification
         self.attention = Attention(hidden_dim * 2)
         self.dropout = nn.Dropout(dropout_prob)
-        self.fc = nn.Linear(hidden_dim * 2, output_dim)
+        self.factored = intent_factors is not None
+        if self.factored:
+            self.fc_topic = nn.Linear(hidden_dim * 2, intent_factors.num_topics)
+            self.fc_type = nn.Linear(hidden_dim * 2, intent_factors.num_types)
+            # per ogni intento: indice dell'argomento e del tipo (buffer: seguono il modello, non sono addestrati)
+            self.register_buffer("pair_topic", torch.tensor(intent_factors.pair_topic, dtype=torch.long))
+            self.register_buffer("pair_type", torch.tensor(intent_factors.pair_type, dtype=torch.long))
+            # 1.0 se il tipo ha senso per l'intento; non persistente: si ricostruisce dai fattori
+            self.register_buffer("type_applies", torch.tensor(intent_factors.type_applies, dtype=torch.float32),
+                                 persistent=False)
+        else:
+            self.fc = nn.Linear(hidden_dim * 2, output_dim)
 
         # Proiezione per NER su sequenze corte (embed_dim -> hidden_dim*2)
         self.short_seq_ner_proj = nn.Linear(embed_dim, hidden_dim * 2)
@@ -129,9 +146,26 @@ class IntentClassifier(nn.Module):
 
         self.num_ner_tags = num_ner_tags
 
-    def forward(self, x, ner_tags=None, mask=None):
+    def intent_heads(self, intent_features):
         """
-        Forward pass che restituisce sia intent logits che NER predictions/loss
+        Logits dell'intento dalle feature dell'attention.
+        Restituisce (intent_logits [B, n_intents], topic_logits, type_logits); le ultime due sono None
+        nel modello a classe unica. Nel modello a due teste i logits dell'intento sono la somma delle
+        log-probabilità di argomento e tipo sulle coppie valide (il tipo solo per gli intenti che ne hanno uno):
+        il softmax è la loro distribuzione congiunta.
+        """
+        if not self.factored:
+            return self.fc(intent_features), None, None
+        topic_logits = self.fc_topic(intent_features)
+        type_logits = self.fc_type(intent_features)
+        joint = (F.log_softmax(topic_logits, dim=-1)[:, self.pair_topic]
+                 + self.type_applies * F.log_softmax(type_logits, dim=-1)[:, self.pair_type])
+        return joint, topic_logits, type_logits
+
+    def forward(self, x, ner_tags=None, mask=None, return_heads=False):
+        """
+        Forward pass che restituisce sia intent logits che NER predictions/loss.
+        Con `return_heads=True` restituisce in coda anche (topic_logits, type_logits) (None se non fattorizzato).
 
         Args:
             x: input token ids [batch_size, seq_len]
@@ -154,7 +188,7 @@ class IntentClassifier(nn.Module):
         # Branch Intent Classification con Attention
         attn_out = self.attention(gru_out)
         intent_out = self.dropout(attn_out)
-        intent_logits = self.fc(intent_out)
+        intent_logits, topic_logits, type_logits = self.intent_heads(intent_out)
 
         # Branch NER
         ner_features = self.ner_dropout(gru_out)
@@ -165,13 +199,14 @@ class IntentClassifier(nn.Module):
             if mask is None:
                 mask = torch.ones(batch_size, seq_len, dtype=torch.bool, device=x.device)
             ner_loss = -self.crf(ner_emissions, ner_tags, mask=mask, reduction='mean')
-            return intent_logits, ner_loss
+            return (intent_logits, ner_loss, topic_logits, type_logits) if return_heads else (intent_logits, ner_loss)
         else:
             # Inference: decodifica sequenza con Viterbi
             if mask is None:
                 mask = torch.ones(batch_size, seq_len, dtype=torch.bool, device=x.device)
             ner_predictions = self.crf.decode(ner_emissions, mask=mask)
-            return intent_logits, ner_predictions
+            return (intent_logits, ner_predictions, topic_logits, type_logits) if return_heads \
+                else (intent_logits, ner_predictions)
 
     def tokenize(self, text):
         _, token_ids = self.tokenizer.tokenize_with_ids(text)
@@ -196,7 +231,7 @@ class IntentClassifier(nn.Module):
             token_ids = torch.tensor(ids).unsqueeze(0)
 
             # Forward pass
-            intent_logits, ner_predictions = self.forward(token_ids)
+            intent_logits, ner_predictions, topic_logits, type_logits = self.forward(token_ids, return_heads=True)
 
             # Intent
             intent_probs = F.softmax(intent_logits, dim=-1)
@@ -207,7 +242,15 @@ class IntentClassifier(nn.Module):
             ner_tags = [self.ner_tag_builder.id2tag[tag_id] for tag_id in ner_predictions[0]]
             entities = self._extract_entities(tokens, ner_tags, text)
 
+            heads = {}
+            if topic_logits is not None:
+                heads = {
+                    'topic_probs': F.softmax(topic_logits, dim=-1)[0].tolist(),
+                    'type_probs': F.softmax(type_logits, dim=-1)[0].tolist(),
+                }
+
             return {
+                **heads,
                 'intent_idx': intent_idx,
                 'intent_confidence': intent_conf,
                 'entities': entities,

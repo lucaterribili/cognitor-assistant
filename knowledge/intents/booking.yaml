@@ -1,0 +1,234 @@
+nlu:
+  intents:
+  - intent: ask_booking
+    examples:
+    - Come posso prenotare?
+    - Dove si effettua la prenotazione?
+    - È necessario prenotare?
+    - voglio prenotare un vaccino
+    - posso prenotare tramite farmacia
+    - come funziona il sistema di prenotazione
+    - posso effettuare la prenotazione direttamente online
+    - come faccio a cancellare una prenotazione già fatta
+    - mi serve il codice di prenotazione per modificare la data
+    - la prenotazione è obbligatoria per accedere
+    - con quanto anticipo conviene prenotare
+    - ho perso la ricevuta della prenotazione, come la recupero
+    - posso prenotare telefonicamente tramite call center
+    - la prenotazione ha una conferma immediata via SMS
+    - è possibile prenotare a nome di un'altra persona
+    - dove trovo il portale delle prenotazioni
+    - cosa devo portare il giorno della prenotazione
+    - come verifico se la mia prenotazione è andata a buon fine
+  - intent: ask_medical_procedure_booking
+    examples:
+    - come prenoto una [visita specialistica](MEDICAL_PROCEDURE)
+    - posso prenotare una [ecografia](MEDICAL_PROCEDURE) online
+    - devo prenotare per fare il [prelievo](MEDICAL_PROCEDURE)
+    - si può prenotare la [visita medico legale](MEDICAL_PROCEDURE) per la [patente](DOCUMENT)
+    - come prenoto una [mammografia](MEDICAL_PROCEDURE)
+    - come prenoto la [colonscopia](MEDICAL_PROCEDURE) di screening
+    - voglio prenotare una [visita neurologica](MEDICAL_PROCEDURE) al [Grassi](FACILITY)
+    - come si prenota una [visita cardiologica](MEDICAL_PROCEDURE)
+    - dove si prenota una [risonanza magnetica](MEDICAL_PROCEDURE)
+    - come si effettua la prenotazione della [terapia oncologica](MEDICAL_PROCEDURE)
+    - vorrei prenotare la [visita cardiologica](MEDICAL_PROCEDURE)
+    - dove posso prenotare online la [visita neurologica](MEDICAL_PROCEDURE)
+    - quali sono i canali per prenotare la [visita specialistica](MEDICAL_PROCEDURE)
+    - posso disdire una prenotazione per la [mammografia](MEDICAL_PROCEDURE)
+    - è aperta la prenotazione del [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - come si effettua la prenotazione della [visita per la patente](MEDICAL_PROCEDURE)
+    - vorrei prenotare il [ricovero programmato](MEDICAL_PROCEDURE)
+  - intent: ask_health_service_booking
+    examples:
+    - come prenoto una visita al [CUP](HEALTH_SERVICE)
+    - posso prenotare con il numero regionale [RECUP](HEALTH_SERVICE)
+    - come prenoto la [donazione del sangue](HEALTH_SERVICE)
+    - come si prenota lo [Sportello Giovani](HEALTH_SERVICE) a [Magliana](ZONE)
+    - come si effettua la prenotazione del [Fascicolo Sanitario](HEALTH_SERVICE)
+    - vorrei prenotare lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - dove posso prenotare online l'[assistenza all'estero](HEALTH_SERVICE)
+    - quali sono i canali per prenotare il [Servizio Sanitario](HEALTH_SERVICE)
+    - posso disdire una prenotazione per lo [screening del colon retto](HEALTH_SERVICE)
+    - è aperta la prenotazione dell'[accesso civico](HEALTH_SERVICE)
+    - come si effettua la prenotazione dello [screening della mammella](HEALTH_SERVICE)
+    - vorrei prenotare la [Telemedicina](HEALTH_SERVICE)
+    - dove posso prenotare online il [RECUP](HEALTH_SERVICE)
+    - quali sono i canali per prenotare il [Punto unico di accesso](HEALTH_SERVICE)
+    - posso disdire una prenotazione per la [nutrizione artificiale](HEALTH_SERVICE)
+    - è aperta la prenotazione delle [cure palliative](HEALTH_SERVICE)
+    - come si effettua la prenotazione dell'[ossigenoterapia](HEALTH_SERVICE)
+  - intent: ask_facility_booking
+    examples:
+    - serve prenotare per i [Centri Prelievi](FACILITY)
+    - posso prenotare presso la [Casa della Salute](FACILITY) di [Palidoro](ZONE)
+    - come prenoto l'ingresso con fascia oraria per le [Cappelle Medicee](FACILITY)
+    - come si effettua la prenotazione delle [Case della Comunità](FACILITY)
+    - vorrei prenotare la [Casa della Comunità](FACILITY)
+    - dove posso prenotare online l'[Ospedale Grassi](FACILITY)
+    - quali sono i canali per prenotare il [Presidio Ospedaliero Grassi](FACILITY)
+    - posso disdire una prenotazione per i [Consultori](FACILITY)
+    - è aperta la prenotazione delle [Cappelle Medicee](FACILITY)
+    - come si effettua la prenotazione della [Pinacoteca civica](FACILITY)
+    - vorrei prenotare l'[asilo nido](FACILITY)
+    - dove posso prenotare online l'[Ospedale di Comunità](FACILITY)
+    - quali sono i canali per prenotare l'[Ecocentro](FACILITY)
+    - posso disdire una prenotazione per la [Scuola Primaria Rodari](FACILITY)
+    - è aperta la prenotazione del [CPO Gennaro di Rosa](FACILITY)
+    - come si effettua la prenotazione del [Consultorio](FACILITY)
+    - vorrei prenotare la [Galleria d'arte contemporanea](FACILITY)
+    - dove posso prenotare online il [Centro Prelievi Palidoro](FACILITY)
+  - intent: ask_organization_booking
+    examples:
+    - come prenoto un appuntamento all'[Agenzia delle Entrate](ORGANIZATION)
+    - come si prenota una videochiamata con un funzionario dell'[Agenzia delle Entrate](ORGANIZATION)
+    - dove prenoto lo sportello dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - come si effettua la prenotazione dell'[Ordine dei Medici](ORGANIZATION)
+    - vorrei prenotare la [Camera di Commercio](ORGANIZATION)
+    - dove posso prenotare online la [Croce Rossa](ORGANIZATION)
+    - quali sono i canali per prenotare la [Protezione Civile](ORGANIZATION)
+    - posso disdire una prenotazione per l'[Agenzia delle Entrate](ORGANIZATION)
+    - è aperta la prenotazione dell'[ASL Roma 3](ORGANIZATION)
+    - come si effettua la prenotazione dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - vorrei prenotare [programmato](ORGANIZATION)
+    - dove posso prenotare online i [Musei Civici](ORGANIZATION)
+    - quali sono i canali per prenotare l'[ASL](ORGANIZATION)
+    - posso disdire una prenotazione per il [CAF](ORGANIZATION)
+    - è aperta la prenotazione del [Comune di Montesole](ORGANIZATION)
+    - come si effettua la prenotazione dell'[IC Giovanni Pascoli](ORGANIZATION)
+    - vorrei prenotare il [Comune](ORGANIZATION)
+    - dove posso prenotare online l'[IC Pascoli](ORGANIZATION)
+  - intent: ask_department_booking
+    examples:
+    - devo prenotare per andare all'[Ufficio del Catasto](DEPARTMENT)
+    - come prenoto l'appuntamento allo sportello dell'[anagrafe](DEPARTMENT) per la carta d'identità
+    - come si effettua la prenotazione della [Direzione Generale](DEPARTMENT)
+    - vorrei prenotare l'[URP](DEPARTMENT)
+    - dove posso prenotare online il [Pronto Soccorso](DEPARTMENT)
+    - quali sono i canali per prenotare l'[Ufficio Territoriale](DEPARTMENT)
+    - posso disdire una prenotazione per l'[Ufficio del Catasto](DEPARTMENT)
+    - è aperta la prenotazione della [Direzione Provinciale](DEPARTMENT)
+    - come si effettua la prenotazione della [Medicina Legale](DEPARTMENT)
+    - vorrei prenotare la [Medicina dello Sport](DEPARTMENT)
+    - dove posso prenotare online la [Salute Mentale](DEPARTMENT)
+    - quali sono i canali per prenotare il [Catasto](DEPARTMENT)
+    - posso disdire una prenotazione per la [Direzione Sanitaria](DEPARTMENT)
+    - è aperta la prenotazione del [SUAP](DEPARTMENT)
+    - come si effettua la prenotazione dell'[anagrafe](DEPARTMENT)
+    - vorrei prenotare la [Polizia locale](DEPARTMENT)
+    - dove posso prenotare online la [Neurologia](DEPARTMENT)
+    - quali sono i canali per prenotare l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+  - intent: ask_document_booking
+    examples:
+    - dove prenoto la [patente](DOCUMENT) A-B visita medica
+    - posso prenotare un [web ticket](DOCUMENT) per saltare la coda allo sportello
+    - come si effettua la prenotazione del [modello F24](DOCUMENT)
+    - vorrei prenotare la [patente](DOCUMENT)
+    - dove posso prenotare online la [dichiarazione dei redditi](DOCUMENT)
+    - quali sono i canali per prenotare la [cartella esattoriale](DOCUMENT)
+    - posso disdire una prenotazione per il [modello Redditi PF](DOCUMENT)
+    - è aperta la prenotazione della [dichiarazione precompilata](DOCUMENT)
+    - come si effettua la prenotazione dello [SPID](DOCUMENT)
+    - vorrei prenotare il [concorso pubblico](DOCUMENT)
+    - dove posso prenotare online la [visura catastale](DOCUMENT)
+    - quali sono i canali per prenotare la [tessera sanitaria](DOCUMENT)
+    - posso disdire una prenotazione per la [cartella clinica](DOCUMENT)
+    - è aperta la prenotazione del [codice fiscale](DOCUMENT)
+    - come si effettua la prenotazione dell'[ISEE](DOCUMENT)
+    - vorrei prenotare la [partita IVA](DOCUMENT)
+    - dove posso prenotare online la [carta d'identità elettronica](DOCUMENT)
+  - intent: ask_misc_booking
+    examples:
+    - vorrei prenotare una [visita guidata](MISC) al [Museo archeologico](FACILITY)
+    - prenotazione del colloquio individuale con i professori sul [registro elettronico](MISC)
+    - come si effettua la prenotazione del [rimborso IRPEF](MISC)
+    - vorrei prenotare il [bonus ristrutturazione](MISC)
+    - dove posso prenotare online il [registro elettronico](MISC)
+    - quali sono i canali per prenotare la [dieta speciale](MISC)
+    - posso disdire una prenotazione per [CIVIS](MISC)
+    - è aperta la prenotazione di [Fisconline](MISC)
+    - come si effettua la prenotazione dello [SdI](MISC)
+    - vorrei prenotare il [codice tributo](MISC)
+    - dove posso prenotare online la [mensa scolastica](MISC)
+    - quali sono i canali per prenotare la [prima casa](MISC)
+    - posso disdire una prenotazione per la [carta famiglia](MISC)
+    - è aperta la prenotazione degli [abusi digitali](MISC)
+    - come si effettua la prenotazione di [Entratel](MISC)
+    - vorrei prenotare [Fatture e Corrispettivi](MISC)
+    - dove posso prenotare online il [pre-scuola](MISC)
+    - quali sono i canali per prenotare la [rendita catastale](MISC)
+  - intent: ask_event_booking
+    examples:
+    - come prenoto un posto per la [Giornata Nazionale del mal di testa](EVENT)
+    - come si effettua la prenotazione di [Magliana per le Ragazze](EVENT)
+    - vorrei prenotare il [convegno pediatrico](EVENT)
+    - dove posso prenotare online la [Settimana dell'allattamento materno](EVENT)
+    - quali sono i canali per prenotare l'[Open Day vaccinale](EVENT)
+    - posso disdire una prenotazione per la [Giornata della trasparenza](EVENT)
+    - è aperta la prenotazione della [Camminata della salute](EVENT)
+    - come si effettua la prenotazione della [Conferenza dei servizi sanitari](EVENT)
+    - vorrei prenotare il [Seminario sulla sicurezza stradale](EVENT)
+    - dove posso prenotare online il [Laboratorio di lettura per bambini](EVENT)
+    - quali sono i canali per prenotare il [Festival della cultura locale](EVENT)
+    - posso disdire una prenotazione per la [Giornata Nazionale del mal di testa](EVENT)
+    - è aperta la prenotazione della [Notte dei Musei](EVENT)
+    - come si effettua la prenotazione di [Fisco e Scuola](EVENT)
+    - vorrei prenotare l'[8 marzo](EVENT)
+    - dove posso prenotare online la [cura come maternage](EVENT)
+    - quali sono i canali per prenotare i [centri estivi](EVENT)
+    - posso disdire una prenotazione per [Sotto la superficie](EVENT)
+  - intent: ask_procedure_booking
+    examples:
+    - come prenoto il [ritiro dei rifiuti ingombranti](PROCEDURE) sotto casa
+    - come si effettua la prenotazione del [concordato preventivo biennale](PROCEDURE)
+    - vorrei prenotare l'[accertamento con adesione](PROCEDURE)
+    - dove posso prenotare online il [matrimonio civile](PROCEDURE)
+    - quali sono i canali per prenotare il [pignoramento](PROCEDURE)
+    - posso disdire una prenotazione per l'[interpello](PROCEDURE)
+    - è aperta la prenotazione del [cambio di residenza](PROCEDURE)
+    - come si effettua la prenotazione della [rottamazione quater](PROCEDURE)
+    - vorrei prenotare la [fatturazione elettronica](PROCEDURE)
+    - dove posso prenotare online la [rateizzazione](PROCEDURE)
+    - quali sono i canali per prenotare il [ravvedimento operoso](PROCEDURE)
+    - posso disdire una prenotazione per i [contributi Inps](PROCEDURE)
+    - è aperta la prenotazione dell'[autotutela](PROCEDURE)
+    - come si effettua la prenotazione dell'[accertamento fiscale](PROCEDURE)
+    - vorrei prenotare la [raccolta differenziata](PROCEDURE)
+    - dove posso prenotare online il [rinnovo della patente](PROCEDURE)
+    - quali sono i canali per prenotare la [voltura catastale](PROCEDURE)
+  - intent: ask_technology_booking
+    examples:
+    - posso prenotare tramite l'app [AgenziaEntrate](TECHNOLOGY)
+    - come si effettua la prenotazione di [Flask](TECHNOLOGY)
+    - vorrei prenotare [Joomla](TECHNOLOGY)
+    - dove posso prenotare online il [Desktop Telematico](TECHNOLOGY)
+    - quali sono i canali per prenotare [Voltura 2.0](TECHNOLOGY)
+    - posso disdire una prenotazione per [Docker](TECHNOLOGY)
+    - è aperta la prenotazione di [FastAPI](TECHNOLOGY)
+    - come si effettua la prenotazione di [Laravel](TECHNOLOGY)
+    - vorrei prenotare [Python](TECHNOLOGY)
+    - dove posso prenotare online [PostgreSQL](TECHNOLOGY)
+    - quali sono i canali per prenotare [Spring Boot](TECHNOLOGY)
+    - posso disdire una prenotazione per [PHP](TECHNOLOGY)
+    - è aperta la prenotazione di [WordPress](TECHNOLOGY)
+    - come si effettua la prenotazione di [Linux](TECHNOLOGY)
+    - vorrei prenotare [MySQL](TECHNOLOGY)
+    - dove posso prenotare online [nftables](TECHNOLOGY)
+  - intent: ask_zone_booking
+    examples:
+    - come si prenota un alloggio a [Ostia](ZONE)
+    - come si effettua la prenotazione dell'[Infernetto](ZONE)
+    - vorrei prenotare [Maccarese](ZONE)
+    - dove posso prenotare online [Ostia](ZONE)
+    - quali sono i canali per prenotare il [Municipio XII](ZONE)
+    - posso disdire una prenotazione per [Roma](ZONE)
+    - è aperta la prenotazione del [Municipio XI](ZONE)
+    - come si effettua la prenotazione di [Fiumicino](ZONE)
+    - vorrei prenotare [Palidoro](ZONE)
+    - dove posso prenotare online [Magliana](ZONE)
+    - quali sono i canali per prenotare [Montesole](ZONE)
+    - posso disdire una prenotazione per il [Municipio X](ZONE)
+    - è aperta la prenotazione di [Acilia](ZONE)
+    - come si effettua la prenotazione di [Ponte Galeria](ZONE)
+    - vorrei prenotare [Corviale](ZONE)
+    - dove posso prenotare online [Ostia Antica](ZONE)

@@ -1,0 +1,151 @@
+nlu:
+  intents:
+  - intent: ask_tracking
+    examples:
+    - Come posso seguire la mia richiesta?
+    - Posso verificare l'avanzamento?
+    - Dove controllo lo stato della spedizione?
+    - come seguo l'avanzamento della mia richiesta
+    - dove controllo lo stato del mio reclamo
+    - come seguo la mia prenotazione online
+    - come tengo traccia della pratica di smarrimento
+    - dove vedo lo stato del ricovero di un familiare
+    - come faccio a tracciare la mia pratica con il numero di protocollo
+    - dove inserisco il codice di tracciamento sul portale
+    - c'è un sistema di tracking online per seguire l'iter passo passo
+    - ho perso il codice di tracciamento, come posso recuperarlo
+    - ricevo notifiche via SMS o email ad ogni passaggio del tracking
+    - il tracciamento mostra anche l'ufficio che ha in carico la pratica
+    - dopo quanto tempo dall'invio si attiva il codice di tracking
+    - come controllo lo storico dei movimenti della mia richiesta
+  - intent: ask_document_tracking
+    examples:
+    - come posso verificare l'avanzamento della [domanda di concorso](DOCUMENT)
+    - come controllo lo stato della mia [esenzione](DOCUMENT)
+    - dove vedo l'esito della [gara](DOCUMENT)
+    - come controllo se il [referto](DOCUMENT) è disponibile
+    - come vedo se hanno ricevuto la mia [PEC](DOCUMENT)
+    - dove controllo l'avanzamento dei lavori del [PNRR](DOCUMENT)
+    - come verifico se la [dichiarazione dei redditi](DOCUMENT) inviata è stata acquisita
+    - dove vedo la ricevuta di trasmissione del [modello 730](DOCUMENT)
+    - dove verifico l'estratto conto delle mie [cartelle esattoriali](DOCUMENT)
+    - come controllo la spedizione della tessera del [codice fiscale](DOCUMENT)
+    - come posso tracciare l'avanzamento del [concorso pubblico](DOCUMENT)
+    - dove inserisco il codice per il tracking della [visura catastale](DOCUMENT)
+    - posso seguire online il percorso della [tessera sanitaria](DOCUMENT)
+    - c'è un numero di protocollo o tracciamento per la [cartella clinica](DOCUMENT)
+    - come monitoro in tempo reale il [codice fiscale](DOCUMENT)
+    - dove vedo lo storico dei passaggi dell'[ISEE](DOCUMENT)
+    - come posso tracciare l'avanzamento della [partita IVA](DOCUMENT)
+  - intent: ask_health_service_tracking
+    examples:
+    - dove vedo lo stato della [richiesta di assistenza protesica](HEALTH_SERVICE)
+    - posso tracciare la [richiesta di accesso civico](HEALTH_SERVICE)
+    - posso seguire la consegna dei presidi per l'[assistenza protesica](HEALTH_SERVICE)
+    - come posso tracciare l'avanzamento dell'[assistenza protesica](HEALTH_SERVICE)
+    - dove inserisco il codice per il tracking delle [vaccinazioni](HEALTH_SERVICE)
+    - posso seguire online il percorso dell'[assistenza domiciliare](HEALTH_SERVICE)
+    - c'è un numero di protocollo o tracciamento per la [Guardia Medica](HEALTH_SERVICE)
+    - come monitoro in tempo reale la [donazione del sangue](HEALTH_SERVICE)
+    - dove vedo lo storico dei passaggi della [scelta del medico](HEALTH_SERVICE)
+    - come posso tracciare l'avanzamento dell'[accesso agli atti](HEALTH_SERVICE)
+    - dove inserisco il codice per il tracking dello [screening oncologico](HEALTH_SERVICE)
+    - posso seguire online il percorso dello [Sportello Giovani](HEALTH_SERVICE)
+    - c'è un numero di protocollo o tracciamento per il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - come monitoro in tempo reale lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - dove vedo lo storico dei passaggi dell'[assistenza all'estero](HEALTH_SERVICE)
+    - come posso tracciare l'avanzamento del [Servizio Sanitario](HEALTH_SERVICE)
+    - dove inserisco il codice per il tracking dello [screening del colon retto](HEALTH_SERVICE)
+  - intent: ask_misc_tracking
+    examples:
+    - dove controllo lo stato del mio [rimborso IRPEF](MISC) nel [cassetto fiscale](MISC)
+    - come controllo l'avanzamento di una pratica inviata tramite [CIVIS](MISC)
+    - come posso tracciare l'avanzamento della [mensa scolastica](MISC)
+    - dove inserisco il codice per il tracking della [prima casa](MISC)
+    - posso seguire online il percorso della [carta famiglia](MISC)
+    - c'è un numero di protocollo o tracciamento per gli [abusi digitali](MISC)
+    - come monitoro in tempo reale [Entratel](MISC)
+    - dove vedo lo storico dei passaggi di [Fatture e Corrispettivi](MISC)
+    - come posso tracciare l'avanzamento del [pre-scuola](MISC)
+    - dove inserisco il codice per il tracking della [rendita catastale](MISC)
+    - posso seguire online il percorso del [regime ordinario](MISC)
+    - c'è un numero di protocollo o tracciamento per il [bonus mobili](MISC)
+    - come monitoro in tempo reale l'[ecobonus](MISC)
+    - dove vedo lo storico dei passaggi del [Superbonus](MISC)
+    - come posso tracciare l'avanzamento dell'[audioguida](MISC)
+    - dove inserisco il codice per il tracking degli [alloggi popolari](MISC)
+    - posso seguire online il percorso del [regime forfettario](MISC)
+  - intent: ask_procedure_tracking
+    examples:
+    - come faccio a seguire l'iter del [cambio di residenza](PROCEDURE)
+    - come posso tracciare l'avanzamento del [concordato preventivo biennale](PROCEDURE)
+    - dove inserisco il codice per il tracking dell'[accertamento con adesione](PROCEDURE)
+    - posso seguire online il percorso del [matrimonio civile](PROCEDURE)
+    - c'è un numero di protocollo o tracciamento per il [pignoramento](PROCEDURE)
+    - come monitoro in tempo reale l'[interpello](PROCEDURE)
+    - dove vedo lo storico dei passaggi del [cambio di residenza](PROCEDURE)
+    - come posso tracciare l'avanzamento della [rottamazione quater](PROCEDURE)
+    - dove inserisco il codice per il tracking della [fatturazione elettronica](PROCEDURE)
+    - posso seguire online il percorso della [rateizzazione](PROCEDURE)
+    - c'è un numero di protocollo o tracciamento per il [ravvedimento operoso](PROCEDURE)
+    - come monitoro in tempo reale i [contributi Inps](PROCEDURE)
+    - dove vedo lo storico dei passaggi dell'[autotutela](PROCEDURE)
+    - come posso tracciare l'avanzamento dell'[accertamento fiscale](PROCEDURE)
+    - dove inserisco il codice per il tracking della [raccolta differenziata](PROCEDURE)
+    - posso seguire online il percorso del [rinnovo della patente](PROCEDURE)
+    - c'è un numero di protocollo o tracciamento per la [voltura catastale](PROCEDURE)
+  - intent: ask_product_tracking
+    examples:
+    - come seguo la consegna dell'[ossigeno](PRODUCT)
+    - come posso tracciare l'avanzamento dei [microinfusori](PRODUCT)
+    - dove inserisco il codice per il tracking di [ZuluTrade](PRODUCT)
+    - posso seguire online il percorso degli [omega-3](PRODUCT)
+    - c'è un numero di protocollo o tracciamento per il [microinfusore](PRODUCT)
+    - come monitoro in tempo reale gli [strumentari odontotecnici](PRODUCT)
+    - dove vedo lo storico dei passaggi della [parrucca](PRODUCT)
+    - come posso tracciare l'avanzamento della [mascherina](PRODUCT)
+    - dove inserisco il codice per il tracking delle [scarpe da corsa](PRODUCT)
+    - posso seguire online il percorso dei [pannelli solari](PRODUCT)
+    - c'è un numero di protocollo o tracciamento per la [lampada scialitica](PRODUCT)
+    - come monitoro in tempo reale l'[apparecchio per l'ossigeno](PRODUCT)
+    - dove vedo lo storico dei passaggi della [protesi acustica](PRODUCT)
+    - come posso tracciare l'avanzamento della [carrozzina ortopedica](PRODUCT)
+    - dove inserisco il codice per il tracking del [deambulatore](PRODUCT)
+    - posso seguire online il percorso del [letto ortopedico](PRODUCT)
+    - c'è un numero di protocollo o tracciamento per il [glucometro](PRODUCT)
+  - intent: ask_tech_concept_tracking
+    examples:
+    - come monitoro un [cron job](TECH_CONCEPT) di backup
+    - come posso tracciare l'avanzamento dell'[interceptor](TECH_CONCEPT)
+    - dove inserisco il codice per il tracking delle [Facades](TECH_CONCEPT)
+    - posso seguire online il percorso della [GPU](TECH_CONCEPT)
+    - c'è un numero di protocollo o tracciamento per il [machine learning](TECH_CONCEPT)
+    - come monitoro in tempo reale l'[autenticazione JWT](TECH_CONCEPT)
+    - dove vedo lo storico dei passaggi della [containerizzazione](TECH_CONCEPT)
+    - come posso tracciare l'avanzamento degli [embeddings](TECH_CONCEPT)
+    - dove inserisco il codice per il tracking del [firewall](TECH_CONCEPT)
+    - posso seguire online il percorso dell'[intelligenza artificiale](TECH_CONCEPT)
+    - c'è un numero di protocollo o tracciamento per il [cron job](TECH_CONCEPT)
+    - come monitoro in tempo reale la [BiGRU](TECH_CONCEPT)
+    - dove vedo lo storico dei passaggi dei [microservizi](TECH_CONCEPT)
+    - come posso tracciare l'avanzamento della [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - dove inserisco il codice per il tracking dei [generatori](TECH_CONCEPT)
+    - posso seguire online il percorso degli [assistenti di codice](TECH_CONCEPT)
+  - intent: ask_technology_tracking
+    examples:
+    - come controllo lo stato di un deploy su [WildFly](TECHNOLOGY)
+    - come posso tracciare l'avanzamento di [Linux](TECHNOLOGY)
+    - dove inserisco il codice per il tracking di [MySQL](TECHNOLOGY)
+    - posso seguire online il percorso di [nftables](TECHNOLOGY)
+    - c'è un numero di protocollo o tracciamento per [Eloquent](TECHNOLOGY)
+    - come monitoro in tempo reale [Ubuntu](TECHNOLOGY)
+    - dove vedo lo storico dei passaggi di [rsync](TECHNOLOGY)
+    - come posso tracciare l'avanzamento di [WildFly](TECHNOLOGY)
+    - dove inserisco il codice per il tracking di [Apache](TECHNOLOGY)
+    - posso seguire online il percorso di [Django](TECHNOLOGY)
+    - c'è un numero di protocollo o tracciamento per [JavaScript](TECHNOLOGY)
+    - come monitoro in tempo reale [Angular](TECHNOLOGY)
+    - dove vedo lo storico dei passaggi di [phpMyAdmin](TECHNOLOGY)
+    - come posso tracciare l'avanzamento di [Flask](TECHNOLOGY)
+    - dove inserisco il codice per il tracking di [Joomla](TECHNOLOGY)
+    - posso seguire online il percorso del [Desktop Telematico](TECHNOLOGY)

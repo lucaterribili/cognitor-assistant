@@ -1,0 +1,83 @@
+# Follow-up: l'argomento o l'entità non sono nel messaggio e vengono dal contesto.
+conversations:
+  - id: follow-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "A che ora apre la radiologia?", move: question, topic: opening_hours, ent: [DEPARTMENT], bot: answer}
+      - {u: "E la cardiologia?", move: follow_up_entity, ent: [DEPARTMENT], bot: answer}
+      - {u: "E il laboratorio analisi?", move: follow_up_entity, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Qual è il telefono del distretto 1?", move: question, topic: phone, ent: [ORGANIZATION], bot: answer}
+      - {u: "E del distretto 2?", move: follow_up_entity, ent: [ORGANIZATION], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: follow-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si trova il pronto soccorso?", move: question, topic: location, ent: [DEPARTMENT], bot: answer}
+      - {u: "E come si chiama il responsabile?", move: question, topic: staff, carry: [DEPARTMENT], bot: answer}
+      - {u: "E il numero di telefono?", move: question, topic: phone, carry: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto costa la visita ortopedica?", move: question, topic: costs, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "E quella cardiologica?", move: follow_up_entity, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "E bisogna prenotare?", move: question, topic: booking, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Ho capito, grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Gli orari del centro vaccinale?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "E il sabato?", move: question, topic: opening_hours, carry: [FACILITY], ent: [DATE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come si ottiene l'esenzione ticket per reddito?", move: question, topic: how_to, ent: [DOCUMENT], bot: answer}
+      - {u: "Quali requisiti servono?", move: question, topic: requirements, carry: [DOCUMENT], bot: answer}
+      - {u: "E la scadenza?", move: question, topic: deadlines, carry: [DOCUMENT], bot: answer}
+      - {u: "Grazie, chiarissimo", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: follow-07
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "A che ora apre il CUP?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Vorrei invece sapere dei servizi di oncologia", move: question, topic: services, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-08
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Qual è l'indirizzo del distretto 3?", move: question, topic: address, ent: [ORGANIZATION], bot: answer}
+      - {u: "E quello del distretto 1?", move: follow_up_entity, ent: [ORGANIZATION], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "No, va bene così", move: deny, bot: goodbye}
+
+  - id: follow-09
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Dove si fanno i prelievi?", move: question, topic: location, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "A che ora?", move: question, topic: opening_hours, carry: [HEALTH_SERVICE], bot: answer}
+      - {u: "Serve la prenotazione?", move: question, topic: booking, carry: [HEALTH_SERVICE], bot: answer}
+      - {u: "Perfetto, grazie", move: thanks, bot: thanks_reply}

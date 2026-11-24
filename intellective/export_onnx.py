@@ -11,11 +11,12 @@ Uso:
 Come usare il file (solo `onnxruntime` + `sentencepiece`):
     session = onnxruntime.InferenceSession(path)
     meta = session.get_modelmeta().custom_metadata_map
-    manifest = json.loads(meta["cognitor.manifest"])          # intents, min_confidence, tokenizer, ...
+    labels = json.loads(meta["labels"])                       # lista ordinata delle classi (stesso ordine dei logits/probs)
+    manifest = json.loads(meta["cognitor.manifest"])          # intents, labels, min_confidence, tokenizer, ...
     sp = SentencePieceProcessor(model_proto=base64.b64decode(meta["cognitor.tokenizer"]))
     ids = sp.encode(testo.lower(), out_type=int)              # lowercase: vedi manifest["tokenizer"]
     probs, tag_ids = session.run(["probs", "ner_tags"], {"input_ids": [ids]})
-    # probs: float [1, n_intents]; tag_ids: int64 [1, seq] -> manifest["ner_tags"][str(id)] ("O", "B-X", "I-X")
+    # probs: float [1, n_intents] -> labels[probs[0].argmax()]; tag_ids: int64 [1, seq] -> manifest["ner_tags"][str(id)]
 
 Le entità si ricostruiscono dai tag BIO sui token (pezzi SentencePiece senza il marcatore "▁"):
 vedi README, sezione "Esportare il classificatore in ONNX".
@@ -35,15 +36,22 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from agent.model_loader import ModelLoader
+from classes.intent_factorizer import IntentFactorizer
 from config import BASE_DIR, MIN_INTENT_CONFIDENCE, USE_FASTTEXT
 
 MANIFEST_VERSION = 1
 ONNX_FILENAME = "cognitor-intent.onnx"
+LABELS_KEY = "labels"  # lista ordinata dei nomi degli intenti (stesso ordine degli indici di probs/logits)
+NER_LABELS_KEY = "ner_labels"  # lista ordinata dei tag NER (stesso ordine degli ID di ner_tags)
+TOPICS_KEY = "topics"  # solo modello a due teste: argomenti, nell'ordine di topic_probs
+TYPES_KEY = "types"    # solo modello a due teste: tipi di entità, nell'ordine di type_probs ("" = nessun tipo)
 MANIFEST_KEY = "cognitor.manifest"
 TOKENIZER_KEY = "cognitor.tokenizer"  # sentencepiece.model in base64
 INPUT_NAME = "input_ids"
 OUTPUT_NAME = "probs"
 NER_OUTPUT_NAME = "ner_tags"
+TOPIC_OUTPUT_NAME = "topic_probs"  # solo modello a due teste: [batch, n_argomenti]
+TYPE_OUTPUT_NAME = "type_probs"    # solo modello a due teste: [batch, n_tipi] (indice 0 = nessun tipo)
 OPSET = 17
 
 PARITY_SENTENCES = [
@@ -88,7 +96,10 @@ def viterbi_decode(emissions: torch.Tensor, start: torch.Tensor, end: torch.Tens
 class NLUExport(nn.Module):
     """
     Intent (embedding -> BiGRU -> attention -> fc -> softmax) e NER (BiGRU -> fc -> Viterbi CRF)
-    in un unico grafo. Restituisce (probs [B, n_intents], ner_tags [B, seq]).
+    in un unico grafo. Restituisce (probs [B, n_intents], ner_tags [B, seq]); se il modello ha due teste
+    (argomento e tipo di entità) restituisce anche (topic_probs [B, n_argomenti], type_probs [B, n_tipi]).
+    `probs` resta la distribuzione sugli intenti completi (prodotto delle due teste), quindi chi non usa
+    le due teste legge lo stesso output di prima.
     """
 
     def __init__(self, model):
@@ -98,10 +109,13 @@ class NLUExport(nn.Module):
     def forward(self, input_ids):
         m = self.model
         gru_out, _ = m.bigru(m.embed_dropout(m.embedding(input_ids)))
-        probs = F.softmax(m.fc(m.dropout(m.attention(gru_out))), dim=-1)
+        intent_logits, topic_logits, type_logits = m.intent_heads(m.dropout(m.attention(gru_out)))
+        probs = F.softmax(intent_logits, dim=-1)
         emissions = m.ner_fc(m.ner_dropout(gru_out))
         tags = viterbi_decode(emissions, m.crf.start_transitions, m.crf.end_transitions, m.crf.transitions)
-        return probs, tags
+        if topic_logits is None:
+            return probs, tags
+        return probs, tags, F.softmax(topic_logits, dim=-1), F.softmax(type_logits, dim=-1)
 
 
 def export(output_path: str) -> str:
@@ -121,21 +135,32 @@ def export(output_path: str) -> str:
 
     os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
 
+    factored = model.factored
+    output_names = [OUTPUT_NAME, NER_OUTPUT_NAME] + ([TOPIC_OUTPUT_NAME, TYPE_OUTPUT_NAME] if factored else [])
+    dynamic_axes = {
+        INPUT_NAME: {0: "batch", 1: "seq"},
+        OUTPUT_NAME: {0: "batch"},
+        NER_OUTPUT_NAME: {0: "batch", 1: "seq"},
+    }
+    if factored:
+        dynamic_axes.update({TOPIC_OUTPUT_NAME: {0: "batch"}, TYPE_OUTPUT_NAME: {0: "batch"}})
+
     dummy = torch.randint(1, 100, (2, 8), dtype=torch.long)
     torch.onnx.export(
         NLUExport(model).eval(),
         (dummy,),
         output_path,
         input_names=[INPUT_NAME],
-        output_names=[OUTPUT_NAME, NER_OUTPUT_NAME],
-        dynamic_axes={
-            INPUT_NAME: {0: "batch", 1: "seq"},
-            OUTPUT_NAME: {0: "batch"},
-            NER_OUTPUT_NAME: {0: "batch", 1: "seq"},
-        },
+        output_names=output_names,
+        dynamic_axes=dynamic_axes,
         opset_version=OPSET,
         dynamo=False,
     )
+
+    intents_by_id = {int(k): v for k, v in intent_dict.items()}
+    labels = [intents_by_id[i] for i in range(len(intents_by_id))]
+    tags_by_id = {int(v): k for k, v in model.ner_tag_builder.tag2id.items()}
+    ner_labels = [tags_by_id[i] for i in range(len(tags_by_id))]
 
     manifest = {
         "version": MANIFEST_VERSION,
@@ -144,12 +169,34 @@ def export(output_path: str) -> str:
         "ner_output_name": NER_OUTPUT_NAME,
         "tokenizer": {"type": "sentencepiece", "lowercase": True},
         "min_confidence": MIN_INTENT_CONFIDENCE,
-        "intents": {str(k): v for k, v in intent_dict.items()},
-        "ner_tags": {str(v): k for k, v in model.ner_tag_builder.tag2id.items()},
+        "labels": labels,
+        "ner_labels": ner_labels,
+        "intents": {str(i): name for i, name in enumerate(labels)},
+        "ner_tags": {str(i): tag for i, tag in enumerate(ner_labels)},
     }
+    metadata_extra = {}
+    if factored:
+        factors = IntentFactorizer.load(loader.intent_factors_path)
+        manifest.update({
+            "factored": True,
+            "topic_output_name": TOPIC_OUTPUT_NAME,
+            "type_output_name": TYPE_OUTPUT_NAME,
+            "topics": factors.topics,
+            "types": factors.types,
+            # per ogni intento (stesso ordine di labels): indice del suo argomento e del suo tipo
+            "intent_topic": factors.pair_topic,
+            "intent_type": factors.pair_type,
+            # 1 se il tipo ha senso per l'intento (non per saluti, conferme...)
+            "intent_type_applies": [int(a) for a in factors.type_applies],
+        })
+        metadata_extra = {TOPICS_KEY: json.dumps(factors.topics, ensure_ascii=False),
+                          TYPES_KEY: json.dumps(factors.types, ensure_ascii=False)}
     with open(sp_model_path, "rb") as f:
         tokenizer_b64 = base64.b64encode(f.read()).decode("ascii")
     _embed_metadata(output_path, {
+        LABELS_KEY: json.dumps(labels, ensure_ascii=False),
+        NER_LABELS_KEY: json.dumps(ner_labels, ensure_ascii=False),
+        **metadata_extra,
         MANIFEST_KEY: json.dumps(manifest, ensure_ascii=False),
         TOKENIZER_KEY: tokenizer_b64,
     })
@@ -186,7 +233,13 @@ def verify_parity(model, onnx_path: str) -> float:
 
     session = ort.InferenceSession(onnx_path, providers=["CPUExecutionProvider"])
     meta = session.get_modelmeta().custom_metadata_map
+    labels = json.loads(meta[LABELS_KEY])
+    ner_labels = json.loads(meta[NER_LABELS_KEY])
     manifest = json.loads(meta[MANIFEST_KEY])
+    if labels != [manifest["intents"][str(i)] for i in range(len(labels))]:
+        raise RuntimeError("Metadato 'labels' non allineato a manifest['intents']")
+    if ner_labels != [manifest["ner_tags"][str(i)] for i in range(len(ner_labels))]:
+        raise RuntimeError("Metadato 'ner_labels' non allineato a manifest['ner_tags']")
     sp = spm.SentencePieceProcessor(model_proto=base64.b64decode(meta[TOKENIZER_KEY]))
 
     max_diff = 0.0
@@ -195,15 +248,25 @@ def verify_parity(model, onnx_path: str) -> float:
         text = sentence.lower() if manifest["tokenizer"]["lowercase"] else sentence
         ids = sp.encode(text, out_type=int)
         expected = model.predict(sentence)
-        probs, tag_ids = session.run(
-            [manifest["output_name"], manifest["ner_output_name"]],
+        factored = manifest.get("factored", False)
+        outputs = session.run(
+            [manifest["output_name"], manifest["ner_output_name"]]
+            + ([manifest["topic_output_name"], manifest["type_output_name"]] if factored else []),
             {manifest["input_name"]: np.array([ids], dtype=np.int64)},
         )
+        probs, tag_ids = outputs[0], outputs[1]
 
         diff = float(np.abs(np.array(expected["intent_probs"], dtype=np.float32) - probs[0]).max())
         max_diff = max(max_diff, diff)
         if diff > PARITY_TOLERANCE:
             raise RuntimeError(f"Export ONNX non allineato a PyTorch su '{sentence}' (intent, differenza {diff:.2e})")
+
+        if factored:
+            for name, got in (("topic_probs", outputs[2]), ("type_probs", outputs[3])):
+                head_diff = float(np.abs(np.array(expected[name], dtype=np.float32) - got[0]).max())
+                max_diff = max(max_diff, head_diff)
+                if head_diff > PARITY_TOLERANCE:
+                    raise RuntimeError(f"Export ONNX non allineato a PyTorch su '{sentence}' ({name}, differenza {head_diff:.2e})")
 
         tags = [manifest["ner_tags"][str(t)] for t in tag_ids[0]]
         if tags != expected["ner_tags"]:

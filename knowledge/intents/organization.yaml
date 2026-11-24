@@ -1,0 +1,124 @@
+nlu:
+  intents:
+  - intent: ask_organization
+    examples:
+    - Come siete organizzati?
+    - Qual è la vostra struttura?
+    - Da quali uffici è composta l'organizzazione?
+    - com'è strutturata l'organizzazione
+    - com'è strutturato l'ente
+    - com'è organizzata l'azienda
+    - com'è composta la struttura
+    - avete un organigramma
+    - dove trovo l'organigramma
+    - mi mostri l'organigramma
+    - mi fai vedere come siete organizzati
+    - quali sono i vostri reparti
+    - quali dipartimenti ci sono
+    - quali settori comprende l'ente
+    - quali uffici ci sono
+    - quali uffici avete
+    - quanti uffici avete
+    - quante sedi avete
+    - quante sezioni ci sono
+    - come si articola l'organizzazione
+    - da quali aree è composta
+    - da quali dipartimenti è formata l'università
+    - a chi risponde l'ufficio tecnico
+    - da chi dipende questo ufficio
+    - qual è la gerarchia
+    - qual è la catena di comando
+    - chi gestisce l'ufficio
+    - chi dirige l'organizzazione
+    - chi guida l'ente
+    - chi c'è ai vertici
+    - quali sono gli organi di governo
+    - chi fa parte del consiglio di amministrazione
+    - com'è la governance
+    - quale forma giuridica avete
+    - siete una società o un'associazione
+    - siete un ente pubblico
+    - siete un'azienda privata
+    - di quale area si occupa questo reparto
+    - quali competenze ha questo ufficio
+    - struttura organizzativa
+    - modello organizzativo
+    - quali categorie ci sono sul sito
+    - come sono organizzate le sedi sul territorio
+  - intent: ask_organization_organization
+    examples:
+    - come si articola il [Comune](ORGANIZATION)
+    - com'è organizzata l'[ASL Roma 3](ORGANIZATION)
+    - quali sono i distretti dell'[ASL](ORGANIZATION)
+    - quali dipartimenti ci sono all'[ASL Roma 3](ORGANIZATION)
+    - quali Municipi copre l'[ASL](ORGANIZATION)
+    - dove trovo l'organigramma dell'[ASL Roma 3](ORGANIZATION)
+    - come sono strutturate le categorie di [programmato](ORGANIZATION)
+    - com'è organizzata l'[Agenzia delle Entrate](ORGANIZATION)
+    - da quali direzioni è composta l'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - com'è strutturata l'amministrazione del [Comune di Montesole](ORGANIZATION)
+    - quali plessi scolastici fanno parte dell'[IC Giovanni Pascoli](ORGANIZATION)
+    - quali sedi compongono il polo dei [Musei Civici](ORGANIZATION)
+    - com'è strutturata l'organizzazione del [CAF](ORGANIZATION)
+    - qual è l'assetto organizzativo del [Comune di Montesole](ORGANIZATION)
+    - come si articola internamente l'[IC Giovanni Pascoli](ORGANIZATION)
+    - dove consulto l'organigramma del [Comune](ORGANIZATION)
+    - in quali settori o unità è suddiviso l'[IC Pascoli](ORGANIZATION)
+  - intent: ask_department_organization
+    examples:
+    - com'è strutturato il [Dipartimento di Area Medica Integrato](DEPARTMENT)
+    - come si articola il [Dipartimento di Chirurgia](DEPARTMENT)
+    - quali [UOC](DEPARTMENT) ci sono nel Distretto di [Fiumicino](ZONE)
+    - qual è la struttura della [Direzione Sanitaria](DEPARTMENT)
+    - quali sono le [Direzioni Regionali](DEPARTMENT) dell'[Agenzia delle Entrate](ORGANIZATION)
+    - come sono articolati gli [Uffici Territoriali](DEPARTMENT) delle Entrate
+    - qual è la struttura del [Catasto](DEPARTMENT) all'interno dell'Agenzia
+    - da quali settori è composto il dipartimento [Lavori pubblici](DEPARTMENT)
+    - com'è strutturata l'organizzazione della [segreteria scolastica](DEPARTMENT)
+    - qual è l'assetto organizzativo dell'[Ufficio Stampa](DEPARTMENT)
+    - come si articola internamente i [servizi demografici](DEPARTMENT)
+    - dove consulto l'organigramma dei [Lavori pubblici](DEPARTMENT)
+    - in quali settori o unità è suddiviso la [Direzione Generale](DEPARTMENT)
+    - come funziona il modello organizzativo dell'[URP](DEPARTMENT)
+    - com'è strutturata l'organizzazione del [Pronto Soccorso](DEPARTMENT)
+    - qual è l'assetto organizzativo dell'[Ufficio Territoriale](DEPARTMENT)
+    - come si articola internamente l'[Ufficio del Catasto](DEPARTMENT)
+  - intent: ask_facility_organization
+    examples:
+    - da quali unità operative è composto il [Presidio Ospedaliero Grassi](FACILITY)
+    - com'è organizzata una [CdC Hub](FACILITY) rispetto a una [Spoke](FACILITY)
+    - come sono articolate le [Case della Comunità](FACILITY) sul territorio
+    - come sono distribuiti i [Centri Prelievi](FACILITY) nell'azienda
+    - come si articola la [Scuola secondaria di I grado Pascoli](FACILITY)
+    - com'è organizzata la [Pinacoteca civica](FACILITY) rispetto al [Museo archeologico](FACILITY)
+    - com'è strutturata l'organizzazione dell'[Ospedale di Comunità](FACILITY)
+    - qual è l'assetto organizzativo dell'[Ecocentro](FACILITY)
+    - come si articola internamente la [Scuola Primaria Rodari](FACILITY)
+    - dove consulto l'organigramma del [CPO Gennaro di Rosa](FACILITY)
+    - in quali settori o unità è suddiviso il [Consultorio](FACILITY)
+    - come funziona il modello organizzativo della [Galleria d'arte contemporanea](FACILITY)
+    - com'è strutturata l'organizzazione del [Centro Prelievi Palidoro](FACILITY)
+    - qual è l'assetto organizzativo del [Centro Prelievi Acilia](FACILITY)
+    - come si articola internamente il [Grassi](FACILITY)
+    - dove consulto l'organigramma del [Centro Prelievi](FACILITY)
+    - in quali settori o unità è suddiviso la [Casa della Salute](FACILITY)
+  - intent: ask_zone_organization
+    examples:
+    - come sono organizzati i servizi nel [Municipio XII](ZONE)
+    - com'è suddiviso il distretto di [Acilia](ZONE)
+    - com'è strutturata l'organizzazione di [Fregene](ZONE)
+    - qual è l'assetto organizzativo di [Colle Massimo](ZONE)
+    - come si articola internamente [Ostia Lido](ZONE)
+    - dove consulto l'organigramma di [Casal Bernocchi](ZONE)
+    - in quali settori o unità è suddiviso [Dragona](ZONE)
+    - come funziona il modello organizzativo dell'[Infernetto](ZONE)
+    - com'è strutturata l'organizzazione di [Maccarese](ZONE)
+    - qual è l'assetto organizzativo di [Ostia](ZONE)
+    - come si articola internamente il [Municipio XII](ZONE)
+    - dove consulto l'organigramma di [Roma](ZONE)
+    - in quali settori o unità è suddiviso il [Municipio XI](ZONE)
+    - come funziona il modello organizzativo di [Fiumicino](ZONE)
+    - com'è strutturata l'organizzazione di [Palidoro](ZONE)
+    - qual è l'assetto organizzativo di [Magliana](ZONE)
+    - come si articola internamente [Montesole](ZONE)
+    - dove consulto l'organigramma del [Municipio X](ZONE)

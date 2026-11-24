@@ -1,0 +1,184 @@
+nlu:
+  intents:
+  - intent: ask_procedures
+    examples:
+    - Qual è la procedura?
+    - Come si svolge questa pratica?
+    - Quali passaggi devo seguire?
+    - quali sono le procedure
+    - quali sono le procedure per il rinnovo
+    - quali sono i passaggi
+    - quali sono i passaggi da seguire
+    - quali sono i passaggi per la domanda
+    - quali sono i passi da compiere
+    - quali sono le fasi della pratica
+    - quali fasi prevede l'iter
+    - com'è l'iter per la richiesta
+    - com'è l'iter per ottenere la cittadinanza
+    - qual è l'iter
+    - l'iter burocratico
+    - come si articola la pratica
+    - come si svolge la procedura
+    - come si svolge l'iter
+    - come viene gestita la pratica
+    - come viene gestita la richiesta
+    - come viene trattata la domanda
+    - come procede la pratica
+    - in cosa consiste la procedura
+    - procedura per l'iscrizione
+    - procedura per il ricorso
+    - procedura di rimborso
+    - procedura di reclamo
+    - la procedura da seguire
+    - descrivimi la procedura
+    - spiegami la procedura
+    - elenco delle procedure
+    - il procedimento amministrativo
+    - procedimento per il rilascio
+    - sequenza delle operazioni
+    - chi segue la pratica e come
+    - la pratica quali passaggi ha
+    - come si sposa una donna russa in [Italia](COUNTRY)
+    - quali sono le fasi principali della procedura
+    - qual è l'iter di presentazione della pratica
+    - qual è l'iter per l'assegnazione del docente di sostegno per alunni con disabilità
+    - come funziona la procedura per richiedere il patrocinio comunale per un'iniziativa
+    - qual è la procedura di prenotazione per gruppi superiori a dieci persone al museo
+  - intent: ask_procedure_procedures
+    examples:
+    - procedura per il [cambio di residenza](PROCEDURE)
+    - qual è la procedura per il [cambio di residenza](PROCEDURE)
+    - quali sono i passaggi per il [rinnovo della patente](PROCEDURE)
+    - qual è la procedura per la [denuncia di smarrimento](PROCEDURE) della [carta d'identità](DOCUMENT)
+    - come procedere se il datore di lavoro non versa i [contributi Inps](PROCEDURE)
+    - qual è la procedura per l'[apertura della partita IVA](PROCEDURE)
+    - qual è l'iter per la [registrazione del contratto di locazione](PROCEDURE)
+    - qual è la procedura per la [voltura catastale](PROCEDURE)
+    - come si svolge l'iter di [accertamento con adesione](PROCEDURE)
+    - qual è l'iter per la pubblicazione di [matrimonio civile](PROCEDURE) in Comune
+    - qual è la procedura per le [iscrizioni online](PROCEDURE) al primo anno di scuola
+    - qual è la procedura completa per l'[accertamento con adesione](PROCEDURE)
+    - che iter procedurale bisogna seguire per il [matrimonio civile](PROCEDURE)
+    - mi descrivi le fasi della procedura relativa al [pignoramento](PROCEDURE)
+    - come si articola il procedimento per l'[interpello](PROCEDURE)
+    - qual è la prassi ufficiale prevista per il [cambio di residenza](PROCEDURE)
+    - quali step compongono l'iter della [rottamazione quater](PROCEDURE)
+    - qual è la procedura completa per la [fatturazione elettronica](PROCEDURE)
+  - intent: ask_document_procedures
+    examples:
+    - come funziona l'iter per ottenere l'[esenzione](DOCUMENT)
+    - qual è l'iter per un [bando di concorso](DOCUMENT)
+    - come si partecipa a una [gara d'appalto](DOCUMENT) dell'[ASL](ORGANIZATION)
+    - quali sono i passaggi per la [dichiarazione di successione](DOCUMENT)
+    - qual è la procedura completa per l'[impegnativa](DOCUMENT)
+    - che iter procedurale bisogna seguire per il [Piano terapeutico](DOCUMENT)
+    - mi descrivi le fasi della procedura relativa al [modello 730](DOCUMENT)
+    - come si articola il procedimento per il [modello F24](DOCUMENT)
+    - qual è la prassi ufficiale prevista per la [patente](DOCUMENT)
+    - quali step compongono l'iter della [dichiarazione dei redditi](DOCUMENT)
+    - qual è la procedura completa per la [cartella esattoriale](DOCUMENT)
+    - che iter procedurale bisogna seguire per il [modello Redditi PF](DOCUMENT)
+    - mi descrivi le fasi della procedura relativa alla [dichiarazione precompilata](DOCUMENT)
+    - come si articola il procedimento per lo [SPID](DOCUMENT)
+    - qual è la prassi ufficiale prevista per il [concorso pubblico](DOCUMENT)
+    - quali step compongono l'iter della [visura catastale](DOCUMENT)
+    - qual è la procedura completa per la [tessera sanitaria](DOCUMENT)
+    - che iter procedurale bisogna seguire per la [cartella clinica](DOCUMENT)
+  - intent: ask_health_service_procedures
+    examples:
+    - qual è la procedura per l'iscrizione al [Servizio Sanitario](HEALTH_SERVICE)
+    - come si svolge l'[accesso agli atti](HEALTH_SERVICE)
+    - qual è la procedura per l'[accesso civico](HEALTH_SERVICE)
+    - qual è la procedura per la [segnalazione di illeciti](HEALTH_SERVICE)
+    - qual è la procedura completa per l'[assistenza protesica](HEALTH_SERVICE)
+    - che iter procedurale bisogna seguire per le [vaccinazioni](HEALTH_SERVICE)
+    - mi descrivi le fasi della procedura relativa all'[assistenza domiciliare](HEALTH_SERVICE)
+    - come si articola il procedimento per la [Guardia Medica](HEALTH_SERVICE)
+    - qual è la prassi ufficiale prevista per la [donazione del sangue](HEALTH_SERVICE)
+    - quali step compongono l'iter della [scelta del medico](HEALTH_SERVICE)
+    - qual è la procedura completa per l'[accesso agli atti](HEALTH_SERVICE)
+    - che iter procedurale bisogna seguire per lo [screening oncologico](HEALTH_SERVICE)
+    - mi descrivi le fasi della procedura relativa allo [Sportello Giovani](HEALTH_SERVICE)
+    - come si articola il procedimento per il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - qual è la prassi ufficiale prevista per lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - quali step compongono l'iter dell'[assistenza all'estero](HEALTH_SERVICE)
+    - qual è la procedura completa per il [Servizio Sanitario](HEALTH_SERVICE)
+  - intent: ask_medical_procedure_procedures
+    examples:
+    - qual è la procedura per il [ricovero programmato](MEDICAL_PROCEDURE)
+    - come si svolge un [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - quali sono i passaggi per la [visita medico legale](MEDICAL_PROCEDURE) per la [patente](DOCUMENT)
+    - qual è la procedura completa per la [spirometria](MEDICAL_PROCEDURE)
+    - che iter procedurale bisogna seguire per la [visita medico legale](MEDICAL_PROCEDURE)
+    - mi descrivi le fasi della procedura relativa al [prelievo](MEDICAL_PROCEDURE)
+    - come si articola il procedimento per il [Quantiferon](MEDICAL_PROCEDURE)
+    - qual è la prassi ufficiale prevista per l'[ecografia](MEDICAL_PROCEDURE)
+    - quali step compongono l'iter della [colonscopia](MEDICAL_PROCEDURE)
+    - qual è la procedura completa per la [curva glicemica](MEDICAL_PROCEDURE)
+    - che iter procedurale bisogna seguire per lo [spermiogramma](MEDICAL_PROCEDURE)
+    - mi descrivi le fasi della procedura relativa alla [terapia oncologica](MEDICAL_PROCEDURE)
+    - come si articola il procedimento per la [visita cardiologica](MEDICAL_PROCEDURE)
+    - qual è la prassi ufficiale prevista per la [visita neurologica](MEDICAL_PROCEDURE)
+    - quali step compongono l'iter della [visita specialistica](MEDICAL_PROCEDURE)
+    - qual è la procedura completa per la [mammografia](MEDICAL_PROCEDURE)
+    - che iter procedurale bisogna seguire per il [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - mi descrivi le fasi della procedura relativa alla [visita per la patente](MEDICAL_PROCEDURE)
+  - intent: ask_misc_procedures
+    examples:
+    - qual è la procedura per richiedere l'occupazione di [suolo pubblico](MISC)
+    - come funziona l'iter per richiedere un [alloggio popolare](MISC)
+    - qual è la procedura completa per lo [SdI](MISC)
+    - che iter procedurale bisogna seguire per il [codice tributo](MISC)
+    - mi descrivi le fasi della procedura relativa alla [mensa scolastica](MISC)
+    - come si articola il procedimento per la [prima casa](MISC)
+    - qual è la prassi ufficiale prevista per la [carta famiglia](MISC)
+    - quali step compongono l'iter degli [abusi digitali](MISC)
+    - qual è la procedura completa per [Entratel](MISC)
+    - che iter procedurale bisogna seguire per [Fatture e Corrispettivi](MISC)
+    - mi descrivi le fasi della procedura relativa al [pre-scuola](MISC)
+    - come si articola il procedimento per la [rendita catastale](MISC)
+    - qual è la prassi ufficiale prevista per il [regime ordinario](MISC)
+    - quali step compongono l'iter del [bonus mobili](MISC)
+    - qual è la procedura completa per l'[ecobonus](MISC)
+    - che iter procedurale bisogna seguire per il [Superbonus](MISC)
+    - mi descrivi le fasi della procedura relativa all'[audioguida](MISC)
+    - come si articola il procedimento per gli [alloggi popolari](MISC)
+  - intent: ask_role_procedures
+    examples:
+    - qual è la procedura per scegliere il medico o il [pediatra](ROLE)
+    - qual è la procedura completa per il [commercialista](ROLE)
+    - che iter procedurale bisogna seguire per il [sostituto d'imposta](ROLE)
+    - mi descrivi le fasi della procedura relativa al [pediatra](ROLE)
+    - come si articola il procedimento per gli [specialisti ambulatoriali](ROLE)
+    - qual è la prassi ufficiale prevista per i [medici di base](ROLE)
+    - quali step compongono l'iter del [DPO](ROLE)
+    - qual è la procedura completa per il [donatore di sangue](ROLE)
+    - che iter procedurale bisogna seguire per lo [psicologo](ROLE)
+    - mi descrivi le fasi della procedura relativa al [Dirigente Scolastico](ROLE)
+    - come si articola il procedimento per il [coordinatore di classe](ROLE)
+    - qual è la prassi ufficiale prevista per gli [infermieri](ROLE)
+    - quali step compongono l'iter del [direttore sanitario](ROLE)
+    - qual è la procedura completa per il [Responsabile della Prevenzione della Corruzione](ROLE)
+    - che iter procedurale bisogna seguire per i [familiari a carico](ROLE)
+    - mi descrivi le fasi della procedura relativa allo [specialista ambulatoriale](ROLE)
+    - come si articola il procedimento per l'[assistente sociale](ROLE)
+    - qual è la prassi ufficiale prevista per il [Medico Competente](ROLE)
+  - intent: ask_technology_procedures
+    examples:
+    - quali sono i passaggi per deployare un'app su [WildFly](TECHNOLOGY)
+    - qual è la procedura completa per [Angular](TECHNOLOGY)
+    - che iter procedurale bisogna seguire per [phpMyAdmin](TECHNOLOGY)
+    - mi descrivi le fasi della procedura relativa a [Flask](TECHNOLOGY)
+    - come si articola il procedimento per [Joomla](TECHNOLOGY)
+    - qual è la prassi ufficiale prevista per il [Desktop Telematico](TECHNOLOGY)
+    - quali step compongono l'iter di [Voltura 2.0](TECHNOLOGY)
+    - qual è la procedura completa per [Docker](TECHNOLOGY)
+    - che iter procedurale bisogna seguire per [FastAPI](TECHNOLOGY)
+    - mi descrivi le fasi della procedura relativa a [Laravel](TECHNOLOGY)
+    - come si articola il procedimento per [Python](TECHNOLOGY)
+    - qual è la prassi ufficiale prevista per [PostgreSQL](TECHNOLOGY)
+    - quali step compongono l'iter di [Spring Boot](TECHNOLOGY)
+    - qual è la procedura completa per [PHP](TECHNOLOGY)
+    - che iter procedurale bisogna seguire per [WordPress](TECHNOLOGY)
+    - mi descrivi le fasi della procedura relativa a [Linux](TECHNOLOGY)
+    - come si articola il procedimento per [MySQL](TECHNOLOGY)

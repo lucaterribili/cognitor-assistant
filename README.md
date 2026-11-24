@@ -157,7 +157,9 @@ Nei metadati (`custom_metadata_map`) c'è tutto il resto, perché modello e toke
 
 | Chiave | Contenuto |
 |---|---|
-| `cognitor.manifest` | JSON: versione, nomi di input/output, tokenizer (`lowercase`), mappa indice → intento (`intents`), mappa indice → tag NER (`ner_tags`), `min_confidence` |
+| `labels` | JSON array con i nomi delle classi dell'Intent Classifier nello stesso ordine degli indici di `probs` |
+| `ner_labels` | JSON array con i tag NER (`"O"`, `"B-..."`, `"I-..."`) nello stesso ordine degli ID di `ner_tags` |
+| `cognitor.manifest` | JSON: versione, nomi di input/output, tokenizer (`lowercase`), `labels`, `ner_labels`, mappa indice → intento (`intents`), mappa indice → tag NER (`ner_tags`), `min_confidence` |
 | `cognitor.tokenizer` | `sentencepiece.model` in base64 |
 
 Le frasi vanno passate una alla volta (senza padding): il modello non usa maschere.
@@ -165,11 +167,12 @@ Le frasi vanno passate una alla volta (senza padding): il modello non usa masche
 ```python
 session = onnxruntime.InferenceSession("cognitor-intent.onnx")
 meta = session.get_modelmeta().custom_metadata_map
+labels = json.loads(meta["labels"])                           # lista ordinata delle classi
 manifest = json.loads(meta["cognitor.manifest"])
 sp = SentencePieceProcessor(model_proto=base64.b64decode(meta["cognitor.tokenizer"]))
 ids = sp.encode(testo.lower(), out_type=int)
 probs, tag_ids = session.run(["probs", "ner_tags"], {"input_ids": [ids]})
-intent = manifest["intents"][str(probs[0].argmax())]
+intent = labels[probs[0].argmax()]
 tags = [manifest["ner_tags"][str(t)] for t in tag_ids[0]]      # "O", "B-DATE", "I-DATE", ...
 ```
 
@@ -180,6 +183,14 @@ carattere si ottengono cercando i token in sequenza nel testo minuscolo, e il va
 minuscolo tra l'inizio del primo token e la fine dell'ultimo. Poi inizio e fine si estendono ai confini di parola
 (finché il carattere accanto è alfanumerico): una parola spezzata in più pezzi, come "identità" → `i` + `dentità`, può avere
 il tag solo sui primi pezzi e l'entità resterebbe a metà (`carta d'i`).
+
+**Modello a due teste.** Il classificatore ha due uscite, argomento e tipo di entità atteso, ricavate dai nomi degli
+intenti (`ask_<tipo>_<argomento>`, vedi `classes/intent_factorizer.py`); `COGNITOR_FACTORED_INTENTS=false` torna alla
+classe unica. `probs` resta la distribuzione sugli intenti completi (prodotto normalizzato delle due teste sulle coppie
+valide). Se il checkpoint è a due teste il file ha anche gli output `topic_probs` `[batch, n_argomenti]` e `type_probs`
+`[batch, n_tipi]` (indice 0 = nessun tipo) e nel manifest `topics`, `types`, `intent_topic` e `intent_type` (per ogni
+intento, indice di argomento e tipo). Per misurare un checkpoint sulla validation:
+`python -m intellective.eval_intent_classifier [--checkpoint <file>]`.
 
 L'export confronta il file con il modello PyTorch su alcune frasi (leggendo il tokenizer dal file stesso) e
 fallisce se le probabilità o i tag divergono. Richiede `onnx` e `onnxruntime` e il tokenizer SentencePiece
@@ -387,3 +398,35 @@ training_data/        # Dati aggiuntivi (stessa struttura + operations/)
 La documentazione dettagliata è disponibile nella cartella `docs/`:
 - `ARCHITETTURA.md`: Documentazione tecnica completa
 - `IMPLEMENTAZIONE.md`: Guida all'implementazione
+
+## Conversazioni (`dialogue/`)
+
+Il comportamento del bot nella conversazione sta nei **dati**, non nel codice: un corpus di conversazioni
+(`dialogue/corpus/*.yaml`, scritto in parte a mano e in parte da un LLM) da cui un modello dei flussi impara cosa fa
+l'utente e cosa fa il bot. Il modello campiona conversazioni nuove e le riempie con gli argomenti e le entità di un sito:
+l'engine le usa per produrre le conversazioni del sito. Per cambiare il comportamento si cambia il corpus.
+
+Un turno, una riga: `{u: testo, move: mossa, topic: argomento, ent: [tipi nominati], carry: [tipi dal contesto], rag: ok|low|none, bot: azione}`.
+Le azioni sono in `dialogue/actions.py` (rispondi, chiedi l'entità, chiarisci, non so, saluto, congedo, operatore...).
+Ogni conversazione ha `source: hand|llm` e `reviewed: false` finché non la rivedi.
+
+```bash
+python -m dialogue corpus-check               # controlla il corpus (formato, tassonomia, coerenza)
+python -m dialogue corpus-stats               # conteggi: dove servono altri esempi
+python -m dialogue sample --n 6 --seed 1      # conversazioni campionate dal modello, da leggere e correggere
+pytest tests/test_dialogue_corpus.py
+```
+
+Come estenderlo: leggi i campioni, correggi o aggiungi conversazioni nei file di `dialogue/corpus/`, rilancia
+`corpus-check` e `corpus-stats` (mostrano azioni, mosse e transizioni poco coperte). Il modello (`dialogue/flow_model.py`)
+è a conteggi con ripiego, scelto perché con poche decine di conversazioni una rete neurale memorizzerebbe il corpus; ha la
+stessa interfaccia (`fit`/`sample`) di una futura GRU.
+
+**Simulatore a regole** (`dialogue/simulator.py`, `rules.py`, `topic_config.yaml`): solo baseline di confronto, con un
+NLU simulato con errori; non è la fonte di verità e si può eliminare. `dialogue/dev_set.yaml` sono conversazioni di
+sviluppo scritte a mano, indipendenti dal generatore.
+
+```bash
+python -m dialogue baseline --n 2000 --seed 99 --noise 0.15
+pytest tests/test_dialogue.py
+```

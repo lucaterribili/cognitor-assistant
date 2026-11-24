@@ -1,0 +1,235 @@
+nlu:
+  intents:
+  - intent: ask_requirements
+    examples:
+    - Quali requisiti sono necessari?
+    - Cosa serve per accedere al servizio?
+    - Quali condizioni devo soddisfare?
+    - quali requisiti servono
+    - quali requisiti devo avere
+    - quali sono i requisiti per partecipare
+    - quali sono i requisiti minimi
+    - cosa serve per iscriversi
+    - cosa serve per ottenere il permesso
+    - cosa occorre per fare domanda
+    - cosa ci vuole per accedere
+    - cosa bisogna avere per partecipare
+    - di cosa ho bisogno per iniziare
+    - che cosa è necessario
+    - che cosa è richiesto
+    - che cosa devo possedere
+    - che condizioni devo rispettare
+    - a quali condizioni si ottiene il servizio
+    - a quali condizioni posso accedere
+    - è necessario essere residenti
+    - è obbligatorio avere un account
+    - serve un'iscrizione preventiva
+    - serve la residenza nel comune
+    - serve un titolo di studio
+    - serve un'età minima
+    - è richiesta un'esperienza pregressa
+    - ci sono requisiti di età
+    - ci sono requisiti di reddito
+    - ci sono requisiti particolari
+    - ci sono prerequisiti
+    - quali sono i prerequisiti
+    - quali prerequisiti servono per il corso
+    - condizioni di accesso
+    - condizioni necessarie
+    - requisiti di ammissione
+    - requisiti richiesti
+    - vorrei sapere i requisiti
+    - quali condizioni servono per il ricovero
+    - cosa devo esibire alla biglietteria per avere il biglietto ridotto al museo
+  - intent: ask_document_requirements
+    examples:
+    - quali sono i requisiti per il [bando](DOCUMENT)
+    - serve l'[ISEE](DOCUMENT)
+    - quali requisiti servono per l'[esenzione ticket](DOCUMENT)
+    - quali requisiti servono per partecipare al [concorso pubblico](DOCUMENT)
+    - serve l'[impegnativa](DOCUMENT) per il [prelievo](MEDICAL_PROCEDURE)
+    - serve l'[ISEE](DOCUMENT) per l'[esenzione](DOCUMENT)
+    - serve il [certificato anamnestico](DOCUMENT) per la [patente](DOCUMENT)
+    - serve lo [SPID](DOCUMENT) per entrare nel [cassetto fiscale](MISC)
+    - cosa serve per richiedere il rilascio della [CIE](DOCUMENT)
+    - quali requisiti [ISEE](DOCUMENT) sono richiesti per le agevolazioni sulla [mensa scolastica](MISC)
+    - quali sono i requisiti richiesti per la [Certificazione Unica](DOCUMENT)
+    - cosa occorre possedere per accedere al [contratto di locazione](DOCUMENT)
+    - quali condizioni e prerequisiti servono per la [fattura elettronica](DOCUMENT)
+    - ci sono requisiti specifici di accesso per il [referto](DOCUMENT)
+    - quali criteri bisogna soddisfare per l'[avviso bonario](DOCUMENT)
+    - che prerequisiti tecnici o personali richiede l'[avviso di accertamento](DOCUMENT)
+  - intent: ask_health_service_requirements
+    examples:
+    - quali requisiti servono per l'[assistenza protesica](HEALTH_SERVICE)
+    - cosa serve per la [scelta del medico](HEALTH_SERVICE)
+    - cosa serve per prenotare una visita al [CUP](HEALTH_SERVICE)
+    - cosa serve per l'[assistenza domiciliare](HEALTH_SERVICE)
+    - cosa serve per l'[assistenza all'estero](HEALTH_SERVICE)
+    - quali requisiti per accedere al [Sportello Giovani](HEALTH_SERVICE)
+    - quali sono i requisiti richiesti per la [Guardia Medica](HEALTH_SERVICE)
+    - cosa occorre possedere per accedere alla [donazione del sangue](HEALTH_SERVICE)
+    - quali condizioni e prerequisiti servono per la [scelta del medico](HEALTH_SERVICE)
+    - ci sono requisiti specifici di accesso per l'[accesso agli atti](HEALTH_SERVICE)
+    - quali criteri bisogna soddisfare per lo [screening oncologico](HEALTH_SERVICE)
+    - che prerequisiti tecnici o personali richiede lo [Sportello Giovani](HEALTH_SERVICE)
+    - quali sono i requisiti richiesti per il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - cosa occorre possedere per accedere allo [Sportello di Ascolto](HEALTH_SERVICE)
+    - quali condizioni e prerequisiti servono per l'[assistenza all'estero](HEALTH_SERVICE)
+    - ci sono requisiti specifici di accesso per il [Servizio Sanitario](HEALTH_SERVICE)
+    - quali criteri bisogna soddisfare per lo [screening del colon retto](HEALTH_SERVICE)
+  - intent: ask_technology_requirements
+    examples:
+    - cosa serve per installare [Laravel](TECHNOLOGY)
+    - quali requisiti di sistema servono per [WildFly](TECHNOLOGY)
+    - cosa serve per iniziare con [Python](TECHNOLOGY)
+    - quali sono i requisiti richiesti per [Django](TECHNOLOGY)
+    - cosa occorre possedere per accedere a [JavaScript](TECHNOLOGY)
+    - quali condizioni e prerequisiti servono per [Angular](TECHNOLOGY)
+    - ci sono requisiti specifici di accesso per [phpMyAdmin](TECHNOLOGY)
+    - quali criteri bisogna soddisfare per [Flask](TECHNOLOGY)
+    - che prerequisiti tecnici o personali richiede [Joomla](TECHNOLOGY)
+    - quali sono i requisiti richiesti per il [Desktop Telematico](TECHNOLOGY)
+    - cosa occorre possedere per accedere a [Voltura 2.0](TECHNOLOGY)
+    - quali condizioni e prerequisiti servono per [Docker](TECHNOLOGY)
+    - ci sono requisiti specifici di accesso per [FastAPI](TECHNOLOGY)
+    - quali criteri bisogna soddisfare per [Laravel](TECHNOLOGY)
+    - che prerequisiti tecnici o personali richiede [Python](TECHNOLOGY)
+    - quali sono i requisiti richiesti per [PostgreSQL](TECHNOLOGY)
+    - cosa occorre possedere per accedere a [Spring Boot](TECHNOLOGY)
+    - quali condizioni e prerequisiti servono per [PHP](TECHNOLOGY)
+  - intent: ask_facility_requirements
+    examples:
+    - serve la prenotazione per i [Centri Prelievi](FACILITY)
+    - ci sono requisiti per le [Case della Comunità](FACILITY)
+    - quali sono i requisiti richiesti per il [CPO Gennaro di Rosa](FACILITY)
+    - cosa occorre possedere per accedere al [Consultorio](FACILITY)
+    - quali condizioni e prerequisiti servono per la [Galleria d'arte contemporanea](FACILITY)
+    - ci sono requisiti specifici di accesso per il [Centro Prelievi Palidoro](FACILITY)
+    - quali criteri bisogna soddisfare per il [Centro Prelievi Acilia](FACILITY)
+    - che prerequisiti tecnici o personali richiede il [Grassi](FACILITY)
+    - quali sono i requisiti richiesti per il [Centro Prelievi](FACILITY)
+    - cosa occorre possedere per accedere alla [Casa della Salute](FACILITY)
+    - quali condizioni e prerequisiti servono per il [Centro Prelievi Ostia](FACILITY)
+    - ci sono requisiti specifici di accesso per il [Museo archeologico](FACILITY)
+    - quali criteri bisogna soddisfare per il [Poliambulatorio Coni Zugna](FACILITY)
+    - che prerequisiti tecnici o personali richiede il [Poliambulatorio Paolini](FACILITY)
+    - quali sono i requisiti richiesti per il [Poliambulatorio Bernocchi](FACILITY)
+    - cosa occorre possedere per accedere alle [Case della Comunità](FACILITY)
+    - quali condizioni e prerequisiti servono per la [Casa della Comunità](FACILITY)
+  - intent: ask_misc_requirements
+    examples:
+    - quali requisiti servono per accedere al [regime forfettario](MISC)
+    - quali condizioni devo soddisfare per il [bonus ristrutturazione](MISC)
+    - quali sono i requisiti richiesti per il [bonus mobili](MISC)
+    - cosa occorre possedere per accedere all'[ecobonus](MISC)
+    - quali condizioni e prerequisiti servono per il [Superbonus](MISC)
+    - ci sono requisiti specifici di accesso per l'[audioguida](MISC)
+    - quali criteri bisogna soddisfare per gli [alloggi popolari](MISC)
+    - che prerequisiti tecnici o personali richiede il [regime forfettario](MISC)
+    - quali sono i requisiti richiesti per il [cassetto fiscale](MISC)
+    - cosa occorre possedere per accedere al [rimborso IRPEF](MISC)
+    - quali condizioni e prerequisiti servono per il [bonus ristrutturazione](MISC)
+    - ci sono requisiti specifici di accesso per il [registro elettronico](MISC)
+    - quali criteri bisogna soddisfare per la [dieta speciale](MISC)
+    - che prerequisiti tecnici o personali richiede [CIVIS](MISC)
+    - quali sono i requisiti richiesti per [Fisconline](MISC)
+    - cosa occorre possedere per accedere allo [SdI](MISC)
+    - quali condizioni e prerequisiti servono per il [codice tributo](MISC)
+  - intent: ask_tax_requirements
+    examples:
+    - quali sono i requisiti per la [cedolare secca](TAX)
+    - quali requisiti servono per ottenere l'esenzione dalla [TARI](TAX)
+    - quali sono i requisiti richiesti per il [canone RAI](TAX)
+    - cosa occorre possedere per accedere alla [tassa automobilistica](TAX)
+    - quali condizioni e prerequisiti servono per l'[imposta sulle successioni](TAX)
+    - ci sono requisiti specifici di accesso per il [contributo unificato](TAX)
+    - quali criteri bisogna soddisfare per il [diritto camerale](TAX)
+    - che prerequisiti tecnici o personali richiede l'[IMU](TAX)
+    - quali sono i requisiti richiesti per l'[IRPEF](TAX)
+    - cosa occorre possedere per accedere alla [TARI](TAX)
+    - quali condizioni e prerequisiti servono per l'[IVA](TAX)
+    - ci sono requisiti specifici di accesso per la [cedolare secca](TAX)
+    - quali criteri bisogna soddisfare per l'[imposta di registro](TAX)
+    - che prerequisiti tecnici o personali richiede l'[imposta di bollo](TAX)
+    - quali sono i requisiti richiesti per l'[IRES](TAX)
+    - cosa occorre possedere per accedere all'[IRAP](TAX)
+  - intent: ask_department_requirements
+    examples:
+    - cosa occorre presentare per la dichiarazione di nascita allo [stato civile](DEPARTMENT)
+    - quali sono i requisiti richiesti per la [Direzione Generale](DEPARTMENT)
+    - cosa occorre possedere per accedere all'[URP](DEPARTMENT)
+    - quali condizioni e prerequisiti servono per il [Pronto Soccorso](DEPARTMENT)
+    - ci sono requisiti specifici di accesso per l'[Ufficio Territoriale](DEPARTMENT)
+    - quali criteri bisogna soddisfare per l'[Ufficio del Catasto](DEPARTMENT)
+    - che prerequisiti tecnici o personali richiede la [Direzione Provinciale](DEPARTMENT)
+    - quali sono i requisiti richiesti per la [Medicina Legale](DEPARTMENT)
+    - cosa occorre possedere per accedere alla [Medicina dello Sport](DEPARTMENT)
+    - quali condizioni e prerequisiti servono per la [Salute Mentale](DEPARTMENT)
+    - ci sono requisiti specifici di accesso per il [Catasto](DEPARTMENT)
+    - quali criteri bisogna soddisfare per la [Direzione Sanitaria](DEPARTMENT)
+    - che prerequisiti tecnici o personali richiede il [SUAP](DEPARTMENT)
+    - quali sono i requisiti richiesti per l'[anagrafe](DEPARTMENT)
+    - cosa occorre possedere per accedere alla [Polizia locale](DEPARTMENT)
+    - quali condizioni e prerequisiti servono per la [Neurologia](DEPARTMENT)
+    - ci sono requisiti specifici di accesso per l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - quali criteri bisogna soddisfare per il [Dipartimento del Farmaco](DEPARTMENT)
+  - intent: ask_medical_procedure_requirements
+    examples:
+    - serve la richiesta del medico per la [visita medico legale](MEDICAL_PROCEDURE)
+    - quali sono i requisiti richiesti per il [tampone molecolare](MEDICAL_PROCEDURE)
+    - cosa occorre possedere per accedere alla [spirometria](MEDICAL_PROCEDURE)
+    - quali condizioni e prerequisiti servono per la [visita medico legale](MEDICAL_PROCEDURE)
+    - ci sono requisiti specifici di accesso per il [prelievo](MEDICAL_PROCEDURE)
+    - quali criteri bisogna soddisfare per il [Quantiferon](MEDICAL_PROCEDURE)
+    - che prerequisiti tecnici o personali richiede l'[ecografia](MEDICAL_PROCEDURE)
+    - quali sono i requisiti richiesti per la [colonscopia](MEDICAL_PROCEDURE)
+    - cosa occorre possedere per accedere alla [curva glicemica](MEDICAL_PROCEDURE)
+    - quali condizioni e prerequisiti servono per lo [spermiogramma](MEDICAL_PROCEDURE)
+    - ci sono requisiti specifici di accesso per la [terapia oncologica](MEDICAL_PROCEDURE)
+    - quali criteri bisogna soddisfare per la [visita cardiologica](MEDICAL_PROCEDURE)
+    - che prerequisiti tecnici o personali richiede la [visita neurologica](MEDICAL_PROCEDURE)
+    - quali sono i requisiti richiesti per la [visita specialistica](MEDICAL_PROCEDURE)
+    - cosa occorre possedere per accedere alla [mammografia](MEDICAL_PROCEDURE)
+    - quali condizioni e prerequisiti servono per il [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - ci sono requisiti specifici di accesso per la [visita per la patente](MEDICAL_PROCEDURE)
+  - intent: ask_procedure_requirements
+    examples:
+    - cosa serve per ottenere la [rateizzazione](PROCEDURE) di una [cartella esattoriale](DOCUMENT)
+    - quali sono i requisiti richiesti per la [raccolta differenziata](PROCEDURE)
+    - cosa occorre possedere per accedere al [rinnovo della patente](PROCEDURE)
+    - quali condizioni e prerequisiti servono per la [voltura catastale](PROCEDURE)
+    - ci sono requisiti specifici di accesso per le [iscrizioni online](PROCEDURE)
+    - quali criteri bisogna soddisfare per il [fermo amministrativo](PROCEDURE)
+    - che prerequisiti tecnici o personali richiede il [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - quali sono i requisiti richiesti per il [DOCFA](PROCEDURE)
+    - cosa occorre possedere per accedere alla [denuncia di smarrimento](PROCEDURE)
+    - quali condizioni e prerequisiti servono per l'[apertura della partita IVA](PROCEDURE)
+    - ci sono requisiti specifici di accesso per la [rottamazione delle cartelle](PROCEDURE)
+    - quali criteri bisogna soddisfare per la [registrazione del contratto di locazione](PROCEDURE)
+    - che prerequisiti tecnici o personali richiede il [concordato preventivo biennale](PROCEDURE)
+    - quali sono i requisiti richiesti per l'[accertamento con adesione](PROCEDURE)
+    - cosa occorre possedere per accedere al [matrimonio civile](PROCEDURE)
+    - quali condizioni e prerequisiti servono per il [pignoramento](PROCEDURE)
+    - ci sono requisiti specifici di accesso per l'[interpello](PROCEDURE)
+    - quali criteri bisogna soddisfare per il [cambio di residenza](PROCEDURE)
+  - intent: ask_transport_requirements
+    examples:
+    - cosa serve per iscrivere un alunno al servizio di [trasporto scolastico](TRANSPORT)
+    - quali sono i requisiti richiesti per il [trasporto scolastico](TRANSPORT)
+    - cosa occorre possedere per accedere allo [scuolabus](TRANSPORT)
+    - quali condizioni e prerequisiti servono per il [treno Roma-Lido](TRANSPORT)
+    - ci sono requisiti specifici di accesso per la [bici](TRANSPORT)
+    - quali criteri bisogna soddisfare per il [treno](TRANSPORT)
+    - che prerequisiti tecnici o personali richiede la [navetta comunale](TRANSPORT)
+    - quali sono i requisiti richiesti per il [tram](TRANSPORT)
+    - cosa occorre possedere per accedere al [taxi](TRANSPORT)
+    - quali condizioni e prerequisiti servono per il [monopattino elettrico](TRANSPORT)
+    - ci sono requisiti specifici di accesso per il [car sharing](TRANSPORT)
+    - quali criteri bisogna soddisfare per la [navetta ospedaliera](TRANSPORT)
+    - che prerequisiti tecnici o personali richiede il [treno regionale](TRANSPORT)
+    - quali sono i requisiti richiesti per il [trasporto disabili](TRANSPORT)
+    - cosa occorre possedere per accedere alla [linea Cotral](TRANSPORT)
+    - quali condizioni e prerequisiti servono per l'[autobus notturno](TRANSPORT)
+    - ci sono requisiti specifici di accesso per la [bicicletta elettrica](TRANSPORT)
+    - quali criteri bisogna soddisfare per il [servizio navetta](TRANSPORT)

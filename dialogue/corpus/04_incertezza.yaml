@@ -1,0 +1,101 @@
+# Messaggi incomprensibili, fuori argomento, retrieval incerto o vuoto.
+conversations:
+  - id: unclear-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "asdf ghjk", move: unclear, bot: clarify}
+      - {u: "Scusa, volevo sapere gli orari della radiologia", move: question, topic: opening_hours, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: unclear-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "mmh boh", move: unclear, bot: clarify}
+      - {u: "??", move: unclear, bot: fallback}
+      - {u: "Voglio parlare con una persona", move: handoff, bot: handoff}
+
+  - id: unclear-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "ehm quella cosa lì", move: unclear, bot: clarify}
+      - {u: "Il numero del CUP", move: question, topic: phone, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+      - {u: "Ciao", move: goodbye, bot: goodbye}
+
+  - id: oos-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Che tempo farà domani?", move: out_of_scope, bot: fallback}
+      - {u: "Allora a che ora apre l'ospedale?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: oos-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "Mi consigli un buon ristorante?", move: out_of_scope, bot: fallback}
+      - {u: "Ok, allora niente", move: deny, bot: goodbye}
+
+  - id: oos-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Chi ha vinto la partita ieri?", move: out_of_scope, bot: fallback}
+      - {u: "Raccontami una barzelletta", move: out_of_scope, bot: fallback}
+      - {u: "Voglio un operatore", move: handoff, bot: handoff}
+
+  - id: rag-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso fare la risonanza senza impegnativa?", move: question, topic: requirements, ent: [MEDICAL_PROCEDURE], rag: low, bot: clarify}
+      - {u: "Sì, intendevo con il servizio sanitario", move: confirm, bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: rag-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto costa l'esame del colesterolo?", move: question, topic: costs, ent: [MEDICAL_PROCEDURE], rag: low, bot: clarify}
+      - {u: "No, intendevo senza ticket", move: deny, bot: clarify}
+      - {u: "Vorrei sapere se è gratuito per gli over 65", move: question, topic: costs, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: rag-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Qual è il tasso di successo degli interventi alla spalla?", move: question, topic: statistics, ent: [MEDICAL_PROCEDURE], rag: none, bot: fallback}
+      - {u: "Allora come si prenota una visita ortopedica?", move: question, topic: booking, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: rag-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Il dottor Rossi riceve il martedì?", move: question, topic: schedule, ent: [PERSON], rag: none, bot: fallback}
+      - {u: "Voglio parlare con qualcuno", move: handoff, bot: handoff}
+
+  - id: rag-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Dove posso fare la risonanza?", move: question, topic: location, ent: [MEDICAL_PROCEDURE], rag: low, bot: clarify}
+      - {u: "Non è quello che cercavo", move: deny, bot: clarify}
+      - {u: "Parlo con un operatore", move: handoff, bot: handoff}
+
+  - id: rag-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Esiste un'app per scaricare i referti?", move: question, topic: downloads, ent: [DOCUMENT], rag: none, bot: fallback}
+      - {u: "Quindi dove ritiro i referti?", move: question, topic: location, ent: [DOCUMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}

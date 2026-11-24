@@ -1,0 +1,151 @@
+nlu:
+  intents:
+  - intent: ask_address
+    examples:
+    - Qual è l'indirizzo?
+    - Mi dai l'indirizzo della sede?
+    - Dove devo recarmi?
+    - a che indirizzo devo consegnare i documenti del concorso
+    - qual è il vostro indirizzo civico
+    - in che via vi trovate esattamente
+    - mi dici via e numero civico della sede
+    - a quale indirizzo posso spedire la corrispondenza
+    - qual è l'indirizzo completo dello sportello
+    - mi scrivi l'indirizzo della sede centrale
+    - in quale piazza o via si trova l'ingresso
+    - qual è il CAP e la via della vostra struttura
+    - mi indichi l'indirizzo esatto per il navigatore
+    - dove siete ubicati come indirizzo stradale
+    - a che numero civico si trova l'entrata
+    - qual è l'indirizzo civico degli uffici
+    - mi serve l'indirizzo fisico della sede
+    - in che via ha sede il vostro ufficio
+  - intent: ask_facility_address
+    examples:
+    - qual è l'indirizzo del [Presidio Ospedaliero Grassi](FACILITY)
+    - qual è l'indirizzo del [Poliambulatorio Paolini](FACILITY)
+    - qual è l'indirizzo del [Poliambulatorio Bernocchi](FACILITY)
+    - qual è l'indirizzo del [CPO Gennaro di Rosa](FACILITY)
+    - qual è l'indirizzo del [Poliambulatorio Coni Zugna](FACILITY)
+    - a che indirizzo si trova la [Casa della Salute](FACILITY) ex [Sant'Agostino](FACILITY)
+    - in che via è il [Centro Prelievi Colle Massimo](FACILITY)
+    - qual è la via del [Centro Prelievi Monteverde](FACILITY)
+    - a che numero civico è il [Poliambulatorio Paolini](FACILITY)
+    - qual è l'indirizzo del [Centro Prelievi Belfanti](FACILITY)
+    - mi dai l'indirizzo della farmacia dell'[Ospedale Grassi](FACILITY)
+    - indirizzo della [Scuola secondaria di I grado Pascoli](FACILITY)
+    - mi dai l'indirizzo del [Museo archeologico](FACILITY)
+    - qual è l'indirizzo esatto dell'[Ospedale Grassi](FACILITY)
+    - mi dici la via e il numero civico del [Presidio Ospedaliero Grassi](FACILITY)
+    - a quale indirizzo civico si trova i [Consultori](FACILITY)
+    - mi fornisci l'indirizzo postale delle [Cappelle Medicee](FACILITY)
+  - intent: ask_department_address
+    examples:
+    - mi dai l'indirizzo dell'[URP](DEPARTMENT)
+    - qual è l'indirizzo della [Direzione Provinciale](DEPARTMENT) dell'[Agenzia delle Entrate](ORGANIZATION)
+    - mi dai l'indirizzo dell'[Ufficio Territoriale](DEPARTMENT) delle Entrate di [Ostia](ZONE)
+    - qual è la via dell'[Ufficio del Catasto](DEPARTMENT)
+    - qual è l'indirizzo esatto dei [Lavori pubblici](DEPARTMENT)
+    - mi dici la via e il numero civico della [Direzione Generale](DEPARTMENT)
+    - a quale indirizzo civico si trova l'[URP](DEPARTMENT)
+    - mi fornisci l'indirizzo postale del [Pronto Soccorso](DEPARTMENT)
+    - in che via è situato l'[Ufficio Territoriale](DEPARTMENT)
+    - cercavo l'indirizzo stradale dell'[Ufficio del Catasto](DEPARTMENT)
+    - qual è l'indirizzo esatto della [Direzione Provinciale](DEPARTMENT)
+    - mi dici la via e il numero civico della [Medicina Legale](DEPARTMENT)
+    - a quale indirizzo civico si trova la [Medicina dello Sport](DEPARTMENT)
+    - mi fornisci l'indirizzo postale della [Salute Mentale](DEPARTMENT)
+    - in che via è situato il [Catasto](DEPARTMENT)
+    - cercavo l'indirizzo stradale della [Direzione Sanitaria](DEPARTMENT)
+    - qual è l'indirizzo esatto del [SUAP](DEPARTMENT)
+  - intent: ask_organization_address
+    examples:
+    - qual è l'indirizzo della sede generale dell'[ASL Roma 3](ORGANIZATION)
+    - a che indirizzo si trova lo sportello dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - a quale indirizzo postale devo spedire la raccomandata per l'[Agenzia delle Entrate](ORGANIZATION)
+    - qual è l'indirizzo esatto del municipio del [Comune di Montesole](ORGANIZATION)
+    - qual è l'indirizzo esatto dell'[ASL](ORGANIZATION)
+    - mi dici la via e il numero civico del [CAF](ORGANIZATION)
+    - a quale indirizzo civico si trova il [Comune di Montesole](ORGANIZATION)
+    - mi fornisci l'indirizzo postale dell'[IC Giovanni Pascoli](ORGANIZATION)
+    - in che via è situato il [Comune](ORGANIZATION)
+    - cercavo l'indirizzo stradale dell'[IC Pascoli](ORGANIZATION)
+    - qual è l'indirizzo esatto dei [Musei Civici di Montesole](ORGANIZATION)
+    - mi dici la via e il numero civico della [Guardia di Finanza](ORGANIZATION)
+    - a quale indirizzo civico si trova la [Regione](ORGANIZATION)
+    - mi fornisci l'indirizzo postale dell'[INPS](ORGANIZATION)
+    - in che via è situato il [Ministero della Salute](ORGANIZATION)
+    - cercavo l'indirizzo stradale dell'[Ordine dei Medici](ORGANIZATION)
+    - qual è l'indirizzo esatto della [Camera di Commercio](ORGANIZATION)
+  - intent: ask_address_address
+    examples:
+    - dov'è [Via Passeroni 28](ADDRESS)
+    - qual è l'indirizzo esatto di [Via del Mare](ADDRESS)
+    - mi dici la via e il numero civico di [Via Ostiense](ADDRESS)
+    - a quale indirizzo civico si trova [Via della Magliana](ADDRESS)
+    - mi fornisci l'indirizzo postale di [Via dei Romagnoli](ADDRESS)
+    - in che via è situato [Via Portuense](ADDRESS)
+    - cercavo l'indirizzo stradale del [Viale del Lido](ADDRESS)
+    - qual è l'indirizzo esatto di [Via di Acilia](ADDRESS)
+    - mi dici la via e il numero civico di [Via di Boccea](ADDRESS)
+    - a quale indirizzo civico si trova [Via Aurelia](ADDRESS)
+    - mi fornisci l'indirizzo postale di [Piazza dei Ravennati](ADDRESS)
+    - in che via è situato il [Corso Duca di Genova](ADDRESS)
+    - cercavo l'indirizzo stradale di [Via Capo Sperone](ADDRESS)
+    - qual è l'indirizzo esatto di [Via delle Baleniere](ADDRESS)
+    - mi dici la via e il numero civico di [Via Passeroni 28](ADDRESS)
+    - a quale indirizzo civico si trova [Via di Casal Bernocchi](ADDRESS)
+  - intent: ask_document_address
+    examples:
+    - a che indirizzo vado per richiedere il duplicato del [codice fiscale](DOCUMENT)
+    - qual è l'indirizzo esatto della [carta d'identità elettronica](DOCUMENT)
+    - mi dici la via e il numero civico della [Certificazione Unica](DOCUMENT)
+    - a quale indirizzo civico si trova il [contratto di locazione](DOCUMENT)
+    - mi fornisci l'indirizzo postale della [fattura elettronica](DOCUMENT)
+    - in che via è situato il [referto](DOCUMENT)
+    - cercavo l'indirizzo stradale dell'[avviso bonario](DOCUMENT)
+    - qual è l'indirizzo esatto dell'[avviso di accertamento](DOCUMENT)
+    - mi dici la via e il numero civico della [marca da bollo](DOCUMENT)
+    - a quale indirizzo civico si trova l'[impegnativa](DOCUMENT)
+    - mi fornisci l'indirizzo postale del [Piano terapeutico](DOCUMENT)
+    - in che via è situato il [modello 730](DOCUMENT)
+    - cercavo l'indirizzo stradale del [modello F24](DOCUMENT)
+    - qual è l'indirizzo esatto della [patente](DOCUMENT)
+    - mi dici la via e il numero civico della [dichiarazione dei redditi](DOCUMENT)
+    - a quale indirizzo civico si trova la [cartella esattoriale](DOCUMENT)
+  - intent: ask_health_service_address
+    examples:
+    - mi dici l'indirizzo dello [sportello CUP](HEALTH_SERVICE) di [Ostia](ZONE)
+    - qual è l'indirizzo esatto della [scelta del medico](HEALTH_SERVICE)
+    - mi dici la via e il numero civico dell'[accesso agli atti](HEALTH_SERVICE)
+    - a quale indirizzo civico si trova lo [screening oncologico](HEALTH_SERVICE)
+    - mi fornisci l'indirizzo postale dello [Sportello Giovani](HEALTH_SERVICE)
+    - in che via è situato il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - cercavo l'indirizzo stradale dello [Sportello di Ascolto](HEALTH_SERVICE)
+    - qual è l'indirizzo esatto dell'[assistenza all'estero](HEALTH_SERVICE)
+    - mi dici la via e il numero civico del [Servizio Sanitario](HEALTH_SERVICE)
+    - a quale indirizzo civico si trova lo [screening del colon retto](HEALTH_SERVICE)
+    - mi fornisci l'indirizzo postale dell'[accesso civico](HEALTH_SERVICE)
+    - in che via è situato lo [screening della mammella](HEALTH_SERVICE)
+    - cercavo l'indirizzo stradale della [Telemedicina](HEALTH_SERVICE)
+    - qual è l'indirizzo esatto del [RECUP](HEALTH_SERVICE)
+    - mi dici la via e il numero civico del [Punto unico di accesso](HEALTH_SERVICE)
+    - a quale indirizzo civico si trova la [nutrizione artificiale](HEALTH_SERVICE)
+  - intent: ask_medical_procedure_address
+    examples:
+    - a che indirizzo devo andare per la [visita medico legale](MEDICAL_PROCEDURE)
+    - qual è l'indirizzo esatto della [visita medico legale](MEDICAL_PROCEDURE)
+    - mi dici la via e il numero civico del [prelievo](MEDICAL_PROCEDURE)
+    - a quale indirizzo civico si trova il [Quantiferon](MEDICAL_PROCEDURE)
+    - mi fornisci l'indirizzo postale dell'[ecografia](MEDICAL_PROCEDURE)
+    - in che via è situato la [colonscopia](MEDICAL_PROCEDURE)
+    - cercavo l'indirizzo stradale della [curva glicemica](MEDICAL_PROCEDURE)
+    - qual è l'indirizzo esatto dello [spermiogramma](MEDICAL_PROCEDURE)
+    - mi dici la via e il numero civico della [terapia oncologica](MEDICAL_PROCEDURE)
+    - a quale indirizzo civico si trova la [visita cardiologica](MEDICAL_PROCEDURE)
+    - mi fornisci l'indirizzo postale della [visita neurologica](MEDICAL_PROCEDURE)
+    - in che via è situato la [visita specialistica](MEDICAL_PROCEDURE)
+    - cercavo l'indirizzo stradale della [mammografia](MEDICAL_PROCEDURE)
+    - qual è l'indirizzo esatto del [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - mi dici la via e il numero civico della [visita per la patente](MEDICAL_PROCEDURE)
+    - a quale indirizzo civico si trova il [ricovero programmato](MEDICAL_PROCEDURE)

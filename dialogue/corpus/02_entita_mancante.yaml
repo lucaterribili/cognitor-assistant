@@ -1,0 +1,92 @@
+# Manca l'entità: il bot la chiede, l'utente risponde, la conversazione prosegue.
+conversations:
+  - id: slot-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "A che ora apre?", move: question, topic: opening_hours, bot: ask_slot}
+      - {u: "Il pronto soccorso", move: slot_reply, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: slot-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Vorrei il numero di telefono", move: question, topic: phone, bot: ask_slot}
+      - {u: "Dell'ufficio ticket", move: slot_reply, ent: [FACILITY], bot: answer}
+      - {u: "Ottimo, grazie", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: slot-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come prenoto?", move: question, topic: booking, bot: ask_slot}
+      - {u: "Una visita dermatologica", move: slot_reply, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "E dove si fa?", move: question, topic: location, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: slot-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto costa?", move: question, topic: costs, bot: ask_slot}
+      - {u: "Il ticket per le analisi del sangue", move: slot_reply, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "No, grazie", move: deny, bot: goodbye}
+
+  - id: slot-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si trova?", move: question, topic: location, bot: ask_slot}
+      - {u: "Il centro vaccinale", move: slot_reply, ent: [FACILITY], bot: answer}
+      - {u: "E gli orari?", move: question, topic: opening_hours, carry: [FACILITY], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Buona giornata", move: goodbye, bot: goodbye}
+
+  - id: slot-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quali documenti servono?", move: question, topic: documentation, bot: ask_slot}
+      - {u: "Per il rinnovo della tessera sanitaria", move: slot_reply, ent: [DOCUMENT], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "Sì, quanto tempo ci vuole?", move: question, topic: duration, carry: [DOCUMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: slot-07
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Chi è il responsabile?", move: question, topic: staff, bot: ask_slot}
+      - {u: "Del reparto di cardiologia", move: slot_reply, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: slot-08
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso prenotare online?", move: question, topic: booking, bot: ask_slot}
+      - {u: "No lascia stare", move: deny, bot: clarify}
+      - {u: "Voglio prenotare una visita oculistica online", move: question, topic: booking, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: slot-09
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "A che ora chiude?", move: question, topic: opening_hours, bot: ask_slot}
+      - {u: "Qual è il numero del CUP?", move: question, topic: phone, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: slot-10
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come ci arrivo?", move: question, topic: directions, bot: ask_slot}
+      - {u: "All'ospedale Santa Maria", move: slot_reply, ent: [FACILITY], bot: answer}
+      - {u: "C'è un autobus?", move: question, topic: directions, carry: [FACILITY], bot: answer}
+      - {u: "Perfetto, grazie", move: thanks, bot: thanks_reply}
+      - {u: "Ciao", move: goodbye, bot: goodbye}

@@ -41,3 +41,7 @@ BACKEND_API_TIMEOUT = float(os.getenv("BACKEND_API_TIMEOUT", "5"))
 # main:app) perché un client che non lo sa non deve trovarsi un endpoint che
 # risponde a metà e poi si comporta diversamente da /chatbot/message.
 STREAMING_ENABLED = os.getenv("COGNITOR_STREAMING_ENABLED", "false").strip().lower() in ("1", "true", "yes", "on")
+
+# Se True (default) il classificatore ha due teste, argomento e tipo di entità atteso, invece di una classe per
+# intento (vedi classes/intent_factorizer.py). Con False si torna al classificatore a classe unica.
+FACTORED_INTENTS = os.getenv("COGNITOR_FACTORED_INTENTS", "true").strip().lower() in ("1", "true", "yes", "on")

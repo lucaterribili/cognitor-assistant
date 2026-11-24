@@ -1,0 +1,179 @@
+nlu:
+  intents:
+  - intent: ask_mission
+    examples:
+    - Qual è la vostra missione?
+    - Qual è lo scopo di questa organizzazione?
+    - Perché è stata creata?
+    - qual è la vostra mission
+    - qual è la missione di questa associazione
+    - qual è la missione di questo ente
+    - qual è la vostra visione
+    - cosa vi proponete di fare
+    - cosa vi proponete
+    - qual è il vostro scopo
+    - qual è il vostro scopo principale
+    - a che scopo esistete
+    - per quale motivo esistete
+    - con quale finalità è nata l'organizzazione
+    - quali sono le finalità di questo ente
+    - quali sono i vostri valori
+    - quali valori vi guidano
+    - in cosa credete
+    - cosa vi muove
+    - cosa rappresenta la vostra azienda
+    - che cosa rappresenta questa fondazione
+    - qual è il vostro ruolo
+    - qual è il vostro compito
+    - qual è il vostro impegno
+    - qual è il vostro impegno verso i cittadini
+    - qual è l'obiettivo istituzionale
+    - chi servite
+    - a chi vi rivolgete
+    - per chi lavorate
+    - a cosa serve questa organizzazione
+    - a cosa serve l'ente
+    - perché esiste questa struttura
+    - perché è stata fondata l'associazione
+    - la vostra filosofia
+    - qual è la vostra filosofia
+    - mi spieghi la vostra visione
+    - parlami della vostra missione
+    - cosa significa per voi il servizio
+    - qual è la ragion d'essere
+    - statuto e finalità
+  - intent: ask_organization_mission
+    examples:
+    - qual è la missione dell'[ASL Roma 3](ORGANIZATION)
+    - cosa vuole fare l'[ASL Roma 3](ORGANIZATION) per i cittadini
+    - perché è nato [programmato](ORGANIZATION), qual è lo scopo del sito
+    - qual è la missione dell'[Agenzia delle Entrate](ORGANIZATION)
+    - qual è lo scopo dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - qual è il ruolo della [Guardia di Finanza](ORGANIZATION) nei controlli fiscali
+    - qual è la missione educativa dell'[IC Giovanni Pascoli](ORGANIZATION)
+    - qual è lo scopo istituzionale dei [Musei Civici di Montesole](ORGANIZATION)
+    - qual è la missione istituzionale dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - quali valori e finalità guida persegue [programmato](ORGANIZATION)
+    - qual è lo scopo sociale o istituzionale dei [Musei Civici](ORGANIZATION)
+    - con quale missione opera l'[ASL](ORGANIZATION)
+    - qual è la ragion d'essere del [CAF](ORGANIZATION)
+    - a quali principi si ispira la missione del [Comune di Montesole](ORGANIZATION)
+    - qual è la missione istituzionale dell'[IC Giovanni Pascoli](ORGANIZATION)
+    - quali valori e finalità guida persegue il [Comune](ORGANIZATION)
+    - qual è lo scopo sociale o istituzionale dell'[IC Pascoli](ORGANIZATION)
+    - con quale missione opera i [Musei Civici di Montesole](ORGANIZATION)
+  - intent: ask_department_mission
+    examples:
+    - a cosa serve l'[URP](DEPARTMENT)
+    - qual è il compito della [UOC Medicina Legale](DEPARTMENT)
+    - qual è la mission del [Dipartimento del Farmaco](DEPARTMENT)
+    - qual è il compito della [Direzione Provinciale](DEPARTMENT) delle Entrate
+    - qual è la missione istituzionale dell'[URP](DEPARTMENT)
+    - quali valori e finalità guida persegue il [Pronto Soccorso](DEPARTMENT)
+    - qual è lo scopo sociale o istituzionale dell'[Ufficio Territoriale](DEPARTMENT)
+    - con quale missione opera l'[Ufficio del Catasto](DEPARTMENT)
+    - qual è la ragion d'essere della [Direzione Provinciale](DEPARTMENT)
+    - a quali principi si ispira la missione della [Medicina Legale](DEPARTMENT)
+    - qual è la missione istituzionale della [Medicina dello Sport](DEPARTMENT)
+    - quali valori e finalità guida persegue la [Salute Mentale](DEPARTMENT)
+    - qual è lo scopo sociale o istituzionale del [Catasto](DEPARTMENT)
+    - con quale missione opera la [Direzione Sanitaria](DEPARTMENT)
+    - qual è la ragion d'essere del [SUAP](DEPARTMENT)
+    - a quali principi si ispira la missione dell'[anagrafe](DEPARTMENT)
+  - intent: ask_facility_mission
+    examples:
+    - qual è lo scopo delle [Case della Comunità](FACILITY)
+    - a cosa serve la [Casa della Salute](FACILITY)
+    - qual è la vocazione dell'[Ospedale di Comunità](FACILITY)
+    - qual è la missione della [Biblioteca civica](FACILITY) per la comunità
+    - qual è la missione istituzionale delle [Case della Comunità](FACILITY)
+    - quali valori e finalità guida persegue la [Casa della Comunità](FACILITY)
+    - qual è lo scopo sociale o istituzionale dell'[Ospedale Grassi](FACILITY)
+    - con quale missione opera il [Presidio Ospedaliero Grassi](FACILITY)
+    - qual è la ragion d'essere dei [Consultori](FACILITY)
+    - a quali principi si ispira la missione delle [Cappelle Medicee](FACILITY)
+    - qual è la missione istituzionale della [Pinacoteca civica](FACILITY)
+    - quali valori e finalità guida persegue l'[asilo nido](FACILITY)
+    - qual è lo scopo sociale o istituzionale dell'[Ospedale di Comunità](FACILITY)
+    - con quale missione opera l'[Ecocentro](FACILITY)
+    - qual è la ragion d'essere della [Scuola Primaria Rodari](FACILITY)
+    - a quali principi si ispira la missione del [CPO Gennaro di Rosa](FACILITY)
+    - qual è la missione istituzionale del [Consultorio](FACILITY)
+    - quali valori e finalità guida persegue la [Galleria d'arte contemporanea](FACILITY)
+  - intent: ask_document_mission
+    examples:
+    - qual è lo scopo del [Piano triennale per la prevenzione della corruzione](DOCUMENT)
+    - qual è la missione dietro la [Carta dei servizi](DOCUMENT)
+    - a cosa serve lo [Statuto del contribuente](DOCUMENT)
+    - qual è la missione istituzionale del [referto](DOCUMENT)
+    - quali valori e finalità guida persegue l'[avviso bonario](DOCUMENT)
+    - qual è lo scopo sociale o istituzionale dell'[avviso di accertamento](DOCUMENT)
+    - con quale missione opera la [marca da bollo](DOCUMENT)
+    - qual è la ragion d'essere dell'[impegnativa](DOCUMENT)
+    - a quali principi si ispira la missione del [Piano terapeutico](DOCUMENT)
+    - qual è la missione istituzionale del [modello 730](DOCUMENT)
+    - quali valori e finalità guida persegue il [modello F24](DOCUMENT)
+    - qual è lo scopo sociale o istituzionale della [patente](DOCUMENT)
+    - con quale missione opera la [dichiarazione dei redditi](DOCUMENT)
+    - qual è la ragion d'essere della [cartella esattoriale](DOCUMENT)
+    - a quali principi si ispira la missione del [modello Redditi PF](DOCUMENT)
+    - qual è la missione istituzionale della [dichiarazione precompilata](DOCUMENT)
+    - quali valori e finalità guida persegue lo [SPID](DOCUMENT)
+  - intent: ask_health_service_mission
+    examples:
+    - perché esiste il [Punto unico di accesso](HEALTH_SERVICE)
+    - qual è lo scopo dello [Sportello di Ascolto](HEALTH_SERVICE) contro gli [abusi digitali](MISC)
+    - quale scopo ha il [Servizio di Terapia Occupazionale](HEALTH_SERVICE)
+    - qual è la missione istituzionale delle [vaccinazioni](HEALTH_SERVICE)
+    - quali valori e finalità guida persegue l'[assistenza domiciliare](HEALTH_SERVICE)
+    - qual è lo scopo sociale o istituzionale della [Guardia Medica](HEALTH_SERVICE)
+    - con quale missione opera la [donazione del sangue](HEALTH_SERVICE)
+    - qual è la ragion d'essere della [scelta del medico](HEALTH_SERVICE)
+    - a quali principi si ispira la missione dell'[accesso agli atti](HEALTH_SERVICE)
+    - qual è la missione istituzionale dello [screening oncologico](HEALTH_SERVICE)
+    - quali valori e finalità guida persegue lo [Sportello Giovani](HEALTH_SERVICE)
+    - qual è lo scopo sociale o istituzionale del [Fascicolo Sanitario](HEALTH_SERVICE)
+    - con quale missione opera lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - qual è la ragion d'essere dell'[assistenza all'estero](HEALTH_SERVICE)
+    - a quali principi si ispira la missione del [Servizio Sanitario](HEALTH_SERVICE)
+    - qual è la missione istituzionale dello [screening del colon retto](HEALTH_SERVICE)
+    - quali valori e finalità guida persegue l'[accesso civico](HEALTH_SERVICE)
+    - qual è lo scopo sociale o istituzionale dello [screening della mammella](HEALTH_SERVICE)
+  - intent: ask_misc_mission
+    examples:
+    - qual è l'impegno del Comune per la sostenibilità e la [transizione ecologica](MISC)
+    - qual è la missione istituzionale del [regime ordinario](MISC)
+    - quali valori e finalità guida persegue il [bonus mobili](MISC)
+    - qual è lo scopo sociale o istituzionale dell'[ecobonus](MISC)
+    - con quale missione opera il [Superbonus](MISC)
+    - qual è la ragion d'essere dell'[audioguida](MISC)
+    - a quali principi si ispira la missione degli [alloggi popolari](MISC)
+    - qual è la missione istituzionale del [regime forfettario](MISC)
+    - quali valori e finalità guida persegue il [cassetto fiscale](MISC)
+    - qual è lo scopo sociale o istituzionale del [rimborso IRPEF](MISC)
+    - con quale missione opera il [bonus ristrutturazione](MISC)
+    - qual è la ragion d'essere del [registro elettronico](MISC)
+    - a quali principi si ispira la missione della [dieta speciale](MISC)
+    - qual è la missione istituzionale di [CIVIS](MISC)
+    - quali valori e finalità guida persegue [Fisconline](MISC)
+    - qual è lo scopo sociale o istituzionale dello [SdI](MISC)
+  - intent: ask_technology_mission
+    examples:
+    - qual è l'obiettivo dei tutorial su [Laravel](TECHNOLOGY)
+    - qual è la missione istituzionale di [Django](TECHNOLOGY)
+    - quali valori e finalità guida persegue [JavaScript](TECHNOLOGY)
+    - qual è lo scopo sociale o istituzionale di [Angular](TECHNOLOGY)
+    - con quale missione opera [phpMyAdmin](TECHNOLOGY)
+    - qual è la ragion d'essere di [Flask](TECHNOLOGY)
+    - a quali principi si ispira la missione di [Joomla](TECHNOLOGY)
+    - qual è la missione istituzionale del [Desktop Telematico](TECHNOLOGY)
+    - quali valori e finalità guida persegue [Voltura 2.0](TECHNOLOGY)
+    - qual è lo scopo sociale o istituzionale di [Docker](TECHNOLOGY)
+    - con quale missione opera [FastAPI](TECHNOLOGY)
+    - qual è la ragion d'essere di [Laravel](TECHNOLOGY)
+    - a quali principi si ispira la missione di [Python](TECHNOLOGY)
+    - qual è la missione istituzionale di [PostgreSQL](TECHNOLOGY)
+    - quali valori e finalità guida persegue [Spring Boot](TECHNOLOGY)
+    - qual è lo scopo sociale o istituzionale di [PHP](TECHNOLOGY)
+    - con quale missione opera [WordPress](TECHNOLOGY)
+    - qual è la ragion d'essere di [Linux](TECHNOLOGY)

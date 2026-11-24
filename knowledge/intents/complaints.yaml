@@ -1,0 +1,172 @@
+nlu:
+  intents:
+  - intent: ask_complaints
+    examples:
+    - Come posso presentare un reclamo?
+    - Dove posso segnalare un problema?
+    - A chi posso rivolgermi per una contestazione?
+    - voglio segnalare un comportamento scorretto del personale
+    - come segnalo un abuso in struttura
+    - ho avuto un problema con il ricovero
+    - voglio contestare l'esclusione dalla graduatoria
+    - come presento un reclamo o una segnalazione al Garante del contribuente
+    - il lampione pubblico davanti a casa è guasto da giorni, dove posso segnalarlo
+    - dove invio un reclamo per un disservizio riscontrato durante la visita al museo
+    - vorrei presentare un reclamo formale per un disservizio
+    - dove posso inviare una segnalazione o una lamentela
+    - entro quanti giorni rispondete a un reclamo scritto
+    - c'è un ufficio dedicato alla gestione dei reclami
+    - come faccio a contestare una risposta insoddisfacente
+    - posso inviare un reclamo tramite posta elettronica
+  - intent: ask_document_complaints
+    examples:
+    - voglio contestare un [ticket](DOCUMENT)
+    - a chi mi rivolgo per una contestazione sulla [fattura](DOCUMENT)
+    - voglio fare ricorso contro l'esito del [concorso](DOCUMENT)
+    - come contesto una [cartella esattoriale](DOCUMENT) errata o già pagata
+    - a chi segnalo un errore nei dati della mia [visura catastale](DOCUMENT)
+    - come faccio ricorso contro un [avviso di accertamento](DOCUMENT) dell'[Agenzia delle Entrate](ORGANIZATION)
+    - voglio contestare una sanzione ricevuta con un [avviso bonario](DOCUMENT)
+    - come posso presentare un reclamo per il [concorso pubblico](DOCUMENT)
+    - a chi invio una segnalazione di disservizio sulla [visura catastale](DOCUMENT)
+    - vorrei fare un reclamo formale riguardante la [tessera sanitaria](DOCUMENT)
+    - qual è la procedura di reclamo per la [cartella clinica](DOCUMENT)
+    - dove inoltro una contestazione relativa al [codice fiscale](DOCUMENT)
+    - come segnalo un problema grave riscontrato con l'[ISEE](DOCUMENT)
+    - come posso presentare un reclamo per la [partita IVA](DOCUMENT)
+    - a chi invio una segnalazione di disservizio sulla [carta d'identità elettronica](DOCUMENT)
+    - vorrei fare un reclamo formale riguardante la [Certificazione Unica](DOCUMENT)
+    - qual è la procedura di reclamo per il [contratto di locazione](DOCUMENT)
+    - dove inoltro una contestazione relativa alla [fattura elettronica](DOCUMENT)
+  - intent: ask_department_complaints
+    examples:
+    - come presento un reclamo all'[URP](DEPARTMENT)
+    - voglio segnalare un disservizio al [Pronto Soccorso](DEPARTMENT)
+    - come posso inviare un reclamo scritto all'[URP](DEPARTMENT)
+    - come segnalo un disservizio allo sportello dell'[Ufficio Territoriale](DEPARTMENT) delle Entrate
+    - come segnalo una buca pericolosa sulla strada comunale all'[URP](DEPARTMENT)
+    - come posso presentare un reclamo per la [Polizia locale](DEPARTMENT)
+    - a chi invio una segnalazione di disservizio sulla [Neurologia](DEPARTMENT)
+    - vorrei fare un reclamo formale riguardante l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - qual è la procedura di reclamo per il [Dipartimento del Farmaco](DEPARTMENT)
+    - dove inoltro una contestazione relativa alla [UOC Consultori Familiari](DEPARTMENT)
+    - come segnalo un problema grave riscontrato con la [Cardiologia interventistica](DEPARTMENT)
+    - come posso presentare un reclamo per i [tributi](DEPARTMENT)
+    - a chi invio una segnalazione di disservizio sulla [segreteria scolastica](DEPARTMENT)
+    - vorrei fare un reclamo formale riguardante l'[Ufficio Stampa](DEPARTMENT)
+    - qual è la procedura di reclamo per i [servizi demografici](DEPARTMENT)
+    - dove inoltro una contestazione relativa ai [Lavori pubblici](DEPARTMENT)
+  - intent: ask_health_service_complaints
+    examples:
+    - a chi segnalo un problema al [CUP](HEALTH_SERVICE)
+    - come faccio una [segnalazione di illecito](HEALTH_SERVICE)
+    - voglio segnalare un illecito con la [Whistleblowing](HEALTH_SERVICE)
+    - non sono soddisfatto del servizio di [assistenza domiciliare](HEALTH_SERVICE)
+    - come posso presentare un reclamo per lo [screening oncologico](HEALTH_SERVICE)
+    - a chi invio una segnalazione di disservizio sullo [Sportello Giovani](HEALTH_SERVICE)
+    - vorrei fare un reclamo formale riguardante il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - qual è la procedura di reclamo per lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - dove inoltro una contestazione relativa all'[assistenza all'estero](HEALTH_SERVICE)
+    - come segnalo un problema grave riscontrato con il [Servizio Sanitario](HEALTH_SERVICE)
+    - come posso presentare un reclamo per lo [screening del colon retto](HEALTH_SERVICE)
+    - a chi invio una segnalazione di disservizio sull'[accesso civico](HEALTH_SERVICE)
+    - vorrei fare un reclamo formale riguardante lo [screening della mammella](HEALTH_SERVICE)
+    - qual è la procedura di reclamo per la [Telemedicina](HEALTH_SERVICE)
+    - dove inoltro una contestazione relativa al [RECUP](HEALTH_SERVICE)
+    - come segnalo un problema grave riscontrato con il [Punto unico di accesso](HEALTH_SERVICE)
+    - come posso presentare un reclamo per la [nutrizione artificiale](HEALTH_SERVICE)
+    - a chi invio una segnalazione di disservizio sulle [cure palliative](HEALTH_SERVICE)
+  - intent: ask_facility_complaints
+    examples:
+    - voglio fare un reclamo sul [Centro Prelievi Ostia](FACILITY)
+    - dove segnalo i ritardi al [Poliambulatorio Bernocchi](FACILITY)
+    - voglio lamentarmi dei tempi di attesa al [Grassi](FACILITY)
+    - come posso presentare un reclamo per l'[Ospedale di Comunità](FACILITY)
+    - a chi invio una segnalazione di disservizio sull'[Ecocentro](FACILITY)
+    - vorrei fare un reclamo formale riguardante la [Scuola Primaria Rodari](FACILITY)
+    - qual è la procedura di reclamo per il [CPO Gennaro di Rosa](FACILITY)
+    - dove inoltro una contestazione relativa al [Consultorio](FACILITY)
+    - come segnalo un problema grave riscontrato con la [Galleria d'arte contemporanea](FACILITY)
+    - come posso presentare un reclamo per il [Centro Prelievi Palidoro](FACILITY)
+    - a chi invio una segnalazione di disservizio sul [Centro Prelievi Acilia](FACILITY)
+    - vorrei fare un reclamo formale riguardante il [Grassi](FACILITY)
+    - qual è la procedura di reclamo per il [Centro Prelievi](FACILITY)
+    - dove inoltro una contestazione relativa alla [Casa della Salute](FACILITY)
+    - come segnalo un problema grave riscontrato con il [Centro Prelievi Ostia](FACILITY)
+    - come posso presentare un reclamo per il [Museo archeologico](FACILITY)
+    - a chi invio una segnalazione di disservizio sul [Poliambulatorio Coni Zugna](FACILITY)
+  - intent: ask_medical_procedure_complaints
+    examples:
+    - voglio presentare reclamo per la [visita medico legale](MEDICAL_PROCEDURE)
+    - come posso presentare un reclamo per il [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - a chi invio una segnalazione di disservizio sulla [visita per la patente](MEDICAL_PROCEDURE)
+    - vorrei fare un reclamo formale riguardante il [ricovero programmato](MEDICAL_PROCEDURE)
+    - qual è la procedura di reclamo per la [risonanza magnetica](MEDICAL_PROCEDURE)
+    - dove inoltro una contestazione relativa agli [esami del sangue](MEDICAL_PROCEDURE)
+    - come segnalo un problema grave riscontrato con la [visita intramoenia](MEDICAL_PROCEDURE)
+    - come posso presentare un reclamo per l'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - a chi invio una segnalazione di disservizio sulla [radiografia](MEDICAL_PROCEDURE)
+    - vorrei fare un reclamo formale riguardante la [visita oculistica](MEDICAL_PROCEDURE)
+    - qual è la procedura di reclamo per la [visita dermatologica](MEDICAL_PROCEDURE)
+    - dove inoltro una contestazione relativa al [tampone molecolare](MEDICAL_PROCEDURE)
+    - come segnalo un problema grave riscontrato con la [spirometria](MEDICAL_PROCEDURE)
+    - come posso presentare un reclamo per la [visita medico legale](MEDICAL_PROCEDURE)
+    - a chi invio una segnalazione di disservizio sul [prelievo](MEDICAL_PROCEDURE)
+    - vorrei fare un reclamo formale riguardante il [Quantiferon](MEDICAL_PROCEDURE)
+  - intent: ask_misc_complaints
+    examples:
+    - a chi posso inoltrare un reclamo formale per un disservizio della [mensa scolastica](MISC)
+    - come posso presentare un reclamo per la [dieta speciale](MISC)
+    - a chi invio una segnalazione di disservizio su [CIVIS](MISC)
+    - vorrei fare un reclamo formale riguardante [Fisconline](MISC)
+    - qual è la procedura di reclamo per lo [SdI](MISC)
+    - dove inoltro una contestazione relativa al [codice tributo](MISC)
+    - come segnalo un problema grave riscontrato con la [mensa scolastica](MISC)
+    - come posso presentare un reclamo per la [prima casa](MISC)
+    - a chi invio una segnalazione di disservizio sulla [carta famiglia](MISC)
+    - vorrei fare un reclamo formale riguardante gli [abusi digitali](MISC)
+    - qual è la procedura di reclamo per [Entratel](MISC)
+    - dove inoltro una contestazione relativa a [Fatture e Corrispettivi](MISC)
+    - come segnalo un problema grave riscontrato con il [pre-scuola](MISC)
+    - come posso presentare un reclamo per la [rendita catastale](MISC)
+    - a chi invio una segnalazione di disservizio sul [regime ordinario](MISC)
+    - vorrei fare un reclamo formale riguardante il [bonus mobili](MISC)
+    - qual è la procedura di reclamo per l'[ecobonus](MISC)
+    - dove inoltro una contestazione relativa al [Superbonus](MISC)
+  - intent: ask_organization_complaints
+    examples:
+    - come segnalo un errore in un articolo di [programmato](ORGANIZATION)
+    - come posso presentare un reclamo per l'[ASL](ORGANIZATION)
+    - a chi invio una segnalazione di disservizio sul [CAF](ORGANIZATION)
+    - vorrei fare un reclamo formale riguardante il [Comune di Montesole](ORGANIZATION)
+    - qual è la procedura di reclamo per l'[IC Giovanni Pascoli](ORGANIZATION)
+    - dove inoltro una contestazione relativa al [Comune](ORGANIZATION)
+    - come segnalo un problema grave riscontrato con l'[IC Pascoli](ORGANIZATION)
+    - come posso presentare un reclamo per i [Musei Civici di Montesole](ORGANIZATION)
+    - a chi invio una segnalazione di disservizio sulla [Guardia di Finanza](ORGANIZATION)
+    - vorrei fare un reclamo formale riguardante la [Regione](ORGANIZATION)
+    - qual è la procedura di reclamo per l'[INPS](ORGANIZATION)
+    - dove inoltro una contestazione relativa al [Ministero della Salute](ORGANIZATION)
+    - come segnalo un problema grave riscontrato con l'[Ordine dei Medici](ORGANIZATION)
+    - come posso presentare un reclamo per la [Camera di Commercio](ORGANIZATION)
+    - a chi invio una segnalazione di disservizio sulla [Croce Rossa](ORGANIZATION)
+    - vorrei fare un reclamo formale riguardante la [Protezione Civile](ORGANIZATION)
+  - intent: ask_procedure_complaints
+    examples:
+    - vorrei fare una segnalazione per il mancato ritiro dei sacchetti della [raccolta differenziata](PROCEDURE)
+    - come posso presentare un reclamo per il [ravvedimento operoso](PROCEDURE)
+    - a chi invio una segnalazione di disservizio sui [contributi Inps](PROCEDURE)
+    - vorrei fare un reclamo formale riguardante l'[autotutela](PROCEDURE)
+    - qual è la procedura di reclamo per l'[accertamento fiscale](PROCEDURE)
+    - dove inoltro una contestazione relativa alla [raccolta differenziata](PROCEDURE)
+    - come segnalo un problema grave riscontrato con il [rinnovo della patente](PROCEDURE)
+    - come posso presentare un reclamo per la [voltura catastale](PROCEDURE)
+    - a chi invio una segnalazione di disservizio sulle [iscrizioni online](PROCEDURE)
+    - vorrei fare un reclamo formale riguardante il [fermo amministrativo](PROCEDURE)
+    - qual è la procedura di reclamo per il [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - dove inoltro una contestazione relativa al [DOCFA](PROCEDURE)
+    - come segnalo un problema grave riscontrato con la [denuncia di smarrimento](PROCEDURE)
+    - come posso presentare un reclamo per l'[apertura della partita IVA](PROCEDURE)
+    - a chi invio una segnalazione di disservizio sulla [rottamazione delle cartelle](PROCEDURE)
+    - vorrei fare un reclamo formale riguardante la [registrazione del contratto di locazione](PROCEDURE)
+    - qual è la procedura di reclamo per il [concordato preventivo biennale](PROCEDURE)

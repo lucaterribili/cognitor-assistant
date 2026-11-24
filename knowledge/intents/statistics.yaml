@@ -1,0 +1,193 @@
+nlu:
+  intents:
+  - intent: ask_statistics
+    examples:
+    - Ci sono dati statistici?
+    - Quali sono i numeri relativi al servizio?
+    - Puoi mostrarmi le statistiche?
+    - ci sono dati sui tempi delle liste di attesa
+    - dove trovo i dati sui premi al personale
+    - quanti dirigenti ci sono
+    - dove posso consultare i dati statistici e i report annuali
+    - quanti utenti usufruiscono del servizio ogni anno
+    - avete statistiche aggiornate sui volumi di attività
+    - qual è la percentuale di pratiche concluse con successo
+    - dove vengono pubblicati i bilanci e gli indicatori statistici
+    - ci sono grafici o tabelle con i dati dell'ultimo anno
+    - quali sono i numeri principali registrati nel territorio
+    - ogni quanto vengono aggiornate le statistiche ufficiali
+    - esiste un osservatorio con i dati statistici pubblici
+    - qual è il trend numerico degli ultimi anni
+    - dove trovo le statistiche sulle prestazioni erogate
+  - intent: ask_organization_statistics
+    examples:
+    - quanti medici ci sono nell'[ASL Roma 3](ORGANIZATION)
+    - quanti abitanti serve l'[ASL Roma 3](ORGANIZATION)
+    - quanti distretti ha l'[ASL Roma 3](ORGANIZATION)
+    - quanti articoli ci sono su [programmato](ORGANIZATION)
+    - qual è la categoria con più articoli su [programmato](ORGANIZATION)
+    - dove trovo i dati dell'Osservatorio del mercato immobiliare dell'[Agenzia delle Entrate](ORGANIZATION)
+    - quali sono i dati statistici sull'[Ordine dei Medici](ORGANIZATION)
+    - ci sono statistiche o numeri aggiornati per la [Camera di Commercio](ORGANIZATION)
+    - quanti casi o volumi registra ogni anno la [Croce Rossa](ORGANIZATION)
+    - dove consulto i report statistici della [Protezione Civile](ORGANIZATION)
+    - qual è l'andamento statistico relativo all'[Agenzia delle Entrate](ORGANIZATION)
+    - avete indicatori numerici e statistiche sull'[ASL Roma 3](ORGANIZATION)
+    - quali sono i dati statistici sull'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - ci sono statistiche o numeri aggiornati per [programmato](ORGANIZATION)
+    - quanti casi o volumi registra ogni anno i [Musei Civici](ORGANIZATION)
+    - dove consulto i report statistici dell'[ASL](ORGANIZATION)
+    - qual è l'andamento statistico relativo al [CAF](ORGANIZATION)
+  - intent: ask_facility_statistics
+    examples:
+    - quanti ricoveri ci sono al [Grassi](FACILITY)
+    - quanti [Centri Prelievi](FACILITY) ci sono nell'[ASL Roma 3](ORGANIZATION)
+    - quante [Case della Comunità](FACILITY) ci sono
+    - quanti posti letto ha il [Grassi](FACILITY)
+    - quanti [Centri Prelievi](FACILITY) ci sono sul territorio
+    - quali sono i dati statistici sulle [Cappelle Medicee](FACILITY)
+    - ci sono statistiche o numeri aggiornati per la [Pinacoteca civica](FACILITY)
+    - quanti casi o volumi registra ogni anno l'[asilo nido](FACILITY)
+    - dove consulto i report statistici dell'[Ospedale di Comunità](FACILITY)
+    - qual è l'andamento statistico relativo all'[Ecocentro](FACILITY)
+    - avete indicatori numerici e statistiche sulla [Scuola Primaria Rodari](FACILITY)
+    - quali sono i dati statistici sul [CPO Gennaro di Rosa](FACILITY)
+    - ci sono statistiche o numeri aggiornati per il [Consultorio](FACILITY)
+    - quanti casi o volumi registra ogni anno la [Galleria d'arte contemporanea](FACILITY)
+    - dove consulto i report statistici del [Centro Prelievi Palidoro](FACILITY)
+    - qual è l'andamento statistico relativo al [Centro Prelievi Acilia](FACILITY)
+    - avete indicatori numerici e statistiche sul [Grassi](FACILITY)
+  - intent: ask_document_statistics
+    examples:
+    - dove trovo l'[indicatore di tempestività dei pagamenti](DOCUMENT)
+    - quanti contribuenti utilizzano la [dichiarazione precompilata](DOCUMENT)
+    - quante [fatture elettroniche](DOCUMENT) transitano ogni anno per lo [SdI](MISC)
+    - quali sono i dati statistici sulla [marca da bollo](DOCUMENT)
+    - ci sono statistiche o numeri aggiornati per l'[impegnativa](DOCUMENT)
+    - quanti casi o volumi registra ogni anno il [Piano terapeutico](DOCUMENT)
+    - dove consulto i report statistici del [modello 730](DOCUMENT)
+    - qual è l'andamento statistico relativo al [modello F24](DOCUMENT)
+    - avete indicatori numerici e statistiche sulla [patente](DOCUMENT)
+    - quali sono i dati statistici sulla [dichiarazione dei redditi](DOCUMENT)
+    - ci sono statistiche o numeri aggiornati per la [cartella esattoriale](DOCUMENT)
+    - quanti casi o volumi registra ogni anno il [modello Redditi PF](DOCUMENT)
+    - dove consulto i report statistici della [dichiarazione precompilata](DOCUMENT)
+    - qual è l'andamento statistico relativo allo [SPID](DOCUMENT)
+    - avete indicatori numerici e statistiche sul [concorso pubblico](DOCUMENT)
+    - quali sono i dati statistici sulla [visura catastale](DOCUMENT)
+  - intent: ask_department_statistics
+    examples:
+    - quanti accessi ha il [Pronto Soccorso](DEPARTMENT) del [Grassi](FACILITY)
+    - dove trovo le statistiche del [Pronto Soccorso](DEPARTMENT)
+    - quali sono i dati statistici sulla [Direzione Sanitaria](DEPARTMENT)
+    - ci sono statistiche o numeri aggiornati per il [SUAP](DEPARTMENT)
+    - quanti casi o volumi registra ogni anno l'[anagrafe](DEPARTMENT)
+    - dove consulto i report statistici della [Polizia locale](DEPARTMENT)
+    - qual è l'andamento statistico relativo alla [Neurologia](DEPARTMENT)
+    - avete indicatori numerici e statistiche sull'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - quali sono i dati statistici sul [Dipartimento del Farmaco](DEPARTMENT)
+    - ci sono statistiche o numeri aggiornati per la [UOC Consultori Familiari](DEPARTMENT)
+    - quanti casi o volumi registra ogni anno la [Cardiologia interventistica](DEPARTMENT)
+    - dove consulto i report statistici dei [tributi](DEPARTMENT)
+    - qual è l'andamento statistico relativo alla [segreteria scolastica](DEPARTMENT)
+    - avete indicatori numerici e statistiche sull'[Ufficio Stampa](DEPARTMENT)
+    - quali sono i dati statistici sui [servizi demografici](DEPARTMENT)
+    - ci sono statistiche o numeri aggiornati per i [Lavori pubblici](DEPARTMENT)
+  - intent: ask_health_service_statistics
+    examples:
+    - quanti [screening oncologici](HEALTH_SERVICE) ha fatto l'[ASL Roma 3](ORGANIZATION)
+    - quante [vaccinazioni](HEALTH_SERVICE) sono state fatte
+    - quali sono i dati statistici sullo [screening del colon retto](HEALTH_SERVICE)
+    - ci sono statistiche o numeri aggiornati per l'[accesso civico](HEALTH_SERVICE)
+    - quanti casi o volumi registra ogni anno lo [screening della mammella](HEALTH_SERVICE)
+    - dove consulto i report statistici della [Telemedicina](HEALTH_SERVICE)
+    - qual è l'andamento statistico relativo al [RECUP](HEALTH_SERVICE)
+    - avete indicatori numerici e statistiche sul [Punto unico di accesso](HEALTH_SERVICE)
+    - quali sono i dati statistici sulla [nutrizione artificiale](HEALTH_SERVICE)
+    - ci sono statistiche o numeri aggiornati per le [cure palliative](HEALTH_SERVICE)
+    - quanti casi o volumi registra ogni anno l'[ossigenoterapia](HEALTH_SERVICE)
+    - dove consulto i report statistici del [ritiro referti](HEALTH_SERVICE)
+    - qual è l'andamento statistico relativo al [CUP](HEALTH_SERVICE)
+    - avete indicatori numerici e statistiche sull'[assistenza protesica](HEALTH_SERVICE)
+    - quali sono i dati statistici sulle [vaccinazioni](HEALTH_SERVICE)
+    - ci sono statistiche o numeri aggiornati per l'[assistenza domiciliare](HEALTH_SERVICE)
+    - quanti casi o volumi registra ogni anno la [Guardia Medica](HEALTH_SERVICE)
+    - dove consulto i report statistici della [donazione del sangue](HEALTH_SERVICE)
+  - intent: ask_technology_statistics
+    examples:
+    - quanti tutorial ci sono su [Laravel](TECHNOLOGY)
+    - quanti articoli ci sono nella categoria [Python](TECHNOLOGY)
+    - quali sono i dati statistici sul [Desktop Telematico](TECHNOLOGY)
+    - ci sono statistiche o numeri aggiornati per [Voltura 2.0](TECHNOLOGY)
+    - quanti casi o volumi registra ogni anno [Docker](TECHNOLOGY)
+    - dove consulto i report statistici di [FastAPI](TECHNOLOGY)
+    - qual è l'andamento statistico relativo a [Laravel](TECHNOLOGY)
+    - avete indicatori numerici e statistiche su [Python](TECHNOLOGY)
+    - quali sono i dati statistici su [PostgreSQL](TECHNOLOGY)
+    - ci sono statistiche o numeri aggiornati per [Spring Boot](TECHNOLOGY)
+    - quanti casi o volumi registra ogni anno [PHP](TECHNOLOGY)
+    - dove consulto i report statistici di [WordPress](TECHNOLOGY)
+    - qual è l'andamento statistico relativo a [Linux](TECHNOLOGY)
+    - avete indicatori numerici e statistiche su [MySQL](TECHNOLOGY)
+    - quali sono i dati statistici su [nftables](TECHNOLOGY)
+    - ci sono statistiche o numeri aggiornati per [Eloquent](TECHNOLOGY)
+    - quanti casi o volumi registra ogni anno [Ubuntu](TECHNOLOGY)
+    - dove consulto i report statistici di [rsync](TECHNOLOGY)
+  - intent: ask_misc_statistics
+    examples:
+    - quanto è stato recuperato dalla lotta all'[evasione fiscale](MISC)
+    - quali sono i dati statistici sullo [SdI](MISC)
+    - ci sono statistiche o numeri aggiornati per il [codice tributo](MISC)
+    - quanti casi o volumi registra ogni anno la [mensa scolastica](MISC)
+    - dove consulto i report statistici della [prima casa](MISC)
+    - qual è l'andamento statistico relativo alla [carta famiglia](MISC)
+    - avete indicatori numerici e statistiche sugli [abusi digitali](MISC)
+    - quali sono i dati statistici su [Entratel](MISC)
+    - ci sono statistiche o numeri aggiornati per [Fatture e Corrispettivi](MISC)
+    - quanti casi o volumi registra ogni anno il [pre-scuola](MISC)
+    - dove consulto i report statistici della [rendita catastale](MISC)
+    - qual è l'andamento statistico relativo al [regime ordinario](MISC)
+    - avete indicatori numerici e statistiche sul [bonus mobili](MISC)
+    - quali sono i dati statistici sull'[ecobonus](MISC)
+    - ci sono statistiche o numeri aggiornati per il [Superbonus](MISC)
+    - quanti casi o volumi registra ogni anno l'[audioguida](MISC)
+    - dove consulto i report statistici degli [alloggi popolari](MISC)
+    - qual è l'andamento statistico relativo al [regime forfettario](MISC)
+  - intent: ask_tax_statistics
+    examples:
+    - dove trovo le statistiche sulle dichiarazioni [IRPEF](TAX) e [IVA](TAX)
+    - quali sono i dati statistici sull'[imposta sulle successioni](TAX)
+    - ci sono statistiche o numeri aggiornati per il [contributo unificato](TAX)
+    - quanti casi o volumi registra ogni anno il [diritto camerale](TAX)
+    - dove consulto i report statistici dell'[IMU](TAX)
+    - qual è l'andamento statistico relativo all'[IRPEF](TAX)
+    - avete indicatori numerici e statistiche sulla [TARI](TAX)
+    - quali sono i dati statistici sull'[IVA](TAX)
+    - ci sono statistiche o numeri aggiornati per la [cedolare secca](TAX)
+    - quanti casi o volumi registra ogni anno l'[imposta di registro](TAX)
+    - dove consulto i report statistici dell'[imposta di bollo](TAX)
+    - qual è l'andamento statistico relativo all'[IRES](TAX)
+    - avete indicatori numerici e statistiche sull'[IRAP](TAX)
+    - quali sono i dati statistici sulla [ritenuta d'acconto](TAX)
+    - ci sono statistiche o numeri aggiornati per la [concessione governativa](TAX)
+    - quanti casi o volumi registra ogni anno l'[imposta ipotecaria](TAX)
+  - intent: ask_tech_concept_statistics
+    examples:
+    - quanti articoli ci sono sull'[intelligenza artificiale](TECH_CONCEPT)
+    - quali sono i dati statistici sulle [Facades](TECH_CONCEPT)
+    - ci sono statistiche o numeri aggiornati per la [GPU](TECH_CONCEPT)
+    - quanti casi o volumi registra ogni anno il [machine learning](TECH_CONCEPT)
+    - dove consulto i report statistici dell'[autenticazione JWT](TECH_CONCEPT)
+    - qual è l'andamento statistico relativo alla [containerizzazione](TECH_CONCEPT)
+    - avete indicatori numerici e statistiche sugli [embeddings](TECH_CONCEPT)
+    - quali sono i dati statistici sul [firewall](TECH_CONCEPT)
+    - ci sono statistiche o numeri aggiornati per l'[intelligenza artificiale](TECH_CONCEPT)
+    - quanti casi o volumi registra ogni anno il [cron job](TECH_CONCEPT)
+    - dove consulto i report statistici della [BiGRU](TECH_CONCEPT)
+    - qual è l'andamento statistico relativo ai [microservizi](TECH_CONCEPT)
+    - avete indicatori numerici e statistiche sulla [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - quali sono i dati statistici sui [generatori](TECH_CONCEPT)
+    - ci sono statistiche o numeri aggiornati per gli [assistenti di codice](TECH_CONCEPT)
+    - quanti casi o volumi registra ogni anno la [rete neurale](TECH_CONCEPT)
+    - dove consulto i report statistici del [generatore](TECH_CONCEPT)
+    - qual è l'andamento statistico relativo al [vibe coding](TECH_CONCEPT)

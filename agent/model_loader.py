@@ -9,6 +9,7 @@ import torch
 import yaml
 
 from config import USE_FASTTEXT
+from classes.intent_factorizer import IntentFactorizer
 from intellective.intent_classifier import IntentClassifier
 from intellective.doping_preprocessor import DopingPreprocessor
 
@@ -23,6 +24,7 @@ class ModelLoader:
         self.vocab_path = os.path.join(base_dir, '.cognitor', 'vocab.json')
         self.intent_dict_path = os.path.join(base_dir, '.cognitor', 'intent_dict.json')
         self.model_path = os.path.join(base_dir, 'models', 'intent_model_fast.pth')
+        self.intent_factors_path = os.path.join(base_dir, '.cognitor', 'intent_factors.json')
 
     @staticmethod
     def _load_json(path: str, label: str) -> dict:
@@ -61,6 +63,20 @@ class ModelLoader:
             self.base_dir, '.cognitor', 'sentencepiece.model'
         )
 
+        # Il checkpoint decide la struttura: a due teste (argomento + tipo di entità) se contiene fc_topic.
+        state_dict = None
+        try:
+            state_dict = torch.load(self.model_path, map_location=self.device)
+        except FileNotFoundError:
+            print("WARNING Modello non trovato, usando pesi random")
+        except Exception as e:
+            print(f"WARNING Errore caricamento modello: {e}")
+            print("WARNING Usando pesi random")
+
+        intent_factors = None
+        if state_dict is not None and 'fc_topic.weight' in state_dict:
+            intent_factors = IntentFactorizer.load(self.intent_factors_path)
+
         model = IntentClassifier(
             vocab_size=vocab_size,
             embed_dim=300,
@@ -71,19 +87,18 @@ class ModelLoader:
             vocab_path=self.vocab_path,
             freeze_embeddings=True,
             sentencepiece_model_path=sentencepiece_model_path,
+            intent_factors=intent_factors,
         )
 
         model_loaded = False
-        try:
-            state_dict = torch.load(self.model_path, map_location=self.device)
-            model.load_state_dict(state_dict)
-            print("OK Modello trainato caricato")
-            model_loaded = True
-        except FileNotFoundError:
-            print("WARNING Modello non trovato, usando pesi random")
-        except Exception as e:
-            print(f"WARNING Errore caricamento modello: {e}")
-            print("WARNING Usando pesi random")
+        if state_dict is not None:
+            try:
+                model.load_state_dict(state_dict)
+                print("OK Modello trainato caricato")
+                model_loaded = True
+            except Exception as e:
+                print(f"WARNING Errore caricamento modello: {e}")
+                print("WARNING Usando pesi random")
 
         model.to(self.device)
         model.eval()

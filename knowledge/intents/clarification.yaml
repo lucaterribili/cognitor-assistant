@@ -1,0 +1,228 @@
+nlu:
+  intents:
+  - intent: ask_clarification
+    examples:
+    - Puoi essere più preciso?
+    - Non ho capito, puoi spiegare meglio?
+    - Cosa intendi esattamente?
+    - puoi essere più preciso sull'orario
+    - puoi specificare di quale servizio parli
+    - non ho capito la risposta, puoi riformulare
+    - puoi ripetere in modo più semplice
+    - come sarebbe a dire
+    - in che senso
+    - cosa vuoi dire esattamente
+    - scusa, non ho capito
+    - puoi dirmelo con altre parole
+    - puoi essere più chiaro su questo passaggio
+    - puoi spiegare più chiaramente cosa intendi
+    - non ho capito a quale modulo ti stai riferendo
+    - puoi chiarire meglio quello che hai appena detto
+  - intent: ask_document_clarification
+    examples:
+    - non mi è chiara la tua risposta sull'[esenzione](DOCUMENT)
+    - intendi il [modello 730](DOCUMENT) o il [modello Redditi PF](DOCUMENT)
+    - puoi chiarirmi meglio il punto relativo alla [visura catastale](DOCUMENT)
+    - non mi è chiaro un aspetto della [tessera sanitaria](DOCUMENT)
+    - vorrei un chiarimento sulla [cartella clinica](DOCUMENT)
+    - potresti essere più preciso riguardo al [codice fiscale](DOCUMENT)
+    - cosa intendi esattamente quando parli dell'[ISEE](DOCUMENT)
+    - mi chiarisci questo dubbio sulla [partita IVA](DOCUMENT)
+    - puoi chiarirmi meglio il punto relativo alla [carta d'identità elettronica](DOCUMENT)
+    - non mi è chiaro un aspetto della [Certificazione Unica](DOCUMENT)
+    - vorrei un chiarimento sul [contratto di locazione](DOCUMENT)
+    - potresti essere più preciso riguardo alla [fattura elettronica](DOCUMENT)
+    - cosa intendi esattamente quando parli del [referto](DOCUMENT)
+    - mi chiarisci questo dubbio sull'[avviso bonario](DOCUMENT)
+    - puoi chiarirmi meglio il punto relativo all'[avviso di accertamento](DOCUMENT)
+    - non mi è chiaro un aspetto della [marca da bollo](DOCUMENT)
+  - intent: ask_technology_clarification
+    examples:
+    - intendi [PHP](TECHNOLOGY) o [Python](TECHNOLOGY)
+    - non ho capito il passaggio su [Eloquent](TECHNOLOGY)
+    - puoi chiarirmi meglio il punto relativo a [Linux](TECHNOLOGY)
+    - non mi è chiaro un aspetto di [MySQL](TECHNOLOGY)
+    - vorrei un chiarimento su [nftables](TECHNOLOGY)
+    - potresti essere più preciso riguardo a [Eloquent](TECHNOLOGY)
+    - cosa intendi esattamente quando parli di [Ubuntu](TECHNOLOGY)
+    - mi chiarisci questo dubbio su [rsync](TECHNOLOGY)
+    - puoi chiarirmi meglio il punto relativo a [WildFly](TECHNOLOGY)
+    - non mi è chiaro un aspetto di [Apache](TECHNOLOGY)
+    - vorrei un chiarimento su [Django](TECHNOLOGY)
+    - potresti essere più preciso riguardo a [JavaScript](TECHNOLOGY)
+    - cosa intendi esattamente quando parli di [Angular](TECHNOLOGY)
+    - mi chiarisci questo dubbio su [phpMyAdmin](TECHNOLOGY)
+    - puoi chiarirmi meglio il punto relativo a [Flask](TECHNOLOGY)
+    - non mi è chiaro un aspetto di [Joomla](TECHNOLOGY)
+  - intent: ask_department_clarification
+    examples:
+    - non ho capito a quale [UOSD](DEPARTMENT) ti riferisci
+    - puoi chiarirmi meglio il punto relativo al [SUAP](DEPARTMENT)
+    - non mi è chiaro un aspetto dell'[anagrafe](DEPARTMENT)
+    - vorrei un chiarimento sulla [Polizia locale](DEPARTMENT)
+    - potresti essere più preciso riguardo alla [Neurologia](DEPARTMENT)
+    - cosa intendi esattamente quando parli dell'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - mi chiarisci questo dubbio sul [Dipartimento del Farmaco](DEPARTMENT)
+    - puoi chiarirmi meglio il punto relativo alla [UOC Consultori Familiari](DEPARTMENT)
+    - non mi è chiaro un aspetto della [Cardiologia interventistica](DEPARTMENT)
+    - vorrei un chiarimento sui [tributi](DEPARTMENT)
+    - potresti essere più preciso riguardo alla [segreteria scolastica](DEPARTMENT)
+    - cosa intendi esattamente quando parli dell'[Ufficio Stampa](DEPARTMENT)
+    - mi chiarisci questo dubbio sui [servizi demografici](DEPARTMENT)
+    - puoi chiarirmi meglio il punto relativo ai [Lavori pubblici](DEPARTMENT)
+    - non mi è chiaro un aspetto della [Direzione Generale](DEPARTMENT)
+    - vorrei un chiarimento sull'[URP](DEPARTMENT)
+    - potresti essere più preciso riguardo al [Pronto Soccorso](DEPARTMENT)
+  - intent: ask_facility_clarification
+    examples:
+    - intendevi il [Grassi](FACILITY) o il [Poliambulatorio Coni Zugna](FACILITY)
+    - puoi chiarirmi meglio il punto relativo alle [Cappelle Medicee](FACILITY)
+    - non mi è chiaro un aspetto della [Pinacoteca civica](FACILITY)
+    - vorrei un chiarimento sull'[asilo nido](FACILITY)
+    - potresti essere più preciso riguardo all'[Ospedale di Comunità](FACILITY)
+    - cosa intendi esattamente quando parli dell'[Ecocentro](FACILITY)
+    - mi chiarisci questo dubbio sulla [Scuola Primaria Rodari](FACILITY)
+    - puoi chiarirmi meglio il punto relativo al [CPO Gennaro di Rosa](FACILITY)
+    - non mi è chiaro un aspetto del [Consultorio](FACILITY)
+    - vorrei un chiarimento sulla [Galleria d'arte contemporanea](FACILITY)
+    - potresti essere più preciso riguardo al [Centro Prelievi Palidoro](FACILITY)
+    - cosa intendi esattamente quando parli del [Centro Prelievi Acilia](FACILITY)
+    - mi chiarisci questo dubbio sul [Grassi](FACILITY)
+    - puoi chiarirmi meglio il punto relativo al [Centro Prelievi](FACILITY)
+    - non mi è chiaro un aspetto della [Casa della Salute](FACILITY)
+    - vorrei un chiarimento sul [Centro Prelievi Ostia](FACILITY)
+    - potresti essere più preciso riguardo al [Museo archeologico](FACILITY)
+  - intent: ask_health_service_clarification
+    examples:
+    - in che senso parli di [CUP](HEALTH_SERVICE)
+    - puoi chiarirmi meglio il punto relativo al [RECUP](HEALTH_SERVICE)
+    - non mi è chiaro un aspetto del [Punto unico di accesso](HEALTH_SERVICE)
+    - vorrei un chiarimento sulla [nutrizione artificiale](HEALTH_SERVICE)
+    - potresti essere più preciso riguardo alle [cure palliative](HEALTH_SERVICE)
+    - cosa intendi esattamente quando parli dell'[ossigenoterapia](HEALTH_SERVICE)
+    - mi chiarisci questo dubbio sul [ritiro referti](HEALTH_SERVICE)
+    - puoi chiarirmi meglio il punto relativo al [CUP](HEALTH_SERVICE)
+    - non mi è chiaro un aspetto dell'[assistenza protesica](HEALTH_SERVICE)
+    - vorrei un chiarimento sulle [vaccinazioni](HEALTH_SERVICE)
+    - potresti essere più preciso riguardo all'[assistenza domiciliare](HEALTH_SERVICE)
+    - cosa intendi esattamente quando parli della [Guardia Medica](HEALTH_SERVICE)
+    - mi chiarisci questo dubbio sulla [donazione del sangue](HEALTH_SERVICE)
+    - puoi chiarirmi meglio il punto relativo alla [scelta del medico](HEALTH_SERVICE)
+    - non mi è chiaro un aspetto dell'[accesso agli atti](HEALTH_SERVICE)
+    - vorrei un chiarimento sullo [screening oncologico](HEALTH_SERVICE)
+  - intent: ask_medical_procedure_clarification
+    examples:
+    - ti riferisci al [Quantiferon](MEDICAL_PROCEDURE) o allo [spermiogramma](MEDICAL_PROCEDURE)
+    - puoi chiarirmi meglio il punto relativo alla [spirometria](MEDICAL_PROCEDURE)
+    - non mi è chiaro un aspetto della [visita medico legale](MEDICAL_PROCEDURE)
+    - vorrei un chiarimento sul [prelievo](MEDICAL_PROCEDURE)
+    - potresti essere più preciso riguardo al [Quantiferon](MEDICAL_PROCEDURE)
+    - cosa intendi esattamente quando parli dell'[ecografia](MEDICAL_PROCEDURE)
+    - mi chiarisci questo dubbio sulla [colonscopia](MEDICAL_PROCEDURE)
+    - puoi chiarirmi meglio il punto relativo alla [curva glicemica](MEDICAL_PROCEDURE)
+    - non mi è chiaro un aspetto dello [spermiogramma](MEDICAL_PROCEDURE)
+    - vorrei un chiarimento sulla [terapia oncologica](MEDICAL_PROCEDURE)
+    - potresti essere più preciso riguardo alla [visita cardiologica](MEDICAL_PROCEDURE)
+    - cosa intendi esattamente quando parli della [visita neurologica](MEDICAL_PROCEDURE)
+    - mi chiarisci questo dubbio sulla [visita specialistica](MEDICAL_PROCEDURE)
+    - puoi chiarirmi meglio il punto relativo alla [mammografia](MEDICAL_PROCEDURE)
+    - non mi è chiaro un aspetto del [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - vorrei un chiarimento sulla [visita per la patente](MEDICAL_PROCEDURE)
+    - potresti essere più preciso riguardo al [ricovero programmato](MEDICAL_PROCEDURE)
+    - cosa intendi esattamente quando parli della [risonanza magnetica](MEDICAL_PROCEDURE)
+  - intent: ask_misc_clarification
+    examples:
+    - non ho capito a quale [codice tributo](MISC) del [modello F24](DOCUMENT) ti riferisci
+    - puoi chiarirmi meglio il punto relativo allo [SdI](MISC)
+    - non mi è chiaro un aspetto del [codice tributo](MISC)
+    - vorrei un chiarimento sulla [mensa scolastica](MISC)
+    - potresti essere più preciso riguardo alla [prima casa](MISC)
+    - cosa intendi esattamente quando parli della [carta famiglia](MISC)
+    - mi chiarisci questo dubbio sugli [abusi digitali](MISC)
+    - puoi chiarirmi meglio il punto relativo a [Entratel](MISC)
+    - non mi è chiaro un aspetto di [Fatture e Corrispettivi](MISC)
+    - vorrei un chiarimento sul [pre-scuola](MISC)
+    - potresti essere più preciso riguardo alla [rendita catastale](MISC)
+    - cosa intendi esattamente quando parli del [regime ordinario](MISC)
+    - mi chiarisci questo dubbio sul [bonus mobili](MISC)
+    - puoi chiarirmi meglio il punto relativo all'[ecobonus](MISC)
+    - non mi è chiaro un aspetto del [Superbonus](MISC)
+    - vorrei un chiarimento sull'[audioguida](MISC)
+    - potresti essere più preciso riguardo agli [alloggi popolari](MISC)
+    - cosa intendi esattamente quando parli del [regime forfettario](MISC)
+  - intent: ask_organization_clarification
+    examples:
+    - ti riferisci all'[Agenzia delle Entrate](ORGANIZATION) o all'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - puoi chiarirmi meglio il punto relativo all'[Ordine dei Medici](ORGANIZATION)
+    - non mi è chiaro un aspetto della [Camera di Commercio](ORGANIZATION)
+    - vorrei un chiarimento sulla [Croce Rossa](ORGANIZATION)
+    - potresti essere più preciso riguardo alla [Protezione Civile](ORGANIZATION)
+    - cosa intendi esattamente quando parli dell'[Agenzia delle Entrate](ORGANIZATION)
+    - mi chiarisci questo dubbio sull'[ASL Roma 3](ORGANIZATION)
+    - puoi chiarirmi meglio il punto relativo all'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - non mi è chiaro un aspetto di [programmato](ORGANIZATION)
+    - vorrei un chiarimento sui [Musei Civici](ORGANIZATION)
+    - potresti essere più preciso riguardo all'[ASL](ORGANIZATION)
+    - cosa intendi esattamente quando parli del [CAF](ORGANIZATION)
+    - mi chiarisci questo dubbio sul [Comune di Montesole](ORGANIZATION)
+    - puoi chiarirmi meglio il punto relativo all'[IC Giovanni Pascoli](ORGANIZATION)
+    - non mi è chiaro un aspetto del [Comune](ORGANIZATION)
+    - vorrei un chiarimento sull'[IC Pascoli](ORGANIZATION)
+    - potresti essere più preciso riguardo ai [Musei Civici di Montesole](ORGANIZATION)
+    - cosa intendi esattamente quando parli della [Guardia di Finanza](ORGANIZATION)
+  - intent: ask_role_clarification
+    examples:
+    - in che senso parli di [sostituto d'imposta](ROLE)
+    - puoi chiarirmi meglio il punto relativo al [medico di base](ROLE)
+    - non mi è chiaro un aspetto del [commercialista](ROLE)
+    - vorrei un chiarimento sul [sostituto d'imposta](ROLE)
+    - potresti essere più preciso riguardo al [pediatra](ROLE)
+    - cosa intendi esattamente quando parli degli [specialisti ambulatoriali](ROLE)
+    - mi chiarisci questo dubbio sui [medici di base](ROLE)
+    - puoi chiarirmi meglio il punto relativo al [DPO](ROLE)
+    - non mi è chiaro un aspetto del [donatore di sangue](ROLE)
+    - vorrei un chiarimento sullo [psicologo](ROLE)
+    - potresti essere più preciso riguardo al [Dirigente Scolastico](ROLE)
+    - cosa intendi esattamente quando parli del [coordinatore di classe](ROLE)
+    - mi chiarisci questo dubbio sugli [infermieri](ROLE)
+    - puoi chiarirmi meglio il punto relativo al [direttore sanitario](ROLE)
+    - non mi è chiaro un aspetto del [Responsabile della Prevenzione della Corruzione](ROLE)
+    - vorrei un chiarimento sui [familiari a carico](ROLE)
+  - intent: ask_tax_clarification
+    examples:
+    - puoi chiarire meglio la tua risposta sulla [cedolare secca](TAX)
+    - puoi chiarirmi meglio il punto relativo all'[IRAP](TAX)
+    - non mi è chiaro un aspetto della [ritenuta d'acconto](TAX)
+    - vorrei un chiarimento sulla [concessione governativa](TAX)
+    - potresti essere più preciso riguardo all'[imposta ipotecaria](TAX)
+    - cosa intendi esattamente quando parli dell'[imposta catastale](TAX)
+    - mi chiarisci questo dubbio sull'[addizionale regionale](TAX)
+    - puoi chiarirmi meglio il punto relativo all'[addizionale comunale](TAX)
+    - non mi è chiaro un aspetto del [canone RAI](TAX)
+    - vorrei un chiarimento sulla [tassa automobilistica](TAX)
+    - potresti essere più preciso riguardo all'[imposta sulle successioni](TAX)
+    - cosa intendi esattamente quando parli del [contributo unificato](TAX)
+    - mi chiarisci questo dubbio sul [diritto camerale](TAX)
+    - puoi chiarirmi meglio il punto relativo all'[IMU](TAX)
+    - non mi è chiaro un aspetto dell'[IRPEF](TAX)
+    - vorrei un chiarimento sulla [TARI](TAX)
+    - potresti essere più preciso riguardo all'[IVA](TAX)
+    - cosa intendi esattamente quando parli della [cedolare secca](TAX)
+  - intent: ask_zone_clarification
+    examples:
+    - parli del [Municipio XI](ZONE) o del [Municipio XII](ZONE)
+    - puoi chiarirmi meglio il punto relativo a [Fiumicino](ZONE)
+    - non mi è chiaro un aspetto di [Palidoro](ZONE)
+    - vorrei un chiarimento su [Magliana](ZONE)
+    - potresti essere più preciso riguardo a [Montesole](ZONE)
+    - cosa intendi esattamente quando parli del [Municipio X](ZONE)
+    - mi chiarisci questo dubbio su [Acilia](ZONE)
+    - puoi chiarirmi meglio il punto relativo a [Ponte Galeria](ZONE)
+    - non mi è chiaro un aspetto di [Corviale](ZONE)
+    - vorrei un chiarimento su [Ostia Antica](ZONE)
+    - potresti essere più preciso riguardo a [Fregene](ZONE)
+    - cosa intendi esattamente quando parli di [Colle Massimo](ZONE)
+    - mi chiarisci questo dubbio su [Ostia Lido](ZONE)
+    - puoi chiarirmi meglio il punto relativo a [Casal Bernocchi](ZONE)
+    - non mi è chiaro un aspetto di [Dragona](ZONE)
+    - vorrei un chiarimento sull'[Infernetto](ZONE)

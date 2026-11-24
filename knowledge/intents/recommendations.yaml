@@ -1,0 +1,228 @@
+nlu:
+  intents:
+  - intent: ask_recommendations
+    examples:
+    - Cosa mi consigli?
+    - Quale soluzione suggerisci?
+    - Qual è l'opzione più adatta?
+    - quale servizio mi consigli per un figlio adolescente
+    - quale screening mi consigli a quarant'anni
+    - quale framework mi consigli per un sito
+    - cosa mi consigli per risparmiare sul riscaldamento
+    - cosa mi consigli di fare nel mio caso
+    - hai qualche suggerimento pratico per orientarmi meglio
+    - qual è l'opzione più consigliata per chi inizia
+    - cosa raccomandate di scegliere in questa situazione
+    - mi daresti un consiglio su come muovermi
+    - quali buone pratiche consigliate di seguire
+    - c'è una soluzione che raccomandate più delle altre
+    - che suggerimenti avete per evitare errori comuni
+    - cosa mi suggerisci di valutare prima di procedere
+    - hai una raccomandazione specifica per le mie esigenze
+  - intent: ask_document_recommendations
+    examples:
+    - mi consigli il [modello 730](DOCUMENT) o il [modello Redditi PF](DOCUMENT) per la mia situazione
+    - cosa mi consigli di fare se ho ricevuto un [avviso di accertamento](DOCUMENT)
+    - è meglio aprire la [partita IVA](DOCUMENT) in [regime forfettario](MISC)
+    - mi consigli di pagare l'[avviso bonario](DOCUMENT) subito o a rate
+    - cosa mi consigli riguardo alla [partita IVA](DOCUMENT)
+    - hai qualche suggerimento utile sulla [carta d'identità elettronica](DOCUMENT)
+    - mi raccomandi di utilizzare la [Certificazione Unica](DOCUMENT)
+    - qual è la scelta migliore che consigliate per il [contratto di locazione](DOCUMENT)
+    - che raccomandazioni pratiche dai per la [fattura elettronica](DOCUMENT)
+    - secondo te conviene orientarsi sul [referto](DOCUMENT)
+    - cosa mi consigli riguardo all'[avviso bonario](DOCUMENT)
+    - hai qualche suggerimento utile sull'[avviso di accertamento](DOCUMENT)
+    - mi raccomandi di utilizzare la [marca da bollo](DOCUMENT)
+    - qual è la scelta migliore che consigliate per l'[impegnativa](DOCUMENT)
+    - che raccomandazioni pratiche dai per il [Piano terapeutico](DOCUMENT)
+    - secondo te conviene orientarsi sul [modello 730](DOCUMENT)
+  - intent: ask_technology_recommendations
+    examples:
+    - cosa mi consigli di leggere su [Laravel](TECHNOLOGY)
+    - da dove consigli di iniziare con [Python](TECHNOLOGY)
+    - quale tutorial mi consigli per [Spring Boot](TECHNOLOGY)
+    - quale database mi consigli, [MySQL](TECHNOLOGY) o [PostgreSQL](TECHNOLOGY)
+    - cosa mi consigli riguardo a [PHP](TECHNOLOGY)
+    - hai qualche suggerimento utile su [WordPress](TECHNOLOGY)
+    - mi raccomandi di utilizzare [Linux](TECHNOLOGY)
+    - qual è la scelta migliore che consigliate per [MySQL](TECHNOLOGY)
+    - che raccomandazioni pratiche dai per [nftables](TECHNOLOGY)
+    - secondo te conviene orientarsi su [Eloquent](TECHNOLOGY)
+    - cosa mi consigli riguardo a [Ubuntu](TECHNOLOGY)
+    - hai qualche suggerimento utile su [rsync](TECHNOLOGY)
+    - mi raccomandi di utilizzare [WildFly](TECHNOLOGY)
+    - qual è la scelta migliore che consigliate per [Apache](TECHNOLOGY)
+    - che raccomandazioni pratiche dai per [Django](TECHNOLOGY)
+    - secondo te conviene orientarsi su [JavaScript](TECHNOLOGY)
+    - cosa mi consigli riguardo a [Angular](TECHNOLOGY)
+  - intent: ask_facility_recommendations
+    examples:
+    - quale [Centro Prelievi](FACILITY) mi consigli a [Ostia](ZONE)
+    - a quale [Casa della Comunità](FACILITY) mi consigli di rivolgermi
+    - cosa mi consigli riguardo al [Centro Prelievi Acilia](FACILITY)
+    - hai qualche suggerimento utile sul [Grassi](FACILITY)
+    - mi raccomandi di utilizzare il [Centro Prelievi](FACILITY)
+    - qual è la scelta migliore che consigliate per la [Casa della Salute](FACILITY)
+    - che raccomandazioni pratiche dai per il [Centro Prelievi Ostia](FACILITY)
+    - secondo te conviene orientarsi sul [Museo archeologico](FACILITY)
+    - cosa mi consigli riguardo al [Poliambulatorio Coni Zugna](FACILITY)
+    - hai qualche suggerimento utile sul [Poliambulatorio Paolini](FACILITY)
+    - mi raccomandi di utilizzare il [Poliambulatorio Bernocchi](FACILITY)
+    - qual è la scelta migliore che consigliate per le [Case della Comunità](FACILITY)
+    - che raccomandazioni pratiche dai per la [Casa della Comunità](FACILITY)
+    - secondo te conviene orientarsi sull'[Ospedale Grassi](FACILITY)
+    - cosa mi consigli riguardo al [Presidio Ospedaliero Grassi](FACILITY)
+    - hai qualche suggerimento utile sui [Consultori](FACILITY)
+    - mi raccomandi di utilizzare le [Cappelle Medicee](FACILITY)
+    - qual è la scelta migliore che consigliate per la [Pinacoteca civica](FACILITY)
+  - intent: ask_health_service_recommendations
+    examples:
+    - cosa mi consigli per le [cure palliative](HEALTH_SERVICE) di un familiare
+    - a chi mi consigli di rivolgermi per l'[assistenza protesica](HEALTH_SERVICE)
+    - cosa mi consigli riguardo alle [cure palliative](HEALTH_SERVICE)
+    - hai qualche suggerimento utile sull'[ossigenoterapia](HEALTH_SERVICE)
+    - mi raccomandi di utilizzare il [ritiro referti](HEALTH_SERVICE)
+    - qual è la scelta migliore che consigliate per il [CUP](HEALTH_SERVICE)
+    - che raccomandazioni pratiche dai per l'[assistenza protesica](HEALTH_SERVICE)
+    - secondo te conviene orientarsi sulle [vaccinazioni](HEALTH_SERVICE)
+    - cosa mi consigli riguardo all'[assistenza domiciliare](HEALTH_SERVICE)
+    - hai qualche suggerimento utile sulla [Guardia Medica](HEALTH_SERVICE)
+    - mi raccomandi di utilizzare la [donazione del sangue](HEALTH_SERVICE)
+    - qual è la scelta migliore che consigliate per la [scelta del medico](HEALTH_SERVICE)
+    - che raccomandazioni pratiche dai per l'[accesso agli atti](HEALTH_SERVICE)
+    - secondo te conviene orientarsi sullo [screening oncologico](HEALTH_SERVICE)
+    - cosa mi consigli riguardo allo [Sportello Giovani](HEALTH_SERVICE)
+    - hai qualche suggerimento utile sul [Fascicolo Sanitario](HEALTH_SERVICE)
+  - intent: ask_misc_recommendations
+    examples:
+    - quale ambulatorio è più adatto per un [mal di testa](MISC)
+    - quale specialista mi consigli per la [cervicale](MISC)
+    - cosa mi consigli riguardo alla [rendita catastale](MISC)
+    - hai qualche suggerimento utile sul [regime ordinario](MISC)
+    - mi raccomandi di utilizzare il [bonus mobili](MISC)
+    - qual è la scelta migliore che consigliate per l'[ecobonus](MISC)
+    - che raccomandazioni pratiche dai per il [Superbonus](MISC)
+    - secondo te conviene orientarsi sull'[audioguida](MISC)
+    - cosa mi consigli riguardo agli [alloggi popolari](MISC)
+    - hai qualche suggerimento utile sul [regime forfettario](MISC)
+    - mi raccomandi di utilizzare il [cassetto fiscale](MISC)
+    - qual è la scelta migliore che consigliate per il [rimborso IRPEF](MISC)
+    - che raccomandazioni pratiche dai per il [bonus ristrutturazione](MISC)
+    - secondo te conviene orientarsi sul [registro elettronico](MISC)
+    - cosa mi consigli riguardo alla [dieta speciale](MISC)
+    - hai qualche suggerimento utile su [CIVIS](MISC)
+    - mi raccomandi di utilizzare [Fisconline](MISC)
+    - qual è la scelta migliore che consigliate per lo [SdI](MISC)
+  - intent: ask_product_recommendations
+    examples:
+    - quale [scheda SD](PRODUCT) mi consigli per la fotocamera
+    - quali [omega-3](PRODUCT) mi consigli
+    - cosa mi consigli riguardo ai [microinfusori](PRODUCT)
+    - hai qualche suggerimento utile su [ZuluTrade](PRODUCT)
+    - mi raccomandi di utilizzare gli [omega-3](PRODUCT)
+    - qual è la scelta migliore che consigliate per il [microinfusore](PRODUCT)
+    - che raccomandazioni pratiche dai per gli [strumentari odontotecnici](PRODUCT)
+    - secondo te conviene orientarsi sulla [parrucca](PRODUCT)
+    - cosa mi consigli riguardo alla [mascherina](PRODUCT)
+    - hai qualche suggerimento utile sulle [scarpe da corsa](PRODUCT)
+    - mi raccomandi di utilizzare i [pannelli solari](PRODUCT)
+    - qual è la scelta migliore che consigliate per la [lampada scialitica](PRODUCT)
+    - che raccomandazioni pratiche dai per l'[apparecchio per l'ossigeno](PRODUCT)
+    - secondo te conviene orientarsi sulla [protesi acustica](PRODUCT)
+    - cosa mi consigli riguardo alla [carrozzina ortopedica](PRODUCT)
+    - hai qualche suggerimento utile sul [deambulatore](PRODUCT)
+    - mi raccomandi di utilizzare il [letto ortopedico](PRODUCT)
+  - intent: ask_zone_recommendations
+    examples:
+    - cosa mi consigli di fare a [Roma](ZONE) questo weekend
+    - cosa mi consigli di visitare a [Ostia](ZONE)
+    - cosa mi consigli riguardo a [Fregene](ZONE)
+    - hai qualche suggerimento utile su [Colle Massimo](ZONE)
+    - mi raccomandi di utilizzare [Ostia Lido](ZONE)
+    - qual è la scelta migliore che consigliate per [Casal Bernocchi](ZONE)
+    - che raccomandazioni pratiche dai per [Dragona](ZONE)
+    - secondo te conviene orientarsi sull'[Infernetto](ZONE)
+    - cosa mi consigli riguardo a [Maccarese](ZONE)
+    - hai qualche suggerimento utile su [Ostia](ZONE)
+    - mi raccomandi di utilizzare il [Municipio XII](ZONE)
+    - qual è la scelta migliore che consigliate per [Roma](ZONE)
+    - che raccomandazioni pratiche dai per il [Municipio XI](ZONE)
+    - secondo te conviene orientarsi su [Fiumicino](ZONE)
+    - cosa mi consigli riguardo a [Palidoro](ZONE)
+    - hai qualche suggerimento utile su [Magliana](ZONE)
+    - mi raccomandi di utilizzare [Montesole](ZONE)
+    - qual è la scelta migliore che consigliate per il [Municipio X](ZONE)
+  - intent: ask_department_recommendations
+    examples:
+    - a quale [UOC](DEPARTMENT) devo rivolgermi per un problema al cuore
+    - cosa mi consigli riguardo alla [Direzione Provinciale](DEPARTMENT)
+    - hai qualche suggerimento utile sulla [Medicina Legale](DEPARTMENT)
+    - mi raccomandi di utilizzare la [Medicina dello Sport](DEPARTMENT)
+    - qual è la scelta migliore che consigliate per la [Salute Mentale](DEPARTMENT)
+    - che raccomandazioni pratiche dai per il [Catasto](DEPARTMENT)
+    - secondo te conviene orientarsi sulla [Direzione Sanitaria](DEPARTMENT)
+    - cosa mi consigli riguardo al [SUAP](DEPARTMENT)
+    - hai qualche suggerimento utile sull'[anagrafe](DEPARTMENT)
+    - mi raccomandi di utilizzare la [Polizia locale](DEPARTMENT)
+    - qual è la scelta migliore che consigliate per la [Neurologia](DEPARTMENT)
+    - che raccomandazioni pratiche dai per l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - secondo te conviene orientarsi sul [Dipartimento del Farmaco](DEPARTMENT)
+    - cosa mi consigli riguardo alla [UOC Consultori Familiari](DEPARTMENT)
+    - hai qualche suggerimento utile sulla [Cardiologia interventistica](DEPARTMENT)
+    - mi raccomandi di utilizzare i [tributi](DEPARTMENT)
+    - qual è la scelta migliore che consigliate per la [segreteria scolastica](DEPARTMENT)
+  - intent: ask_procedure_recommendations
+    examples:
+    - conviene fare il [ravvedimento operoso](PROCEDURE) prima che arrivi la sanzione
+    - cosa mi consigli riguardo alla [denuncia di smarrimento](PROCEDURE)
+    - hai qualche suggerimento utile sull'[apertura della partita IVA](PROCEDURE)
+    - mi raccomandi di utilizzare la [rottamazione delle cartelle](PROCEDURE)
+    - qual è la scelta migliore che consigliate per la [registrazione del contratto di locazione](PROCEDURE)
+    - che raccomandazioni pratiche dai per il [concordato preventivo biennale](PROCEDURE)
+    - secondo te conviene orientarsi sull'[accertamento con adesione](PROCEDURE)
+    - cosa mi consigli riguardo al [matrimonio civile](PROCEDURE)
+    - hai qualche suggerimento utile sul [pignoramento](PROCEDURE)
+    - mi raccomandi di utilizzare l'[interpello](PROCEDURE)
+    - qual è la scelta migliore che consigliate per il [cambio di residenza](PROCEDURE)
+    - che raccomandazioni pratiche dai per la [rottamazione quater](PROCEDURE)
+    - secondo te conviene orientarsi sulla [fatturazione elettronica](PROCEDURE)
+    - cosa mi consigli riguardo alla [rateizzazione](PROCEDURE)
+    - hai qualche suggerimento utile sul [ravvedimento operoso](PROCEDURE)
+    - mi raccomandi di utilizzare i [contributi Inps](PROCEDURE)
+  - intent: ask_tax_recommendations
+    examples:
+    - conviene aderire alla [cedolare secca](TAX) per un contratto a canone concordato
+    - cosa mi consigli riguardo all'[imposta di registro](TAX)
+    - hai qualche suggerimento utile sull'[imposta di bollo](TAX)
+    - mi raccomandi di utilizzare l'[IRES](TAX)
+    - qual è la scelta migliore che consigliate per l'[IRAP](TAX)
+    - che raccomandazioni pratiche dai per la [ritenuta d'acconto](TAX)
+    - secondo te conviene orientarsi sulla [concessione governativa](TAX)
+    - cosa mi consigli riguardo all'[imposta ipotecaria](TAX)
+    - hai qualche suggerimento utile sull'[imposta catastale](TAX)
+    - mi raccomandi di utilizzare l'[addizionale regionale](TAX)
+    - qual è la scelta migliore che consigliate per l'[addizionale comunale](TAX)
+    - che raccomandazioni pratiche dai per il [canone RAI](TAX)
+    - secondo te conviene orientarsi sulla [tassa automobilistica](TAX)
+    - cosa mi consigli riguardo all'[imposta sulle successioni](TAX)
+    - hai qualche suggerimento utile sul [contributo unificato](TAX)
+    - mi raccomandi di utilizzare il [diritto camerale](TAX)
+  - intent: ask_tech_concept_recommendations
+    examples:
+    - mi consigli un [assistente di codice](TECH_CONCEPT) gratuito
+    - cosa mi consigli riguardo alla [GPU](TECH_CONCEPT)
+    - hai qualche suggerimento utile sul [machine learning](TECH_CONCEPT)
+    - mi raccomandi di utilizzare l'[autenticazione JWT](TECH_CONCEPT)
+    - qual è la scelta migliore che consigliate per la [containerizzazione](TECH_CONCEPT)
+    - che raccomandazioni pratiche dai per gli [embeddings](TECH_CONCEPT)
+    - secondo te conviene orientarsi sul [firewall](TECH_CONCEPT)
+    - cosa mi consigli riguardo all'[intelligenza artificiale](TECH_CONCEPT)
+    - hai qualche suggerimento utile sul [cron job](TECH_CONCEPT)
+    - mi raccomandi di utilizzare la [BiGRU](TECH_CONCEPT)
+    - qual è la scelta migliore che consigliate per i [microservizi](TECH_CONCEPT)
+    - che raccomandazioni pratiche dai per la [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - secondo te conviene orientarsi sui [generatori](TECH_CONCEPT)
+    - cosa mi consigli riguardo agli [assistenti di codice](TECH_CONCEPT)
+    - hai qualche suggerimento utile sulla [rete neurale](TECH_CONCEPT)
+    - mi raccomandi di utilizzare il [generatore](TECH_CONCEPT)

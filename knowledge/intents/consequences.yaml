@@ -1,0 +1,154 @@
+nlu:
+  intents:
+  - intent: ask_consequences
+    examples:
+    - Cosa succede se non lo faccio?
+    - Quali conseguenze comporta?
+    - Cosa può accadere successivamente?
+    - cosa succede se non disdico la visita
+    - cosa succede se non scelgo il medico entro la scadenza
+    - cosa succede se rifiuto il ricovero
+    - cosa succede se non rispetto la scadenza prevista
+    - a quali sanzioni si va incontro in caso di ritardo
+    - quali sono le conseguenze se commetto un errore nella compilazione
+    - cosa comporta la mancata presentazione nei termini
+    - che effetti ha la decadenza dal beneficio
+    - ci sono penali o interessi di mora se pago in ritardo
+    - cosa accade se non rispondo entro il termine indicato
+    - quali ripercussioni ci sono in caso di omissione
+    - si perde il diritto se la domanda arriva fuori tempo massimo
+    - cosa succede in caso di dichiarazione incompleta
+  - intent: ask_document_consequences
+    examples:
+    - cosa succede se non pago il [ticket](DOCUMENT)
+    - cosa succede se non ritiro i [referti](DOCUMENT)
+    - cosa succede se la [tessera sanitaria](DOCUMENT) è scaduta
+    - cosa succede se non rinnovo la [patente](DOCUMENT)
+    - cosa succede se guido con la [patente](DOCUMENT) scaduta
+    - cosa accade se perdo la [carta d'identità](DOCUMENT)
+    - cosa succede se non presento la domanda al [concorso](DOCUMENT) entro la scadenza
+    - che conseguenze ha il falso in [autocertificazione](DOCUMENT)
+    - cosa comporta la perdita dell'[esenzione](DOCUMENT)
+    - cosa succede se pago il [modello F24](DOCUMENT) dopo la scadenza
+    - cosa succede se dimentico di inviare il [modello 730](DOCUMENT) entro il termine
+    - che conseguenze ha un errore nella compilazione della [dichiarazione dei redditi](DOCUMENT)
+    - quali sono le conseguenze di un errore nella [visura catastale](DOCUMENT)
+    - cosa succede in caso di inadempimento relativo alla [tessera sanitaria](DOCUMENT)
+    - a quali sanzioni o conseguenze vado incontro per la [cartella clinica](DOCUMENT)
+    - che effetti comporta il mancato rispetto del [codice fiscale](DOCUMENT)
+    - cosa accade se salto una scadenza legata all'[ISEE](DOCUMENT)
+    - quali ripercussioni ci sono per un'omissione sulla [partita IVA](DOCUMENT)
+  - intent: ask_procedure_consequences
+    examples:
+    - cosa succede se non comunico il [cambio di residenza](PROCEDURE)
+    - cosa succede se il datore di lavoro non versa i [contributi Inps](PROCEDURE)
+    - quali conseguenze ci sono se decado dalla [rateizzazione](PROCEDURE) di una [cartella esattoriale](DOCUMENT)
+    - cosa comporta non pagare una rata della [rottamazione quater](PROCEDURE)
+    - quali sono le conseguenze di un errore nel [ravvedimento operoso](PROCEDURE)
+    - cosa succede in caso di inadempimento relativo ai [contributi Inps](PROCEDURE)
+    - a quali sanzioni o conseguenze vado incontro per l'[autotutela](PROCEDURE)
+    - che effetti comporta il mancato rispetto dell'[accertamento fiscale](PROCEDURE)
+    - cosa accade se salto una scadenza legata alla [raccolta differenziata](PROCEDURE)
+    - quali ripercussioni ci sono per un'omissione sul [rinnovo della patente](PROCEDURE)
+    - quali sono le conseguenze di un errore nella [voltura catastale](PROCEDURE)
+    - cosa succede in caso di inadempimento relativo alle [iscrizioni online](PROCEDURE)
+    - a quali sanzioni o conseguenze vado incontro per il [fermo amministrativo](PROCEDURE)
+    - che effetti comporta il mancato rispetto del [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - cosa accade se salto una scadenza legata al [DOCFA](PROCEDURE)
+    - quali ripercussioni ci sono per un'omissione sulla [denuncia di smarrimento](PROCEDURE)
+    - quali sono le conseguenze di un errore nell'[apertura della partita IVA](PROCEDURE)
+  - intent: ask_technology_consequences
+    examples:
+    - cosa succede se non faccio la migrazione a [PostgreSQL](TECHNOLOGY)
+    - cosa succede se non aggiorno [Laravel](TECHNOLOGY)
+    - quali sono le conseguenze di un errore in [PHP](TECHNOLOGY)
+    - cosa succede in caso di inadempimento relativo a [WordPress](TECHNOLOGY)
+    - a quali sanzioni o conseguenze vado incontro per [Linux](TECHNOLOGY)
+    - che effetti comporta il mancato rispetto di [MySQL](TECHNOLOGY)
+    - cosa accade se salto una scadenza legata a [nftables](TECHNOLOGY)
+    - quali ripercussioni ci sono per un'omissione su [Eloquent](TECHNOLOGY)
+    - quali sono le conseguenze di un errore in [Ubuntu](TECHNOLOGY)
+    - cosa succede in caso di inadempimento relativo a [rsync](TECHNOLOGY)
+    - a quali sanzioni o conseguenze vado incontro per [WildFly](TECHNOLOGY)
+    - che effetti comporta il mancato rispetto di [Apache](TECHNOLOGY)
+    - cosa accade se salto una scadenza legata a [Django](TECHNOLOGY)
+    - quali ripercussioni ci sono per un'omissione su [JavaScript](TECHNOLOGY)
+    - quali sono le conseguenze di un errore in [Angular](TECHNOLOGY)
+    - cosa succede in caso di inadempimento relativo a [phpMyAdmin](TECHNOLOGY)
+    - a quali sanzioni o conseguenze vado incontro per [Flask](TECHNOLOGY)
+  - intent: ask_department_consequences
+    examples:
+    - cosa comporta una segnalazione all'[URP](DEPARTMENT)
+    - quali sono le conseguenze di un errore nell'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - cosa succede in caso di inadempimento relativo al [Dipartimento del Farmaco](DEPARTMENT)
+    - a quali sanzioni o conseguenze vado incontro per la [UOC Consultori Familiari](DEPARTMENT)
+    - che effetti comporta il mancato rispetto della [Cardiologia interventistica](DEPARTMENT)
+    - cosa accade se salto una scadenza legata ai [tributi](DEPARTMENT)
+    - quali ripercussioni ci sono per un'omissione sulla [segreteria scolastica](DEPARTMENT)
+    - quali sono le conseguenze di un errore nell'[Ufficio Stampa](DEPARTMENT)
+    - cosa succede in caso di inadempimento relativo ai [servizi demografici](DEPARTMENT)
+    - a quali sanzioni o conseguenze vado incontro per i [Lavori pubblici](DEPARTMENT)
+    - che effetti comporta il mancato rispetto della [Direzione Generale](DEPARTMENT)
+    - cosa accade se salto una scadenza legata all'[URP](DEPARTMENT)
+    - quali ripercussioni ci sono per un'omissione sul [Pronto Soccorso](DEPARTMENT)
+    - quali sono le conseguenze di un errore nell'[Ufficio Territoriale](DEPARTMENT)
+    - cosa succede in caso di inadempimento relativo all'[Ufficio del Catasto](DEPARTMENT)
+    - a quali sanzioni o conseguenze vado incontro per la [Direzione Provinciale](DEPARTMENT)
+    - che effetti comporta il mancato rispetto della [Medicina Legale](DEPARTMENT)
+    - cosa accade se salto una scadenza legata alla [Medicina dello Sport](DEPARTMENT)
+  - intent: ask_health_service_consequences
+    examples:
+    - che conseguenze ha una [Whistleblowing](HEALTH_SERVICE) falsa
+    - quali sono le conseguenze di un errore nel [Servizio Sanitario](HEALTH_SERVICE)
+    - cosa succede in caso di inadempimento relativo allo [screening del colon retto](HEALTH_SERVICE)
+    - a quali sanzioni o conseguenze vado incontro per l'[accesso civico](HEALTH_SERVICE)
+    - che effetti comporta il mancato rispetto dello [screening della mammella](HEALTH_SERVICE)
+    - cosa accade se salto una scadenza legata alla [Telemedicina](HEALTH_SERVICE)
+    - quali ripercussioni ci sono per un'omissione sul [RECUP](HEALTH_SERVICE)
+    - quali sono le conseguenze di un errore nel [Punto unico di accesso](HEALTH_SERVICE)
+    - cosa succede in caso di inadempimento relativo alla [nutrizione artificiale](HEALTH_SERVICE)
+    - a quali sanzioni o conseguenze vado incontro per le [cure palliative](HEALTH_SERVICE)
+    - che effetti comporta il mancato rispetto dell'[ossigenoterapia](HEALTH_SERVICE)
+    - cosa accade se salto una scadenza legata al [ritiro referti](HEALTH_SERVICE)
+    - quali ripercussioni ci sono per un'omissione sul [CUP](HEALTH_SERVICE)
+    - quali sono le conseguenze di un errore nell'[assistenza protesica](HEALTH_SERVICE)
+    - cosa succede in caso di inadempimento relativo alle [vaccinazioni](HEALTH_SERVICE)
+    - a quali sanzioni o conseguenze vado incontro per l'[assistenza domiciliare](HEALTH_SERVICE)
+    - che effetti comporta il mancato rispetto della [Guardia Medica](HEALTH_SERVICE)
+  - intent: ask_medical_procedure_consequences
+    examples:
+    - cosa succede se salto il [prelievo](MEDICAL_PROCEDURE) prenotato
+    - quali sono le conseguenze di un errore nell'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - cosa succede in caso di inadempimento relativo alla [radiografia](MEDICAL_PROCEDURE)
+    - a quali sanzioni o conseguenze vado incontro per la [visita oculistica](MEDICAL_PROCEDURE)
+    - che effetti comporta il mancato rispetto della [visita dermatologica](MEDICAL_PROCEDURE)
+    - cosa accade se salto una scadenza legata al [tampone molecolare](MEDICAL_PROCEDURE)
+    - quali ripercussioni ci sono per un'omissione sulla [spirometria](MEDICAL_PROCEDURE)
+    - quali sono le conseguenze di un errore nella [visita medico legale](MEDICAL_PROCEDURE)
+    - cosa succede in caso di inadempimento relativo al [prelievo](MEDICAL_PROCEDURE)
+    - a quali sanzioni o conseguenze vado incontro per il [Quantiferon](MEDICAL_PROCEDURE)
+    - che effetti comporta il mancato rispetto dell'[ecografia](MEDICAL_PROCEDURE)
+    - cosa accade se salto una scadenza legata alla [colonscopia](MEDICAL_PROCEDURE)
+    - quali ripercussioni ci sono per un'omissione sulla [curva glicemica](MEDICAL_PROCEDURE)
+    - quali sono le conseguenze di un errore nello [spermiogramma](MEDICAL_PROCEDURE)
+    - cosa succede in caso di inadempimento relativo alla [terapia oncologica](MEDICAL_PROCEDURE)
+    - a quali sanzioni o conseguenze vado incontro per la [visita cardiologica](MEDICAL_PROCEDURE)
+  - intent: ask_tech_concept_consequences
+    examples:
+    - cosa succede se non configuro il [firewall](TECH_CONCEPT)
+    - quali sono le conseguenze di un errore nei [microservizi](TECH_CONCEPT)
+    - cosa succede in caso di inadempimento relativo alla [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - a quali sanzioni o conseguenze vado incontro per i [generatori](TECH_CONCEPT)
+    - che effetti comporta il mancato rispetto degli [assistenti di codice](TECH_CONCEPT)
+    - cosa accade se salto una scadenza legata alla [rete neurale](TECH_CONCEPT)
+    - quali ripercussioni ci sono per un'omissione sul [generatore](TECH_CONCEPT)
+    - quali sono le conseguenze di un errore nel [vibe coding](TECH_CONCEPT)
+    - cosa succede in caso di inadempimento relativo alle [reti neurali](TECH_CONCEPT)
+    - a quali sanzioni o conseguenze vado incontro per i [Service Provider](TECH_CONCEPT)
+    - che effetti comporta il mancato rispetto delle [API](TECH_CONCEPT)
+    - cosa accade se salto una scadenza legata all'[ORM](TECH_CONCEPT)
+    - quali ripercussioni ci sono per un'omissione sull'[interceptor](TECH_CONCEPT)
+    - quali sono le conseguenze di un errore nelle [Facades](TECH_CONCEPT)
+    - cosa succede in caso di inadempimento relativo alla [GPU](TECH_CONCEPT)
+    - a quali sanzioni o conseguenze vado incontro per il [machine learning](TECH_CONCEPT)
+    - che effetti comporta il mancato rispetto dell'[autenticazione JWT](TECH_CONCEPT)

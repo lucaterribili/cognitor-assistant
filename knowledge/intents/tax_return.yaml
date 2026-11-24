@@ -1,0 +1,104 @@
+nlu:
+  intents:
+  - intent: ask_tax_return
+    examples:
+    - Come invio la dichiarazione precompilata?
+    - come dichiaro le criptovalute e le attività finanziarie estere nel quadro RW
+    - chi è obbligato a presentare la dichiarazione annuale dei redditi
+    - quali redditi vanno dichiarati obbligatoriamente ogni anno
+    - fino a quale soglia di reddito si è esonerati dalla dichiarazione
+    - come si corregge una dichiarazione già inviata in caso di dimenticanza
+    - quando conviene presentare la dichiarazione congiunta tra coniugi
+    - cosa succede se presento la dichiarazione in ritardo
+    - come faccio a sapere se sono a credito o a debito d'imposta
+    - dove vedo l'esito del conguaglio della mia dichiarazione
+    - quali spese dell'anno precedente posso inserire in dichiarazione
+    - posso inviare la dichiarazione in autonomia dal portale web
+    - quando vengono accreditati i rimborsi spettanti dalla dichiarazione
+    - come funzionano gli acconti e il saldo risultanti dalla dichiarazione
+    - per quanti anni vanno conservate le ricevute della dichiarazione
+    - chi presenta la dichiarazione per conto di un contribuente deceduto
+    - come scelgo la destinazione delle quote solidali in dichiarazione
+  - intent: ask_document_tax_return
+    examples:
+    - Come funziona la [dichiarazione dei redditi](DOCUMENT)?
+    - Devo fare il [730](DOCUMENT) o il [modello Redditi](DOCUMENT)?
+    - quando esce il [modello 730](DOCUMENT) precompilato sul sito dell'[Agenzia delle Entrate](ORGANIZATION)
+    - come accetto o modifico la [dichiarazione precompilata](DOCUMENT)
+    - chi deve presentare il [modello 730](DOCUMENT) e chi il [modello Redditi PF](DOCUMENT)
+    - posso presentare il [modello 730](DOCUMENT) senza [sostituto d'imposta](ROLE)
+    - come funziona il [modello 730](DOCUMENT) congiunto tra coniugi
+    - ho due [Certificazioni Uniche](DOCUMENT) nello stesso anno, devo fare la [dichiarazione dei redditi](DOCUMENT)
+    - come correggo un errore nel [modello 730](DOCUMENT) già inviato
+    - come si presenta un [modello 730 integrativo](DOCUMENT) o un [modello Redditi correttivo](DOCUMENT)
+    - dove inserisco i redditi da fabbricati e terreni nella [dichiarazione dei redditi](DOCUMENT)
+    - come si dichiarano i redditi da lavoro autonomo occasionale nel [modello 730](DOCUMENT)
+    - cosa succede se accetto il [modello 730](DOCUMENT) precompilato senza apportare modifiche
+    - come funziona la nuova modalità semplificata della [dichiarazione precompilata](DOCUMENT)
+    - fino a quale soglia di reddito si è esonerati dalla [dichiarazione dei redditi](DOCUMENT)
+    - come dichiaro gli affitti brevi nel [modello 730](DOCUMENT) o nel [modello Redditi PF](DOCUMENT)
+    - dove vedo il prospetto di liquidazione del [modello 730-3](DOCUMENT)
+    - quando viene trattenuto il saldo o accreditato il rimborso del [modello 730](DOCUMENT) in busta paga
+    - posso annullare un [modello 730](DOCUMENT) precompilato già trasmesso
+    - chi presenta la [dichiarazione dei redditi](DOCUMENT) per una persona deceduta
+    - come funziona il [modello 770](DOCUMENT) per i [sostituti d'imposta](ROLE)
+    - posso presentare una [dichiarazione dei redditi](DOCUMENT) tardiva entro novanta giorni
+    - come funziona la rateizzazione del saldo e primo acconto dalla [dichiarazione dei redditi](DOCUMENT)
+    - come si compilano i giorni di lavoro dipendente per le detrazioni nel [modello 730](DOCUMENT)
+  - intent: ask_misc_tax_return
+    examples:
+    - come scelgo la destinazione dell'[otto per mille](MISC), del [cinque per mille](MISC) e del [due per mille](MISC)
+    - dove trovo le dichiarazioni degli anni passati nel [cassetto fiscale](MISC)
+    - come va indicato gli [alloggi popolari](MISC) nella dichiarazione fiscale
+    - quali regole della dichiarazione dei redditi valgono per il [regime forfettario](MISC)
+    - come incide il [cassetto fiscale](MISC) sulla compilazione dichiarativa
+    - in quale quadro dichiarativo si inserisce il [rimborso IRPEF](MISC)
+    - cosa devo verificare nella dichiarazione riguardo al [bonus ristrutturazione](MISC)
+    - come si gestisce l'invio dichiarativo per il [registro elettronico](MISC)
+    - come va indicato la [dieta speciale](MISC) nella dichiarazione fiscale
+    - quali regole della dichiarazione dei redditi valgono per [CIVIS](MISC)
+    - come incide [Fisconline](MISC) sulla compilazione dichiarativa
+    - in quale quadro dichiarativo si inserisce lo [SdI](MISC)
+    - cosa devo verificare nella dichiarazione riguardo al [codice tributo](MISC)
+    - come si gestisce l'invio dichiarativo per la [mensa scolastica](MISC)
+    - come va indicato la [prima casa](MISC) nella dichiarazione fiscale
+    - quali regole della dichiarazione dei redditi valgono per la [carta famiglia](MISC)
+    - come incide gli [abusi digitali](MISC) sulla compilazione dichiarativa
+    - in quale quadro dichiarativo si inserisce [Entratel](MISC)
+  - intent: ask_organization_tax_return
+    examples:
+    - posso delegare il [CAF](ORGANIZATION) o il [commercialista](ROLE) a scaricare la mia [dichiarazione precompilata](DOCUMENT)
+    - come va indicato l'[Agenzia delle Entrate](ORGANIZATION) nella dichiarazione fiscale
+    - quali regole della dichiarazione dei redditi valgono per l'[ASL Roma 3](ORGANIZATION)
+    - come incide l'[Agenzia delle Entrate-Riscossione](ORGANIZATION) sulla compilazione dichiarativa
+    - in quale quadro dichiarativo si inserisce [programmato](ORGANIZATION)
+    - cosa devo verificare nella dichiarazione riguardo ai [Musei Civici](ORGANIZATION)
+    - come si gestisce l'invio dichiarativo per l'[ASL](ORGANIZATION)
+    - come va indicato il [CAF](ORGANIZATION) nella dichiarazione fiscale
+    - quali regole della dichiarazione dei redditi valgono per il [Comune di Montesole](ORGANIZATION)
+    - come incide l'[IC Giovanni Pascoli](ORGANIZATION) sulla compilazione dichiarativa
+    - in quale quadro dichiarativo si inserisce il [Comune](ORGANIZATION)
+    - cosa devo verificare nella dichiarazione riguardo all'[IC Pascoli](ORGANIZATION)
+    - come si gestisce l'invio dichiarativo per i [Musei Civici di Montesole](ORGANIZATION)
+    - come va indicato la [Guardia di Finanza](ORGANIZATION) nella dichiarazione fiscale
+    - quali regole della dichiarazione dei redditi valgono per la [Regione](ORGANIZATION)
+    - come incide l'[INPS](ORGANIZATION) sulla compilazione dichiarativa
+  - intent: ask_tax_tax_return
+    examples:
+    - come si invia la dichiarazione [IVA](TAX) annuale all'[Agenzia delle Entrate](ORGANIZATION)
+    - come va indicato l'[imposta catastale](TAX) nella dichiarazione fiscale
+    - quali regole della dichiarazione dei redditi valgono per l'[addizionale regionale](TAX)
+    - come incide l'[addizionale comunale](TAX) sulla compilazione dichiarativa
+    - in quale quadro dichiarativo si inserisce il [canone RAI](TAX)
+    - cosa devo verificare nella dichiarazione riguardo alla [tassa automobilistica](TAX)
+    - come si gestisce l'invio dichiarativo per l'[imposta sulle successioni](TAX)
+    - come va indicato il [contributo unificato](TAX) nella dichiarazione fiscale
+    - quali regole della dichiarazione dei redditi valgono per il [diritto camerale](TAX)
+    - come incide l'[IMU](TAX) sulla compilazione dichiarativa
+    - in quale quadro dichiarativo si inserisce l'[IRPEF](TAX)
+    - cosa devo verificare nella dichiarazione riguardo alla [TARI](TAX)
+    - come si gestisce l'invio dichiarativo per l'[IVA](TAX)
+    - come va indicato la [cedolare secca](TAX) nella dichiarazione fiscale
+    - quali regole della dichiarazione dei redditi valgono per l'[imposta di registro](TAX)
+    - come incide l'[imposta di bollo](TAX) sulla compilazione dichiarativa
+    - in quale quadro dichiarativo si inserisce l'[IRES](TAX)

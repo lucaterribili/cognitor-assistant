@@ -1,0 +1,52 @@
+# Conversazioni di sviluppo scritte a mano, indipendenti dal generatore.
+# Ogni turno riporta ciò che l'NLU osserva (argomento senza "ask_", confidenza, tipi di entità trovati, esito del
+# retrieval) e l'azione che il bot dovrebbe fare. Da rivedere: sono la mia lettura di come dovrebbe comportarsi il bot.
+dialogues:
+  - name: saluto, domanda completa, ringraziamento, congedo
+    turns:
+      - {topic: affirm_greeting, topic_conf: 0.98, entity_types: [], rag: high, action: greet}
+      - {topic: opening_hours, topic_conf: 0.95, entity_types: [DEPARTMENT], rag: high, action: answer}
+      - {topic: affirm_gratitude, topic_conf: 0.97, entity_types: [], rag: high, action: thanks_reply}
+      - {topic: affirm_goodbye, topic_conf: 0.99, entity_types: [], rag: high, action: goodbye}
+
+  - name: manca l'entità, la dà dopo, poi un follow-up senza ripeterla
+    turns:
+      - {topic: phone, topic_conf: 0.92, entity_types: [], rag: high, action: ask_slot}
+      - {topic: null, topic_conf: 0.0, entity_types: [FACILITY], rag: high, action: answer}
+      - {topic: opening_hours, topic_conf: 0.9, entity_types: [], rag: high, action: answer}
+
+  - name: follow-up con una nuova entità e argomento implicito
+    turns:
+      - {topic: opening_hours, topic_conf: 0.94, entity_types: [DEPARTMENT], rag: high, action: answer}
+      - {topic: null, topic_conf: 0.0, entity_types: [FACILITY], rag: high, action: answer}
+
+  - name: messaggio incomprensibile due volte, poi una domanda chiara
+    turns:
+      - {topic: null, topic_conf: 0.0, entity_types: [], rag: none, action: clarify}
+      - {topic: null, topic_conf: 0.0, entity_types: [], rag: none, action: fallback}
+      - {topic: booking, topic_conf: 0.93, entity_types: [MEDICAL_PROCEDURE], rag: high, action: answer}
+
+  - name: retrieval incerto, l'utente conferma
+    turns:
+      - {topic: booking, topic_conf: 0.9, entity_types: [MEDICAL_PROCEDURE], rag: low, action: clarify}
+      - {topic: affirm_confirmation, topic_conf: 0.96, entity_types: [], rag: high, action: answer}
+
+  - name: nessun contenuto trovato
+    turns:
+      - {topic: prices, topic_conf: 0.9, entity_types: [DOCUMENT], rag: none, action: fallback}
+
+  - name: richiesta di operatore
+    turns:
+      - {topic: contact_human, topic_conf: 0.97, entity_types: [], rag: high, action: handoff}
+
+  - name: dopo la risposta l'utente dice no grazie, poi chiude
+    turns:
+      - {topic: opening_hours, topic_conf: 0.95, entity_types: [FACILITY], rag: high, action: answer}
+      - {topic: affirm_gratitude, topic_conf: 0.95, entity_types: [], rag: high, action: thanks_reply}
+      - {topic: affirm_negation, topic_conf: 0.94, entity_types: [], rag: high, action: goodbye}
+
+  - name: insulto e richiesta di ripetere
+    turns:
+      - {topic: opening_hours, topic_conf: 0.95, entity_types: [FACILITY], rag: high, action: answer}
+      - {topic: clarification, topic_conf: 0.9, entity_types: [], rag: high, action: repeat}
+      - {topic: affirm_insult, topic_conf: 0.9, entity_types: [], rag: high, action: deescalate}

@@ -1,0 +1,139 @@
+nlu:
+  intents:
+  - intent: ask_contact_human
+    examples:
+    - Vorrei parlare con una persona
+    - Posso contattare un operatore?
+    - Vorrei parlare con un responsabile?
+    - passami un operatore
+    - voglio parlare con una persona vera
+    - non voglio parlare con un bot, voglio una persona
+    - mi mette in contatto con un operatore
+    - posso avere un operatore al telefono
+    - passami l'assistenza umana
+    - vorrei parlare con un operatore umano per favore
+    - puoi passarmi una persona reale dell'assistenza
+    - non voglio parlare col bot, mi metti in contatto con un addetto
+    - c'è un operatore disponibile in chat in questo momento
+    - come faccio a parlare direttamente con un consulente umano
+    - ho bisogno dell'intervento di un operatore fisico
+    - vorrei essere ricontattato da un addetto del servizio clienti
+    - preferirei spiegare il mio caso a una persona in carne e ossa
+    - vorrei sapere vorrei parlare con un operatore umano per favore
+  - intent: ask_department_contact_human
+    examples:
+    - vorrei parlare con un operatore dell'[URP](DEPARTMENT)
+    - vorrei parlare con il responsabile della [UOC](DEPARTMENT)
+    - posso parlare con un medico di [Medicina Legale](DEPARTMENT)
+    - c'è qualcuno dell'[URP](DEPARTMENT) che mi richiama
+    - posso parlare direttamente con un tecnico dell'[Ufficio del Catasto](DEPARTMENT)
+    - posso parlare con un operatore umano per la [Cardiologia interventistica](DEPARTMENT)
+    - vorrei essere messo in contatto con un addetto dei [tributi](DEPARTMENT)
+    - come parlo dal vivo con un referente della [segreteria scolastica](DEPARTMENT)
+    - c'è un operatore in carne e ossa che si occupa dell'[Ufficio Stampa](DEPARTMENT)
+    - passami un consulente umano esperto dei [servizi demografici](DEPARTMENT)
+    - vorrei assistenza da una persona fisica riguardo ai [Lavori pubblici](DEPARTMENT)
+    - posso parlare con un operatore umano per la [Direzione Generale](DEPARTMENT)
+    - vorrei essere messo in contatto con un addetto dell'[URP](DEPARTMENT)
+    - come parlo dal vivo con un referente del [Pronto Soccorso](DEPARTMENT)
+    - c'è un operatore in carne e ossa che si occupa dell'[Ufficio Territoriale](DEPARTMENT)
+    - passami un consulente umano esperto dell'[Ufficio del Catasto](DEPARTMENT)
+    - vorrei assistenza da una persona fisica riguardo alla [Direzione Provinciale](DEPARTMENT)
+    - posso parlare con un operatore umano per la [Medicina Legale](DEPARTMENT)
+  - intent: ask_organization_contact_human
+    examples:
+    - posso parlare con un operatore dell'[ASL Roma 3](ORGANIZATION)
+    - posso parlare con un tecnico di [programmato](ORGANIZATION)
+    - vorrei parlare con un funzionario dell'[Agenzia delle Entrate](ORGANIZATION)
+    - posso parlare con un operatore del call center dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - mi mette in contatto con un consulente fiscale o un operatore del [CAF](ORGANIZATION)
+    - posso parlare con un operatore umano per il [CAF](ORGANIZATION)
+    - vorrei essere messo in contatto con un addetto del [Comune di Montesole](ORGANIZATION)
+    - come parlo dal vivo con un referente dell'[IC Giovanni Pascoli](ORGANIZATION)
+    - c'è un operatore in carne e ossa che si occupa del [Comune](ORGANIZATION)
+    - passami un consulente umano esperto dell'[IC Pascoli](ORGANIZATION)
+    - vorrei assistenza da una persona fisica riguardo ai [Musei Civici di Montesole](ORGANIZATION)
+    - posso parlare con un operatore umano per la [Guardia di Finanza](ORGANIZATION)
+    - vorrei essere messo in contatto con un addetto della [Regione](ORGANIZATION)
+    - come parlo dal vivo con un referente dell'[INPS](ORGANIZATION)
+    - c'è un operatore in carne e ossa che si occupa del [Ministero della Salute](ORGANIZATION)
+    - passami un consulente umano esperto dell'[Ordine dei Medici](ORGANIZATION)
+    - vorrei assistenza da una persona fisica riguardo alla [Camera di Commercio](ORGANIZATION)
+    - posso parlare con un operatore umano per la [Croce Rossa](ORGANIZATION)
+  - intent: ask_role_contact_human
+    examples:
+    - posso parlare con il [direttore sanitario](ROLE)
+    - vorrei un colloquio con uno [psicologo](ROLE) del [Consultorio](FACILITY)
+    - vorrei parlare con un [assistente sociale](ROLE)
+    - posso parlare con un operatore umano per gli [infermieri](ROLE)
+    - vorrei essere messo in contatto con un addetto del [direttore sanitario](ROLE)
+    - come parlo dal vivo con un referente del [Responsabile della Prevenzione della Corruzione](ROLE)
+    - c'è un operatore in carne e ossa che si occupa dei [familiari a carico](ROLE)
+    - passami un consulente umano esperto dello [specialista ambulatoriale](ROLE)
+    - vorrei assistenza da una persona fisica riguardo all'[assistente sociale](ROLE)
+    - posso parlare con un operatore umano per il [Medico Competente](ROLE)
+    - vorrei essere messo in contatto con un addetto del [Direttore Generale](ROLE)
+    - come parlo dal vivo con un referente del [Sindaco](ROLE)
+    - c'è un operatore in carne e ossa che si occupa del [primario](ROLE)
+    - passami un consulente umano esperto dell'[operatore sanitario](ROLE)
+    - vorrei assistenza da una persona fisica riguardo al [medico di base](ROLE)
+    - posso parlare con un operatore umano per il [commercialista](ROLE)
+    - vorrei essere messo in contatto con un addetto del [sostituto d'imposta](ROLE)
+    - come parlo dal vivo con un referente del [pediatra](ROLE)
+  - intent: ask_health_service_contact_human
+    examples:
+    - voglio parlare con una persona del [CUP](HEALTH_SERVICE)
+    - fatemi richiamare da un operatore del [CUP](HEALTH_SERVICE)
+    - posso parlare con un operatore umano per la [nutrizione artificiale](HEALTH_SERVICE)
+    - vorrei essere messo in contatto con un addetto delle [cure palliative](HEALTH_SERVICE)
+    - come parlo dal vivo con un referente dell'[ossigenoterapia](HEALTH_SERVICE)
+    - c'è un operatore in carne e ossa che si occupa del [ritiro referti](HEALTH_SERVICE)
+    - passami un consulente umano esperto del [CUP](HEALTH_SERVICE)
+    - vorrei assistenza da una persona fisica riguardo all'[assistenza protesica](HEALTH_SERVICE)
+    - posso parlare con un operatore umano per le [vaccinazioni](HEALTH_SERVICE)
+    - vorrei essere messo in contatto con un addetto dell'[assistenza domiciliare](HEALTH_SERVICE)
+    - come parlo dal vivo con un referente della [Guardia Medica](HEALTH_SERVICE)
+    - c'è un operatore in carne e ossa che si occupa della [donazione del sangue](HEALTH_SERVICE)
+    - passami un consulente umano esperto della [scelta del medico](HEALTH_SERVICE)
+    - vorrei assistenza da una persona fisica riguardo all'[accesso agli atti](HEALTH_SERVICE)
+    - posso parlare con un operatore umano per lo [screening oncologico](HEALTH_SERVICE)
+    - vorrei essere messo in contatto con un addetto dello [Sportello Giovani](HEALTH_SERVICE)
+    - come parlo dal vivo con un referente del [Fascicolo Sanitario](HEALTH_SERVICE)
+    - c'è un operatore in carne e ossa che si occupa dello [Sportello di Ascolto](HEALTH_SERVICE)
+  - intent: ask_facility_contact_human
+    examples:
+    - mi passi il responsabile del [Centro Prelievi](FACILITY)
+    - posso parlare con un operatore umano per il [Centro Prelievi](FACILITY)
+    - vorrei essere messo in contatto con un addetto della [Casa della Salute](FACILITY)
+    - come parlo dal vivo con un referente del [Centro Prelievi Ostia](FACILITY)
+    - c'è un operatore in carne e ossa che si occupa del [Museo archeologico](FACILITY)
+    - passami un consulente umano esperto del [Poliambulatorio Coni Zugna](FACILITY)
+    - vorrei assistenza da una persona fisica riguardo al [Poliambulatorio Paolini](FACILITY)
+    - posso parlare con un operatore umano per il [Poliambulatorio Bernocchi](FACILITY)
+    - vorrei essere messo in contatto con un addetto delle [Case della Comunità](FACILITY)
+    - come parlo dal vivo con un referente della [Casa della Comunità](FACILITY)
+    - c'è un operatore in carne e ossa che si occupa dell'[Ospedale Grassi](FACILITY)
+    - passami un consulente umano esperto del [Presidio Ospedaliero Grassi](FACILITY)
+    - vorrei assistenza da una persona fisica riguardo ai [Consultori](FACILITY)
+    - posso parlare con un operatore umano per le [Cappelle Medicee](FACILITY)
+    - vorrei essere messo in contatto con un addetto della [Pinacoteca civica](FACILITY)
+    - come parlo dal vivo con un referente dell'[asilo nido](FACILITY)
+    - c'è un operatore in carne e ossa che si occupa dell'[Ospedale di Comunità](FACILITY)
+  - intent: ask_procedure_contact_human
+    examples:
+    - vorrei un colloquio con il responsabile della mia pratica di [accertamento fiscale](PROCEDURE)
+    - posso parlare con un operatore umano per il [matrimonio civile](PROCEDURE)
+    - vorrei essere messo in contatto con un addetto del [pignoramento](PROCEDURE)
+    - come parlo dal vivo con un referente dell'[interpello](PROCEDURE)
+    - c'è un operatore in carne e ossa che si occupa del [cambio di residenza](PROCEDURE)
+    - passami un consulente umano esperto della [rottamazione quater](PROCEDURE)
+    - vorrei assistenza da una persona fisica riguardo alla [fatturazione elettronica](PROCEDURE)
+    - posso parlare con un operatore umano per la [rateizzazione](PROCEDURE)
+    - vorrei essere messo in contatto con un addetto del [ravvedimento operoso](PROCEDURE)
+    - come parlo dal vivo con un referente dei [contributi Inps](PROCEDURE)
+    - c'è un operatore in carne e ossa che si occupa dell'[autotutela](PROCEDURE)
+    - passami un consulente umano esperto dell'[accertamento fiscale](PROCEDURE)
+    - vorrei assistenza da una persona fisica riguardo alla [raccolta differenziata](PROCEDURE)
+    - posso parlare con un operatore umano per il [rinnovo della patente](PROCEDURE)
+    - vorrei essere messo in contatto con un addetto della [voltura catastale](PROCEDURE)
+    - come parlo dal vivo con un referente delle [iscrizioni online](PROCEDURE)

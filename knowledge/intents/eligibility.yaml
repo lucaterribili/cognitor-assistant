@@ -1,0 +1,191 @@
+nlu:
+  intents:
+  - intent: ask_eligibility
+    examples:
+    - Chi può usufruire del servizio?
+    - Ho diritto ad accedere?
+    - Chi può presentare la domanda?
+    - chi può fare domanda
+    - chi può accedere
+    - chi può partecipare
+    - chi può iscriversi
+    - chi può richiedere il bonus
+    - chi ha diritto a questa prestazione
+    - chi ha diritto al rimborso
+    - a chi è rivolto il servizio
+    - a chi si rivolge l'iniziativa
+    - a chi spetta l'assegno
+    - spetta anche a me
+    - posso accedere anch'io
+    - posso richiederlo
+    - posso partecipare
+    - posso iscrivermi
+    - posso fare domanda
+    - posso usufruirne
+    - posso accedere se sono straniero
+    - posso accedere se ho 17 anni
+    - posso presentare domanda se sono disoccupato
+    - sono residente fuori regione, posso richiederlo
+    - sono studente, ne ho diritto
+    - sono pensionato, posso usufruirne
+    - sono un lavoratore autonomo, posso fare domanda
+    - rientro tra i beneficiari
+    - rientro nei requisiti
+    - sono idoneo
+    - come faccio a sapere se sono idoneo
+    - come posso sapere se ne ho diritto
+    - chi sono i beneficiari
+    - chi sono i destinatari
+    - categorie ammesse
+    - sono ammesso
+    - sono escluso dal servizio
+    - posso scegliere un medico in un altro municipio
+    - chi può beneficiare del bonus economico per famiglie numerose del Comune
+  - intent: ask_document_eligibility
+    examples:
+    - a chi è destinato il [bando](DOCUMENT)
+    - chi ha diritto all'[esenzione ticket](DOCUMENT)
+    - chi può partecipare al [concorso pubblico](DOCUMENT)
+    - rientro nei requisiti per l'[avviso pubblico](DOCUMENT) per le donne in [terapia oncologica](MEDICAL_PROCEDURE)
+    - chi ha diritto all'[esenzione dal ticket](DOCUMENT)
+    - sono esente dal [ticket](DOCUMENT) per invalidità
+    - ho diritto all'[esenzione](DOCUMENT) se sono disoccupato
+    - chi può presentare il [modello 730](DOCUMENT)
+    - chi è esonerato dalla presentazione della [dichiarazione dei redditi](DOCUMENT)
+    - quali studenti hanno diritto alla fornitura gratuita dei libri con [cedola libraria](DOCUMENT)
+    - chi ha diritto ad accedere alla [tessera sanitaria](DOCUMENT)
+    - a chi spetta la [cartella clinica](DOCUMENT)
+    - rientro tra i destinatari ammessi al [codice fiscale](DOCUMENT)
+    - quali categorie di utenti possono usufruire dell'[ISEE](DOCUMENT)
+    - chi è idoneo a richiedere la [partita IVA](DOCUMENT)
+    - posso beneficiare della [carta d'identità elettronica](DOCUMENT) nel mio caso
+  - intent: ask_health_service_eligibility
+    examples:
+    - chi può richiedere l'[assistenza protesica](HEALTH_SERVICE)
+    - chi può fare [screening oncologico](HEALTH_SERVICE) gratuito
+    - chi ha diritto allo [screening della mammella](HEALTH_SERVICE)
+    - a chi spetta l'[assistenza domiciliare](HEALTH_SERVICE)
+    - chi può iscriversi al [Servizio Sanitario](HEALTH_SERVICE)
+    - sono straniero posso iscrivermi al [Servizio Sanitario](HEALTH_SERVICE)
+    - chi può accedere al [PUA](HEALTH_SERVICE)
+    - chi può usufruire dello [Sportello di Ascolto](HEALTH_SERVICE)
+    - chi rientra nella fascia d'età per lo [screening del colon retto](HEALTH_SERVICE)
+    - chi ha diritto ad accedere al [RECUP](HEALTH_SERVICE)
+    - a chi spetta il [Punto unico di accesso](HEALTH_SERVICE)
+    - rientro tra i destinatari ammessi alla [nutrizione artificiale](HEALTH_SERVICE)
+    - quali categorie di utenti possono usufruire delle [cure palliative](HEALTH_SERVICE)
+    - chi è idoneo a richiedere l'[ossigenoterapia](HEALTH_SERVICE)
+    - posso beneficiare del [ritiro referti](HEALTH_SERVICE) nel mio caso
+    - chi ha diritto ad accedere al [CUP](HEALTH_SERVICE)
+  - intent: ask_misc_eligibility
+    examples:
+    - chi può richiedere il [sussidio](MISC)
+    - posso donare il sangue se ho fatto un [tatuaggio](MISC)
+    - chi ha diritto al [bonus mobili](MISC)
+    - posso aderire al [regime forfettario](MISC) se sono lavoratore dipendente
+    - chi ha diritto all'assegnazione degli [alloggi popolari](MISC) a [Montesole](ZONE)
+    - chi può richiedere la [carta famiglia](MISC) per le visite ai musei
+    - chi ha diritto ad accedere al [pre-scuola](MISC)
+    - a chi spetta la [rendita catastale](MISC)
+    - rientro tra i destinatari ammessi al [regime ordinario](MISC)
+    - quali categorie di utenti possono usufruire del [bonus mobili](MISC)
+    - chi è idoneo a richiedere l'[ecobonus](MISC)
+    - posso beneficiare del [Superbonus](MISC) nel mio caso
+    - chi ha diritto ad accedere all'[audioguida](MISC)
+    - a chi spetta gli [alloggi popolari](MISC)
+    - rientro tra i destinatari ammessi al [regime forfettario](MISC)
+    - quali categorie di utenti possono usufruire del [cassetto fiscale](MISC)
+    - chi è idoneo a richiedere il [rimborso IRPEF](MISC)
+  - intent: ask_facility_eligibility
+    examples:
+    - chi può accedere ai [Centri Prelievi](FACILITY)
+    - sono residente a [Fiumicino](ZONE), posso andare al [Grassi](FACILITY)
+    - chi può donare il sangue a [Coni Zugna](FACILITY)
+    - chi ha la precedenza nella graduatoria per l'[asilo nido](FACILITY) comunale
+    - chi ha diritto ad accedere al [Poliambulatorio Bernocchi](FACILITY)
+    - a chi spetta le [Case della Comunità](FACILITY)
+    - rientro tra i destinatari ammessi alla [Casa della Comunità](FACILITY)
+    - quali categorie di utenti possono usufruire dell'[Ospedale Grassi](FACILITY)
+    - chi è idoneo a richiedere il [Presidio Ospedaliero Grassi](FACILITY)
+    - posso beneficiare dei [Consultori](FACILITY) nel mio caso
+    - chi ha diritto ad accedere alle [Cappelle Medicee](FACILITY)
+    - a chi spetta la [Pinacoteca civica](FACILITY)
+    - rientro tra i destinatari ammessi all'[asilo nido](FACILITY)
+    - quali categorie di utenti possono usufruire dell'[Ospedale di Comunità](FACILITY)
+    - chi è idoneo a richiedere l'[Ecocentro](FACILITY)
+    - posso beneficiare della [Scuola Primaria Rodari](FACILITY) nel mio caso
+    - chi ha diritto ad accedere al [CPO Gennaro di Rosa](FACILITY)
+  - intent: ask_department_eligibility
+    examples:
+    - posso accedere al [Pronto Soccorso](DEPARTMENT) senza [tessera sanitaria](DOCUMENT)
+    - chi ha diritto ad accedere al [SUAP](DEPARTMENT)
+    - a chi spetta l'[anagrafe](DEPARTMENT)
+    - rientro tra i destinatari ammessi alla [Polizia locale](DEPARTMENT)
+    - quali categorie di utenti possono usufruire della [Neurologia](DEPARTMENT)
+    - chi è idoneo a richiedere l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - posso beneficiare del [Dipartimento del Farmaco](DEPARTMENT) nel mio caso
+    - chi ha diritto ad accedere alla [UOC Consultori Familiari](DEPARTMENT)
+    - a chi spetta la [Cardiologia interventistica](DEPARTMENT)
+    - rientro tra i destinatari ammessi ai [tributi](DEPARTMENT)
+    - quali categorie di utenti possono usufruire della [segreteria scolastica](DEPARTMENT)
+    - chi è idoneo a richiedere l'[Ufficio Stampa](DEPARTMENT)
+    - posso beneficiare dei [servizi demografici](DEPARTMENT) nel mio caso
+    - chi ha diritto ad accedere ai [Lavori pubblici](DEPARTMENT)
+    - a chi spetta la [Direzione Generale](DEPARTMENT)
+    - rientro tra i destinatari ammessi all'[URP](DEPARTMENT)
+    - quali categorie di utenti possono usufruire del [Pronto Soccorso](DEPARTMENT)
+  - intent: ask_organization_eligibility
+    examples:
+    - chi ha diritto all'ingresso gratuito nei [Musei Civici](ORGANIZATION)
+    - chi ha diritto ad accedere all'[Ordine dei Medici](ORGANIZATION)
+    - a chi spetta la [Camera di Commercio](ORGANIZATION)
+    - rientro tra i destinatari ammessi alla [Croce Rossa](ORGANIZATION)
+    - quali categorie di utenti possono usufruire della [Protezione Civile](ORGANIZATION)
+    - chi è idoneo a richiedere l'[Agenzia delle Entrate](ORGANIZATION)
+    - posso beneficiare dell'[ASL Roma 3](ORGANIZATION) nel mio caso
+    - chi ha diritto ad accedere all'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - a chi spetta [programmato](ORGANIZATION)
+    - rientro tra i destinatari ammessi ai [Musei Civici](ORGANIZATION)
+    - quali categorie di utenti possono usufruire dell'[ASL](ORGANIZATION)
+    - chi è idoneo a richiedere il [CAF](ORGANIZATION)
+    - posso beneficiare del [Comune di Montesole](ORGANIZATION) nel mio caso
+    - chi ha diritto ad accedere all'[IC Giovanni Pascoli](ORGANIZATION)
+    - a chi spetta il [Comune](ORGANIZATION)
+    - rientro tra i destinatari ammessi all'[IC Pascoli](ORGANIZATION)
+  - intent: ask_procedure_eligibility
+    examples:
+    - chi può accedere alla [rottamazione quater](PROCEDURE)
+    - chi ha diritto ad accedere al [matrimonio civile](PROCEDURE)
+    - a chi spetta il [pignoramento](PROCEDURE)
+    - rientro tra i destinatari ammessi all'[interpello](PROCEDURE)
+    - quali categorie di utenti possono usufruire del [cambio di residenza](PROCEDURE)
+    - chi è idoneo a richiedere la [rottamazione quater](PROCEDURE)
+    - posso beneficiare della [fatturazione elettronica](PROCEDURE) nel mio caso
+    - chi ha diritto ad accedere alla [rateizzazione](PROCEDURE)
+    - a chi spetta il [ravvedimento operoso](PROCEDURE)
+    - rientro tra i destinatari ammessi ai [contributi Inps](PROCEDURE)
+    - quali categorie di utenti possono usufruire dell'[autotutela](PROCEDURE)
+    - chi è idoneo a richiedere l'[accertamento fiscale](PROCEDURE)
+    - posso beneficiare della [raccolta differenziata](PROCEDURE) nel mio caso
+    - chi ha diritto ad accedere al [rinnovo della patente](PROCEDURE)
+    - a chi spetta la [voltura catastale](PROCEDURE)
+    - rientro tra i destinatari ammessi alle [iscrizioni online](PROCEDURE)
+  - intent: ask_role_eligibility
+    examples:
+    - ho diritto alle detrazioni per [familiari a carico](ROLE)
+    - chi ha diritto ad accedere al [donatore di sangue](ROLE)
+    - a chi spetta lo [psicologo](ROLE)
+    - rientro tra i destinatari ammessi al [Dirigente Scolastico](ROLE)
+    - quali categorie di utenti possono usufruire del [coordinatore di classe](ROLE)
+    - chi è idoneo a richiedere gli [infermieri](ROLE)
+    - posso beneficiare del [direttore sanitario](ROLE) nel mio caso
+    - chi ha diritto ad accedere al [Responsabile della Prevenzione della Corruzione](ROLE)
+    - a chi spetta i [familiari a carico](ROLE)
+    - rientro tra i destinatari ammessi allo [specialista ambulatoriale](ROLE)
+    - quali categorie di utenti possono usufruire dell'[assistente sociale](ROLE)
+    - chi è idoneo a richiedere il [Medico Competente](ROLE)
+    - posso beneficiare del [Direttore Generale](ROLE) nel mio caso
+    - chi ha diritto ad accedere al [Sindaco](ROLE)
+    - a chi spetta il [primario](ROLE)
+    - rientro tra i destinatari ammessi all'[operatore sanitario](ROLE)
+    - quali categorie di utenti possono usufruire del [medico di base](ROLE)

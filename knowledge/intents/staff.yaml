@@ -1,0 +1,209 @@
+nlu:
+  intents:
+  - intent: ask_staff
+    examples:
+    - Chi lavora qui?
+    - Chi è il responsabile?
+    - Quali professionisti operano nella struttura?
+    - chi lavora da voi
+    - quante persone lavorano qui
+    - quanti dipendenti avete
+    - chi fa parte del vostro team
+    - chi compone il team
+    - com'è composto il personale
+    - chi è il responsabile di questo ufficio
+    - chi è il responsabile del servizio
+    - chi è il referente per questa pratica
+    - chi si occupa di questa pratica
+    - chi si occupa di fatturazione
+    - chi gestisce le iscrizioni
+    - chi segue il mio caso
+    - quali figure professionali ci sono
+    - quali figure lavorano nella struttura
+    - quali professionisti lavorano qui
+    - quali competenze ha il personale
+    - com'è formato il personale
+    - il personale è qualificato
+    - quanti sono i docenti
+    - quanti medici ci sono
+    - elenco del personale
+    - l'elenco dei responsabili
+    - organico
+    - chi sono i vostri collaboratori
+    - chi sono i vostri tecnici
+    - chi è l'addetto a questa richiesta
+    - quale figura professionale gestisce questo problema
+    - chi sono i dirigenti in organico
+    - chi cura la sezione archeologica del museo
+  - intent: ask_role_staff
+    examples:
+    - chi è il [direttore](ROLE)
+    - chi è il [presidente](ROLE)
+    - chi è l'[amministratore delegato](ROLE)
+    - c'è un [medico di turno](ROLE)
+    - ci sono [infermieri](ROLE)
+    - ci sono [psicologi](ROLE) in struttura
+    - chi è il [Direttore Generale](ROLE) dell'[ASL Roma 3](ORGANIZATION)
+    - chi è il [direttore sanitario](ROLE) del [Grassi](FACILITY)
+    - chi è il [primario](ROLE) di [Cardiologia](DEPARTMENT)
+    - chi sono i [dirigenti cessati](ROLE)
+    - chi è il [Responsabile della Prevenzione della Corruzione](ROLE)
+    - chi sono i [medici di base](ROLE) nel [Municipio XI](ZONE)
+    - quali [pediatri](ROLE) ci sono a [Fiumicino](ZONE)
+    - chi è il [medico competente](ROLE) dell'azienda
+    - chi è il [Direttore](ROLE) dell'[Agenzia delle Entrate](ORGANIZATION)
+    - posso rivolgermi a un [commercialista](ROLE) o a un [CAF](ORGANIZATION) abilitato
+    - chi è il [Sindaco](ROLE) del [Comune di Montesole](ORGANIZATION)
+    - chi è il [Dirigente Scolastico](ROLE) dell'istituto
+    - chi è il [coordinatore di classe](ROLE) per la seconda media
+  - intent: ask_department_staff
+    examples:
+    - chi è il responsabile della [UOC Medicina Legale](DEPARTMENT)
+    - chi dirige la [UOC Gastroenterologia](DEPARTMENT)
+    - chi è il responsabile dell'[URP](DEPARTMENT)
+    - chi sono i medici della [Neurologia](DEPARTMENT)
+    - chi è il Responsabile della [UOSD Screening](DEPARTMENT)
+    - chi lavora agli sportelli dell'[Ufficio Territoriale](DEPARTMENT)
+    - chi è il comandante della [Polizia locale](DEPARTMENT)
+    - chi è il responsabile dei [servizi demografici](DEPARTMENT)
+    - chi fa parte del personale dell'[Ufficio Territoriale](DEPARTMENT)
+    - chi è il referente o responsabile per l'[Ufficio del Catasto](DEPARTMENT)
+    - quali figure professionali operano nella [Direzione Provinciale](DEPARTMENT)
+    - a quale addetto o specialista fa capo la [Medicina Legale](DEPARTMENT)
+    - da chi è composto il team della [Medicina dello Sport](DEPARTMENT)
+    - chi coordina lo staff dedicato alla [Salute Mentale](DEPARTMENT)
+    - chi fa parte del personale del [Catasto](DEPARTMENT)
+    - chi è il referente o responsabile per la [Direzione Sanitaria](DEPARTMENT)
+    - quali figure professionali operano nel [SUAP](DEPARTMENT)
+    - a quale addetto o specialista fa capo l'[anagrafe](DEPARTMENT)
+  - intent: ask_person_staff
+    examples:
+    - chi è la [dottoressa Rossi](PERSON)
+    - chi è il [dottor Bianchi](PERSON)
+    - che ruolo ha [Mario Verdi](PERSON)
+    - di cosa si occupa [Giulia Neri](PERSON)
+    - chi fa parte del personale della [dottoressa Galli](PERSON)
+    - chi è il referente o responsabile per [Gianni Rodari](PERSON)
+    - quali figure professionali operano in [Giovanni Pascoli](PERSON)
+    - a quale addetto o specialista fa capo [Gennaro di Rosa](PERSON)
+    - da chi è composto il team del [dottor Romano](PERSON)
+    - chi coordina lo staff dedicato alla [dottoressa Esposito](PERSON)
+    - chi fa parte del personale del [dottor Ricci](PERSON)
+    - chi è il referente o responsabile per la [dottoressa Marino](PERSON)
+    - quali figure professionali operano nel [professor Greco](PERSON)
+    - a quale addetto o specialista fa capo il [dottor Bruno](PERSON)
+    - da chi è composto il team della [dottoressa Colombo](PERSON)
+    - chi coordina lo staff dedicato a [Giovanni Battista Grassi](PERSON)
+  - intent: ask_organization_staff
+    examples:
+    - chi scrive gli articoli su [programmato](ORGANIZATION)
+    - chi è il direttore scientifico dei [Musei Civici](ORGANIZATION)
+    - chi fa parte del personale dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - chi è il referente o responsabile per [programmato](ORGANIZATION)
+    - quali figure professionali operano nei [Musei Civici](ORGANIZATION)
+    - a quale addetto o specialista fa capo l'[ASL](ORGANIZATION)
+    - da chi è composto il team del [CAF](ORGANIZATION)
+    - chi coordina lo staff dedicato al [Comune di Montesole](ORGANIZATION)
+    - chi fa parte del personale dell'[IC Giovanni Pascoli](ORGANIZATION)
+    - chi è il referente o responsabile per il [Comune](ORGANIZATION)
+    - quali figure professionali operano nell'[IC Pascoli](ORGANIZATION)
+    - a quale addetto o specialista fa capo i [Musei Civici di Montesole](ORGANIZATION)
+    - da chi è composto il team della [Guardia di Finanza](ORGANIZATION)
+    - chi coordina lo staff dedicato alla [Regione](ORGANIZATION)
+    - chi fa parte del personale dell'[INPS](ORGANIZATION)
+    - chi è il referente o responsabile per il [Ministero della Salute](ORGANIZATION)
+  - intent: ask_document_staff
+    examples:
+    - quali professionisti sono abilitati al [visto di conformità](DOCUMENT)
+    - chi fa parte del personale del [concorso pubblico](DOCUMENT)
+    - chi è il referente o responsabile per la [visura catastale](DOCUMENT)
+    - quali figure professionali operano nella [tessera sanitaria](DOCUMENT)
+    - a quale addetto o specialista fa capo la [cartella clinica](DOCUMENT)
+    - da chi è composto il team del [codice fiscale](DOCUMENT)
+    - chi coordina lo staff dedicato all'[ISEE](DOCUMENT)
+    - chi fa parte del personale della [partita IVA](DOCUMENT)
+    - chi è il referente o responsabile per la [carta d'identità elettronica](DOCUMENT)
+    - quali figure professionali operano nella [Certificazione Unica](DOCUMENT)
+    - a quale addetto o specialista fa capo il [contratto di locazione](DOCUMENT)
+    - da chi è composto il team della [fattura elettronica](DOCUMENT)
+    - chi coordina lo staff dedicato al [referto](DOCUMENT)
+    - chi fa parte del personale dell'[avviso bonario](DOCUMENT)
+    - chi è il referente o responsabile per l'[avviso di accertamento](DOCUMENT)
+    - quali figure professionali operano nella [marca da bollo](DOCUMENT)
+    - a quale addetto o specialista fa capo l'[impegnativa](DOCUMENT)
+    - da chi è composto il team del [Piano terapeutico](DOCUMENT)
+  - intent: ask_facility_staff
+    examples:
+    - che specialisti ci sono al [Poliambulatorio Coni Zugna](FACILITY)
+    - chi fa parte del personale della [Scuola Primaria Rodari](FACILITY)
+    - chi è il referente o responsabile per il [CPO Gennaro di Rosa](FACILITY)
+    - quali figure professionali operano nel [Consultorio](FACILITY)
+    - a quale addetto o specialista fa capo la [Galleria d'arte contemporanea](FACILITY)
+    - da chi è composto il team del [Centro Prelievi Palidoro](FACILITY)
+    - chi coordina lo staff dedicato al [Centro Prelievi Acilia](FACILITY)
+    - chi fa parte del personale del [Grassi](FACILITY)
+    - chi è il referente o responsabile per il [Centro Prelievi](FACILITY)
+    - quali figure professionali operano nella [Casa della Salute](FACILITY)
+    - a quale addetto o specialista fa capo il [Centro Prelievi Ostia](FACILITY)
+    - da chi è composto il team del [Museo archeologico](FACILITY)
+    - chi coordina lo staff dedicato al [Poliambulatorio Coni Zugna](FACILITY)
+    - chi fa parte del personale del [Poliambulatorio Paolini](FACILITY)
+    - chi è il referente o responsabile per il [Poliambulatorio Bernocchi](FACILITY)
+    - quali figure professionali operano nelle [Case della Comunità](FACILITY)
+  - intent: ask_misc_staff
+    examples:
+    - chi è il referente scolastico per l'inclusione e i [BES](MISC)
+    - chi fa parte del personale di [Fatture e Corrispettivi](MISC)
+    - chi è il referente o responsabile per il [pre-scuola](MISC)
+    - quali figure professionali operano nella [rendita catastale](MISC)
+    - a quale addetto o specialista fa capo il [regime ordinario](MISC)
+    - da chi è composto il team del [bonus mobili](MISC)
+    - chi coordina lo staff dedicato all'[ecobonus](MISC)
+    - chi fa parte del personale del [Superbonus](MISC)
+    - chi è il referente o responsabile per l'[audioguida](MISC)
+    - quali figure professionali operano negli [alloggi popolari](MISC)
+    - a quale addetto o specialista fa capo il [regime forfettario](MISC)
+    - da chi è composto il team del [cassetto fiscale](MISC)
+    - chi coordina lo staff dedicato al [rimborso IRPEF](MISC)
+    - chi fa parte del personale del [bonus ristrutturazione](MISC)
+    - chi è il referente o responsabile per il [registro elettronico](MISC)
+    - quali figure professionali operano nella [dieta speciale](MISC)
+  - intent: ask_procedure_staff
+    examples:
+    - chi è il funzionario responsabile del procedimento di [accertamento fiscale](PROCEDURE)
+    - chi fa parte del personale della [rottamazione delle cartelle](PROCEDURE)
+    - chi è il referente o responsabile per la [registrazione del contratto di locazione](PROCEDURE)
+    - quali figure professionali operano nel [concordato preventivo biennale](PROCEDURE)
+    - a quale addetto o specialista fa capo l'[accertamento con adesione](PROCEDURE)
+    - da chi è composto il team del [matrimonio civile](PROCEDURE)
+    - chi coordina lo staff dedicato al [pignoramento](PROCEDURE)
+    - chi fa parte del personale dell'[interpello](PROCEDURE)
+    - chi è il referente o responsabile per il [cambio di residenza](PROCEDURE)
+    - quali figure professionali operano nella [rottamazione quater](PROCEDURE)
+    - a quale addetto o specialista fa capo la [fatturazione elettronica](PROCEDURE)
+    - da chi è composto il team della [rateizzazione](PROCEDURE)
+    - chi coordina lo staff dedicato al [ravvedimento operoso](PROCEDURE)
+    - chi fa parte del personale dei [contributi Inps](PROCEDURE)
+    - chi è il referente o responsabile per l'[autotutela](PROCEDURE)
+    - quali figure professionali operano nell'[accertamento fiscale](PROCEDURE)
+    - a quale addetto o specialista fa capo la [raccolta differenziata](PROCEDURE)
+    - da chi è composto il team del [rinnovo della patente](PROCEDURE)
+  - intent: ask_technology_staff
+    examples:
+    - chi ha scritto la guida su [Spring Boot](TECHNOLOGY)
+    - chi fa parte del personale di [Apache](TECHNOLOGY)
+    - chi è il referente o responsabile per [Django](TECHNOLOGY)
+    - quali figure professionali operano in [JavaScript](TECHNOLOGY)
+    - a quale addetto o specialista fa capo [Angular](TECHNOLOGY)
+    - da chi è composto il team di [phpMyAdmin](TECHNOLOGY)
+    - chi coordina lo staff dedicato a [Flask](TECHNOLOGY)
+    - chi fa parte del personale di [Joomla](TECHNOLOGY)
+    - chi è il referente o responsabile per il [Desktop Telematico](TECHNOLOGY)
+    - quali figure professionali operano in [Voltura 2.0](TECHNOLOGY)
+    - a quale addetto o specialista fa capo [Docker](TECHNOLOGY)
+    - da chi è composto il team di [FastAPI](TECHNOLOGY)
+    - chi coordina lo staff dedicato a [Laravel](TECHNOLOGY)
+    - chi fa parte del personale di [Python](TECHNOLOGY)
+    - chi è il referente o responsabile per [PostgreSQL](TECHNOLOGY)
+    - quali figure professionali operano in [Spring Boot](TECHNOLOGY)
+    - a quale addetto o specialista fa capo [PHP](TECHNOLOGY)

@@ -1,0 +1,174 @@
+nlu:
+  intents:
+  - intent: ask_events
+    examples:
+    - Quali eventi sono in programma?
+    - Ci sono iniziative in calendario?
+    - Quando si svolgerà il prossimo evento?
+    - ci sono eventi di screening gratuiti
+    - quando è il prossimo evento informativo sui servizi digitali del fisco
+    - calendario degli eventi culturali e delle mostre patrocinate dal Comune
+    - quali sono i prossimi eventi in calendario
+    - organizzate incontri pubblici o giornate informative
+    - ci sono mostre, convegni o seminari questo mese
+    - dove posso consultare la bacheca degli eventi
+    - la partecipazione agli eventi è gratuita o su invito
+    - sono previste iniziative culturali o divulgative a breve
+    - come faccio a rimanere aggiornato sui vostri eventi
+    - ci sono eventi aperti ai cittadini questa settimana
+    - organizzate webinar o eventi anche online
+    - qual è il programma delle manifestazioni annuali
+  - intent: ask_event_events
+    examples:
+    - quando è l'[incontro pediatrico-neonatologico](EVENT) al [Grassi](FACILITY)
+    - c'è un evento per la [Giornata Nazionale del mal di testa](EVENT) a [Ostia](ZONE)
+    - quando si tiene l'incontro per l'[8 marzo](EVENT)
+    - quando è la seconda edizione della [cura come maternage](EVENT)
+    - ci sono iniziative per la [Giornata mondiale della salute](EVENT)
+    - quando c'è la [giornata della prevenzione](EVENT)
+    - quando si tengono gli incontri del progetto [Fisco e Scuola](EVENT)
+    - quali iniziative sono in programma per la [Notte dei Musei](EVENT)
+    - quali eventi sono in programma per la [Giornata Nazionale del mal di testa](EVENT)
+    - ci sono incontri o manifestazioni legati alla [Notte dei Musei](EVENT)
+    - quando si tengono le iniziative dedicate a [Fisco e Scuola](EVENT)
+    - c'è un calendario di eventi riguardanti l'[8 marzo](EVENT)
+    - quali convegni o appuntamenti pubblici organizza la [cura come maternage](EVENT)
+    - sono previsti open day o eventi speciali per i [centri estivi](EVENT)
+    - quali eventi sono in programma per [Sotto la superficie](EVENT)
+    - ci sono incontri o manifestazioni legati all'[incontro pediatrico-neonatologico](EVENT)
+    - quando si tengono le iniziative dedicate alla [Giornata mondiale della salute](EVENT)
+    - c'è un calendario di eventi riguardanti la [giornata della prevenzione](EVENT)
+  - intent: ask_zone_events
+    examples:
+    - c'è un evento a [Magliana](ZONE) per le ragazze
+    - quali eventi ci sono a [Roma](ZONE) questo weekend
+    - ci sono mostre a [Roma](ZONE) questa settimana
+    - quali festival ci sono a [Ostia](ZONE)
+    - quali eventi culturali ci sono a [Ostia](ZONE)
+    - ci sono sagre vicino a [Fiumicino](ZONE)
+    - quali manifestazioni ci sono a [Roma](ZONE) questo weekend
+    - quali eventi sono in programma per [Fiumicino](ZONE)
+    - ci sono incontri o manifestazioni legati a [Palidoro](ZONE)
+    - quando si tengono le iniziative dedicate a [Magliana](ZONE)
+    - c'è un calendario di eventi riguardanti [Montesole](ZONE)
+    - quali convegni o appuntamenti pubblici organizza il [Municipio X](ZONE)
+    - sono previsti open day o eventi speciali per [Acilia](ZONE)
+    - quali eventi sono in programma per [Ponte Galeria](ZONE)
+    - ci sono incontri o manifestazioni legati a [Corviale](ZONE)
+    - quando si tengono le iniziative dedicate a [Ostia Antica](ZONE)
+    - c'è un calendario di eventi riguardanti [Fregene](ZONE)
+  - intent: ask_organization_events
+    examples:
+    - quali eventi organizza l'[ASL Roma 3](ORGANIZATION)
+    - ci sono webinar informativi dell'[Agenzia delle Entrate](ORGANIZATION) sulla [fatturazione elettronica](PROCEDURE)
+    - quali seminari online organizza l'[Agenzia delle Entrate](ORGANIZATION) per i professionisti
+    - quali eventi e conferenze sono organizzati dai [Musei Civici](ORGANIZATION)
+    - quali eventi sono in programma per la [Camera di Commercio](ORGANIZATION)
+    - ci sono incontri o manifestazioni legati alla [Croce Rossa](ORGANIZATION)
+    - quando si tengono le iniziative dedicate alla [Protezione Civile](ORGANIZATION)
+    - c'è un calendario di eventi riguardanti l'[Agenzia delle Entrate](ORGANIZATION)
+    - quali convegni o appuntamenti pubblici organizza l'[ASL Roma 3](ORGANIZATION)
+    - sono previsti open day o eventi speciali per l'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - quali eventi sono in programma per [programmato](ORGANIZATION)
+    - ci sono incontri o manifestazioni legati ai [Musei Civici](ORGANIZATION)
+    - quando si tengono le iniziative dedicate all'[ASL](ORGANIZATION)
+    - c'è un calendario di eventi riguardanti il [CAF](ORGANIZATION)
+    - quali convegni o appuntamenti pubblici organizza il [Comune di Montesole](ORGANIZATION)
+    - sono previsti open day o eventi speciali per l'[IC Giovanni Pascoli](ORGANIZATION)
+  - intent: ask_category_events
+    examples:
+    - ci sono eventi di [Vita Notturna](CATEGORY) a [Roma](ZONE)
+    - quali eventi ci sono nella categoria [Eventi e Festival](CATEGORY)
+    - quali eventi sono in programma per [Lingua e educazione](CATEGORY)
+    - ci sono incontri o manifestazioni legati alla [Vita Notturna](CATEGORY)
+    - quando si tengono le iniziative dedicate a [Eventi e Festival](CATEGORY)
+    - c'è un calendario di eventi riguardanti la [Burocrazia](CATEGORY)
+    - quali convegni o appuntamenti pubblici organizza [Salute e Prevenzione](CATEGORY)
+    - sono previsti open day o eventi speciali per [Fisco e Tributi](CATEGORY)
+    - quali eventi sono in programma per [Servizi al Cittadino](CATEGORY)
+    - ci sono incontri o manifestazioni legati a [Scuola e Famiglia](CATEGORY)
+    - quando si tengono le iniziative dedicate a [Cultura e Musei](CATEGORY)
+    - c'è un calendario di eventi riguardanti [Ambiente e Territorio](CATEGORY)
+    - quali convegni o appuntamenti pubblici organizza lo [Sviluppo Backend](CATEGORY)
+    - sono previsti open day o eventi speciali per la [Sicurezza Informatica](CATEGORY)
+    - quali eventi sono in programma per [Intelligenza Artificiale e Dati](CATEGORY)
+    - ci sono incontri o manifestazioni legati all'[Amministrazione Digitale](CATEGORY)
+    - quando si tengono le iniziative dedicate a [Impresa e Commercio](CATEGORY)
+  - intent: ask_health_service_events
+    examples:
+    - ci sono eventi sulla [donazione del sangue](HEALTH_SERVICE) a [Fiumicino](ZONE)
+    - ci sono incontri informativi di [accompagnamento alla nascita](HEALTH_SERVICE)
+    - quali eventi sono in programma per l'[assistenza protesica](HEALTH_SERVICE)
+    - ci sono incontri o manifestazioni legati alle [vaccinazioni](HEALTH_SERVICE)
+    - quando si tengono le iniziative dedicate all'[assistenza domiciliare](HEALTH_SERVICE)
+    - c'è un calendario di eventi riguardanti la [Guardia Medica](HEALTH_SERVICE)
+    - quali convegni o appuntamenti pubblici organizza la [donazione del sangue](HEALTH_SERVICE)
+    - sono previsti open day o eventi speciali per la [scelta del medico](HEALTH_SERVICE)
+    - quali eventi sono in programma per l'[accesso agli atti](HEALTH_SERVICE)
+    - ci sono incontri o manifestazioni legati allo [screening oncologico](HEALTH_SERVICE)
+    - quando si tengono le iniziative dedicate allo [Sportello Giovani](HEALTH_SERVICE)
+    - c'è un calendario di eventi riguardanti il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - quali convegni o appuntamenti pubblici organizza lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - sono previsti open day o eventi speciali per l'[assistenza all'estero](HEALTH_SERVICE)
+    - quali eventi sono in programma per il [Servizio Sanitario](HEALTH_SERVICE)
+    - ci sono incontri o manifestazioni legati allo [screening del colon retto](HEALTH_SERVICE)
+    - quando si tengono le iniziative dedicate all'[accesso civico](HEALTH_SERVICE)
+  - intent: ask_document_events
+    examples:
+    - ci sono giornate di apertura straordinaria degli uffici per il [modello 730](DOCUMENT)
+    - quali eventi sono in programma per l'[avviso di accertamento](DOCUMENT)
+    - ci sono incontri o manifestazioni legati alla [marca da bollo](DOCUMENT)
+    - quando si tengono le iniziative dedicate all'[impegnativa](DOCUMENT)
+    - c'è un calendario di eventi riguardanti il [Piano terapeutico](DOCUMENT)
+    - quali convegni o appuntamenti pubblici organizza il [modello 730](DOCUMENT)
+    - sono previsti open day o eventi speciali per il [modello F24](DOCUMENT)
+    - quali eventi sono in programma per la [patente](DOCUMENT)
+    - ci sono incontri o manifestazioni legati alla [dichiarazione dei redditi](DOCUMENT)
+    - quando si tengono le iniziative dedicate alla [cartella esattoriale](DOCUMENT)
+    - c'è un calendario di eventi riguardanti il [modello Redditi PF](DOCUMENT)
+    - quali convegni o appuntamenti pubblici organizza la [dichiarazione precompilata](DOCUMENT)
+    - sono previsti open day o eventi speciali per lo [SPID](DOCUMENT)
+    - quali eventi sono in programma per il [concorso pubblico](DOCUMENT)
+    - ci sono incontri o manifestazioni legati alla [visura catastale](DOCUMENT)
+    - quando si tengono le iniziative dedicate alla [tessera sanitaria](DOCUMENT)
+    - c'è un calendario di eventi riguardanti la [cartella clinica](DOCUMENT)
+  - intent: ask_facility_events
+    examples:
+    - ci sono convegni all'[Ospedale Grassi](FACILITY)
+    - quali eventi sono in programma per la [Casa della Salute](FACILITY)
+    - ci sono incontri o manifestazioni legati al [Centro Prelievi Ostia](FACILITY)
+    - quando si tengono le iniziative dedicate al [Museo archeologico](FACILITY)
+    - c'è un calendario di eventi riguardanti il [Poliambulatorio Coni Zugna](FACILITY)
+    - quali convegni o appuntamenti pubblici organizza il [Poliambulatorio Paolini](FACILITY)
+    - sono previsti open day o eventi speciali per il [Poliambulatorio Bernocchi](FACILITY)
+    - quali eventi sono in programma per le [Case della Comunità](FACILITY)
+    - ci sono incontri o manifestazioni legati alla [Casa della Comunità](FACILITY)
+    - quando si tengono le iniziative dedicate all'[Ospedale Grassi](FACILITY)
+    - c'è un calendario di eventi riguardanti il [Presidio Ospedaliero Grassi](FACILITY)
+    - quali convegni o appuntamenti pubblici organizza i [Consultori](FACILITY)
+    - sono previsti open day o eventi speciali per le [Cappelle Medicee](FACILITY)
+    - quali eventi sono in programma per la [Pinacoteca civica](FACILITY)
+    - ci sono incontri o manifestazioni legati all'[asilo nido](FACILITY)
+    - quando si tengono le iniziative dedicate all'[Ospedale di Comunità](FACILITY)
+    - c'è un calendario di eventi riguardanti l'[Ecocentro](FACILITY)
+    - quali convegni o appuntamenti pubblici organizza la [Scuola Primaria Rodari](FACILITY)
+  - intent: ask_misc_events
+    examples:
+    - ci sono convegni sulla [riforma fiscale](MISC) organizzati dall'Agenzia
+    - quali eventi sono in programma per lo [SdI](MISC)
+    - ci sono incontri o manifestazioni legati al [codice tributo](MISC)
+    - quando si tengono le iniziative dedicate alla [mensa scolastica](MISC)
+    - c'è un calendario di eventi riguardanti la [prima casa](MISC)
+    - quali convegni o appuntamenti pubblici organizza la [carta famiglia](MISC)
+    - sono previsti open day o eventi speciali per gli [abusi digitali](MISC)
+    - quali eventi sono in programma per [Entratel](MISC)
+    - ci sono incontri o manifestazioni legati a [Fatture e Corrispettivi](MISC)
+    - quando si tengono le iniziative dedicate al [pre-scuola](MISC)
+    - c'è un calendario di eventi riguardanti la [rendita catastale](MISC)
+    - quali convegni o appuntamenti pubblici organizza il [regime ordinario](MISC)
+    - sono previsti open day o eventi speciali per il [bonus mobili](MISC)
+    - quali eventi sono in programma per l'[ecobonus](MISC)
+    - ci sono incontri o manifestazioni legati al [Superbonus](MISC)
+    - quando si tengono le iniziative dedicate all'[audioguida](MISC)
+    - c'è un calendario di eventi riguardanti gli [alloggi popolari](MISC)
+    - quali convegni o appuntamenti pubblici organizza il [regime forfettario](MISC)

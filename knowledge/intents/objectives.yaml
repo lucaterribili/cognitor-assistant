@@ -1,0 +1,219 @@
+nlu:
+  intents:
+  - intent: ask_objectives
+    examples:
+    - Quali sono gli obiettivi?
+    - Cosa si vuole ottenere?
+    - Quali risultati si vogliono raggiungere?
+    - quali sono i vostri obiettivi
+    - quali sono gli obiettivi di questo progetto
+    - quali sono gli obiettivi del corso
+    - quali sono gli obiettivi per il [prossimo anno](DATE)
+    - qual è l'obiettivo principale
+    - qual è l'obiettivo di questa iniziativa
+    - a cosa mirate
+    - a che cosa punta il progetto
+    - cosa volete raggiungere
+    - cosa volete ottenere
+    - cosa si vuole raggiungere con questa misura
+    - quali traguardi vi siete posti
+    - quali traguardi volete raggiungere
+    - quali target avete
+    - che target avete per [quest'anno](DATE)
+    - che risultati vi aspettate
+    - quali risultati sono attesi
+    - quali risultati intende ottenere l'iniziativa
+    - qual è il fine di questa attività
+    - con quale scopo viene fatto
+    - quali sono le finalità del progetto
+    - quali sono le priorità
+    - quali sono le vostre priorità
+    - quali sono i piani per il futuro
+    - cosa avete in programma per i prossimi anni
+    - quali sono le strategie
+    - quali sono i vostri traguardi
+    - quali sono i vostri target di sostenibilità
+    - quali sono le mete
+    - dove volete arrivare
+    - dove punta l'azienda
+    - che obiettivi ha il programma
+    - obiettivi e risultati
+    - obiettivi del piano
+    - obiettivo del servizio
+    - quale risultato si vuole conseguire
+    - a cosa serve raggiungere questo risultato
+    - che risultati si vogliono ottenere con la digitalizzazione
+    - cosa si vuole ottenere con le liste di attesa ridotte
+  - intent: ask_document_objectives
+    examples:
+    - quali risultati punta ad ottenere il [PNRR Missione 6](DOCUMENT)
+    - quali sono gli obiettivi del [Piano triennale di prevenzione della corruzione](DOCUMENT)
+    - quali sono i target del [PNRR](DOCUMENT) per la sanità
+    - quali risultati punta ad ottenere la [dichiarazione precompilata](DOCUMENT)
+    - quali sono gli obiettivi principali dell'[ISEE](DOCUMENT)
+    - a quali traguardi punta la [partita IVA](DOCUMENT)
+    - che risultati si propone di raggiungere la [carta d'identità elettronica](DOCUMENT)
+    - qual è il fine operativo della [Certificazione Unica](DOCUMENT)
+    - quali target sono fissati per il [contratto di locazione](DOCUMENT)
+    - con quale obiettivo specifico viene adottato la [fattura elettronica](DOCUMENT)
+    - quali sono gli obiettivi principali del [referto](DOCUMENT)
+    - a quali traguardi punta l'[avviso bonario](DOCUMENT)
+    - che risultati si propone di raggiungere l'[avviso di accertamento](DOCUMENT)
+    - qual è il fine operativo della [marca da bollo](DOCUMENT)
+    - quali target sono fissati per l'[impegnativa](DOCUMENT)
+    - con quale obiettivo specifico viene adottato il [Piano terapeutico](DOCUMENT)
+    - quali sono gli obiettivi principali del [modello 730](DOCUMENT)
+  - intent: ask_facility_objectives
+    examples:
+    - quali sono gli obiettivi delle [Case della Comunità](FACILITY)
+    - quali obiettivi ha la [Centrale Operativa Territoriale](FACILITY)
+    - quali sono gli obiettivi principali del [Centro Prelievi Palidoro](FACILITY)
+    - a quali traguardi punta il [Centro Prelievi Acilia](FACILITY)
+    - che risultati si propone di raggiungere il [Grassi](FACILITY)
+    - qual è il fine operativo del [Centro Prelievi](FACILITY)
+    - quali target sono fissati per la [Casa della Salute](FACILITY)
+    - con quale obiettivo specifico viene adottato il [Centro Prelievi Ostia](FACILITY)
+    - quali sono gli obiettivi principali del [Museo archeologico](FACILITY)
+    - a quali traguardi punta il [Poliambulatorio Coni Zugna](FACILITY)
+    - che risultati si propone di raggiungere il [Poliambulatorio Paolini](FACILITY)
+    - qual è il fine operativo del [Poliambulatorio Bernocchi](FACILITY)
+    - quali target sono fissati per le [Case della Comunità](FACILITY)
+    - con quale obiettivo specifico viene adottato la [Casa della Comunità](FACILITY)
+    - quali sono gli obiettivi principali dell'[Ospedale Grassi](FACILITY)
+    - a quali traguardi punta il [Presidio Ospedaliero Grassi](FACILITY)
+    - che risultati si propone di raggiungere i [Consultori](FACILITY)
+  - intent: ask_health_service_objectives
+    examples:
+    - quali sono gli obiettivi dello [screening oncologico](HEALTH_SERVICE)
+    - a cosa mira lo [Sportello Giovani](HEALTH_SERVICE) di [Magliana](ZONE)
+    - quali sono gli obiettivi principali dell'[accesso civico](HEALTH_SERVICE)
+    - a quali traguardi punta lo [screening della mammella](HEALTH_SERVICE)
+    - che risultati si propone di raggiungere la [Telemedicina](HEALTH_SERVICE)
+    - qual è il fine operativo del [RECUP](HEALTH_SERVICE)
+    - quali target sono fissati per il [Punto unico di accesso](HEALTH_SERVICE)
+    - con quale obiettivo specifico viene adottato la [nutrizione artificiale](HEALTH_SERVICE)
+    - quali sono gli obiettivi principali delle [cure palliative](HEALTH_SERVICE)
+    - a quali traguardi punta l'[ossigenoterapia](HEALTH_SERVICE)
+    - che risultati si propone di raggiungere il [ritiro referti](HEALTH_SERVICE)
+    - qual è il fine operativo del [CUP](HEALTH_SERVICE)
+    - quali target sono fissati per l'[assistenza protesica](HEALTH_SERVICE)
+    - con quale obiettivo specifico viene adottato le [vaccinazioni](HEALTH_SERVICE)
+    - quali sono gli obiettivi principali dell'[assistenza domiciliare](HEALTH_SERVICE)
+    - a quali traguardi punta la [Guardia Medica](HEALTH_SERVICE)
+  - intent: ask_misc_objectives
+    examples:
+    - quali sono gli obiettivi della [riforma fiscale](MISC)
+    - a cosa mira il contrasto all'[evasione fiscale](MISC)
+    - quali sono gli obiettivi principali della [dieta speciale](MISC)
+    - a quali traguardi punta [CIVIS](MISC)
+    - che risultati si propone di raggiungere [Fisconline](MISC)
+    - qual è il fine operativo dello [SdI](MISC)
+    - quali target sono fissati per il [codice tributo](MISC)
+    - con quale obiettivo specifico viene adottato la [mensa scolastica](MISC)
+    - quali sono gli obiettivi principali della [prima casa](MISC)
+    - a quali traguardi punta la [carta famiglia](MISC)
+    - che risultati si propone di raggiungere gli [abusi digitali](MISC)
+    - qual è il fine operativo di [Entratel](MISC)
+    - quali target sono fissati per [Fatture e Corrispettivi](MISC)
+    - con quale obiettivo specifico viene adottato il [pre-scuola](MISC)
+    - quali sono gli obiettivi principali della [rendita catastale](MISC)
+    - a quali traguardi punta il [regime ordinario](MISC)
+    - che risultati si propone di raggiungere il [bonus mobili](MISC)
+    - qual è il fine operativo dell'[ecobonus](MISC)
+  - intent: ask_technology_objectives
+    examples:
+    - quali obiettivi ha il corso su [Python](TECHNOLOGY)
+    - quali sono gli obiettivi didattici del tutorial su [Spring Boot](TECHNOLOGY)
+    - quali sono gli obiettivi principali di [JavaScript](TECHNOLOGY)
+    - a quali traguardi punta [Angular](TECHNOLOGY)
+    - che risultati si propone di raggiungere [phpMyAdmin](TECHNOLOGY)
+    - qual è il fine operativo di [Flask](TECHNOLOGY)
+    - quali target sono fissati per [Joomla](TECHNOLOGY)
+    - con quale obiettivo specifico viene adottato il [Desktop Telematico](TECHNOLOGY)
+    - quali sono gli obiettivi principali di [Voltura 2.0](TECHNOLOGY)
+    - a quali traguardi punta [Docker](TECHNOLOGY)
+    - che risultati si propone di raggiungere [FastAPI](TECHNOLOGY)
+    - qual è il fine operativo di [Laravel](TECHNOLOGY)
+    - quali target sono fissati per [Python](TECHNOLOGY)
+    - con quale obiettivo specifico viene adottato [PostgreSQL](TECHNOLOGY)
+    - quali sono gli obiettivi principali di [Spring Boot](TECHNOLOGY)
+    - a quali traguardi punta [PHP](TECHNOLOGY)
+  - intent: ask_event_objectives
+    examples:
+    - quali sono gli obiettivi del progetto [Magliana per le Ragazze](EVENT)
+    - quali sono gli obiettivi principali dei [centri estivi](EVENT)
+    - a quali traguardi punta [Sotto la superficie](EVENT)
+    - che risultati si propone di raggiungere l'[incontro pediatrico-neonatologico](EVENT)
+    - qual è il fine operativo della [Giornata mondiale della salute](EVENT)
+    - quali target sono fissati per la [giornata della prevenzione](EVENT)
+    - con quale obiettivo specifico viene adottato [Magliana per le Ragazze](EVENT)
+    - quali sono gli obiettivi principali del [convegno pediatrico](EVENT)
+    - a quali traguardi punta la [Settimana dell'allattamento materno](EVENT)
+    - che risultati si propone di raggiungere l'[Open Day vaccinale](EVENT)
+    - qual è il fine operativo della [Giornata della trasparenza](EVENT)
+    - quali target sono fissati per la [Camminata della salute](EVENT)
+    - con quale obiettivo specifico viene adottato la [Conferenza dei servizi sanitari](EVENT)
+    - quali sono gli obiettivi principali del [Seminario sulla sicurezza stradale](EVENT)
+    - a quali traguardi punta il [Laboratorio di lettura per bambini](EVENT)
+    - che risultati si propone di raggiungere il [Festival della cultura locale](EVENT)
+    - qual è il fine operativo della [Giornata Nazionale del mal di testa](EVENT)
+    - quali target sono fissati per la [Notte dei Musei](EVENT)
+  - intent: ask_organization_objectives
+    examples:
+    - quali sono gli obiettivi di semplificazione dell'[Agenzia delle Entrate](ORGANIZATION)
+    - quali sono gli obiettivi principali dell'[Agenzia delle Entrate](ORGANIZATION)
+    - a quali traguardi punta l'[ASL Roma 3](ORGANIZATION)
+    - che risultati si propone di raggiungere l'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - qual è il fine operativo di [programmato](ORGANIZATION)
+    - quali target sono fissati per i [Musei Civici](ORGANIZATION)
+    - con quale obiettivo specifico viene adottato l'[ASL](ORGANIZATION)
+    - quali sono gli obiettivi principali del [CAF](ORGANIZATION)
+    - a quali traguardi punta il [Comune di Montesole](ORGANIZATION)
+    - che risultati si propone di raggiungere l'[IC Giovanni Pascoli](ORGANIZATION)
+    - qual è il fine operativo del [Comune](ORGANIZATION)
+    - quali target sono fissati per l'[IC Pascoli](ORGANIZATION)
+    - con quale obiettivo specifico viene adottato i [Musei Civici di Montesole](ORGANIZATION)
+    - quali sono gli obiettivi principali della [Guardia di Finanza](ORGANIZATION)
+    - a quali traguardi punta la [Regione](ORGANIZATION)
+    - che risultati si propone di raggiungere l'[INPS](ORGANIZATION)
+    - qual è il fine operativo del [Ministero della Salute](ORGANIZATION)
+    - quali target sono fissati per l'[Ordine dei Medici](ORGANIZATION)
+  - intent: ask_procedure_objectives
+    examples:
+    - qual è l'obiettivo della [rottamazione delle cartelle](PROCEDURE)
+    - quali sono gli obiettivi principali dell'[accertamento con adesione](PROCEDURE)
+    - a quali traguardi punta il [matrimonio civile](PROCEDURE)
+    - che risultati si propone di raggiungere il [pignoramento](PROCEDURE)
+    - qual è il fine operativo dell'[interpello](PROCEDURE)
+    - quali target sono fissati per il [cambio di residenza](PROCEDURE)
+    - con quale obiettivo specifico viene adottato la [rottamazione quater](PROCEDURE)
+    - quali sono gli obiettivi principali della [fatturazione elettronica](PROCEDURE)
+    - a quali traguardi punta la [rateizzazione](PROCEDURE)
+    - che risultati si propone di raggiungere il [ravvedimento operoso](PROCEDURE)
+    - qual è il fine operativo dei [contributi Inps](PROCEDURE)
+    - quali target sono fissati per l'[autotutela](PROCEDURE)
+    - con quale obiettivo specifico viene adottato l'[accertamento fiscale](PROCEDURE)
+    - quali sono gli obiettivi principali della [raccolta differenziata](PROCEDURE)
+    - a quali traguardi punta il [rinnovo della patente](PROCEDURE)
+    - che risultati si propone di raggiungere la [voltura catastale](PROCEDURE)
+    - qual è il fine operativo delle [iscrizioni online](PROCEDURE)
+    - quali target sono fissati per il [fermo amministrativo](PROCEDURE)
+  - intent: ask_tech_concept_objectives
+    examples:
+    - quali sono gli obiettivi dell'articolo sulle [reti neurali](TECH_CONCEPT)
+    - quali sono gli obiettivi principali della [rete neurale](TECH_CONCEPT)
+    - a quali traguardi punta il [generatore](TECH_CONCEPT)
+    - che risultati si propone di raggiungere il [vibe coding](TECH_CONCEPT)
+    - qual è il fine operativo delle [reti neurali](TECH_CONCEPT)
+    - quali target sono fissati per i [Service Provider](TECH_CONCEPT)
+    - con quale obiettivo specifico viene adottato le [API](TECH_CONCEPT)
+    - quali sono gli obiettivi principali dell'[ORM](TECH_CONCEPT)
+    - a quali traguardi punta l'[interceptor](TECH_CONCEPT)
+    - che risultati si propone di raggiungere le [Facades](TECH_CONCEPT)
+    - qual è il fine operativo della [GPU](TECH_CONCEPT)
+    - quali target sono fissati per il [machine learning](TECH_CONCEPT)
+    - con quale obiettivo specifico viene adottato l'[autenticazione JWT](TECH_CONCEPT)
+    - quali sono gli obiettivi principali della [containerizzazione](TECH_CONCEPT)
+    - a quali traguardi punta gli [embeddings](TECH_CONCEPT)
+    - che risultati si propone di raggiungere il [firewall](TECH_CONCEPT)
+    - qual è il fine operativo dell'[intelligenza artificiale](TECH_CONCEPT)

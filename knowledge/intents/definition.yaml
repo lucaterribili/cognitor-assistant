@@ -1,0 +1,253 @@
+nlu:
+  intents:
+  - intent: ask_definition
+    examples:
+    - Che cos'è?
+    - Come si definisce?
+    - Cosa significa questo termine?
+    - che cosa vuol dire questa sigla
+    - cosa significa questa parola
+    - cosa si intende per domicilio
+    - cosa s'intende con residenza
+    - definiscimi il termine
+    - vuol dire che
+    - cosa indica questo termine
+    - a cosa si riferisce la sigla
+    - cosa sta a indicare questo codice
+    - potresti dirmi cos'è un bando
+    - significato di questa voce
+    - cosa vuol dire esattamente
+    - che cosa sarebbe
+    - sarebbe a dire
+    - cos'è esattamente
+    - che roba è
+    - di cosa si tratta, in termini semplici
+    - si può spiegare cos'è
+  - intent: ask_document_definition
+    examples:
+    - cos'è l'[ISEE](DOCUMENT)
+    - cos'è la [PEC](DOCUMENT)
+    - cos'è lo [SPID](DOCUMENT)
+    - che cos'è un'[autocertificazione](DOCUMENT)
+    - che significa [ISEE](DOCUMENT)
+    - definizione di [delega](DOCUMENT)
+    - non so cosa sia un'[impegnativa](DOCUMENT)
+    - cos'è l'[esenzione dal ticket](DOCUMENT)
+    - che cos'è la [Tessera Sanitaria](DOCUMENT)
+    - cos'è il [PNRR Missione 6](DOCUMENT)
+    - che cos'è la [Certificazione Unica](DOCUMENT)
+    - che cos'è la [CIE](DOCUMENT)
+    - cosa si intende per [PTOF](DOCUMENT) nella scuola
+    - che cos'è la [cedola libraria](DOCUMENT) per la primaria
+    - cos'è il [patto educativo di corresponsabilità](DOCUMENT)
+  - intent: ask_misc_definition
+    examples:
+    - che cos'è una [Srl](MISC)
+    - cosa significa [SLA](MISC)
+    - cosa si intende per [accreditamento](MISC)
+    - come si definisce un [contratto a tempo determinato](MISC)
+    - mi dai la definizione di [sussidio](MISC)
+    - che vuol dire [ISO 9001](MISC)
+    - che vuol dire [domiciliazione](MISC)
+    - qual è il significato di [moratoria](MISC)
+    - non conosco il termine [ex lege](MISC)
+    - cos'è il [codice tributo](MISC)
+    - cosa significa [BES](MISC) in ambito scolastico
+    - che cos'è un [biglietto cumulativo](MISC) per i musei
+    - cosa si intende per [ingresso contingentato](MISC)
+    - che cos'è esattamente l'[ecobonus](MISC)
+    - qual è la definizione precisa del [Superbonus](MISC)
+    - cosa significa il termine [audioguida](MISC)
+    - cosa si intende con gli [alloggi popolari](MISC)
+    - puoi darmi una definizione chiara del [regime forfettario](MISC)
+  - intent: ask_tax_definition
+    examples:
+    - che significa [IMU](TAX)
+    - qual è la definizione di [tributo](TAX)
+    - sapresti dirmi che cos'è la [TARI](TAX)
+    - cos'è l'[IRPEF](TAX)
+    - che cos'è l'[IVA](TAX)
+    - cosa significa [IRES](TAX)
+    - che significa [IRAP](TAX)
+    - cos'è la [cedolare secca](TAX)
+    - cosa si intende per [TARI](TAX)
+    - cos'è l'[IMU](TAX)
+    - che cos'è esattamente il [diritto camerale](TAX)
+    - qual è la definizione precisa dell'[IMU](TAX)
+    - cosa significa il termine [IRPEF](TAX)
+    - cosa si intende con la [TARI](TAX)
+    - puoi darmi una definizione chiara dell'[IVA](TAX)
+    - che significato ha la [cedolare secca](TAX) in questo contesto
+  - intent: ask_health_service_definition
+    examples:
+    - cosa si intende per [CUP](HEALTH_SERVICE)
+    - che cos'è il [Punto unico di accesso](HEALTH_SERVICE)
+    - che significa [PUA](HEALTH_SERVICE)
+    - che cos'è la [farmacovigilanza](HEALTH_SERVICE)
+    - che cos'è il [Whistleblowing](HEALTH_SERVICE)
+    - cos'è l'[accesso civico](HEALTH_SERVICE)
+    - che cos'è esattamente lo [screening oncologico](HEALTH_SERVICE)
+    - qual è la definizione precisa dello [Sportello Giovani](HEALTH_SERVICE)
+    - cosa significa il termine [Fascicolo Sanitario](HEALTH_SERVICE)
+    - cosa si intende con lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - puoi darmi una definizione chiara dell'[assistenza all'estero](HEALTH_SERVICE)
+    - che significato ha il [Servizio Sanitario](HEALTH_SERVICE) in questo contesto
+    - che cos'è esattamente lo [screening del colon retto](HEALTH_SERVICE)
+    - qual è la definizione precisa dell'[accesso civico](HEALTH_SERVICE)
+    - cosa significa il termine [screening della mammella](HEALTH_SERVICE)
+    - cosa si intende con la [Telemedicina](HEALTH_SERVICE)
+    - puoi darmi una definizione chiara del [RECUP](HEALTH_SERVICE)
+    - che significato ha il [Punto unico di accesso](HEALTH_SERVICE) in questo contesto
+  - intent: ask_tech_concept_definition
+    examples:
+    - cos'è una [rete neurale](TECH_CONCEPT)
+    - cos'è [BiGRU](TECH_CONCEPT)
+    - che cos'è un [generatore](TECH_CONCEPT) in [PHP](TECHNOLOGY)
+    - che cos'è un [ORM](TECH_CONCEPT)
+    - cos'è la [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - che cos'è l'[intelligenza artificiale](TECH_CONCEPT) in parole semplici
+    - che cos'è esattamente il [firewall](TECH_CONCEPT)
+    - qual è la definizione precisa dell'[intelligenza artificiale](TECH_CONCEPT)
+    - cosa significa il termine [cron job](TECH_CONCEPT)
+    - cosa si intende con la [BiGRU](TECH_CONCEPT)
+    - puoi darmi una definizione chiara dei [microservizi](TECH_CONCEPT)
+    - che significato ha la [programmazione orientata agli oggetti](TECH_CONCEPT) in questo contesto
+    - che cos'è esattamente i [generatori](TECH_CONCEPT)
+    - qual è la definizione precisa degli [assistenti di codice](TECH_CONCEPT)
+    - cosa significa il termine [rete neurale](TECH_CONCEPT)
+    - cosa si intende con il [generatore](TECH_CONCEPT)
+    - puoi darmi una definizione chiara del [vibe coding](TECH_CONCEPT)
+    - che significato ha le [reti neurali](TECH_CONCEPT) in questo contesto
+  - intent: ask_department_definition
+    examples:
+    - che significa [UOSD](DEPARTMENT)
+    - cosa vuol dire [UOC](DEPARTMENT)
+    - che significa la sigla [SUAP](DEPARTMENT)
+    - che cos'è esattamente la [UOC Consultori Familiari](DEPARTMENT)
+    - qual è la definizione precisa della [Cardiologia interventistica](DEPARTMENT)
+    - cosa significa il termine [tributi](DEPARTMENT)
+    - cosa si intende con la [segreteria scolastica](DEPARTMENT)
+    - puoi darmi una definizione chiara dell'[Ufficio Stampa](DEPARTMENT)
+    - che significato ha i [servizi demografici](DEPARTMENT) in questo contesto
+    - che cos'è esattamente i [Lavori pubblici](DEPARTMENT)
+    - qual è la definizione precisa della [Direzione Generale](DEPARTMENT)
+    - cosa significa il termine [URP](DEPARTMENT)
+    - cosa si intende con il [Pronto Soccorso](DEPARTMENT)
+    - puoi darmi una definizione chiara dell'[Ufficio Territoriale](DEPARTMENT)
+    - che significato ha l'[Ufficio del Catasto](DEPARTMENT) in questo contesto
+    - che cos'è esattamente la [Direzione Provinciale](DEPARTMENT)
+    - qual è la definizione precisa della [Medicina Legale](DEPARTMENT)
+  - intent: ask_medical_procedure_definition
+    examples:
+    - cos'è una [curva glicemica](MEDICAL_PROCEDURE)
+    - che cos'è lo [spermiogramma](MEDICAL_PROCEDURE)
+    - cos'è il [Quantiferon](MEDICAL_PROCEDURE)
+    - che cos'è esattamente la [risonanza magnetica](MEDICAL_PROCEDURE)
+    - qual è la definizione precisa degli [esami del sangue](MEDICAL_PROCEDURE)
+    - cosa significa il termine [visita intramoenia](MEDICAL_PROCEDURE)
+    - cosa si intende con l'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - puoi darmi una definizione chiara della [radiografia](MEDICAL_PROCEDURE)
+    - che significato ha la [visita oculistica](MEDICAL_PROCEDURE) in questo contesto
+    - che cos'è esattamente la [visita dermatologica](MEDICAL_PROCEDURE)
+    - qual è la definizione precisa del [tampone molecolare](MEDICAL_PROCEDURE)
+    - cosa significa il termine [spirometria](MEDICAL_PROCEDURE)
+    - cosa si intende con la [visita medico legale](MEDICAL_PROCEDURE)
+    - puoi darmi una definizione chiara del [prelievo](MEDICAL_PROCEDURE)
+    - che significato ha il [Quantiferon](MEDICAL_PROCEDURE) in questo contesto
+    - che cos'è esattamente l'[ecografia](MEDICAL_PROCEDURE)
+  - intent: ask_technology_definition
+    examples:
+    - cos'è [Lighthouse](TECHNOLOGY)
+    - cos'è [NumPy](TECHNOLOGY)
+    - che cos'è [nftables](TECHNOLOGY)
+    - che cos'è esattamente [WildFly](TECHNOLOGY)
+    - qual è la definizione precisa di [Apache](TECHNOLOGY)
+    - cosa significa il termine [Django](TECHNOLOGY)
+    - cosa si intende con [JavaScript](TECHNOLOGY)
+    - puoi darmi una definizione chiara di [Angular](TECHNOLOGY)
+    - che significato ha [phpMyAdmin](TECHNOLOGY) in questo contesto
+    - che cos'è esattamente [Flask](TECHNOLOGY)
+    - qual è la definizione precisa di [Joomla](TECHNOLOGY)
+    - cosa significa il termine [Desktop Telematico](TECHNOLOGY)
+    - cosa si intende con [Voltura 2.0](TECHNOLOGY)
+    - puoi darmi una definizione chiara di [Docker](TECHNOLOGY)
+    - che significato ha [FastAPI](TECHNOLOGY) in questo contesto
+    - che cos'è esattamente [Laravel](TECHNOLOGY)
+  - intent: ask_facility_definition
+    examples:
+    - cos'è una [Casa della Comunità](FACILITY)
+    - che cos'è una [Centrale Operativa Territoriale](FACILITY)
+    - che cos'è esattamente le [Case della Comunità](FACILITY)
+    - qual è la definizione precisa della [Casa della Comunità](FACILITY)
+    - cosa significa il termine [Ospedale Grassi](FACILITY)
+    - cosa si intende con il [Presidio Ospedaliero Grassi](FACILITY)
+    - puoi darmi una definizione chiara dei [Consultori](FACILITY)
+    - che significato ha le [Cappelle Medicee](FACILITY) in questo contesto
+    - che cos'è esattamente la [Pinacoteca civica](FACILITY)
+    - qual è la definizione precisa dell'[asilo nido](FACILITY)
+    - cosa significa il termine [Ospedale di Comunità](FACILITY)
+    - cosa si intende con l'[Ecocentro](FACILITY)
+    - puoi darmi una definizione chiara della [Scuola Primaria Rodari](FACILITY)
+    - che significato ha il [CPO Gennaro di Rosa](FACILITY) in questo contesto
+    - che cos'è esattamente il [Consultorio](FACILITY)
+    - qual è la definizione precisa della [Galleria d'arte contemporanea](FACILITY)
+    - cosa significa il termine [Centro Prelievi Palidoro](FACILITY)
+    - cosa si intende con il [Centro Prelievi Acilia](FACILITY)
+  - intent: ask_procedure_definition
+    examples:
+    - che cos'è il [ravvedimento operoso](PROCEDURE)
+    - cosa vuol dire [accertamento fiscale](PROCEDURE)
+    - che cos'è esattamente la [registrazione del contratto di locazione](PROCEDURE)
+    - qual è la definizione precisa del [concordato preventivo biennale](PROCEDURE)
+    - cosa significa il termine [accertamento con adesione](PROCEDURE)
+    - cosa si intende con il [matrimonio civile](PROCEDURE)
+    - puoi darmi una definizione chiara del [pignoramento](PROCEDURE)
+    - che significato ha l'[interpello](PROCEDURE) in questo contesto
+    - che cos'è esattamente il [cambio di residenza](PROCEDURE)
+    - qual è la definizione precisa della [rottamazione quater](PROCEDURE)
+    - cosa significa il termine [fatturazione elettronica](PROCEDURE)
+    - cosa si intende con la [rateizzazione](PROCEDURE)
+    - puoi darmi una definizione chiara del [ravvedimento operoso](PROCEDURE)
+    - che significato ha i [contributi Inps](PROCEDURE) in questo contesto
+    - che cos'è esattamente l'[autotutela](PROCEDURE)
+    - qual è la definizione precisa dell'[accertamento fiscale](PROCEDURE)
+  - intent: ask_organization_definition
+    examples:
+    - chi sono i soci [ICOM](ORGANIZATION)
+    - che cos'è esattamente il [CAF](ORGANIZATION)
+    - qual è la definizione precisa del [Comune di Montesole](ORGANIZATION)
+    - cosa significa il termine [IC Giovanni Pascoli](ORGANIZATION)
+    - cosa si intende con il [Comune](ORGANIZATION)
+    - puoi darmi una definizione chiara dell'[IC Pascoli](ORGANIZATION)
+    - che significato ha i [Musei Civici di Montesole](ORGANIZATION) in questo contesto
+    - che cos'è esattamente la [Guardia di Finanza](ORGANIZATION)
+    - qual è la definizione precisa della [Regione](ORGANIZATION)
+    - cosa significa il termine [INPS](ORGANIZATION)
+    - cosa si intende con il [Ministero della Salute](ORGANIZATION)
+    - puoi darmi una definizione chiara dell'[Ordine dei Medici](ORGANIZATION)
+    - che significato ha la [Camera di Commercio](ORGANIZATION) in questo contesto
+    - che cos'è esattamente la [Croce Rossa](ORGANIZATION)
+    - qual è la definizione precisa della [Protezione Civile](ORGANIZATION)
+    - cosa significa il termine [Agenzia delle Entrate](ORGANIZATION)
+    - cosa si intende con l'[ASL Roma 3](ORGANIZATION)
+    - puoi darmi una definizione chiara dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+  - intent: ask_role_definition
+    examples:
+    - cosa si intende per [sostituto d'imposta](ROLE)
+    - che cos'è esattamente lo [specialista ambulatoriale](ROLE)
+    - qual è la definizione precisa dell'[assistente sociale](ROLE)
+    - cosa significa il termine [Medico Competente](ROLE)
+    - cosa si intende con il [Direttore Generale](ROLE)
+    - puoi darmi una definizione chiara del [Sindaco](ROLE)
+    - che significato ha il [primario](ROLE) in questo contesto
+    - che cos'è esattamente l'[operatore sanitario](ROLE)
+    - qual è la definizione precisa del [medico di base](ROLE)
+    - cosa significa il termine [commercialista](ROLE)
+    - cosa si intende con il [sostituto d'imposta](ROLE)
+    - puoi darmi una definizione chiara del [pediatra](ROLE)
+    - che significato ha gli [specialisti ambulatoriali](ROLE) in questo contesto
+    - che cos'è esattamente i [medici di base](ROLE)
+    - qual è la definizione precisa del [DPO](ROLE)
+    - cosa significa il termine [donatore di sangue](ROLE)
+    - cosa si intende con lo [psicologo](ROLE)
+    - puoi darmi una definizione chiara del [Dirigente Scolastico](ROLE)

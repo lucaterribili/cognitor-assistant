@@ -1,0 +1,36 @@
+# Configurazione del dialogo per argomento (assunzioni da rivedere: i dati non le dicono).
+# Gli argomenti sono quelli della tassonomia (nomi senza "ask_").
+
+# Argomenti a cui si può rispondere senza sapere di quale entità si parla.
+# Per tutti gli altri argomenti "ask_*" il bot chiede l'entità se manca (ASK_SLOT).
+answerable_without_entity:
+  - general_information
+  - help
+  - news
+  - announcements
+  - events
+  - mission
+  - history
+  - description
+  - services
+  - organization
+  - regulations
+  - privacy
+  - accessibility
+
+# Argomenti che passano a un operatore.
+handoff_topics:
+  - contact_human
+
+# Argomenti che chiedono di ripetere o chiarire l'ultima risposta.
+repeat_topics:
+  - clarification
+
+# Intenti "affirm_*" (il nome dell'argomento coincide con l'intento).
+affirm_topics:
+  greeting: affirm_greeting
+  goodbye: affirm_goodbye
+  thanks: affirm_gratitude
+  insult: affirm_insult
+  confirm: affirm_confirmation
+  deny: affirm_negation

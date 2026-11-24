@@ -1,0 +1,96 @@
+# Parti di conversazione che non riguardano il contenuto: operatore, insulti, ripetizioni, conferme, riavvii.
+conversations:
+  - id: meta-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Vorrei parlare con un operatore", move: handoff, bot: handoff}
+
+  - id: meta-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Siete inutili", move: insult, bot: deescalate}
+      - {u: "Scusa, quando apre il CUP?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: meta-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "A che ora apre il pronto soccorso?", move: question, topic: opening_hours, ent: [DEPARTMENT], bot: answer}
+      - {u: "Non ho capito, puoi ripetere?", move: repeat_request, bot: repeat}
+      - {u: "Ok grazie", move: thanks, bot: thanks_reply}
+
+  - id: meta-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si trova il distretto 2?", move: question, topic: location, ent: [ORGANIZATION], bot: answer}
+      - {u: "Come scusa?", move: repeat_request, bot: repeat}
+      - {u: "Ah ok", move: confirm, bot: offer_more}
+      - {u: "No, grazie", move: deny, bot: goodbye}
+
+  - id: meta-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Mi puoi aiutare?", move: confirm, bot: prompt}
+      - {u: "Quali sono gli orari della radiologia?", move: question, topic: opening_hours, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: meta-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto costa il parcheggio dell'ospedale?", move: question, topic: prices, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+      - {u: "Sì, ho un'altra domanda", move: confirm, bot: prompt}
+      - {u: "C'è un parcheggio gratuito?", move: question, topic: costs, ent: [FACILITY], bot: answer}
+      - {u: "Grazie ancora", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: meta-07
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+      - {u: "Ah, aspetta, buongiorno", move: greeting, bot: greet}
+      - {u: "Gli orari del CUP?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: meta-08
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+      - {u: "No, niente altro", move: deny, bot: goodbye}
+
+  - id: meta-09
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si prenota una visita?", move: question, topic: booking, bot: ask_slot}
+      - {u: "Siete incapaci", move: insult, bot: deescalate}
+      - {u: "Una visita cardiologica", move: slot_reply, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: meta-10
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Dove si trova il distretto 1?", move: question, topic: location, ent: [ORGANIZATION], bot: answer}
+      - {u: "Passami un operatore", move: handoff, bot: handoff}
+
+  - id: meta-11
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso avere informazioni?", move: question, topic: general_information, bot: answer}
+      - {u: "Sì, grazie", move: confirm, bot: offer_more}
+      - {u: "Quali servizi ci sono per i bambini?", move: question, topic: services, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+      - {u: "No, nient'altro", move: deny, bot: goodbye}

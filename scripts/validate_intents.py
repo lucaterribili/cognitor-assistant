@@ -7,7 +7,7 @@ from pathlib import Path
 import yaml
 
 INTENTS_DIR = Path(__file__).parent.parent / 'knowledge' / 'intents'
-MIN_EXAMPLES = 30
+MIN_EXAMPLES = 15
 # Label delle entita' (tutte in inglese). Possono essere specifiche del dominio (il flusso e' gestito
 # dal RAG), ma lo stesso testo ha sempre la stessa label e si etichettano solo entita' specifiche:
 # i nomi generici (documenti, servizio, medico, ufficio...) NON si etichettano.
@@ -39,17 +39,17 @@ def plain(e):
 
 
 def write_doc():
-    """Rigenera docs/INTENT_TAXONOMY.md da knowledge/intents/intents.yaml."""
-    rows = ['| Intento | Esempi | Entita |', '|---|---|---|']
+    """Rigenera docs/INTENT_TAXONOMY.md da knowledge/intents/*.yaml."""
+    rows = ['| Intento | File | Esempi | Entita |', '|---|---|---|---|']
     total = 0
     for f in sorted(INTENTS_DIR.glob('*.yaml')):
         for it in yaml.safe_load(f.read_text(encoding='utf-8'))['nlu']['intents']:
             ents = collections.Counter(m.group(2) for e in it['examples'] for m in TAG.finditer(e))
-            rows.append(f"| `{it['intent']}` | {len(it['examples'])} | {', '.join(k for k, _ in ents.most_common(4))} |")
+            rows.append(f"| `{it['intent']}` | `{f.name}` | {len(it['examples'])} | {', '.join(k for k, _ in ents.most_common(4))} |")
             total += len(it['examples'])
     head = ['# Intenti base\n',
-            f'{len(rows) - 2} intenti, {total} esempi. Sorgente di verita\': `knowledge/intents/intents.yaml`.\n',
-            "Si uniscono intenti solo quando un'entita' distingue i casi (o sono sinonimi). "
+            f'{len(rows) - 2} intenti, {total} esempi. Sorgente di verita\': `knowledge/intents/*.yaml`.\n',
+            "Gli intenti sono organizzati per file in base al suffisso e splittati per entita' dominante. "
             'Rigenera con `python scripts/validate_intents.py --doc`.\n']
     (Path(__file__).parent.parent / 'docs' / 'INTENT_TAXONOMY.md').write_text('\n'.join(head + rows) + '\n', encoding='utf-8')
 

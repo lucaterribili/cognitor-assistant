@@ -1,0 +1,153 @@
+nlu:
+  intents:
+  - intent: ask_obligations
+    examples:
+    - Quali obblighi devo rispettare?
+    - Cosa sono tenuto a fare?
+    - Quali responsabilità ho?
+    - sono obbligato a vaccinare i miei figli
+    - sono tenuto a disdire la visita se non posso venire
+    - quali obblighi di pubblicità hanno i bandi di gara
+    - devo comunicare la scadenza del documento
+    - quali doveri ho come paziente ricoverato
+    - devo dichiarare nel quadro RW i conti correnti detenuti all'estero
+    - sono obbligato a comunicare la variazione del domicilio fiscale
+    - quali sono i miei obblighi come cittadino o utente
+    - ci sono adempimenti obbligatori da rispettare
+    - cosa sono obbligato a dichiarare o comunicare
+    - è un adempimento facoltativo o obbligatorio per legge
+    - quali doveri ha chi sottoscrive la richiesta
+    - ci sono obblighi di comunicazione periodica
+  - intent: ask_document_obligations
+    examples:
+    - sono obbligato a pagare il [ticket](DOCUMENT)
+    - devo presentare la [tessera sanitaria](DOCUMENT) ad ogni visita
+    - sono obbligato a portare l'[impegnativa](DOCUMENT)
+    - quali obblighi ho per il rinnovo della [patente](DOCUMENT)
+    - quali responsabilità ho se fornisco dati falsi in una [autocertificazione](DOCUMENT)
+    - sono obbligato a presentare la [dichiarazione sostitutiva](DOCUMENT)
+    - sono obbligato a presentare la [dichiarazione dei redditi](DOCUMENT)
+    - chi ha l'obbligo di emettere la [fattura elettronica](DOCUMENT)
+    - sono tenuto a conservare i documenti fiscali del [modello 730](DOCUMENT)
+    - quali obblighi fiscali ha chi apre una [partita IVA](DOCUMENT) in [regime forfettario](MISC)
+    - quali obblighi sono previsti per l'[impegnativa](DOCUMENT)
+    - cosa sono tenuto a fare per legge riguardo al [Piano terapeutico](DOCUMENT)
+    - ci sono adempimenti obbligatori legati al [modello 730](DOCUMENT)
+    - quali doveri comporta il [modello F24](DOCUMENT)
+    - è obbligatorio adempiere alle prescrizioni della [patente](DOCUMENT)
+    - quali vincoli e obblighi vigono per la [dichiarazione dei redditi](DOCUMENT)
+    - quali obblighi sono previsti per la [cartella esattoriale](DOCUMENT)
+    - cosa sono tenuto a fare per legge riguardo al [modello Redditi PF](DOCUMENT)
+  - intent: ask_procedure_obligations
+    examples:
+    - sono obbligato a comunicare il [cambio di residenza](PROCEDURE)
+    - quali sono gli obblighi del datore di lavoro sui [contributi Inps](PROCEDURE)
+    - quali obblighi sono previsti per l'[apertura della partita IVA](PROCEDURE)
+    - cosa sono tenuto a fare per legge riguardo alla [rottamazione delle cartelle](PROCEDURE)
+    - ci sono adempimenti obbligatori legati alla [registrazione del contratto di locazione](PROCEDURE)
+    - quali doveri comporta il [concordato preventivo biennale](PROCEDURE)
+    - è obbligatorio adempiere alle prescrizioni dell'[accertamento con adesione](PROCEDURE)
+    - quali vincoli e obblighi vigono per il [matrimonio civile](PROCEDURE)
+    - quali obblighi sono previsti per il [pignoramento](PROCEDURE)
+    - cosa sono tenuto a fare per legge riguardo all'[interpello](PROCEDURE)
+    - ci sono adempimenti obbligatori legati al [cambio di residenza](PROCEDURE)
+    - quali doveri comporta la [rottamazione quater](PROCEDURE)
+    - è obbligatorio adempiere alle prescrizioni della [fatturazione elettronica](PROCEDURE)
+    - quali vincoli e obblighi vigono per la [rateizzazione](PROCEDURE)
+    - quali obblighi sono previsti per il [ravvedimento operoso](PROCEDURE)
+    - cosa sono tenuto a fare per legge riguardo ai [contributi Inps](PROCEDURE)
+    - ci sono adempimenti obbligatori legati all'[autotutela](PROCEDURE)
+  - intent: ask_department_obligations
+    examples:
+    - quali obblighi ho se uso il [Pronto Soccorso](DEPARTMENT)
+    - quali obblighi sono previsti per la [segreteria scolastica](DEPARTMENT)
+    - cosa sono tenuto a fare per legge riguardo all'[Ufficio Stampa](DEPARTMENT)
+    - ci sono adempimenti obbligatori legati ai [servizi demografici](DEPARTMENT)
+    - quali doveri comporta i [Lavori pubblici](DEPARTMENT)
+    - è obbligatorio adempiere alle prescrizioni della [Direzione Generale](DEPARTMENT)
+    - quali vincoli e obblighi vigono per l'[URP](DEPARTMENT)
+    - quali obblighi sono previsti per il [Pronto Soccorso](DEPARTMENT)
+    - cosa sono tenuto a fare per legge riguardo all'[Ufficio Territoriale](DEPARTMENT)
+    - ci sono adempimenti obbligatori legati all'[Ufficio del Catasto](DEPARTMENT)
+    - quali doveri comporta la [Direzione Provinciale](DEPARTMENT)
+    - è obbligatorio adempiere alle prescrizioni della [Medicina Legale](DEPARTMENT)
+    - quali vincoli e obblighi vigono per la [Medicina dello Sport](DEPARTMENT)
+    - quali obblighi sono previsti per la [Salute Mentale](DEPARTMENT)
+    - cosa sono tenuto a fare per legge riguardo al [Catasto](DEPARTMENT)
+    - ci sono adempimenti obbligatori legati alla [Direzione Sanitaria](DEPARTMENT)
+    - quali doveri comporta il [SUAP](DEPARTMENT)
+  - intent: ask_medical_procedure_obligations
+    examples:
+    - devo avvisare se non mi presento al [prelievo](MEDICAL_PROCEDURE)
+    - quali obblighi sono previsti per la [visita cardiologica](MEDICAL_PROCEDURE)
+    - cosa sono tenuto a fare per legge riguardo alla [visita neurologica](MEDICAL_PROCEDURE)
+    - ci sono adempimenti obbligatori legati alla [visita specialistica](MEDICAL_PROCEDURE)
+    - quali doveri comporta la [mammografia](MEDICAL_PROCEDURE)
+    - è obbligatorio adempiere alle prescrizioni del [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - quali vincoli e obblighi vigono per la [visita per la patente](MEDICAL_PROCEDURE)
+    - quali obblighi sono previsti per il [ricovero programmato](MEDICAL_PROCEDURE)
+    - cosa sono tenuto a fare per legge riguardo alla [risonanza magnetica](MEDICAL_PROCEDURE)
+    - ci sono adempimenti obbligatori legati agli [esami del sangue](MEDICAL_PROCEDURE)
+    - quali doveri comporta la [visita intramoenia](MEDICAL_PROCEDURE)
+    - è obbligatorio adempiere alle prescrizioni dell'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - quali vincoli e obblighi vigono per la [radiografia](MEDICAL_PROCEDURE)
+    - quali obblighi sono previsti per la [visita oculistica](MEDICAL_PROCEDURE)
+    - cosa sono tenuto a fare per legge riguardo alla [visita dermatologica](MEDICAL_PROCEDURE)
+    - ci sono adempimenti obbligatori legati al [tampone molecolare](MEDICAL_PROCEDURE)
+    - quali doveri comporta la [spirometria](MEDICAL_PROCEDURE)
+    - è obbligatorio adempiere alle prescrizioni della [visita medico legale](MEDICAL_PROCEDURE)
+  - intent: ask_organization_obligations
+    examples:
+    - quali obblighi ha l'[ASL Roma 3](ORGANIZATION) verso i cittadini
+    - quali obblighi sono previsti per il [Ministero della Salute](ORGANIZATION)
+    - cosa sono tenuto a fare per legge riguardo all'[Ordine dei Medici](ORGANIZATION)
+    - ci sono adempimenti obbligatori legati alla [Camera di Commercio](ORGANIZATION)
+    - quali doveri comporta la [Croce Rossa](ORGANIZATION)
+    - è obbligatorio adempiere alle prescrizioni della [Protezione Civile](ORGANIZATION)
+    - quali vincoli e obblighi vigono per l'[Agenzia delle Entrate](ORGANIZATION)
+    - quali obblighi sono previsti per l'[ASL Roma 3](ORGANIZATION)
+    - cosa sono tenuto a fare per legge riguardo all'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - ci sono adempimenti obbligatori legati a [programmato](ORGANIZATION)
+    - quali doveri comporta i [Musei Civici](ORGANIZATION)
+    - è obbligatorio adempiere alle prescrizioni dell'[ASL](ORGANIZATION)
+    - quali vincoli e obblighi vigono per il [CAF](ORGANIZATION)
+    - quali obblighi sono previsti per il [Comune di Montesole](ORGANIZATION)
+    - cosa sono tenuto a fare per legge riguardo all'[IC Giovanni Pascoli](ORGANIZATION)
+    - ci sono adempimenti obbligatori legati al [Comune](ORGANIZATION)
+  - intent: ask_product_obligations
+    examples:
+    - devo indossare la [mascherina](PRODUCT) in ospedale
+    - quali obblighi sono previsti per l'[ossigeno](PRODUCT)
+    - cosa sono tenuto a fare per legge riguardo alla [scheda SD](PRODUCT)
+    - ci sono adempimenti obbligatori legati ai [microinfusori](PRODUCT)
+    - quali doveri comporta [ZuluTrade](PRODUCT)
+    - è obbligatorio adempiere alle prescrizioni degli [omega-3](PRODUCT)
+    - quali vincoli e obblighi vigono per il [microinfusore](PRODUCT)
+    - quali obblighi sono previsti per gli [strumentari odontotecnici](PRODUCT)
+    - cosa sono tenuto a fare per legge riguardo alla [parrucca](PRODUCT)
+    - ci sono adempimenti obbligatori legati alla [mascherina](PRODUCT)
+    - quali doveri comporta le [scarpe da corsa](PRODUCT)
+    - è obbligatorio adempiere alle prescrizioni dei [pannelli solari](PRODUCT)
+    - quali vincoli e obblighi vigono per la [lampada scialitica](PRODUCT)
+    - quali obblighi sono previsti per l'[apparecchio per l'ossigeno](PRODUCT)
+    - cosa sono tenuto a fare per legge riguardo alla [protesi acustica](PRODUCT)
+    - ci sono adempimenti obbligatori legati alla [carrozzina ortopedica](PRODUCT)
+  - intent: ask_role_obligations
+    examples:
+    - quali obblighi ha il [donatore di sangue](ROLE)
+    - quali obblighi sono previsti per il [Direttore Generale](ROLE)
+    - cosa sono tenuto a fare per legge riguardo al [Sindaco](ROLE)
+    - ci sono adempimenti obbligatori legati al [primario](ROLE)
+    - quali doveri comporta l'[operatore sanitario](ROLE)
+    - è obbligatorio adempiere alle prescrizioni del [medico di base](ROLE)
+    - quali vincoli e obblighi vigono per il [commercialista](ROLE)
+    - quali obblighi sono previsti per il [sostituto d'imposta](ROLE)
+    - cosa sono tenuto a fare per legge riguardo al [pediatra](ROLE)
+    - ci sono adempimenti obbligatori legati agli [specialisti ambulatoriali](ROLE)
+    - quali doveri comporta i [medici di base](ROLE)
+    - è obbligatorio adempiere alle prescrizioni del [DPO](ROLE)
+    - quali vincoli e obblighi vigono per il [donatore di sangue](ROLE)
+    - quali obblighi sono previsti per lo [psicologo](ROLE)
+    - cosa sono tenuto a fare per legge riguardo al [Dirigente Scolastico](ROLE)
+    - ci sono adempimenti obbligatori legati al [coordinatore di classe](ROLE)
+    - quali doveri comporta gli [infermieri](ROLE)

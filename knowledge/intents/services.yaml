@@ -1,0 +1,217 @@
+nlu:
+  intents:
+  - intent: ask_services
+    examples:
+    - Quali servizi offrite?
+    - Che cosa posso richiedere?
+    - Quali prestazioni sono disponibili?
+    - quali servizi avete
+    - che servizi mi offrite
+    - che servizi offre la biblioteca
+    - quali sono i servizi disponibili
+    - elenco dei servizi
+    - elencami i servizi
+    - cosa offrite ai cittadini
+    - cosa offrite alle aziende
+    - cosa offrite alle famiglie
+    - offrite consulenza
+    - fate consegne a domicilio
+    - avete un servizio di traduzione
+    - avete un servizio di orientamento
+    - c'è il servizio di prenotazione online
+    - è disponibile il servizio di sportello telematico
+    - è attivo il servizio di prestito
+    - posso richiedere un servizio di supporto
+    - posso usufruire di servizi gratuiti
+    - servizi per studenti
+    - servizi per anziani
+    - servizi per le imprese
+    - servizi online
+    - servizi a disposizione
+    - di quali servizi posso usufruire
+    - quali prestazioni offrite
+    - quali prestazioni sanitarie sono erogate
+    - cosa si può fare qui
+    - cosa si può richiedere allo sportello
+    - cosa posso fare con voi
+    - vorrei sapere cosa offrite
+    - in cosa potete aiutarmi
+    - che tipo di assistenza fornite
+    - catalogo dei servizi
+    - portfolio servizi
+    - dov'è l'elenco dei servizi dalla A alla Z
+    - fate i vaccini
+    - avete un servizio di riabilitazione per adulti
+    - c'è un servizio per stranieri
+    - quali servizi posso richiedere online
+  - intent: ask_health_service_services
+    examples:
+    - offrite il servizio di [assistenza domiciliare](HEALTH_SERVICE)
+    - avete un servizio di [cure palliative](HEALTH_SERVICE)
+    - c'è un servizio di [assistenza protesica](HEALTH_SERVICE) nel [Municipio X](ZONE)
+    - c'è il servizio di [nutrizione artificiale](HEALTH_SERVICE) a domicilio
+    - offrite [ossigenoterapia](HEALTH_SERVICE) a domicilio
+    - avete il servizio di [ritiro referti](HEALTH_SERVICE) online
+    - c'è il servizio per le [adozioni](HEALTH_SERVICE)
+    - offrite il servizio di [sportello di ascolto psicologico](HEALTH_SERVICE) per gli studenti
+    - quali servizi sono disponibili per l'[ossigenoterapia](HEALTH_SERVICE)
+    - che tipo di servizi offre o riguarda il [ritiro referti](HEALTH_SERVICE)
+    - mi elenchi i servizi collegati al [CUP](HEALTH_SERVICE)
+    - di quali prestazioni e servizi posso usufruire tramite l'[assistenza protesica](HEALTH_SERVICE)
+    - quali servizi specifici sono attivi per le [vaccinazioni](HEALTH_SERVICE)
+    - cosa comprende l'offerta di servizi dell'[assistenza domiciliare](HEALTH_SERVICE)
+    - quali servizi sono disponibili per la [Guardia Medica](HEALTH_SERVICE)
+    - che tipo di servizi offre o riguarda la [donazione del sangue](HEALTH_SERVICE)
+    - mi elenchi i servizi collegati alla [scelta del medico](HEALTH_SERVICE)
+  - intent: ask_organization_services
+    examples:
+    - che servizi offre il [Comune](ORGANIZATION)
+    - quali servizi offre l'[ASL Roma 3](ORGANIZATION)
+    - che servizi editoriali offre [programmato](ORGANIZATION) su [Python](TECHNOLOGY)
+    - quali servizi offre l'[Agenzia delle Entrate](ORGANIZATION) online
+    - quali servizi offre lo sportello dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - che servizi offre l'[IC Pascoli](ORGANIZATION) per il tempo pieno
+    - quali servizi didattici offrono i [Musei Civici](ORGANIZATION) per le scolaresche
+    - quali servizi sono disponibili per l'[INPS](ORGANIZATION)
+    - che tipo di servizi offre o riguarda il [Ministero della Salute](ORGANIZATION)
+    - mi elenchi i servizi collegati all'[Ordine dei Medici](ORGANIZATION)
+    - di quali prestazioni e servizi posso usufruire tramite la [Camera di Commercio](ORGANIZATION)
+    - quali servizi specifici sono attivi per la [Croce Rossa](ORGANIZATION)
+    - cosa comprende l'offerta di servizi della [Protezione Civile](ORGANIZATION)
+    - quali servizi sono disponibili per l'[Agenzia delle Entrate](ORGANIZATION)
+    - che tipo di servizi offre o riguarda l'[ASL Roma 3](ORGANIZATION)
+    - mi elenchi i servizi collegati all'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - di quali prestazioni e servizi posso usufruire tramite [programmato](ORGANIZATION)
+    - quali servizi specifici sono attivi per i [Musei Civici](ORGANIZATION)
+  - intent: ask_facility_services
+    examples:
+    - quali servizi ci sono al [Poliambulatorio Bernocchi](FACILITY)
+    - cosa offre la [Casa della Comunità Hub Magliana](FACILITY)
+    - quali servizi offre il [Centro Prelievi](FACILITY) di [Palidoro](ZONE)
+    - che servizi erogano i [consultori familiari](FACILITY) nel [Municipio XI](ZONE)
+    - quali servizi sono disponibili per l'[asilo nido](FACILITY)
+    - che tipo di servizi offre o riguarda l'[Ospedale di Comunità](FACILITY)
+    - mi elenchi i servizi collegati all'[Ecocentro](FACILITY)
+    - di quali prestazioni e servizi posso usufruire tramite la [Scuola Primaria Rodari](FACILITY)
+    - quali servizi specifici sono attivi per il [CPO Gennaro di Rosa](FACILITY)
+    - cosa comprende l'offerta di servizi del [Consultorio](FACILITY)
+    - quali servizi sono disponibili per la [Galleria d'arte contemporanea](FACILITY)
+    - che tipo di servizi offre o riguarda il [Centro Prelievi Palidoro](FACILITY)
+    - mi elenchi i servizi collegati al [Centro Prelievi Acilia](FACILITY)
+    - di quali prestazioni e servizi posso usufruire tramite il [Grassi](FACILITY)
+    - quali servizi specifici sono attivi per il [Centro Prelievi](FACILITY)
+    - cosa comprende l'offerta di servizi della [Casa della Salute](FACILITY)
+  - intent: ask_department_services
+    examples:
+    - c'è il servizio di [Medicina dello Sport](DEPARTMENT)
+    - quali servizi eroga l'ufficio [anagrafe](DEPARTMENT)
+    - quali servizi alle imprese offre il [SUAP](DEPARTMENT)
+    - quali servizi sono disponibili per la [Medicina dello Sport](DEPARTMENT)
+    - che tipo di servizi offre o riguarda la [Salute Mentale](DEPARTMENT)
+    - mi elenchi i servizi collegati al [Catasto](DEPARTMENT)
+    - di quali prestazioni e servizi posso usufruire tramite la [Direzione Sanitaria](DEPARTMENT)
+    - quali servizi specifici sono attivi per il [SUAP](DEPARTMENT)
+    - cosa comprende l'offerta di servizi dell'[anagrafe](DEPARTMENT)
+    - quali servizi sono disponibili per la [Polizia locale](DEPARTMENT)
+    - che tipo di servizi offre o riguarda la [Neurologia](DEPARTMENT)
+    - mi elenchi i servizi collegati all'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - di quali prestazioni e servizi posso usufruire tramite il [Dipartimento del Farmaco](DEPARTMENT)
+    - quali servizi specifici sono attivi per la [UOC Consultori Familiari](DEPARTMENT)
+    - cosa comprende l'offerta di servizi della [Cardiologia interventistica](DEPARTMENT)
+    - quali servizi sono disponibili per i [tributi](DEPARTMENT)
+  - intent: ask_misc_services
+    examples:
+    - cosa posso fare nell'area riservata [Fisconline](MISC)
+    - è attivo il servizio di [pre-scuola](MISC) e post-scuola
+    - avete il servizio di [audioguida](MISC) nelle sale espositive
+    - quali servizi sono disponibili per [Fisconline](MISC)
+    - che tipo di servizi offre o riguarda lo [SdI](MISC)
+    - mi elenchi i servizi collegati al [codice tributo](MISC)
+    - di quali prestazioni e servizi posso usufruire tramite la [mensa scolastica](MISC)
+    - quali servizi specifici sono attivi per la [prima casa](MISC)
+    - cosa comprende l'offerta di servizi della [carta famiglia](MISC)
+    - quali servizi sono disponibili per gli [abusi digitali](MISC)
+    - che tipo di servizi offre o riguarda [Entratel](MISC)
+    - mi elenchi i servizi collegati a [Fatture e Corrispettivi](MISC)
+    - di quali prestazioni e servizi posso usufruire tramite il [pre-scuola](MISC)
+    - quali servizi specifici sono attivi per la [rendita catastale](MISC)
+    - cosa comprende l'offerta di servizi del [regime ordinario](MISC)
+    - quali servizi sono disponibili per il [bonus mobili](MISC)
+    - che tipo di servizi offre o riguarda l'[ecobonus](MISC)
+  - intent: ask_document_services
+    examples:
+    - '[carta dei servizi](DOCUMENT)'
+    - è attivo il servizio di [visura catastale](DOCUMENT) online
+    - quali servizi sono disponibili per il [modello 730](DOCUMENT)
+    - che tipo di servizi offre o riguarda il [modello F24](DOCUMENT)
+    - mi elenchi i servizi collegati alla [patente](DOCUMENT)
+    - di quali prestazioni e servizi posso usufruire tramite la [dichiarazione dei redditi](DOCUMENT)
+    - quali servizi specifici sono attivi per la [cartella esattoriale](DOCUMENT)
+    - cosa comprende l'offerta di servizi del [modello Redditi PF](DOCUMENT)
+    - quali servizi sono disponibili per la [dichiarazione precompilata](DOCUMENT)
+    - che tipo di servizi offre o riguarda lo [SPID](DOCUMENT)
+    - mi elenchi i servizi collegati al [concorso pubblico](DOCUMENT)
+    - di quali prestazioni e servizi posso usufruire tramite la [visura catastale](DOCUMENT)
+    - quali servizi specifici sono attivi per la [tessera sanitaria](DOCUMENT)
+    - cosa comprende l'offerta di servizi della [cartella clinica](DOCUMENT)
+    - quali servizi sono disponibili per il [codice fiscale](DOCUMENT)
+    - che tipo di servizi offre o riguarda l'[ISEE](DOCUMENT)
+    - mi elenchi i servizi collegati alla [partita IVA](DOCUMENT)
+    - di quali prestazioni e servizi posso usufruire tramite la [carta d'identità elettronica](DOCUMENT)
+  - intent: ask_procedure_services
+    examples:
+    - quali servizi telematici ci sono per la [registrazione del contratto di locazione](PROCEDURE)
+    - avete il servizio di [ritiro rifiuti ingombranti](PROCEDURE) a domicilio
+    - quali servizi sono disponibili per il [pignoramento](PROCEDURE)
+    - che tipo di servizi offre o riguarda l'[interpello](PROCEDURE)
+    - mi elenchi i servizi collegati al [cambio di residenza](PROCEDURE)
+    - di quali prestazioni e servizi posso usufruire tramite la [rottamazione quater](PROCEDURE)
+    - quali servizi specifici sono attivi per la [fatturazione elettronica](PROCEDURE)
+    - cosa comprende l'offerta di servizi della [rateizzazione](PROCEDURE)
+    - quali servizi sono disponibili per il [ravvedimento operoso](PROCEDURE)
+    - che tipo di servizi offre o riguarda i [contributi Inps](PROCEDURE)
+    - mi elenchi i servizi collegati all'[autotutela](PROCEDURE)
+    - di quali prestazioni e servizi posso usufruire tramite l'[accertamento fiscale](PROCEDURE)
+    - quali servizi specifici sono attivi per la [raccolta differenziata](PROCEDURE)
+    - cosa comprende l'offerta di servizi del [rinnovo della patente](PROCEDURE)
+    - quali servizi sono disponibili per la [voltura catastale](PROCEDURE)
+    - che tipo di servizi offre o riguarda le [iscrizioni online](PROCEDURE)
+    - mi elenchi i servizi collegati al [fermo amministrativo](PROCEDURE)
+  - intent: ask_medical_procedure_services
+    examples:
+    - fate [visite medico legali](MEDICAL_PROCEDURE)
+    - quali servizi sono disponibili per la [mammografia](MEDICAL_PROCEDURE)
+    - che tipo di servizi offre o riguarda il [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - mi elenchi i servizi collegati alla [visita per la patente](MEDICAL_PROCEDURE)
+    - di quali prestazioni e servizi posso usufruire tramite il [ricovero programmato](MEDICAL_PROCEDURE)
+    - quali servizi specifici sono attivi per la [risonanza magnetica](MEDICAL_PROCEDURE)
+    - cosa comprende l'offerta di servizi degli [esami del sangue](MEDICAL_PROCEDURE)
+    - quali servizi sono disponibili per la [visita intramoenia](MEDICAL_PROCEDURE)
+    - che tipo di servizi offre o riguarda l'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - mi elenchi i servizi collegati alla [radiografia](MEDICAL_PROCEDURE)
+    - di quali prestazioni e servizi posso usufruire tramite la [visita oculistica](MEDICAL_PROCEDURE)
+    - quali servizi specifici sono attivi per la [visita dermatologica](MEDICAL_PROCEDURE)
+    - cosa comprende l'offerta di servizi del [tampone molecolare](MEDICAL_PROCEDURE)
+    - quali servizi sono disponibili per la [spirometria](MEDICAL_PROCEDURE)
+    - che tipo di servizi offre o riguarda la [visita medico legale](MEDICAL_PROCEDURE)
+    - mi elenchi i servizi collegati al [prelievo](MEDICAL_PROCEDURE)
+    - di quali prestazioni e servizi posso usufruire tramite il [Quantiferon](MEDICAL_PROCEDURE)
+    - quali servizi specifici sono attivi per l'[ecografia](MEDICAL_PROCEDURE)
+  - intent: ask_technology_services
+    examples:
+    - quali servizi di consulenza avete su [Laravel](TECHNOLOGY)
+    - quali servizi sono disponibili per [Flask](TECHNOLOGY)
+    - che tipo di servizi offre o riguarda [Joomla](TECHNOLOGY)
+    - mi elenchi i servizi collegati al [Desktop Telematico](TECHNOLOGY)
+    - di quali prestazioni e servizi posso usufruire tramite [Voltura 2.0](TECHNOLOGY)
+    - quali servizi specifici sono attivi per [Docker](TECHNOLOGY)
+    - cosa comprende l'offerta di servizi di [FastAPI](TECHNOLOGY)
+    - quali servizi sono disponibili per [Laravel](TECHNOLOGY)
+    - che tipo di servizi offre o riguarda [Python](TECHNOLOGY)
+    - mi elenchi i servizi collegati a [PostgreSQL](TECHNOLOGY)
+    - di quali prestazioni e servizi posso usufruire tramite [Spring Boot](TECHNOLOGY)
+    - quali servizi specifici sono attivi per [PHP](TECHNOLOGY)
+    - cosa comprende l'offerta di servizi di [WordPress](TECHNOLOGY)
+    - quali servizi sono disponibili per [Linux](TECHNOLOGY)
+    - che tipo di servizi offre o riguarda [MySQL](TECHNOLOGY)
+    - mi elenchi i servizi collegati a [nftables](TECHNOLOGY)

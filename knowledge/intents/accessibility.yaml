@@ -1,0 +1,136 @@
+nlu:
+  intents:
+  - intent: ask_accessibility
+    examples:
+    - La struttura è accessibile ai disabili?
+    - Ci sono ascensori?
+    - Sono presenti servizi per persone con mobilità ridotta?
+    - come funziona l'assistenza per le persone non udenti in ospedale
+    - esiste un servizio di assistenza fiscale a domicilio per contribuenti con disabilità
+    - c'è una corsia prioritaria allo sportello delle Entrate per persone con mobilità ridotta
+    - le sedi comunali e l'ufficio anagrafe sono accessibili alle persone in sedia a rotelle
+    - come posso richiedere il contrassegno di parcheggio per disabili
+    - la struttura è accessibile alle persone in carrozzina
+    - ci sono percorsi dedicati per chi ha disabilità motoria
+    - sono presenti rampe e ascensori per i disabili
+    - avete servizi di accessibilità per non vedenti e ipovedenti
+    - è previsto un accesso prioritario per le persone fragili
+    - come garantite l'accessibilità degli spazi al pubblico
+    - ci sono parcheggi riservati ai disabili vicino all'ingresso
+    - il sito web rispetta i criteri di accessibilità digitale
+    - sono disponibili postazioni accessibili agli sportelli
+  - intent: ask_facility_accessibility
+    examples:
+    - l'[Ospedale Grassi](FACILITY) è accessibile ai disabili
+    - il [Poliambulatorio Coni Zugna](FACILITY) ha l'ascensore
+    - la [Casa della Comunità Hub Ostia](FACILITY) è accessibile in sedia a rotelle
+    - ci sono servizi per persone con disabilità al [Poliambulatorio Paolini](FACILITY)
+    - c'è un parcheggio per disabili al [Grassi](FACILITY)
+    - c'è una rampa all'ingresso del [Centro Prelievi](FACILITY)
+    - il [Centro Prelievi Ostia](FACILITY) è accessibile ai disabili
+    - c'è un servizio di trasporto per disabili verso il [Grassi](FACILITY)
+    - la [Casa della Salute](FACILITY) di [Palidoro](ZONE) è attrezzata per persone con difficoltà motorie
+    - il [Museo archeologico](FACILITY) è accessibile ai disabili e con passeggini
+    - com'è l'accessibilità del [Centro Prelievi](FACILITY) per le persone con disabilità
+    - ci sono barriere architettoniche presso la [Casa della Salute](FACILITY)
+    - il [Centro Prelievi Ostia](FACILITY) è accessibile in sedia a rotelle
+    - quali misure di accessibilità sono previste per il [Museo archeologico](FACILITY)
+    - è garantito l'accesso facilitato al [Poliambulatorio Coni Zugna](FACILITY) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per il [Poliambulatorio Paolini](FACILITY)
+    - com'è l'accessibilità del [Poliambulatorio Bernocchi](FACILITY) per le persone con disabilità
+  - intent: ask_health_service_accessibility
+    examples:
+    - ci sono [interpreti LIS](HEALTH_SERVICE) al [CUP](HEALTH_SERVICE)
+    - ci sono servizi per persone non vedenti al [CUP](HEALTH_SERVICE)
+    - l'ambulatorio di [Terapia Occupazionale](HEALTH_SERVICE) è privo di barriere architettoniche
+    - è disponibile il servizio di videochiamata in [LIS](HEALTH_SERVICE) con l'[Agenzia delle Entrate](ORGANIZATION)
+    - com'è l'accessibilità dell'[accesso agli atti](HEALTH_SERVICE) per le persone con disabilità
+    - ci sono barriere architettoniche presso lo [screening oncologico](HEALTH_SERVICE)
+    - lo [Sportello Giovani](HEALTH_SERVICE) è accessibile in sedia a rotelle
+    - quali misure di accessibilità sono previste per il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - è garantito l'accesso facilitato allo [Sportello di Ascolto](HEALTH_SERVICE) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per l'[assistenza all'estero](HEALTH_SERVICE)
+    - com'è l'accessibilità del [Servizio Sanitario](HEALTH_SERVICE) per le persone con disabilità
+    - ci sono barriere architettoniche presso lo [screening del colon retto](HEALTH_SERVICE)
+    - l'[accesso civico](HEALTH_SERVICE) è accessibile in sedia a rotelle
+    - quali misure di accessibilità sono previste per lo [screening della mammella](HEALTH_SERVICE)
+    - è garantito l'accesso facilitato alla [Telemedicina](HEALTH_SERVICE) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per il [RECUP](HEALTH_SERVICE)
+    - com'è l'accessibilità del [Punto unico di accesso](HEALTH_SERVICE) per le persone con disabilità
+  - intent: ask_organization_accessibility
+    examples:
+    - il sito dell'[ASL Roma 3](ORGANIZATION) è accessibile ai non vedenti
+    - gli uffici dell'[Agenzia delle Entrate](ORGANIZATION) sono accessibili alle persone con disabilità
+    - il portale dell'[Agenzia delle Entrate](ORGANIZATION) è accessibile agli screen reader per non vedenti
+    - lo sportello dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION) ha accesso senza barriere
+    - com'è l'accessibilità della [Guardia di Finanza](ORGANIZATION) per le persone con disabilità
+    - ci sono barriere architettoniche presso la [Regione](ORGANIZATION)
+    - l'[INPS](ORGANIZATION) è accessibile in sedia a rotelle
+    - quali misure di accessibilità sono previste per il [Ministero della Salute](ORGANIZATION)
+    - è garantito l'accesso facilitato all'[Ordine dei Medici](ORGANIZATION) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per la [Camera di Commercio](ORGANIZATION)
+    - com'è l'accessibilità della [Croce Rossa](ORGANIZATION) per le persone con disabilità
+    - ci sono barriere architettoniche presso la [Protezione Civile](ORGANIZATION)
+    - l'[Agenzia delle Entrate](ORGANIZATION) è accessibile in sedia a rotelle
+    - quali misure di accessibilità sono previste per l'[ASL Roma 3](ORGANIZATION)
+    - è garantito l'accesso facilitato all'[Agenzia delle Entrate-Riscossione](ORGANIZATION) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per [programmato](ORGANIZATION)
+    - com'è l'accessibilità dei [Musei Civici](ORGANIZATION) per le persone con disabilità
+    - ci sono barriere architettoniche presso l'[ASL](ORGANIZATION)
+  - intent: ask_department_accessibility
+    examples:
+    - l'[Unità Spinale](DEPARTMENT) è accessibile
+    - come richiedo un'assistenza per mobilità ridotta al [Pronto Soccorso](DEPARTMENT)
+    - i locali dell'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT) sono accessibili
+    - com'è l'accessibilità della [segreteria scolastica](DEPARTMENT) per le persone con disabilità
+    - ci sono barriere architettoniche presso l'[Ufficio Stampa](DEPARTMENT)
+    - i [servizi demografici](DEPARTMENT) è accessibile in sedia a rotelle
+    - quali misure di accessibilità sono previste per i [Lavori pubblici](DEPARTMENT)
+    - è garantito l'accesso facilitato alla [Direzione Generale](DEPARTMENT) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per l'[URP](DEPARTMENT)
+    - com'è l'accessibilità del [Pronto Soccorso](DEPARTMENT) per le persone con disabilità
+    - ci sono barriere architettoniche presso l'[Ufficio Territoriale](DEPARTMENT)
+    - l'[Ufficio del Catasto](DEPARTMENT) è accessibile in sedia a rotelle
+    - quali misure di accessibilità sono previste per la [Direzione Provinciale](DEPARTMENT)
+    - è garantito l'accesso facilitato alla [Medicina Legale](DEPARTMENT) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per la [Medicina dello Sport](DEPARTMENT)
+    - com'è l'accessibilità della [Salute Mentale](DEPARTMENT) per le persone con disabilità
+    - ci sono barriere architettoniche presso il [Catasto](DEPARTMENT)
+  - intent: ask_misc_accessibility
+    examples:
+    - la scuola garantisce l'accessibilità e il supporto per studenti con [disabilità motoria](MISC)
+    - com'è l'accessibilità del [cassetto fiscale](MISC) per le persone con disabilità
+    - ci sono barriere architettoniche presso il [rimborso IRPEF](MISC)
+    - il [bonus ristrutturazione](MISC) è accessibile in sedia a rotelle
+    - quali misure di accessibilità sono previste per il [registro elettronico](MISC)
+    - è garantito l'accesso facilitato alla [dieta speciale](MISC) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per [CIVIS](MISC)
+    - com'è l'accessibilità di [Fisconline](MISC) per le persone con disabilità
+    - ci sono barriere architettoniche presso lo [SdI](MISC)
+    - il [codice tributo](MISC) è accessibile in sedia a rotelle
+    - quali misure di accessibilità sono previste per la [mensa scolastica](MISC)
+    - è garantito l'accesso facilitato alla [prima casa](MISC) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per la [carta famiglia](MISC)
+    - com'è l'accessibilità degli [abusi digitali](MISC) per le persone con disabilità
+    - ci sono barriere architettoniche presso [Entratel](MISC)
+    - '[Fatture e Corrispettivi](MISC) è accessibile in sedia a rotelle'
+    - quali misure di accessibilità sono previste per il [pre-scuola](MISC)
+  - intent: ask_zone_accessibility
+    examples:
+    - le strutture nel [Municipio XII](ZONE) hanno accesso per mobilità ridotta
+    - com'è l'accessibilità di [Colle Massimo](ZONE) per le persone con disabilità
+    - ci sono barriere architettoniche presso [Ostia Lido](ZONE)
+    - '[Casal Bernocchi](ZONE) è accessibile in sedia a rotelle'
+    - quali misure di accessibilità sono previste per [Dragona](ZONE)
+    - è garantito l'accesso facilitato all'[Infernetto](ZONE) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per [Maccarese](ZONE)
+    - com'è l'accessibilità di [Ostia](ZONE) per le persone con disabilità
+    - ci sono barriere architettoniche presso il [Municipio XII](ZONE)
+    - '[Roma](ZONE) è accessibile in sedia a rotelle'
+    - quali misure di accessibilità sono previste per il [Municipio XI](ZONE)
+    - è garantito l'accesso facilitato a [Fiumicino](ZONE) per chi ha mobilità ridotta
+    - come funziona l'accesso senza barriere per [Palidoro](ZONE)
+    - com'è l'accessibilità di [Magliana](ZONE) per le persone con disabilità
+    - ci sono barriere architettoniche presso [Montesole](ZONE)
+    - il [Municipio X](ZONE) è accessibile in sedia a rotelle
+    - quali misure di accessibilità sono previste per [Acilia](ZONE)

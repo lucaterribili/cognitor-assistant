@@ -1,0 +1,199 @@
+nlu:
+  intents:
+  - intent: ask_activities
+    examples:
+    - Quali attività svolgete?
+    - Di cosa vi occupate?
+    - Quali iniziative organizzate?
+    - quali attività svolgete
+    - di cosa vi occupate
+    - quali attività organizzate
+    - quali attività ci sono per i bambini
+    - quali attività sono previste
+    - che attività fate
+    - che attività offre il centro
+    - che cosa fate durante l'anno
+    - cosa fate di preciso
+    - come impiegate le vostre giornate
+    - qual è il vostro campo d'azione
+    - qual è il vostro ambito di attività
+    - in quali ambiti operate
+    - in quali settori operate
+    - in quali settori lavorate
+    - dove operate
+    - su quali temi lavorate
+    - quali progetti portate avanti
+    - quali iniziative portate avanti
+    - quali laboratori organizzate
+    - organizzate laboratori
+    - organizzate corsi
+    - organizzate visite guidate
+    - organizzate gite
+    - fate attività sportive
+    - c'è qualche attività per anziani
+    - ci sono attività per il tempo libero
+    - attività del centro
+    - attività svolte dall'associazione
+    - attività principali
+    - attività quotidiane
+    - programma delle attività
+    - elenco delle attività
+    - mi racconti cosa fate
+    - raccontami le vostre attività
+    - la vostra attività principale
+    - qual è il vostro lavoro
+    - quali iniziative sul volontariato ci sono in azienda
+    - fate laboratori di robotica ed educazione musicale alla primaria
+  - intent: ask_department_activities
+    examples:
+    - quali attività fa il [Centro clinico per la valutazione del disagio lavorativo](DEPARTMENT)
+    - che attività si fanno alla [UOSD Promozione dell'Attività Fisica](DEPARTMENT)
+    - cosa fa l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - che attività svolge il [Dipartimento del Farmaco](DEPARTMENT)
+    - cosa fa la [UOC Medicina Legale](DEPARTMENT)
+    - di cosa si occupa la [UOC Consultori Familiari](DEPARTMENT)
+    - che attività svolge la [Cardiologia interventistica](DEPARTMENT)
+    - di cosa si occupa l'[Ufficio del Catasto](DEPARTMENT)
+    - quali attività svolge il [SUAP](DEPARTMENT)
+    - che tipo di attività sono previste per l'[anagrafe](DEPARTMENT)
+    - mi elenchi le principali attività della [Polizia locale](DEPARTMENT)
+    - di quali attività si occupa la [Neurologia](DEPARTMENT)
+    - quali iniziative e attività vengono proposte dall'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - cosa prevede il piano delle attività del [Dipartimento del Farmaco](DEPARTMENT)
+    - quali attività svolge la [UOC Consultori Familiari](DEPARTMENT)
+    - che tipo di attività sono previste per la [Cardiologia interventistica](DEPARTMENT)
+    - mi elenchi le principali attività dei [tributi](DEPARTMENT)
+  - intent: ask_organization_activities
+    examples:
+    - quali attività svolge l'[ASL Roma 3](ORGANIZATION) a [Ostia](ZONE)
+    - quali iniziative organizza l'[ASL](ORGANIZATION) per le donne
+    - di cosa parla il sito [programmato](ORGANIZATION)
+    - quali attività svolge l'[Agenzia delle Entrate](ORGANIZATION)
+    - che attività fa l'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - quali laboratori didattici per famiglie organizzano i [Musei Civici](ORGANIZATION)
+    - quali attività svolge l'[Ordine dei Medici](ORGANIZATION)
+    - che tipo di attività sono previste per la [Camera di Commercio](ORGANIZATION)
+    - mi elenchi le principali attività della [Croce Rossa](ORGANIZATION)
+    - di quali attività si occupa la [Protezione Civile](ORGANIZATION)
+    - quali iniziative e attività vengono proposte dall'[Agenzia delle Entrate](ORGANIZATION)
+    - cosa prevede il piano delle attività dell'[ASL Roma 3](ORGANIZATION)
+    - quali attività svolge l'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - che tipo di attività sono previste per [programmato](ORGANIZATION)
+    - mi elenchi le principali attività dei [Musei Civici](ORGANIZATION)
+    - di quali attività si occupa l'[ASL](ORGANIZATION)
+    - quali iniziative e attività vengono proposte dal [CAF](ORGANIZATION)
+    - cosa prevede il piano delle attività del [Comune di Montesole](ORGANIZATION)
+  - intent: ask_category_activities
+    examples:
+    - quali argomenti trattate nella categoria [Dev Life](CATEGORY)
+    - di cosa si occupa la categoria [Application Management](CATEGORY)
+    - cosa trovo nella sezione [Turismo e Attrazioni](CATEGORY)
+    - quali attività svolge [Impresa e Commercio](CATEGORY)
+    - che tipo di attività sono previste per [Mobilità e Trasporti](CATEGORY)
+    - mi elenchi le principali attività delle [Politiche Sociali](CATEGORY)
+    - di quali attività si occupa [Dev Life](CATEGORY)
+    - quali iniziative e attività vengono proposte da [Application Management](CATEGORY)
+    - cosa prevede il piano delle attività di [Turismo e Attrazioni](CATEGORY)
+    - quali attività svolge [Lingua e educazione](CATEGORY)
+    - che tipo di attività sono previste per la [Vita Notturna](CATEGORY)
+    - mi elenchi le principali attività di [Eventi e Festival](CATEGORY)
+    - di quali attività si occupa la [Burocrazia](CATEGORY)
+    - quali iniziative e attività vengono proposte da [Salute e Prevenzione](CATEGORY)
+    - cosa prevede il piano delle attività di [Fisco e Tributi](CATEGORY)
+    - quali attività svolge [Servizi al Cittadino](CATEGORY)
+    - che tipo di attività sono previste per [Scuola e Famiglia](CATEGORY)
+  - intent: ask_event_activities
+    examples:
+    - che iniziative ci sono per la [Giornata Nazionale del mal di testa](EVENT)
+    - quali attività organizzano i [centri estivi](EVENT) del Comune
+    - che attività sono previste per la [Notte dei Musei](EVENT)
+    - quali attività svolge [Fisco e Scuola](EVENT)
+    - che tipo di attività sono previste per l'[8 marzo](EVENT)
+    - mi elenchi le principali attività della [cura come maternage](EVENT)
+    - di quali attività si occupa i [centri estivi](EVENT)
+    - quali iniziative e attività vengono proposte da [Sotto la superficie](EVENT)
+    - cosa prevede il piano delle attività dell'[incontro pediatrico-neonatologico](EVENT)
+    - quali attività svolge la [Giornata mondiale della salute](EVENT)
+    - che tipo di attività sono previste per la [giornata della prevenzione](EVENT)
+    - mi elenchi le principali attività di [Magliana per le Ragazze](EVENT)
+    - di quali attività si occupa il [convegno pediatrico](EVENT)
+    - quali iniziative e attività vengono proposte dalla [Settimana dell'allattamento materno](EVENT)
+    - cosa prevede il piano delle attività dell'[Open Day vaccinale](EVENT)
+    - quali attività svolge la [Giornata della trasparenza](EVENT)
+    - che tipo di attività sono previste per la [Camminata della salute](EVENT)
+    - mi elenchi le principali attività della [Conferenza dei servizi sanitari](EVENT)
+  - intent: ask_health_service_activities
+    examples:
+    - che attività ci sono allo [Sportello Giovani](HEALTH_SERVICE)
+    - quali attività organizzate per la [donazione del sangue](HEALTH_SERVICE)
+    - cosa fate per la [promozione della salute](HEALTH_SERVICE)
+    - quali attività svolge l'[assistenza domiciliare](HEALTH_SERVICE)
+    - che tipo di attività sono previste per la [Guardia Medica](HEALTH_SERVICE)
+    - mi elenchi le principali attività della [donazione del sangue](HEALTH_SERVICE)
+    - di quali attività si occupa la [scelta del medico](HEALTH_SERVICE)
+    - quali iniziative e attività vengono proposte dall'[accesso agli atti](HEALTH_SERVICE)
+    - cosa prevede il piano delle attività dello [screening oncologico](HEALTH_SERVICE)
+    - quali attività svolge lo [Sportello Giovani](HEALTH_SERVICE)
+    - che tipo di attività sono previste per il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - mi elenchi le principali attività dello [Sportello di Ascolto](HEALTH_SERVICE)
+    - di quali attività si occupa l'[assistenza all'estero](HEALTH_SERVICE)
+    - quali iniziative e attività vengono proposte dal [Servizio Sanitario](HEALTH_SERVICE)
+    - cosa prevede il piano delle attività dello [screening del colon retto](HEALTH_SERVICE)
+    - quali attività svolge l'[accesso civico](HEALTH_SERVICE)
+  - intent: ask_document_activities
+    examples:
+    - quali verifiche effettua l'Agenzia sulle [dichiarazioni dei redditi](DOCUMENT)
+    - quali progetti pomeridiani propone la scuola nel [PTOF](DOCUMENT)
+    - quali attività svolge il [modello 730](DOCUMENT)
+    - che tipo di attività sono previste per il [modello F24](DOCUMENT)
+    - mi elenchi le principali attività della [patente](DOCUMENT)
+    - di quali attività si occupa la [dichiarazione dei redditi](DOCUMENT)
+    - quali iniziative e attività vengono proposte dalla [cartella esattoriale](DOCUMENT)
+    - cosa prevede il piano delle attività del [modello Redditi PF](DOCUMENT)
+    - quali attività svolge la [dichiarazione precompilata](DOCUMENT)
+    - che tipo di attività sono previste per lo [SPID](DOCUMENT)
+    - mi elenchi le principali attività del [concorso pubblico](DOCUMENT)
+    - di quali attività si occupa la [visura catastale](DOCUMENT)
+    - quali iniziative e attività vengono proposte dalla [tessera sanitaria](DOCUMENT)
+    - cosa prevede il piano delle attività della [cartella clinica](DOCUMENT)
+    - quali attività svolge il [codice fiscale](DOCUMENT)
+    - che tipo di attività sono previste per l'[ISEE](DOCUMENT)
+    - mi elenchi le principali attività della [partita IVA](DOCUMENT)
+  - intent: ask_facility_activities
+    examples:
+    - cosa si fa alla [Casa della Salute](FACILITY)
+    - quali attività svolge l'[Ospedale Grassi](FACILITY)
+    - che tipo di attività sono previste per il [Presidio Ospedaliero Grassi](FACILITY)
+    - mi elenchi le principali attività dei [Consultori](FACILITY)
+    - di quali attività si occupa le [Cappelle Medicee](FACILITY)
+    - quali iniziative e attività vengono proposte dalla [Pinacoteca civica](FACILITY)
+    - cosa prevede il piano delle attività dell'[asilo nido](FACILITY)
+    - quali attività svolge l'[Ospedale di Comunità](FACILITY)
+    - che tipo di attività sono previste per l'[Ecocentro](FACILITY)
+    - mi elenchi le principali attività della [Scuola Primaria Rodari](FACILITY)
+    - di quali attività si occupa il [CPO Gennaro di Rosa](FACILITY)
+    - quali iniziative e attività vengono proposte dal [Consultorio](FACILITY)
+    - cosa prevede il piano delle attività della [Galleria d'arte contemporanea](FACILITY)
+    - quali attività svolge il [Centro Prelievi Palidoro](FACILITY)
+    - che tipo di attività sono previste per il [Centro Prelievi Acilia](FACILITY)
+    - mi elenchi le principali attività del [Grassi](FACILITY)
+    - di quali attività si occupa il [Centro Prelievi](FACILITY)
+  - intent: ask_procedure_activities
+    examples:
+    - cosa fa l'ufficio controlli per l'[accertamento fiscale](PROCEDURE)
+    - quali attività svolge il [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - che tipo di attività sono previste per il [DOCFA](PROCEDURE)
+    - mi elenchi le principali attività della [denuncia di smarrimento](PROCEDURE)
+    - di quali attività si occupa l'[apertura della partita IVA](PROCEDURE)
+    - quali iniziative e attività vengono proposte dalla [rottamazione delle cartelle](PROCEDURE)
+    - cosa prevede il piano delle attività della [registrazione del contratto di locazione](PROCEDURE)
+    - quali attività svolge il [concordato preventivo biennale](PROCEDURE)
+    - che tipo di attività sono previste per l'[accertamento con adesione](PROCEDURE)
+    - mi elenchi le principali attività del [matrimonio civile](PROCEDURE)
+    - di quali attività si occupa il [pignoramento](PROCEDURE)
+    - quali iniziative e attività vengono proposte dall'[interpello](PROCEDURE)
+    - cosa prevede il piano delle attività del [cambio di residenza](PROCEDURE)
+    - quali attività svolge la [rottamazione quater](PROCEDURE)
+    - che tipo di attività sono previste per la [fatturazione elettronica](PROCEDURE)
+    - mi elenchi le principali attività della [rateizzazione](PROCEDURE)
+    - di quali attività si occupa il [ravvedimento operoso](PROCEDURE)
