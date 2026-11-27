@@ -1,0 +1,190 @@
+nlu:
+  intents:
+  - intent: ask_alternatives
+    examples:
+    - Ci sono alternative?
+    - Quali altre possibilità esistono?
+    - Posso scegliere un'altra soluzione?
+    - quali alternative ho a disposizione
+    - ci sono altre opzioni tra cui scegliere
+    - esiste una soluzione alternativa se non posso farlo così
+    - cosa posso fare in alternativa
+    - avete delle proposte sostitutive
+    - quali altre strade posso percorrere
+    - c'è un modo alternativo per procedere
+    - quali scelte alternative sono previste
+    - se questa opzione non va bene, quali alternative offrite
+    - ci sono possibilità diverse da questa
+    - posso optare per una soluzione differente
+    - quali rimedi alternativi consigliate
+    - esistono percorsi alternativi equivalenti
+    - cos'altro posso valutare al suo posto
+    - ci sono varianti o alternative disponibili
+  - intent: ask_technology_alternatives
+    examples:
+    - ci sono alternative a [MySQL](TECHNOLOGY)
+    - quali alternative ci sono a [WordPress](TECHNOLOGY)
+    - ci sono alternative a [Laravel](TECHNOLOGY)
+    - c'è un'alternativa a [Apache](TECHNOLOGY)
+    - ci sono alternative a [phpMyAdmin](TECHNOLOGY)
+    - quali alternative ci sono a [Spring Boot](TECHNOLOGY)
+    - c'è un'alternativa a [nftables](TECHNOLOGY)
+    - quali alternative ci sono a [Joomla](TECHNOLOGY)
+    - cosa posso usare come alternativa al [Desktop Telematico](TECHNOLOGY)
+    - esistono soluzioni alternative a [Voltura 2.0](TECHNOLOGY)
+    - con cosa si può sostituire [Docker](TECHNOLOGY)
+    - ci sono opzioni valide in alternativa a [FastAPI](TECHNOLOGY)
+    - se non è possibile ricorrere a [Laravel](TECHNOLOGY), quale alternativa c'è
+    - quali alternative ci sono a [Python](TECHNOLOGY)
+    - cosa posso usare come alternativa a [PostgreSQL](TECHNOLOGY)
+    - esistono soluzioni alternative a [Spring Boot](TECHNOLOGY)
+    - con cosa si può sostituire [PHP](TECHNOLOGY)
+  - intent: ask_document_alternatives
+    examples:
+    - posso ritirare i [referti](DOCUMENT) online invece che allo sportello
+    - posso consegnare la domanda via [PEC](DOCUMENT) invece che di persona
+    - posso accedere con [CIE](DOCUMENT) invece che con [SPID](DOCUMENT)
+    - posso presentare il [modello Redditi PF](DOCUMENT) in alternativa al [modello 730](DOCUMENT)
+    - quali alternative ho se non riesco a pagare una [cartella esattoriale](DOCUMENT) in un'unica soluzione
+    - posso usare la compensazione nel [modello F24](DOCUMENT) invece di chiedere il [rimborso IRPEF](MISC)
+    - quali alternative ci sono alla [fattura elettronica](DOCUMENT)
+    - cosa posso usare come alternativa al [referto](DOCUMENT)
+    - esistono soluzioni alternative all'[avviso bonario](DOCUMENT)
+    - con cosa si può sostituire l'[avviso di accertamento](DOCUMENT)
+    - ci sono opzioni valide in alternativa alla [marca da bollo](DOCUMENT)
+    - se non è possibile ricorrere all'[impegnativa](DOCUMENT), quale alternativa c'è
+    - quali alternative ci sono al [Piano terapeutico](DOCUMENT)
+    - cosa posso usare come alternativa al [modello 730](DOCUMENT)
+    - esistono soluzioni alternative al [modello F24](DOCUMENT)
+    - con cosa si può sostituire la [patente](DOCUMENT)
+  - intent: ask_health_service_alternatives
+    examples:
+    - c'è un'alternativa al [CUP](HEALTH_SERVICE) per prenotare
+    - posso prenotare in farmacia invece che al [CUP](HEALTH_SERVICE)
+    - posso usare la [Guardia Medica](HEALTH_SERVICE) al posto del [Pronto Soccorso](DEPARTMENT)
+    - c'è un'altra via per fare la [scelta del medico](HEALTH_SERVICE)
+    - quali alternative ci sono all'[accesso civico](HEALTH_SERVICE)
+    - cosa posso usare come alternativa allo [screening della mammella](HEALTH_SERVICE)
+    - esistono soluzioni alternative alla [Telemedicina](HEALTH_SERVICE)
+    - con cosa si può sostituire il [RECUP](HEALTH_SERVICE)
+    - ci sono opzioni valide in alternativa al [Punto unico di accesso](HEALTH_SERVICE)
+    - se non è possibile ricorrere alla [nutrizione artificiale](HEALTH_SERVICE), quale alternativa c'è
+    - quali alternative ci sono alle [cure palliative](HEALTH_SERVICE)
+    - cosa posso usare come alternativa all'[ossigenoterapia](HEALTH_SERVICE)
+    - esistono soluzioni alternative al [ritiro referti](HEALTH_SERVICE)
+    - con cosa si può sostituire il [CUP](HEALTH_SERVICE)
+    - ci sono opzioni valide in alternativa all'[assistenza protesica](HEALTH_SERVICE)
+    - se non è possibile ricorrere alle [vaccinazioni](HEALTH_SERVICE), quale alternativa c'è
+  - intent: ask_facility_alternatives
+    examples:
+    - ci sono alternative al [Centro Prelievi](FACILITY) di [Ostia](ZONE)
+    - ci sono alternative al [Grassi](FACILITY) per le [vaccinazioni](HEALTH_SERVICE)
+    - quali alternative ci sono al [Poliambulatorio Paolini](FACILITY)
+    - cosa posso usare come alternativa al [Poliambulatorio Bernocchi](FACILITY)
+    - esistono soluzioni alternative alle [Case della Comunità](FACILITY)
+    - con cosa si può sostituire la [Casa della Comunità](FACILITY)
+    - ci sono opzioni valide in alternativa all'[Ospedale Grassi](FACILITY)
+    - se non è possibile ricorrere al [Presidio Ospedaliero Grassi](FACILITY), quale alternativa c'è
+    - quali alternative ci sono ai [Consultori](FACILITY)
+    - cosa posso usare come alternativa alle [Cappelle Medicee](FACILITY)
+    - esistono soluzioni alternative alla [Pinacoteca civica](FACILITY)
+    - con cosa si può sostituire l'[asilo nido](FACILITY)
+    - ci sono opzioni valide in alternativa all'[Ospedale di Comunità](FACILITY)
+    - se non è possibile ricorrere all'[Ecocentro](FACILITY), quale alternativa c'è
+    - quali alternative ci sono alla [Scuola Primaria Rodari](FACILITY)
+    - cosa posso usare come alternativa al [CPO Gennaro di Rosa](FACILITY)
+  - intent: ask_medical_procedure_alternatives
+    examples:
+    - posso fare il [prelievo](MEDICAL_PROCEDURE) in un altro centro
+    - posso fare la [visita medico legale](MEDICAL_PROCEDURE) in un altro municipio
+    - quali alternative ci sono all'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - cosa posso usare come alternativa alla [radiografia](MEDICAL_PROCEDURE)
+    - esistono soluzioni alternative alla [visita oculistica](MEDICAL_PROCEDURE)
+    - con cosa si può sostituire la [visita dermatologica](MEDICAL_PROCEDURE)
+    - ci sono opzioni valide in alternativa al [tampone molecolare](MEDICAL_PROCEDURE)
+    - se non è possibile ricorrere alla [spirometria](MEDICAL_PROCEDURE), quale alternativa c'è
+    - quali alternative ci sono alla [visita medico legale](MEDICAL_PROCEDURE)
+    - cosa posso usare come alternativa al [prelievo](MEDICAL_PROCEDURE)
+    - esistono soluzioni alternative al [Quantiferon](MEDICAL_PROCEDURE)
+    - con cosa si può sostituire l'[ecografia](MEDICAL_PROCEDURE)
+    - ci sono opzioni valide in alternativa alla [colonscopia](MEDICAL_PROCEDURE)
+    - se non è possibile ricorrere alla [curva glicemica](MEDICAL_PROCEDURE), quale alternativa c'è
+    - quali alternative ci sono allo [spermiogramma](MEDICAL_PROCEDURE)
+    - cosa posso usare come alternativa alla [terapia oncologica](MEDICAL_PROCEDURE)
+  - intent: ask_department_alternatives
+    examples:
+    - c'è un'alternativa al [Pronto Soccorso](DEPARTMENT) per un problema lieve
+    - quali alternative ci sono alla [Direzione Generale](DEPARTMENT)
+    - cosa posso usare come alternativa all'[URP](DEPARTMENT)
+    - esistono soluzioni alternative al [Pronto Soccorso](DEPARTMENT)
+    - con cosa si può sostituire l'[Ufficio Territoriale](DEPARTMENT)
+    - ci sono opzioni valide in alternativa all'[Ufficio del Catasto](DEPARTMENT)
+    - se non è possibile ricorrere alla [Direzione Provinciale](DEPARTMENT), quale alternativa c'è
+    - quali alternative ci sono alla [Medicina Legale](DEPARTMENT)
+    - cosa posso usare come alternativa alla [Medicina dello Sport](DEPARTMENT)
+    - esistono soluzioni alternative alla [Salute Mentale](DEPARTMENT)
+    - con cosa si può sostituire il [Catasto](DEPARTMENT)
+    - ci sono opzioni valide in alternativa alla [Direzione Sanitaria](DEPARTMENT)
+    - se non è possibile ricorrere al [SUAP](DEPARTMENT), quale alternativa c'è
+    - quali alternative ci sono all'[anagrafe](DEPARTMENT)
+    - cosa posso usare come alternativa alla [Polizia locale](DEPARTMENT)
+    - esistono soluzioni alternative alla [Neurologia](DEPARTMENT)
+    - con cosa si può sostituire l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - ci sono opzioni valide in alternativa al [Dipartimento del Farmaco](DEPARTMENT)
+  - intent: ask_procedure_alternatives
+    examples:
+    - esiste un'alternativa gratuita del fisco ai software commerciali di [fatturazione elettronica](PROCEDURE)
+    - quali alternative ci sono alla [rottamazione quater](PROCEDURE)
+    - cosa posso usare come alternativa alla [fatturazione elettronica](PROCEDURE)
+    - esistono soluzioni alternative alla [rateizzazione](PROCEDURE)
+    - con cosa si può sostituire il [ravvedimento operoso](PROCEDURE)
+    - ci sono opzioni valide in alternativa ai [contributi Inps](PROCEDURE)
+    - se non è possibile ricorrere all'[autotutela](PROCEDURE), quale alternativa c'è
+    - quali alternative ci sono all'[accertamento fiscale](PROCEDURE)
+    - cosa posso usare come alternativa alla [raccolta differenziata](PROCEDURE)
+    - esistono soluzioni alternative al [rinnovo della patente](PROCEDURE)
+    - con cosa si può sostituire la [voltura catastale](PROCEDURE)
+    - ci sono opzioni valide in alternativa alle [iscrizioni online](PROCEDURE)
+    - se non è possibile ricorrere al [fermo amministrativo](PROCEDURE), quale alternativa c'è
+    - quali alternative ci sono al [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - cosa posso usare come alternativa al [DOCFA](PROCEDURE)
+    - esistono soluzioni alternative alla [denuncia di smarrimento](PROCEDURE)
+    - con cosa si può sostituire l'[apertura della partita IVA](PROCEDURE)
+  - intent: ask_tax_alternatives
+    examples:
+    - c'è un'alternativa alla [cedolare secca](TAX) per tassare il canone di affitto
+    - quali alternative ci sono all'[IRES](TAX)
+    - cosa posso usare come alternativa all'[IRAP](TAX)
+    - esistono soluzioni alternative alla [ritenuta d'acconto](TAX)
+    - con cosa si può sostituire la [concessione governativa](TAX)
+    - ci sono opzioni valide in alternativa all'[imposta ipotecaria](TAX)
+    - se non è possibile ricorrere all'[imposta catastale](TAX), quale alternativa c'è
+    - quali alternative ci sono all'[addizionale regionale](TAX)
+    - cosa posso usare come alternativa all'[addizionale comunale](TAX)
+    - esistono soluzioni alternative al [canone RAI](TAX)
+    - con cosa si può sostituire la [tassa automobilistica](TAX)
+    - ci sono opzioni valide in alternativa all'[imposta sulle successioni](TAX)
+    - se non è possibile ricorrere al [contributo unificato](TAX), quale alternativa c'è
+    - quali alternative ci sono al [diritto camerale](TAX)
+    - cosa posso usare come alternativa all'[IMU](TAX)
+    - esistono soluzioni alternative all'[IRPEF](TAX)
+  - intent: ask_tech_concept_alternatives
+    examples:
+    - alternative gratuite agli [assistenti di codice](TECH_CONCEPT)
+    - quali alternative ci sono alla [BiGRU](TECH_CONCEPT)
+    - cosa posso usare come alternativa ai [microservizi](TECH_CONCEPT)
+    - esistono soluzioni alternative alla [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - con cosa si può sostituire i [generatori](TECH_CONCEPT)
+    - ci sono opzioni valide in alternativa agli [assistenti di codice](TECH_CONCEPT)
+    - se non è possibile ricorrere alla [rete neurale](TECH_CONCEPT), quale alternativa c'è
+    - quali alternative ci sono al [generatore](TECH_CONCEPT)
+    - cosa posso usare come alternativa al [vibe coding](TECH_CONCEPT)
+    - esistono soluzioni alternative alle [reti neurali](TECH_CONCEPT)
+    - con cosa si può sostituire i [Service Provider](TECH_CONCEPT)
+    - ci sono opzioni valide in alternativa alle [API](TECH_CONCEPT)
+    - se non è possibile ricorrere all'[ORM](TECH_CONCEPT), quale alternativa c'è
+    - quali alternative ci sono all'[interceptor](TECH_CONCEPT)
+    - cosa posso usare come alternativa alle [Facades](TECH_CONCEPT)
+    - esistono soluzioni alternative alla [GPU](TECH_CONCEPT)
+    - con cosa si può sostituire il [machine learning](TECH_CONCEPT)
+    - ci sono opzioni valide in alternativa all'[autenticazione JWT](TECH_CONCEPT)

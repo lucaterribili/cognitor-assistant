@@ -1,0 +1,161 @@
+nlu:
+  intents:
+  - intent: affirm_confirmation
+    examples:
+    - Sì, esatto
+    - Confermo
+    - Va bene, procediamo
+    - sì, è proprio il [Grassi](FACILITY)
+    - sì, intendo il [Municipio XII](ZONE)
+    - sì, per la [visita medico legale](MEDICAL_PROCEDURE)
+    - sì, voglio prenotare
+    - sì, procedi
+    - confermo la prenotazione
+    - esatto, è per la [patente](DOCUMENT)
+    - corretto
+    - è corretto
+    - giusto
+    - proprio così
+    - esattamente
+    - sì, è quello che cercavo
+    - va bene così
+    - va benissimo
+    - perfetto, confermo
+    - ok, confermo
+    - ok, procedi
+    - certo, vai avanti
+    - d'accordo
+    - sì grazie
+    - sì, mi interessa
+    - sì, è giusto
+    - assolutamente sì
+    - sì, confermo l'invio del [modello 730](DOCUMENT)
+    - sì, intendo la [Direzione Provinciale](DEPARTMENT) dell'[Agenzia delle Entrate](ORGANIZATION)
+    - esatto, è per il pagamento del [modello F24](DOCUMENT)
+  - intent: affirm_negation
+    examples:
+    - No, non è quello che intendo
+    - Non è corretto
+    - Non voglio procedere
+    - no, non intendo il [Grassi](FACILITY)
+    - no, volevo il [Municipio XI](ZONE)
+    - no, non è per la [patente](DOCUMENT)
+    - no, non voglio prenotare
+    - no, non è quello che cercavo
+    - non è questo il servizio che intendevo
+    - sbagliato, intendevo [PostgreSQL](TECHNOLOGY)
+    - no, parlavo di [Laravel](TECHNOLOGY)
+    - no, non confermo
+    - no, annulla
+    - non è giusto
+    - non è così
+    - non va bene
+    - assolutamente no
+    - no grazie
+    - non mi interessa
+    - non fa per me
+    - non è quello che ho chiesto
+    - non è la risposta che volevo
+    - no, non sono in [regime forfettario](MISC)
+    - no, parlavo del [modello 730](DOCUMENT) e non del [modello Redditi PF](DOCUMENT)
+    - no, non intendo l'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+  - intent: affirm_greeting
+    examples:
+    - Ciao
+    - Buongiorno
+    - Salve
+    - buonasera
+    - buon pomeriggio
+    - buondì
+    - ehi
+    - ehilà
+    - ciao a tutti
+    - salve a tutti
+    - buongiorno a voi
+    - hey
+    - buon giorno
+    - ciao assistente
+    - salve, buon pomeriggio
+    - buongiorno a tutti voi
+    - ciao, bentrovato
+    - buonasera a tutti
+    - ehilà, ciao
+    - salve, buongiorno
+    - buondì a tutti
+    - ciao, buon inizio settimana
+  - intent: affirm_goodbye
+    examples:
+    - Arrivederci
+    - A presto
+    - Buona giornata
+    - arrivederLa
+    - alla prossima
+    - ci vediamo
+    - ci sentiamo
+    - a dopo
+    - a domani
+    - buona serata
+    - buon proseguimento
+    - buona continuazione
+    - ciao ciao
+    - ti saluto
+    - vi saluto
+    - saluti
+    - tanti saluti
+    - buonanotte
+    - devo andare, a presto
+    - per oggi è tutto, ciao
+  - intent: affirm_gratitude
+    examples:
+    - Grazie
+    - Ti ringrazio
+    - Molto gentile
+    - grazie mille
+    - grazie tante
+    - grazie infinite
+    - grazie di cuore
+    - grazie davvero
+    - ti ringrazio molto
+    - la ringrazio
+    - vi ringrazio
+    - gentilissimo
+    - sei stato molto utile
+    - mi sei stato d'aiuto
+    - grazie per l'aiuto
+    - grazie per le informazioni
+    - grazie per la risposta
+    - grazie per il tempo
+    - grazie della pazienza
+    - perfetto, grazie
+    - ottimo, grazie
+    - benissimo, grazie
+    - ti sono grato
+    - grazie ancora
+    - grazie, era quello che cercavo
+  - intent: affirm_insult
+    examples:
+    - Sei inutile
+    - Non capisci niente
+    - Che assistente stupido
+    - sei stupido
+    - sei un idiota
+    - che idiota
+    - imbecille
+    - sei un cretino
+    - sei proprio un deficiente
+    - non capisci un tubo
+    - non servi a nulla
+    - sei completamente inutile
+    - che risposta stupida
+    - ma sei scemo
+    - sei proprio scarso
+    - fai pena
+    - fai schifo
+    - sei un incapace
+    - sei un incompetente
+    - sei ridicolo
+    - sei patetico
+    - che bot inutile
+    - sei un pagliaccio
+    - non sai fare niente
+    - sei una perdita di tempo

@@ -1,0 +1,155 @@
+nlu:
+  intents:
+  - intent: ask_opening_hours
+    examples:
+    - A che ora apre?
+    - Quali sono gli orari di apertura?
+    - Quando posso venire?
+    - quando sono chiusi gli uffici nei giorni festivi
+    - gli uffici delle Entrate sono aperti il [sabato](DATE)
+    - a che ora aprite la mattina e il pomeriggio
+    - quali sono gli orari di apertura al pubblico
+    - fino a che ora restano aperti gli sportelli
+    - siete aperti anche con orario continuato
+    - in quali giorni e orari ricevete gli utenti
+    - a che ora chiude l'accettazione allo sportello
+    - gli uffici sono aperti anche nel fine settimana
+    - c'è una chiusura estiva o festiva da considerare
+    - qual è la fascia oraria di apertura pomeridiana
+    - da che ora posso presentarmi allo sportello
+    - quali sono gli orari di ricevimento settimanali
+    - siete aperti il sabato mattina
+    - vorrei sapere a che ora aprite la mattina e il pomeriggio
+  - intent: ask_facility_opening_hours
+    examples:
+    - qual è l'orario del [Poliambulatorio Paolini](FACILITY)
+    - quali sono gli orari del [Poliambulatorio Bernocchi](FACILITY)
+    - a che ora chiude il [Poliambulatorio Coni Zugna](FACILITY)
+    - orari della [Casa della Salute](FACILITY) di [Ostia](ZONE)
+    - orari del [CPO Gennaro di Rosa](FACILITY)
+    - siete aperti il [sabato](DATE) al [Centro Prelievi Ostia](FACILITY)
+    - fino a che ora accettano al [Centro Prelievi Palidoro](FACILITY)
+    - quando è aperto il [Centro Prelievi Magliana](FACILITY)
+    - orari di accettazione del [Centro Prelievi Acilia](FACILITY)
+    - quali sono gli orari dei [Consultori Familiari](FACILITY) nel [Municipio XII](ZONE)
+    - i [Consultori](FACILITY) chiudono ad [agosto](DATE)
+    - a che ora aprono i [Centri Prelievi](FACILITY) la mattina
+    - il [Centro Prelievi](FACILITY) è aperto oggi
+    - a che ora apre l'[Ecocentro](FACILITY) comunale di [Montesole](ZONE)
+    - quando è aperta la [Biblioteca civica](FACILITY)
+    - quali sono gli orari di apertura del [Museo archeologico](FACILITY)
+    - fino a che ora sono aperte le [Cappelle Medicee](FACILITY)
+    - orari di apertura della [Pinacoteca civica](FACILITY) e della [Galleria d'arte
+      contemporanea](FACILITY)
+    - quali sono gli orari del [Consultorio Familiare Valle Verde](FACILITY)
+    - che orari fa il [Consultorio Familiare Porto Nuovo](FACILITY)
+    - quando è aperta la [Casa della Comunità Porto Nuovo](FACILITY)
+    - in quali orari è aperta la [Casa della Comunità Valle Verde](FACILITY)
+    - quali sono gli orari della [Casa della Comunità Colline](FACILITY)
+    - a che ora apre il [Presidio Ospedaliero Santa Maria del Mare](FACILITY)
+    - orari di apertura del [Poliambulatorio Specialistico Coni Zugna](FACILITY)
+    - quando apre il [Presidio Ospedaliero Grassi](FACILITY)
+  - intent: ask_department_opening_hours
+    examples:
+    - quando è aperto l'[URP](DEPARTMENT)
+    - l'[URP](DEPARTMENT) è aperto il [venerdì](DATE) pomeriggio
+    - il [Pronto Soccorso](DEPARTMENT) è aperto di notte
+    - l'ambulatorio di [Neurologia](DEPARTMENT) è aperto di [pomeriggio](TIME)
+    - orari del servizio di [Medicina dello Sport](DEPARTMENT)
+    - in che orari è attivo il numero verde dell'[URP](DEPARTMENT)
+    - quali sono gli orari dell'[Ufficio Territoriale](DEPARTMENT) delle Entrate
+    - quando è aperto l'[Ufficio del Catasto](DEPARTMENT)
+    - quali sono gli orari di apertura dello sportello [anagrafe](DEPARTMENT)
+    - quali sono gli orari di ricevimento al pubblico della [segreteria scolastica](DEPARTMENT)
+    - quali sono gli orari di apertura della [Medicina Legale](DEPARTMENT)
+    - a che ora apre e a che ora chiude la [Medicina dello Sport](DEPARTMENT)
+    - in quali fasce orarie è aperto la [Salute Mentale](DEPARTMENT)
+    - fino a che ora riceve il pubblico il [Catasto](DEPARTMENT)
+    - qual è l'orario di ricevimento della [Direzione Sanitaria](DEPARTMENT)
+    - il [SUAP](DEPARTMENT) è aperto anche di pomeriggio
+    - quali sono gli orari di apertura dell'[anagrafe](DEPARTMENT)
+    - a che ora apre e a che ora chiude la [Polizia locale](DEPARTMENT)
+    - quali sono gli orari della [UOC Patologia Clinica e Laboratorio Analisi](DEPARTMENT)
+    - quando è aperta la [UOC Prevenzione e Sicurezza negli Ambienti di Lavoro](DEPARTMENT)
+    - quali sono gli orari di ricevimento della [UOC Ostetricia e Ginecologia](DEPARTMENT)
+    - che orari ha la [UOC Pediatria e Neonatologia](DEPARTMENT)
+    - a che ora apre la [UOC Chirurgia Generale e Day Surgery](DEPARTMENT)
+    - orari di accesso al [Centro di Salute Mentale](DEPARTMENT)
+    - quando posso recarmi al [Centro di Diabetologia e Malattie Metaboliche](DEPARTMENT)
+    - quali sono gli orari della [UOSD Consultori Familiari](DEPARTMENT)
+    - in che orari è attiva la [UOC Igiene e Sanità Pubblica](DEPARTMENT)
+  - intent: ask_health_service_opening_hours
+    examples:
+    - a che ora apre il [CUP](HEALTH_SERVICE) del [Grassi](FACILITY)
+    - fino a che ora è aperto lo sportello [CUP](HEALTH_SERVICE)
+    - la [Guardia Medica](HEALTH_SERVICE) è attiva il [sabato](DATE)
+    - dalle [20](TIME) alle [8](TIME) c'è la [Guardia Medica](HEALTH_SERVICE)
+    - orari delle [vaccinazioni](HEALTH_SERVICE) al [Grassi](FACILITY)
+    - quali sono gli orari di apertura dell'[assistenza domiciliare](HEALTH_SERVICE)
+    - a che ora apre e a che ora chiude la [Guardia Medica](HEALTH_SERVICE)
+    - in quali fasce orarie è aperto la [donazione del sangue](HEALTH_SERVICE)
+    - fino a che ora riceve il pubblico la [scelta del medico](HEALTH_SERVICE)
+    - qual è l'orario di ricevimento dell'[accesso agli atti](HEALTH_SERVICE)
+    - lo [screening oncologico](HEALTH_SERVICE) è aperto anche di pomeriggio
+    - quali sono gli orari di apertura dello [Sportello Giovani](HEALTH_SERVICE)
+    - a che ora apre e a che ora chiude il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - in quali fasce orarie è aperto lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - fino a che ora riceve il pubblico l'[assistenza all'estero](HEALTH_SERVICE)
+    - qual è l'orario di ricevimento del [Servizio Sanitario](HEALTH_SERVICE)
+  - intent: ask_document_opening_hours
+    examples:
+    - quando si ritirano i [referti](DOCUMENT)
+    - orari per il ritiro dei [referti](DOCUMENT) al [Grassi](FACILITY)
+    - orari di apertura degli sportelli per le [esenzioni](DOCUMENT)
+    - quali sono gli orari di apertura del [codice fiscale](DOCUMENT)
+    - a che ora apre e a che ora chiude l'[ISEE](DOCUMENT)
+    - in quali fasce orarie è aperto la [partita IVA](DOCUMENT)
+    - fino a che ora riceve il pubblico la [carta d'identità elettronica](DOCUMENT)
+    - qual è l'orario di ricevimento della [Certificazione Unica](DOCUMENT)
+    - il [contratto di locazione](DOCUMENT) è aperto anche di pomeriggio
+    - quali sono gli orari di apertura della [fattura elettronica](DOCUMENT)
+    - a che ora apre e a che ora chiude il [referto](DOCUMENT)
+    - in quali fasce orarie è aperto l'[avviso bonario](DOCUMENT)
+    - fino a che ora riceve il pubblico l'[avviso di accertamento](DOCUMENT)
+    - qual è l'orario di ricevimento della [marca da bollo](DOCUMENT)
+    - l'[impegnativa](DOCUMENT) è aperto anche di pomeriggio
+    - quali sono gli orari di apertura del [Piano terapeutico](DOCUMENT)
+    - a che ora apre e a che ora chiude il [modello 730](DOCUMENT)
+    - in quali fasce orarie è aperto il [modello F24](DOCUMENT)
+  - intent: ask_organization_opening_hours
+    examples:
+    - a che ora apre lo sportello dell'[Agenzia delle Entrate](ORGANIZATION)
+    - a che ora chiudono gli sportelli dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - in che orari risponde il call center dell'[Agenzia delle Entrate](ORGANIZATION)
+    - quali sono gli orari di apertura della [Guardia di Finanza](ORGANIZATION)
+    - a che ora apre e a che ora chiude la [Regione](ORGANIZATION)
+    - in quali fasce orarie è aperto l'[INPS](ORGANIZATION)
+    - fino a che ora riceve il pubblico il [Ministero della Salute](ORGANIZATION)
+    - qual è l'orario di ricevimento dell'[Ordine dei Medici](ORGANIZATION)
+    - la [Camera di Commercio](ORGANIZATION) è aperto anche di pomeriggio
+    - quali sono gli orari di apertura della [Croce Rossa](ORGANIZATION)
+    - a che ora apre e a che ora chiude la [Protezione Civile](ORGANIZATION)
+    - in quali fasce orarie è aperto l'[Agenzia delle Entrate](ORGANIZATION)
+    - fino a che ora riceve il pubblico l'[ASL Roma 3](ORGANIZATION)
+    - qual è l'orario di ricevimento dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - '[programmato](ORGANIZATION) è aperto anche di pomeriggio'
+    - quali sono gli orari di apertura dei [Musei Civici](ORGANIZATION)
+    - a che ora apre e a che ora chiude l'[ASL](ORGANIZATION)
+  - intent: ask_medical_procedure_opening_hours
+    examples:
+    - a che ora si può fare il [prelievo](MEDICAL_PROCEDURE) al [Grassi](FACILITY)
+    - quali sono gli orari di apertura del [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - a che ora apre e a che ora chiude la [visita per la patente](MEDICAL_PROCEDURE)
+    - in quali fasce orarie è aperto il [ricovero programmato](MEDICAL_PROCEDURE)
+    - fino a che ora riceve il pubblico la [risonanza magnetica](MEDICAL_PROCEDURE)
+    - qual è l'orario di ricevimento degli [esami del sangue](MEDICAL_PROCEDURE)
+    - la [visita intramoenia](MEDICAL_PROCEDURE) è aperto anche di pomeriggio
+    - quali sono gli orari di apertura dell'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - a che ora apre e a che ora chiude la [radiografia](MEDICAL_PROCEDURE)
+    - in quali fasce orarie è aperto la [visita oculistica](MEDICAL_PROCEDURE)
+    - fino a che ora riceve il pubblico la [visita dermatologica](MEDICAL_PROCEDURE)
+    - qual è l'orario di ricevimento del [tampone molecolare](MEDICAL_PROCEDURE)
+    - la [spirometria](MEDICAL_PROCEDURE) è aperto anche di pomeriggio
+    - quali sono gli orari di apertura della [visita medico legale](MEDICAL_PROCEDURE)
+    - a che ora apre e a che ora chiude il [prelievo](MEDICAL_PROCEDURE)
+    - in quali fasce orarie è aperto il [Quantiferon](MEDICAL_PROCEDURE)

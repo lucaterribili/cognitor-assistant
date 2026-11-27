@@ -1,0 +1,230 @@
+nlu:
+  intents:
+  - intent: ask_explanation
+    examples:
+    - Mi spieghi come funziona?
+    - Puoi chiarirmi questo concetto?
+    - Perché funziona così?
+    - spiegami come funziona il sistema
+    - come funziona la procedura
+    - come funziona il servizio
+    - come funziona il calcolo
+    - come funziona in pratica
+    - puoi spiegarmi il meccanismo
+    - puoi chiarirmi questo punto
+    - mi chiarisci questo passaggio
+    - non mi è chiaro come funziona
+    - non capisco questa parte
+    - non capisco il motivo
+    - perché si fa così
+    - perché è necessario
+    - perché devo farlo
+    - come mai funziona così
+    - qual è la logica
+    - qual è il ragionamento dietro
+    - su che base viene deciso
+    - come viene calcolato l'importo
+    - come viene deciso l'esito
+    - in base a cosa viene assegnato il punteggio
+    - spiegami la differenza in parole semplici
+    - spiegamelo come se fossi un bambino
+    - spiegami in modo semplice
+    - spiegami meglio
+    - spiegazione dettagliata
+    - vorrei una spiegazione
+    - mi serve una spiegazione di questa regola
+    - potresti illustrarmi il funzionamento
+    - puoi illustrare il processo
+    - mi spieghi come si arriva a questo risultato
+    - mi fai capire come funziona
+    - dimmi come funziona
+    - dimmi come funziona nel dettaglio
+    - puoi darmi una spiegazione
+    - ho bisogno di capire come funziona
+    - come funziona l'ingresso gratuito la [prima domenica del mese](DATE) per i residenti
+  - intent: ask_tech_concept_explanation
+    examples:
+    - spiegami come funziona una [rete neurale](TECH_CONCEPT)
+    - perché [BiGRU](TECH_CONCEPT) spesso batte modelli più complessi
+    - come funzionano i [generatori](TECH_CONCEPT) in [PHP](TECHNOLOGY)
+    - come funzionano i [Service Provider](TECH_CONCEPT) di [Laravel](TECHNOLOGY)
+    - come funziona un [firewall](TECH_CONCEPT) con [nftables](TECHNOLOGY)
+    - spiegami le [Facades](TECH_CONCEPT) in [Laravel](TECHNOLOGY)
+    - mi spieghi bene come funziona le [reti neurali](TECH_CONCEPT)
+    - puoi spiegarmi il funzionamento dei [Service Provider](TECH_CONCEPT)
+    - vorrei una spiegazione chiara sulle [API](TECH_CONCEPT)
+    - come agisce e come opera l'[ORM](TECH_CONCEPT)
+    - mi aiuti a capire il meccanismo dell'[interceptor](TECH_CONCEPT)
+    - potresti illustrarmi nel dettaglio come funziona le [Facades](TECH_CONCEPT)
+    - mi spieghi bene come funziona la [GPU](TECH_CONCEPT)
+    - puoi spiegarmi il funzionamento del [machine learning](TECH_CONCEPT)
+    - vorrei una spiegazione chiara sull'[autenticazione JWT](TECH_CONCEPT)
+    - come agisce e come opera la [containerizzazione](TECH_CONCEPT)
+  - intent: ask_health_service_explanation
+    examples:
+    - come funziona il [CUP](HEALTH_SERVICE)
+    - come funziona la [scelta del medico](HEALTH_SERVICE)
+    - come funziona lo [screening del colon retto](HEALTH_SERVICE)
+    - come funziona la [Guardia Medica](HEALTH_SERVICE)
+    - spiegami come funziona il [PUA](HEALTH_SERVICE)
+    - mi spieghi bene come funziona la [scelta del medico](HEALTH_SERVICE)
+    - puoi spiegarmi il funzionamento dell'[accesso agli atti](HEALTH_SERVICE)
+    - vorrei una spiegazione chiara sullo [screening oncologico](HEALTH_SERVICE)
+    - come agisce e come opera lo [Sportello Giovani](HEALTH_SERVICE)
+    - mi aiuti a capire il meccanismo del [Fascicolo Sanitario](HEALTH_SERVICE)
+    - potresti illustrarmi nel dettaglio come funziona lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - mi spieghi bene come funziona l'[assistenza all'estero](HEALTH_SERVICE)
+    - puoi spiegarmi il funzionamento del [Servizio Sanitario](HEALTH_SERVICE)
+    - vorrei una spiegazione chiara sullo [screening del colon retto](HEALTH_SERVICE)
+    - come agisce e come opera l'[accesso civico](HEALTH_SERVICE)
+    - mi aiuti a capire il meccanismo dello [screening della mammella](HEALTH_SERVICE)
+  - intent: ask_misc_explanation
+    examples:
+    - come funziona il [credito d'imposta](MISC)
+    - come funziona lo [split payment](MISC) per l'[IVA](TAX)
+    - come funziona l'assegnazione degli [alloggi popolari](MISC) del Comune
+    - spiegami come funziona la giustificazione delle assenze sul [registro elettronico](MISC)
+    - perché serve il certificato medico per la [dieta speciale](MISC) alla mensa
+    - mi spieghi bene come funziona [Entratel](MISC)
+    - puoi spiegarmi il funzionamento di [Fatture e Corrispettivi](MISC)
+    - vorrei una spiegazione chiara sul [pre-scuola](MISC)
+    - come agisce e come opera la [rendita catastale](MISC)
+    - mi aiuti a capire il meccanismo del [regime ordinario](MISC)
+    - potresti illustrarmi nel dettaglio come funziona il [bonus mobili](MISC)
+    - mi spieghi bene come funziona l'[ecobonus](MISC)
+    - puoi spiegarmi il funzionamento del [Superbonus](MISC)
+    - vorrei una spiegazione chiara sull'[audioguida](MISC)
+    - come agisce e come opera gli [alloggi popolari](MISC)
+    - mi aiuti a capire il meccanismo del [regime forfettario](MISC)
+    - potresti illustrarmi nel dettaglio come funziona il [cassetto fiscale](MISC)
+    - mi spieghi bene come funziona il [rimborso IRPEF](MISC)
+  - intent: ask_facility_explanation
+    examples:
+    - come funziona l'accesso ai [Centri Prelievi](FACILITY)
+    - perché i [Centri Prelievi](FACILITY) non richiedono appuntamento
+    - perché alcune prestazioni si fanno solo al [Grassi](FACILITY)
+    - spiegami come funziona la prenotazione obbligatoria per le [Cappelle Medicee](FACILITY)
+    - mi spieghi bene come funziona la [Scuola Primaria Rodari](FACILITY)
+    - puoi spiegarmi il funzionamento del [CPO Gennaro di Rosa](FACILITY)
+    - vorrei una spiegazione chiara sul [Consultorio](FACILITY)
+    - come agisce e come opera la [Galleria d'arte contemporanea](FACILITY)
+    - mi aiuti a capire il meccanismo del [Centro Prelievi Palidoro](FACILITY)
+    - potresti illustrarmi nel dettaglio come funziona il [Centro Prelievi Acilia](FACILITY)
+    - mi spieghi bene come funziona il [Grassi](FACILITY)
+    - puoi spiegarmi il funzionamento del [Centro Prelievi](FACILITY)
+    - vorrei una spiegazione chiara sulla [Casa della Salute](FACILITY)
+    - come agisce e come opera il [Centro Prelievi Ostia](FACILITY)
+    - mi aiuti a capire il meccanismo del [Museo archeologico](FACILITY)
+    - potresti illustrarmi nel dettaglio come funziona il [Poliambulatorio Coni Zugna](FACILITY)
+  - intent: ask_tax_explanation
+    examples:
+    - come funziona la [cedolare secca](TAX) sugli affitti
+    - come vengono calcolati gli scaglioni [IRPEF](TAX)
+    - perché devo pagare l'acconto [IRPEF](TAX)
+    - come funziona il calcolo della [TARI](TAX) per le famiglie
+    - mi spieghi bene come funziona l'[imposta sulle successioni](TAX)
+    - puoi spiegarmi il funzionamento del [contributo unificato](TAX)
+    - vorrei una spiegazione chiara sul [diritto camerale](TAX)
+    - come agisce e come opera l'[IMU](TAX)
+    - mi aiuti a capire il meccanismo dell'[IRPEF](TAX)
+    - potresti illustrarmi nel dettaglio come funziona la [TARI](TAX)
+    - mi spieghi bene come funziona l'[IVA](TAX)
+    - puoi spiegarmi il funzionamento della [cedolare secca](TAX)
+    - vorrei una spiegazione chiara sull'[imposta di registro](TAX)
+    - come agisce e come opera l'[imposta di bollo](TAX)
+    - mi aiuti a capire il meccanismo dell'[IRES](TAX)
+    - potresti illustrarmi nel dettaglio come funziona l'[IRAP](TAX)
+    - mi spieghi bene come funziona la [ritenuta d'acconto](TAX)
+  - intent: ask_procedure_explanation
+    examples:
+    - spiegami come funziona il [ravvedimento operoso](PROCEDURE)
+    - spiegami come funziona la [raccolta differenziata](PROCEDURE) a [Montesole](ZONE)
+    - come funzionano le [iscrizioni online](PROCEDURE) per il primo anno di scuola
+    - mi spieghi bene come funziona il [rinnovo della patente](PROCEDURE)
+    - puoi spiegarmi il funzionamento della [voltura catastale](PROCEDURE)
+    - vorrei una spiegazione chiara sulle [iscrizioni online](PROCEDURE)
+    - come agisce e come opera il [fermo amministrativo](PROCEDURE)
+    - mi aiuti a capire il meccanismo del [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - potresti illustrarmi nel dettaglio come funziona il [DOCFA](PROCEDURE)
+    - mi spieghi bene come funziona la [denuncia di smarrimento](PROCEDURE)
+    - puoi spiegarmi il funzionamento dell'[apertura della partita IVA](PROCEDURE)
+    - vorrei una spiegazione chiara sulla [rottamazione delle cartelle](PROCEDURE)
+    - come agisce e come opera la [registrazione del contratto di locazione](PROCEDURE)
+    - mi aiuti a capire il meccanismo del [concordato preventivo biennale](PROCEDURE)
+    - potresti illustrarmi nel dettaglio come funziona l'[accertamento con adesione](PROCEDURE)
+    - mi spieghi bene come funziona il [matrimonio civile](PROCEDURE)
+  - intent: ask_technology_explanation
+    examples:
+    - come funziona [Eloquent](TECHNOLOGY) con le relazioni tra modelli
+    - perché [FastText](TECHNOLOGY) è utile per il training non supervisionato
+    - come funziona [rsync](TECHNOLOGY) con i [cron job](TECH_CONCEPT)
+    - mi spieghi bene come funziona [Flask](TECHNOLOGY)
+    - puoi spiegarmi il funzionamento di [Joomla](TECHNOLOGY)
+    - vorrei una spiegazione chiara sul [Desktop Telematico](TECHNOLOGY)
+    - come agisce e come opera [Voltura 2.0](TECHNOLOGY)
+    - mi aiuti a capire il meccanismo di [Docker](TECHNOLOGY)
+    - potresti illustrarmi nel dettaglio come funziona [FastAPI](TECHNOLOGY)
+    - mi spieghi bene come funziona [Laravel](TECHNOLOGY)
+    - puoi spiegarmi il funzionamento di [Python](TECHNOLOGY)
+    - vorrei una spiegazione chiara su [PostgreSQL](TECHNOLOGY)
+    - come agisce e come opera [Spring Boot](TECHNOLOGY)
+    - mi aiuti a capire il meccanismo di [PHP](TECHNOLOGY)
+    - potresti illustrarmi nel dettaglio come funziona [WordPress](TECHNOLOGY)
+    - mi spieghi bene come funziona [Linux](TECHNOLOGY)
+  - intent: ask_department_explanation
+    examples:
+    - come funziona il [Pronto Soccorso](DEPARTMENT), come vengono assegnati i codici
+    - mi spieghi bene come funziona l'[URP](DEPARTMENT)
+    - puoi spiegarmi il funzionamento del [Pronto Soccorso](DEPARTMENT)
+    - vorrei una spiegazione chiara sull'[Ufficio Territoriale](DEPARTMENT)
+    - come agisce e come opera l'[Ufficio del Catasto](DEPARTMENT)
+    - mi aiuti a capire il meccanismo della [Direzione Provinciale](DEPARTMENT)
+    - potresti illustrarmi nel dettaglio come funziona la [Medicina Legale](DEPARTMENT)
+    - mi spieghi bene come funziona la [Medicina dello Sport](DEPARTMENT)
+    - puoi spiegarmi il funzionamento della [Salute Mentale](DEPARTMENT)
+    - vorrei una spiegazione chiara sul [Catasto](DEPARTMENT)
+    - come agisce e come opera la [Direzione Sanitaria](DEPARTMENT)
+    - mi aiuti a capire il meccanismo del [SUAP](DEPARTMENT)
+    - potresti illustrarmi nel dettaglio come funziona l'[anagrafe](DEPARTMENT)
+    - mi spieghi bene come funziona la [Polizia locale](DEPARTMENT)
+    - puoi spiegarmi il funzionamento della [Neurologia](DEPARTMENT)
+    - vorrei una spiegazione chiara sull'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+  - intent: ask_document_explanation
+    examples:
+    - come funziona l'[esenzione ticket](DOCUMENT)
+    - mi spieghi bene come funziona l'[avviso bonario](DOCUMENT)
+    - puoi spiegarmi il funzionamento dell'[avviso di accertamento](DOCUMENT)
+    - vorrei una spiegazione chiara sulla [marca da bollo](DOCUMENT)
+    - come agisce e come opera l'[impegnativa](DOCUMENT)
+    - mi aiuti a capire il meccanismo del [Piano terapeutico](DOCUMENT)
+    - potresti illustrarmi nel dettaglio come funziona il [modello 730](DOCUMENT)
+    - mi spieghi bene come funziona il [modello F24](DOCUMENT)
+    - puoi spiegarmi il funzionamento della [patente](DOCUMENT)
+    - vorrei una spiegazione chiara sulla [dichiarazione dei redditi](DOCUMENT)
+    - come agisce e come opera la [cartella esattoriale](DOCUMENT)
+    - mi aiuti a capire il meccanismo del [modello Redditi PF](DOCUMENT)
+    - potresti illustrarmi nel dettaglio come funziona la [dichiarazione precompilata](DOCUMENT)
+    - mi spieghi bene come funziona lo [SPID](DOCUMENT)
+    - puoi spiegarmi il funzionamento del [concorso pubblico](DOCUMENT)
+    - vorrei una spiegazione chiara sulla [visura catastale](DOCUMENT)
+    - come agisce e come opera la [tessera sanitaria](DOCUMENT)
+    - mi aiuti a capire il meccanismo della [cartella clinica](DOCUMENT)
+  - intent: ask_medical_procedure_explanation
+    examples:
+    - come viene gestito il [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - mi spieghi bene come funziona il [prelievo](MEDICAL_PROCEDURE)
+    - puoi spiegarmi il funzionamento del [Quantiferon](MEDICAL_PROCEDURE)
+    - vorrei una spiegazione chiara sull'[ecografia](MEDICAL_PROCEDURE)
+    - come agisce e come opera la [colonscopia](MEDICAL_PROCEDURE)
+    - mi aiuti a capire il meccanismo della [curva glicemica](MEDICAL_PROCEDURE)
+    - potresti illustrarmi nel dettaglio come funziona lo [spermiogramma](MEDICAL_PROCEDURE)
+    - mi spieghi bene come funziona la [terapia oncologica](MEDICAL_PROCEDURE)
+    - puoi spiegarmi il funzionamento della [visita cardiologica](MEDICAL_PROCEDURE)
+    - vorrei una spiegazione chiara sulla [visita neurologica](MEDICAL_PROCEDURE)
+    - come agisce e come opera la [visita specialistica](MEDICAL_PROCEDURE)
+    - mi aiuti a capire il meccanismo della [mammografia](MEDICAL_PROCEDURE)
+    - potresti illustrarmi nel dettaglio come funziona il [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - mi spieghi bene come funziona la [visita per la patente](MEDICAL_PROCEDURE)
+    - puoi spiegarmi il funzionamento del [ricovero programmato](MEDICAL_PROCEDURE)
+    - vorrei una spiegazione chiara sulla [risonanza magnetica](MEDICAL_PROCEDURE)
+    - come agisce e come opera gli [esami del sangue](MEDICAL_PROCEDURE)

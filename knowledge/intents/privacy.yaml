@@ -1,0 +1,136 @@
+nlu:
+  intents:
+  - intent: ask_privacy
+    examples:
+    - Come vengono trattati i miei dati?
+    - Quali dati personali raccogliete?
+    - come vengono trattati i miei dati personali secondo il GDPR
+    - dove posso leggere l'informativa completa sulla privacy
+    - a chi mi rivolgo per esercitare il diritto alla cancellazione dei dati
+    - per quanto tempo conservate i dati personali degli utenti
+    - posso revocare o modificare i consensi privacy che ho prestato
+    - i miei dati vengono condivisi con soggetti terzi
+    - chi è il responsabile della protezione dei dati personali
+    - come garantite la riservatezza delle informazioni sensibili
+    - come posso scaricare o rettificare i miei dati personali registrati
+    - il trattamento dei dati rispetta la normativa europea sulla privacy
+    - dove firmo il consenso al trattamento dei dati personali
+    - quali misure adottate per proteggere la privacy degli utenti
+    - posso oppormi al trattamento dei miei dati per comunicazioni
+    - come viene tutelato il segreto professionale e la riservatezza
+    - qual è la politica di gestione dei cookie e della privacy sul portale
+  - intent: ask_document_privacy
+    examples:
+    - Dove trovo l'[informativa privacy](DOCUMENT)?
+    - chi può vedere i miei [referti](DOCUMENT)
+    - come proteggete i dati della mia [cartella clinica](DOCUMENT)
+    - chi può accedere ai dati della [Tessera Sanitaria](DOCUMENT)
+    - come vengono protetti i dati personali durante l'accesso con [SPID](DOCUMENT)
+    - chi può visualizzare i dati della mia [dichiarazione precompilata](DOCUMENT)
+    - come viene tutelata la privacy nelle [fatture elettroniche](DOCUMENT) per le spese sanitarie
+    - come viene tutelata la privacy dei dati nella [Certificazione Unica](DOCUMENT)
+    - dove trovo l'informativa sul trattamento dei dati per il [contratto di locazione](DOCUMENT)
+    - chi è il titolare del trattamento privacy della [fattura elettronica](DOCUMENT)
+    - come gestite la riservatezza delle informazioni relative al [referto](DOCUMENT)
+    - quali garanzie GDPR sono applicate all'[avviso bonario](DOCUMENT)
+    - posso revocare il consenso privacy per l'[avviso di accertamento](DOCUMENT)
+    - come viene tutelata la privacy dei dati nella [marca da bollo](DOCUMENT)
+    - dove trovo l'informativa sul trattamento dei dati per l'[impegnativa](DOCUMENT)
+    - chi è il titolare del trattamento privacy del [Piano terapeutico](DOCUMENT)
+    - come gestite la riservatezza delle informazioni relative al [modello 730](DOCUMENT)
+    - quali garanzie GDPR sono applicate al [modello F24](DOCUMENT)
+  - intent: ask_health_service_privacy
+    examples:
+    - posso chiedere la cancellazione dei miei dati dal [Fascicolo Sanitario](HEALTH_SERVICE)
+    - i miei dati sono al sicuro nel [CUP](HEALTH_SERVICE) online
+    - come gestite i dati personali per la [Whistleblowing](HEALTH_SERVICE)
+    - come si tutela il segnalante nella [Whistleblowing](HEALTH_SERVICE)
+    - dove trovo l'[informativa privacy](DOCUMENT) per le [vaccinazioni](HEALTH_SERVICE)
+    - come vengono raccolti i dati sullo [screening oncologico](HEALTH_SERVICE)
+    - posso oppormi all'invio delle spese mediche al [Sistema Tessera Sanitaria](HEALTH_SERVICE) per la precompilata
+    - come viene tutelata la privacy dei dati nel [RECUP](HEALTH_SERVICE)
+    - dove trovo l'informativa sul trattamento dei dati per il [Punto unico di accesso](HEALTH_SERVICE)
+    - chi è il titolare del trattamento privacy della [nutrizione artificiale](HEALTH_SERVICE)
+    - come gestite la riservatezza delle informazioni relative alle [cure palliative](HEALTH_SERVICE)
+    - quali garanzie GDPR sono applicate all'[ossigenoterapia](HEALTH_SERVICE)
+    - posso revocare il consenso privacy per il [ritiro referti](HEALTH_SERVICE)
+    - come viene tutelata la privacy dei dati nel [CUP](HEALTH_SERVICE)
+    - dove trovo l'informativa sul trattamento dei dati per l'[assistenza protesica](HEALTH_SERVICE)
+    - chi è il titolare del trattamento privacy delle [vaccinazioni](HEALTH_SERVICE)
+  - intent: ask_organization_privacy
+    examples:
+    - dove trovo la [Privacy Policy](DOCUMENT) dell'[ASL Roma 3](ORGANIZATION)
+    - come vengono trattati i dati sanitari all'[ASL Roma 3](ORGANIZATION)
+    - come cancello i miei dati da [programmato](ORGANIZATION)
+    - dove trovo l'[informativa privacy](DOCUMENT) di [programmato](ORGANIZATION)
+    - usate i cookie su [programmato](ORGANIZATION)
+    - dove trovo l'[informativa privacy](DOCUMENT) dell'[Agenzia delle Entrate](ORGANIZATION)
+    - come viene tutelata la privacy dei dati nella [Regione](ORGANIZATION)
+    - dove trovo l'informativa sul trattamento dei dati per l'[INPS](ORGANIZATION)
+    - chi è il titolare del trattamento privacy del [Ministero della Salute](ORGANIZATION)
+    - come gestite la riservatezza delle informazioni relative all'[Ordine dei Medici](ORGANIZATION)
+    - quali garanzie GDPR sono applicate alla [Camera di Commercio](ORGANIZATION)
+    - posso revocare il consenso privacy per la [Croce Rossa](ORGANIZATION)
+    - come viene tutelata la privacy dei dati nella [Protezione Civile](ORGANIZATION)
+    - dove trovo l'informativa sul trattamento dei dati per l'[Agenzia delle Entrate](ORGANIZATION)
+    - chi è il titolare del trattamento privacy dell'[ASL Roma 3](ORGANIZATION)
+    - come gestite la riservatezza delle informazioni relative all'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - quali garanzie GDPR sono applicate a [programmato](ORGANIZATION)
+  - intent: ask_department_privacy
+    examples:
+    - come viene tutelata la riservatezza nel [Servizio di Salute Mentale](DEPARTMENT)
+    - come posso opporre il trattamento dei dati in [Pronto Soccorso](DEPARTMENT)
+    - come viene tutelata la privacy dei dati nell'[anagrafe](DEPARTMENT)
+    - dove trovo l'informativa sul trattamento dei dati per la [Polizia locale](DEPARTMENT)
+    - chi è il titolare del trattamento privacy della [Neurologia](DEPARTMENT)
+    - come gestite la riservatezza delle informazioni relative all'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - quali garanzie GDPR sono applicate al [Dipartimento del Farmaco](DEPARTMENT)
+    - posso revocare il consenso privacy per la [UOC Consultori Familiari](DEPARTMENT)
+    - come viene tutelata la privacy dei dati nella [Cardiologia interventistica](DEPARTMENT)
+    - dove trovo l'informativa sul trattamento dei dati per i [tributi](DEPARTMENT)
+    - chi è il titolare del trattamento privacy della [segreteria scolastica](DEPARTMENT)
+    - come gestite la riservatezza delle informazioni relative all'[Ufficio Stampa](DEPARTMENT)
+    - quali garanzie GDPR sono applicate ai [servizi demografici](DEPARTMENT)
+    - posso revocare il consenso privacy per i [Lavori pubblici](DEPARTMENT)
+    - come viene tutelata la privacy dei dati nella [Direzione Generale](DEPARTMENT)
+    - dove trovo l'informativa sul trattamento dei dati per l'[URP](DEPARTMENT)
+    - chi è il titolare del trattamento privacy del [Pronto Soccorso](DEPARTMENT)
+    - come gestite la riservatezza delle informazioni relative all'[Ufficio Territoriale](DEPARTMENT)
+  - intent: ask_role_privacy
+    examples:
+    - come contattare il [DPO](ROLE) dell'[ASL Roma 3](ORGANIZATION) per i dati personali
+    - come revoco la delega al [commercialista](ROLE) per l'accesso al mio [cassetto fiscale](MISC)
+    - come viene tutelata la privacy dei dati nel [commercialista](ROLE)
+    - dove trovo l'informativa sul trattamento dei dati per il [sostituto d'imposta](ROLE)
+    - chi è il titolare del trattamento privacy del [pediatra](ROLE)
+    - come gestite la riservatezza delle informazioni relative agli [specialisti ambulatoriali](ROLE)
+    - quali garanzie GDPR sono applicate ai [medici di base](ROLE)
+    - posso revocare il consenso privacy per il [DPO](ROLE)
+    - come viene tutelata la privacy dei dati nel [donatore di sangue](ROLE)
+    - dove trovo l'informativa sul trattamento dei dati per lo [psicologo](ROLE)
+    - chi è il titolare del trattamento privacy del [Dirigente Scolastico](ROLE)
+    - come gestite la riservatezza delle informazioni relative al [coordinatore di classe](ROLE)
+    - quali garanzie GDPR sono applicate agli [infermieri](ROLE)
+    - posso revocare il consenso privacy per il [direttore sanitario](ROLE)
+    - come viene tutelata la privacy dei dati nel [Responsabile della Prevenzione della Corruzione](ROLE)
+    - dove trovo l'informativa sul trattamento dei dati per i [familiari a carico](ROLE)
+    - chi è il titolare del trattamento privacy dello [specialista ambulatoriale](ROLE)
+  - intent: ask_misc_privacy
+    examples:
+    - come vengono trattati i dati personali nel [cassetto fiscale](MISC)
+    - come viene tutelata la privacy dei dati nel [pre-scuola](MISC)
+    - dove trovo l'informativa sul trattamento dei dati per la [rendita catastale](MISC)
+    - chi è il titolare del trattamento privacy del [regime ordinario](MISC)
+    - come gestite la riservatezza delle informazioni relative al [bonus mobili](MISC)
+    - quali garanzie GDPR sono applicate all'[ecobonus](MISC)
+    - posso revocare il consenso privacy per il [Superbonus](MISC)
+    - come viene tutelata la privacy dei dati nell'[audioguida](MISC)
+    - dove trovo l'informativa sul trattamento dei dati per gli [alloggi popolari](MISC)
+    - chi è il titolare del trattamento privacy del [regime forfettario](MISC)
+    - come gestite la riservatezza delle informazioni relative al [cassetto fiscale](MISC)
+    - quali garanzie GDPR sono applicate al [rimborso IRPEF](MISC)
+    - posso revocare il consenso privacy per il [bonus ristrutturazione](MISC)
+    - come viene tutelata la privacy dei dati nel [registro elettronico](MISC)
+    - dove trovo l'informativa sul trattamento dei dati per la [dieta speciale](MISC)
+    - chi è il titolare del trattamento privacy di [CIVIS](MISC)
+    - come gestite la riservatezza delle informazioni relative a [Fisconline](MISC)

@@ -1,0 +1,140 @@
+nlu:
+  intents:
+  - intent: ask_rights
+    examples:
+    - Quali sono i miei diritti?
+    - Quali tutele sono previste?
+    - quali sono i miei diritti di paziente
+    - ho diritto a scegliere il medico
+    - ho diritto a un interprete in ospedale
+    - quali tutele ho se aspetto troppo per una visita
+    - posso rifiutare un ricovero
+    - posso chiedere un secondo parere medico
+    - ho diritto alla riservatezza dei miei dati sanitari
+    - ho diritto a ricevere assistenza a domicilio
+    - quali sono i diritti di un lavoratore in malattia
+    - Quali diritti posso far valere?
+    - quali diritti ha il cittadino disoccupato per le cure sanitarie
+    - quali sono i diritti del contribuente durante una verifica fiscale
+    - quali sono i diritti garantiti all'utente
+    - dove posso consultare la carta dei diritti del cittadino
+    - ho diritto a ricevere una risposta scritta motivata
+    - vorrei sapere quali sono i diritti garantiti all'utente
+  - intent: ask_document_rights
+    examples:
+    - ho diritto a una copia della [cartella clinica](DOCUMENT)
+    - ho diritto a ricevere i [referti](DOCUMENT) online
+    - posso chiedere la sospensione legale della riscossione di una [cartella esattoriale](DOCUMENT)
+    - quali tutele prevede lo [Statuto del contribuente](DOCUMENT)
+    - quali diritti ho riguardo alla [dichiarazione precompilata](DOCUMENT)
+    - cosa prevede la tutela dei diritti dell'utente per lo [SPID](DOCUMENT)
+    - ho diritto di accesso o di replica in merito al [concorso pubblico](DOCUMENT)
+    - quali garanzie e diritti mi spettano sulla [visura catastale](DOCUMENT)
+    - come faccio valere i miei diritti relativi alla [tessera sanitaria](DOCUMENT)
+    - quali diritti riconosce la legge per la [cartella clinica](DOCUMENT)
+    - quali diritti ho riguardo al [codice fiscale](DOCUMENT)
+    - cosa prevede la tutela dei diritti dell'utente per l'[ISEE](DOCUMENT)
+    - ho diritto di accesso o di replica in merito alla [partita IVA](DOCUMENT)
+    - quali garanzie e diritti mi spettano sulla [carta d'identità elettronica](DOCUMENT)
+    - come faccio valere i miei diritti relativi alla [Certificazione Unica](DOCUMENT)
+    - quali diritti riconosce la legge per il [contratto di locazione](DOCUMENT)
+    - quali diritti ho riguardo alla [fattura elettronica](DOCUMENT)
+    - cosa prevede la tutela dei diritti dell'utente per il [referto](DOCUMENT)
+  - intent: ask_procedure_rights
+    examples:
+    - quali diritti ho se il datore di lavoro non versa i [contributi Inps](PROCEDURE)
+    - quali diritti ho nel [cambio di residenza](PROCEDURE)
+    - ho diritto a presentare un'istanza di [autotutela](PROCEDURE) contro un atto errato
+    - posso presentare un [interpello](PROCEDURE) all'[Agenzia delle Entrate](ORGANIZATION)
+    - quali diritti ho riguardo alla [fatturazione elettronica](PROCEDURE)
+    - cosa prevede la tutela dei diritti dell'utente per la [rateizzazione](PROCEDURE)
+    - ho diritto di accesso o di replica in merito al [ravvedimento operoso](PROCEDURE)
+    - quali garanzie e diritti mi spettano sui [contributi Inps](PROCEDURE)
+    - come faccio valere i miei diritti relativi all'[autotutela](PROCEDURE)
+    - quali diritti riconosce la legge per l'[accertamento fiscale](PROCEDURE)
+    - quali diritti ho riguardo alla [raccolta differenziata](PROCEDURE)
+    - cosa prevede la tutela dei diritti dell'utente per il [rinnovo della patente](PROCEDURE)
+    - ho diritto di accesso o di replica in merito alla [voltura catastale](PROCEDURE)
+    - quali garanzie e diritti mi spettano sulle [iscrizioni online](PROCEDURE)
+    - come faccio valere i miei diritti relativi al [fermo amministrativo](PROCEDURE)
+    - quali diritti riconosce la legge per il [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - quali diritti ho riguardo al [DOCFA](PROCEDURE)
+    - cosa prevede la tutela dei diritti dell'utente per la [denuncia di smarrimento](PROCEDURE)
+  - intent: ask_health_service_rights
+    examples:
+    - ho diritto all'[accesso agli atti](HEALTH_SERVICE)
+    - ho diritto all'[assistenza protesica](HEALTH_SERVICE)
+    - ho diritto all'[assistenza all'estero](HEALTH_SERVICE)
+    - quali diritti ho riguardo all'[accesso agli atti](HEALTH_SERVICE)
+    - cosa prevede la tutela dei diritti dell'utente per lo [screening oncologico](HEALTH_SERVICE)
+    - ho diritto di accesso o di replica in merito allo [Sportello Giovani](HEALTH_SERVICE)
+    - quali garanzie e diritti mi spettano sul [Fascicolo Sanitario](HEALTH_SERVICE)
+    - come faccio valere i miei diritti relativi allo [Sportello di Ascolto](HEALTH_SERVICE)
+    - quali diritti riconosce la legge per l'[assistenza all'estero](HEALTH_SERVICE)
+    - quali diritti ho riguardo al [Servizio Sanitario](HEALTH_SERVICE)
+    - cosa prevede la tutela dei diritti dell'utente per lo [screening del colon retto](HEALTH_SERVICE)
+    - ho diritto di accesso o di replica in merito all'[accesso civico](HEALTH_SERVICE)
+    - quali garanzie e diritti mi spettano sullo [screening della mammella](HEALTH_SERVICE)
+    - come faccio valere i miei diritti relativi alla [Telemedicina](HEALTH_SERVICE)
+    - quali diritti riconosce la legge per il [RECUP](HEALTH_SERVICE)
+    - quali diritti ho riguardo al [Punto unico di accesso](HEALTH_SERVICE)
+    - cosa prevede la tutela dei diritti dell'utente per la [nutrizione artificiale](HEALTH_SERVICE)
+  - intent: ask_organization_rights
+    examples:
+    - quali diritti ho come utente dei servizi di [programmato](ORGANIZATION)
+    - ho diritto al contraddittorio preventivo con l'[Agenzia delle Entrate](ORGANIZATION)
+    - quali diritti ho riguardo all'[Ordine dei Medici](ORGANIZATION)
+    - cosa prevede la tutela dei diritti dell'utente per la [Camera di Commercio](ORGANIZATION)
+    - ho diritto di accesso o di replica in merito alla [Croce Rossa](ORGANIZATION)
+    - quali garanzie e diritti mi spettano sulla [Protezione Civile](ORGANIZATION)
+    - come faccio valere i miei diritti relativi all'[Agenzia delle Entrate](ORGANIZATION)
+    - quali diritti riconosce la legge per l'[ASL Roma 3](ORGANIZATION)
+    - quali diritti ho riguardo all'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - cosa prevede la tutela dei diritti dell'utente per [programmato](ORGANIZATION)
+    - ho diritto di accesso o di replica in merito ai [Musei Civici](ORGANIZATION)
+    - quali garanzie e diritti mi spettano sull'[ASL](ORGANIZATION)
+    - come faccio valere i miei diritti relativi al [CAF](ORGANIZATION)
+    - quali diritti riconosce la legge per il [Comune di Montesole](ORGANIZATION)
+    - quali diritti ho riguardo all'[IC Giovanni Pascoli](ORGANIZATION)
+    - cosa prevede la tutela dei diritti dell'utente per il [Comune](ORGANIZATION)
+    - ho diritto di accesso o di replica in merito all'[IC Pascoli](ORGANIZATION)
+    - quali garanzie e diritti mi spettano sui [Musei Civici di Montesole](ORGANIZATION)
+  - intent: ask_department_rights
+    examples:
+    - quali diritti ha un paziente in [Pronto Soccorso](DEPARTMENT)
+    - quali diritti ho riguardo alla [Direzione Generale](DEPARTMENT)
+    - cosa prevede la tutela dei diritti dell'utente per l'[URP](DEPARTMENT)
+    - ho diritto di accesso o di replica in merito al [Pronto Soccorso](DEPARTMENT)
+    - quali garanzie e diritti mi spettano sull'[Ufficio Territoriale](DEPARTMENT)
+    - come faccio valere i miei diritti relativi all'[Ufficio del Catasto](DEPARTMENT)
+    - quali diritti riconosce la legge per la [Direzione Provinciale](DEPARTMENT)
+    - quali diritti ho riguardo alla [Medicina Legale](DEPARTMENT)
+    - cosa prevede la tutela dei diritti dell'utente per la [Medicina dello Sport](DEPARTMENT)
+    - ho diritto di accesso o di replica in merito alla [Salute Mentale](DEPARTMENT)
+    - quali garanzie e diritti mi spettano sul [Catasto](DEPARTMENT)
+    - come faccio valere i miei diritti relativi alla [Direzione Sanitaria](DEPARTMENT)
+    - quali diritti riconosce la legge per il [SUAP](DEPARTMENT)
+    - quali diritti ho riguardo all'[anagrafe](DEPARTMENT)
+    - cosa prevede la tutela dei diritti dell'utente per la [Polizia locale](DEPARTMENT)
+    - ho diritto di accesso o di replica in merito alla [Neurologia](DEPARTMENT)
+    - quali garanzie e diritti mi spettano sull'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - come faccio valere i miei diritti relativi al [Dipartimento del Farmaco](DEPARTMENT)
+  - intent: ask_medical_procedure_rights
+    examples:
+    - ho diritto a una [visita medico legale](MEDICAL_PROCEDURE) gratuita
+    - quali diritti ho riguardo agli [esami del sangue](MEDICAL_PROCEDURE)
+    - cosa prevede la tutela dei diritti dell'utente per la [visita intramoenia](MEDICAL_PROCEDURE)
+    - ho diritto di accesso o di replica in merito all'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - quali garanzie e diritti mi spettano sulla [radiografia](MEDICAL_PROCEDURE)
+    - come faccio valere i miei diritti relativi alla [visita oculistica](MEDICAL_PROCEDURE)
+    - quali diritti riconosce la legge per la [visita dermatologica](MEDICAL_PROCEDURE)
+    - quali diritti ho riguardo al [tampone molecolare](MEDICAL_PROCEDURE)
+    - cosa prevede la tutela dei diritti dell'utente per la [spirometria](MEDICAL_PROCEDURE)
+    - ho diritto di accesso o di replica in merito alla [visita medico legale](MEDICAL_PROCEDURE)
+    - quali garanzie e diritti mi spettano sul [prelievo](MEDICAL_PROCEDURE)
+    - come faccio valere i miei diritti relativi al [Quantiferon](MEDICAL_PROCEDURE)
+    - quali diritti riconosce la legge per l'[ecografia](MEDICAL_PROCEDURE)
+    - quali diritti ho riguardo alla [colonscopia](MEDICAL_PROCEDURE)
+    - cosa prevede la tutela dei diritti dell'utente per la [curva glicemica](MEDICAL_PROCEDURE)
+    - ho diritto di accesso o di replica in merito allo [spermiogramma](MEDICAL_PROCEDURE)
+    - quali garanzie e diritti mi spettano sulla [terapia oncologica](MEDICAL_PROCEDURE)

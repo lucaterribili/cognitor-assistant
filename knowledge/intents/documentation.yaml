@@ -1,0 +1,146 @@
+nlu:
+  intents:
+  - intent: ask_documentation
+    examples:
+    - Quali documenti servono?
+    - Che documentazione devo presentare?
+    - Dove trovo i documenti necessari?
+    - quali documenti servono
+    - quali documenti devo presentare
+    - quali documenti devo portare
+    - quali documenti occorrono
+    - che documenti mi servono per la domanda
+    - che documentazione serve per iscriversi
+    - documenti necessari
+    - documenti richiesti
+    - documentazione necessaria
+    - documentazione richiesta
+    - devo allegare dei documenti
+    - devo portare l'originale
+    - bastano le fotocopie
+    - serve la copia del documento
+    - mi manca un documento
+    - posso presentare i documenti in digitale
+    - posso inviare i documenti via email
+    - lista dei documenti
+    - elenco dei documenti richiesti
+    - carte da portare
+    - quali documenti servono per scegliere il medico
+    - che documenti servono per ritirare il certificato
+    - quali documenti identificativi sono accettati allo sportello
+    - serve un documento di riconoscimento in corso di validità
+    - quali certificati medici vanno allegati alla domanda
+    - che attestazioni servono per completare la pratica
+    - quali moduli e documenti vanno presentati insieme
+    - quali documenti fiscali devo allegare alla richiesta
+    - che documenti servono in caso di smarrimento del certificato
+    - quali documenti devo esibire al momento dell'accettazione
+    - che documentazione aggiuntiva è richiesta per i minorenni
+    - che documentazione devo conservare per le spese mediche detraibili
+    - che documento devo esibire per dimostrare la residenza e non pagare il museo
+  - intent: ask_document_documentation
+    examples:
+    - devo allegare il [documento d'identità](DOCUMENT)
+    - serve il [codice fiscale](DOCUMENT)
+    - serve la [marca da bollo](DOCUMENT)
+    - serve il [certificato medico](DOCUMENT)
+    - serve la [ricevuta di pagamento](DOCUMENT)
+    - serve una [delega](DOCUMENT)
+    - serve un'[autocertificazione](DOCUMENT)
+    - serve il [permesso di soggiorno](DOCUMENT)
+    - occorre il [certificato di residenza](DOCUMENT)
+    - va allegato il [curriculum](DOCUMENT)
+    - quali documenti servono per l'[esenzione ticket](DOCUMENT)
+    - devo portare la [tessera sanitaria](DOCUMENT)
+    - serve la [foto tessera](DOCUMENT) per la [patente](DOCUMENT)
+    - serve la [ricevuta del ticket](DOCUMENT)
+    - quale documento serve per la [carta d'identità](DOCUMENT) smarrita
+    - quali documenti servono per rinnovare la [patente](DOCUMENT)
+    - quali documenti servono per il [certificato di residenza](DOCUMENT)
+    - che documenti occorrono per lo [stato di famiglia](DOCUMENT)
+    - quali documenti devo portare per il ritiro dei [referti](DOCUMENT)
+    - che documentazione serve per richiedere la [cartella clinica](DOCUMENT)
+    - quali allegati servono per la copia della [cartella clinica](DOCUMENT)
+    - devo presentare anche la [dichiarazione sostitutiva](DOCUMENT) firmata
+    - quali documenti servono per la [delega](DOCUMENT) al ritiro
+    - quali documenti servono per fare il [modello 730](DOCUMENT) al [CAF](ORGANIZATION)
+    - quali documenti occorrono per la [dichiarazione di successione](DOCUMENT)
+    - serve la [Certificazione Unica](DOCUMENT) per la [dichiarazione dei redditi](DOCUMENT)
+    - quali documenti servono per il rinnovo della [carta d'identità](DOCUMENT)
+    - come scarico il [certificato di stato di famiglia](DOCUMENT) con [SPID](DOCUMENT)
+    - dove trovo la [cedola libraria](DOCUMENT) per ritirare i libri di testo della primaria
+  - intent: ask_health_service_documentation
+    examples:
+    - quali documenti servono per l'[assistenza protesica](HEALTH_SERVICE)
+    - che documenti devo portare al [CUP](HEALTH_SERVICE)
+    - quali documenti bisogna presentare per le [cure palliative](HEALTH_SERVICE)
+    - che documentazione è richiesta per l'[ossigenoterapia](HEALTH_SERVICE)
+    - mi elenchi gli allegati e i documenti necessari per il [ritiro referti](HEALTH_SERVICE)
+    - cosa devo allegare alla pratica relativa al [CUP](HEALTH_SERVICE)
+    - quali carte e attestazioni servono per l'[assistenza protesica](HEALTH_SERVICE)
+    - che fascicolo documentale occorre preparare per le [vaccinazioni](HEALTH_SERVICE)
+    - quali documenti bisogna presentare per l'[assistenza domiciliare](HEALTH_SERVICE)
+    - che documentazione è richiesta per la [Guardia Medica](HEALTH_SERVICE)
+    - mi elenchi gli allegati e i documenti necessari per la [donazione del sangue](HEALTH_SERVICE)
+    - cosa devo allegare alla pratica relativa alla [scelta del medico](HEALTH_SERVICE)
+    - quali carte e attestazioni servono per l'[accesso agli atti](HEALTH_SERVICE)
+    - che fascicolo documentale occorre preparare per lo [screening oncologico](HEALTH_SERVICE)
+    - quali documenti bisogna presentare per lo [Sportello Giovani](HEALTH_SERVICE)
+    - che documentazione è richiesta per il [Fascicolo Sanitario](HEALTH_SERVICE)
+  - intent: ask_misc_documentation
+    examples:
+    - quali ricevute servono per la detrazione del [bonus ristrutturazione](MISC)
+    - quali documenti sanitari servono per la [somministrazione farmaci](MISC) a scuola
+    - quali documenti bisogna presentare per il [cassetto fiscale](MISC)
+    - che documentazione è richiesta per il [rimborso IRPEF](MISC)
+    - mi elenchi gli allegati e i documenti necessari per il [bonus ristrutturazione](MISC)
+    - cosa devo allegare alla pratica relativa al [registro elettronico](MISC)
+    - quali carte e attestazioni servono per la [dieta speciale](MISC)
+    - che fascicolo documentale occorre preparare per [CIVIS](MISC)
+    - quali documenti bisogna presentare per [Fisconline](MISC)
+    - che documentazione è richiesta per lo [SdI](MISC)
+    - mi elenchi gli allegati e i documenti necessari per il [codice tributo](MISC)
+    - cosa devo allegare alla pratica relativa alla [mensa scolastica](MISC)
+    - quali carte e attestazioni servono per la [prima casa](MISC)
+    - che fascicolo documentale occorre preparare per la [carta famiglia](MISC)
+    - quali documenti bisogna presentare per gli [abusi digitali](MISC)
+    - che documentazione è richiesta per [Entratel](MISC)
+    - mi elenchi gli allegati e i documenti necessari per [Fatture e Corrispettivi](MISC)
+  - intent: ask_procedure_documentation
+    examples:
+    - quali documenti servono per il [cambio di residenza](PROCEDURE)
+    - quali documenti devo allegare alla richiesta di [cambio di residenza](PROCEDURE)
+    - quali documenti bisogna presentare per la [registrazione del contratto di locazione](PROCEDURE)
+    - che documentazione è richiesta per il [concordato preventivo biennale](PROCEDURE)
+    - mi elenchi gli allegati e i documenti necessari per l'[accertamento con adesione](PROCEDURE)
+    - cosa devo allegare alla pratica relativa al [matrimonio civile](PROCEDURE)
+    - quali carte e attestazioni servono per il [pignoramento](PROCEDURE)
+    - che fascicolo documentale occorre preparare per l'[interpello](PROCEDURE)
+    - quali documenti bisogna presentare per il [cambio di residenza](PROCEDURE)
+    - che documentazione è richiesta per la [rottamazione quater](PROCEDURE)
+    - mi elenchi gli allegati e i documenti necessari per la [fatturazione elettronica](PROCEDURE)
+    - cosa devo allegare alla pratica relativa alla [rateizzazione](PROCEDURE)
+    - quali carte e attestazioni servono per il [ravvedimento operoso](PROCEDURE)
+    - che fascicolo documentale occorre preparare per i [contributi Inps](PROCEDURE)
+    - quali documenti bisogna presentare per l'[autotutela](PROCEDURE)
+    - che documentazione è richiesta per l'[accertamento fiscale](PROCEDURE)
+  - intent: ask_medical_procedure_documentation
+    examples:
+    - quali documenti servono per la [visita medico legale](MEDICAL_PROCEDURE) della [patente](DOCUMENT)
+    - quali documenti bisogna presentare per la [mammografia](MEDICAL_PROCEDURE)
+    - che documentazione è richiesta per il [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - mi elenchi gli allegati e i documenti necessari per la [visita per la patente](MEDICAL_PROCEDURE)
+    - cosa devo allegare alla pratica relativa al [ricovero programmato](MEDICAL_PROCEDURE)
+    - quali carte e attestazioni servono per la [risonanza magnetica](MEDICAL_PROCEDURE)
+    - che fascicolo documentale occorre preparare per gli [esami del sangue](MEDICAL_PROCEDURE)
+    - quali documenti bisogna presentare per la [visita intramoenia](MEDICAL_PROCEDURE)
+    - che documentazione è richiesta per l'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - mi elenchi gli allegati e i documenti necessari per la [radiografia](MEDICAL_PROCEDURE)
+    - cosa devo allegare alla pratica relativa alla [visita oculistica](MEDICAL_PROCEDURE)
+    - quali carte e attestazioni servono per la [visita dermatologica](MEDICAL_PROCEDURE)
+    - che fascicolo documentale occorre preparare per il [tampone molecolare](MEDICAL_PROCEDURE)
+    - quali documenti bisogna presentare per la [spirometria](MEDICAL_PROCEDURE)
+    - che documentazione è richiesta per la [visita medico legale](MEDICAL_PROCEDURE)
+    - mi elenchi gli allegati e i documenti necessari per il [prelievo](MEDICAL_PROCEDURE)
+    - cosa devo allegare alla pratica relativa al [Quantiferon](MEDICAL_PROCEDURE)
+    - quali carte e attestazioni servono per l'[ecografia](MEDICAL_PROCEDURE)

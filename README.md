@@ -48,7 +48,7 @@ Cognitor Assistant
 │   └── train_dialogue_policy.py
 ├── classes/              # Classi utility
 ├── pipeline/             # Pipeline training
-├── knowledge/            # Dati di pretrain: solo nel branch develop_loc (qui vuota; i dataset li produce il training engine)
+├── knowledge/            # Knowledge base YAML
 │   ├── intents/          # Definizioni intent
 │   ├── rules/            # Mappatura intent→risposte
 │   ├── responses/       # Template risposte

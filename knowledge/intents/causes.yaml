@@ -1,0 +1,171 @@
+nlu:
+  intents:
+  - intent: ask_causes
+    examples:
+    - Perché succede?
+    - Quali sono le cause?
+    - Da cosa dipende?
+    - perché ci sono liste d'attesa lunghe per le visite
+    - da cosa derivano i conflitti di versione delle dipendenze
+    - da cosa può dipendere questo problema
+    - quali sono le cause più frequenti di questo errore
+    - per quale motivo si è verificata questa anomalia
+    - cosa può aver provocato il blocco della pratica
+    - da quali fattori è causato il ritardo
+    - perché la richiesta viene respinta dal sistema
+    - qual è l'origine di questo malfunzionamento
+    - cosa determina lo scarto della domanda
+    - per quali ragioni può verificarsi un rifiuto
+    - da cosa nasce questa discrepanza nei dati
+    - quali sono i motivi principali del disservizio
+    - cosa causa l'interruzione della procedura
+  - intent: ask_document_causes
+    examples:
+    - perché non mi arrivano i [referti](DOCUMENT)
+    - perché mi è stata rifiutata l'[esenzione](DOCUMENT)
+    - perché sono stato escluso dal [concorso](DOCUMENT)
+    - perché il [ticket](DOCUMENT) è aumentato
+    - qual è la causa del ritardo del [referto](DOCUMENT)
+    - perché mi è arrivato un [avviso bonario](DOCUMENT) dall'[Agenzia delle Entrate](ORGANIZATION)
+    - da cosa dipende lo scarto di una [fattura elettronica](DOCUMENT) da parte dello [SdI](MISC)
+    - perché sono uscito a debito nel [modello 730](DOCUMENT) avendo due [Certificazioni Uniche](DOCUMENT)
+    - qual è la causa del blocco del pagamento del [modello F24](DOCUMENT)
+    - quali sono le cause del [modello 730](DOCUMENT)
+    - da cosa è provocato un problema con il [modello F24](DOCUMENT)
+    - per quale motivo si verifica la [patente](DOCUMENT)
+    - da cosa dipende un blocco della [dichiarazione dei redditi](DOCUMENT)
+    - quali fattori causano anomalie nella [cartella esattoriale](DOCUMENT)
+    - perché si presenta questo inconveniente sul [modello Redditi PF](DOCUMENT)
+    - quali sono le cause della [dichiarazione precompilata](DOCUMENT)
+  - intent: ask_misc_causes
+    examples:
+    - cosa causa la [cellulite](MISC)
+    - da cosa dipende l'[acne](MISC)
+    - perché il mio [rimborso IRPEF](MISC) del [modello 730](DOCUMENT) è bloccato in controllo preventivo
+    - quali sono le cause dello [SdI](MISC)
+    - da cosa è provocato un problema con il [codice tributo](MISC)
+    - per quale motivo si verifica la [mensa scolastica](MISC)
+    - da cosa dipende un blocco della [prima casa](MISC)
+    - quali fattori causano anomalie nella [carta famiglia](MISC)
+    - perché si presenta questo inconveniente sugli [abusi digitali](MISC)
+    - quali sono le cause di [Entratel](MISC)
+    - da cosa è provocato un problema con [Fatture e Corrispettivi](MISC)
+    - per quale motivo si verifica il [pre-scuola](MISC)
+    - da cosa dipende un blocco della [rendita catastale](MISC)
+    - quali fattori causano anomalie nel [regime ordinario](MISC)
+    - perché si presenta questo inconveniente sul [bonus mobili](MISC)
+    - quali sono le cause dell'[ecobonus](MISC)
+    - da cosa è provocato un problema con il [Superbonus](MISC)
+    - per quale motivo si verifica l'[audioguida](MISC)
+  - intent: ask_technology_causes
+    examples:
+    - perché [Python](TECHNOLOGY) è lento in certi casi
+    - perché il sito [WordPress](TECHNOLOGY) è lento
+    - perché [Apache](TECHNOLOGY) non trova la nuova root del sito
+    - quali sono le cause di [Voltura 2.0](TECHNOLOGY)
+    - da cosa è provocato un problema con [Docker](TECHNOLOGY)
+    - per quale motivo si verifica [FastAPI](TECHNOLOGY)
+    - da cosa dipende un blocco di [Laravel](TECHNOLOGY)
+    - quali fattori causano anomalie in [Python](TECHNOLOGY)
+    - perché si presenta questo inconveniente su [PostgreSQL](TECHNOLOGY)
+    - quali sono le cause di [Spring Boot](TECHNOLOGY)
+    - da cosa è provocato un problema con [PHP](TECHNOLOGY)
+    - per quale motivo si verifica [WordPress](TECHNOLOGY)
+    - da cosa dipende un blocco di [Linux](TECHNOLOGY)
+    - quali fattori causano anomalie in [MySQL](TECHNOLOGY)
+    - perché si presenta questo inconveniente su [nftables](TECHNOLOGY)
+    - quali sono le cause di [Eloquent](TECHNOLOGY)
+  - intent: ask_health_service_causes
+    examples:
+    - perché la [Guardia Medica](HEALTH_SERVICE) non risponde
+    - perché il [CUP](HEALTH_SERVICE) non mi dà appuntamenti
+    - quali sono le cause del [Punto unico di accesso](HEALTH_SERVICE)
+    - da cosa è provocato un problema con la [nutrizione artificiale](HEALTH_SERVICE)
+    - per quale motivo si verifica le [cure palliative](HEALTH_SERVICE)
+    - da cosa dipende un blocco dell'[ossigenoterapia](HEALTH_SERVICE)
+    - quali fattori causano anomalie nel [ritiro referti](HEALTH_SERVICE)
+    - perché si presenta questo inconveniente sul [CUP](HEALTH_SERVICE)
+    - quali sono le cause dell'[assistenza protesica](HEALTH_SERVICE)
+    - da cosa è provocato un problema con le [vaccinazioni](HEALTH_SERVICE)
+    - per quale motivo si verifica l'[assistenza domiciliare](HEALTH_SERVICE)
+    - da cosa dipende un blocco della [Guardia Medica](HEALTH_SERVICE)
+    - quali fattori causano anomalie nella [donazione del sangue](HEALTH_SERVICE)
+    - perché si presenta questo inconveniente sulla [scelta del medico](HEALTH_SERVICE)
+    - quali sono le cause dell'[accesso agli atti](HEALTH_SERVICE)
+    - da cosa è provocato un problema con lo [screening oncologico](HEALTH_SERVICE)
+    - per quale motivo si verifica lo [Sportello Giovani](HEALTH_SERVICE)
+  - intent: ask_medical_procedure_causes
+    examples:
+    - perché la [curva glicemica](MEDICAL_PROCEDURE) si fa solo in alcuni centri
+    - perché lo [spermiogramma](MEDICAL_PROCEDURE) si fa solo il [giovedì](DATE)
+    - quali sono le cause della [visita dermatologica](MEDICAL_PROCEDURE)
+    - da cosa è provocato un problema con il [tampone molecolare](MEDICAL_PROCEDURE)
+    - per quale motivo si verifica la [spirometria](MEDICAL_PROCEDURE)
+    - da cosa dipende un blocco della [visita medico legale](MEDICAL_PROCEDURE)
+    - quali fattori causano anomalie nel [prelievo](MEDICAL_PROCEDURE)
+    - perché si presenta questo inconveniente sul [Quantiferon](MEDICAL_PROCEDURE)
+    - quali sono le cause dell'[ecografia](MEDICAL_PROCEDURE)
+    - da cosa è provocato un problema con la [colonscopia](MEDICAL_PROCEDURE)
+    - per quale motivo si verifica la [curva glicemica](MEDICAL_PROCEDURE)
+    - da cosa dipende un blocco dello [spermiogramma](MEDICAL_PROCEDURE)
+    - quali fattori causano anomalie nella [terapia oncologica](MEDICAL_PROCEDURE)
+    - perché si presenta questo inconveniente sulla [visita cardiologica](MEDICAL_PROCEDURE)
+    - quali sono le cause della [visita neurologica](MEDICAL_PROCEDURE)
+    - da cosa è provocato un problema con la [visita specialistica](MEDICAL_PROCEDURE)
+  - intent: ask_department_causes
+    examples:
+    - da cosa dipendono i tempi di attesa al [Pronto Soccorso](DEPARTMENT)
+    - quali sono le cause della [Neurologia](DEPARTMENT)
+    - da cosa è provocato un problema con l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - per quale motivo si verifica il [Dipartimento del Farmaco](DEPARTMENT)
+    - da cosa dipende un blocco della [UOC Consultori Familiari](DEPARTMENT)
+    - quali fattori causano anomalie nella [Cardiologia interventistica](DEPARTMENT)
+    - perché si presenta questo inconveniente sui [tributi](DEPARTMENT)
+    - quali sono le cause della [segreteria scolastica](DEPARTMENT)
+    - da cosa è provocato un problema con l'[Ufficio Stampa](DEPARTMENT)
+    - per quale motivo si verifica i [servizi demografici](DEPARTMENT)
+    - da cosa dipende un blocco dei [Lavori pubblici](DEPARTMENT)
+    - quali fattori causano anomalie nella [Direzione Generale](DEPARTMENT)
+    - perché si presenta questo inconveniente sull'[URP](DEPARTMENT)
+    - quali sono le cause del [Pronto Soccorso](DEPARTMENT)
+    - da cosa è provocato un problema con l'[Ufficio Territoriale](DEPARTMENT)
+    - per quale motivo si verifica l'[Ufficio del Catasto](DEPARTMENT)
+    - da cosa dipende un blocco della [Direzione Provinciale](DEPARTMENT)
+  - intent: ask_facility_causes
+    examples:
+    - perché il [Centro Prelievi](FACILITY) è chiuso oggi
+    - quali sono le cause del [Poliambulatorio Paolini](FACILITY)
+    - da cosa è provocato un problema con il [Poliambulatorio Bernocchi](FACILITY)
+    - per quale motivo si verifica le [Case della Comunità](FACILITY)
+    - da cosa dipende un blocco della [Casa della Comunità](FACILITY)
+    - quali fattori causano anomalie nell'[Ospedale Grassi](FACILITY)
+    - perché si presenta questo inconveniente sul [Presidio Ospedaliero Grassi](FACILITY)
+    - quali sono le cause dei [Consultori](FACILITY)
+    - da cosa è provocato un problema con le [Cappelle Medicee](FACILITY)
+    - per quale motivo si verifica la [Pinacoteca civica](FACILITY)
+    - da cosa dipende un blocco dell'[asilo nido](FACILITY)
+    - quali fattori causano anomalie nell'[Ospedale di Comunità](FACILITY)
+    - perché si presenta questo inconveniente sull'[Ecocentro](FACILITY)
+    - quali sono le cause della [Scuola Primaria Rodari](FACILITY)
+    - da cosa è provocato un problema con il [CPO Gennaro di Rosa](FACILITY)
+    - per quale motivo si verifica il [Consultorio](FACILITY)
+  - intent: ask_procedure_causes
+    examples:
+    - perché il datore di lavoro non versa i [contributi Inps](PROCEDURE)
+    - quali sono le cause dell'[accertamento con adesione](PROCEDURE)
+    - da cosa è provocato un problema con il [matrimonio civile](PROCEDURE)
+    - per quale motivo si verifica il [pignoramento](PROCEDURE)
+    - da cosa dipende un blocco dell'[interpello](PROCEDURE)
+    - quali fattori causano anomalie nel [cambio di residenza](PROCEDURE)
+    - perché si presenta questo inconveniente sulla [rottamazione quater](PROCEDURE)
+    - quali sono le cause della [fatturazione elettronica](PROCEDURE)
+    - da cosa è provocato un problema con la [rateizzazione](PROCEDURE)
+    - per quale motivo si verifica il [ravvedimento operoso](PROCEDURE)
+    - da cosa dipende un blocco dei [contributi Inps](PROCEDURE)
+    - quali fattori causano anomalie nell'[autotutela](PROCEDURE)
+    - perché si presenta questo inconveniente sull'[accertamento fiscale](PROCEDURE)
+    - quali sono le cause della [raccolta differenziata](PROCEDURE)
+    - da cosa è provocato un problema con il [rinnovo della patente](PROCEDURE)
+    - per quale motivo si verifica la [voltura catastale](PROCEDURE)
+    - da cosa dipende un blocco delle [iscrizioni online](PROCEDURE)
+    - quali fattori causano anomalie nel [fermo amministrativo](PROCEDURE)

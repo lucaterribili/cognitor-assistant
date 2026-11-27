@@ -1,0 +1,118 @@
+nlu:
+  intents:
+  - intent: ask_downloads
+    examples:
+    - Dove posso scaricare il documento?
+    - Ci sono file disponibili?
+    - Posso scaricare la modulistica?
+    - dove scarico il modulo
+    - dove posso scaricare i documenti
+    - dove scarico il manuale
+    - dove scarico la brochure
+    - posso scaricare il pdf
+    - posso scaricare la guida
+    - posso scaricare il listino
+    - posso scaricare la ricevuta
+    - posso scaricare il certificato
+    - voglio scaricare il documento
+    - voglio scaricare l'app
+    - vorrei scaricare la modulistica
+    - come scarico il file
+    - come faccio a scaricare il certificato
+    - c'è un link per il download
+    - c'è la versione scaricabile
+    - dov'è il link per scaricare
+    - dov'è l'area download
+    - area download
+    - sezione download
+    - download documenti
+    - download modulistica
+    - file scaricabili
+    - file disponibili
+    - file disponibili per il download
+    - documenti scaricabili
+    - risorse scaricabili
+    - materiali scaricabili
+    - c'è il catalogo in pdf
+    - avete la brochure in formato digitale
+    - mi mandate il documento in allegato
+    - mi invii il pdf
+    - posso avere una copia digitale
+    - posso scaricare i provvedimenti del [2021](DATE)
+    - dove scarico i bilanci dell'azienda
+    - posso scaricare i provvedimenti in formato pdf
+  - intent: ask_document_downloads
+    examples:
+    - dove si scarica il [regolamento](DOCUMENT)
+    - dove scarico il [bando](DOCUMENT)
+    - dove scarico il [bando di concorso](DOCUMENT)
+    - dove scarico la [Carta dei servizi](DOCUMENT)
+    - dove scarico l'[avviso pubblico](DOCUMENT) per le donne
+    - dove scarico la documentazione della [gara](DOCUMENT)
+    - posso scaricare il [Piano triennale](DOCUMENT) per la trasparenza
+    - dove scarico il [curriculum](DOCUMENT) dei dirigenti
+    - posso scaricare la [Privacy Policy](DOCUMENT)
+    - dove scarico il [referto](DOCUMENT) online
+    - posso scaricare la [Tessera Sanitaria](DOCUMENT) in pdf
+    - dove scarico l'[informativa privacy](DOCUMENT)
+    - dove scarico il [modello 730](DOCUMENT) e le istruzioni in pdf
+    - posso scaricare la [Certificazione Unica](DOCUMENT) dal [cassetto fiscale](MISC)
+    - dove scarico la [visura catastale](DOCUMENT) in pdf
+    - come scarico le [fatture elettroniche](DOCUMENT) dal portale [Fatture e Corrispettivi](MISC)
+    - dove scarico la ricevuta di invio del [modello F24](DOCUMENT)
+  - intent: ask_technology_downloads
+    examples:
+    - dove scarico la guida su [Laravel](TECHNOLOGY)
+    - dove scarico [Ubuntu](TECHNOLOGY)
+    - come scarico [phpMyAdmin](TECHNOLOGY)
+    - posso scaricare il codice del tutorial su [Django](TECHNOLOGY)
+    - dove posso scaricare [WildFly](TECHNOLOGY)
+    - c'è un link diretto per il download di [Apache](TECHNOLOGY)
+    - come scarico sul computer [Django](TECHNOLOGY)
+    - è disponibile il download gratuito di [JavaScript](TECHNOLOGY)
+    - da quale sezione del portale si scarica [Angular](TECHNOLOGY)
+    - posso scaricare in formato digitale [phpMyAdmin](TECHNOLOGY)
+    - dove posso scaricare [Flask](TECHNOLOGY)
+    - c'è un link diretto per il download di [Joomla](TECHNOLOGY)
+    - come scarico sul computer il [Desktop Telematico](TECHNOLOGY)
+    - è disponibile il download gratuito di [Voltura 2.0](TECHNOLOGY)
+    - da quale sezione del portale si scarica [Docker](TECHNOLOGY)
+    - posso scaricare in formato digitale [FastAPI](TECHNOLOGY)
+  - intent: ask_department_downloads
+    examples:
+    - dove scarico i moduli per l'[URP](DEPARTMENT)
+    - dove posso scaricare la [Polizia locale](DEPARTMENT)
+    - c'è un link diretto per il download della [Neurologia](DEPARTMENT)
+    - come scarico sul computer l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - è disponibile il download gratuito del [Dipartimento del Farmaco](DEPARTMENT)
+    - da quale sezione del portale si scarica la [UOC Consultori Familiari](DEPARTMENT)
+    - posso scaricare in formato digitale la [Cardiologia interventistica](DEPARTMENT)
+    - dove posso scaricare i [tributi](DEPARTMENT)
+    - c'è un link diretto per il download della [segreteria scolastica](DEPARTMENT)
+    - come scarico sul computer l'[Ufficio Stampa](DEPARTMENT)
+    - è disponibile il download gratuito dei [servizi demografici](DEPARTMENT)
+    - da quale sezione del portale si scarica i [Lavori pubblici](DEPARTMENT)
+    - posso scaricare in formato digitale la [Direzione Generale](DEPARTMENT)
+    - dove posso scaricare l'[URP](DEPARTMENT)
+    - c'è un link diretto per il download del [Pronto Soccorso](DEPARTMENT)
+    - come scarico sul computer l'[Ufficio Territoriale](DEPARTMENT)
+  - intent: ask_procedure_downloads
+    examples:
+    - dove scarico il modello per il [cambio di residenza](PROCEDURE)
+    - dove posso scaricare il [DOCFA](PROCEDURE)
+    - c'è un link diretto per il download della [denuncia di smarrimento](PROCEDURE)
+    - come scarico sul computer l'[apertura della partita IVA](PROCEDURE)
+    - è disponibile il download gratuito della [rottamazione delle cartelle](PROCEDURE)
+    - da quale sezione del portale si scarica la [registrazione del contratto di locazione](PROCEDURE)
+    - posso scaricare in formato digitale il [concordato preventivo biennale](PROCEDURE)
+    - dove posso scaricare l'[accertamento con adesione](PROCEDURE)
+    - c'è un link diretto per il download del [matrimonio civile](PROCEDURE)
+    - come scarico sul computer il [pignoramento](PROCEDURE)
+    - è disponibile il download gratuito dell'[interpello](PROCEDURE)
+    - da quale sezione del portale si scarica il [cambio di residenza](PROCEDURE)
+    - posso scaricare in formato digitale la [rottamazione quater](PROCEDURE)
+    - dove posso scaricare la [fatturazione elettronica](PROCEDURE)
+    - c'è un link diretto per il download della [rateizzazione](PROCEDURE)
+    - come scarico sul computer il [ravvedimento operoso](PROCEDURE)
+    - è disponibile il download gratuito dei [contributi Inps](PROCEDURE)
+    - da quale sezione del portale si scarica l'[autotutela](PROCEDURE)

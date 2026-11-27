@@ -1,0 +1,32 @@
+# Rules per gli intent appoggiati a servizi esterni gratuiti (vedi
+# knowledge/intents/external_apis.yaml per gli esempi NLU).
+
+rules:
+  ask_currency_conversion:
+    slots:
+      CURRENCY_FROM:
+        required: true
+      CURRENCY_TO:
+        required: true
+      NUMBER:
+        required: false
+    wait:
+      CURRENCY_FROM: ask_currency_conversion_wait_from_response
+      CURRENCY_TO: ask_currency_conversion_wait_to_response
+    default: __ask_currency_conversion
+
+  ask_public_holiday:
+    slots:
+      LOCATION:
+        required: false
+      NUMBER:
+        required: false
+    default: __ask_public_holiday
+
+  ask_food_nutrition:
+    slots:
+      query:
+        required: true
+        entity: DISH
+    wait: ask_food_nutrition_wait_response
+    default: __ask_food_nutrition

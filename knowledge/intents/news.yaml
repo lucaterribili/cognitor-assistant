@@ -1,0 +1,249 @@
+nlu:
+  intents:
+  - intent: ask_news
+    examples:
+    - Quali sono le ultime notizie?
+    - Ci sono aggiornamenti recenti?
+    - Cosa è successo ultimamente?
+    - quali sono le ultime notizie pubblicate
+    - ci sono novità importanti di recente
+    - cosa c'è di nuovo in questo periodo
+    - dove posso leggere le news aggiornate
+    - avete una newsletter per ricevere le ultime novità
+    - quali sono gli aggiornamenti più recenti
+    - sono uscite novità normative o operative ultimamente
+    - c'è una rassegna stampa o sezione notizie sul sito
+    - mi racconti le ultime novità introdotte
+    - ci sono notizie fresche da sapere oggi
+    - dove seguo gli aggiornamenti e le news in tempo reale
+    - quali novità sono previste per le prossime settimane
+    - sono state annunciate novità per gli utenti
+    - c'è qualche notizia rilevante dell'ultima ora
+  - intent: ask_health_service_news
+    examples:
+    - ci sono novità sulle [vaccinazioni](HEALTH_SERVICE)
+    - c'è una novità sul nuovo [Sportello Giovani](HEALTH_SERVICE) di [Magliana](ZONE)
+    - ci sono notizie sullo [Sportello di Ascolto](HEALTH_SERVICE) contro gli [abusi digitali](MISC)
+    - ci sono notizie sulla [donazione del sangue](HEALTH_SERVICE) a [Coni Zugna](FACILITY)
+    - ci sono ultime notizie sull'[accesso civico](HEALTH_SERVICE)
+    - quali sono le novità più recenti riguardo allo [screening della mammella](HEALTH_SERVICE)
+    - sono uscite nuove news sulla [Telemedicina](HEALTH_SERVICE)
+    - cosa c'è di nuovo in merito al [RECUP](HEALTH_SERVICE)
+    - ci sono aggiornamenti di attualità sul [Punto unico di accesso](HEALTH_SERVICE)
+    - dove leggo le ultime novità relative alla [nutrizione artificiale](HEALTH_SERVICE)
+    - ci sono ultime notizie sulle [cure palliative](HEALTH_SERVICE)
+    - quali sono le novità più recenti riguardo all'[ossigenoterapia](HEALTH_SERVICE)
+    - sono uscite nuove news sul [ritiro referti](HEALTH_SERVICE)
+    - cosa c'è di nuovo in merito al [CUP](HEALTH_SERVICE)
+    - ci sono aggiornamenti di attualità sull'[assistenza protesica](HEALTH_SERVICE)
+    - dove leggo le ultime novità relative alle [vaccinazioni](HEALTH_SERVICE)
+  - intent: ask_zone_news
+    examples:
+    - ultime news su [Magliana](ZONE) per le ragazze
+    - ultime notizie su [Ostia](ZONE)
+    - notizie dal [Municipio XII](ZONE)
+    - notizie su cosa fare a [Roma](ZONE) questo weekend
+    - ci sono ultime notizie su [Dragona](ZONE)
+    - quali sono le novità più recenti riguardo all'[Infernetto](ZONE)
+    - sono uscite nuove news su [Maccarese](ZONE)
+    - cosa c'è di nuovo in merito a [Ostia](ZONE)
+    - ci sono aggiornamenti di attualità sul [Municipio XII](ZONE)
+    - dove leggo le ultime novità relative a [Roma](ZONE)
+    - ci sono ultime notizie sul [Municipio XI](ZONE)
+    - quali sono le novità più recenti riguardo a [Fiumicino](ZONE)
+    - sono uscite nuove news su [Palidoro](ZONE)
+    - cosa c'è di nuovo in merito a [Magliana](ZONE)
+    - ci sono aggiornamenti di attualità su [Montesole](ZONE)
+    - dove leggo le ultime novità relative al [Municipio X](ZONE)
+    - ci sono ultime notizie su [Acilia](ZONE)
+  - intent: ask_document_news
+    examples:
+    - quali sono le notizie sulla [proroga dell'esenzione](DOCUMENT) da reddito
+    - che notizie ci sono sul [PNRR](DOCUMENT) per la sanità
+    - quali sono le ultime novità fiscali della [Legge di Bilancio](DOCUMENT)
+    - ci sono ultime notizie sulla [Certificazione Unica](DOCUMENT)
+    - quali sono le novità più recenti riguardo al [contratto di locazione](DOCUMENT)
+    - sono uscite nuove news sulla [fattura elettronica](DOCUMENT)
+    - cosa c'è di nuovo in merito al [referto](DOCUMENT)
+    - ci sono aggiornamenti di attualità sull'[avviso bonario](DOCUMENT)
+    - dove leggo le ultime novità relative all'[avviso di accertamento](DOCUMENT)
+    - ci sono ultime notizie sulla [marca da bollo](DOCUMENT)
+    - quali sono le novità più recenti riguardo all'[impegnativa](DOCUMENT)
+    - sono uscite nuove news sul [Piano terapeutico](DOCUMENT)
+    - cosa c'è di nuovo in merito al [modello 730](DOCUMENT)
+    - ci sono aggiornamenti di attualità sul [modello F24](DOCUMENT)
+    - dove leggo le ultime novità relative alla [patente](DOCUMENT)
+    - ci sono ultime notizie sulla [dichiarazione dei redditi](DOCUMENT)
+  - intent: ask_organization_news
+    examples:
+    - quali sono le ultime notizie dall'[ASL Roma 3](ORGANIZATION)
+    - ultime notizie dall'[Agenzia delle Entrate](ORGANIZATION) sul [modello 730](DOCUMENT)
+    - quali sono le ultime circolari pubblicate dall'[Agenzia delle Entrate](ORGANIZATION)
+    - ci sono ultime notizie sull'[ASL](ORGANIZATION)
+    - quali sono le novità più recenti riguardo al [CAF](ORGANIZATION)
+    - sono uscite nuove news sul [Comune di Montesole](ORGANIZATION)
+    - cosa c'è di nuovo in merito all'[IC Giovanni Pascoli](ORGANIZATION)
+    - ci sono aggiornamenti di attualità sul [Comune](ORGANIZATION)
+    - dove leggo le ultime novità relative all'[IC Pascoli](ORGANIZATION)
+    - ci sono ultime notizie sui [Musei Civici di Montesole](ORGANIZATION)
+    - quali sono le novità più recenti riguardo alla [Guardia di Finanza](ORGANIZATION)
+    - sono uscite nuove news sulla [Regione](ORGANIZATION)
+    - cosa c'è di nuovo in merito all'[INPS](ORGANIZATION)
+    - ci sono aggiornamenti di attualità sul [Ministero della Salute](ORGANIZATION)
+    - dove leggo le ultime novità relative all'[Ordine dei Medici](ORGANIZATION)
+    - ci sono ultime notizie sulla [Camera di Commercio](ORGANIZATION)
+    - quali sono le novità più recenti riguardo alla [Croce Rossa](ORGANIZATION)
+    - sono uscite nuove news sulla [Protezione Civile](ORGANIZATION)
+  - intent: ask_technology_news
+    examples:
+    - quali sono le ultime notizie su [Laravel](TECHNOLOGY)
+    - novità su [Python](TECHNOLOGY)
+    - ci sono novità su [Linux](TECHNOLOGY)
+    - ci sono ultime notizie su [Apache](TECHNOLOGY)
+    - quali sono le novità più recenti riguardo a [Django](TECHNOLOGY)
+    - sono uscite nuove news su [JavaScript](TECHNOLOGY)
+    - cosa c'è di nuovo in merito a [Angular](TECHNOLOGY)
+    - ci sono aggiornamenti di attualità su [phpMyAdmin](TECHNOLOGY)
+    - dove leggo le ultime novità relative a [Flask](TECHNOLOGY)
+    - ci sono ultime notizie su [Joomla](TECHNOLOGY)
+    - quali sono le novità più recenti riguardo al [Desktop Telematico](TECHNOLOGY)
+    - sono uscite nuove news su [Voltura 2.0](TECHNOLOGY)
+    - cosa c'è di nuovo in merito a [Docker](TECHNOLOGY)
+    - ci sono aggiornamenti di attualità su [FastAPI](TECHNOLOGY)
+    - dove leggo le ultime novità relative a [Laravel](TECHNOLOGY)
+    - ci sono ultime notizie su [Python](TECHNOLOGY)
+    - quali sono le novità più recenti riguardo a [PostgreSQL](TECHNOLOGY)
+  - intent: ask_facility_news
+    examples:
+    - cosa è successo di recente al [Grassi](FACILITY)
+    - ci sono news sulle [Case della Comunità](FACILITY)
+    - ci sono ultime notizie sul [Consultorio](FACILITY)
+    - quali sono le novità più recenti riguardo alla [Galleria d'arte contemporanea](FACILITY)
+    - sono uscite nuove news sul [Centro Prelievi Palidoro](FACILITY)
+    - cosa c'è di nuovo in merito al [Centro Prelievi Acilia](FACILITY)
+    - ci sono aggiornamenti di attualità sul [Grassi](FACILITY)
+    - dove leggo le ultime novità relative al [Centro Prelievi](FACILITY)
+    - ci sono ultime notizie sulla [Casa della Salute](FACILITY)
+    - quali sono le novità più recenti riguardo al [Centro Prelievi Ostia](FACILITY)
+    - sono uscite nuove news sul [Museo archeologico](FACILITY)
+    - cosa c'è di nuovo in merito al [Poliambulatorio Coni Zugna](FACILITY)
+    - ci sono aggiornamenti di attualità sul [Poliambulatorio Paolini](FACILITY)
+    - dove leggo le ultime novità relative al [Poliambulatorio Bernocchi](FACILITY)
+    - ci sono ultime notizie sulle [Case della Comunità](FACILITY)
+    - quali sono le novità più recenti riguardo alla [Casa della Comunità](FACILITY)
+    - sono uscite nuove news sull'[Ospedale Grassi](FACILITY)
+    - cosa c'è di nuovo in merito al [Presidio Ospedaliero Grassi](FACILITY)
+  - intent: ask_tech_concept_news
+    examples:
+    - notizie sul [machine learning](TECH_CONCEPT)
+    - ultime notizie sull'[intelligenza artificiale](TECH_CONCEPT)
+    - ci sono ultime notizie sull'[autenticazione JWT](TECH_CONCEPT)
+    - quali sono le novità più recenti riguardo alla [containerizzazione](TECH_CONCEPT)
+    - sono uscite nuove news sugli [embeddings](TECH_CONCEPT)
+    - cosa c'è di nuovo in merito al [firewall](TECH_CONCEPT)
+    - ci sono aggiornamenti di attualità sull'[intelligenza artificiale](TECH_CONCEPT)
+    - dove leggo le ultime novità relative al [cron job](TECH_CONCEPT)
+    - ci sono ultime notizie sulla [BiGRU](TECH_CONCEPT)
+    - quali sono le novità più recenti riguardo ai [microservizi](TECH_CONCEPT)
+    - sono uscite nuove news sulla [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - cosa c'è di nuovo in merito ai [generatori](TECH_CONCEPT)
+    - ci sono aggiornamenti di attualità sugli [assistenti di codice](TECH_CONCEPT)
+    - dove leggo le ultime novità relative alla [rete neurale](TECH_CONCEPT)
+    - ci sono ultime notizie sul [generatore](TECH_CONCEPT)
+    - quali sono le novità più recenti riguardo al [vibe coding](TECH_CONCEPT)
+    - sono uscite nuove news sulle [reti neurali](TECH_CONCEPT)
+    - cosa c'è di nuovo in merito ai [Service Provider](TECH_CONCEPT)
+  - intent: ask_department_news
+    examples:
+    - cosa c'è di nuovo sul [Pronto Soccorso](DEPARTMENT)
+    - ci sono ultime notizie sulla [segreteria scolastica](DEPARTMENT)
+    - quali sono le novità più recenti riguardo all'[Ufficio Stampa](DEPARTMENT)
+    - sono uscite nuove news sui [servizi demografici](DEPARTMENT)
+    - cosa c'è di nuovo in merito ai [Lavori pubblici](DEPARTMENT)
+    - ci sono aggiornamenti di attualità sulla [Direzione Generale](DEPARTMENT)
+    - dove leggo le ultime novità relative all'[URP](DEPARTMENT)
+    - ci sono ultime notizie sul [Pronto Soccorso](DEPARTMENT)
+    - quali sono le novità più recenti riguardo all'[Ufficio Territoriale](DEPARTMENT)
+    - sono uscite nuove news sull'[Ufficio del Catasto](DEPARTMENT)
+    - cosa c'è di nuovo in merito alla [Direzione Provinciale](DEPARTMENT)
+    - ci sono aggiornamenti di attualità sulla [Medicina Legale](DEPARTMENT)
+    - dove leggo le ultime novità relative alla [Medicina dello Sport](DEPARTMENT)
+    - ci sono ultime notizie sulla [Salute Mentale](DEPARTMENT)
+    - quali sono le novità più recenti riguardo al [Catasto](DEPARTMENT)
+    - sono uscite nuove news sulla [Direzione Sanitaria](DEPARTMENT)
+    - cosa c'è di nuovo in merito al [SUAP](DEPARTMENT)
+  - intent: ask_misc_news
+    examples:
+    - cosa c'è di nuovo sui bonus edilizi e sul [bonus ristrutturazione](MISC)
+    - ci sono ultime notizie sul [rimborso IRPEF](MISC)
+    - quali sono le novità più recenti riguardo al [bonus ristrutturazione](MISC)
+    - sono uscite nuove news sul [registro elettronico](MISC)
+    - cosa c'è di nuovo in merito alla [dieta speciale](MISC)
+    - ci sono aggiornamenti di attualità su [CIVIS](MISC)
+    - dove leggo le ultime novità relative a [Fisconline](MISC)
+    - ci sono ultime notizie sullo [SdI](MISC)
+    - quali sono le novità più recenti riguardo al [codice tributo](MISC)
+    - sono uscite nuove news sulla [mensa scolastica](MISC)
+    - cosa c'è di nuovo in merito alla [prima casa](MISC)
+    - ci sono aggiornamenti di attualità sulla [carta famiglia](MISC)
+    - dove leggo le ultime novità relative agli [abusi digitali](MISC)
+    - ci sono ultime notizie su [Entratel](MISC)
+    - quali sono le novità più recenti riguardo a [Fatture e Corrispettivi](MISC)
+    - sono uscite nuove news sul [pre-scuola](MISC)
+    - cosa c'è di nuovo in merito alla [rendita catastale](MISC)
+    - ci sono aggiornamenti di attualità sul [regime ordinario](MISC)
+  - intent: ask_procedure_news
+    examples:
+    - ci sono aggiornamenti sulla [rottamazione quater](PROCEDURE)
+    - ci sono ultime notizie sul [concordato preventivo biennale](PROCEDURE)
+    - quali sono le novità più recenti riguardo all'[accertamento con adesione](PROCEDURE)
+    - sono uscite nuove news sul [matrimonio civile](PROCEDURE)
+    - cosa c'è di nuovo in merito al [pignoramento](PROCEDURE)
+    - ci sono aggiornamenti di attualità sull'[interpello](PROCEDURE)
+    - dove leggo le ultime novità relative al [cambio di residenza](PROCEDURE)
+    - ci sono ultime notizie sulla [rottamazione quater](PROCEDURE)
+    - quali sono le novità più recenti riguardo alla [fatturazione elettronica](PROCEDURE)
+    - sono uscite nuove news sulla [rateizzazione](PROCEDURE)
+    - cosa c'è di nuovo in merito al [ravvedimento operoso](PROCEDURE)
+    - ci sono aggiornamenti di attualità sui [contributi Inps](PROCEDURE)
+    - dove leggo le ultime novità relative all'[autotutela](PROCEDURE)
+    - ci sono ultime notizie sull'[accertamento fiscale](PROCEDURE)
+    - quali sono le novità più recenti riguardo alla [raccolta differenziata](PROCEDURE)
+    - sono uscite nuove news sul [rinnovo della patente](PROCEDURE)
+    - cosa c'è di nuovo in merito alla [voltura catastale](PROCEDURE)
+  - intent: ask_role_news
+    examples:
+    - novità sul [medico di base](ROLE) che va in pensione
+    - ci sono ultime notizie sui [medici di base](ROLE)
+    - quali sono le novità più recenti riguardo al [DPO](ROLE)
+    - sono uscite nuove news sul [donatore di sangue](ROLE)
+    - cosa c'è di nuovo in merito allo [psicologo](ROLE)
+    - ci sono aggiornamenti di attualità sul [Dirigente Scolastico](ROLE)
+    - dove leggo le ultime novità relative al [coordinatore di classe](ROLE)
+    - ci sono ultime notizie sugli [infermieri](ROLE)
+    - quali sono le novità più recenti riguardo al [direttore sanitario](ROLE)
+    - sono uscite nuove news sul [Responsabile della Prevenzione della Corruzione](ROLE)
+    - cosa c'è di nuovo in merito ai [familiari a carico](ROLE)
+    - ci sono aggiornamenti di attualità sullo [specialista ambulatoriale](ROLE)
+    - dove leggo le ultime novità relative all'[assistente sociale](ROLE)
+    - ci sono ultime notizie sul [Medico Competente](ROLE)
+    - quali sono le novità più recenti riguardo al [Direttore Generale](ROLE)
+    - sono uscite nuove news sul [Sindaco](ROLE)
+  - intent: ask_tax_news
+    examples:
+    - ci sono novità sulle aliquote [IRPEF](TAX) di quest'anno
+    - ci sono ultime notizie sull'[IVA](TAX)
+    - quali sono le novità più recenti riguardo alla [cedolare secca](TAX)
+    - sono uscite nuove news sull'[imposta di registro](TAX)
+    - cosa c'è di nuovo in merito all'[imposta di bollo](TAX)
+    - ci sono aggiornamenti di attualità sull'[IRES](TAX)
+    - dove leggo le ultime novità relative all'[IRAP](TAX)
+    - ci sono ultime notizie sulla [ritenuta d'acconto](TAX)
+    - quali sono le novità più recenti riguardo alla [concessione governativa](TAX)
+    - sono uscite nuove news sull'[imposta ipotecaria](TAX)
+    - cosa c'è di nuovo in merito all'[imposta catastale](TAX)
+    - ci sono aggiornamenti di attualità sull'[addizionale regionale](TAX)
+    - dove leggo le ultime novità relative all'[addizionale comunale](TAX)
+    - ci sono ultime notizie sul [canone RAI](TAX)
+    - quali sono le novità più recenti riguardo alla [tassa automobilistica](TAX)
+    - sono uscite nuove news sull'[imposta sulle successioni](TAX)

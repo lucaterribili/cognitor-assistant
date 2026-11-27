@@ -1,0 +1,12 @@
+responses:
+  ask_currency_conversion_wait_from_response:
+    - "Da quale valuta vuoi convertire?"
+    - "Qual è la valuta di partenza?"
+
+  ask_currency_conversion_wait_to_response:
+    - "In quale valuta vuoi convertire?"
+    - "A quale valuta vuoi arrivare?"
+
+  ask_food_nutrition_wait_response:
+    - "Di quale alimento vuoi conoscere i valori nutrizionali?"
+    - "Dimmi il nome dell'alimento e ti dico calorie e valori nutrizionali."

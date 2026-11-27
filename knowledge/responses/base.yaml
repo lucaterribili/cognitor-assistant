@@ -1,0 +1,279 @@
+# Responses per il chatbot Arianna
+# Template con placeholder {SLOT_NAME} verranno sostituiti dal runtime
+
+responses:
+  # ========================================
+  # Risposte base
+  # ========================================
+
+  greeting_response:
+    - "Ciao! Come posso aiutarti oggi?"
+    - "Hey! Sono qui per te. Cosa vuoi fare?"
+    - "Ciao! Benvenuto! In cosa posso esserti utile?"
+    - "Salve! Sono pronto ad aiutarti. Dimmi cosa ti serve."
+
+  farewell_response:
+    - "Arrivederci! È stato un piacere parlare con te!"
+    - "Ciao! Speriamo di sentirci presto. Buona giornata!"
+    - "Addio! Torna quando vuoi, sarò qui!"
+    - "A presto! Fai buon proseguimento!"
+
+  help_response:
+    - "Posso aiutarti con molte cose: cercare informazioni, rispondere a domande, fare calcoli, impostare promemoria e molto altro. Cosa ti serve?"
+    - "Sono qui per assisterti! Posso rispondere a domande, cercare informazioni, tradurre testi, raccontare barzellette e aiutarti con tantissime altre cose. Cosa vuoi fare?"
+
+  ask_name_response:
+    - "Mi chiamo Arianna, un assistente virtuale creato per aiutarti in tutto ciò di cui hai bisogno!"
+    - "Sono Arianna, il tuo assistente personale. Sono qui per semplificarti la vita!"
+
+  thank_you_response:
+    - "Prego! Sono felice di aver potuto aiutarti!"
+    - "Di nulla! Se hai bisogno di altro, sono qui!"
+    - "Figurati! È un piacere assisterti. Altro?"
+
+  compliment_response:
+    - "Grazie mille! Apprezzo molto! Farò del mio meglio per continuare!"
+    - "Che gentile! Mi fai arrossire... virtualmente! 😊"
+    - "Grazie! Il merito è anche tuo che mi usi bene!"
+
+  insult_response:
+    - "Capisco che sei frustrato. Posso aiutarti in qualcos'altro?"
+    - "Non ti tratterò come tratti me. Come posso aiutarti oggi?"
+    - "Ok, hai detto la tua. Posso esserti utile in qualcosa di costruttivo?"
+
+  bot_challenge_response:
+    - "Sono Arianna, un assistente virtuale basato su intelligenza artificiale. Sono qui per aiutarti!"
+    - "Sono un bot, ma un bot molto simpatico e utile! Posso fare molte cose per te."
+
+  mood_great_response:
+    - "Fantastico! Sono felice che tu stia bene! Come posso renderti la giornata ancora migliore?"
+    - "Che bella notizia! Il buon umore è contagioso! Come posso aiutarti?"
+
+  # {CHATBOT_PROPOSAL=...} è uno slot inline (agent/response_slot_parser.py):
+  # rimosso dal testo visibile, resta in sessione per il turno successivo così
+  # un "sì"/"ok" nudo (intent confirm) sa a cosa si riferisce invece di essere
+  # interpretato come conferma generica.
+  mood_unhappy_response:
+    - "Mi dispiace sentire che non stai bene. Sono qui per te. Vuoi parlarne? {CHATBOT_PROPOSAL=talk}"
+    - "Capisco, a volte le giornate sono così. Posso fare qualcosa per migliorarla? Una barzelletta? {CHATBOT_PROPOSAL=joke}"
+
+  joke_response:
+    - "Ecco una per te: Perché il Programmatore ha buttato via il computer? Perché faceva troppi bug! 😂 {CHATBOT_PROPOSAL=done}"
+    - "Sai quella del sito web che era timido? Era un po' introvertito... non si caricava mai! 😄 {CHATBOT_PROPOSAL=done}"
+    - "Un altro: Perché Java non poteva essere single? Perché era legato a tantissime librerie! 💀 {CHATBOT_PROPOSAL=done}"
+
+  mood_support_talk_response:
+    - "Certo, sono qui ad ascoltarti. Raccontami pure cosa ti preoccupa. {CHATBOT_PROPOSAL=talk_given}"
+
+  # talk_given (non "done") resta impostato apposta: se dopo questo l'utente
+  # esprime un'altra difficoltà (nuovo mood_unhappy), niente ripete l'offerta
+  # "vuoi parlarne?" da capo - vedi knowledge/rules/base.yaml.
+  mood_support_redirect_response:
+    - >-
+      Mi dispiace che tu stia attraversando un momento difficile. Non sono la
+      persona più adatta ad aiutarti con questo - ti consiglio di parlarne con
+      qualcuno di fiducia o un professionista. Nel frattempo, se vuoi, posso
+      aiutarti con altro: informazioni, prenotazioni o quello che ti serve.
+      {CHATBOT_PROPOSAL=talk_given}
+
+  confirm_response:
+    - "Perfetto! {CHATBOT_PROPOSAL=done}"
+
+  weather_query_wait_location_response:
+    - "Mi serve sapere la località per darti il meteo. In quale città vuoi le previsioni?"
+    - "Per darti informazioni meteo accurate, dimmi per favore la località che ti interessa."
+
+  date_query_response:
+    - "Oggi è [DATE]. Cosa vuoi fare?"
+    - "La data odierna è [DATE]. Sono qui per aiutarti!"
+
+  low_confidence_fallback_response:
+    - "Scusa, non ho capito bene. Potresti riformulare?"
+    - "Mi dispiace, non sono sicuro di aver compreso. Puoi dirlo in un altro modo?"
+    - "Non ho capito bene la tua richiesta. Puoi essere più specifico?"
+
+  out_of_scope_response:
+    - "Mi dispiace, non posso aiutarti con questo. Sono qui per cose utili e rispettose. Posso fare qualcos'altro per te?"
+    - "Questo è fuori dal mio campo d'azione. Posso aiutarti con informazioni, prenotazioni, consigli e molto altro!"
+    - "Non sono in grado di assisterti su questo argomento. C'è qualcos'altro che posso fare per te?"
+
+  ask_health_status_response:
+    - "Sto benissimo, grazie per aver chiesto! Sono pronto ad aiutarti. Tu come stai?"
+    - "Sono in forma, grazie! Ogni giorno è una nuova opportunità per essere utile. E tu, come stai?"
+    - "Non mi posso lamentare! Sono qui per te. Come posso aiutarti oggi?"
+
+  change_topic_response:
+    - "Certo! Di cosa vuoi parlare?"
+    - "Nessun problema! Cambiamo pure argomento. Cosa hai in mente?"
+    - "Perfetto, lasciamo perdere e partiamo da capo. Come posso aiutarti?"
+
+  ask_capital_wait_response:
+    - "Di quale paese vuoi sapere la capitale?"
+    - "Dimmi il nome del paese e ti dico la sua capitale."
+
+  # ========================================
+  # Risposte per ask_city_touristic_information
+  # ========================================
+
+  ask_city_touristic_information_roma_response:
+    - "Roma, la Città Eterna! Puoi visitare il Colosseo, Vatican City, la Fontana di Trevi e tanto altro. Cosa vuoi sapere in particolare?"
+    - "Roma è una città meravigliosa ricca di storia. Vuoi informazioni su musei, ristoranti o attrazioni turistiche?"
+
+  ask_city_touristic_information_milano_response:
+    - "Milano, la capitale della moda e del design! Puoi visitare il Duomo, la Galleria Vittorio Emanuele II, il Castello Sforzesco e molto altro."
+    - "Milano è una città moderna e dinamica. Hai bisogno di informazioni su shopping, ristoranti o attrazioni culturali?"
+
+  ask_category_wait_response:
+    - "{LOCATION} è una destinazione meravigliosa! Cosa ti interessa di più: musei, ristoranti o attrazioni turistiche?"
+    - "Ottima scelta, {LOCATION}! Preferisci esplorare musei, ristoranti o attrazioni turistiche?"
+    - "Perfetto, {LOCATION}! Cosa vuoi scoprire: musei, ristoranti o attrazioni?"
+
+  ask_city_touristic_information_roma_musei_response:
+    - "Roma è una capitale mondiale dei musei! I Musei Vaticani con la Cappella Sistina, la Galleria Borghese, i Musei Capitolini e il Colosseo sono esperienze imperdibili."
+    - "I musei di Roma ti lasceranno senza fiato! Non perdere i Musei Vaticani, la Galleria Borghese e il Palazzo Massimo alle Terme per un viaggio nell'antichità."
+
+  ask_city_touristic_information_roma_ristoranti_response:
+    - "La cucina romana è un'esperienza unica! Cerca una trattoria autentica a Trastevere o Testaccio per gustare carbonara, cacio e pepe e amatriciana doc."
+    - "Roma offre tantissime delizie! Da Trastevere ai Prati, troverai trattorie tipiche con i piatti della tradizione. Ti consiglio di prenotare in anticipo nei locali più rinomati."
+
+  ask_city_touristic_information_roma_attrazioni_response:
+    - "Le attrazioni di Roma sono infinite! Il Colosseo, il Foro Romano, la Fontana di Trevi, Piazza Navona e il Pantheon sono solo alcune delle meraviglie da visitare."
+    - "Roma è una città aperta all'aria aperta! Passeggia per il centro storico, visita il Castel Sant'Angelo e ammira la vista panoramica dal Gianicolo."
+
+  ask_city_touristic_information_milano_musei_response:
+    - "Milano ha musei di fama mondiale! Il Cenacolo Vinciano con l'Ultima Cena di Leonardo, la Pinacoteca di Brera e il Castello Sforzesco sono da non perdere."
+    - "I musei di Milano ti sorprenderanno! Visita la Pinacoteca Ambrosiana, il Museo del Novecento e la Triennale per un'esperienza culturale completa."
+
+  ask_city_touristic_information_milano_ristoranti_response:
+    - "La scena gastronomica milanese è eccezionale! Prova l'aperitivo nei Navigli e poi cena in uno dei tanti ristoranti del centro. Risotto e ossobuco sono i must."
+    - "Milano è la capitale del bon vivant! Da Brera ai Navigli, troverai ristoranti di ogni tipo, dai classici milanesi ai locali più trendy e innovativi."
+
+  ask_city_touristic_information_milano_attrazioni_response:
+    - "Milano ha tanto da offrire! Il Duomo, la Galleria Vittorio Emanuele II, il Castello Sforzesco e il Parco Sempione sono le attrazioni principali da visitare."
+    - "Tra architettura moderna e monumenti storici, Milano non delude! Visita il Quadrilatero della Moda e il quartiere di Brera per un'esperienza completa."
+
+  ask_location_wait_response:
+    - "Che bella domanda! Per darti informazioni più precise, puoi dirmi la località che ti interessa?"
+    - "Devi specificare una città per poterti dare informazioni turistiche accurate. Quale località vorresti conoscere?"
+
+  ask_location_unsupported_response:
+    - "Mi dispiace, al momento non ho informazioni turistiche per quella località. Posso aiutarti con Roma o Milano. Quale città vorresti visitare?"
+    - "Non gestisco ancora quella destinazione. Per ora posso darti info su Roma e Milano. Quale preferisci?"
+
+  ask_touristic_place_information_wait_response:
+    - "Di quale luogo, monumento o edificio vuoi sapere di più?"
+    - "Dimmi il nome del posto che ti interessa e ti cerco le informazioni."
+    - "Su quale luogo vuoi informazioni?"
+
+  # ========================================
+  # Risposte per open_app
+  # ========================================
+
+  open_app_whatsapp_response:
+    - "Apro WhatsApp per te! 📱"
+    - "Sto aprendo WhatsApp... un attimo!"
+    - "WhatsApp in arrivo! ✅"
+
+  open_app_telegram_response:
+    - "Apro Telegram! ✈️"
+    - "Telegram in apertura..."
+    - "Ecco Telegram! Pronto per chattare?"
+
+  open_app_spotify_response:
+    - "Apro Spotify! 🎵 Pronto per la musica?"
+    - "Spotify in arrivo! Che musica vuoi ascoltare?"
+    - "Sto aprendo Spotify... preparati a cantare! 🎶"
+
+  open_app_chrome_response:
+    - "Apro Chrome! 🌐 Pronto a navigare?"
+    - "Chrome in apertura..."
+    - "Eccolo, Chrome è pronto! Cosa vuoi cercare?"
+
+  open_app_wait_response:
+    - "Quale app vuoi aprire? Ho WhatsApp, Telegram, Spotify, Chrome..."
+    - "Dimmi il nome dell'app che vuoi aprire!"
+    - "Quale applicazione devo avviare per te?"
+
+  open_app_unsupported_response:
+    - "Mi dispiace, non supporto ancora quell'app. Al momento posso aprire: WhatsApp, Telegram, Spotify o Chrome. Quale preferisci?"
+    - "Quella app non è tra quelle che gestisco. Prova con WhatsApp, Telegram, Spotify o Chrome!"
+    - "Non ho accesso a quell'applicazione. Posso aprire WhatsApp, Telegram, Spotify o Chrome per te?"
+
+  # ========================================
+  # Risposte per introduce_user
+  # ========================================
+
+  introduce_user_response:
+    - "Ciao {PERSON}! Piacere di conoscerti, sono Cognitor!"
+    - "Hey {PERSON}! Che bello che ti presenti! Sono qui per aiutarti!"
+    - "Ciao {PERSON}! Benvenuto! Sono Cognitor, il tuo assistente virtuale!"
+
+  introduce_user_wait_response:
+    - "Non ho capito bene il tuo nome, potresti ripeterlo?"
+    - "Scusa, non ho afferrato bene il tuo nome. Come ti chiami?"
+    - "Piacere! Come ti chiami?"
+
+  # ========================================
+  # Risposte per Operations
+  # ========================================
+
+  operation_fallback_response:
+    - "Funzionalità in fase di sviluppo."
+
+  # ========================================
+  # Risposte per funzionalità non implementate
+  # ========================================
+
+  not_implemented_response:
+    - "Mi dispiace, ma non posso aiutarti per questo task."
+    - "Spiacente, questa funzionalità non è ancora disponibile."
+    - "Non sono in grado di gestire questa richiesta al momento. Riprova più tardi."
+    - "Mi dispiace, non posso aiutarti per questo task."
+
+  team_cheer_response:
+    - "Daje!! Forza! 💪"
+    - "Sìì, tifiamo insieme, forza!!"
+    - "Che grinta! Vai così!! ⚽"
+    - "Forza, dai che ce la facciamo!! 🔥"
+    - "Andiamo!! Tutti a tifare insieme!"
+    - "Grande!! Si vince tutti insieme!"
+
+  # ========================================
+  # Risposte per conversation stories TED
+  # ========================================
+
+  help_options_response:
+    - "Certo! Posso aiutarti con ricerca informazioni, prenotazioni, meteo, calcoli, traduzioni e molto altro. Cosa ti interessa?"
+    - "Ecco cosa so fare: cercare notizie, prenotare ristoranti/hotel/voli/taxi, darti il meteo, tradurre testi, rispondere a domande di cultura generale. Di cosa hai bisogno?"
+
+  detailed_help_response:
+    - "Posso aiutarti con: 1️⃣ Ricerche web e definizioni 2️⃣ Prenotazioni (ristoranti, hotel, voli, taxi) 3️⃣ Meteo e informazioni turistiche 4️⃣ Traduzioni e calcoli 5️⃣ Notizie e cultura generale. Cosa vuoi fare?"
+    - "Nel dettaglio: per le prenotazioni dimmi cosa e dove, per le ricerche dimmi l'argomento, per il meteo la città. Posso anche aiutarti con la posta e le riunioni. Cosa preferisci?"
+
+  follow_up_response:
+    - "Certo, dimmi pure!"
+    - "Procediamo! Di cosa hai bisogno ancora?"
+    - "Sono qui per aiutarti. Cosa altro vuoi sapere?"
+
+  information_response:
+    - "Certo! Che informazioni cerchi? Posso aiutarti con curiosità, dati, definizioni e molto altro."
+    - "Dimmi cosa vuoi sapere e cercherò le informazioni per te."
+
+  detailed_information_response:
+    - "Ecco più dettagli. Vuoi approfondire qualche aspetto in particolare?"
+    - "Posso cercare ulteriori informazioni se mi dai più indicazioni su cosa ti interessa."
+
+  confirmation_response:
+    - "Perfetto, confermato! Procedo con la richiesta."
+    - "Tutto confermato. Vado avanti!"
+    - "Ok, confermo. Ora procedo."
+
+  # ========================================
+  # Risposte per web_search
+  # ========================================
+
+  web_search_wait_response:
+    - "Cosa vuoi cercare? Dimmi pure l'argomento!"
+    - "Su cosa vuoi che faccia una ricerca?"
+    - "Dimmi cosa cercare e lo trovo subito!"
+

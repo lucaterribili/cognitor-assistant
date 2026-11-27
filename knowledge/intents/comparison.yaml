@@ -1,0 +1,210 @@
+nlu:
+  intents:
+  - intent: ask_comparison
+    examples:
+    - Qual è la differenza tra questi servizi?
+    - Quale delle due soluzioni è migliore?
+    - Puoi confrontare queste alternative?
+    - qual è la differenza principale tra le due opzioni
+    - puoi farmi un confronto tra le soluzioni disponibili
+    - cosa cambia in concreto tra la prima e la seconda scelta
+    - quale delle due alternative conviene di più a confronto
+    - in che cosa si differenziano esattamente
+    - mi metti a confronto i pro e i contro delle due modalità
+    - che differenza c'è tra il percorso ordinario e quello semplificato
+    - come faccio a confrontare le diverse offerte
+    - quali sono le differenze sostanziali tra i due profili
+    - c'è una tabella comparativa per vedere le differenze
+    - rispetto alla soluzione standard cosa cambia
+    - in quali casi è preferibile l'uno rispetto all'altro
+    - che divario c'è tra le due possibilità
+  - intent: ask_technology_comparison
+    examples:
+    - differenza tra [Java SE](TECHNOLOGY) e [Java EE](TECHNOLOGY)
+    - differenza tra [MySQL](TECHNOLOGY) e [PostgreSQL](TECHNOLOGY)
+    - meglio [Django](TECHNOLOGY) o [Flask](TECHNOLOGY)
+    - meglio [Laravel](TECHNOLOGY) o [Spring Boot](TECHNOLOGY)
+    - meglio [Python](TECHNOLOGY) o [JavaScript](TECHNOLOGY) per iniziare
+    - confronto tra [WordPress](TECHNOLOGY) e [Joomla](TECHNOLOGY)
+    - qual è la differenza tra [Django](TECHNOLOGY) e le altre opzioni
+    - come si confronta [JavaScript](TECHNOLOGY) rispetto alle alternative
+    - cosa cambia scegliendo [Angular](TECHNOLOGY)
+    - puoi farmi un confronto dettagliato su [phpMyAdmin](TECHNOLOGY)
+    - in cosa si distingue [Flask](TECHNOLOGY) dagli altri
+    - è meglio optare per [Joomla](TECHNOLOGY) o per un'altra soluzione
+    - qual è la differenza tra il [Desktop Telematico](TECHNOLOGY) e le altre opzioni
+    - come si confronta [Voltura 2.0](TECHNOLOGY) rispetto alle alternative
+    - cosa cambia scegliendo [Docker](TECHNOLOGY)
+    - puoi farmi un confronto dettagliato su [FastAPI](TECHNOLOGY)
+    - in cosa si distingue [Laravel](TECHNOLOGY) dagli altri
+    - è meglio optare per [Python](TECHNOLOGY) o per un'altra soluzione
+  - intent: ask_document_comparison
+    examples:
+    - che differenza c'è tra [esenzione per reddito](DOCUMENT) ed [esenzione per patologia](DOCUMENT)
+    - differenza tra [ticket](DOCUMENT) e [ISEE](DOCUMENT)
+    - qual è la differenza tra [modello 730](DOCUMENT) e [modello Redditi PF](DOCUMENT)
+    - qual è la differenza tra [avviso bonario](DOCUMENT) e [cartella esattoriale](DOCUMENT)
+    - che differenza c'è tra [modello F24](DOCUMENT) ordinario e [modello F24](DOCUMENT) semplificato
+    - qual è la differenza tra il [concorso pubblico](DOCUMENT) e le altre opzioni
+    - come si confronta la [visura catastale](DOCUMENT) rispetto alle alternative
+    - cosa cambia scegliendo la [tessera sanitaria](DOCUMENT)
+    - puoi farmi un confronto dettagliato sulla [cartella clinica](DOCUMENT)
+    - in cosa si distingue il [codice fiscale](DOCUMENT) dagli altri
+    - è meglio optare per l'[ISEE](DOCUMENT) o per un'altra soluzione
+    - qual è la differenza tra la [partita IVA](DOCUMENT) e le altre opzioni
+    - come si confronta la [carta d'identità elettronica](DOCUMENT) rispetto alle alternative
+    - cosa cambia scegliendo la [Certificazione Unica](DOCUMENT)
+    - puoi farmi un confronto dettagliato sul [contratto di locazione](DOCUMENT)
+    - in cosa si distingue la [fattura elettronica](DOCUMENT) dagli altri
+  - intent: ask_facility_comparison
+    examples:
+    - qual è la differenza tra [Casa della Comunità Hub](FACILITY) e [Spoke](FACILITY)
+    - che differenza c'è tra [Casa della Salute](FACILITY) e [Casa della Comunità](FACILITY)
+    - conviene il [Centro Prelievi Ostia](FACILITY) o quello di [Palidoro](ZONE)
+    - meglio il [Grassi](FACILITY) o il [Poliambulatorio Coni Zugna](FACILITY) per un'[ecografia](MEDICAL_PROCEDURE)
+    - qual è la differenza tra il [Poliambulatorio Coni Zugna](FACILITY) e le altre opzioni
+    - come si confronta il [Poliambulatorio Paolini](FACILITY) rispetto alle alternative
+    - cosa cambia scegliendo il [Poliambulatorio Bernocchi](FACILITY)
+    - puoi farmi un confronto dettagliato sulle [Case della Comunità](FACILITY)
+    - in cosa si distingue la [Casa della Comunità](FACILITY) dagli altri
+    - è meglio optare per l'[Ospedale Grassi](FACILITY) o per un'altra soluzione
+    - qual è la differenza tra il [Presidio Ospedaliero Grassi](FACILITY) e le altre opzioni
+    - come si confronta i [Consultori](FACILITY) rispetto alle alternative
+    - cosa cambia scegliendo le [Cappelle Medicee](FACILITY)
+    - puoi farmi un confronto dettagliato sulla [Pinacoteca civica](FACILITY)
+    - in cosa si distingue l'[asilo nido](FACILITY) dagli altri
+    - è meglio optare per l'[Ospedale di Comunità](FACILITY) o per un'altra soluzione
+    - qual è la differenza tra l'[Ecocentro](FACILITY) e le altre opzioni
+    - come si confronta la [Scuola Primaria Rodari](FACILITY) rispetto alle alternative
+  - intent: ask_health_service_comparison
+    examples:
+    - differenza tra [Guardia Medica](HEALTH_SERVICE) e [Pronto Soccorso](DEPARTMENT)
+    - differenza tra [CUP](HEALTH_SERVICE) e [RECUP](HEALTH_SERVICE)
+    - qual è la differenza tra [screening della mammella](HEALTH_SERVICE) e [mammografia](MEDICAL_PROCEDURE)
+    - qual è la differenza tra le [cure palliative](HEALTH_SERVICE) e le altre opzioni
+    - come si confronta l'[ossigenoterapia](HEALTH_SERVICE) rispetto alle alternative
+    - cosa cambia scegliendo il [ritiro referti](HEALTH_SERVICE)
+    - puoi farmi un confronto dettagliato sul [CUP](HEALTH_SERVICE)
+    - in cosa si distingue l'[assistenza protesica](HEALTH_SERVICE) dagli altri
+    - è meglio optare per le [vaccinazioni](HEALTH_SERVICE) o per un'altra soluzione
+    - qual è la differenza tra l'[assistenza domiciliare](HEALTH_SERVICE) e le altre opzioni
+    - come si confronta la [Guardia Medica](HEALTH_SERVICE) rispetto alle alternative
+    - cosa cambia scegliendo la [donazione del sangue](HEALTH_SERVICE)
+    - puoi farmi un confronto dettagliato sulla [scelta del medico](HEALTH_SERVICE)
+    - in cosa si distingue l'[accesso agli atti](HEALTH_SERVICE) dagli altri
+    - è meglio optare per lo [screening oncologico](HEALTH_SERVICE) o per un'altra soluzione
+    - qual è la differenza tra lo [Sportello Giovani](HEALTH_SERVICE) e le altre opzioni
+  - intent: ask_department_comparison
+    examples:
+    - differenza tra [UOC](DEPARTMENT) e [UOS](DEPARTMENT)
+    - differenza tra [UOS](DEPARTMENT) e [UOSD](DEPARTMENT)
+    - qual è la differenza tra la [Medicina Legale](DEPARTMENT) e le altre opzioni
+    - come si confronta la [Medicina dello Sport](DEPARTMENT) rispetto alle alternative
+    - cosa cambia scegliendo la [Salute Mentale](DEPARTMENT)
+    - puoi farmi un confronto dettagliato sul [Catasto](DEPARTMENT)
+    - in cosa si distingue la [Direzione Sanitaria](DEPARTMENT) dagli altri
+    - è meglio optare per il [SUAP](DEPARTMENT) o per un'altra soluzione
+    - qual è la differenza tra l'[anagrafe](DEPARTMENT) e le altre opzioni
+    - come si confronta la [Polizia locale](DEPARTMENT) rispetto alle alternative
+    - cosa cambia scegliendo la [Neurologia](DEPARTMENT)
+    - puoi farmi un confronto dettagliato sull'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - in cosa si distingue il [Dipartimento del Farmaco](DEPARTMENT) dagli altri
+    - è meglio optare per la [UOC Consultori Familiari](DEPARTMENT) o per un'altra soluzione
+    - qual è la differenza tra la [Cardiologia interventistica](DEPARTMENT) e le altre opzioni
+    - come si confronta i [tributi](DEPARTMENT) rispetto alle alternative
+    - cosa cambia scegliendo la [segreteria scolastica](DEPARTMENT)
+    - puoi farmi un confronto dettagliato sull'[Ufficio Stampa](DEPARTMENT)
+  - intent: ask_misc_comparison
+    examples:
+    - che differenza c'è tra [regime forfettario](MISC) e [regime ordinario](MISC)
+    - differenza tra [detrazione fiscale](MISC) e [deduzione fiscale](MISC)
+    - qual è la differenza tra l'[ecobonus](MISC) e le altre opzioni
+    - come si confronta il [Superbonus](MISC) rispetto alle alternative
+    - cosa cambia scegliendo l'[audioguida](MISC)
+    - puoi farmi un confronto dettagliato sugli [alloggi popolari](MISC)
+    - in cosa si distingue il [regime forfettario](MISC) dagli altri
+    - è meglio optare per il [cassetto fiscale](MISC) o per un'altra soluzione
+    - qual è la differenza tra il [rimborso IRPEF](MISC) e le altre opzioni
+    - come si confronta il [bonus ristrutturazione](MISC) rispetto alle alternative
+    - cosa cambia scegliendo il [registro elettronico](MISC)
+    - puoi farmi un confronto dettagliato sulla [dieta speciale](MISC)
+    - in cosa si distingue [CIVIS](MISC) dagli altri
+    - è meglio optare per [Fisconline](MISC) o per un'altra soluzione
+    - qual è la differenza tra lo [SdI](MISC) e le altre opzioni
+    - come si confronta il [codice tributo](MISC) rispetto alle alternative
+    - cosa cambia scegliendo la [mensa scolastica](MISC)
+    - puoi farmi un confronto dettagliato sulla [prima casa](MISC)
+  - intent: ask_dish_comparison
+    examples:
+    - cosa cambia tra [guanciale](DISH) e [pancetta](DISH) nei piatti romani
+    - qual è la differenza tra la [coda alla vaccinara](DISH) e le altre opzioni
+    - come si confronta i [supplì al telefono](DISH) rispetto alle alternative
+    - cosa cambia scegliendo l'[abbacchio alla scottadito](DISH)
+    - puoi farmi un confronto dettagliato sulla [trippa alla romana](DISH)
+    - in cosa si distingue i [rigatoni con la pajata](DISH) dagli altri
+    - è meglio optare per il [maritozzo con la panna](DISH) o per un'altra soluzione
+    - qual è la differenza tra la [pinsa romana](DISH) e le altre opzioni
+    - come si confronta i [fiori di zucca fritti](DISH) rispetto alle alternative
+    - cosa cambia scegliendo il [baccalà fritto](DISH)
+    - puoi farmi un confronto dettagliato sul [pecorino romano](DISH)
+    - in cosa si distingue la [vignarola](DISH) dagli altri
+    - è meglio optare per il [guanciale](DISH) o per un'altra soluzione
+    - qual è la differenza tra la [pancetta](DISH) e le altre opzioni
+    - come si confronta la [carbonara](DISH) rispetto alle alternative
+    - cosa cambia scegliendo l'[amatriciana](DISH)
+    - puoi farmi un confronto dettagliato sulla [cacio e pepe](DISH)
+  - intent: ask_role_comparison
+    examples:
+    - che differenza c'è tra [medico di base](ROLE) e [pediatra](ROLE)
+    - qual è la differenza tra il [primario](ROLE) e le altre opzioni
+    - come si confronta l'[operatore sanitario](ROLE) rispetto alle alternative
+    - cosa cambia scegliendo il [medico di base](ROLE)
+    - puoi farmi un confronto dettagliato sul [commercialista](ROLE)
+    - in cosa si distingue il [sostituto d'imposta](ROLE) dagli altri
+    - è meglio optare per il [pediatra](ROLE) o per un'altra soluzione
+    - qual è la differenza tra gli [specialisti ambulatoriali](ROLE) e le altre opzioni
+    - come si confronta i [medici di base](ROLE) rispetto alle alternative
+    - cosa cambia scegliendo il [DPO](ROLE)
+    - puoi farmi un confronto dettagliato sul [donatore di sangue](ROLE)
+    - in cosa si distingue lo [psicologo](ROLE) dagli altri
+    - è meglio optare per il [Dirigente Scolastico](ROLE) o per un'altra soluzione
+    - qual è la differenza tra il [coordinatore di classe](ROLE) e le altre opzioni
+    - come si confronta gli [infermieri](ROLE) rispetto alle alternative
+    - cosa cambia scegliendo il [direttore sanitario](ROLE)
+  - intent: ask_tax_comparison
+    examples:
+    - conviene la [cedolare secca](TAX) o la tassazione ordinaria [IRPEF](TAX) sull'affitto
+    - qual è la differenza tra l'[imposta di bollo](TAX) e le altre opzioni
+    - come si confronta l'[IRES](TAX) rispetto alle alternative
+    - cosa cambia scegliendo l'[IRAP](TAX)
+    - puoi farmi un confronto dettagliato sulla [ritenuta d'acconto](TAX)
+    - in cosa si distingue la [concessione governativa](TAX) dagli altri
+    - è meglio optare per l'[imposta ipotecaria](TAX) o per un'altra soluzione
+    - qual è la differenza tra l'[imposta catastale](TAX) e le altre opzioni
+    - come si confronta l'[addizionale regionale](TAX) rispetto alle alternative
+    - cosa cambia scegliendo l'[addizionale comunale](TAX)
+    - puoi farmi un confronto dettagliato sul [canone RAI](TAX)
+    - in cosa si distingue la [tassa automobilistica](TAX) dagli altri
+    - è meglio optare per l'[imposta sulle successioni](TAX) o per un'altra soluzione
+    - qual è la differenza tra il [contributo unificato](TAX) e le altre opzioni
+    - come si confronta il [diritto camerale](TAX) rispetto alle alternative
+    - cosa cambia scegliendo l'[IMU](TAX)
+  - intent: ask_tech_concept_comparison
+    examples:
+    - differenza tra [BiGRU](TECH_CONCEPT) e altri modelli più complessi
+    - qual è la differenza tra il [generatore](TECH_CONCEPT) e le altre opzioni
+    - come si confronta il [vibe coding](TECH_CONCEPT) rispetto alle alternative
+    - cosa cambia scegliendo le [reti neurali](TECH_CONCEPT)
+    - puoi farmi un confronto dettagliato sui [Service Provider](TECH_CONCEPT)
+    - in cosa si distingue le [API](TECH_CONCEPT) dagli altri
+    - è meglio optare per l'[ORM](TECH_CONCEPT) o per un'altra soluzione
+    - qual è la differenza tra l'[interceptor](TECH_CONCEPT) e le altre opzioni
+    - come si confronta le [Facades](TECH_CONCEPT) rispetto alle alternative
+    - cosa cambia scegliendo la [GPU](TECH_CONCEPT)
+    - puoi farmi un confronto dettagliato sul [machine learning](TECH_CONCEPT)
+    - in cosa si distingue l'[autenticazione JWT](TECH_CONCEPT) dagli altri
+    - è meglio optare per la [containerizzazione](TECH_CONCEPT) o per un'altra soluzione
+    - qual è la differenza tra gli [embeddings](TECH_CONCEPT) e le altre opzioni
+    - come si confronta il [firewall](TECH_CONCEPT) rispetto alle alternative
+    - cosa cambia scegliendo l'[intelligenza artificiale](TECH_CONCEPT)
+    - puoi farmi un confronto dettagliato sul [cron job](TECH_CONCEPT)

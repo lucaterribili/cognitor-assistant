@@ -1,0 +1,115 @@
+nlu:
+  intents:
+  - intent: ask_regulations
+    examples:
+    - Quali normative regolano il servizio?
+    - Dove trovo il regolamento?
+    - Quali sono le disposizioni applicabili?
+    - quale normativa si applica ai bandi di gara
+    - quali regole valgono per le liste di attesa
+    - cosa prevede la legge sull'accesso alle cure
+    - quali sono le norme sulla residenza
+    - qual è la normativa per sposare una donna russa in [Italia](COUNTRY)
+    - è consentito scattare fotografie con flash all'interno delle sale del museo
+    - si può entrare con cani nei musei o nei giardini storici
+    - qual è la normativa vigente in materia
+    - dove posso consultare il regolamento ufficiale completo
+    - quali leggi o decreti disciplinano questo ambito
+    - ci sono state modifiche normative recenti da conoscere
+    - cosa dice il regolamento interno a questo proposito
+    - quali sono i riferimenti legislativi applicabili
+    - il regolamento prevede deroghe o casi particolari
+  - intent: ask_document_regulations
+    examples:
+    - cosa prevede il [D.lgs 36/2023](DOCUMENT) sugli appalti
+    - cosa dice la [legge 120/2020](DOCUMENT) sulle procedure negoziate
+    - cosa prevede la [DGR 378/2017](DOCUMENT)
+    - dove trovo il [Piano triennale per la prevenzione della corruzione](DOCUMENT)
+    - cosa prevede il [Piano triennale](DOCUMENT) sulla trasparenza
+    - dove trovo il [Codice di comportamento](DOCUMENT) dei dipendenti
+    - quali disposizioni regolano le [esenzioni](DOCUMENT)
+    - qual è la normativa sul [consenso informato](DOCUMENT)
+    - qual è il regolamento per il [concorso pubblico](DOCUMENT)
+    - quali sono gli standard normativi nella [Carta dei servizi](DOCUMENT)
+    - cosa prevede il [TUIR](DOCUMENT) sulla tassazione dei redditi
+    - cosa dice il [DPR 633/1972](DOCUMENT) in materia di [IVA](TAX)
+    - quali sono le regole dello [Statuto del contribuente](DOCUMENT)
+    - cosa prevede il [regolamento d'istituto](DOCUMENT) in merito ai ritardi e alle assenze
+    - qual è la normativa di riferimento per lo [SPID](DOCUMENT)
+    - quali leggi e regolamenti disciplinano il [concorso pubblico](DOCUMENT)
+  - intent: ask_health_service_regulations
+    examples:
+    - quali norme regolano l'[accesso agli atti](HEALTH_SERVICE)
+    - quali norme regolano l'[accesso civico](HEALTH_SERVICE)
+    - che regole ci sono per la [Whistleblowing](HEALTH_SERVICE)
+    - qual è la normativa sulle [vaccinazioni](HEALTH_SERVICE) obbligatorie
+    - dove trovo le norme sull'[Amministrazione Trasparente](HEALTH_SERVICE)
+    - qual è la normativa di riferimento per la [Telemedicina](HEALTH_SERVICE)
+    - quali leggi e regolamenti disciplinano il [RECUP](HEALTH_SERVICE)
+    - cosa prevede il regolamento ufficiale sul [Punto unico di accesso](HEALTH_SERVICE)
+    - quali disposizioni normative si applicano alla [nutrizione artificiale](HEALTH_SERVICE)
+    - dove consulto il testo di legge relativo alle [cure palliative](HEALTH_SERVICE)
+    - ci sono norme specifiche che regolano l'[ossigenoterapia](HEALTH_SERVICE)
+    - qual è la normativa di riferimento per il [ritiro referti](HEALTH_SERVICE)
+    - quali leggi e regolamenti disciplinano il [CUP](HEALTH_SERVICE)
+    - cosa prevede il regolamento ufficiale sull'[assistenza protesica](HEALTH_SERVICE)
+    - quali disposizioni normative si applicano alle [vaccinazioni](HEALTH_SERVICE)
+    - dove consulto il testo di legge relativo all'[assistenza domiciliare](HEALTH_SERVICE)
+    - ci sono norme specifiche che regolano la [Guardia Medica](HEALTH_SERVICE)
+    - qual è la normativa di riferimento per la [donazione del sangue](HEALTH_SERVICE)
+  - intent: ask_procedure_regulations
+    examples:
+    - cosa dice la normativa sul [rinnovo della patente](PROCEDURE)
+    - cosa dice la legge sui [contributi Inps](PROCEDURE) non versati
+    - cosa prevede la legge sulla [rottamazione delle cartelle](PROCEDURE)
+    - cosa dice il regolamento comunale sulla [raccolta differenziata](PROCEDURE) dei rifiuti
+    - qual è la normativa di riferimento per la [denuncia di smarrimento](PROCEDURE)
+    - quali leggi e regolamenti disciplinano l'[apertura della partita IVA](PROCEDURE)
+    - cosa prevede il regolamento ufficiale sulla [rottamazione delle cartelle](PROCEDURE)
+    - quali disposizioni normative si applicano alla [registrazione del contratto di locazione](PROCEDURE)
+    - dove consulto il testo di legge relativo al [concordato preventivo biennale](PROCEDURE)
+    - ci sono norme specifiche che regolano l'[accertamento con adesione](PROCEDURE)
+    - qual è la normativa di riferimento per il [matrimonio civile](PROCEDURE)
+    - quali leggi e regolamenti disciplinano il [pignoramento](PROCEDURE)
+    - cosa prevede il regolamento ufficiale sull'[interpello](PROCEDURE)
+    - quali disposizioni normative si applicano al [cambio di residenza](PROCEDURE)
+    - dove consulto il testo di legge relativo alla [rottamazione quater](PROCEDURE)
+    - ci sono norme specifiche che regolano la [fatturazione elettronica](PROCEDURE)
+  - intent: ask_misc_regulations
+    examples:
+    - qual è la normativa di riferimento sul [regime forfettario](MISC)
+    - quali sono le regole per la sosta e i permessi residenti nella [ZTL](MISC)
+    - qual è la normativa di riferimento per il [pre-scuola](MISC)
+    - quali leggi e regolamenti disciplinano la [rendita catastale](MISC)
+    - cosa prevede il regolamento ufficiale sul [regime ordinario](MISC)
+    - quali disposizioni normative si applicano al [bonus mobili](MISC)
+    - dove consulto il testo di legge relativo all'[ecobonus](MISC)
+    - ci sono norme specifiche che regolano il [Superbonus](MISC)
+    - qual è la normativa di riferimento per l'[audioguida](MISC)
+    - quali leggi e regolamenti disciplinano gli [alloggi popolari](MISC)
+    - cosa prevede il regolamento ufficiale sul [regime forfettario](MISC)
+    - quali disposizioni normative si applicano al [cassetto fiscale](MISC)
+    - dove consulto il testo di legge relativo al [rimborso IRPEF](MISC)
+    - ci sono norme specifiche che regolano il [bonus ristrutturazione](MISC)
+    - qual è la normativa di riferimento per il [registro elettronico](MISC)
+    - quali leggi e regolamenti disciplinano la [dieta speciale](MISC)
+    - cosa prevede il regolamento ufficiale su [CIVIS](MISC)
+  - intent: ask_organization_regulations
+    examples:
+    - dove trovo il regolamento dell'[ASL Roma 3](ORGANIZATION)
+    - dove consulto le circolari e le risoluzioni dell'[Agenzia delle Entrate](ORGANIZATION)
+    - qual è la normativa di riferimento per l'[IC Pascoli](ORGANIZATION)
+    - quali leggi e regolamenti disciplinano i [Musei Civici di Montesole](ORGANIZATION)
+    - cosa prevede il regolamento ufficiale sulla [Guardia di Finanza](ORGANIZATION)
+    - quali disposizioni normative si applicano alla [Regione](ORGANIZATION)
+    - dove consulto il testo di legge relativo all'[INPS](ORGANIZATION)
+    - ci sono norme specifiche che regolano il [Ministero della Salute](ORGANIZATION)
+    - qual è la normativa di riferimento per l'[Ordine dei Medici](ORGANIZATION)
+    - quali leggi e regolamenti disciplinano la [Camera di Commercio](ORGANIZATION)
+    - cosa prevede il regolamento ufficiale sulla [Croce Rossa](ORGANIZATION)
+    - quali disposizioni normative si applicano alla [Protezione Civile](ORGANIZATION)
+    - dove consulto il testo di legge relativo all'[Agenzia delle Entrate](ORGANIZATION)
+    - ci sono norme specifiche che regolano l'[ASL Roma 3](ORGANIZATION)
+    - qual è la normativa di riferimento per l'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - quali leggi e regolamenti disciplinano [programmato](ORGANIZATION)
+    - cosa prevede il regolamento ufficiale sui [Musei Civici](ORGANIZATION)

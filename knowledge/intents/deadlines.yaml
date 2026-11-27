@@ -1,0 +1,159 @@
+nlu:
+  intents:
+  - intent: ask_deadlines
+    examples:
+    - Qual è la scadenza?
+    - Entro quando devo presentare la domanda?
+    - Quanto tempo ho a disposizione?
+    - fino a quando posso scegliere il medico online
+    - fino a che giorno è visitabile la mostra temporanea al museo
+    - qual è la data di scadenza da rispettare
+    - entro quando bisogna inviare tutta la pratica
+    - fino a che giorno è possibile presentare la domanda
+    - quando scadono i termini ufficiali
+    - c'è una data limite tassativa da non superare
+    - sono previste proroghe rispetto alla scadenza ordinaria
+    - qual è l'ultimo giorno utile per procedere
+    - a che ora del giorno di scadenza chiude l'invio
+    - cosa succede se il giorno di scadenza cade di festivo
+    - dove verifico tutte le prossime scadenze in calendario
+    - quanto tempo mi resta prima della scadenza
+  - intent: ask_document_deadlines
+    examples:
+    - entro quando devo ritirare i [referti](DOCUMENT)
+    - entro quando posso presentare la domanda al [concorso pubblico](DOCUMENT)
+    - qual è la scadenza del [bando](DOCUMENT) per l'[avviso pubblico](DOCUMENT)
+    - entro quando va presentata la [richiesta di esenzione](DOCUMENT)
+    - quando scade l'[esenzione per reddito](DOCUMENT)
+    - c'è stata una [proroga dell'esenzione](DOCUMENT) per reddito
+    - quando scade la [tessera sanitaria](DOCUMENT)
+    - entro quando devo rinnovare la [tessera sanitaria](DOCUMENT)
+    - entro quando devo pagare il [ticket](DOCUMENT)
+    - scadenza dell'[avviso interno](DOCUMENT) per [specialisti ambulatoriali](ROLE)
+    - fino a quando è valida la [ricetta](DOCUMENT)
+    - per quanto tempo vale l'[impegnativa](DOCUMENT)
+    - quanto è valido il [certificato medico](DOCUMENT) per la [patente](DOCUMENT)
+    - ogni quanto devo rinnovare la [patente](DOCUMENT)
+    - quando scade la [carta d'identità](DOCUMENT)
+    - entro quando devo denunciare lo smarrimento della [patente](DOCUMENT)
+    - qual è la scadenza per inviare il [modello 730](DOCUMENT)
+    - qual è il termine per presentare il [modello Redditi PF](DOCUMENT)
+    - entro quando va registrato un [contratto di locazione](DOCUMENT)
+    - entro quanti giorni va pagato un [avviso bonario](DOCUMENT)
+  - intent: ask_tax_deadlines
+    examples:
+    - entro quando si paga l'[IMU](TAX) di [giugno](DATE) e [dicembre](DATE)
+    - quando scade il versamento del saldo e acconto [IRPEF](TAX)
+    - qual è la scadenza per il versamento dell'acconto [IMU](TAX)
+    - entro quando va pagata la rata della [TARI](TAX)
+    - qual è la scadenza per l'[imposta catastale](TAX)
+    - entro quale data va gestito l'[addizionale regionale](TAX)
+    - quando scade il termine ultimo per l'[addizionale comunale](TAX)
+    - fino a quando c'è tempo per il [canone RAI](TAX)
+    - quali sono i termini di scadenza relativi alla [tassa automobilistica](TAX)
+    - c'è una proroga della scadenza per l'[imposta sulle successioni](TAX)
+    - qual è la scadenza per il [contributo unificato](TAX)
+    - entro quale data va gestito il [diritto camerale](TAX)
+    - quando scade il termine ultimo per l'[IMU](TAX)
+    - fino a quando c'è tempo per l'[IRPEF](TAX)
+    - quali sono i termini di scadenza relativi alla [TARI](TAX)
+    - c'è una proroga della scadenza per l'[IVA](TAX)
+    - qual è la scadenza per la [cedolare secca](TAX)
+  - intent: ask_procedure_deadlines
+    examples:
+    - qual è la scadenza per la rata della [rottamazione quater](PROCEDURE)
+    - entro quanti giorni dal trasferimento devo dichiarare il [cambio residenza](PROCEDURE)
+    - qual è la scadenza per le [iscrizioni online](PROCEDURE) al nuovo anno scolastico
+    - qual è la scadenza per il [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - entro quale data va gestito il [DOCFA](PROCEDURE)
+    - quando scade il termine ultimo per la [denuncia di smarrimento](PROCEDURE)
+    - fino a quando c'è tempo per l'[apertura della partita IVA](PROCEDURE)
+    - quali sono i termini di scadenza relativi alla [rottamazione delle cartelle](PROCEDURE)
+    - c'è una proroga della scadenza per la [registrazione del contratto di locazione](PROCEDURE)
+    - qual è la scadenza per il [concordato preventivo biennale](PROCEDURE)
+    - entro quale data va gestito l'[accertamento con adesione](PROCEDURE)
+    - quando scade il termine ultimo per il [matrimonio civile](PROCEDURE)
+    - fino a quando c'è tempo per il [pignoramento](PROCEDURE)
+    - quali sono i termini di scadenza relativi all'[interpello](PROCEDURE)
+    - c'è una proroga della scadenza per il [cambio di residenza](PROCEDURE)
+    - qual è la scadenza per la [rottamazione quater](PROCEDURE)
+    - entro quale data va gestito la [fatturazione elettronica](PROCEDURE)
+  - intent: ask_department_deadlines
+    examples:
+    - entro quando risponde l'[URP](DEPARTMENT) a un reclamo
+    - qual è la scadenza per l'[anagrafe](DEPARTMENT)
+    - entro quale data va gestito la [Polizia locale](DEPARTMENT)
+    - quando scade il termine ultimo per la [Neurologia](DEPARTMENT)
+    - fino a quando c'è tempo per l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - quali sono i termini di scadenza relativi al [Dipartimento del Farmaco](DEPARTMENT)
+    - c'è una proroga della scadenza per la [UOC Consultori Familiari](DEPARTMENT)
+    - qual è la scadenza per la [Cardiologia interventistica](DEPARTMENT)
+    - entro quale data va gestito i [tributi](DEPARTMENT)
+    - quando scade il termine ultimo per la [segreteria scolastica](DEPARTMENT)
+    - fino a quando c'è tempo per l'[Ufficio Stampa](DEPARTMENT)
+    - quali sono i termini di scadenza relativi ai [servizi demografici](DEPARTMENT)
+    - c'è una proroga della scadenza per i [Lavori pubblici](DEPARTMENT)
+    - qual è la scadenza per la [Direzione Generale](DEPARTMENT)
+    - entro quale data va gestito l'[URP](DEPARTMENT)
+    - quando scade il termine ultimo per il [Pronto Soccorso](DEPARTMENT)
+    - fino a quando c'è tempo per l'[Ufficio Territoriale](DEPARTMENT)
+    - quali sono i termini di scadenza relativi all'[Ufficio del Catasto](DEPARTMENT)
+  - intent: ask_health_service_deadlines
+    examples:
+    - qual è il termine per l'[accesso agli atti](HEALTH_SERVICE)
+    - qual è la scadenza per l'[assistenza protesica](HEALTH_SERVICE)
+    - entro quale data va gestito le [vaccinazioni](HEALTH_SERVICE)
+    - quando scade il termine ultimo per l'[assistenza domiciliare](HEALTH_SERVICE)
+    - fino a quando c'è tempo per la [Guardia Medica](HEALTH_SERVICE)
+    - quali sono i termini di scadenza relativi alla [donazione del sangue](HEALTH_SERVICE)
+    - c'è una proroga della scadenza per la [scelta del medico](HEALTH_SERVICE)
+    - qual è la scadenza per l'[accesso agli atti](HEALTH_SERVICE)
+    - entro quale data va gestito lo [screening oncologico](HEALTH_SERVICE)
+    - quando scade il termine ultimo per lo [Sportello Giovani](HEALTH_SERVICE)
+    - fino a quando c'è tempo per il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - quali sono i termini di scadenza relativi allo [Sportello di Ascolto](HEALTH_SERVICE)
+    - c'è una proroga della scadenza per l'[assistenza all'estero](HEALTH_SERVICE)
+    - qual è la scadenza per il [Servizio Sanitario](HEALTH_SERVICE)
+    - entro quale data va gestito lo [screening del colon retto](HEALTH_SERVICE)
+    - quando scade il termine ultimo per l'[accesso civico](HEALTH_SERVICE)
+    - fino a quando c'è tempo per lo [screening della mammella](HEALTH_SERVICE)
+  - intent: ask_misc_deadlines
+    examples:
+    - entro quando devo consegnare la richiesta di [dieta speciale](MISC) per la mensa
+    - qual è la scadenza per lo [SdI](MISC)
+    - entro quale data va gestito il [codice tributo](MISC)
+    - quando scade il termine ultimo per la [mensa scolastica](MISC)
+    - fino a quando c'è tempo per la [prima casa](MISC)
+    - quali sono i termini di scadenza relativi alla [carta famiglia](MISC)
+    - c'è una proroga della scadenza per gli [abusi digitali](MISC)
+    - qual è la scadenza per [Entratel](MISC)
+    - entro quale data va gestito [Fatture e Corrispettivi](MISC)
+    - quando scade il termine ultimo per il [pre-scuola](MISC)
+    - fino a quando c'è tempo per la [rendita catastale](MISC)
+    - quali sono i termini di scadenza relativi al [regime ordinario](MISC)
+    - c'è una proroga della scadenza per il [bonus mobili](MISC)
+    - qual è la scadenza per l'[ecobonus](MISC)
+    - entro quale data va gestito il [Superbonus](MISC)
+    - quando scade il termine ultimo per l'[audioguida](MISC)
+    - fino a quando c'è tempo per gli [alloggi popolari](MISC)
+    - quali sono i termini di scadenza relativi al [regime forfettario](MISC)
+  - intent: ask_role_deadlines
+    examples:
+    - entro quando devo cambiare il [medico di base](ROLE)
+    - qual è la scadenza per il [sostituto d'imposta](ROLE)
+    - entro quale data va gestito il [pediatra](ROLE)
+    - quando scade il termine ultimo per gli [specialisti ambulatoriali](ROLE)
+    - fino a quando c'è tempo per i [medici di base](ROLE)
+    - quali sono i termini di scadenza relativi al [DPO](ROLE)
+    - c'è una proroga della scadenza per il [donatore di sangue](ROLE)
+    - qual è la scadenza per lo [psicologo](ROLE)
+    - entro quale data va gestito il [Dirigente Scolastico](ROLE)
+    - quando scade il termine ultimo per il [coordinatore di classe](ROLE)
+    - fino a quando c'è tempo per gli [infermieri](ROLE)
+    - quali sono i termini di scadenza relativi al [direttore sanitario](ROLE)
+    - c'è una proroga della scadenza per il [Responsabile della Prevenzione della Corruzione](ROLE)
+    - qual è la scadenza per i [familiari a carico](ROLE)
+    - entro quale data va gestito lo [specialista ambulatoriale](ROLE)
+    - quando scade il termine ultimo per l'[assistente sociale](ROLE)
+    - fino a quando c'è tempo per il [Medico Competente](ROLE)
+    - quali sono i termini di scadenza relativi al [Direttore Generale](ROLE)

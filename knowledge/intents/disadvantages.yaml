@@ -1,0 +1,173 @@
+nlu:
+  intents:
+  - intent: ask_disadvantages
+    examples:
+    - Quali sono gli svantaggi?
+    - Ci sono aspetti negativi?
+    - Quali sono i limiti?
+    - quali sono gli svantaggi di questa opzione
+    - ci sono aspetti negativi o limiti da conoscere
+    - quali sono i principali punti deboli
+    - che controindicazioni possono esserci
+    - quali criticità presenta rispetto ad altre scelte
+    - ci sono vincoli o penalizzazioni se scelgo questa soluzione
+    - quali sono i contro da valutare prima di decidere
+    - in quali casi questa scelta risulta svantaggiosa
+    - che inconvenienti può comportare nel tempo
+    - quali limitazioni pratiche ha questo sistema
+    - c'è qualche lato negativo che dovrei considerare
+    - quali sono i difetti più comuni riscontrati
+    - perché qualcuno potrebbe sconsigliarlo
+    - quali ostacoli o svantaggi comporta
+    - vorrei sapere quali sono gli svantaggi di questa opzione
+  - intent: ask_technology_disadvantages
+    examples:
+    - quali sono gli svantaggi di [PostgreSQL](TECHNOLOGY)
+    - quali sono i limiti di [Python](TECHNOLOGY)
+    - quali svantaggi ha [WordPress](TECHNOLOGY)
+    - quali sono i limiti di [Laravel](TECHNOLOGY)
+    - ci sono svantaggi nella migrazione da [MySQL](TECHNOLOGY) a [PostgreSQL](TECHNOLOGY)
+    - quali sono gli svantaggi di [Eloquent](TECHNOLOGY)
+    - che limiti o punti deboli ha [Ubuntu](TECHNOLOGY)
+    - ci sono controindicazioni nell'usare [rsync](TECHNOLOGY)
+    - quali sono gli aspetti negativi di [WildFly](TECHNOLOGY)
+    - che criticità presenta [Apache](TECHNOLOGY)
+    - quali sono i contro di [Django](TECHNOLOGY)
+    - quali sono gli svantaggi di [JavaScript](TECHNOLOGY)
+    - che limiti o punti deboli ha [Angular](TECHNOLOGY)
+    - ci sono controindicazioni nell'usare [phpMyAdmin](TECHNOLOGY)
+    - quali sono gli aspetti negativi di [Flask](TECHNOLOGY)
+    - che criticità presenta [Joomla](TECHNOLOGY)
+  - intent: ask_health_service_disadvantages
+    examples:
+    - quali sono i limiti dell'[assistenza domiciliare](HEALTH_SERVICE)
+    - quali sono i limiti della [Telemedicina](HEALTH_SERVICE)
+    - quali sono i limiti dello [screening del colon retto](HEALTH_SERVICE)
+    - quali aspetti negativi ha il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - quali sono gli svantaggi del [RECUP](HEALTH_SERVICE)
+    - che limiti o punti deboli ha il [Punto unico di accesso](HEALTH_SERVICE)
+    - ci sono controindicazioni nell'usare la [nutrizione artificiale](HEALTH_SERVICE)
+    - quali sono gli aspetti negativi delle [cure palliative](HEALTH_SERVICE)
+    - che criticità presenta l'[ossigenoterapia](HEALTH_SERVICE)
+    - quali sono i contro del [ritiro referti](HEALTH_SERVICE)
+    - quali sono gli svantaggi del [CUP](HEALTH_SERVICE)
+    - che limiti o punti deboli ha l'[assistenza protesica](HEALTH_SERVICE)
+    - ci sono controindicazioni nell'usare le [vaccinazioni](HEALTH_SERVICE)
+    - quali sono gli aspetti negativi dell'[assistenza domiciliare](HEALTH_SERVICE)
+    - che criticità presenta la [Guardia Medica](HEALTH_SERVICE)
+    - quali sono i contro della [donazione del sangue](HEALTH_SERVICE)
+  - intent: ask_tech_concept_disadvantages
+    examples:
+    - quali sono gli svantaggi dei [microservizi](TECH_CONCEPT)
+    - quali svantaggi ha usare [assistenti di codice](TECH_CONCEPT) gratuiti
+    - quali sono i limiti di [BiGRU](TECH_CONCEPT)
+    - ci sono aspetti negativi nel [vibe coding](TECH_CONCEPT)
+    - quali sono gli svantaggi dell'[autenticazione JWT](TECH_CONCEPT)
+    - che limiti o punti deboli ha la [containerizzazione](TECH_CONCEPT)
+    - ci sono controindicazioni nell'usare gli [embeddings](TECH_CONCEPT)
+    - quali sono gli aspetti negativi del [firewall](TECH_CONCEPT)
+    - che criticità presenta l'[intelligenza artificiale](TECH_CONCEPT)
+    - quali sono i contro del [cron job](TECH_CONCEPT)
+    - quali sono gli svantaggi della [BiGRU](TECH_CONCEPT)
+    - che limiti o punti deboli ha i [microservizi](TECH_CONCEPT)
+    - ci sono controindicazioni nell'usare la [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - quali sono gli aspetti negativi dei [generatori](TECH_CONCEPT)
+    - che criticità presenta gli [assistenti di codice](TECH_CONCEPT)
+    - quali sono i contro della [rete neurale](TECH_CONCEPT)
+    - quali sono gli svantaggi del [generatore](TECH_CONCEPT)
+    - che limiti o punti deboli ha il [vibe coding](TECH_CONCEPT)
+  - intent: ask_document_disadvantages
+    examples:
+    - ci sono limiti per l'[esenzione](DOCUMENT) da reddito
+    - quali aspetti negativi ha la presentazione del [modello Redditi PF](DOCUMENT) rispetto al 730
+    - ci sono limiti alla compensazione dei crediti nel [modello F24](DOCUMENT)
+    - quali sono gli svantaggi dell'[avviso bonario](DOCUMENT)
+    - che limiti o punti deboli ha l'[avviso di accertamento](DOCUMENT)
+    - ci sono controindicazioni nell'usare la [marca da bollo](DOCUMENT)
+    - quali sono gli aspetti negativi dell'[impegnativa](DOCUMENT)
+    - che criticità presenta il [Piano terapeutico](DOCUMENT)
+    - quali sono i contro del [modello 730](DOCUMENT)
+    - quali sono gli svantaggi del [modello F24](DOCUMENT)
+    - che limiti o punti deboli ha la [patente](DOCUMENT)
+    - ci sono controindicazioni nell'usare la [dichiarazione dei redditi](DOCUMENT)
+    - quali sono gli aspetti negativi della [cartella esattoriale](DOCUMENT)
+    - che criticità presenta il [modello Redditi PF](DOCUMENT)
+    - quali sono i contro della [dichiarazione precompilata](DOCUMENT)
+    - quali sono gli svantaggi dello [SPID](DOCUMENT)
+    - che limiti o punti deboli ha il [concorso pubblico](DOCUMENT)
+    - ci sono controindicazioni nell'usare la [visura catastale](DOCUMENT)
+  - intent: ask_misc_disadvantages
+    examples:
+    - quali sono gli svantaggi del [Network Marketing](MISC)
+    - quali sono gli svantaggi del [regime forfettario](MISC), si perdono le detrazioni
+    - quali sono i limiti di fatturato del [regime forfettario](MISC)
+    - quali sono gli svantaggi di [Fisconline](MISC)
+    - che limiti o punti deboli ha lo [SdI](MISC)
+    - ci sono controindicazioni nell'usare il [codice tributo](MISC)
+    - quali sono gli aspetti negativi della [mensa scolastica](MISC)
+    - che criticità presenta la [prima casa](MISC)
+    - quali sono i contro della [carta famiglia](MISC)
+    - quali sono gli svantaggi degli [abusi digitali](MISC)
+    - che limiti o punti deboli ha [Entratel](MISC)
+    - ci sono controindicazioni nell'usare [Fatture e Corrispettivi](MISC)
+    - quali sono gli aspetti negativi del [pre-scuola](MISC)
+    - che criticità presenta la [rendita catastale](MISC)
+    - quali sono i contro del [regime ordinario](MISC)
+    - quali sono gli svantaggi del [bonus mobili](MISC)
+    - che limiti o punti deboli ha l'[ecobonus](MISC)
+  - intent: ask_facility_disadvantages
+    examples:
+    - quali sono gli svantaggi della [Casa della Comunità](FACILITY)
+    - ci sono svantaggi nel ricovero in [Day Hospital](FACILITY)
+    - quali sono gli svantaggi dell'[asilo nido](FACILITY)
+    - che limiti o punti deboli ha l'[Ospedale di Comunità](FACILITY)
+    - ci sono controindicazioni nell'usare l'[Ecocentro](FACILITY)
+    - quali sono gli aspetti negativi della [Scuola Primaria Rodari](FACILITY)
+    - che criticità presenta il [CPO Gennaro di Rosa](FACILITY)
+    - quali sono i contro del [Consultorio](FACILITY)
+    - quali sono gli svantaggi della [Galleria d'arte contemporanea](FACILITY)
+    - che limiti o punti deboli ha il [Centro Prelievi Palidoro](FACILITY)
+    - ci sono controindicazioni nell'usare il [Centro Prelievi Acilia](FACILITY)
+    - quali sono gli aspetti negativi del [Grassi](FACILITY)
+    - che criticità presenta il [Centro Prelievi](FACILITY)
+    - quali sono i contro della [Casa della Salute](FACILITY)
+    - quali sono gli svantaggi del [Centro Prelievi Ostia](FACILITY)
+    - che limiti o punti deboli ha il [Museo archeologico](FACILITY)
+  - intent: ask_procedure_disadvantages
+    examples:
+    - quali sono i vincoli del [concordato preventivo biennale](PROCEDURE)
+    - quali sono gli svantaggi dei [contributi Inps](PROCEDURE)
+    - che limiti o punti deboli ha l'[autotutela](PROCEDURE)
+    - ci sono controindicazioni nell'usare l'[accertamento fiscale](PROCEDURE)
+    - quali sono gli aspetti negativi della [raccolta differenziata](PROCEDURE)
+    - che criticità presenta il [rinnovo della patente](PROCEDURE)
+    - quali sono i contro della [voltura catastale](PROCEDURE)
+    - quali sono gli svantaggi delle [iscrizioni online](PROCEDURE)
+    - che limiti o punti deboli ha il [fermo amministrativo](PROCEDURE)
+    - ci sono controindicazioni nell'usare il [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - quali sono gli aspetti negativi del [DOCFA](PROCEDURE)
+    - che criticità presenta la [denuncia di smarrimento](PROCEDURE)
+    - quali sono i contro dell'[apertura della partita IVA](PROCEDURE)
+    - quali sono gli svantaggi della [rottamazione delle cartelle](PROCEDURE)
+    - che limiti o punti deboli ha la [registrazione del contratto di locazione](PROCEDURE)
+    - ci sono controindicazioni nell'usare il [concordato preventivo biennale](PROCEDURE)
+    - quali sono gli aspetti negativi dell'[accertamento con adesione](PROCEDURE)
+    - che criticità presenta il [matrimonio civile](PROCEDURE)
+  - intent: ask_tax_disadvantages
+    examples:
+    - ci sono svantaggi nello scegliere la [cedolare secca](TAX)
+    - quali sono gli svantaggi del [canone RAI](TAX)
+    - che limiti o punti deboli ha la [tassa automobilistica](TAX)
+    - ci sono controindicazioni nell'usare l'[imposta sulle successioni](TAX)
+    - quali sono gli aspetti negativi del [contributo unificato](TAX)
+    - che criticità presenta il [diritto camerale](TAX)
+    - quali sono i contro dell'[IMU](TAX)
+    - quali sono gli svantaggi dell'[IRPEF](TAX)
+    - che limiti o punti deboli ha la [TARI](TAX)
+    - ci sono controindicazioni nell'usare l'[IVA](TAX)
+    - quali sono gli aspetti negativi della [cedolare secca](TAX)
+    - che criticità presenta l'[imposta di registro](TAX)
+    - quali sono i contro dell'[imposta di bollo](TAX)
+    - quali sono gli svantaggi dell'[IRES](TAX)
+    - che limiti o punti deboli ha l'[IRAP](TAX)
+    - ci sono controindicazioni nell'usare la [ritenuta d'acconto](TAX)

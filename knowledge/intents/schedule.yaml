@@ -1,0 +1,230 @@
+nlu:
+  intents:
+  - intent: ask_schedule
+    examples:
+    - Qual è il calendario delle attività?
+    - Quando sono previsti gli appuntamenti?
+    - Quali sono gli orari programmati?
+    - qual è lo scadenzario fiscale di [giugno](DATE) e [novembre](DATE)
+    - quando passa la raccolta di carta e plastica nella mia zona
+    - quando sono previste le vacanze di [Natale](DATE) e di [Pasqua](DATE) a scuola
+    - quali sono i ponti e i giorni di sospensione delle lezioni approvati
+    - qual è il calendario completo delle attività
+    - dove posso vedere il programma settimanale o mensile
+    - in quali giorni e date si svolgono gli incontri
+    - il calendario subisce variazioni durante i giorni festivi
+    - quando esce la nuova programmazione trimestrale
+    - come sono distribuiti i turni nel calendario
+    - c'è un cronoprogramma con tutte le date previste
+    - qual è la pianificazione per le prossime settimane
+    - posso scaricare il calendario annuale aggiornato
+  - intent: ask_health_service_schedule
+    examples:
+    - quali sono i giorni di [vaccinazione](HEALTH_SERVICE) al [Grassi](FACILITY)
+    - calendario degli [screening oncologici](HEALTH_SERVICE) nel [Municipio XI](ZONE)
+    - quando è la prossima [donazione del sangue](HEALTH_SERVICE) a [Coni Zugna](FACILITY)
+    - quando si tiene lo [Sportello di Ascolto](HEALTH_SERVICE) per le donne
+    - quali sono i turni della [Guardia Medica](HEALTH_SERVICE)
+    - qual è il calendario dell'[assistenza protesica](HEALTH_SERVICE)
+    - in quali giorni della settimana è previsto le [vaccinazioni](HEALTH_SERVICE)
+    - come funziona la programmazione oraria dell'[assistenza domiciliare](HEALTH_SERVICE)
+    - dove consulto il programma e le date della [Guardia Medica](HEALTH_SERVICE)
+    - secondo quale calendario si svolge la [donazione del sangue](HEALTH_SERVICE)
+    - quali sono le date programmate per la [scelta del medico](HEALTH_SERVICE)
+    - qual è il calendario dell'[accesso agli atti](HEALTH_SERVICE)
+    - in quali giorni della settimana è previsto lo [screening oncologico](HEALTH_SERVICE)
+    - come funziona la programmazione oraria dello [Sportello Giovani](HEALTH_SERVICE)
+    - dove consulto il programma e le date del [Fascicolo Sanitario](HEALTH_SERVICE)
+    - secondo quale calendario si svolge lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - quali sono le date programmate per l'[assistenza all'estero](HEALTH_SERVICE)
+  - intent: ask_zone_schedule
+    examples:
+    - calendario degli incontri a [Magliana](ZONE)
+    - qual è il programma degli eventi a [Roma](ZONE) questo weekend
+    - programma dell'evento di [Ostia](ZONE) di [sabato](DATE)
+    - quando inizia il festival a [Ostia](ZONE)
+    - qual è il calendario di [Acilia](ZONE)
+    - in quali giorni della settimana è previsto [Ponte Galeria](ZONE)
+    - come funziona la programmazione oraria di [Corviale](ZONE)
+    - dove consulto il programma e le date di [Ostia Antica](ZONE)
+    - secondo quale calendario si svolge [Fregene](ZONE)
+    - quali sono le date programmate per [Colle Massimo](ZONE)
+    - qual è il calendario di [Ostia Lido](ZONE)
+    - in quali giorni della settimana è previsto [Casal Bernocchi](ZONE)
+    - come funziona la programmazione oraria di [Dragona](ZONE)
+    - dove consulto il programma e le date dell'[Infernetto](ZONE)
+    - secondo quale calendario si svolge [Maccarese](ZONE)
+    - quali sono le date programmate per [Ostia](ZONE)
+  - intent: ask_event_schedule
+    examples:
+    - quando si svolge il [convegno pediatrico](EVENT) all'[Ospedale Grassi](FACILITY)
+    - a che ora inizia la [Giornata Nazionale del mal di testa](EVENT)
+    - programma dell'[8 marzo](EVENT) sulla [cura come maternage](EVENT)
+    - qual è il calendario del [Laboratorio di lettura per bambini](EVENT)
+    - in quali giorni della settimana è previsto il [Festival della cultura locale](EVENT)
+    - come funziona la programmazione oraria della [Giornata Nazionale del mal di testa](EVENT)
+    - dove consulto il programma e le date della [Notte dei Musei](EVENT)
+    - secondo quale calendario si svolge [Fisco e Scuola](EVENT)
+    - quali sono le date programmate per l'[8 marzo](EVENT)
+    - qual è il calendario della [cura come maternage](EVENT)
+    - in quali giorni della settimana è previsto i [centri estivi](EVENT)
+    - come funziona la programmazione oraria di [Sotto la superficie](EVENT)
+    - dove consulto il programma e le date dell'[incontro pediatrico-neonatologico](EVENT)
+    - secondo quale calendario si svolge la [Giornata mondiale della salute](EVENT)
+    - quali sono le date programmate per la [giornata della prevenzione](EVENT)
+    - qual è il calendario di [Magliana per le Ragazze](EVENT)
+  - intent: ask_medical_procedure_schedule
+    examples:
+    - in quali giorni si fa lo [spermiogramma](MEDICAL_PROCEDURE)
+    - in quali giorni si esegue il [Quantiferon](MEDICAL_PROCEDURE)
+    - la [curva glicemica](MEDICAL_PROCEDURE) in che orari si fa
+    - qual è il calendario della [terapia oncologica](MEDICAL_PROCEDURE)
+    - in quali giorni della settimana è previsto la [visita cardiologica](MEDICAL_PROCEDURE)
+    - come funziona la programmazione oraria della [visita neurologica](MEDICAL_PROCEDURE)
+    - dove consulto il programma e le date della [visita specialistica](MEDICAL_PROCEDURE)
+    - secondo quale calendario si svolge la [mammografia](MEDICAL_PROCEDURE)
+    - quali sono le date programmate per il [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - qual è il calendario della [visita per la patente](MEDICAL_PROCEDURE)
+    - in quali giorni della settimana è previsto il [ricovero programmato](MEDICAL_PROCEDURE)
+    - come funziona la programmazione oraria della [risonanza magnetica](MEDICAL_PROCEDURE)
+    - dove consulto il programma e le date degli [esami del sangue](MEDICAL_PROCEDURE)
+    - secondo quale calendario si svolge la [visita intramoenia](MEDICAL_PROCEDURE)
+    - quali sono le date programmate per l'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - qual è il calendario della [radiografia](MEDICAL_PROCEDURE)
+    - in quali giorni della settimana è previsto la [visita oculistica](MEDICAL_PROCEDURE)
+  - intent: ask_tax_schedule
+    examples:
+    - qual è il calendario fiscale delle scadenze [IRPEF](TAX)
+    - qual è il calendario dei versamenti [IVA](TAX) trimestrali
+    - in che periodi si possono inviare le comunicazioni delle liquidazioni [IVA](TAX)
+    - qual è il calendario dell'[imposta sulle successioni](TAX)
+    - in quali giorni della settimana è previsto il [contributo unificato](TAX)
+    - come funziona la programmazione oraria del [diritto camerale](TAX)
+    - dove consulto il programma e le date dell'[IMU](TAX)
+    - secondo quale calendario si svolge l'[IRPEF](TAX)
+    - quali sono le date programmate per la [TARI](TAX)
+    - qual è il calendario dell'[IVA](TAX)
+    - in quali giorni della settimana è previsto la [cedolare secca](TAX)
+    - come funziona la programmazione oraria dell'[imposta di registro](TAX)
+    - dove consulto il programma e le date dell'[imposta di bollo](TAX)
+    - secondo quale calendario si svolge l'[IRES](TAX)
+    - quali sono le date programmate per l'[IRAP](TAX)
+    - qual è il calendario della [ritenuta d'acconto](TAX)
+    - in quali giorni della settimana è previsto la [concessione governativa](TAX)
+  - intent: ask_document_schedule
+    examples:
+    - in quali date viene messa a disposizione la [dichiarazione precompilata](DOCUMENT)
+    - qual è il [calendario scolastico](DOCUMENT) con le date di inizio e fine lezioni
+    - qual è il calendario della [fattura elettronica](DOCUMENT)
+    - in quali giorni della settimana è previsto il [referto](DOCUMENT)
+    - come funziona la programmazione oraria dell'[avviso bonario](DOCUMENT)
+    - dove consulto il programma e le date dell'[avviso di accertamento](DOCUMENT)
+    - secondo quale calendario si svolge la [marca da bollo](DOCUMENT)
+    - quali sono le date programmate per l'[impegnativa](DOCUMENT)
+    - qual è il calendario del [Piano terapeutico](DOCUMENT)
+    - in quali giorni della settimana è previsto il [modello 730](DOCUMENT)
+    - come funziona la programmazione oraria del [modello F24](DOCUMENT)
+    - dove consulto il programma e le date della [patente](DOCUMENT)
+    - secondo quale calendario si svolge la [dichiarazione dei redditi](DOCUMENT)
+    - quali sono le date programmate per la [cartella esattoriale](DOCUMENT)
+    - qual è il calendario del [modello Redditi PF](DOCUMENT)
+    - in quali giorni della settimana è previsto la [dichiarazione precompilata](DOCUMENT)
+    - come funziona la programmazione oraria dello [SPID](DOCUMENT)
+    - dove consulto il programma e le date del [concorso pubblico](DOCUMENT)
+  - intent: ask_procedure_schedule
+    examples:
+    - quando sono previste le rate della [rottamazione quater](PROCEDURE)
+    - qual è il calendario settimanale della [raccolta differenziata](PROCEDURE)
+    - qual è il calendario delle [iscrizioni online](PROCEDURE)
+    - in quali giorni della settimana è previsto il [fermo amministrativo](PROCEDURE)
+    - come funziona la programmazione oraria del [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - dove consulto il programma e le date del [DOCFA](PROCEDURE)
+    - secondo quale calendario si svolge la [denuncia di smarrimento](PROCEDURE)
+    - quali sono le date programmate per l'[apertura della partita IVA](PROCEDURE)
+    - qual è il calendario della [rottamazione delle cartelle](PROCEDURE)
+    - in quali giorni della settimana è previsto la [registrazione del contratto di locazione](PROCEDURE)
+    - come funziona la programmazione oraria del [concordato preventivo biennale](PROCEDURE)
+    - dove consulto il programma e le date dell'[accertamento con adesione](PROCEDURE)
+    - secondo quale calendario si svolge il [matrimonio civile](PROCEDURE)
+    - quali sono le date programmate per il [pignoramento](PROCEDURE)
+    - qual è il calendario dell'[interpello](PROCEDURE)
+    - in quali giorni della settimana è previsto il [cambio di residenza](PROCEDURE)
+    - come funziona la programmazione oraria della [rottamazione quater](PROCEDURE)
+    - dove consulto il programma e le date della [fatturazione elettronica](PROCEDURE)
+  - intent: ask_department_schedule
+    examples:
+    - in che giorni c'è l'ambulatorio di [Neurologia](DEPARTMENT)
+    - qual è il calendario del [Catasto](DEPARTMENT)
+    - in quali giorni della settimana è previsto la [Direzione Sanitaria](DEPARTMENT)
+    - come funziona la programmazione oraria del [SUAP](DEPARTMENT)
+    - dove consulto il programma e le date dell'[anagrafe](DEPARTMENT)
+    - secondo quale calendario si svolge la [Polizia locale](DEPARTMENT)
+    - quali sono le date programmate per la [Neurologia](DEPARTMENT)
+    - qual è il calendario dell'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - in quali giorni della settimana è previsto il [Dipartimento del Farmaco](DEPARTMENT)
+    - come funziona la programmazione oraria della [UOC Consultori Familiari](DEPARTMENT)
+    - dove consulto il programma e le date della [Cardiologia interventistica](DEPARTMENT)
+    - secondo quale calendario si svolge i [tributi](DEPARTMENT)
+    - quali sono le date programmate per la [segreteria scolastica](DEPARTMENT)
+    - qual è il calendario dell'[Ufficio Stampa](DEPARTMENT)
+    - in quali giorni della settimana è previsto i [servizi demografici](DEPARTMENT)
+    - come funziona la programmazione oraria dei [Lavori pubblici](DEPARTMENT)
+    - dove consulto il programma e le date della [Direzione Generale](DEPARTMENT)
+    - secondo quale calendario si svolge l'[URP](DEPARTMENT)
+  - intent: ask_facility_schedule
+    examples:
+    - qual è il calendario delle attività dei [Consultori](FACILITY)
+    - qual è il calendario della [Casa della Comunità](FACILITY)
+    - in quali giorni della settimana è previsto l'[Ospedale Grassi](FACILITY)
+    - come funziona la programmazione oraria del [Presidio Ospedaliero Grassi](FACILITY)
+    - dove consulto il programma e le date dei [Consultori](FACILITY)
+    - secondo quale calendario si svolge le [Cappelle Medicee](FACILITY)
+    - quali sono le date programmate per la [Pinacoteca civica](FACILITY)
+    - qual è il calendario dell'[asilo nido](FACILITY)
+    - in quali giorni della settimana è previsto l'[Ospedale di Comunità](FACILITY)
+    - come funziona la programmazione oraria dell'[Ecocentro](FACILITY)
+    - dove consulto il programma e le date della [Scuola Primaria Rodari](FACILITY)
+    - secondo quale calendario si svolge il [CPO Gennaro di Rosa](FACILITY)
+    - quali sono le date programmate per il [Consultorio](FACILITY)
+    - qual è il calendario della [Galleria d'arte contemporanea](FACILITY)
+    - in quali giorni della settimana è previsto il [Centro Prelievi Palidoro](FACILITY)
+    - come funziona la programmazione oraria del [Centro Prelievi Acilia](FACILITY)
+  - intent: ask_misc_schedule
+    examples:
+    - in quali giorni passa la raccolta dell'[umido](MISC) porta a porta
+    - qual è il calendario dell'[audioguida](MISC)
+    - in quali giorni della settimana è previsto gli [alloggi popolari](MISC)
+    - come funziona la programmazione oraria del [regime forfettario](MISC)
+    - dove consulto il programma e le date del [cassetto fiscale](MISC)
+    - secondo quale calendario si svolge il [rimborso IRPEF](MISC)
+    - quali sono le date programmate per il [bonus ristrutturazione](MISC)
+    - qual è il calendario del [registro elettronico](MISC)
+    - in quali giorni della settimana è previsto la [dieta speciale](MISC)
+    - come funziona la programmazione oraria di [CIVIS](MISC)
+    - dove consulto il programma e le date di [Fisconline](MISC)
+    - secondo quale calendario si svolge lo [SdI](MISC)
+    - quali sono le date programmate per il [codice tributo](MISC)
+    - qual è il calendario della [mensa scolastica](MISC)
+    - in quali giorni della settimana è previsto la [prima casa](MISC)
+    - come funziona la programmazione oraria della [carta famiglia](MISC)
+    - dove consulto il programma e le date degli [abusi digitali](MISC)
+  - intent: ask_organization_schedule
+    examples:
+    - qual è il calendario delle prossime mostre ai [Musei Civici](ORGANIZATION)
+    - qual è il calendario dell'[IC Giovanni Pascoli](ORGANIZATION)
+    - in quali giorni della settimana è previsto il [Comune](ORGANIZATION)
+    - come funziona la programmazione oraria dell'[IC Pascoli](ORGANIZATION)
+    - dove consulto il programma e le date dei [Musei Civici di Montesole](ORGANIZATION)
+    - secondo quale calendario si svolge la [Guardia di Finanza](ORGANIZATION)
+    - quali sono le date programmate per la [Regione](ORGANIZATION)
+    - qual è il calendario dell'[INPS](ORGANIZATION)
+    - in quali giorni della settimana è previsto il [Ministero della Salute](ORGANIZATION)
+    - come funziona la programmazione oraria dell'[Ordine dei Medici](ORGANIZATION)
+    - dove consulto il programma e le date della [Camera di Commercio](ORGANIZATION)
+    - secondo quale calendario si svolge la [Croce Rossa](ORGANIZATION)
+    - quali sono le date programmate per la [Protezione Civile](ORGANIZATION)
+    - qual è il calendario dell'[Agenzia delle Entrate](ORGANIZATION)
+    - in quali giorni della settimana è previsto l'[ASL Roma 3](ORGANIZATION)
+    - come funziona la programmazione oraria dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - dove consulto il programma e le date di [programmato](ORGANIZATION)
+    - secondo quale calendario si svolge i [Musei Civici](ORGANIZATION)

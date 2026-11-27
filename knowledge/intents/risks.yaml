@@ -1,0 +1,173 @@
+nlu:
+  intents:
+  - intent: ask_risks
+    examples:
+    - Quali rischi comporta?
+    - Ci sono possibili conseguenze negative?
+    - A cosa devo prestare attenzione?
+    - quali rischi comporta il ricovero in ospedale
+    - ci sono effetti collaterali dei vaccini
+    - quali rischi ci sono se non faccio lo screening
+    - quali rischi ci sono a dimenticare le dipendenze aggiornate
+    - a cosa devo prestare attenzione quando compro una casa
+    - quali sono i rischi principali da tenere presenti
+    - ci sono rischi o effetti collaterali da conoscere prima
+    - come posso ridurre al minimo i rischi
+    - è una procedura sicura o comporta qualche rischio
+    - quali precauzioni devo adottare per evitare rischi
+    - ci sono rischi legali o finanziari in caso di errore
+    - qual è il livello di rischio associato
+    - a quali pericoli o complicazioni si può andare incontro
+    - chi mi informa sui possibili rischi prima di firmare
+  - intent: ask_document_risks
+    examples:
+    - cosa rischio se non pago il [ticket](DOCUMENT)
+    - quali rischi ci sono nel dichiarare il falso in una [autocertificazione](DOCUMENT)
+    - cosa rischio se non pago una [cartella esattoriale](DOCUMENT) entro sessanta giorni
+    - cosa si rischia per omessa presentazione della [dichiarazione dei redditi](DOCUMENT)
+    - cosa rischio se emetto una [fattura elettronica](DOCUMENT) in ritardo
+    - quali rischi corro se non registro un [contratto di locazione](DOCUMENT)
+    - quali sono i rischi legati alla [Certificazione Unica](DOCUMENT)
+    - ci sono pericoli o effetti indesiderati con il [contratto di locazione](DOCUMENT)
+    - a quali rischi mi espongo riguardo alla [fattura elettronica](DOCUMENT)
+    - è rischioso procedere con il [referto](DOCUMENT)
+    - quali precauzioni riducono i rischi dell'[avviso bonario](DOCUMENT)
+    - che fattori di rischio comporta l'[avviso di accertamento](DOCUMENT)
+    - quali sono i rischi legati alla [marca da bollo](DOCUMENT)
+    - ci sono pericoli o effetti indesiderati con l'[impegnativa](DOCUMENT)
+    - a quali rischi mi espongo riguardo al [Piano terapeutico](DOCUMENT)
+    - è rischioso procedere con il [modello 730](DOCUMENT)
+    - quali precauzioni riducono i rischi del [modello F24](DOCUMENT)
+    - che fattori di rischio comporta la [patente](DOCUMENT)
+  - intent: ask_medical_procedure_risks
+    examples:
+    - quali sono i rischi della [colonscopia](MEDICAL_PROCEDURE)
+    - ci sono rischi con il [Quantiferon](MEDICAL_PROCEDURE)
+    - quali rischi ci sono se salto il [prelievo](MEDICAL_PROCEDURE) a digiuno
+    - a cosa devo stare attento dopo la [colonscopia](MEDICAL_PROCEDURE)
+    - quali sono i rischi legati alla [visita medico legale](MEDICAL_PROCEDURE)
+    - ci sono pericoli o effetti indesiderati con il [prelievo](MEDICAL_PROCEDURE)
+    - a quali rischi mi espongo riguardo al [Quantiferon](MEDICAL_PROCEDURE)
+    - è rischioso procedere con l'[ecografia](MEDICAL_PROCEDURE)
+    - quali precauzioni riducono i rischi della [colonscopia](MEDICAL_PROCEDURE)
+    - che fattori di rischio comporta la [curva glicemica](MEDICAL_PROCEDURE)
+    - quali sono i rischi legati allo [spermiogramma](MEDICAL_PROCEDURE)
+    - ci sono pericoli o effetti indesiderati con la [terapia oncologica](MEDICAL_PROCEDURE)
+    - a quali rischi mi espongo riguardo alla [visita cardiologica](MEDICAL_PROCEDURE)
+    - è rischioso procedere con la [visita neurologica](MEDICAL_PROCEDURE)
+    - quali precauzioni riducono i rischi della [visita specialistica](MEDICAL_PROCEDURE)
+    - che fattori di rischio comporta la [mammografia](MEDICAL_PROCEDURE)
+  - intent: ask_misc_risks
+    examples:
+    - quali sono i rischi di [Network Marketing](MISC)
+    - ci sono rischi nel [trading online](MISC)
+    - quali rischi ci sono se supero il limite di ottantacinquemila euro nel [regime forfettario](MISC)
+    - quali sono i rischi legati alla [carta famiglia](MISC)
+    - ci sono pericoli o effetti indesiderati con gli [abusi digitali](MISC)
+    - a quali rischi mi espongo riguardo a [Entratel](MISC)
+    - è rischioso procedere con [Fatture e Corrispettivi](MISC)
+    - quali precauzioni riducono i rischi del [pre-scuola](MISC)
+    - che fattori di rischio comporta la [rendita catastale](MISC)
+    - quali sono i rischi legati al [regime ordinario](MISC)
+    - ci sono pericoli o effetti indesiderati con il [bonus mobili](MISC)
+    - a quali rischi mi espongo riguardo all'[ecobonus](MISC)
+    - è rischioso procedere con il [Superbonus](MISC)
+    - quali precauzioni riducono i rischi dell'[audioguida](MISC)
+    - che fattori di rischio comporta gli [alloggi popolari](MISC)
+    - quali sono i rischi legati al [regime forfettario](MISC)
+  - intent: ask_procedure_risks
+    examples:
+    - cosa rischio se il datore di lavoro non versa i [contributi Inps](PROCEDURE)
+    - quali sono i rischi di un [fermo amministrativo](PROCEDURE) o di un'[ipoteca](MISC)
+    - quali sono i rischi legati al [DOCFA](PROCEDURE)
+    - ci sono pericoli o effetti indesiderati con la [denuncia di smarrimento](PROCEDURE)
+    - a quali rischi mi espongo riguardo all'[apertura della partita IVA](PROCEDURE)
+    - è rischioso procedere con la [rottamazione delle cartelle](PROCEDURE)
+    - quali precauzioni riducono i rischi della [registrazione del contratto di locazione](PROCEDURE)
+    - che fattori di rischio comporta il [concordato preventivo biennale](PROCEDURE)
+    - quali sono i rischi legati all'[accertamento con adesione](PROCEDURE)
+    - ci sono pericoli o effetti indesiderati con il [matrimonio civile](PROCEDURE)
+    - a quali rischi mi espongo riguardo al [pignoramento](PROCEDURE)
+    - è rischioso procedere con l'[interpello](PROCEDURE)
+    - quali precauzioni riducono i rischi del [cambio di residenza](PROCEDURE)
+    - che fattori di rischio comporta la [rottamazione quater](PROCEDURE)
+    - quali sono i rischi legati alla [fatturazione elettronica](PROCEDURE)
+    - ci sono pericoli o effetti indesiderati con la [rateizzazione](PROCEDURE)
+    - a quali rischi mi espongo riguardo al [ravvedimento operoso](PROCEDURE)
+    - è rischioso procedere con i [contributi Inps](PROCEDURE)
+  - intent: ask_tech_concept_risks
+    examples:
+    - quali sono i rischi del [vibe coding](TECH_CONCEPT)
+    - quali sono i rischi di un [firewall](TECH_CONCEPT) mal configurato
+    - quali sono i rischi legati all'[ORM](TECH_CONCEPT)
+    - ci sono pericoli o effetti indesiderati con l'[interceptor](TECH_CONCEPT)
+    - a quali rischi mi espongo riguardo alle [Facades](TECH_CONCEPT)
+    - è rischioso procedere con la [GPU](TECH_CONCEPT)
+    - quali precauzioni riducono i rischi del [machine learning](TECH_CONCEPT)
+    - che fattori di rischio comporta l'[autenticazione JWT](TECH_CONCEPT)
+    - quali sono i rischi legati alla [containerizzazione](TECH_CONCEPT)
+    - ci sono pericoli o effetti indesiderati con gli [embeddings](TECH_CONCEPT)
+    - a quali rischi mi espongo riguardo al [firewall](TECH_CONCEPT)
+    - è rischioso procedere con l'[intelligenza artificiale](TECH_CONCEPT)
+    - quali precauzioni riducono i rischi del [cron job](TECH_CONCEPT)
+    - che fattori di rischio comporta la [BiGRU](TECH_CONCEPT)
+    - quali sono i rischi legati ai [microservizi](TECH_CONCEPT)
+    - ci sono pericoli o effetti indesiderati con la [programmazione orientata agli oggetti](TECH_CONCEPT)
+  - intent: ask_health_service_risks
+    examples:
+    - ci sono rischi nella [donazione del sangue](HEALTH_SERVICE)
+    - quali sono i rischi legati al [RECUP](HEALTH_SERVICE)
+    - ci sono pericoli o effetti indesiderati con il [Punto unico di accesso](HEALTH_SERVICE)
+    - a quali rischi mi espongo riguardo alla [nutrizione artificiale](HEALTH_SERVICE)
+    - è rischioso procedere con le [cure palliative](HEALTH_SERVICE)
+    - quali precauzioni riducono i rischi dell'[ossigenoterapia](HEALTH_SERVICE)
+    - che fattori di rischio comporta il [ritiro referti](HEALTH_SERVICE)
+    - quali sono i rischi legati al [CUP](HEALTH_SERVICE)
+    - ci sono pericoli o effetti indesiderati con l'[assistenza protesica](HEALTH_SERVICE)
+    - a quali rischi mi espongo riguardo alle [vaccinazioni](HEALTH_SERVICE)
+    - è rischioso procedere con l'[assistenza domiciliare](HEALTH_SERVICE)
+    - quali precauzioni riducono i rischi della [Guardia Medica](HEALTH_SERVICE)
+    - che fattori di rischio comporta la [donazione del sangue](HEALTH_SERVICE)
+    - quali sono i rischi legati alla [scelta del medico](HEALTH_SERVICE)
+    - ci sono pericoli o effetti indesiderati con l'[accesso agli atti](HEALTH_SERVICE)
+    - a quali rischi mi espongo riguardo allo [screening oncologico](HEALTH_SERVICE)
+  - intent: ask_product_risks
+    examples:
+    - quali sono i rischi di [ZuluTrade](PRODUCT)
+    - quali sono i rischi legati al [glucometro](PRODUCT)
+    - ci sono pericoli o effetti indesiderati con lo [sfigmomanometro](PRODUCT)
+    - a quali rischi mi espongo riguardo al [saturimetro](PRODUCT)
+    - è rischioso procedere con l'[ossigeno](PRODUCT)
+    - quali precauzioni riducono i rischi della [scheda SD](PRODUCT)
+    - che fattori di rischio comporta i [microinfusori](PRODUCT)
+    - quali sono i rischi legati a [ZuluTrade](PRODUCT)
+    - ci sono pericoli o effetti indesiderati con gli [omega-3](PRODUCT)
+    - a quali rischi mi espongo riguardo al [microinfusore](PRODUCT)
+    - è rischioso procedere con gli [strumentari odontotecnici](PRODUCT)
+    - quali precauzioni riducono i rischi della [parrucca](PRODUCT)
+    - che fattori di rischio comporta la [mascherina](PRODUCT)
+    - quali sono i rischi legati alle [scarpe da corsa](PRODUCT)
+    - ci sono pericoli o effetti indesiderati con i [pannelli solari](PRODUCT)
+    - a quali rischi mi espongo riguardo alla [lampada scialitica](PRODUCT)
+    - è rischioso procedere con l'[apparecchio per l'ossigeno](PRODUCT)
+    - quali precauzioni riducono i rischi della [protesi acustica](PRODUCT)
+  - intent: ask_technology_risks
+    examples:
+    - quali rischi ci sono nella migrazione da [MySQL](TECHNOLOGY) a [PostgreSQL](TECHNOLOGY)
+    - quali sono i rischi legati a [PostgreSQL](TECHNOLOGY)
+    - ci sono pericoli o effetti indesiderati con [Spring Boot](TECHNOLOGY)
+    - a quali rischi mi espongo riguardo a [PHP](TECHNOLOGY)
+    - è rischioso procedere con [WordPress](TECHNOLOGY)
+    - quali precauzioni riducono i rischi di [Linux](TECHNOLOGY)
+    - che fattori di rischio comporta [MySQL](TECHNOLOGY)
+    - quali sono i rischi legati a [nftables](TECHNOLOGY)
+    - ci sono pericoli o effetti indesiderati con [Eloquent](TECHNOLOGY)
+    - a quali rischi mi espongo riguardo a [Ubuntu](TECHNOLOGY)
+    - è rischioso procedere con [rsync](TECHNOLOGY)
+    - quali precauzioni riducono i rischi di [WildFly](TECHNOLOGY)
+    - che fattori di rischio comporta [Apache](TECHNOLOGY)
+    - quali sono i rischi legati a [Django](TECHNOLOGY)
+    - ci sono pericoli o effetti indesiderati con [JavaScript](TECHNOLOGY)
+    - a quali rischi mi espongo riguardo a [Angular](TECHNOLOGY)
+    - è rischioso procedere con [phpMyAdmin](TECHNOLOGY)
+    - quali precauzioni riducono i rischi di [Flask](TECHNOLOGY)

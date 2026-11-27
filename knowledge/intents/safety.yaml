@@ -1,0 +1,193 @@
+nlu:
+  intents:
+  - intent: ask_safety
+    examples:
+    - Quali misure di sicurezza sono previste?
+    - Come vengono gestite le emergenze?
+    - Quali precauzioni devo adottare?
+    - cosa devo fare in caso di emergenza in ospedale
+    - cosa devo fare in caso di malore
+    - quali norme di sicurezza valgono prima di un esame invasivo
+    - quali dispositivi di protezione sono richiesti in laboratorio
+    - come vengono gestite le emergenze notturne in struttura
+    - quali misure di sicurezza e prevenzione sono attive
+    - come garantite la sicurezza degli utenti e dei dati
+    - quali norme di sicurezza bisogna rispettare all'interno
+    - sono previsti controlli di sicurezza all'ingresso
+    - come faccio a verificare che la connessione sia sicura
+    - ci sono linee guida per operare in piena sicurezza
+    - a chi segnalo un eventuale problema di sicurezza
+    - quali standard di sicurezza vengono applicati
+  - intent: ask_misc_safety
+    examples:
+    - sono previste misure anti [Covid](MISC) al [Grassi](FACILITY)
+    - quali precauzioni devo prendere con la [cellulite](MISC)
+    - come riconosco una email di [phishing](MISC) finta a nome dell'[Agenzia delle Entrate](ORGANIZATION)
+    - come proteggo l'accesso al mio [cassetto fiscale](MISC)
+    - a chi segnalo un tentativo di truffa o [phishing](MISC) a tema rimborso fiscale
+    - quali misure di sicurezza sono adottate per il [rimborso IRPEF](MISC)
+    - è garantita la sicurezza del [bonus ristrutturazione](MISC)
+    - come viene protetto e messo in sicurezza il [registro elettronico](MISC)
+    - quali protocolli di sicurezza valgono per la [dieta speciale](MISC)
+    - ci sono norme di sicurezza specifiche in [CIVIS](MISC)
+    - come posso usare [Fisconline](MISC) in totale sicurezza
+    - quali misure di sicurezza sono adottate per lo [SdI](MISC)
+    - è garantita la sicurezza del [codice tributo](MISC)
+    - come viene protetto e messo in sicurezza la [mensa scolastica](MISC)
+    - quali protocolli di sicurezza valgono per la [prima casa](MISC)
+    - ci sono norme di sicurezza specifiche nella [carta famiglia](MISC)
+    - come posso usare gli [abusi digitali](MISC) in totale sicurezza
+    - quali misure di sicurezza sono adottate per [Entratel](MISC)
+  - intent: ask_technology_safety
+    examples:
+    - come proteggo il mio server [Linux](TECHNOLOGY) con un [firewall](TECH_CONCEPT)
+    - come faccio la sicurezza di rete avanzata su [Linux](TECHNOLOGY)
+    - come proteggo il backup di [Linux](TECHNOLOGY)
+    - quali misure di sicurezza sono adottate per [Laravel](TECHNOLOGY)
+    - è garantita la sicurezza di [Python](TECHNOLOGY)
+    - come viene protetto e messo in sicurezza [PostgreSQL](TECHNOLOGY)
+    - quali protocolli di sicurezza valgono per [Spring Boot](TECHNOLOGY)
+    - ci sono norme di sicurezza specifiche in [PHP](TECHNOLOGY)
+    - come posso usare [WordPress](TECHNOLOGY) in totale sicurezza
+    - quali misure di sicurezza sono adottate per [Linux](TECHNOLOGY)
+    - è garantita la sicurezza di [MySQL](TECHNOLOGY)
+    - come viene protetto e messo in sicurezza [nftables](TECHNOLOGY)
+    - quali protocolli di sicurezza valgono per [Eloquent](TECHNOLOGY)
+    - ci sono norme di sicurezza specifiche in [Ubuntu](TECHNOLOGY)
+    - come posso usare [rsync](TECHNOLOGY) in totale sicurezza
+    - quali misure di sicurezza sono adottate per [WildFly](TECHNOLOGY)
+  - intent: ask_department_safety
+    examples:
+    - quali misure di sicurezza ci sono in [Pronto Soccorso](DEPARTMENT)
+    - a chi mi rivolgo per la [radioprotezione](DEPARTMENT)
+    - quali misure di sicurezza sono adottate per l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - è garantita la sicurezza del [Dipartimento del Farmaco](DEPARTMENT)
+    - come viene protetto e messo in sicurezza la [UOC Consultori Familiari](DEPARTMENT)
+    - quali protocolli di sicurezza valgono per la [Cardiologia interventistica](DEPARTMENT)
+    - ci sono norme di sicurezza specifiche nei [tributi](DEPARTMENT)
+    - come posso usare la [segreteria scolastica](DEPARTMENT) in totale sicurezza
+    - quali misure di sicurezza sono adottate per l'[Ufficio Stampa](DEPARTMENT)
+    - è garantita la sicurezza dei [servizi demografici](DEPARTMENT)
+    - come viene protetto e messo in sicurezza i [Lavori pubblici](DEPARTMENT)
+    - quali protocolli di sicurezza valgono per la [Direzione Generale](DEPARTMENT)
+    - ci sono norme di sicurezza specifiche nell'[URP](DEPARTMENT)
+    - come posso usare il [Pronto Soccorso](DEPARTMENT) in totale sicurezza
+    - quali misure di sicurezza sono adottate per l'[Ufficio Territoriale](DEPARTMENT)
+    - è garantita la sicurezza dell'[Ufficio del Catasto](DEPARTMENT)
+    - come viene protetto e messo in sicurezza la [Direzione Provinciale](DEPARTMENT)
+    - quali protocolli di sicurezza valgono per la [Medicina Legale](DEPARTMENT)
+  - intent: ask_document_safety
+    examples:
+    - come rendo sicuro l'accesso con [SPID](DOCUMENT) in [PHP](TECHNOLOGY)
+    - è sicuro inserire il proprio [IBAN](DOCUMENT) sul portale dell'[Agenzia delle Entrate](ORGANIZATION)
+    - quali misure di sicurezza sono adottate per la [tessera sanitaria](DOCUMENT)
+    - è garantita la sicurezza della [cartella clinica](DOCUMENT)
+    - come viene protetto e messo in sicurezza il [codice fiscale](DOCUMENT)
+    - quali protocolli di sicurezza valgono per l'[ISEE](DOCUMENT)
+    - ci sono norme di sicurezza specifiche nella [partita IVA](DOCUMENT)
+    - come posso usare la [carta d'identità elettronica](DOCUMENT) in totale sicurezza
+    - quali misure di sicurezza sono adottate per la [Certificazione Unica](DOCUMENT)
+    - è garantita la sicurezza del [contratto di locazione](DOCUMENT)
+    - come viene protetto e messo in sicurezza la [fattura elettronica](DOCUMENT)
+    - quali protocolli di sicurezza valgono per il [referto](DOCUMENT)
+    - ci sono norme di sicurezza specifiche nell'[avviso bonario](DOCUMENT)
+    - come posso usare l'[avviso di accertamento](DOCUMENT) in totale sicurezza
+    - quali misure di sicurezza sono adottate per la [marca da bollo](DOCUMENT)
+    - è garantita la sicurezza dell'[impegnativa](DOCUMENT)
+    - come viene protetto e messo in sicurezza il [Piano terapeutico](DOCUMENT)
+    - quali protocolli di sicurezza valgono per il [modello 730](DOCUMENT)
+  - intent: ask_facility_safety
+    examples:
+    - come vengono gestite le emergenze al [Grassi](FACILITY)
+    - è sicuro donare il sangue a [Coni Zugna](FACILITY)
+    - quali misure di sicurezza sono adottate per la [Casa della Comunità](FACILITY)
+    - è garantita la sicurezza dell'[Ospedale Grassi](FACILITY)
+    - come viene protetto e messo in sicurezza il [Presidio Ospedaliero Grassi](FACILITY)
+    - quali protocolli di sicurezza valgono per i [Consultori](FACILITY)
+    - ci sono norme di sicurezza specifiche nelle [Cappelle Medicee](FACILITY)
+    - come posso usare la [Pinacoteca civica](FACILITY) in totale sicurezza
+    - quali misure di sicurezza sono adottate per l'[asilo nido](FACILITY)
+    - è garantita la sicurezza dell'[Ospedale di Comunità](FACILITY)
+    - come viene protetto e messo in sicurezza l'[Ecocentro](FACILITY)
+    - quali protocolli di sicurezza valgono per la [Scuola Primaria Rodari](FACILITY)
+    - ci sono norme di sicurezza specifiche nel [CPO Gennaro di Rosa](FACILITY)
+    - come posso usare il [Consultorio](FACILITY) in totale sicurezza
+    - quali misure di sicurezza sono adottate per la [Galleria d'arte contemporanea](FACILITY)
+    - è garantita la sicurezza del [Centro Prelievi Palidoro](FACILITY)
+  - intent: ask_health_service_safety
+    examples:
+    - che precauzioni devo adottare dopo la [vaccinazione](HEALTH_SERVICE)
+    - come si chiama il [118](HEALTH_SERVICE) e quando chiamarlo
+    - quali misure di sicurezza sono adottate per lo [screening della mammella](HEALTH_SERVICE)
+    - è garantita la sicurezza della [Telemedicina](HEALTH_SERVICE)
+    - come viene protetto e messo in sicurezza il [RECUP](HEALTH_SERVICE)
+    - quali protocolli di sicurezza valgono per il [Punto unico di accesso](HEALTH_SERVICE)
+    - ci sono norme di sicurezza specifiche nella [nutrizione artificiale](HEALTH_SERVICE)
+    - come posso usare le [cure palliative](HEALTH_SERVICE) in totale sicurezza
+    - quali misure di sicurezza sono adottate per l'[ossigenoterapia](HEALTH_SERVICE)
+    - è garantita la sicurezza del [ritiro referti](HEALTH_SERVICE)
+    - come viene protetto e messo in sicurezza il [CUP](HEALTH_SERVICE)
+    - quali protocolli di sicurezza valgono per l'[assistenza protesica](HEALTH_SERVICE)
+    - ci sono norme di sicurezza specifiche nelle [vaccinazioni](HEALTH_SERVICE)
+    - come posso usare l'[assistenza domiciliare](HEALTH_SERVICE) in totale sicurezza
+    - quali misure di sicurezza sono adottate per la [Guardia Medica](HEALTH_SERVICE)
+    - è garantita la sicurezza della [donazione del sangue](HEALTH_SERVICE)
+    - come viene protetto e messo in sicurezza la [scelta del medico](HEALTH_SERVICE)
+  - intent: ask_organization_safety
+    examples:
+    - quali protocolli di sicurezza adotta l'[ASL Roma 3](ORGANIZATION)
+    - come verifico se una comunicazione dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION) è autentica
+    - quali misure di sicurezza sono adottate per il [CAF](ORGANIZATION)
+    - è garantita la sicurezza del [Comune di Montesole](ORGANIZATION)
+    - come viene protetto e messo in sicurezza l'[IC Giovanni Pascoli](ORGANIZATION)
+    - quali protocolli di sicurezza valgono per il [Comune](ORGANIZATION)
+    - ci sono norme di sicurezza specifiche nell'[IC Pascoli](ORGANIZATION)
+    - come posso usare i [Musei Civici di Montesole](ORGANIZATION) in totale sicurezza
+    - quali misure di sicurezza sono adottate per la [Guardia di Finanza](ORGANIZATION)
+    - è garantita la sicurezza della [Regione](ORGANIZATION)
+    - come viene protetto e messo in sicurezza l'[INPS](ORGANIZATION)
+    - quali protocolli di sicurezza valgono per il [Ministero della Salute](ORGANIZATION)
+    - ci sono norme di sicurezza specifiche nell'[Ordine dei Medici](ORGANIZATION)
+    - come posso usare la [Camera di Commercio](ORGANIZATION) in totale sicurezza
+    - quali misure di sicurezza sono adottate per la [Croce Rossa](ORGANIZATION)
+    - è garantita la sicurezza della [Protezione Civile](ORGANIZATION)
+    - come viene protetto e messo in sicurezza l'[Agenzia delle Entrate](ORGANIZATION)
+  - intent: ask_role_safety
+    examples:
+    - qual è il ruolo del [Medico Competente](ROLE) per la sicurezza sul lavoro
+    - quali misure di sicurezza sono adottate per i [medici di base](ROLE)
+    - è garantita la sicurezza del [DPO](ROLE)
+    - come viene protetto e messo in sicurezza il [donatore di sangue](ROLE)
+    - quali protocolli di sicurezza valgono per lo [psicologo](ROLE)
+    - ci sono norme di sicurezza specifiche nel [Dirigente Scolastico](ROLE)
+    - come posso usare il [coordinatore di classe](ROLE) in totale sicurezza
+    - quali misure di sicurezza sono adottate per gli [infermieri](ROLE)
+    - è garantita la sicurezza del [direttore sanitario](ROLE)
+    - come viene protetto e messo in sicurezza il [Responsabile della Prevenzione della Corruzione](ROLE)
+    - quali protocolli di sicurezza valgono per i [familiari a carico](ROLE)
+    - ci sono norme di sicurezza specifiche nello [specialista ambulatoriale](ROLE)
+    - come posso usare l'[assistente sociale](ROLE) in totale sicurezza
+    - quali misure di sicurezza sono adottate per il [Medico Competente](ROLE)
+    - è garantita la sicurezza del [Direttore Generale](ROLE)
+    - come viene protetto e messo in sicurezza il [Sindaco](ROLE)
+    - quali protocolli di sicurezza valgono per il [primario](ROLE)
+    - ci sono norme di sicurezza specifiche nell'[operatore sanitario](ROLE)
+  - intent: ask_tech_concept_safety
+    examples:
+    - come implemento un [firewall](TECH_CONCEPT) con [nftables](TECHNOLOGY)
+    - quali misure di sicurezza sono adottate per la [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - è garantita la sicurezza dei [generatori](TECH_CONCEPT)
+    - come viene protetto e messo in sicurezza gli [assistenti di codice](TECH_CONCEPT)
+    - quali protocolli di sicurezza valgono per la [rete neurale](TECH_CONCEPT)
+    - ci sono norme di sicurezza specifiche nel [generatore](TECH_CONCEPT)
+    - come posso usare il [vibe coding](TECH_CONCEPT) in totale sicurezza
+    - quali misure di sicurezza sono adottate per le [reti neurali](TECH_CONCEPT)
+    - è garantita la sicurezza dei [Service Provider](TECH_CONCEPT)
+    - come viene protetto e messo in sicurezza le [API](TECH_CONCEPT)
+    - quali protocolli di sicurezza valgono per l'[ORM](TECH_CONCEPT)
+    - ci sono norme di sicurezza specifiche nell'[interceptor](TECH_CONCEPT)
+    - come posso usare le [Facades](TECH_CONCEPT) in totale sicurezza
+    - quali misure di sicurezza sono adottate per la [GPU](TECH_CONCEPT)
+    - è garantita la sicurezza del [machine learning](TECH_CONCEPT)
+    - come viene protetto e messo in sicurezza l'[autenticazione JWT](TECH_CONCEPT)
+    - quali protocolli di sicurezza valgono per la [containerizzazione](TECH_CONCEPT)

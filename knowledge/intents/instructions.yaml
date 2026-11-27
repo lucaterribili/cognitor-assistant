@@ -1,0 +1,216 @@
+nlu:
+  intents:
+  - intent: ask_instructions
+    examples:
+    - Quali istruzioni devo seguire?
+    - Come devo compilare il modulo?
+    - Cosa devo fare esattamente?
+    - dammi le istruzioni
+    - dammi le istruzioni per compilare il modulo
+    - quali sono le istruzioni per l'uso
+    - mi servono le istruzioni
+    - dove trovo le istruzioni
+    - come devo compilare questo campo
+    - come si compila il modulo
+    - come compilo la domanda
+    - cosa devo scrivere in questo campo
+    - cosa metto nella casella
+    - dove firmo
+    - dove devo firmare
+    - dove metto la firma
+    - dove vanno inseriti i dati
+    - come inserisco i dati
+    - come devo inviare la richiesta
+    - come devo inviare i documenti
+    - a chi vanno consegnati i documenti
+    - dove devo consegnare la domanda
+    - cosa devo fare adesso
+    - cosa devo fare dopo
+    - cosa faccio dopo aver inviato
+    - qual è il prossimo passo
+    - qual è il passo successivo
+    - e poi cosa devo fare
+    - cosa devo fare esattamente per completare
+    - come devo comportarmi
+    - come mi devo comportare
+    - linee guida da rispettare
+    - indicazioni da seguire
+    - indicazioni operative
+    - dammi le indicazioni
+    - guidami nei passaggi
+    - guidami passo passo
+    - seguo le istruzioni ma non capisco
+    - quali sono le regole di utilizzo
+    - istruzioni su come accedere al museo con il biglietto su smartphone
+  - intent: ask_document_instructions
+    examples:
+    - come devo compilare il [modello F24](DOCUMENT)
+    - come devo compilare la [domanda di concorso](DOCUMENT)
+    - come compilo il modulo per l'[esenzione ticket](DOCUMENT)
+    - dove devo consegnare la [richiesta di accesso agli atti](DOCUMENT)
+    - come devo compilare il [modello 730](DOCUMENT) per le spese mediche
+    - come si compila il quadro RW del [modello Redditi PF](DOCUMENT)
+    - cosa devo indicare nella sezione erario del [modello F24](DOCUMENT)
+    - come compilo il [modello RLI](DOCUMENT) per la proroga dell'affitto
+    - mi dai le istruzioni per attivare le credenziali [SPID](DOCUMENT) per i servizi scolastici
+    - quali sono le istruzioni operative per il [codice fiscale](DOCUMENT)
+    - che indicazioni pratiche devo seguire per l'[ISEE](DOCUMENT)
+    - c'è una guida passo passo con le istruzioni per la [partita IVA](DOCUMENT)
+    - come mi devo preparare e comportare per la [carta d'identità elettronica](DOCUMENT)
+    - quali passaggi operativi sono indicati per la [Certificazione Unica](DOCUMENT)
+    - dove leggo le istruzioni di compilazione o preparazione del [contratto di locazione](DOCUMENT)
+    - quali sono le istruzioni operative per la [fattura elettronica](DOCUMENT)
+    - che indicazioni pratiche devo seguire per il [referto](DOCUMENT)
+  - intent: ask_medical_procedure_instructions
+    examples:
+    - come devo prepararmi agli [esami del sangue](MEDICAL_PROCEDURE)
+    - devo essere a digiuno per il [prelievo](MEDICAL_PROCEDURE)
+    - come mi preparo per la [curva glicemica](MEDICAL_PROCEDURE)
+    - cosa devo fare prima dello [spermiogramma](MEDICAL_PROCEDURE)
+    - che istruzioni devo seguire per il [Quantiferon](MEDICAL_PROCEDURE)
+    - che precauzioni devo prendere prima della [colonscopia](MEDICAL_PROCEDURE)
+    - quali precauzioni devo seguire per il [Quantiferon](MEDICAL_PROCEDURE)
+    - quali sono le istruzioni operative per la [curva glicemica](MEDICAL_PROCEDURE)
+    - che indicazioni pratiche devo seguire per lo [spermiogramma](MEDICAL_PROCEDURE)
+    - c'è una guida passo passo con le istruzioni per la [terapia oncologica](MEDICAL_PROCEDURE)
+    - come mi devo preparare e comportare per la [visita cardiologica](MEDICAL_PROCEDURE)
+    - quali passaggi operativi sono indicati per la [visita neurologica](MEDICAL_PROCEDURE)
+    - dove leggo le istruzioni di compilazione o preparazione della [visita specialistica](MEDICAL_PROCEDURE)
+    - quali sono le istruzioni operative per la [mammografia](MEDICAL_PROCEDURE)
+    - che indicazioni pratiche devo seguire per il [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - c'è una guida passo passo con le istruzioni per la [visita per la patente](MEDICAL_PROCEDURE)
+    - come mi devo preparare e comportare per il [ricovero programmato](MEDICAL_PROCEDURE)
+    - quali passaggi operativi sono indicati per la [risonanza magnetica](MEDICAL_PROCEDURE)
+  - intent: ask_health_service_instructions
+    examples:
+    - cosa devo fare prima dello [screening del colon retto](HEALTH_SERVICE)
+    - come invio i documenti per la [Whistleblowing](HEALTH_SERVICE)
+    - a chi devo presentare la domanda per l'[assistenza protesica](HEALTH_SERVICE)
+    - quali sono le istruzioni operative per il [Punto unico di accesso](HEALTH_SERVICE)
+    - che indicazioni pratiche devo seguire per la [nutrizione artificiale](HEALTH_SERVICE)
+    - c'è una guida passo passo con le istruzioni per le [cure palliative](HEALTH_SERVICE)
+    - come mi devo preparare e comportare per l'[ossigenoterapia](HEALTH_SERVICE)
+    - quali passaggi operativi sono indicati per il [ritiro referti](HEALTH_SERVICE)
+    - dove leggo le istruzioni di compilazione o preparazione del [CUP](HEALTH_SERVICE)
+    - quali sono le istruzioni operative per l'[assistenza protesica](HEALTH_SERVICE)
+    - che indicazioni pratiche devo seguire per le [vaccinazioni](HEALTH_SERVICE)
+    - c'è una guida passo passo con le istruzioni per l'[assistenza domiciliare](HEALTH_SERVICE)
+    - come mi devo preparare e comportare per la [Guardia Medica](HEALTH_SERVICE)
+    - quali passaggi operativi sono indicati per la [donazione del sangue](HEALTH_SERVICE)
+    - dove leggo le istruzioni di compilazione o preparazione della [scelta del medico](HEALTH_SERVICE)
+    - quali sono le istruzioni operative per l'[accesso agli atti](HEALTH_SERVICE)
+    - che indicazioni pratiche devo seguire per lo [screening oncologico](HEALTH_SERVICE)
+  - intent: ask_misc_instructions
+    examples:
+    - quale [codice tributo](MISC) devo inserire nel [modello F24](DOCUMENT) per l'[IMU](TAX)
+    - dove inserisco il [cinque per mille](MISC) nella [dichiarazione dei redditi](DOCUMENT)
+    - mi spieghi le istruzioni per inserire la delega di ritiro alunno sul [registro elettronico](MISC)
+    - quali sono le istruzioni operative per [CIVIS](MISC)
+    - che indicazioni pratiche devo seguire per [Fisconline](MISC)
+    - c'è una guida passo passo con le istruzioni per lo [SdI](MISC)
+    - come mi devo preparare e comportare per il [codice tributo](MISC)
+    - quali passaggi operativi sono indicati per la [mensa scolastica](MISC)
+    - dove leggo le istruzioni di compilazione o preparazione della [prima casa](MISC)
+    - quali sono le istruzioni operative per la [carta famiglia](MISC)
+    - che indicazioni pratiche devo seguire per gli [abusi digitali](MISC)
+    - c'è una guida passo passo con le istruzioni per [Entratel](MISC)
+    - come mi devo preparare e comportare per [Fatture e Corrispettivi](MISC)
+    - quali passaggi operativi sono indicati per il [pre-scuola](MISC)
+    - dove leggo le istruzioni di compilazione o preparazione della [rendita catastale](MISC)
+    - quali sono le istruzioni operative per il [regime ordinario](MISC)
+  - intent: ask_technology_instructions
+    examples:
+    - come devo configurare l'ambiente di sviluppo per [Laravel](TECHNOLOGY)
+    - come configuro [Apache](TECHNOLOGY) su [Ubuntu](TECHNOLOGY)
+    - quali passaggi seguire per installare [WildFly](TECHNOLOGY)
+    - quali sono le istruzioni operative per [PHP](TECHNOLOGY)
+    - che indicazioni pratiche devo seguire per [WordPress](TECHNOLOGY)
+    - c'è una guida passo passo con le istruzioni per [Linux](TECHNOLOGY)
+    - come mi devo preparare e comportare per [MySQL](TECHNOLOGY)
+    - quali passaggi operativi sono indicati per [nftables](TECHNOLOGY)
+    - dove leggo le istruzioni di compilazione o preparazione di [Eloquent](TECHNOLOGY)
+    - quali sono le istruzioni operative per [Ubuntu](TECHNOLOGY)
+    - che indicazioni pratiche devo seguire per [rsync](TECHNOLOGY)
+    - c'è una guida passo passo con le istruzioni per [WildFly](TECHNOLOGY)
+    - come mi devo preparare e comportare per [Apache](TECHNOLOGY)
+    - quali passaggi operativi sono indicati per [Django](TECHNOLOGY)
+    - dove leggo le istruzioni di compilazione o preparazione di [JavaScript](TECHNOLOGY)
+    - quali sono le istruzioni operative per [Angular](TECHNOLOGY)
+    - che indicazioni pratiche devo seguire per [phpMyAdmin](TECHNOLOGY)
+  - intent: ask_tech_concept_instructions
+    examples:
+    - come si configura un [firewall](TECH_CONCEPT) con [nftables](TECHNOLOGY)
+    - come si imposta un [cron job](TECH_CONCEPT) per il backup
+    - quali sono le istruzioni operative per l'[autenticazione JWT](TECH_CONCEPT)
+    - che indicazioni pratiche devo seguire per la [containerizzazione](TECH_CONCEPT)
+    - c'è una guida passo passo con le istruzioni per gli [embeddings](TECH_CONCEPT)
+    - come mi devo preparare e comportare per il [firewall](TECH_CONCEPT)
+    - quali passaggi operativi sono indicati per l'[intelligenza artificiale](TECH_CONCEPT)
+    - dove leggo le istruzioni di compilazione o preparazione del [cron job](TECH_CONCEPT)
+    - quali sono le istruzioni operative per la [BiGRU](TECH_CONCEPT)
+    - che indicazioni pratiche devo seguire per i [microservizi](TECH_CONCEPT)
+    - c'è una guida passo passo con le istruzioni per la [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - come mi devo preparare e comportare per i [generatori](TECH_CONCEPT)
+    - quali passaggi operativi sono indicati per gli [assistenti di codice](TECH_CONCEPT)
+    - dove leggo le istruzioni di compilazione o preparazione della [rete neurale](TECH_CONCEPT)
+    - quali sono le istruzioni operative per il [generatore](TECH_CONCEPT)
+    - che indicazioni pratiche devo seguire per il [vibe coding](TECH_CONCEPT)
+  - intent: ask_department_instructions
+    examples:
+    - come devo comportarmi in [Pronto Soccorso](DEPARTMENT)
+    - quali sono le istruzioni operative per la [Neurologia](DEPARTMENT)
+    - che indicazioni pratiche devo seguire per l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - c'è una guida passo passo con le istruzioni per il [Dipartimento del Farmaco](DEPARTMENT)
+    - come mi devo preparare e comportare per la [UOC Consultori Familiari](DEPARTMENT)
+    - quali passaggi operativi sono indicati per la [Cardiologia interventistica](DEPARTMENT)
+    - dove leggo le istruzioni di compilazione o preparazione dei [tributi](DEPARTMENT)
+    - quali sono le istruzioni operative per la [segreteria scolastica](DEPARTMENT)
+    - che indicazioni pratiche devo seguire per l'[Ufficio Stampa](DEPARTMENT)
+    - c'è una guida passo passo con le istruzioni per i [servizi demografici](DEPARTMENT)
+    - come mi devo preparare e comportare per i [Lavori pubblici](DEPARTMENT)
+    - quali passaggi operativi sono indicati per la [Direzione Generale](DEPARTMENT)
+    - dove leggo le istruzioni di compilazione o preparazione dell'[URP](DEPARTMENT)
+    - quali sono le istruzioni operative per il [Pronto Soccorso](DEPARTMENT)
+    - che indicazioni pratiche devo seguire per l'[Ufficio Territoriale](DEPARTMENT)
+    - c'è una guida passo passo con le istruzioni per l'[Ufficio del Catasto](DEPARTMENT)
+    - come mi devo preparare e comportare per la [Direzione Provinciale](DEPARTMENT)
+  - intent: ask_procedure_instructions
+    examples:
+    - spiegami passo passo come compilare la domanda di [cambio di residenza](PROCEDURE) online
+    - quali sono le istruzioni operative per il [DOCFA](PROCEDURE)
+    - che indicazioni pratiche devo seguire per la [denuncia di smarrimento](PROCEDURE)
+    - c'è una guida passo passo con le istruzioni per l'[apertura della partita IVA](PROCEDURE)
+    - come mi devo preparare e comportare per la [rottamazione delle cartelle](PROCEDURE)
+    - quali passaggi operativi sono indicati per la [registrazione del contratto di locazione](PROCEDURE)
+    - dove leggo le istruzioni di compilazione o preparazione del [concordato preventivo biennale](PROCEDURE)
+    - quali sono le istruzioni operative per l'[accertamento con adesione](PROCEDURE)
+    - che indicazioni pratiche devo seguire per il [matrimonio civile](PROCEDURE)
+    - c'è una guida passo passo con le istruzioni per il [pignoramento](PROCEDURE)
+    - come mi devo preparare e comportare per l'[interpello](PROCEDURE)
+    - quali passaggi operativi sono indicati per il [cambio di residenza](PROCEDURE)
+    - dove leggo le istruzioni di compilazione o preparazione della [rottamazione quater](PROCEDURE)
+    - quali sono le istruzioni operative per la [fatturazione elettronica](PROCEDURE)
+    - che indicazioni pratiche devo seguire per la [rateizzazione](PROCEDURE)
+    - c'è una guida passo passo con le istruzioni per il [ravvedimento operoso](PROCEDURE)
+    - come mi devo preparare e comportare per i [contributi Inps](PROCEDURE)
+    - quali passaggi operativi sono indicati per l'[autotutela](PROCEDURE)
+  - intent: ask_tax_instructions
+    examples:
+    - quali passaggi devo seguire per pagare l'[IMU](TAX) con il [modello F24](DOCUMENT)
+    - quali sono le istruzioni operative per l'[addizionale comunale](TAX)
+    - che indicazioni pratiche devo seguire per il [canone RAI](TAX)
+    - c'è una guida passo passo con le istruzioni per la [tassa automobilistica](TAX)
+    - come mi devo preparare e comportare per l'[imposta sulle successioni](TAX)
+    - quali passaggi operativi sono indicati per il [contributo unificato](TAX)
+    - dove leggo le istruzioni di compilazione o preparazione del [diritto camerale](TAX)
+    - quali sono le istruzioni operative per l'[IMU](TAX)
+    - che indicazioni pratiche devo seguire per l'[IRPEF](TAX)
+    - c'è una guida passo passo con le istruzioni per la [TARI](TAX)
+    - come mi devo preparare e comportare per l'[IVA](TAX)
+    - quali passaggi operativi sono indicati per la [cedolare secca](TAX)
+    - dove leggo le istruzioni di compilazione o preparazione dell'[imposta di registro](TAX)
+    - quali sono le istruzioni operative per l'[imposta di bollo](TAX)
+    - che indicazioni pratiche devo seguire per l'[IRES](TAX)
+    - c'è una guida passo passo con le istruzioni per l'[IRAP](TAX)
+    - come mi devo preparare e comportare per la [ritenuta d'acconto](TAX)
+    - quali passaggi operativi sono indicati per la [concessione governativa](TAX)

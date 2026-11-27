@@ -1,0 +1,194 @@
+nlu:
+  intents:
+  - intent: ask_training
+    examples:
+    - Sono disponibili corsi di formazione?
+    - Come posso iscrivermi a un corso?
+    - Quali percorsi formativi offrite?
+    - ci sono corsi di formazione per il personale sanitario
+    - ci sono corsi sulla sicurezza sul lavoro
+    - quali corsi di formazione e aggiornamento organizzate
+    - i corsi di formazione rilasciano crediti ECM o attestati riconosciuti
+    - come ci si iscrive ai percorsi di formazione professionale
+    - sono previsti corsi di formazione online in modalità e-learning
+    - dove posso consultare il catalogo annuale dei corsi
+    - i corsi di formazione sono gratuiti o a pagamento
+    - a chi sono rivolti i vostri programmi di formazione continua
+    - quando iniziano i prossimi cicli di lezioni e seminari formativi
+    - è prevista una prova finale al termine del corso di formazione
+    - come scarico l'attestato di partecipazione al corso seguito
+    - organizzate webinar di aggiornamento pratico per gli operatori
+    - quante ore di frequenza sono richieste per superare il corso
+    - vorrei sapere quali corsi di formazione e aggiornamento organizzate
+  - intent: ask_technology_training
+    examples:
+    - c'è un corso di [Python](TECHNOLOGY)
+    - come imparo [Laravel](TECHNOLOGY) con i tutorial
+    - ci sono corsi su [Angular](TECHNOLOGY)
+    - ci sono tutorial su [Spring Boot](TECHNOLOGY)
+    - quali tutorial avete su [JavaScript](TECHNOLOGY)
+    - dove trovo un corso su [Linux](TECHNOLOGY)
+    - quali tutorial avete su [Laravel](TECHNOLOGY)
+    - ci sono corsi di formazione dedicati a [Angular](TECHNOLOGY)
+    - come funziona l'addestramento o la formazione su [phpMyAdmin](TECHNOLOGY)
+    - organizzate sessioni formative per [Flask](TECHNOLOGY)
+    - quali programmi di formazione professionale riguardano [Joomla](TECHNOLOGY)
+    - rilasciate un attestato per i corsi sul [Desktop Telematico](TECHNOLOGY)
+    - dove trovo il catalogo dei corsi di formazione di [Voltura 2.0](TECHNOLOGY)
+    - ci sono corsi di formazione dedicati a [Docker](TECHNOLOGY)
+    - come funziona l'addestramento o la formazione su [FastAPI](TECHNOLOGY)
+    - organizzate sessioni formative per [Laravel](TECHNOLOGY)
+    - quali programmi di formazione professionale riguardano [Python](TECHNOLOGY)
+  - intent: ask_health_service_training
+    examples:
+    - c'è un corso di [primo soccorso](HEALTH_SERVICE)
+    - ci sono corsi di [promozione della salute](HEALTH_SERVICE)
+    - c'è un corso di [attività fisica adattata](HEALTH_SERVICE)
+    - c'è un corso di [accompagnamento alla nascita](HEALTH_SERVICE)
+    - ci sono corsi di formazione dedicati alla [scelta del medico](HEALTH_SERVICE)
+    - come funziona l'addestramento o la formazione sull'[accesso agli atti](HEALTH_SERVICE)
+    - organizzate sessioni formative per lo [screening oncologico](HEALTH_SERVICE)
+    - quali programmi di formazione professionale riguardano lo [Sportello Giovani](HEALTH_SERVICE)
+    - rilasciate un attestato per i corsi sul [Fascicolo Sanitario](HEALTH_SERVICE)
+    - dove trovo il catalogo dei corsi di formazione dello [Sportello di Ascolto](HEALTH_SERVICE)
+    - ci sono corsi di formazione dedicati all'[assistenza all'estero](HEALTH_SERVICE)
+    - come funziona l'addestramento o la formazione sul [Servizio Sanitario](HEALTH_SERVICE)
+    - organizzate sessioni formative per lo [screening del colon retto](HEALTH_SERVICE)
+    - quali programmi di formazione professionale riguardano l'[accesso civico](HEALTH_SERVICE)
+    - rilasciate un attestato per i corsi sullo [screening della mammella](HEALTH_SERVICE)
+    - dove trovo il catalogo dei corsi di formazione della [Telemedicina](HEALTH_SERVICE)
+  - intent: ask_organization_training
+    examples:
+    - quali corsi organizza l'[ASL Roma 3](ORGANIZATION)
+    - come mi iscrivo a un corso di formazione dell'[ASL](ORGANIZATION)
+    - che corsi offre [programmato](ORGANIZATION) su [Python](TECHNOLOGY)
+    - esistono video tutorial dell'[Agenzia delle Entrate](ORGANIZATION) sui servizi online
+    - ci sono corsi di formazione dedicati all'[Ordine dei Medici](ORGANIZATION)
+    - come funziona l'addestramento o la formazione sulla [Camera di Commercio](ORGANIZATION)
+    - organizzate sessioni formative per la [Croce Rossa](ORGANIZATION)
+    - quali programmi di formazione professionale riguardano la [Protezione Civile](ORGANIZATION)
+    - rilasciate un attestato per i corsi sull'[Agenzia delle Entrate](ORGANIZATION)
+    - dove trovo il catalogo dei corsi di formazione dell'[ASL Roma 3](ORGANIZATION)
+    - ci sono corsi di formazione dedicati all'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - come funziona l'addestramento o la formazione su [programmato](ORGANIZATION)
+    - organizzate sessioni formative per i [Musei Civici](ORGANIZATION)
+    - quali programmi di formazione professionale riguardano l'[ASL](ORGANIZATION)
+    - rilasciate un attestato per i corsi sul [CAF](ORGANIZATION)
+    - dove trovo il catalogo dei corsi di formazione del [Comune di Montesole](ORGANIZATION)
+    - ci sono corsi di formazione dedicati all'[IC Giovanni Pascoli](ORGANIZATION)
+    - come funziona l'addestramento o la formazione sul [Comune](ORGANIZATION)
+  - intent: ask_role_training
+    examples:
+    - ci sono corsi per [caregiver](ROLE)
+    - c'è un corso per diventare [donatore di sangue](ROLE)
+    - ci sono corsi di aggiornamento fiscale per [commercialisti](ROLE) e operatori [CAF](ORGANIZATION)
+    - ci sono corsi di formazione dedicati al [commercialista](ROLE)
+    - come funziona l'addestramento o la formazione sul [sostituto d'imposta](ROLE)
+    - organizzate sessioni formative per il [pediatra](ROLE)
+    - quali programmi di formazione professionale riguardano gli [specialisti ambulatoriali](ROLE)
+    - rilasciate un attestato per i corsi sui [medici di base](ROLE)
+    - dove trovo il catalogo dei corsi di formazione del [DPO](ROLE)
+    - ci sono corsi di formazione dedicati al [donatore di sangue](ROLE)
+    - come funziona l'addestramento o la formazione sullo [psicologo](ROLE)
+    - organizzate sessioni formative per il [Dirigente Scolastico](ROLE)
+    - quali programmi di formazione professionale riguardano il [coordinatore di classe](ROLE)
+    - rilasciate un attestato per i corsi sugli [infermieri](ROLE)
+    - dove trovo il catalogo dei corsi di formazione del [direttore sanitario](ROLE)
+    - ci sono corsi di formazione dedicati al [Responsabile della Prevenzione della Corruzione](ROLE)
+    - come funziona l'addestramento o la formazione sui [familiari a carico](ROLE)
+  - intent: ask_tech_concept_training
+    examples:
+    - c'è un tutorial per imparare l'[intelligenza artificiale](TECH_CONCEPT)
+    - come si impara la [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - ci sono corsi di formazione dedicati alla [BiGRU](TECH_CONCEPT)
+    - come funziona l'addestramento o la formazione sui [microservizi](TECH_CONCEPT)
+    - organizzate sessioni formative per la [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - quali programmi di formazione professionale riguardano i [generatori](TECH_CONCEPT)
+    - rilasciate un attestato per i corsi sugli [assistenti di codice](TECH_CONCEPT)
+    - dove trovo il catalogo dei corsi di formazione della [rete neurale](TECH_CONCEPT)
+    - ci sono corsi di formazione dedicati al [generatore](TECH_CONCEPT)
+    - come funziona l'addestramento o la formazione sul [vibe coding](TECH_CONCEPT)
+    - organizzate sessioni formative per le [reti neurali](TECH_CONCEPT)
+    - quali programmi di formazione professionale riguardano i [Service Provider](TECH_CONCEPT)
+    - rilasciate un attestato per i corsi sulle [API](TECH_CONCEPT)
+    - dove trovo il catalogo dei corsi di formazione dell'[ORM](TECH_CONCEPT)
+    - ci sono corsi di formazione dedicati all'[interceptor](TECH_CONCEPT)
+    - come funziona l'addestramento o la formazione sulle [Facades](TECH_CONCEPT)
+    - organizzate sessioni formative per la [GPU](TECH_CONCEPT)
+  - intent: ask_department_training
+    examples:
+    - ci sono corsi di [Medicina dello Sport](DEPARTMENT)
+    - ci sono corsi di formazione dedicati al [Catasto](DEPARTMENT)
+    - come funziona l'addestramento o la formazione sulla [Direzione Sanitaria](DEPARTMENT)
+    - organizzate sessioni formative per il [SUAP](DEPARTMENT)
+    - quali programmi di formazione professionale riguardano l'[anagrafe](DEPARTMENT)
+    - rilasciate un attestato per i corsi sulla [Polizia locale](DEPARTMENT)
+    - dove trovo il catalogo dei corsi di formazione della [Neurologia](DEPARTMENT)
+    - ci sono corsi di formazione dedicati all'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - come funziona l'addestramento o la formazione sul [Dipartimento del Farmaco](DEPARTMENT)
+    - organizzate sessioni formative per la [UOC Consultori Familiari](DEPARTMENT)
+    - quali programmi di formazione professionale riguardano la [Cardiologia interventistica](DEPARTMENT)
+    - rilasciate un attestato per i corsi sui [tributi](DEPARTMENT)
+    - dove trovo il catalogo dei corsi di formazione della [segreteria scolastica](DEPARTMENT)
+    - ci sono corsi di formazione dedicati all'[Ufficio Stampa](DEPARTMENT)
+    - come funziona l'addestramento o la formazione sui [servizi demografici](DEPARTMENT)
+    - organizzate sessioni formative per i [Lavori pubblici](DEPARTMENT)
+    - quali programmi di formazione professionale riguardano la [Direzione Generale](DEPARTMENT)
+    - rilasciate un attestato per i corsi sull'[URP](DEPARTMENT)
+  - intent: ask_document_training
+    examples:
+    - dove trovo una guida pratica per imparare a compilare il [modello 730](DOCUMENT)
+    - ci sono corsi di formazione dedicati all'[impegnativa](DOCUMENT)
+    - come funziona l'addestramento o la formazione sul [Piano terapeutico](DOCUMENT)
+    - organizzate sessioni formative per il [modello 730](DOCUMENT)
+    - quali programmi di formazione professionale riguardano il [modello F24](DOCUMENT)
+    - rilasciate un attestato per i corsi sulla [patente](DOCUMENT)
+    - dove trovo il catalogo dei corsi di formazione della [dichiarazione dei redditi](DOCUMENT)
+    - ci sono corsi di formazione dedicati alla [cartella esattoriale](DOCUMENT)
+    - come funziona l'addestramento o la formazione sul [modello Redditi PF](DOCUMENT)
+    - organizzate sessioni formative per la [dichiarazione precompilata](DOCUMENT)
+    - quali programmi di formazione professionale riguardano lo [SPID](DOCUMENT)
+    - rilasciate un attestato per i corsi sul [concorso pubblico](DOCUMENT)
+    - dove trovo il catalogo dei corsi di formazione della [visura catastale](DOCUMENT)
+    - ci sono corsi di formazione dedicati alla [tessera sanitaria](DOCUMENT)
+    - come funziona l'addestramento o la formazione sulla [cartella clinica](DOCUMENT)
+    - organizzate sessioni formative per il [codice fiscale](DOCUMENT)
+    - quali programmi di formazione professionale riguardano l'[ISEE](DOCUMENT)
+  - intent: ask_misc_training
+    examples:
+    - ci sono corsi [ECM](MISC) per i medici
+    - ci sono corsi di formazione dedicati al [rimborso IRPEF](MISC)
+    - come funziona l'addestramento o la formazione sul [bonus ristrutturazione](MISC)
+    - organizzate sessioni formative per il [registro elettronico](MISC)
+    - quali programmi di formazione professionale riguardano la [dieta speciale](MISC)
+    - rilasciate un attestato per i corsi su [CIVIS](MISC)
+    - dove trovo il catalogo dei corsi di formazione di [Fisconline](MISC)
+    - ci sono corsi di formazione dedicati allo [SdI](MISC)
+    - come funziona l'addestramento o la formazione sul [codice tributo](MISC)
+    - organizzate sessioni formative per la [mensa scolastica](MISC)
+    - quali programmi di formazione professionale riguardano la [prima casa](MISC)
+    - rilasciate un attestato per i corsi sulla [carta famiglia](MISC)
+    - dove trovo il catalogo dei corsi di formazione degli [abusi digitali](MISC)
+    - ci sono corsi di formazione dedicati a [Entratel](MISC)
+    - come funziona l'addestramento o la formazione su [Fatture e Corrispettivi](MISC)
+    - organizzate sessioni formative per il [pre-scuola](MISC)
+    - quali programmi di formazione professionale riguardano la [rendita catastale](MISC)
+    - rilasciate un attestato per i corsi sul [regime ordinario](MISC)
+  - intent: ask_procedure_training
+    examples:
+    - ci sono corsi sulla [fatturazione elettronica](PROCEDURE) e sulla contabilità
+    - ci sono corsi di formazione dedicati al [fermo amministrativo](PROCEDURE)
+    - come funziona l'addestramento o la formazione sul [ritiro dei rifiuti ingombranti](PROCEDURE)
+    - organizzate sessioni formative per il [DOCFA](PROCEDURE)
+    - quali programmi di formazione professionale riguardano la [denuncia di smarrimento](PROCEDURE)
+    - rilasciate un attestato per i corsi sull'[apertura della partita IVA](PROCEDURE)
+    - dove trovo il catalogo dei corsi di formazione della [rottamazione delle cartelle](PROCEDURE)
+    - ci sono corsi di formazione dedicati alla [registrazione del contratto di locazione](PROCEDURE)
+    - come funziona l'addestramento o la formazione sul [concordato preventivo biennale](PROCEDURE)
+    - organizzate sessioni formative per l'[accertamento con adesione](PROCEDURE)
+    - quali programmi di formazione professionale riguardano il [matrimonio civile](PROCEDURE)
+    - rilasciate un attestato per i corsi sul [pignoramento](PROCEDURE)
+    - dove trovo il catalogo dei corsi di formazione dell'[interpello](PROCEDURE)
+    - ci sono corsi di formazione dedicati al [cambio di residenza](PROCEDURE)
+    - come funziona l'addestramento o la formazione sulla [rottamazione quater](PROCEDURE)
+    - organizzate sessioni formative per la [fatturazione elettronica](PROCEDURE)

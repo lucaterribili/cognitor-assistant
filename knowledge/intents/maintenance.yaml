@@ -1,0 +1,170 @@
+nlu:
+  intents:
+  - intent: ask_maintenance
+    examples:
+    - Quando viene effettuata la manutenzione?
+    - Come si richiede un intervento?
+    - Quali operazioni di manutenzione sono previste?
+    - come richiedo la manutenzione di un ausilio
+    - come richiedo un intervento sul presidio protesico
+    - chi fa la manutenzione dei dispositivi medici
+    - come segnalo un malfunzionamento dell'ausilio
+    - come si gestisce la manutenzione evolutiva del codice
+    - ogni quanto tempo viene effettuata la manutenzione
+    - a chi devo chiedere per la manutenzione ordinaria
+    - sono previste finestre di manutenzione programmata del portale
+    - come funziona l'assistenza per la manutenzione delle apparecchiature
+    - chi sostiene i costi della manutenzione periodica
+    - cosa fare se serve una manutenzione straordinaria urgente
+    - come aggiorno e mantengo attivi i miei dati
+    - c'è un servizio di revisione e controllo periodico
+    - quanto dura il fermo tecnico durante la manutenzione
+  - intent: ask_technology_maintenance
+    examples:
+    - ogni quanto va fatta la manutenzione di un server [Linux](TECHNOLOGY)
+    - come automatizzo il backup di [Linux](TECHNOLOGY) con [rsync](TECHNOLOGY)
+    - come aggiorno un sito [WordPress](TECHNOLOGY)
+    - come gestisco le dipendenze di [Laravel](TECHNOLOGY) nel tempo
+    - come mantengo aggiornato [PHP](TECHNOLOGY) su [Ubuntu](TECHNOLOGY)
+    - come si fa la manutenzione di un database [PostgreSQL](TECHNOLOGY)
+    - come si pianifica la manutenzione periodica di un'applicazione [Python](TECHNOLOGY)
+    - come mantengo aggiornato il software [Desktop Telematico](TECHNOLOGY)
+    - come si effettua la manutenzione o l'aggiornamento di [Spring Boot](TECHNOLOGY)
+    - ogni quanto va revisionato o aggiornato [PHP](TECHNOLOGY)
+    - chi si occupa della manutenzione di [WordPress](TECHNOLOGY)
+    - è prevista una manutenzione periodica per [Linux](TECHNOLOGY)
+    - come mantengo efficiente e aggiornato [MySQL](TECHNOLOGY)
+    - a chi segnalo un intervento di manutenzione su [nftables](TECHNOLOGY)
+    - come si effettua la manutenzione o l'aggiornamento di [Eloquent](TECHNOLOGY)
+    - ogni quanto va revisionato o aggiornato [Ubuntu](TECHNOLOGY)
+  - intent: ask_organization_maintenance
+    examples:
+    - chi gestisce la manutenzione delle apparecchiature dell'[ASL](ORGANIZATION)
+    - quando si fa la manutenzione del sito dell'[ASL](ORGANIZATION)
+    - quando è prevista la manutenzione dei servizi telematici dell'[Agenzia delle Entrate](ORGANIZATION)
+    - come si effettua la manutenzione o l'aggiornamento del [Comune di Montesole](ORGANIZATION)
+    - ogni quanto va revisionato o aggiornato l'[IC Giovanni Pascoli](ORGANIZATION)
+    - chi si occupa della manutenzione del [Comune](ORGANIZATION)
+    - è prevista una manutenzione periodica per l'[IC Pascoli](ORGANIZATION)
+    - come mantengo efficiente e aggiornato i [Musei Civici di Montesole](ORGANIZATION)
+    - a chi segnalo un intervento di manutenzione sulla [Guardia di Finanza](ORGANIZATION)
+    - come si effettua la manutenzione o l'aggiornamento della [Regione](ORGANIZATION)
+    - ogni quanto va revisionato o aggiornato l'[INPS](ORGANIZATION)
+    - chi si occupa della manutenzione del [Ministero della Salute](ORGANIZATION)
+    - è prevista una manutenzione periodica per l'[Ordine dei Medici](ORGANIZATION)
+    - come mantengo efficiente e aggiornato la [Camera di Commercio](ORGANIZATION)
+    - a chi segnalo un intervento di manutenzione sulla [Croce Rossa](ORGANIZATION)
+    - come si effettua la manutenzione o l'aggiornamento della [Protezione Civile](ORGANIZATION)
+  - intent: ask_product_maintenance
+    examples:
+    - chi ripara l'[ossigeno](PRODUCT) a domicilio
+    - come richiedo la manutenzione dell'apparecchio per l'[ossigeno](PRODUCT)
+    - ogni quanto si fa la manutenzione del [microinfusore](PRODUCT)
+    - come si effettua la manutenzione o l'aggiornamento degli [omega-3](PRODUCT)
+    - ogni quanto va revisionato o aggiornato il [microinfusore](PRODUCT)
+    - chi si occupa della manutenzione degli [strumentari odontotecnici](PRODUCT)
+    - è prevista una manutenzione periodica per la [parrucca](PRODUCT)
+    - come mantengo efficiente e aggiornato la [mascherina](PRODUCT)
+    - a chi segnalo un intervento di manutenzione sulle [scarpe da corsa](PRODUCT)
+    - come si effettua la manutenzione o l'aggiornamento dei [pannelli solari](PRODUCT)
+    - ogni quanto va revisionato o aggiornato la [lampada scialitica](PRODUCT)
+    - chi si occupa della manutenzione dell'[apparecchio per l'ossigeno](PRODUCT)
+    - è prevista una manutenzione periodica per la [protesi acustica](PRODUCT)
+    - come mantengo efficiente e aggiornato la [carrozzina ortopedica](PRODUCT)
+    - a chi segnalo un intervento di manutenzione sul [deambulatore](PRODUCT)
+    - come si effettua la manutenzione o l'aggiornamento del [letto ortopedico](PRODUCT)
+    - ogni quanto va revisionato o aggiornato il [glucometro](PRODUCT)
+  - intent: ask_facility_maintenance
+    examples:
+    - quando viene fatta la manutenzione del [Centro Prelievi](FACILITY)
+    - come segnalo un guasto all'ascensore del [Grassi](FACILITY)
+    - come si effettua la manutenzione o l'aggiornamento delle [Cappelle Medicee](FACILITY)
+    - ogni quanto va revisionato o aggiornato la [Pinacoteca civica](FACILITY)
+    - chi si occupa della manutenzione dell'[asilo nido](FACILITY)
+    - è prevista una manutenzione periodica per l'[Ospedale di Comunità](FACILITY)
+    - come mantengo efficiente e aggiornato l'[Ecocentro](FACILITY)
+    - a chi segnalo un intervento di manutenzione sulla [Scuola Primaria Rodari](FACILITY)
+    - come si effettua la manutenzione o l'aggiornamento del [CPO Gennaro di Rosa](FACILITY)
+    - ogni quanto va revisionato o aggiornato il [Consultorio](FACILITY)
+    - chi si occupa della manutenzione della [Galleria d'arte contemporanea](FACILITY)
+    - è prevista una manutenzione periodica per il [Centro Prelievi Palidoro](FACILITY)
+    - come mantengo efficiente e aggiornato il [Centro Prelievi Acilia](FACILITY)
+    - a chi segnalo un intervento di manutenzione sul [Grassi](FACILITY)
+    - come si effettua la manutenzione o l'aggiornamento del [Centro Prelievi](FACILITY)
+    - ogni quanto va revisionato o aggiornato la [Casa della Salute](FACILITY)
+    - chi si occupa della manutenzione del [Centro Prelievi Ostia](FACILITY)
+  - intent: ask_document_maintenance
+    examples:
+    - come aggiorno l'[IBAN](DOCUMENT) comunicato all'[Agenzia delle Entrate](ORGANIZATION) per i rimborsi
+    - come si effettua la manutenzione o l'aggiornamento dell'[impegnativa](DOCUMENT)
+    - ogni quanto va revisionato o aggiornato il [Piano terapeutico](DOCUMENT)
+    - chi si occupa della manutenzione del [modello 730](DOCUMENT)
+    - è prevista una manutenzione periodica per il [modello F24](DOCUMENT)
+    - come mantengo efficiente e aggiornato la [patente](DOCUMENT)
+    - a chi segnalo un intervento di manutenzione sulla [dichiarazione dei redditi](DOCUMENT)
+    - come si effettua la manutenzione o l'aggiornamento della [cartella esattoriale](DOCUMENT)
+    - ogni quanto va revisionato o aggiornato il [modello Redditi PF](DOCUMENT)
+    - chi si occupa della manutenzione della [dichiarazione precompilata](DOCUMENT)
+    - è prevista una manutenzione periodica per lo [SPID](DOCUMENT)
+    - come mantengo efficiente e aggiornato il [concorso pubblico](DOCUMENT)
+    - a chi segnalo un intervento di manutenzione sulla [visura catastale](DOCUMENT)
+    - come si effettua la manutenzione o l'aggiornamento della [tessera sanitaria](DOCUMENT)
+    - ogni quanto va revisionato o aggiornato la [cartella clinica](DOCUMENT)
+    - chi si occupa della manutenzione del [codice fiscale](DOCUMENT)
+    - è prevista una manutenzione periodica per l'[ISEE](DOCUMENT)
+  - intent: ask_misc_maintenance
+    examples:
+    - come si aggiorna il codice [ATECO](MISC) della propria [partita IVA](DOCUMENT)
+    - come si effettua la manutenzione o l'aggiornamento del [codice tributo](MISC)
+    - ogni quanto va revisionato o aggiornato la [mensa scolastica](MISC)
+    - chi si occupa della manutenzione della [prima casa](MISC)
+    - è prevista una manutenzione periodica per la [carta famiglia](MISC)
+    - come mantengo efficiente e aggiornato gli [abusi digitali](MISC)
+    - a chi segnalo un intervento di manutenzione su [Entratel](MISC)
+    - come si effettua la manutenzione o l'aggiornamento di [Fatture e Corrispettivi](MISC)
+    - ogni quanto va revisionato o aggiornato il [pre-scuola](MISC)
+    - chi si occupa della manutenzione della [rendita catastale](MISC)
+    - è prevista una manutenzione periodica per il [regime ordinario](MISC)
+    - come mantengo efficiente e aggiornato il [bonus mobili](MISC)
+    - a chi segnalo un intervento di manutenzione sull'[ecobonus](MISC)
+    - come si effettua la manutenzione o l'aggiornamento del [Superbonus](MISC)
+    - ogni quanto va revisionato o aggiornato l'[audioguida](MISC)
+    - chi si occupa della manutenzione degli [alloggi popolari](MISC)
+  - intent: ask_procedure_maintenance
+    examples:
+    - come aggiorno i dati catastali di un immobile dopo i lavori con la procedura [DOCFA](PROCEDURE)
+    - come si effettua la manutenzione o l'aggiornamento dell'[apertura della partita IVA](PROCEDURE)
+    - ogni quanto va revisionato o aggiornato la [rottamazione delle cartelle](PROCEDURE)
+    - chi si occupa della manutenzione della [registrazione del contratto di locazione](PROCEDURE)
+    - è prevista una manutenzione periodica per il [concordato preventivo biennale](PROCEDURE)
+    - come mantengo efficiente e aggiornato l'[accertamento con adesione](PROCEDURE)
+    - a chi segnalo un intervento di manutenzione sul [matrimonio civile](PROCEDURE)
+    - come si effettua la manutenzione o l'aggiornamento del [pignoramento](PROCEDURE)
+    - ogni quanto va revisionato o aggiornato l'[interpello](PROCEDURE)
+    - chi si occupa della manutenzione del [cambio di residenza](PROCEDURE)
+    - è prevista una manutenzione periodica per la [rottamazione quater](PROCEDURE)
+    - come mantengo efficiente e aggiornato la [fatturazione elettronica](PROCEDURE)
+    - a chi segnalo un intervento di manutenzione sulla [rateizzazione](PROCEDURE)
+    - come si effettua la manutenzione o l'aggiornamento del [ravvedimento operoso](PROCEDURE)
+    - ogni quanto va revisionato o aggiornato i [contributi Inps](PROCEDURE)
+    - chi si occupa della manutenzione dell'[autotutela](PROCEDURE)
+    - è prevista una manutenzione periodica per l'[accertamento fiscale](PROCEDURE)
+  - intent: ask_tech_concept_maintenance
+    examples:
+    - come programmo un [cron job](TECH_CONCEPT) per la manutenzione
+    - come si effettua la manutenzione o l'aggiornamento dell'[ORM](TECH_CONCEPT)
+    - ogni quanto va revisionato o aggiornato l'[interceptor](TECH_CONCEPT)
+    - chi si occupa della manutenzione delle [Facades](TECH_CONCEPT)
+    - è prevista una manutenzione periodica per la [GPU](TECH_CONCEPT)
+    - come mantengo efficiente e aggiornato il [machine learning](TECH_CONCEPT)
+    - a chi segnalo un intervento di manutenzione sull'[autenticazione JWT](TECH_CONCEPT)
+    - come si effettua la manutenzione o l'aggiornamento della [containerizzazione](TECH_CONCEPT)
+    - ogni quanto va revisionato o aggiornato gli [embeddings](TECH_CONCEPT)
+    - chi si occupa della manutenzione del [firewall](TECH_CONCEPT)
+    - è prevista una manutenzione periodica per l'[intelligenza artificiale](TECH_CONCEPT)
+    - come mantengo efficiente e aggiornato il [cron job](TECH_CONCEPT)
+    - a chi segnalo un intervento di manutenzione sulla [BiGRU](TECH_CONCEPT)
+    - come si effettua la manutenzione o l'aggiornamento dei [microservizi](TECH_CONCEPT)
+    - ogni quanto va revisionato o aggiornato la [programmazione orientata agli oggetti](TECH_CONCEPT)
+    - chi si occupa della manutenzione dei [generatori](TECH_CONCEPT)
+    - è prevista una manutenzione periodica per gli [assistenti di codice](TECH_CONCEPT)

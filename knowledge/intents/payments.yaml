@@ -1,0 +1,173 @@
+nlu:
+  intents:
+  - intent: ask_payments
+    examples:
+    - Come posso pagare?
+    - Quali metodi di pagamento accettate?
+    - Posso pagare online?
+    - come pago l'esame di laboratorio
+    - dove si paga la prestazione dopo la visita
+    - dove trovo i pagamenti informatici
+    - accettate pagamenti con bancomat e carte alla biglietteria del museo
+    - quali metodi di pagamento accettate allo sportello e online
+    - è possibile rateizzare il pagamento dell'importo
+    - come scarico la ricevuta di un pagamento già effettuato
+    - posso pagare direttamente dal sito con carta o conto corrente
+    - dove trovo le coordinate per effettuare il versamento
+    - il pagamento va fatto prima o dopo la prestazione
+    - accettate pagamenti elettronici e tracciabili
+    - cosa succede se il pagamento online non va a buon fine
+    - posso pagare presso le tabaccherie o gli uffici postali abilitati
+  - intent: ask_document_payments
+    examples:
+    - come pago il [ticket](DOCUMENT)
+    - dove pago il [ticket](DOCUMENT)
+    - posso pagare il [ticket](DOCUMENT) con [PagoPA](PAYMENT_METHOD)
+    - posso pagare online il [ticket](DOCUMENT)
+    - qual è l'[IBAN](DOCUMENT) per i pagamenti all'[ASL Roma 3](ORGANIZATION)
+    - dove trovo l'[IBAN](DOCUMENT) dell'azienda
+    - posso pagare con [PagoPA](PAYMENT_METHOD) la [marca da bollo](DOCUMENT)
+    - si può pagare il [ticket](DOCUMENT) in farmacia
+    - come si paga il [modello F24](DOCUMENT) online
+    - posso pagare una [cartella esattoriale](DOCUMENT) con [PagoPA](PAYMENT_METHOD)
+    - posso addebitare il [modello F24](DOCUMENT) direttamente sul conto corrente con l'[IBAN](DOCUMENT)
+    - si possono compensare i crediti nel [modello F24](DOCUMENT)
+    - come pago un [avviso bonario](DOCUMENT) a rate
+    - come si effettua il pagamento per la [dichiarazione dei redditi](DOCUMENT)
+    - con quali modalità posso pagare la [cartella esattoriale](DOCUMENT)
+    - dove si versa l'importo dovuto per il [modello Redditi PF](DOCUMENT)
+    - posso pagare online o a rate la [dichiarazione precompilata](DOCUMENT)
+  - intent: ask_payment_method_payments
+    examples:
+    - posso pagare con il [bancomat](PAYMENT_METHOD) alla visita
+    - posso pagare con [bonifico](PAYMENT_METHOD)
+    - come pago la mensa scolastica e la gita con l'avviso [PagoPA](PAYMENT_METHOD)
+    - come si effettua il pagamento per [PagoPA](PAYMENT_METHOD)
+    - con quali modalità posso pagare i [contanti](PAYMENT_METHOD)
+    - dove si versa l'importo dovuto per il [bancomat](PAYMENT_METHOD)
+    - posso pagare online o a rate il [bonifico](PAYMENT_METHOD)
+    - quali canali di pagamento sono abilitati per la [carta](PAYMENT_METHOD)
+    - come funziona il versamento di [PayPal](PAYMENT_METHOD)
+    - come si effettua il pagamento per la [carta di credito](PAYMENT_METHOD)
+    - con quali modalità posso pagare la [carta di debito](PAYMENT_METHOD)
+    - dove si versa l'importo dovuto per il [bollettino postale](PAYMENT_METHOD)
+    - posso pagare online o a rate l'[addebito diretto SDD](PAYMENT_METHOD)
+    - quali canali di pagamento sono abilitati per il [bonifico bancario](PAYMENT_METHOD)
+    - come funziona il versamento del [bonifico istantaneo](PAYMENT_METHOD)
+    - come si effettua il pagamento per l'[F24 telematico](PAYMENT_METHOD)
+    - con quali modalità posso pagare il [POS](PAYMENT_METHOD)
+    - dove si versa l'importo dovuto per [Satispay](PAYMENT_METHOD)
+  - intent: ask_tax_payments
+    examples:
+    - come faccio a pagare l'[IMU](TAX) dal sito dell'[Agenzia delle Entrate](ORGANIZATION)
+    - come posso pagare la [TARI](TAX) con [PagoPA](PAYMENT_METHOD)
+    - come si versa l'[IMU](TAX) tramite [modello F24](DOCUMENT)
+    - come si effettua il pagamento per la [tassa automobilistica](TAX)
+    - con quali modalità posso pagare l'[imposta sulle successioni](TAX)
+    - dove si versa l'importo dovuto per il [contributo unificato](TAX)
+    - posso pagare online o a rate il [diritto camerale](TAX)
+    - quali canali di pagamento sono abilitati per l'[IMU](TAX)
+    - come funziona il versamento dell'[IRPEF](TAX)
+    - come si effettua il pagamento per la [TARI](TAX)
+    - con quali modalità posso pagare l'[IVA](TAX)
+    - dove si versa l'importo dovuto per la [cedolare secca](TAX)
+    - posso pagare online o a rate l'[imposta di registro](TAX)
+    - quali canali di pagamento sono abilitati per l'[imposta di bollo](TAX)
+    - come funziona il versamento dell'[IRES](TAX)
+    - come si effettua il pagamento per l'[IRAP](TAX)
+  - intent: ask_medical_procedure_payments
+    examples:
+    - come si paga la [visita medico legale](MEDICAL_PROCEDURE)
+    - come pago la [visita per la patente](MEDICAL_PROCEDURE)
+    - come si effettua il pagamento per lo [spermiogramma](MEDICAL_PROCEDURE)
+    - con quali modalità posso pagare la [terapia oncologica](MEDICAL_PROCEDURE)
+    - dove si versa l'importo dovuto per la [visita cardiologica](MEDICAL_PROCEDURE)
+    - posso pagare online o a rate la [visita neurologica](MEDICAL_PROCEDURE)
+    - quali canali di pagamento sono abilitati per la [visita specialistica](MEDICAL_PROCEDURE)
+    - come funziona il versamento della [mammografia](MEDICAL_PROCEDURE)
+    - come si effettua il pagamento per il [ricovero d'urgenza](MEDICAL_PROCEDURE)
+    - con quali modalità posso pagare la [visita per la patente](MEDICAL_PROCEDURE)
+    - dove si versa l'importo dovuto per il [ricovero programmato](MEDICAL_PROCEDURE)
+    - posso pagare online o a rate la [risonanza magnetica](MEDICAL_PROCEDURE)
+    - quali canali di pagamento sono abilitati per gli [esami del sangue](MEDICAL_PROCEDURE)
+    - come funziona il versamento della [visita intramoenia](MEDICAL_PROCEDURE)
+    - come si effettua il pagamento per l'[elettrocardiogramma](MEDICAL_PROCEDURE)
+    - con quali modalità posso pagare la [radiografia](MEDICAL_PROCEDURE)
+  - intent: ask_facility_payments
+    examples:
+    - accettate [contanti](PAYMENT_METHOD) al [Poliambulatorio Paolini](FACILITY)
+    - come si effettua il pagamento per le [Case della Comunità](FACILITY)
+    - con quali modalità posso pagare la [Casa della Comunità](FACILITY)
+    - dove si versa l'importo dovuto per l'[Ospedale Grassi](FACILITY)
+    - posso pagare online o a rate il [Presidio Ospedaliero Grassi](FACILITY)
+    - quali canali di pagamento sono abilitati per i [Consultori](FACILITY)
+    - come funziona il versamento delle [Cappelle Medicee](FACILITY)
+    - come si effettua il pagamento per la [Pinacoteca civica](FACILITY)
+    - con quali modalità posso pagare l'[asilo nido](FACILITY)
+    - dove si versa l'importo dovuto per l'[Ospedale di Comunità](FACILITY)
+    - posso pagare online o a rate l'[Ecocentro](FACILITY)
+    - quali canali di pagamento sono abilitati per la [Scuola Primaria Rodari](FACILITY)
+    - come funziona il versamento del [CPO Gennaro di Rosa](FACILITY)
+    - come si effettua il pagamento per il [Consultorio](FACILITY)
+    - con quali modalità posso pagare la [Galleria d'arte contemporanea](FACILITY)
+    - dove si versa l'importo dovuto per il [Centro Prelievi Palidoro](FACILITY)
+    - posso pagare online o a rate il [Centro Prelievi Acilia](FACILITY)
+    - quali canali di pagamento sono abilitati per il [Grassi](FACILITY)
+  - intent: ask_health_service_payments
+    examples:
+    - si può pagare con [carta](PAYMENT_METHOD) al [CUP](HEALTH_SERVICE)
+    - come si effettua il pagamento per la [Guardia Medica](HEALTH_SERVICE)
+    - con quali modalità posso pagare la [donazione del sangue](HEALTH_SERVICE)
+    - dove si versa l'importo dovuto per la [scelta del medico](HEALTH_SERVICE)
+    - posso pagare online o a rate l'[accesso agli atti](HEALTH_SERVICE)
+    - quali canali di pagamento sono abilitati per lo [screening oncologico](HEALTH_SERVICE)
+    - come funziona il versamento dello [Sportello Giovani](HEALTH_SERVICE)
+    - come si effettua il pagamento per il [Fascicolo Sanitario](HEALTH_SERVICE)
+    - con quali modalità posso pagare lo [Sportello di Ascolto](HEALTH_SERVICE)
+    - dove si versa l'importo dovuto per l'[assistenza all'estero](HEALTH_SERVICE)
+    - posso pagare online o a rate il [Servizio Sanitario](HEALTH_SERVICE)
+    - quali canali di pagamento sono abilitati per lo [screening del colon retto](HEALTH_SERVICE)
+    - come funziona il versamento dell'[accesso civico](HEALTH_SERVICE)
+    - come si effettua il pagamento per lo [screening della mammella](HEALTH_SERVICE)
+    - con quali modalità posso pagare la [Telemedicina](HEALTH_SERVICE)
+    - dove si versa l'importo dovuto per il [RECUP](HEALTH_SERVICE)
+    - posso pagare online o a rate il [Punto unico di accesso](HEALTH_SERVICE)
+  - intent: ask_organization_payments
+    examples:
+    - posso pagare con [PayPal](PAYMENT_METHOD) su [programmato](ORGANIZATION)
+    - come si effettua il pagamento per l'[IC Giovanni Pascoli](ORGANIZATION)
+    - con quali modalità posso pagare il [Comune](ORGANIZATION)
+    - dove si versa l'importo dovuto per l'[IC Pascoli](ORGANIZATION)
+    - posso pagare online o a rate i [Musei Civici di Montesole](ORGANIZATION)
+    - quali canali di pagamento sono abilitati per la [Guardia di Finanza](ORGANIZATION)
+    - come funziona il versamento della [Regione](ORGANIZATION)
+    - come si effettua il pagamento per l'[INPS](ORGANIZATION)
+    - con quali modalità posso pagare il [Ministero della Salute](ORGANIZATION)
+    - dove si versa l'importo dovuto per l'[Ordine dei Medici](ORGANIZATION)
+    - posso pagare online o a rate la [Camera di Commercio](ORGANIZATION)
+    - quali canali di pagamento sono abilitati per la [Croce Rossa](ORGANIZATION)
+    - come funziona il versamento della [Protezione Civile](ORGANIZATION)
+    - come si effettua il pagamento per l'[Agenzia delle Entrate](ORGANIZATION)
+    - con quali modalità posso pagare l'[ASL Roma 3](ORGANIZATION)
+    - dove si versa l'importo dovuto per l'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
+    - posso pagare online o a rate [programmato](ORGANIZATION)
+  - intent: ask_product_payments
+    examples:
+    - come pago l'abbonamento a [ZuluTrade](PRODUCT)
+    - come si effettua il pagamento per il [letto ortopedico](PRODUCT)
+    - con quali modalità posso pagare il [glucometro](PRODUCT)
+    - dove si versa l'importo dovuto per lo [sfigmomanometro](PRODUCT)
+    - posso pagare online o a rate il [saturimetro](PRODUCT)
+    - quali canali di pagamento sono abilitati per l'[ossigeno](PRODUCT)
+    - come funziona il versamento della [scheda SD](PRODUCT)
+    - come si effettua il pagamento per i [microinfusori](PRODUCT)
+    - con quali modalità posso pagare [ZuluTrade](PRODUCT)
+    - dove si versa l'importo dovuto per gli [omega-3](PRODUCT)
+    - posso pagare online o a rate il [microinfusore](PRODUCT)
+    - quali canali di pagamento sono abilitati per gli [strumentari odontotecnici](PRODUCT)
+    - come funziona il versamento della [parrucca](PRODUCT)
+    - come si effettua il pagamento per la [mascherina](PRODUCT)
+    - con quali modalità posso pagare le [scarpe da corsa](PRODUCT)
+    - dove si versa l'importo dovuto per i [pannelli solari](PRODUCT)
+    - posso pagare online o a rate la [lampada scialitica](PRODUCT)
+    - quali canali di pagamento sono abilitati per l'[apparecchio per l'ossigeno](PRODUCT)

@@ -1,0 +1,27 @@
+# Culture rules - Intent per cultura, arte, storia
+
+rules:
+  ask_culture:
+    slots:
+      query:
+        required: true
+        entity: KEYWORD
+    default: __web_search
+    wait: ask_culture_wait_response
+
+  ask_definition:
+    slots:
+      query:
+        required: true
+        entity: KEYWORD
+    default: __web_search
+    wait: ask_definition_wait_response
+
+  ask_person_date:
+    slots:
+      query:
+        required: true
+        entity: KEYWORD
+    default: __web_search
+    wait: ask_person_date_wait_response
+
