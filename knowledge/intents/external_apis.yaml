@@ -1,0 +1,77 @@
+# Intent domain-agnostic appoggiati a servizi esterni gratuiti senza API key
+# (Frankfurter, Nager.Date, Open Food Facts) - stesso spirito di weather_query
+# (Open-Meteo) e ask_capital in base.yaml.
+
+nlu:
+  intents:
+  - intent: ask_currency_conversion
+    examples:
+    - quanto vale [100](NUMBER) [euro](CURRENCY_FROM) in [dollari](CURRENCY_TO)
+    - convertimi [50](NUMBER) [dollari](CURRENCY_FROM) in [euro](CURRENCY_TO)
+    - quanto sono [200](NUMBER) [euro](CURRENCY_FROM) in [sterline](CURRENCY_TO)
+    - quanti [euro](CURRENCY_TO) sono [10](NUMBER) [dollari](CURRENCY_FROM)
+    - cambio [euro](CURRENCY_FROM) [dollaro](CURRENCY_TO)
+    - conversione [dollari](CURRENCY_FROM) [euro](CURRENCY_TO)
+    - quanto vale un [euro](CURRENCY_FROM) in [yen](CURRENCY_TO)
+    - convertimi [1000](NUMBER) [yen](CURRENCY_FROM) in [euro](CURRENCY_TO)
+    - quanto fanno [300](NUMBER) [franchi svizzeri](CURRENCY_FROM) in [euro](CURRENCY_TO)
+    - quanto vale [500](NUMBER) [sterline](CURRENCY_FROM) in [dollari](CURRENCY_TO)
+    - dimmi il cambio tra [euro](CURRENCY_FROM) e [yuan](CURRENCY_TO)
+    - convertimi [80](NUMBER) [euro](CURRENCY_FROM) in [rubli](CURRENCY_TO)
+    - quanto valgono [20](NUMBER) [dollari](CURRENCY_FROM) in [euro](CURRENCY_TO)
+    - qual è il cambio [euro](CURRENCY_FROM) [dollaro](CURRENCY_TO) oggi
+    - convertimi [euro](CURRENCY_FROM) in [dollari](CURRENCY_TO)
+    - quanto vale [1](NUMBER) [dollaro](CURRENCY_FROM) in [euro](CURRENCY_TO)
+    - fammi la conversione da [euro](CURRENCY_FROM) a [sterline](CURRENCY_TO)
+    - quanti [dollari](CURRENCY_TO) sono [150](NUMBER) [euro](CURRENCY_FROM)
+    - tasso di cambio [dollaro](CURRENCY_FROM) [euro](CURRENCY_TO)
+    - convertimi [400](NUMBER) [yuan](CURRENCY_FROM) in [dollari](CURRENCY_TO)
+    - quanto vale [euro](CURRENCY_FROM) contro [franco svizzero](CURRENCY_TO)
+
+  - intent: ask_public_holiday
+    examples:
+    - quali sono le festività in [Italia](LOCATION)
+    - quando è la prossima festività
+    - quali sono le prossime festività
+    - che festa si festeggia il [25 dicembre](DATE)
+    - quali festività ci sono nel [2026](NUMBER)
+    - dimmi le festività italiane del [2026](NUMBER)
+    - quali sono i giorni festivi in [Francia](LOCATION)
+    - quando cade la prossima festa nazionale
+    - elencami le festività del [2027](NUMBER) in [Italia](LOCATION)
+    - quali vacanze nazionali ci sono in [Germania](LOCATION)
+    - quando è il prossimo giorno festivo
+    - che giorni festivi ci sono in [Spagna](LOCATION)
+    - dimmi tutte le festività nazionali
+    - quando è la prossima festa comandata
+    - quali sono le festività ufficiali in [Italia](LOCATION) quest'anno
+    - elencami i giorni festivi del [2026](NUMBER)
+    - quando cadono le prossime vacanze nazionali
+    - quali sono le festività negli [Stati Uniti](LOCATION)
+    - dimmi quando è la prossima festa nazionale
+    - che festività ci sono nel [Regno Unito](LOCATION)
+    - quali giorni festivi ci sono nel [2026](NUMBER) in [Italia](LOCATION)
+
+  - intent: ask_food_nutrition
+    examples:
+    - quante calorie ha la [nutella](DISH)
+    - dimmi i valori nutrizionali della [pasta](DISH)
+    - quante proteine ha il [pollo](DISH)
+    - quanti carboidrati ci sono nel [riso](DISH)
+    - quante calorie ha una [banana](DISH)
+    - dimmi le calorie della [pizza margherita](DISH)
+    - quanti grassi ha il [parmigiano](DISH)
+    - valori nutrizionali del [tonno in scatola](DISH)
+    - quante calorie ha lo [yogurt greco](DISH)
+    - quanto zucchero c'è nella [coca cola](DISH)
+    - dimmi le proteine del [salmone](DISH)
+    - quante calorie ha il [pane bianco](DISH)
+    - informazioni nutrizionali sui [corn flakes](DISH)
+    - quanto sale c'è nelle [patatine fritte](DISH)
+    - dimmi i valori nutrizionali del [prosciutto crudo](DISH)
+    - quante calorie ha una [mela](DISH)
+    - quanti carboidrati ha il [pane integrale](DISH)
+    - dammi le informazioni nutrizionali della [nutella](DISH)
+    - quante calorie ci sono in un [hamburger](DISH)
+    - valori nutrizionali dei [biscotti](DISH)
+    - quante calorie ha il [gelato al cioccolato](DISH)

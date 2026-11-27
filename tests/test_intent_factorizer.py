@@ -1,6 +1,7 @@
 import glob
 import os
 
+import pytest
 import yaml
 
 from classes.intent_factorizer import NO_TYPE, IntentFactorizer
@@ -8,6 +9,13 @@ from classes.ner_tag_builder import NERTagBuilder
 from config import BASE_DIR
 
 INTENTS_DIR = os.path.join(BASE_DIR, "knowledge", "intents")
+
+
+# La tassonomia (un file = un argomento) è quella dei dati pre-addestrati, che vivono solo nel branch develop_loc;
+# negli altri branch knowledge/intents è il set base e questi test non hanno nulla da verificare.
+requires_pretrained_taxonomy = pytest.mark.skipif(
+    not os.path.exists(os.path.join(INTENTS_DIR, "affirm.yaml")), reason="tassonomia pre-addestrata assente (solo develop_loc)"
+)
 
 
 def taxonomy():
@@ -45,6 +53,7 @@ def test_a_topic_that_starts_like_a_type_is_not_split():
     assert f.factors_of(2) == ("tax_return", "DOCUMENT")
 
 
+@requires_pretrained_taxonomy
 def test_every_intent_of_the_real_taxonomy_is_split_like_its_file():
     truth = taxonomy()
     names = list(truth)
@@ -55,6 +64,7 @@ def test_every_intent_of_the_real_taxonomy_is_split_like_its_file():
     assert f.num_topics == len(set(truth.values()))
 
 
+@requires_pretrained_taxonomy
 def test_pairs_identify_every_intent_uniquely():
     names = list(taxonomy())
     f = IntentFactorizer(names, NERTagBuilder().ENTITY_TYPES)

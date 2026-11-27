@@ -1,0 +1,79 @@
+# Culture Intents
+
+nlu:
+  intents:
+  - intent: ask_culture
+    examples:
+    - parlami di [Mozart](KEYWORD)
+    - cosa sai di [Leonardo da Vinci](KEYWORD)
+    - dimmi qualcosa su [Giuseppe Garibaldi](KEYWORD)
+    - raccontami la storia dell'[Impero Romano](KEYWORD)
+    - chi era [Socrate](KEYWORD)
+    - parlami del mito di [Orfeo](KEYWORD)
+    - cosa è l'[Impressionismo](KEYWORD)
+    - chi ha scritto la [Divina Commedia](KEYWORD)
+    - dimmi qualcosa sul [Rinascimento](KEYWORD)
+    - parlami di [Picasso](KEYWORD)
+    - chi era [Nietzsche](KEYWORD)
+    - raccontami della [Guerra di Troia](KEYWORD)
+    - cosa sai di [Bach](KEYWORD)
+    - chi era [Cleopatra](KEYWORD)
+    - parlami della [Shoah](KEYWORD)
+    - cosa è il [Cubismo](KEYWORD)
+    - chi ha scritto [1984](KEYWORD)
+    - parlami di [Zeus](KEYWORD)
+    - cosa sai dell'[opera lirica](KEYWORD)
+    - raccontami di [Alessandro Magno](KEYWORD)
+    - dimmi qualcosa su [Dostoevskij](KEYWORD)
+    - dimmi qualcosa su [Dante Alighieri](KEYWORD)
+    - parlami di [Van Gogh](KEYWORD)
+    - chi era [Edipo](KEYWORD)
+    - parlami della [Nascita di Venere](KEYWORD)
+
+  - intent: ask_definition
+    examples:
+    - cosa è l'[intelligenza artificiale](KEYWORD)
+    - spiegami l'[AI](KEYWORD)
+    - cosa significa [AI](KEYWORD)
+    - come funziona l'[AI](KEYWORD)
+    - cosa sono le [reti neurali](KEYWORD)
+    - spiegami il [machine learning](KEYWORD)
+    - cos'è il [deep learning](KEYWORD)
+    - dimmi cos'è l'[intelligenza artificiale](KEYWORD)
+    - che cos'è l'[intelligenza artificiale](KEYWORD)
+    - "[AI](KEYWORD) cosa vuol dire"
+    - cosa è la [blockchain](KEYWORD)
+    - spiegami cos'è il [cloud computing](KEYWORD)
+    - cosa significa [big data](KEYWORD)
+    - come funziona una [criptovaluta](KEYWORD)
+    - cos'è la [realtà virtuale](KEYWORD)
+    - spiegami cos'è l'[Internet of Things](KEYWORD)
+    - cosa sono gli [algoritmi](KEYWORD)
+    - dimmi cos'è un [database](KEYWORD)
+    - che cos'è una [API](KEYWORD)
+    - cosa significa [cybersecurity](KEYWORD)
+    - spiegami cos'è il [metaverso](KEYWORD)
+
+  - intent: ask_person_date
+    examples:
+    - "[quando è nato Pippo](KEYWORD)"
+    - "[quando è nata Maria Callas](KEYWORD)"
+    - Voglio sapere [quando è morto Maradona](KEYWORD)
+    - "[in che anno è nato Dante Alighieri](KEYWORD)"
+    - "[quando è morto Napoleone](KEYWORD)"
+    - "[quando è nato Leonardo da Vinci](KEYWORD)"
+    - "[in che anno è morto Mozart](KEYWORD)"
+    - "[quando è nata Cleopatra](KEYWORD)"
+    - dimmi [in che anno è morto Van Gogh](KEYWORD)
+    - "[quando è nato Napoleone](KEYWORD)"
+    - "[quando è nato Albert Einstein](KEYWORD)"
+    - "[quando è morta Maria Antonietta](KEYWORD)"
+    - "[in che anno è nato Galileo Galilei](KEYWORD)"
+    - "[quando è morto Giulio Cesare](KEYWORD)"
+    - "[quando è nata Frida Kahlo](KEYWORD)"
+    - "[in che anno è morto Leonardo da Vinci](KEYWORD)"
+    - dimmi [quando è nato Cristoforo Colombo](KEYWORD)
+    - "[quando è morto Michelangelo](KEYWORD)"
+    - "[quando è nato Charles Darwin](KEYWORD)"
+    - "[in che anno è nata Marie Curie](KEYWORD)"
+    - "[quando è morta Cleopatra](KEYWORD)"
