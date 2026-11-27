@@ -3,6 +3,8 @@ from typing import Optional
 
 import sentencepiece as spm
 
+from classes.text_normalizer import strip_apostrophes
+
 # Marcatore SentencePiece per "inizio di una nuova parola" (U+2581, LOWER ONE
 # EIGHT BLOCK). Un pezzo che lo porta è l'inizio di una parola nel testo
 # originale; un pezzo senza è la continuazione della parola precedente.
@@ -55,7 +57,7 @@ class SentencePieceTokenizer:
         """
         if not self._sp:
             return [], []
-        ids = self._sp.encode(text.lower(), out_type=int)
+        ids = self._sp.encode(strip_apostrophes(text).lower(), out_type=int)
         pieces = [self._sp.id_to_piece(i) for i in ids]
         tokens = [p.replace(WORD_BOUNDARY_MARK, '') for p in pieces]
         return tokens, ids
@@ -63,4 +65,4 @@ class SentencePieceTokenizer:
     def encode_ids(self, text: str) -> list[int]:
         if not self._sp:
             return []
-        return self._sp.encode(text.lower(), out_type=int)
+        return self._sp.encode(strip_apostrophes(text).lower(), out_type=int)

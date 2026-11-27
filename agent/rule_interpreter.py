@@ -17,6 +17,7 @@ import re
 from datetime import datetime
 
 from agent.operations.manager import OperationManager
+from classes.text_normalizer import comparable
 
 # Slot inline nelle response: "Imposto Roma {LOCATION=Roma}." -> {"LOCATION": "Roma"}
 _INLINE_SLOT_PATTERN = re.compile(r'\{([^=]+)=([^}]+)}')
@@ -133,9 +134,9 @@ class RuleInterpreter:
             if self._slot_applies(c, slots) and c.get("required", False) and slots.get(s)
         ]
         if len(required_values) > 1:
-            composite_key = "|".join(str(v) for v in required_values).lower()
+            composite_key = comparable("|".join(str(v) for v in required_values))
             for case_key, target in cases.items():
-                if composite_key == str(case_key).lower():
+                if composite_key == comparable(case_key):
                     return self._resolve_case_target(target, slots, raw_text, cancel_event)
 
         # Step 3: matching sul primo slot con valore. Il fallback ha senso solo come
@@ -146,7 +147,7 @@ class RuleInterpreter:
                 if not slot_value:
                     continue
                 for case_key, target in cases.items():
-                    if str(slot_value).lower() == str(case_key).lower():
+                    if comparable(slot_value) == comparable(case_key):
                         return self._resolve_case_target(target, slots, raw_text, cancel_event)
                 fallback_key = rule.get("fallback")
                 if fallback_key:
@@ -319,8 +320,8 @@ class RuleInterpreter:
         if not valid_values:
             return True
 
-        value_lower = str(value).lower()
-        return any(value_lower == str(valid).lower() for valid in valid_values)
+        value_cmp = comparable(value)
+        return any(value_cmp == comparable(valid) for valid in valid_values)
 
     def extract_set_slots(self, intent_name: str, current_slots: dict = None) -> dict:
         """

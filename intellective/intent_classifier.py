@@ -6,6 +6,7 @@ from torchcrf import CRF
 from classes.simple_tokenizer import SimpleTokenizer
 from classes.sentencepiece_tokenizer import SentencePieceTokenizer
 from classes.ner_tag_builder import NERTagBuilder
+from classes.text_normalizer import strip_apostrophes
 
 
 def load_word_vectors(vec_path, vocab_size=None):
@@ -233,6 +234,7 @@ class IntentClassifier(nn.Module):
                 - intent_probs: probabilità per tutti gli intent
         """
         self.eval()
+        text = strip_apostrophes(text)  # stesso testo del training: vedi classes/text_normalizer.py
         with torch.no_grad():
             # Tokenizza
             tokens, ids = self.tokenizer.tokenize_with_ids(text)

@@ -37,6 +37,7 @@ import torch.nn.functional as F
 
 from agent.model_loader import ModelLoader
 from classes.intent_factorizer import IntentFactorizer
+from classes.text_normalizer import strip_apostrophes
 from config import BASE_DIR, MIN_INTENT_CONFIDENCE, USE_FASTTEXT
 
 MANIFEST_VERSION = 1
@@ -167,7 +168,7 @@ def export(output_path: str) -> str:
         "input_name": INPUT_NAME,
         "output_name": OUTPUT_NAME,
         "ner_output_name": NER_OUTPUT_NAME,
-        "tokenizer": {"type": "sentencepiece", "lowercase": True},
+        "tokenizer": {"type": "sentencepiece", "lowercase": True, "apostrophes": "replace_with_space"},
         "min_confidence": MIN_INTENT_CONFIDENCE,
         "temperature": round(float(model.temperature), 4),  # già applicata a `probs`: informativa
         "labels": labels,
@@ -246,6 +247,7 @@ def verify_parity(model, onnx_path: str) -> float:
     max_diff = 0.0
     sentences_with_entities = 0
     for sentence in PARITY_SENTENCES:
+        sentence = strip_apostrophes(sentence)  # contratto del manifest: chi usa il file toglie gli apostrofi prima del tokenizer
         text = sentence.lower() if manifest["tokenizer"]["lowercase"] else sentence
         ids = sp.encode(text, out_type=int)
         expected = model.predict(sentence)

@@ -15,6 +15,7 @@ import torch
 import config
 from config import BASE_DIR, DOPING_ACTIVE, MIN_INTENT_CONFIDENCE
 from intellective.doping_preprocessor import DopingPreprocessor
+from classes.text_normalizer import strip_apostrophes
 from agent.keywords import is_crisis_signal
 from agent.session_manager import SessionManager
 from agent.model_loader import ModelLoader, KnowledgeLoader
@@ -215,6 +216,7 @@ class Agent:
             }
 
         # Doping del testo se attivo
+        text = strip_apostrophes(text)  # dopo il controllo di crisi, prima di ogni altro uso: vedi classes/text_normalizer.py
         if DOPING_ACTIVE:
             doped_text = self.doping_preprocessor.dope_input(text)
             text_to_predict = doped_text

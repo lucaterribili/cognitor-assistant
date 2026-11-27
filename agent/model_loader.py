@@ -8,7 +8,7 @@ from typing import Dict
 import torch
 import yaml
 
-from config import USE_FASTTEXT
+from config import DOPING_ACTIVE, USE_FASTTEXT
 from classes.intent_factorizer import IntentFactorizer
 from intellective.intent_classifier import IntentClassifier
 from intellective.doping_preprocessor import DopingPreprocessor
@@ -32,6 +32,9 @@ class ModelLoader:
             with open(path, 'r', encoding='utf-8') as f:
                 return json.load(f)
         except FileNotFoundError:
+            if not DOPING_ACTIVE:  # il doping è spento: la lookup table non serve e i dati dei clienti stanno in training_data/
+                print(f"Lookup table doping non costruita: {self.intents_dir} non esiste (doping non attivo)")
+                return
             raise FileNotFoundError(
                 f"{label} non trovato in {path} — "
                 "esegui prima la pipeline di training: python -m pipeline"
@@ -157,6 +160,9 @@ class KnowledgeLoader:
         try:
             filenames = os.listdir(self.intents_dir)
         except FileNotFoundError:
+            if not DOPING_ACTIVE:  # doping spento: la lookup table non serve e i dati dei clienti stanno in training_data/
+                print(f"Lookup table doping non costruita: {self.intents_dir} non esiste (doping non attivo)")
+                return
             raise FileNotFoundError(
                 f"Directory intents non trovata in {self.intents_dir} — "
                 "esegui prima la pipeline di training: python -m pipeline"

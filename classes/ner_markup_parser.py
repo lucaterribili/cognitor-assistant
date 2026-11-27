@@ -1,5 +1,7 @@
 import re
 
+from classes.text_normalizer import strip_apostrophes
+
 
 class NERMarkupParser:
     """
@@ -18,7 +20,7 @@ class NERMarkupParser:
                     {"start": 18, "end": 22, "entity": "LOCATION", "value": "Roma"},
                 ])
         """
-        text = str(text)
+        text = strip_apostrophes(str(text))
         clean_text = ""
         entities = []
         last_end = 0
