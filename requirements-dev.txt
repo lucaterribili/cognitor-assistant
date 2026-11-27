@@ -1,0 +1,14 @@
+# Sviluppo e addestramento: include la produzione e aggiunge tutto quello che serve per allenare ed esportare.
+# Su una macchina con GPU installare torch con CUDA PRIMA (indice di PyTorch per la propria versione di CUDA),
+# oppure lasciare che pip prenda il wheel di PyPI (con CUDA). Il torch CPU di requirements.txt non va bene per la GPU.
+-r requirements.txt
+
+scikit-learn==1.9.1         # split group-aware del training
+tqdm==4.68.3
+onnx==1.23.2                # export ONNX (intellective/export_onnx.py)
+onnxruntime==1.31.1
+fasttext-wheel==0.9.2       # solo con COGNITOR_USE_FASTTEXT=true
+nltk==3.10.4                # init.py
+pytest
+httpx                       # TestClient di FastAPI
+pytest-asyncio

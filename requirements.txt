@@ -1,22 +1,24 @@
-sqlalchemy
-spacy
-torch
-fastapi
-uvicorn
-pandas
-scikit-learn
-nlpaug
-nltk
-pytorch-crf
-# opzionale, solo con COGNITOR_USE_FASTTEXT=true
-fasttext-wheel
-torchcrf
-python-jose[cryptography]
-bcrypt
-python-multipart
-pyyaml
-numpy
-requests
-ddgs
-sentencepiece
-python-dotenv
+# Produzione: solo CPU, solo il necessario per avviare l'API (main.py) e rispondere.
+# Torch viene dall'indice CPU di PyTorch: nessun nvidia-*, triton o CUDA (l'ambiente pesa circa 1 GB,
+# di cui 750 MB sono torch, invece dei 6-7 GB con CUDA).
+#
+#   python -m venv .venv && .venv/bin/pip install -r requirements.txt
+#
+# Addestramento e sviluppo (GPU, scikit-learn, onnx, fastText...): requirements-dev.txt
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.12.1
+pytorch-crf==0.7.2          # CRF del NER (import torchcrf)
+numpy>=2.0,<2.4
+sentencepiece==0.2.3
+
+fastapi==0.162.4
+uvicorn==0.54.0
+python-multipart==0.0.33
+python-jose[cryptography]==3.5.0
+bcrypt==5.0.0
+
+PyYAML==6.0.2
+python-dotenv==1.2.2
+requests==2.34.2
+ddgs==9.16.1                # solo per l'operazione di ricerca web (import lazy)

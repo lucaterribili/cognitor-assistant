@@ -74,22 +74,24 @@ Cognitor Assistant
 
 ### Installazione Dipendenze
 
+**Produzione (solo CPU, minimo indispensabile)**: avvia l'API e risponde, senza CUDA né driver NVIDIA.
+
 ```bash
-pip install -r requirements.txt
+python -m venv .venv
+.venv/bin/pip install -r requirements.txt
 ```
 
-Il file `requirements.txt` include:
-- torch
-- fasttext-wheel (opzionale, solo con `COGNITOR_USE_FASTTEXT=true`)
-- sentencepiece
-- fastapi
-- uvicorn
-- pandas
-- scikit-learn
-- nltk
-- pyyaml
-- python-jose
-- torchcrf
+`requirements.txt` installa torch dall'indice CPU di PyTorch (`+cpu`, nessun `nvidia-*` né `triton`): l'ambiente
+pesa circa 1 GB (750 MB sono torch) invece dei 6-7 GB con CUDA. Contiene solo: torch, pytorch-crf, numpy,
+sentencepiece, fastapi, uvicorn, python-multipart, python-jose, bcrypt, pyyaml, python-dotenv, requests, ddgs.
+
+**Sviluppo e addestramento** (scikit-learn, onnx, onnxruntime, fastText, nltk, pytest, httpx):
+
+```bash
+pip install -r requirements-dev.txt     # include requirements.txt
+```
+
+Con una GPU installare prima torch con CUDA (il torch CPU di `requirements.txt` non la usa).
 
 ### Download Pre-trained FastText (opzionale, solo con `USE_FASTTEXT=true`)
 
