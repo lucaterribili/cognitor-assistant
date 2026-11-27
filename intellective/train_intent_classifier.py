@@ -240,8 +240,9 @@ def make_split(full_dataset):
             single_word_groups.add(group_id)
 
     splittable_mask = [group_id not in single_word_groups for group_id in group_ids]
-    splittable_indices = np.array([i for i, keep in enumerate(splittable_mask) if keep])
-    forced_train_indices = np.array([i for i, keep in enumerate(splittable_mask) if not keep])
+    splittable_indices = np.array([i for i, keep in enumerate(splittable_mask) if keep], dtype=int)
+    # dtype esplicito: senza gruppi di una parola l'array e' vuoto e np.array([]) e' float64 (gli indici diventano float)
+    forced_train_indices = np.array([i for i, keep in enumerate(splittable_mask) if not keep], dtype=int)
 
     unique_splittable_groups = {group_ids[i] for i in splittable_indices}
     if len(splittable_indices) > 0 and len(unique_splittable_groups) >= 2:
