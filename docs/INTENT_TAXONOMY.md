@@ -1,6 +1,6 @@
 # Intenti base
 
-678 intenti, 12063 esempi. Sorgente di verita': `knowledge/intents/*.yaml`.
+685 intenti, 12499 esempi. Sorgente di verita': `knowledge/intents/*.yaml`.
 
 Gli intenti sono organizzati per file in base al suffisso e splittati per entita' dominante. Rigenera con `python scripts/validate_intents.py --doc`.
 
@@ -14,17 +14,17 @@ Gli intenti sono organizzati per file in base al suffisso e splittati per entita
 | `ask_misc_accessibility` | `accessibility.yaml` | 17 | MISC |
 | `ask_zone_accessibility` | `accessibility.yaml` | 17 | ZONE |
 | `ask_activities` | `activities.yaml` | 42 |  |
-| `ask_department_activities` | `activities.yaml` | 17 | DEPARTMENT |
+| `ask_department_activities` | `activities.yaml` | 22 | DEPARTMENT |
 | `ask_organization_activities` | `activities.yaml` | 18 | ORGANIZATION, ZONE |
 | `ask_category_activities` | `activities.yaml` | 17 | CATEGORY |
 | `ask_event_activities` | `activities.yaml` | 18 | EVENT |
 | `ask_health_service_activities` | `activities.yaml` | 16 | HEALTH_SERVICE |
 | `ask_document_activities` | `activities.yaml` | 17 | DOCUMENT |
-| `ask_facility_activities` | `activities.yaml` | 17 | FACILITY |
+| `ask_facility_activities` | `activities.yaml` | 21 | FACILITY |
 | `ask_procedure_activities` | `activities.yaml` | 17 | PROCEDURE |
 | `ask_address` | `address.yaml` | 18 |  |
-| `ask_facility_address` | `address.yaml` | 17 | FACILITY |
-| `ask_department_address` | `address.yaml` | 17 | DEPARTMENT, ORGANIZATION, ZONE |
+| `ask_facility_address` | `address.yaml` | 25 | FACILITY |
+| `ask_department_address` | `address.yaml` | 26 | DEPARTMENT, ORGANIZATION, ZONE |
 | `ask_organization_address` | `address.yaml` | 17 | ORGANIZATION |
 | `ask_address_address` | `address.yaml` | 16 | ADDRESS |
 | `ask_document_address` | `address.yaml` | 16 | DOCUMENT |
@@ -67,14 +67,15 @@ Gli intenti sono organizzati per file in base al suffisso e splittati per entita
 | `ask_misc_announcements` | `announcements.yaml` | 16 | MISC |
 | `ask_product_announcements` | `announcements.yaml` | 17 | PRODUCT |
 | `ask_appointments` | `appointments.yaml` | 17 |  |
-| `ask_department_appointments` | `appointments.yaml` | 18 | DEPARTMENT, ZONE |
-| `ask_role_appointments` | `appointments.yaml` | 17 | ROLE, FACILITY |
+| `ask_department_appointments` | `appointments.yaml` | 25 | DEPARTMENT, ZONE |
+| `ask_role_appointments` | `appointments.yaml` | 22 | ROLE, FACILITY |
 | `ask_document_appointments` | `appointments.yaml` | 16 | DOCUMENT |
 | `ask_health_service_appointments` | `appointments.yaml` | 18 | HEALTH_SERVICE |
 | `ask_medical_procedure_appointments` | `appointments.yaml` | 18 | MEDICAL_PROCEDURE |
-| `ask_facility_appointments` | `appointments.yaml` | 17 | FACILITY |
+| `ask_facility_appointments` | `appointments.yaml` | 24 | FACILITY |
 | `ask_organization_appointments` | `appointments.yaml` | 17 | ORGANIZATION |
 | `ask_procedure_appointments` | `appointments.yaml` | 17 | PROCEDURE |
+| `ask_person_appointments` | `appointments.yaml` | 25 | PERSON |
 | `ask_availability` | `availability.yaml` | 16 |  |
 | `ask_medical_procedure_availability` | `availability.yaml` | 17 | MEDICAL_PROCEDURE, ZONE |
 | `ask_facility_availability` | `availability.yaml` | 18 | FACILITY, ZONE, DATE |
@@ -88,16 +89,17 @@ Gli intenti sono organizzati per file in base al suffisso e splittati per entita
 | `ask_zone_availability` | `availability.yaml` | 18 | ZONE |
 | `ask_booking` | `booking.yaml` | 18 |  |
 | `ask_medical_procedure_booking` | `booking.yaml` | 17 | MEDICAL_PROCEDURE, DOCUMENT, FACILITY |
-| `ask_health_service_booking` | `booking.yaml` | 17 | HEALTH_SERVICE, ZONE |
-| `ask_facility_booking` | `booking.yaml` | 18 | FACILITY, ZONE |
+| `ask_health_service_booking` | `booking.yaml` | 21 | HEALTH_SERVICE, ZONE |
+| `ask_facility_booking` | `booking.yaml` | 24 | FACILITY, ZONE |
 | `ask_organization_booking` | `booking.yaml` | 18 | ORGANIZATION |
-| `ask_department_booking` | `booking.yaml` | 18 | DEPARTMENT |
+| `ask_department_booking` | `booking.yaml` | 24 | DEPARTMENT |
 | `ask_document_booking` | `booking.yaml` | 17 | DOCUMENT |
 | `ask_misc_booking` | `booking.yaml` | 18 | MISC, FACILITY |
 | `ask_event_booking` | `booking.yaml` | 18 | EVENT |
 | `ask_procedure_booking` | `booking.yaml` | 17 | PROCEDURE |
 | `ask_technology_booking` | `booking.yaml` | 16 | TECHNOLOGY |
 | `ask_zone_booking` | `booking.yaml` | 16 | ZONE |
+| `ask_person_booking` | `booking.yaml` | 25 | PERSON |
 | `ask_cadastral_services` | `cadastral_services.yaml` | 16 |  |
 | `ask_document_cadastral_services` | `cadastral_services.yaml` | 17 | DOCUMENT, ORGANIZATION |
 | `ask_misc_cadastral_services` | `cadastral_services.yaml` | 16 | MISC, ORGANIZATION, TAX |
@@ -172,20 +174,22 @@ Gli intenti sono organizzati per file in base al suffisso e splittati per entita
 | `ask_medical_procedure_consequences` | `consequences.yaml` | 16 | MEDICAL_PROCEDURE |
 | `ask_tech_concept_consequences` | `consequences.yaml` | 17 | TECH_CONCEPT |
 | `ask_contact_human` | `contact_human.yaml` | 18 |  |
-| `ask_department_contact_human` | `contact_human.yaml` | 18 | DEPARTMENT |
+| `ask_department_contact_human` | `contact_human.yaml` | 23 | DEPARTMENT |
 | `ask_organization_contact_human` | `contact_human.yaml` | 18 | ORGANIZATION |
 | `ask_role_contact_human` | `contact_human.yaml` | 18 | ROLE, FACILITY |
 | `ask_health_service_contact_human` | `contact_human.yaml` | 18 | HEALTH_SERVICE |
-| `ask_facility_contact_human` | `contact_human.yaml` | 17 | FACILITY |
+| `ask_facility_contact_human` | `contact_human.yaml` | 22 | FACILITY |
 | `ask_procedure_contact_human` | `contact_human.yaml` | 16 | PROCEDURE |
+| `ask_person_contact_human` | `contact_human.yaml` | 25 | PERSON |
 | `ask_contacts` | `contacts.yaml` | 16 |  |
-| `ask_department_contacts` | `contacts.yaml` | 16 | DEPARTMENT, ZONE |
+| `ask_department_contacts` | `contacts.yaml` | 25 | DEPARTMENT, ZONE |
 | `ask_organization_contacts` | `contacts.yaml` | 17 | ORGANIZATION |
-| `ask_facility_contacts` | `contacts.yaml` | 16 | FACILITY |
+| `ask_facility_contacts` | `contacts.yaml` | 24 | FACILITY |
 | `ask_health_service_contacts` | `contacts.yaml` | 18 | HEALTH_SERVICE |
 | `ask_document_contacts` | `contacts.yaml` | 17 | DOCUMENT |
-| `ask_role_contacts` | `contacts.yaml` | 16 | ROLE |
+| `ask_role_contacts` | `contacts.yaml` | 24 | ROLE |
 | `ask_procedure_contacts` | `contacts.yaml` | 17 | PROCEDURE |
+| `ask_person_contacts` | `contacts.yaml` | 25 | PERSON |
 | `ask_costs` | `costs.yaml` | 17 |  |
 | `ask_document_costs` | `costs.yaml` | 16 | DOCUMENT, ORGANIZATION |
 | `ask_health_service_costs` | `costs.yaml` | 18 | HEALTH_SERVICE |
@@ -206,15 +210,15 @@ Gli intenti sono organizzati per file in base al suffisso e splittati per entita
 | `ask_document_definition` | `definition.yaml` | 15 | DOCUMENT |
 | `ask_misc_definition` | `definition.yaml` | 18 | MISC |
 | `ask_tax_definition` | `definition.yaml` | 16 | TAX |
-| `ask_health_service_definition` | `definition.yaml` | 18 | HEALTH_SERVICE |
+| `ask_health_service_definition` | `definition.yaml` | 22 | HEALTH_SERVICE |
 | `ask_tech_concept_definition` | `definition.yaml` | 18 | TECH_CONCEPT, TECHNOLOGY |
-| `ask_department_definition` | `definition.yaml` | 17 | DEPARTMENT |
+| `ask_department_definition` | `definition.yaml` | 25 | DEPARTMENT |
 | `ask_medical_procedure_definition` | `definition.yaml` | 16 | MEDICAL_PROCEDURE |
 | `ask_technology_definition` | `definition.yaml` | 16 | TECHNOLOGY |
-| `ask_facility_definition` | `definition.yaml` | 18 | FACILITY |
+| `ask_facility_definition` | `definition.yaml` | 24 | FACILITY |
 | `ask_procedure_definition` | `definition.yaml` | 16 | PROCEDURE |
 | `ask_organization_definition` | `definition.yaml` | 18 | ORGANIZATION |
-| `ask_role_definition` | `definition.yaml` | 18 | ROLE |
+| `ask_role_definition` | `definition.yaml` | 29 | ROLE |
 | `ask_delivery` | `delivery.yaml` | 18 |  |
 | `ask_document_delivery` | `delivery.yaml` | 16 | DOCUMENT |
 | `ask_product_delivery` | `delivery.yaml` | 18 | PRODUCT |
@@ -295,13 +299,14 @@ Gli intenti sono organizzati per file in base al suffisso e splittati per entita
 | `ask_procedure_eligibility` | `eligibility.yaml` | 16 | PROCEDURE |
 | `ask_role_eligibility` | `eligibility.yaml` | 17 | ROLE |
 | `ask_email` | `email.yaml` | 17 |  |
-| `ask_department_email` | `email.yaml` | 17 | DEPARTMENT, FACILITY, DOCUMENT, ORGANIZATION |
+| `ask_department_email` | `email.yaml` | 26 | DEPARTMENT, FACILITY, DOCUMENT, ORGANIZATION |
 | `ask_organization_email` | `email.yaml` | 17 | ORGANIZATION, DOCUMENT |
 | `ask_document_email` | `email.yaml` | 16 | DOCUMENT |
 | `ask_health_service_email` | `email.yaml` | 16 | HEALTH_SERVICE |
-| `ask_facility_email` | `email.yaml` | 17 | FACILITY |
+| `ask_facility_email` | `email.yaml` | 25 | FACILITY |
 | `ask_procedure_email` | `email.yaml` | 17 | PROCEDURE, DOCUMENT |
-| `ask_role_email` | `email.yaml` | 17 | ROLE |
+| `ask_role_email` | `email.yaml` | 25 | ROLE |
+| `ask_person_email` | `email.yaml` | 25 | PERSON |
 | `ask_events` | `events.yaml` | 16 |  |
 | `ask_event_events` | `events.yaml` | 18 | EVENT, FACILITY, ZONE |
 | `ask_zone_events` | `events.yaml` | 17 | ZONE |
@@ -445,16 +450,16 @@ Gli intenti sono organizzati per file in base al suffisso e splittati per entita
 | `ask_product_obligations` | `obligations.yaml` | 16 | PRODUCT |
 | `ask_role_obligations` | `obligations.yaml` | 17 | ROLE |
 | `ask_opening_hours` | `opening_hours.yaml` | 18 | DATE |
-| `ask_facility_opening_hours` | `opening_hours.yaml` | 18 | FACILITY, ZONE, DATE |
-| `ask_department_opening_hours` | `opening_hours.yaml` | 18 | DEPARTMENT, DATE, TIME |
+| `ask_facility_opening_hours` | `opening_hours.yaml` | 26 | FACILITY, ZONE, DATE |
+| `ask_department_opening_hours` | `opening_hours.yaml` | 27 | DEPARTMENT, DATE, TIME |
 | `ask_health_service_opening_hours` | `opening_hours.yaml` | 16 | HEALTH_SERVICE, FACILITY, TIME, DATE |
 | `ask_document_opening_hours` | `opening_hours.yaml` | 18 | DOCUMENT, FACILITY |
 | `ask_organization_opening_hours` | `opening_hours.yaml` | 17 | ORGANIZATION |
 | `ask_medical_procedure_opening_hours` | `opening_hours.yaml` | 16 | MEDICAL_PROCEDURE, FACILITY |
 | `ask_organization` | `organization.yaml` | 43 |  |
 | `ask_organization_organization` | `organization.yaml` | 17 | ORGANIZATION |
-| `ask_department_organization` | `organization.yaml` | 17 | DEPARTMENT, ZONE, ORGANIZATION |
-| `ask_facility_organization` | `organization.yaml` | 17 | FACILITY |
+| `ask_department_organization` | `organization.yaml` | 23 | DEPARTMENT, ZONE, ORGANIZATION |
+| `ask_facility_organization` | `organization.yaml` | 21 | FACILITY |
 | `ask_zone_organization` | `organization.yaml` | 18 | ZONE |
 | `ask_payments` | `payments.yaml` | 16 |  |
 | `ask_document_payments` | `payments.yaml` | 17 | DOCUMENT, PAYMENT_METHOD, ORGANIZATION |
@@ -466,13 +471,15 @@ Gli intenti sono organizzati per file in base al suffisso e splittati per entita
 | `ask_organization_payments` | `payments.yaml` | 17 | ORGANIZATION, PAYMENT_METHOD |
 | `ask_product_payments` | `payments.yaml` | 18 | PRODUCT |
 | `ask_phone` | `phone.yaml` | 17 |  |
-| `ask_department_phone` | `phone.yaml` | 18 | DEPARTMENT |
+| `ask_department_phone` | `phone.yaml` | 28 | DEPARTMENT |
 | `ask_health_service_phone` | `phone.yaml` | 17 | HEALTH_SERVICE |
 | `ask_organization_phone` | `phone.yaml` | 17 | ORGANIZATION |
-| `ask_facility_phone` | `phone.yaml` | 16 | FACILITY, ZONE |
+| `ask_facility_phone` | `phone.yaml` | 24 | FACILITY, ZONE |
 | `ask_document_phone` | `phone.yaml` | 18 | DOCUMENT |
 | `ask_medical_procedure_phone` | `phone.yaml` | 16 | MEDICAL_PROCEDURE |
 | `ask_misc_phone` | `phone.yaml` | 18 | MISC |
+| `ask_person_phone` | `phone.yaml` | 25 | PERSON |
+| `ask_role_phone` | `phone.yaml` | 20 | ROLE |
 | `ask_prices` | `prices.yaml` | 16 |  |
 | `ask_document_prices` | `prices.yaml` | 17 | DOCUMENT, MEDICAL_PROCEDURE, ORGANIZATION, ROLE |
 | `ask_medical_procedure_prices` | `prices.yaml` | 17 | MEDICAL_PROCEDURE |
@@ -586,22 +593,22 @@ Gli intenti sono organizzati per file in base al suffisso e splittati per entita
 | `ask_misc_schedule` | `schedule.yaml` | 17 | MISC |
 | `ask_organization_schedule` | `schedule.yaml` | 18 | ORGANIZATION |
 | `ask_services` | `services.yaml` | 42 |  |
-| `ask_health_service_services` | `services.yaml` | 17 | HEALTH_SERVICE, ZONE |
+| `ask_health_service_services` | `services.yaml` | 21 | HEALTH_SERVICE, ZONE |
 | `ask_organization_services` | `services.yaml` | 18 | ORGANIZATION, TECHNOLOGY |
-| `ask_facility_services` | `services.yaml` | 16 | FACILITY, ZONE |
-| `ask_department_services` | `services.yaml` | 16 | DEPARTMENT |
+| `ask_facility_services` | `services.yaml` | 22 | FACILITY, ZONE |
+| `ask_department_services` | `services.yaml` | 24 | DEPARTMENT |
 | `ask_misc_services` | `services.yaml` | 17 | MISC |
 | `ask_document_services` | `services.yaml` | 18 | DOCUMENT |
 | `ask_procedure_services` | `services.yaml` | 17 | PROCEDURE |
 | `ask_medical_procedure_services` | `services.yaml` | 18 | MEDICAL_PROCEDURE |
 | `ask_technology_services` | `services.yaml` | 16 | TECHNOLOGY |
 | `ask_staff` | `staff.yaml` | 33 |  |
-| `ask_role_staff` | `staff.yaml` | 19 | ROLE, ORGANIZATION, ZONE, FACILITY |
-| `ask_department_staff` | `staff.yaml` | 18 | DEPARTMENT |
-| `ask_person_staff` | `staff.yaml` | 16 | PERSON |
+| `ask_role_staff` | `staff.yaml` | 28 | ROLE, ORGANIZATION, ZONE, FACILITY |
+| `ask_department_staff` | `staff.yaml` | 29 | DEPARTMENT |
+| `ask_person_staff` | `staff.yaml` | 41 | PERSON |
 | `ask_organization_staff` | `staff.yaml` | 16 | ORGANIZATION |
 | `ask_document_staff` | `staff.yaml` | 18 | DOCUMENT |
-| `ask_facility_staff` | `staff.yaml` | 16 | FACILITY |
+| `ask_facility_staff` | `staff.yaml` | 24 | FACILITY |
 | `ask_misc_staff` | `staff.yaml` | 16 | MISC |
 | `ask_procedure_staff` | `staff.yaml` | 18 | PROCEDURE |
 | `ask_technology_staff` | `staff.yaml` | 17 | TECHNOLOGY |

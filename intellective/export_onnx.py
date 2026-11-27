@@ -169,6 +169,7 @@ def export(output_path: str) -> str:
         "ner_output_name": NER_OUTPUT_NAME,
         "tokenizer": {"type": "sentencepiece", "lowercase": True},
         "min_confidence": MIN_INTENT_CONFIDENCE,
+        "temperature": round(float(model.temperature), 4),  # già applicata a `probs`: informativa
         "labels": labels,
         "ner_labels": ner_labels,
         "intents": {str(i): name for i, name in enumerate(labels)},

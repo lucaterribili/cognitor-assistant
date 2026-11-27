@@ -58,6 +58,10 @@ nlu:
     - posso disdire una prenotazione per la [nutrizione artificiale](HEALTH_SERVICE)
     - è aperta la prenotazione delle [cure palliative](HEALTH_SERVICE)
     - come si effettua la prenotazione dell'[ossigenoterapia](HEALTH_SERVICE)
+    - come effettuare la prenotazione tramite il [Centro Unico di Prenotazione](HEALTH_SERVICE)
+    - come si prenota l'[Assistenza Domiciliare Integrata](HEALTH_SERVICE)
+    - modalità di prenotazione per il [Punto Unico di Accesso](HEALTH_SERVICE)
+    - come prenotare l'accesso alla [Rete Locale di Cure Palliative](HEALTH_SERVICE)
   - intent: ask_facility_booking
     examples:
     - serve prenotare per i [Centri Prelievi](FACILITY)
@@ -78,6 +82,12 @@ nlu:
     - come si effettua la prenotazione del [Consultorio](FACILITY)
     - vorrei prenotare la [Galleria d'arte contemporanea](FACILITY)
     - dove posso prenotare online il [Centro Prelievi Palidoro](FACILITY)
+    - come si prenota al [Consultorio Familiare Valle Verde](FACILITY)
+    - modalità di prenotazione per il [Consultorio Familiare Porto Nuovo](FACILITY)
+    - come posso prenotare una prestazione alla [Casa della Comunità Porto Nuovo](FACILITY)
+    - come si effettua la prenotazione alla [Casa della Comunità Valle Verde](FACILITY)
+    - prenotazione visite presso la [Casa della Comunità Colline](FACILITY)
+    - come prenotare un esame al [Presidio Ospedaliero Santa Maria del Mare](FACILITY)
   - intent: ask_organization_booking
     examples:
     - come prenoto un appuntamento all'[Agenzia delle Entrate](ORGANIZATION)
@@ -101,7 +111,8 @@ nlu:
   - intent: ask_department_booking
     examples:
     - devo prenotare per andare all'[Ufficio del Catasto](DEPARTMENT)
-    - come prenoto l'appuntamento allo sportello dell'[anagrafe](DEPARTMENT) per la carta d'identità
+    - come prenoto l'appuntamento allo sportello dell'[anagrafe](DEPARTMENT) per la
+      carta d'identità
     - come si effettua la prenotazione della [Direzione Generale](DEPARTMENT)
     - vorrei prenotare l'[URP](DEPARTMENT)
     - dove posso prenotare online il [Pronto Soccorso](DEPARTMENT)
@@ -118,6 +129,13 @@ nlu:
     - vorrei prenotare la [Polizia locale](DEPARTMENT)
     - dove posso prenotare online la [Neurologia](DEPARTMENT)
     - quali sono i canali per prenotare l'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - come si prenota per la [UOC Patologia Clinica e Laboratorio Analisi](DEPARTMENT)
+    - prenotazione prestazioni per la [UOC Prevenzione e Sicurezza negli Ambienti
+      di Lavoro](DEPARTMENT)
+    - come prenotare una visita presso la [UOC Ostetricia e Ginecologia](DEPARTMENT)
+    - modalità di prenotazione per la [UOC Pediatria e Neonatologia](DEPARTMENT)
+    - come prenotare una consulenza al [Centro di Salute Mentale](DEPARTMENT)
+    - come si prenota un esame al [Centro di Diabetologia e Malattie Metaboliche](DEPARTMENT)
   - intent: ask_document_booking
     examples:
     - dove prenoto la [patente](DOCUMENT) A-B visita medica
@@ -232,3 +250,30 @@ nlu:
     - come si effettua la prenotazione di [Ponte Galeria](ZONE)
     - vorrei prenotare [Corviale](ZONE)
     - dove posso prenotare online [Ostia Antica](ZONE)
+  - intent: ask_person_booking
+    examples:
+    - come prenotare una prestazione con [Marco Valenti](PERSON)
+    - è possibile prenotare con la [dottoressa Francesca Lombardi](PERSON)
+    - come si prenota un colloquio con [Elena Conti](PERSON)
+    - posso effettuare la prenotazione con [Silvia Moretti](PERSON)
+    - come prenoto con il [dottor Paolo Mancini](PERSON)
+    - posso prenotare una consulenza con [Roberto Ferri](PERSON)
+    - come si prenota con [Giulia Ricci](PERSON)
+    - vorrei prenotare con [Matteo De Luca](PERSON)
+    - prenotazione visita con il [professor Alessandro Russo](PERSON)
+    - come prenoto con [Chiara Barbieri](PERSON)
+    - si può effettuare una prenotazione per [Sofia Ferrari](PERSON)
+    - come prenotare con [John Smith](PERSON)
+    - come si prenota con la [dottoressa Fatima Zahra](PERSON)
+    - modalità di prenotazione per [Sarah Jenkins](PERSON)
+    - vorrei effettuare la prenotazione con [Mohammed Al-Mansoor](PERSON)
+    - come prenoto una seduta con [Chen Wei](PERSON)
+    - procedura di prenotazione con il [professor Jean Dupont](PERSON)
+    - come prenotare una visita con [Maria Garcia](PERSON)
+    - come si fissa la prenotazione per [Priya Patel](PERSON)
+    - come prenotare una prestazione con il [dottor Carlos Hernandez](PERSON)
+    - come posso prenotare con [Elena Popov](PERSON)
+    - come si prenota con [Lukas Schmidt](PERSON)
+    - modalità per prenotare con [Amina Diallo](PERSON)
+    - come prenotare una consulenza con [Ahmed Hassan](PERSON)
+    - si può effettuare la prenotazione per [Kwame Mensah](PERSON)

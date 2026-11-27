@@ -108,3 +108,84 @@ conversations:
       - {u: "Salve", move: greeting, bot: greet}
       - {u: "Dove posso scaricare il modulo per il rimborso?", move: question, topic: downloads, ent: [DOCUMENT], bot: answer}
       - {u: "Grazie, arrivederci", move: goodbye, bot: goodbye}
+
+  - id: base-13
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Posso pagare il ticket con carta di credito o bancomat?", move: question, topic: payments, ent: [PAYMENT_METHOD], bot: answer}
+      - {u: "Perfetto, grazie", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: base-14
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quali documenti devo portare per il rinnovo dell'esenzione ticket?", move: question, topic: requirements, ent: [DOCUMENT], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "No grazie, basta così", move: deny, bot: goodbye}
+
+  - id: base-15
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Come posso contattare via email il reparto di pediatria?", move: question, topic: contacts, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+
+  - id: base-16
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Entro quanti giorni devo ritirare il referto degli esami?", move: question, topic: deadlines, ent: [DOCUMENT], bot: answer}
+      - {u: "Grazie mille per l'aiuto", move: thanks, bot: thanks_reply}
+      - {u: "Buona giornata", move: goodbye, bot: goodbye}
+
+  - id: base-17
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Come posso richiedere il rimborso del ticket non usufruito?", move: question, topic: refunds, ent: [DOCUMENT], bot: answer}
+      - {u: "E quali moduli devo allegare?", move: question, topic: documentation, carry: [DOCUMENT], bot: answer}
+      - {u: "Molte grazie", move: thanks, bot: thanks_reply}
+
+  - id: base-18
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "L'ingresso dell'ospedale è accessibile a persone in sedia a rotelle?", move: question, topic: accessibility, ent: [FACILITY], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "Non mi serve altro", move: deny, bot: goodbye}
+
+  - id: base-19
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quali sono le regole per le visite ai parenti in reparto?", move: question, topic: safety, ent: [FACILITY], bot: answer}
+      - {u: "Grazie delle informazioni", move: thanks, bot: thanks_reply}
+
+  - id: base-20
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Chi è il responsabile del reparto di neurologia?", move: question, topic: staff, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+      - {u: "Ciao", move: goodbye, bot: goodbye}
+
+  - id: base-21
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quanto tempo si aspetta in media al pronto soccorso?", move: question, topic: waiting_times, ent: [FACILITY], bot: answer}
+      - {u: "Capito", move: confirm, bot: offer_more}
+      - {u: "No va bene così", move: deny, bot: goodbye}
+
+  - id: base-22
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Qual è l'indirizzo esatto dell'ASL distretto centro?", move: question, topic: address, ent: [ORGANIZATION], bot: answer}
+      - {u: "Come ci si arriva con i mezzi?", move: question, topic: directions, carry: [ORGANIZATION], bot: answer}
+      - {u: "Grazie tante", move: thanks, bot: thanks_reply}
+

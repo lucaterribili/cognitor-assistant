@@ -83,6 +83,13 @@ nlu:
     - com'è strutturata l'organizzazione del [Pronto Soccorso](DEPARTMENT)
     - qual è l'assetto organizzativo dell'[Ufficio Territoriale](DEPARTMENT)
     - come si articola internamente l'[Ufficio del Catasto](DEPARTMENT)
+    - come è strutturata la [UOC Patologia Clinica e Laboratorio Analisi](DEPARTMENT)
+    - in quali settori si divide la [UOC Prevenzione e Sicurezza negli Ambienti di
+      Lavoro](DEPARTMENT)
+    - come si articola la [UOC Ostetricia e Ginecologia](DEPARTMENT)
+    - come è organizzata la [UOC Pediatria e Neonatologia](DEPARTMENT)
+    - quali unità comprende la [Direzione Strategica](DEPARTMENT)
+    - come si articola il [Dipartimento di Prevenzione](DEPARTMENT)
   - intent: ask_facility_organization
     examples:
     - da quali unità operative è composto il [Presidio Ospedaliero Grassi](FACILITY)
@@ -102,6 +109,10 @@ nlu:
     - come si articola internamente il [Grassi](FACILITY)
     - dove consulto l'organigramma del [Centro Prelievi](FACILITY)
     - in quali settori o unità è suddiviso la [Casa della Salute](FACILITY)
+    - come è articolato il [Consultorio Familiare Valle Verde](FACILITY)
+    - in quali sezioni si suddivide il [Consultorio Familiare Porto Nuovo](FACILITY)
+    - come è organizzata la [Casa della Comunità Porto Nuovo](FACILITY)
+    - come è strutturata la [Casa della Comunità Valle Verde](FACILITY)
   - intent: ask_zone_organization
     examples:
     - come sono organizzati i servizi nel [Municipio XII](ZONE)

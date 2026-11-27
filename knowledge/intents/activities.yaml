@@ -58,11 +58,18 @@ nlu:
     - che tipo di attività sono previste per l'[anagrafe](DEPARTMENT)
     - mi elenchi le principali attività della [Polizia locale](DEPARTMENT)
     - di quali attività si occupa la [Neurologia](DEPARTMENT)
-    - quali iniziative e attività vengono proposte dall'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
+    - quali iniziative e attività vengono proposte dall'[Ufficio Riabilitazione e
+      Disabilità Adulti](DEPARTMENT)
     - cosa prevede il piano delle attività del [Dipartimento del Farmaco](DEPARTMENT)
     - quali attività svolge la [UOC Consultori Familiari](DEPARTMENT)
     - che tipo di attività sono previste per la [Cardiologia interventistica](DEPARTMENT)
     - mi elenchi le principali attività dei [tributi](DEPARTMENT)
+    - quali sono le attività della [UOC Patologia Clinica e Laboratorio Analisi](DEPARTMENT)
+    - di quali attività si occupa la [UOC Prevenzione e Sicurezza negli Ambienti di
+      Lavoro](DEPARTMENT)
+    - che attività svolge la [UOC Ostetricia e Ginecologia](DEPARTMENT)
+    - quali progetti porta avanti la [UOC Pediatria e Neonatologia](DEPARTMENT)
+    - quali iniziative organizza il [Centro di Salute Mentale](DEPARTMENT)
   - intent: ask_organization_activities
     examples:
     - quali attività svolge l'[ASL Roma 3](ORGANIZATION) a [Ostia](ZONE)
@@ -117,7 +124,8 @@ nlu:
     - che tipo di attività sono previste per la [giornata della prevenzione](EVENT)
     - mi elenchi le principali attività di [Magliana per le Ragazze](EVENT)
     - di quali attività si occupa il [convegno pediatrico](EVENT)
-    - quali iniziative e attività vengono proposte dalla [Settimana dell'allattamento materno](EVENT)
+    - quali iniziative e attività vengono proposte dalla [Settimana dell'allattamento
+      materno](EVENT)
     - cosa prevede il piano delle attività dell'[Open Day vaccinale](EVENT)
     - quali attività svolge la [Giornata della trasparenza](EVENT)
     - che tipo di attività sono previste per la [Camminata della salute](EVENT)
@@ -178,6 +186,10 @@ nlu:
     - che tipo di attività sono previste per il [Centro Prelievi Acilia](FACILITY)
     - mi elenchi le principali attività del [Grassi](FACILITY)
     - di quali attività si occupa il [Centro Prelievi](FACILITY)
+    - quali attività si svolgono al [Consultorio Familiare Valle Verde](FACILITY)
+    - che iniziative sono previste al [Consultorio Familiare Porto Nuovo](FACILITY)
+    - quali attività sono organizzate nella [Casa della Comunità Porto Nuovo](FACILITY)
+    - cosa si organizza presso la [Casa della Comunità Valle Verde](FACILITY)
   - intent: ask_procedure_activities
     examples:
     - cosa fa l'ufficio controlli per l'[accertamento fiscale](PROCEDURE)

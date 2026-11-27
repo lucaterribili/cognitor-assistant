@@ -90,3 +90,89 @@ conversations:
       - {u: "C'è un autobus?", move: question, topic: directions, carry: [FACILITY], bot: answer}
       - {u: "Perfetto, grazie", move: thanks, bot: thanks_reply}
       - {u: "Ciao", move: goodbye, bot: goodbye}
+
+  - id: slot-11
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quanto costa la prestazione specialistica?", move: question, topic: costs, bot: ask_slot}
+      - {u: "La risonanza magnetica al ginocchio", move: slot_reply, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: slot-12
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quali sono i tempi di attesa per l'esame?", move: question, topic: waiting_times, bot: ask_slot}
+      - {u: "Per una colonscopia", move: slot_reply, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: slot-13
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Mi serve il numero di telefono diretto", move: question, topic: phone, bot: ask_slot}
+      - {u: "Del reparto di ortopedia", move: slot_reply, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie tante", move: thanks, bot: thanks_reply}
+
+  - id: slot-14
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Cosa devo presentare allo sportello?", move: question, topic: requirements, bot: ask_slot}
+      - {u: "Per richiedere la cartella clinica", move: slot_reply, ent: [DOCUMENT], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "A posto così", move: deny, bot: goodbye}
+
+  - id: slot-15
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "In quale edificio si trova?", move: question, topic: location, bot: ask_slot}
+      - {u: "Il punto prelievi", move: slot_reply, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: slot-16
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Come posso pagare?", move: question, topic: payments, bot: ask_slot}
+      - {u: "Con PagoPA online", move: slot_reply, ent: [PAYMENT_METHOD], bot: answer}
+      - {u: "Perfetto, grazie", move: thanks, bot: thanks_reply}
+
+  - id: slot-17
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Vorrei prendere appuntamento", move: question, topic: booking, bot: ask_slot}
+      - {u: "Per una visita dermatologica", move: slot_reply, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Serve l'impegnativa del medico curante?", move: question, topic: documentation, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+
+  - id: slot-18
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Avete un recapito mail per informazioni?", move: question, topic: contacts, bot: ask_slot}
+      - {u: "Della direzione sanitaria", move: slot_reply, ent: [ORGANIZATION], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+      - {u: "Buona giornata", move: goodbye, bot: goodbye}
+
+  - id: slot-19
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Fino a che ora sono aperti gli uffici?", move: question, topic: opening_hours, bot: ask_slot}
+      - {u: "Lo sportello scelta e revoca del medico", move: slot_reply, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "No grazie", move: deny, bot: goodbye}
+
+  - id: slot-20
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "A che ora apre?", move: question, topic: opening_hours, bot: ask_slot}
+      - {u: "Volevo sapere dove si trova l'ospedale", move: question, topic: location, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+

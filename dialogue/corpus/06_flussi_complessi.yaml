@@ -1,0 +1,232 @@
+# Conversazioni complesse: multi-turno (5-8+ turni), interruzioni di slot,
+# recuperi da RAG basso, riparazioni conversazionali, cambi di rotta e catene di follow-up/carry.
+conversations:
+  - id: complex-01
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Vorrei prenotare un appuntamento", move: question, topic: booking, bot: ask_slot}
+      - {u: "Non so bene la dicitura esatta", move: unclear, bot: clarify}
+      - {u: "È una visita cardiologica con elettrocardiogramma", move: slot_reply, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "E quali documenti devo portare con me?", move: question, topic: documentation, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "Sì, quanto costa il ticket?", move: question, topic: costs, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie di tutte le informazioni", move: thanks, bot: thanks_reply}
+      - {u: "Buona giornata", move: goodbye, bot: goodbye}
+
+  - id: complex-02
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "È uno scandalo, nessuno risponde mai ai telefoni!", move: insult, bot: deescalate}
+      - {u: "Quanto tempo devo aspettare per avere i risultati degli esami del sangue?", move: question, topic: waiting_times, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Non ho capito bene la procedura, puoi ripetere?", move: repeat_request, bot: repeat}
+      - {u: "Voglio presentare un reclamo formale", move: question, topic: complaints, ent: [PROCEDURE], bot: answer}
+      - {u: "Voglio comunque parlare con un operatore umano", move: handoff, bot: handoff}
+
+  - id: complex-03
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "Come funzionano le detrazioni delle spese sanitarie?", move: question, topic: tax_deductions, ent: [TAX], rag: low, bot: clarify}
+      - {u: "Intendo le detrazioni fiscali per le ricevute del ticket", move: question, topic: tax_deductions, ent: [TAX], bot: answer}
+      - {u: "Entro quando si deve presentare la documentazione?", move: question, topic: deadlines, carry: [TAX], bot: answer}
+      - {u: "E dove posso scaricare i moduli?", move: question, topic: downloads, ent: [DOCUMENT], bot: answer}
+      - {u: "Chiarissimo, grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: complex-04
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Come arrivo al padiglione?", move: question, topic: directions, bot: ask_slot}
+      - {u: "Al padiglione della radiologia", move: slot_reply, ent: [DEPARTMENT], bot: answer}
+      - {u: "E invece per la nefrologia?", move: follow_up_entity, ent: [DEPARTMENT], bot: answer}
+      - {u: "L'edificio è accessibile con ascensore?", move: question, topic: accessibility, carry: [DEPARTMENT], bot: answer}
+      - {u: "Fino a che ora sono aperti gli ingressi?", move: question, topic: opening_hours, carry: [DEPARTMENT], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "No, a posto così", move: deny, bot: goodbye}
+
+  - id: complex-05
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Posso scaricare i referti online dal portale?", move: question, topic: downloads, ent: [DOCUMENT], bot: answer}
+      - {u: "Se il sistema va in errore cosa faccio?", move: question, topic: troubleshooting, ent: [TECHNOLOGY], rag: none, bot: fallback}
+      - {u: "Allora dove si trova l'ufficio per il ritiro a mano?", move: question, topic: location, ent: [FACILITY], bot: answer}
+      - {u: "Quali sono gli orari dello sportello?", move: question, topic: opening_hours, carry: [FACILITY], bot: answer}
+      - {u: "Grazie per la disponibilità", move: thanks, bot: thanks_reply}
+      - {u: "Ciao", move: goodbye, bot: goodbye}
+
+  - id: complex-06
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Ci sono posizioni aperte per lavorare in pediatria?", move: question, topic: careers, ent: [DEPARTMENT], bot: answer}
+      - {u: "Quali sono i requisiti necessari per partecipare?", move: question, topic: requirements, carry: [DEPARTMENT], bot: answer}
+      - {u: "E quali moduli bisogna compilare?", move: question, topic: forms, ent: [DOCUMENT], bot: answer}
+      - {u: "Entro quale scadenza va inviata la domanda?", move: question, topic: deadlines, carry: [DOCUMENT], bot: answer}
+      - {u: "Ho capito", move: confirm, bot: offer_more}
+      - {u: "Qual è la mail dell'ufficio del personale?", move: question, topic: email, ent: [ORGANIZATION], bot: answer}
+      - {u: "Grazie infinite", move: thanks, bot: thanks_reply}
+      - {u: "Buona giornata", move: goodbye, bot: goodbye}
+
+  - id: complex-07
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Come posso annullare una prenotazione?", move: question, topic: procedures, bot: ask_slot}
+      - {u: "Non sono pratico di queste cose online", move: unclear, bot: clarify}
+      - {u: "Vorrei disdire una risonanza magnetica", move: slot_reply, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Puoi ripetere il codice di disdetta?", move: repeat_request, bot: repeat}
+      - {u: "Capito perfettamente", move: confirm, bot: offer_more}
+      - {u: "No, grazie mille dell'aiuto", move: deny, bot: goodbye}
+
+  - id: complex-08
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "Vorrei rinnovare l'esenzione ticket per patologia cronica", move: question, topic: eligibility, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Quale documentazione deve rilasciare il medico?", move: question, topic: documentation, carry: [HEALTH_SERVICE], bot: answer}
+      - {u: "Chi è il responsabile per la diabetologia?", move: question, topic: staff, ent: [DEPARTMENT], bot: answer}
+      - {u: "E per l'endocrinologia?", move: follow_up_entity, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie per le informazioni precise", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: complex-09
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Vorrei diventare donatore di sangue", move: question, topic: requirements, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Dove si trova il centro trasfusionale?", move: question, topic: location, ent: [FACILITY], bot: answer}
+      - {u: "E gli orari per effettuare il prelievo?", move: question, topic: opening_hours, carry: [FACILITY], bot: answer}
+      - {u: "Serve essere a digiuno prima del prelievo?", move: question, topic: instructions, carry: [HEALTH_SERVICE], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "No grazie, ho tutto", move: deny, bot: goodbye}
+
+  - id: complex-10
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "asd fghjkl", move: unclear, bot: clarify}
+      - {u: "Scusami, mi è caduto il telefono. Che servizi offrite?", move: question, topic: services, bot: answer}
+      - {u: "Come si paga la prestazione?", move: question, topic: payments, bot: ask_slot}
+      - {u: "Una visita odontoiatrica", move: slot_reply, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Si può pagare con bancomat o carta?", move: question, topic: payments, ent: [PAYMENT_METHOD], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Ciao", move: goodbye, bot: goodbye}
+
+  - id: complex-11
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Vendete biglietti per il concerto allo stadio?", move: out_of_scope, bot: fallback}
+      - {u: "Ho sbagliato chat. Vorrei sapere come viene gestita la privacy della cartella clinica", move: question, topic: privacy, ent: [DOCUMENT], bot: answer}
+      - {u: "Quali sono i miei diritti sui dati sanitari?", move: question, topic: rights, carry: [DOCUMENT], bot: answer}
+      - {u: "Voglio parlare con il responsabile", move: handoff, bot: handoff}
+
+  - id: complex-12
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Quanto costa richiedere la copia della cartella clinica?", move: question, topic: costs, ent: [DOCUMENT], bot: answer}
+      - {u: "Quali sono i tempi di rilascio del documento?", move: question, topic: duration, carry: [DOCUMENT], bot: answer}
+      - {u: "Posso delegare un familiare al ritiro?", move: question, topic: regulations, carry: [DOCUMENT], bot: answer}
+      - {u: "Quale modulo di delega serve?", move: question, topic: forms, carry: [DOCUMENT], bot: answer}
+      - {u: "Tutto molto chiaro", move: confirm, bot: offer_more}
+      - {u: "Nient'altro, grazie", move: deny, bot: goodbye}
+
+  - id: complex-13
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Vorrei informazioni generali sulle vaccinazioni", move: question, topic: general_information, bot: answer}
+      - {u: "Come prenoto l'appuntamento?", move: question, topic: booking, bot: ask_slot}
+      - {u: "Per il vaccino febbre gialla", move: slot_reply, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "E per l'epatite A?", move: follow_up_entity, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "A che ora apre l'ambulatorio viaggiatori?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Grazie mille dell'assistenza", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: complex-14
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Mi avete addebitato due volte il ticket, siete pessimi!", move: insult, bot: deescalate}
+      - {u: "Come chiedo il rimborso del pagamento doppio?", move: question, topic: refunds, ent: [DOCUMENT], bot: answer}
+      - {u: "Qual è la procedura da seguire online?", move: question, topic: procedures, carry: [DOCUMENT], bot: answer}
+      - {u: "Ok ho capito", move: confirm, bot: offer_more}
+      - {u: "Qual è il numero di telefono dell'ufficio cassa?", move: question, topic: phone, ent: [FACILITY], bot: answer}
+      - {u: "Grazie per il chiarimento", move: thanks, bot: thanks_reply}
+      - {u: "Buona giornata", move: goodbye, bot: goodbye}
+
+  - id: complex-15
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "Avete il servizio di riabilitazione fisioterapica?", move: question, topic: services, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Quali sono i tempi di attesa per iniziare le sedute?", move: question, topic: waiting_times, carry: [HEALTH_SERVICE], bot: answer}
+      - {u: "Ci sono convenzioni o esenzioni?", move: question, topic: discounts, carry: [HEALTH_SERVICE], bot: answer}
+      - {u: "Dove si trova il presidio del distretto 1?", move: question, topic: location, ent: [ORGANIZATION], bot: answer}
+      - {u: "E quello del distretto 2?", move: follow_up_entity, ent: [ORGANIZATION], bot: answer}
+      - {u: "Grazie tante", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: complex-16
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Mio figlio sta male, il pronto soccorso pediatrico è aperto adesso?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Dove posso parcheggiare l'auto più vicino all'ingresso?", move: question, topic: directions, carry: [FACILITY], bot: answer}
+      - {u: "Qual è il numero di telefono per avvisare dell'arrivo?", move: question, topic: phone, carry: [FACILITY], bot: answer}
+      - {u: "Ok arriviamo subito", move: confirm, bot: offer_more}
+      - {u: "No, grazie", move: deny, bot: goodbye}
+
+  - id: complex-17
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Devo fare un ricovero ospedaliero", move: question, topic: procedures, bot: ask_slot}
+      - {u: "Nel reparto di chirurgia generale", move: slot_reply, ent: [DEPARTMENT], bot: answer}
+      - {u: "Quali istruzioni devo seguire prima dell'intervento?", move: question, topic: instructions, carry: [DEPARTMENT], bot: answer}
+      - {u: "Quali documenti sanitari devo portare con me?", move: question, topic: documentation, carry: [DEPARTMENT], bot: answer}
+      - {u: "Chiarissimo, grazie", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: complex-18
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "Come si attiva l'assistenza domiciliare per un anziano?", move: question, topic: procedures, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Chi ha diritto a questo servizio?", move: question, topic: eligibility, carry: [HEALTH_SERVICE], bot: answer}
+      - {u: "Dove trovo il modulo di richiesta?", move: question, topic: forms, ent: [DOCUMENT], bot: answer}
+      - {u: "Chi deve firmare il modulo?", move: question, topic: requirements, carry: [DOCUMENT], bot: answer}
+      - {u: "Grazie molte", move: thanks, bot: thanks_reply}
+      - {u: "Buona giornata", move: goodbye, bot: goodbye}
+
+  - id: complex-19
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Posso chiedere il rimborso per cure mediche ricevute all'estero?", move: question, topic: refunds, ent: [HEALTH_SERVICE], rag: low, bot: clarify}
+      - {u: "Sì, per un ricovero urgente in un paese extra-UE", move: confirm, bot: prompt}
+      - {u: "Qual è la procedura per la domanda di rimborso?", move: question, topic: procedures, ent: [DOCUMENT], bot: answer}
+      - {u: "Preferisco spiegare la situazione a una persona", move: handoff, bot: handoff}
+
+  - id: complex-20
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Vorrei prenotare una visita", move: question, topic: booking, bot: ask_slot}
+      - {u: "In realtà vorrei prima sapere come fare l'esenzione per reddito", move: question, topic: how_to, ent: [DOCUMENT], bot: answer}
+      - {u: "A che ora apre lo sportello esenzioni?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Non ho capito, puoi ripetere gli orari del sabato?", move: repeat_request, bot: repeat}
+      - {u: "Perfetto grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Buon lavoro", move: goodbye, bot: goodbye}

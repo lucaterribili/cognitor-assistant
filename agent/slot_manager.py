@@ -70,9 +70,14 @@ class SlotManager:
         candidates = [(idx, e) for idx, e in enumerate(entities) if idx not in exclude_indexes]
 
         entity_type_lower = entity_type.lower()
-        for idx, entity in candidates:
-            if entity.get('entity', '').lower() == entity_type_lower:
+        same_type = [(idx, e) for idx, e in candidates if e.get('entity', '').lower() == entity_type_lower]
+        # Più entità dello stesso tipo: preferisce la prima con un valore ammesso dalla regola
+        for idx, entity in same_type:
+            if self.validate_slot_value(intent_name, slot_name, entity.get('value')):
                 return entity.get('value'), idx
+        if same_type:
+            idx, entity = same_type[0]
+            return entity.get('value'), idx
 
         # Slot "a soggetto libero": accetta la prima entità disponibile di altro tipo
         if entity_type_lower in self._OPEN_TOPIC_ENTITY_TYPES and candidates:

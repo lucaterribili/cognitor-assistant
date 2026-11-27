@@ -41,6 +41,27 @@ class DatasetGenerator:
         self.doping_preprocessor.build_lookup_table(data)
 
     @staticmethod
+    def merge_intents_by_name(intents: list) -> list:
+        """
+        Unisce gli intenti con lo stesso nome: un solo elemento per nome, nella posizione della prima comparsa,
+        con gli esempi di tutte le copie (senza ripetizioni, ordine di comparsa). Non modifica la lista in ingresso.
+        """
+        merged = {}
+        for item in intents:
+            name = item['intent']
+            if name not in merged:
+                merged[name] = {**item, 'examples': []}
+            seen = set(merged[name]['examples'])
+            for example in item.get('examples') or []:
+                if example not in seen:
+                    seen.add(example)
+                    merged[name]['examples'].append(example)
+        duplicated = len(intents) - len(merged)
+        if duplicated:
+            print(f"✓ Unite {duplicated} ripetizioni di intenti con lo stesso nome")
+        return list(merged.values())
+
+    @staticmethod
     def load_from_yaml_files(intents_dirs: list = None) -> 'DatasetGenerator':
         """
         Carica tutti gli intents dai file YAML e crea un DatasetGenerator.
@@ -71,6 +92,11 @@ class DatasetGenerator:
                     if data and 'nlu' in data and 'intents' in data['nlu']:
                         all_intents.extend(data['nlu']['intents'])
                         print(f"✓ Caricati intents da: {yaml_file.name}")
+
+        # Lo stesso intento può comparire in più file (es. gli esempi di un sito che si aggiungono a quelli della
+        # tassonomia base): va unito, altrimenti ogni copia diventa una classe a sé con lo stesso nome, e una
+        # resta senza esempi.
+        all_intents = DatasetGenerator.merge_intents_by_name(all_intents)
 
         merged_data = {
             'nlu': {

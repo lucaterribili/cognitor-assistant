@@ -1,0 +1,370 @@
+# Conversazioni scritte per colmare le lacune del corpus (transizioni mai viste, azioni rare, argomenti e tipi di
+# entità poco usati). Seguono le convenzioni delle conversazioni riviste: incomprensibile -> clarify (poi fallback),
+# fuori argomento -> fallback, "non è quello" dopo una risposta -> clarify, conferma dopo un chiarimento a retrieval
+# basso -> prompt, "sì" a una domanda su uno slot -> ask_slot di nuovo.
+# Tutte source: llm, reviewed: false: da leggere e correggere.
+conversations:
+  # ---- durante la richiesta di uno slot ----
+  - id: gap-slot-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come prenoto una visita?", move: question, topic: booking, bot: ask_slot}
+      - {u: "Preferisco parlare con una persona", move: handoff, bot: handoff}
+
+  - id: gap-slot-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Qual è il numero di telefono?", move: question, topic: phone, bot: ask_slot}
+      - {u: "Lascia stare, arrivederci", move: goodbye, bot: goodbye}
+
+  - id: gap-slot-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "A che ora chiude?", move: question, topic: opening_hours, bot: ask_slot}
+      - {u: "Chi ha vinto il campionato?", move: out_of_scope, bot: fallback}
+      - {u: "Il distretto sanitario di Valle Verde", move: slot_reply, ent: [ORGANIZATION], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-slot-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si trova?", move: question, topic: location, bot: ask_slot}
+      - {u: "Sì", move: confirm, bot: ask_slot}
+      - {u: "L'ambulatorio di pediatria", move: slot_reply, ent: [DEPARTMENT], bot: answer}
+      - {u: "Perfetto, grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-slot-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto costa?", move: question, topic: costs, bot: ask_slot}
+      - {u: "Mah, non saprei", move: unclear, bot: clarify}
+      - {u: "La visita dal dermatologo", move: slot_reply, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "No, grazie", move: deny, bot: goodbye}
+
+  - id: gap-slot-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Chi è il responsabile?", move: question, topic: staff, bot: ask_slot}
+      - {u: "Siete inutili, non capite niente", move: insult, bot: deescalate}
+      - {u: "Voglio un operatore", move: handoff, bot: handoff}
+
+  - id: gap-slot-07
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come ci arrivo?", move: question, topic: directions, bot: ask_slot}
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "All'ospedale di Porto Nuovo", move: slot_reply, ent: [FACILITY], bot: answer}
+      - {u: "C'è un autobus?", move: question, topic: directions, carry: [FACILITY], ent: [TRANSPORT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  # ---- dopo una risposta ----
+  - id: gap-answer-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Qual è l'indirizzo del CUP?", move: question, topic: address, ent: [FACILITY], bot: answer}
+      - {u: "Non è quello che cercavo", move: deny, bot: clarify}
+      - {u: "Volevo l'indirizzo dello sportello ticket", move: question, topic: address, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-answer-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto dura una risonanza magnetica?", move: question, topic: duration, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "mah", move: unclear, bot: clarify}
+      - {u: "E serve il digiuno?", move: question, topic: requirements, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Chiaro, grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-answer-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si fa il tampone?", move: question, topic: location, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Hai visto la partita ieri sera?", move: out_of_scope, bot: fallback}
+      - {u: "Torniamo al tampone: serve la prenotazione?", move: question, topic: booking, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-answer-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Gli orari del centro prelievi?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Che risposta inutile", move: insult, bot: deescalate}
+      - {u: "Scusa, sono arrabbiato. E il sabato?", move: question, topic: opening_hours, carry: [FACILITY], ent: [DATE], bot: answer}
+      - {u: "Ok grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-answer-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "Il telefono del reparto di ortopedia?", move: question, topic: phone, ent: [DEPARTMENT], bot: answer}
+      - {u: "Buonasera di nuovo", move: greeting, bot: greet}
+      - {u: "E l'email?", move: question, topic: email, carry: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-answer-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso pagare il ticket con PagoPA?", move: question, topic: payments, ent: [PAYMENT_METHOD], bot: answer}
+      - {u: "Preferisco parlare con un operatore", move: handoff, bot: handoff}
+
+  - id: gap-answer-07
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quali documenti servono per l'iscrizione al SSN?", move: question, topic: documentation, ent: [PROCEDURE], bot: answer}
+      - {u: "Non è la risposta giusta", move: deny, bot: clarify}
+      - {u: "Intendo per un cittadino straniero", move: question, topic: documentation, ent: [PROCEDURE], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "No, grazie", move: deny, bot: goodbye}
+
+  # ---- dopo fallback ----
+  - id: gap-fallback-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Esiste una app per prenotare?", move: question, topic: booking, ent: [TECHNOLOGY], rag: none, bot: fallback}
+      - {u: "Va bene, grazie lo stesso", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: gap-fallback-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto costa il parcheggio dell'ospedale?", move: question, topic: prices, ent: [FACILITY], rag: none, bot: fallback}
+      - {u: "ok, ciao", move: goodbye, bot: goodbye}
+
+  - id: gap-fallback-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ho una domanda sul mio ricovero", move: question, topic: status, ent: [DOCUMENT], rag: none, bot: fallback}
+      - {u: "Inutile, non rispondete mai", move: insult, bot: deescalate}
+      - {u: "Voglio parlare con qualcuno", move: handoff, bot: handoff}
+
+  - id: gap-fallback-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Chi è il direttore amministrativo?", move: question, topic: staff, ent: [ROLE], rag: none, bot: fallback}
+      - {u: "boh", move: unclear, bot: clarify}
+      - {u: "Il nome del direttore generale", move: question, topic: staff, ent: [ROLE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-fallback-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove trovo il modulo per il reclamo?", move: question, topic: downloads, ent: [DOCUMENT], rag: none, bot: fallback}
+      - {u: "ok", move: confirm, bot: offer_more}
+      - {u: "Sì, come presento un reclamo?", move: question, topic: how_to, ent: [PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  # ---- dopo offer_more e dopo clarify ----
+  - id: gap-offer-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si trova il distretto 2?", move: question, topic: location, ent: [ORGANIZATION], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "Sì", move: confirm, bot: prompt}
+      - {u: "A che ora apre?", move: question, topic: opening_hours, carry: [ORGANIZATION], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-offer-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Il costo di una visita cardiologica?", move: question, topic: costs, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Capito", move: confirm, bot: offer_more}
+      - {u: "Voglio un operatore per una informazione personale", move: handoff, bot: handoff}
+
+  - id: gap-offer-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quali servizi offre la casa della comunità?", move: question, topic: services, ent: [FACILITY], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Buona giornata", move: goodbye, bot: goodbye}
+
+  - id: gap-offer-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come si ottiene l'esenzione ticket?", move: question, topic: how_to, ent: [DOCUMENT], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "fjdk lkjsd", move: unclear, bot: clarify}
+      - {u: "Niente, grazie", move: thanks, bot: thanks_reply}
+      - {u: "Ciao", move: goodbye, bot: goodbye}
+
+  - id: gap-clarify-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso prenotare una TAC senza ricetta?", move: question, topic: requirements, ent: [MEDICAL_PROCEDURE], rag: low, bot: clarify}
+      - {u: "Grazie, arrivederci", move: goodbye, bot: goodbye}
+
+  - id: gap-clarify-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ho smarrito la tessera sanitaria, cosa faccio?", move: question, topic: procedures, ent: [DOCUMENT], rag: low, bot: clarify}
+      - {u: "Siete inutili", move: insult, bot: deescalate}
+      - {u: "Voglio parlare con un operatore", move: handoff, bot: handoff}
+
+  - id: gap-clarify-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Il medico di base può fare le ricette per esami?", move: question, topic: eligibility, ent: [ROLE], rag: low, bot: clarify}
+      - {u: "Ciao, scusa", move: greeting, bot: greet}
+      - {u: "Può prescrivere esami di laboratorio il medico di famiglia?", move: question, topic: eligibility, ent: [ROLE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  # ---- dopo il saluto e ripetizioni ----
+  - id: gap-greet-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: gap-greet-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Siete lenti", move: insult, bot: deescalate}
+      - {u: "Dove si trova il pronto soccorso?", move: question, topic: location, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-repeat-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Entro quando si presenta la domanda per l'esenzione?", move: question, topic: deadlines, ent: [DOCUMENT], bot: answer}
+      - {u: "Puoi ripetere per favore?", move: repeat_request, bot: repeat}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-repeat-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "Dove si prenota la visita oculistica?", move: question, topic: booking, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Non ho capito bene, me lo dici di nuovo?", move: repeat_request, bot: repeat}
+      - {u: "Ok chiaro", move: confirm, bot: offer_more}
+      - {u: "No, va bene così", move: deny, bot: goodbye}
+
+  # ---- argomenti generici e poco usati ----
+  - id: gap-topic-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ci sono novità?", move: question, topic: news, bot: answer}
+      - {u: "E cosa c'è di nuovo sui vaccini?", move: question, topic: news, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-topic-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Qual è la missione dell'azienda sanitaria?", move: question, topic: mission, bot: answer}
+      - {u: "Come è organizzata?", move: question, topic: organization, bot: answer}
+      - {u: "Interessante, grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-topic-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come posso seguire lo stato della mia pratica di invalidità?", move: question, topic: tracking, ent: [DOCUMENT], bot: answer}
+      - {u: "E a che punto è?", move: question, topic: status, carry: [DOCUMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-topic-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Che cos'è il fascicolo sanitario elettronico?", move: question, topic: definition, ent: [DOCUMENT], bot: answer}
+      - {u: "Perché serve?", move: question, topic: explanation, carry: [DOCUMENT], bot: answer}
+      - {u: "E come si attiva con lo SPID?", move: question, topic: how_to, carry: [DOCUMENT], ent: [TECHNOLOGY], bot: answer}
+      - {u: "Perfetto, grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-topic-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso spostare l'appuntamento di giovedì?", move: question, topic: appointments, ent: [DATE], bot: answer}
+      - {u: "C'è disponibilità per venerdì?", move: question, topic: availability, ent: [DATE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-topic-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ci sono eventi di prevenzione questo mese?", move: question, topic: events, ent: [EVENT], bot: answer}
+      - {u: "Come mi iscrivo all'open day?", move: question, topic: registration, ent: [EVENT], bot: answer}
+      - {u: "E fino a quando posso farlo?", move: question, topic: deadlines, carry: [EVENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-topic-07
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quali sono i rischi della colonscopia?", move: question, topic: risks, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Sono obbligato a prepararmi il giorno prima?", move: question, topic: obligations, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Capito, grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-topic-08
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Consegnate i farmaci a domicilio?", move: question, topic: delivery, ent: [PRODUCT], bot: answer}
+      - {u: "Anche nel centro storico?", move: follow_up_entity, ent: [ZONE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-topic-09
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Mi serve aiuto con lo SPID", move: question, topic: support, ent: [TECHNOLOGY], bot: answer}
+      - {u: "C'è un servizio in inglese?", move: question, topic: support, carry: [TECHNOLOGY], ent: [LANGUAGE], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "No, nient'altro", move: deny, bot: goodbye}
+
+  - id: gap-topic-10
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Il dottor Bianchi riceve il giovedì?", move: question, topic: schedule, ent: [PERSON, DATE], bot: answer}
+      - {u: "E il primario di cardiologia?", move: follow_up_entity, ent: [ROLE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-topic-11
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso detrarre le spese mediche nella dichiarazione dei redditi?", move: question, topic: tax_deductions, ent: [TAX], bot: answer}
+      - {u: "E la certificazione dove la ritiro?", move: question, topic: tax_return, carry: [TAX], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap-topic-12
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Meglio una visita privata o convenzionata?", move: question, topic: comparison, ent: [HEALTH_SERVICE], bot: answer}
+      - {u: "Quali sono i vantaggi del servizio convenzionato?", move: question, topic: advantages, carry: [HEALTH_SERVICE], bot: answer}
+      - {u: "Ok, grazie", move: thanks, bot: thanks_reply}
+      - {u: "Ciao", move: goodbye, bot: goodbye}

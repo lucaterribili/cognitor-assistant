@@ -153,6 +153,9 @@ class SiteVocabulary:
     """Cosa esiste nel sito: coppie (argomento, tipo di entità) con un intento, e i valori delle entità."""
     pairs: List[Tuple[str, str]]                        # (argomento, tipo) con tipo "" per l'intento senza tipo
     values: Dict[str, List[str]] = field(default_factory=dict)  # tipo -> valori noti ("radiologia", ...)
+    # Dati del sito, se noti: con questi gli argomenti si scelgono come li riceve il sito e non come compaiono nel corpus.
+    topic_weights: Dict[str, float] = field(default_factory=dict)  # argomento -> quanto spesso lo riceve il sito
+    entity_share: Dict[str, float] = field(default_factory=dict)   # argomento -> quota di domande che nominano un'entità
 
     @classmethod
     def from_taxonomy(cls, taxonomy, values: Optional[Dict[str, List[str]]] = None) -> "SiteVocabulary":
@@ -191,9 +194,21 @@ def instantiate(model: FlowModel, abstract: List[Tuple[str, str]], vocab: SiteVo
         retrieval = next((f[4:] for f in flags if f.startswith("rag_")), "ok")
         turn = {"move": move, "topic": None, "entities": [], "carry": [], "retrieval": retrieval, "bot": bot}
 
-        def pick_topic(candidates: List[str]) -> Optional[str]:
+        def pick_topic(candidates: List[str], entity_expected: Optional[bool] = None) -> Optional[str]:
+            """`entity_expected`: il messaggio nomina (o riprende) un'entità (True), non ne ha (False), indifferente (None)."""
             if not candidates:
                 return None
+            if vocab.topic_weights:  # pesi del sito: niente statistiche del corpus
+                weights = []
+                for t in candidates:
+                    w = vocab.topic_weights.get(t, 0.0) + 1e-6
+                    share = vocab.entity_share.get(t, 0.5)
+                    if entity_expected is True:
+                        w *= share + 1e-6
+                    elif entity_expected is False:
+                        w *= (1.0 - share) + 1e-6
+                    weights.append(w)
+                return rng.choices(candidates, weights=weights)[0]
             seen = model.topic_given.get(f"{token}|{bot}", collections.Counter())
             known = [(t, n) for t, n in seen.items() if t in candidates]
             if known and rng.random() >= TOPIC_UNIFORM_MIX:
@@ -204,11 +219,11 @@ def instantiate(model: FlowModel, abstract: List[Tuple[str, str]], vocab: SiteVo
         if move == "question":
             if "carry" in flags and memory:
                 entity_type = memory[-1][0]
-                turn["topic"] = pick_topic(vocab.topics_with_type(entity_type)) or pick_topic(vocab.topics)
+                turn["topic"] = pick_topic(vocab.topics_with_type(entity_type), True) or pick_topic(vocab.topics, True)
                 turn["carry"] = [entity_type]
                 turn["intent"] = intent_name(turn["topic"])
             elif "ent" in flags:
-                turn["topic"] = pick_topic([t for t in vocab.topics if vocab.types_of(t)])
+                turn["topic"] = pick_topic([t for t in vocab.topics if vocab.types_of(t)], True)
                 entity_type = rng.choice(vocab.types_of(turn["topic"])) if turn["topic"] else None
                 if entity_type:
                     value = vocab.value(rng, entity_type)
@@ -218,7 +233,7 @@ def instantiate(model: FlowModel, abstract: List[Tuple[str, str]], vocab: SiteVo
             else:
                 # chiedere un'entità ha senso solo per un argomento che ne ammette
                 candidates = [t for t in vocab.topics if vocab.types_of(t)] if bot == "ask_slot" else vocab.topics
-                turn["topic"] = pick_topic(candidates)
+                turn["topic"] = pick_topic(candidates, True if bot == "ask_slot" else False if bot == "answer" else None)
                 turn["intent"] = intent_name(turn["topic"]) if turn["topic"] else None
             context_topic = turn["topic"] or context_topic
         elif move in ("slot_reply", "follow_up_entity"):

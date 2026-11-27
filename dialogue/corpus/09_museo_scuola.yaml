@@ -1,0 +1,299 @@
+# Museo e scuola: più slot di fila (data, tipo di biglietto, numero di persone, classe), prenotazioni di gruppo,
+# circolari e scadenze. Contiene chiusure brusche: nessun ringraziamento, "ok ciao", "no basta", conversazione che finisce
+# subito dopo la risposta (l'utente smette di scrivere), lamentele, operatore per esasperazione.
+# Il numero di persone si indica con MISC (non esiste un tipo numerico). Nessuna azione per "confermi la prenotazione?":
+# lacuna dell'insieme di azioni, non risolta qui.
+# Tutte source: llm, reviewed: false.
+conversations:
+  # ---------------- museo ----------------
+  - id: museo-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto costa il biglietto?", move: question, topic: prices, bot: ask_slot}
+      - {u: "Per gli studenti", move: slot_reply, ent: [CATEGORY], bot: answer}
+
+  - id: museo-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Vorrei prenotare una visita", move: question, topic: booking, bot: ask_slot}
+      - {u: "Il 14 dicembre", move: slot_reply, ent: [DATE], bot: ask_slot}
+      - {u: "Siamo in 25", move: slot_reply, ent: [MISC], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "No basta", move: deny, bot: goodbye}
+
+  - id: museo-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Prenotazione di gruppo?", move: question, topic: booking, bot: ask_slot}
+      - {u: "Una scolaresca", move: slot_reply, ent: [CATEGORY], bot: ask_slot}
+      - {u: "Il 3 marzo", move: slot_reply, ent: [DATE], bot: ask_slot}
+      - {u: "Trenta ragazzi", move: slot_reply, ent: [MISC], bot: answer}
+      - {u: "Ciao", move: goodbye, bot: goodbye}
+
+  - id: museo-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Orari del museo", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "E la domenica?", move: question, topic: opening_hours, carry: [FACILITY], ent: [DATE], bot: answer}
+      - {u: "Va bene, ciao", move: goodbye, bot: goodbye}
+
+  - id: museo-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ci sono visite guidate in inglese?", move: question, topic: schedule, ent: [EVENT, LANGUAGE], bot: answer}
+
+  - id: museo-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quando finisce la mostra su Caravaggio?", move: question, topic: deadlines, ent: [EVENT], bot: answer}
+      - {u: "E l'audioguida c'è?", move: question, topic: availability, carry: [EVENT], ent: [PRODUCT], bot: answer}
+      - {u: "mmh ok", move: confirm, bot: offer_more}
+
+  - id: museo-07
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Il museo è accessibile con la carrozzina?", move: question, topic: accessibility, ent: [FACILITY], bot: answer}
+      - {u: "Ho chiesto un'altra cosa: gli ascensori ci sono?", move: deny, bot: clarify}
+      - {u: "Gli ascensori ai piani superiori", move: question, topic: accessibility, ent: [FACILITY], bot: answer}
+      - {u: "Ok. Ciao", move: goodbye, bot: goodbye}
+
+  - id: museo-08
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ma possibile che non si trovino gli orari sul sito?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Finalmente", move: confirm, bot: offer_more}
+      - {u: "Che servizio pessimo", move: insult, bot: deescalate}
+
+  - id: museo-09
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Si può pagare all'ingresso con la carta?", move: question, topic: payments, ent: [PAYMENT_METHOD], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "Il biglietto ridotto per gli over 65 quanto costa?", move: question, topic: prices, ent: [CATEGORY], bot: answer}
+      - {u: "ok ciao", move: goodbye, bot: goodbye}
+
+  - id: museo-10
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Laboratori per bambini?", move: question, topic: education, ent: [CATEGORY], bot: answer}
+      - {u: "Come ci si iscrive?", move: question, topic: registration, carry: [CATEGORY], bot: answer}
+      - {u: "A che ora comincia?", move: question, topic: schedule, carry: [CATEGORY], bot: answer}
+
+  - id: museo-11
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso portare il cane?", move: question, topic: rights, bot: ask_slot}
+      - {u: "Siete lenti a rispondere", move: insult, bot: deescalate}
+      - {u: "Al museo civico", move: slot_reply, ent: [FACILITY], bot: answer}
+      - {u: "Boh, ciao", move: goodbye, bot: goodbye}
+
+  - id: museo-12
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto dura la visita guidata?", move: question, topic: duration, ent: [EVENT], bot: answer}
+      - {u: "Non ho capito, ripeti", move: repeat_request, bot: repeat}
+      - {u: "Troppo complicato, passami qualcuno", move: handoff, bot: handoff}
+
+  - id: museo-13
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si trova l'ingresso per i gruppi?", move: question, topic: location, ent: [FACILITY], bot: answer}
+      - {u: "E il parcheggio per il pullman?", move: question, topic: directions, carry: [FACILITY], ent: [TRANSPORT], bot: answer}
+
+  - id: museo-14
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Che tempo fa domani a Firenze?", move: out_of_scope, bot: fallback}
+      - {u: "Inutili", move: insult, bot: deescalate}
+
+  # ---------------- scuola ----------------
+  - id: scuola-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come si iscrive un bambino alla prima elementare?", move: question, topic: registration, ent: [CATEGORY], bot: answer}
+      - {u: "Entro quando?", move: question, topic: deadlines, carry: [CATEGORY], bot: answer}
+
+  - id: scuola-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Vorrei un colloquio con l'insegnante", move: question, topic: appointments, bot: ask_slot}
+      - {u: "La professoressa di matematica", move: slot_reply, ent: [ROLE], bot: ask_slot}
+      - {u: "Mercoledì pomeriggio", move: slot_reply, ent: [DATE], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+
+  - id: scuola-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove trovo il modulo per giustificare le assenze?", move: question, topic: forms, ent: [DOCUMENT], bot: answer}
+      - {u: "Non c'è il link", move: deny, bot: clarify}
+      - {u: "Il modulo per le assenze di più di cinque giorni", move: question, topic: downloads, ent: [DOCUMENT], bot: answer}
+      - {u: "Finalmente. Ciao", move: goodbye, bot: goodbye}
+
+  - id: scuola-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "A che ora entrano i ragazzi?", move: question, topic: schedule, ent: [CATEGORY], bot: answer}
+      - {u: "E il sabato?", move: question, topic: schedule, carry: [CATEGORY], ent: [DATE], bot: answer}
+      - {u: "ok", move: confirm, bot: offer_more}
+      - {u: "no", move: deny, bot: goodbye}
+
+  - id: scuola-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto costa la mensa?", move: question, topic: costs, ent: [FACILITY], bot: answer}
+      - {u: "Come si paga?", move: question, topic: payments, carry: [FACILITY], bot: answer}
+      - {u: "Con il bonifico va bene?", move: question, topic: payments, ent: [PAYMENT_METHOD], bot: answer}
+
+  - id: scuola-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "C'è sciopero domani?", move: question, topic: announcements, ent: [DATE], bot: answer}
+      - {u: "Ah", move: confirm, bot: offer_more}
+
+  - id: scuola-07
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Chi è il dirigente scolastico?", move: question, topic: staff, ent: [ROLE], bot: answer}
+      - {u: "E come lo contatto?", move: question, topic: contacts, carry: [ROLE], bot: answer}
+      - {u: "Mah, mi mandate sempre in giro", move: insult, bot: deescalate}
+      - {u: "Passami la segreteria", move: handoff, bot: handoff}
+
+  - id: scuola-08
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso iscrivere mio figlio al corso di nuoto?", move: question, topic: registration, ent: [EVENT], bot: answer}
+      - {u: "Quanto costa?", move: question, topic: costs, carry: [EVENT], bot: answer}
+      - {u: "troppo", move: confirm, bot: offer_more}
+      - {u: "Niente, ciao", move: goodbye, bot: goodbye}
+
+  - id: scuola-09
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quali documenti servono per il trasferimento?", move: question, topic: documentation, ent: [PROCEDURE], rag: low, bot: clarify}
+      - {u: "Per il trasferimento in un'altra scuola", move: question, topic: documentation, ent: [PROCEDURE], bot: answer}
+      - {u: "ok", move: confirm, bot: offer_more}
+
+  - id: scuola-10
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "A che punto è la domanda di iscrizione?", move: question, topic: status, ent: [DOCUMENT], bot: answer}
+      - {u: "Ancora niente? Sono settimane", move: deny, bot: clarify}
+      - {u: "Voglio parlare con la segreteria", move: handoff, bot: handoff}
+
+  - id: scuola-11
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Orari di ricevimento dei professori", move: question, topic: schedule, bot: ask_slot}
+      - {u: "Del professor Conti", move: slot_reply, ent: [PERSON], bot: answer}
+      - {u: "E la professoressa Neri?", move: follow_up_entity, ent: [PERSON], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "Basta", move: deny, bot: goodbye}
+
+  - id: scuola-12
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Corsi di recupero a settembre?", move: question, topic: training, ent: [EVENT, DATE], bot: answer}
+      - {u: "Dove si fanno?", move: question, topic: location, carry: [EVENT], bot: answer}
+
+  - id: scuola-13
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come faccio il reclamo per il voto?", move: question, topic: complaints, ent: [PROCEDURE], bot: answer}
+      - {u: "Non mi aiuta, voglio un operatore", move: handoff, bot: handoff}
+
+  - id: scuola-14
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "La gita di venerdì è confermata?", move: question, topic: status, ent: [EVENT, DATE], bot: answer}
+      - {u: "ok", move: confirm, bot: offer_more}
+      - {u: "ciao", move: goodbye, bot: goodbye}
+
+  # ---------------- chiusure brusche in altri contesti ----------------
+  - id: brusco-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Orari del CUP", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+
+  - id: brusco-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dammi il numero del pronto soccorso", move: question, topic: phone, ent: [DEPARTMENT], bot: answer}
+      - {u: "ok", move: confirm, bot: offer_more}
+      - {u: "ciao", move: goodbye, bot: goodbye}
+
+  - id: brusco-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove consegnate il mio ordine?", move: question, topic: delivery, ent: [PRODUCT], bot: answer}
+      - {u: "Sempre le stesse risposte inutili", move: insult, bot: deescalate}
+
+  - id: brusco-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quanto costa la spedizione?", move: question, topic: costs, ent: [PRODUCT], bot: answer}
+      - {u: "Troppo. Ciao", move: goodbye, bot: goodbye}
+
+  - id: brusco-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso cambiare la visita di giovedì?", move: question, topic: appointments, ent: [DATE], bot: answer}
+      - {u: "E allora?", move: unclear, bot: clarify}
+      - {u: "Lascia perdere", move: goodbye, bot: goodbye}
+
+  - id: brusco-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Perché il mio ticket è così alto?", move: question, topic: causes, ent: [DOCUMENT], bot: answer}
+      - {u: "Non è una risposta", move: deny, bot: clarify}
+      - {u: "Siete incapaci", move: insult, bot: deescalate}
+      - {u: "Passatemi un operatore", move: handoff, bot: handoff}
+
+  - id: brusco-07
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Dove si prenota?", move: question, topic: booking, bot: ask_slot}
+      - {u: "Boh", move: unclear, bot: clarify}
+      - {u: "Lascia stare", move: goodbye, bot: goodbye}
+
+  - id: brusco-08
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si ritirano i referti?", move: question, topic: location, ent: [DOCUMENT], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}

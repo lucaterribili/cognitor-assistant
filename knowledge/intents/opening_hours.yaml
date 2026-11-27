@@ -39,7 +39,16 @@ nlu:
     - quando è aperta la [Biblioteca civica](FACILITY)
     - quali sono gli orari di apertura del [Museo archeologico](FACILITY)
     - fino a che ora sono aperte le [Cappelle Medicee](FACILITY)
-    - orari di apertura della [Pinacoteca civica](FACILITY) e della [Galleria d'arte contemporanea](FACILITY)
+    - orari di apertura della [Pinacoteca civica](FACILITY) e della [Galleria d'arte
+      contemporanea](FACILITY)
+    - quali sono gli orari del [Consultorio Familiare Valle Verde](FACILITY)
+    - che orari fa il [Consultorio Familiare Porto Nuovo](FACILITY)
+    - quando è aperta la [Casa della Comunità Porto Nuovo](FACILITY)
+    - in quali orari è aperta la [Casa della Comunità Valle Verde](FACILITY)
+    - quali sono gli orari della [Casa della Comunità Colline](FACILITY)
+    - a che ora apre il [Presidio Ospedaliero Santa Maria del Mare](FACILITY)
+    - orari di apertura del [Poliambulatorio Specialistico Coni Zugna](FACILITY)
+    - quando apre il [Presidio Ospedaliero Grassi](FACILITY)
   - intent: ask_department_opening_hours
     examples:
     - quando è aperto l'[URP](DEPARTMENT)
@@ -60,6 +69,15 @@ nlu:
     - il [SUAP](DEPARTMENT) è aperto anche di pomeriggio
     - quali sono gli orari di apertura dell'[anagrafe](DEPARTMENT)
     - a che ora apre e a che ora chiude la [Polizia locale](DEPARTMENT)
+    - quali sono gli orari della [UOC Patologia Clinica e Laboratorio Analisi](DEPARTMENT)
+    - quando è aperta la [UOC Prevenzione e Sicurezza negli Ambienti di Lavoro](DEPARTMENT)
+    - quali sono gli orari di ricevimento della [UOC Ostetricia e Ginecologia](DEPARTMENT)
+    - che orari ha la [UOC Pediatria e Neonatologia](DEPARTMENT)
+    - a che ora apre la [UOC Chirurgia Generale e Day Surgery](DEPARTMENT)
+    - orari di accesso al [Centro di Salute Mentale](DEPARTMENT)
+    - quando posso recarmi al [Centro di Diabetologia e Malattie Metaboliche](DEPARTMENT)
+    - quali sono gli orari della [UOSD Consultori Familiari](DEPARTMENT)
+    - in che orari è attiva la [UOC Igiene e Sanità Pubblica](DEPARTMENT)
   - intent: ask_health_service_opening_hours
     examples:
     - a che ora apre il [CUP](HEALTH_SERVICE) del [Grassi](FACILITY)

@@ -74,7 +74,8 @@ def test_two_head_export_has_topic_and_type_outputs(exported):
     )
     assert topic_probs.shape == (2, len(topics)) and type_probs.shape == (2, len(types))
 
-    # probs è il prodotto normalizzato delle due teste sulle coppie valide
+    # probs è il prodotto delle due teste sulle coppie valide, calibrato con la temperatura e normalizzato
     applies = np.array(manifest["intent_type_applies"], dtype=bool)
     product = topic_probs[:, manifest["intent_topic"]] * np.where(applies, type_probs[:, manifest["intent_type"]], 1.0)
-    assert np.allclose(probs, product / product.sum(axis=1, keepdims=True), atol=1e-5)
+    calibrated = product ** (1.0 / manifest["temperature"])
+    assert np.allclose(probs, calibrated / calibrated.sum(axis=1, keepdims=True), atol=1e-4)

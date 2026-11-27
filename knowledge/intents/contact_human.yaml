@@ -40,6 +40,12 @@ nlu:
     - passami un consulente umano esperto dell'[Ufficio del Catasto](DEPARTMENT)
     - vorrei assistenza da una persona fisica riguardo alla [Direzione Provinciale](DEPARTMENT)
     - posso parlare con un operatore umano per la [Medicina Legale](DEPARTMENT)
+    - vorrei parlare con un operatore della [UOC Patologia Clinica e Laboratorio Analisi](DEPARTMENT)
+    - posso mettermi in contatto con un addetto della [UOC Prevenzione e Sicurezza
+      negli Ambienti di Lavoro](DEPARTMENT)
+    - vorrei assistenza da una persona della [UOC Ostetricia e Ginecologia](DEPARTMENT)
+    - posso parlare con un operatore umano per la [UOC Pediatria e Neonatologia](DEPARTMENT)
+    - mi mette in contatto con un addetto del [Centro di Salute Mentale](DEPARTMENT)
   - intent: ask_organization_contact_human
     examples:
     - posso parlare con un operatore dell'[ASL Roma 3](ORGANIZATION)
@@ -67,7 +73,8 @@ nlu:
     - vorrei parlare con un [assistente sociale](ROLE)
     - posso parlare con un operatore umano per gli [infermieri](ROLE)
     - vorrei essere messo in contatto con un addetto del [direttore sanitario](ROLE)
-    - come parlo dal vivo con un referente del [Responsabile della Prevenzione della Corruzione](ROLE)
+    - come parlo dal vivo con un referente del [Responsabile della Prevenzione della
+      Corruzione](ROLE)
     - c'è un operatore in carne e ossa che si occupa dei [familiari a carico](ROLE)
     - passami un consulente umano esperto dello [specialista ambulatoriale](ROLE)
     - vorrei assistenza da una persona fisica riguardo all'[assistente sociale](ROLE)
@@ -119,6 +126,13 @@ nlu:
     - vorrei essere messo in contatto con un addetto della [Pinacoteca civica](FACILITY)
     - come parlo dal vivo con un referente dell'[asilo nido](FACILITY)
     - c'è un operatore in carne e ossa che si occupa dell'[Ospedale di Comunità](FACILITY)
+    - posso parlare con un operatore umano per il [Consultorio Familiare Valle Verde](FACILITY)
+    - vorrei essere messo in contatto con un addetto del [Consultorio Familiare Porto
+      Nuovo](FACILITY)
+    - vorrei assistenza da una persona fisica riguardo alla [Casa della Comunità Porto
+      Nuovo](FACILITY)
+    - posso parlare con un addetto della [Casa della Comunità Valle Verde](FACILITY)
+    - mi passi un responsabile del [Presidio Ospedaliero Santa Maria del Mare](FACILITY)
   - intent: ask_procedure_contact_human
     examples:
     - vorrei un colloquio con il responsabile della mia pratica di [accertamento fiscale](PROCEDURE)
@@ -137,3 +151,30 @@ nlu:
     - posso parlare con un operatore umano per il [rinnovo della patente](PROCEDURE)
     - vorrei essere messo in contatto con un addetto della [voltura catastale](PROCEDURE)
     - come parlo dal vivo con un referente delle [iscrizioni online](PROCEDURE)
+  - intent: ask_person_contact_human
+    examples:
+    - vorrei parlare direttamente con [Marco Valenti](PERSON)
+    - posso mettermi in contatto con la [dottoressa Francesca Lombardi](PERSON)
+    - passami [Elena Conti](PERSON)
+    - posso parlare a quattr'occhi con [Silvia Moretti](PERSON)
+    - è possibile parlare con il [dottor Paolo Mancini](PERSON)
+    - posso mettermi in linea con [Roberto Ferri](PERSON)
+    - vorrei parlare dal vivo con [Giulia Ricci](PERSON)
+    - fatemi parlare con [Matteo De Luca](PERSON)
+    - mi puoi passare il [professor Alessandro Russo](PERSON)
+    - posso interloquire con [Chiara Barbieri](PERSON)
+    - vorrei essere richiamato da [Sofia Ferrari](PERSON)
+    - vorrei parlare con [John Smith](PERSON)
+    - posso parlare direttamente con [Sarah Jenkins](PERSON)
+    - mettimi in contatto con la [dottoressa Fatima Zahra](PERSON)
+    - è possibile parlare con [Mohammed Al-Mansoor](PERSON)
+    - vorrei un colloquio con [Chen Wei](PERSON)
+    - posso parlare con il [professor Jean Dupont](PERSON)
+    - vorrei confrontarmi con [Maria Garcia](PERSON)
+    - mettimi in linea con [Priya Patel](PERSON)
+    - posso parlare con il [dottor Carlos Hernandez](PERSON)
+    - fatemi parlare direttamente con [Elena Popov](PERSON)
+    - vorrei parlare con [Lukas Schmidt](PERSON)
+    - è possibile avere un colloquio con [Amina Diallo](PERSON)
+    - posso parlare con [Ahmed Hassan](PERSON)
+    - mi passi per favore [Kwame Mensah](PERSON)

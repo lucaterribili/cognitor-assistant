@@ -123,6 +123,9 @@ class IntentClassifier(nn.Module):
         # Branch per Intent Classification
         self.attention = Attention(hidden_dim * 2)
         self.dropout = nn.Dropout(dropout_prob)
+        # Temperatura di calibrazione: divide i logits dell'intento (1.0 = nessuna calibrazione). Si imposta dopo
+        # il training (vedi intellective/calibrate_intent_classifier.py) e viaggia nel checkpoint.
+        self.register_buffer("temperature", torch.tensor(1.0))
         self.factored = intent_factors is not None
         if self.factored:
             self.fc_topic = nn.Linear(hidden_dim * 2, intent_factors.num_topics)
@@ -146,6 +149,11 @@ class IntentClassifier(nn.Module):
 
         self.num_ner_tags = num_ner_tags
 
+    def _load_from_state_dict(self, state_dict, prefix, *args, **kwargs):
+        # i checkpoint precedenti non hanno la temperatura: restano non calibrati (1.0)
+        state_dict.setdefault(prefix + "temperature", self.temperature.clone())
+        super()._load_from_state_dict(state_dict, prefix, *args, **kwargs)
+
     def intent_heads(self, intent_features):
         """
         Logits dell'intento dalle feature dell'attention.
@@ -155,12 +163,12 @@ class IntentClassifier(nn.Module):
         il softmax è la loro distribuzione congiunta.
         """
         if not self.factored:
-            return self.fc(intent_features), None, None
+            return self.fc(intent_features) / self.temperature, None, None
         topic_logits = self.fc_topic(intent_features)
         type_logits = self.fc_type(intent_features)
         joint = (F.log_softmax(topic_logits, dim=-1)[:, self.pair_topic]
                  + self.type_applies * F.log_softmax(type_logits, dim=-1)[:, self.pair_type])
-        return joint, topic_logits, type_logits
+        return joint / self.temperature, topic_logits, type_logits
 
     def forward(self, x, ner_tags=None, mask=None, return_heads=False):
         """

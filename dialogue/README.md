@@ -15,6 +15,7 @@ Da eseguire nella cartella principale di Cognitor, con il suo ambiente virtuale 
 | `python -m dialogue corpus-check` | controlla che i file siano corretti; dà un codice di uscita diverso da 0 se ci sono errori |
 | `python -m dialogue corpus-stats` | conteggi per mossa, azione, argomento e transizione: mostra dove servono altri esempi |
 | `python -m dialogue sample --n 10 --seed 1` | stampa conversazioni nuove generate dal modello, da leggere e correggere |
+| `python -m dialogue export-model --out <file>.json` | scrive il modello (tabelle di conteggi) per l'engine, che lo usa per generare le conversazioni di un sito |
 | `pytest tests/test_dialogue_corpus.py` | test del corpus e del modello |
 
 ## Il formato

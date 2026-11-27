@@ -55,7 +55,8 @@ conversations:
     reviewed: false
     turns:
       - {u: "Posso fare la risonanza senza impegnativa?", move: question, topic: requirements, ent: [MEDICAL_PROCEDURE], rag: low, bot: clarify}
-      - {u: "Sì, intendevo con il servizio sanitario", move: confirm, bot: answer}
+      - {u: "Sì, intendevo con il servizio sanitario", move: confirm, bot: prompt}
+      - {u: "Serve l'impegnativa per una risonanza con il servizio sanitario?", move: question, topic: requirements, ent: [MEDICAL_PROCEDURE], bot: answer}
       - {u: "Grazie", move: thanks, bot: thanks_reply}
 
   - id: rag-02
@@ -99,3 +100,68 @@ conversations:
       - {u: "Quindi dove ritiro i referti?", move: question, topic: location, ent: [DOCUMENT], bot: answer}
       - {u: "Grazie", move: thanks, bot: thanks_reply}
       - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: unclear-04
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "blablabla non so cosa", move: unclear, bot: clarify}
+      - {u: "Scusa, volevo sapere gli orari del CUP", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: unclear-05
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Cosa fate voi qui?", move: unclear, bot: clarify}
+      - {u: "Vorrei informazioni generali sui servizi", move: question, topic: general_information, bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: unclear-06
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Voglio sapere quella cosa là", move: unclear, bot: clarify}
+      - {u: "Lascia perdere, non importa", move: deny, bot: goodbye}
+
+  - id: unclear-07
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Vorrei comprare una pizza", move: out_of_scope, bot: fallback}
+      - {u: "Ah capisco, scusate", move: deny, bot: goodbye}
+
+  - id: rag-07
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quanto costa un trapianto di capelli?", move: question, topic: costs, ent: [HEALTH_SERVICE], rag: none, bot: fallback}
+      - {u: "Va bene, allora passo a parlare con un operatore", move: handoff, bot: handoff}
+
+  - id: rag-08
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quali convenzioni avete con assicurazioni estere?", move: question, topic: general_information, rag: low, bot: clarify}
+      - {u: "Chiedevo delle polizze sanitarie internazionali", move: question, topic: general_information, rag: low, bot: clarify}
+      - {u: "Non importa, grazie lo stesso", move: deny, bot: goodbye}
+
+  - id: rag-09
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Posso pagare il parcheggio con bancomat?", move: question, topic: payments, ent: [PAYMENT_METHOD], rag: none, bot: fallback}
+      - {u: "Dove trovo informazioni sul parcheggio dell'ospedale?", move: question, topic: location, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: rag-10
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "C'è il servizio navetta tra i presidi?", move: question, topic: accessibility, ent: [FACILITY], rag: low, bot: clarify}
+      - {u: "Sì, parlo del presidio centrale", move: confirm, bot: prompt}
+      - {u: "Volevo sapere gli orari di apertura del presidio", move: question, topic: opening_hours, carry: [FACILITY], bot: answer}
+      - {u: "Grazie tante", move: thanks, bot: thanks_reply}
+

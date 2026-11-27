@@ -197,3 +197,43 @@ def test_instantiation_without_site_values_uses_placeholders(taxonomy, corpus):
     turns = [t for _ in range(50) for t in instantiate(model, model.sample(random.Random(_)), vocab, random.Random(_))]
 
     assert any(e["value"].startswith("<") for t in turns for e in t["entities"])
+
+
+# ---------- pesi del sito ----------
+
+def test_site_weights_replace_the_corpus_statistics(corpus):
+    """Con i pesi del sito gli argomenti si scelgono come li riceve il sito, anche se il corpus non li conosce."""
+    model = FlowModel.fit(corpus)
+    vocab = SiteVocabulary(
+        pairs=[("tracking", "DOCUMENT"), ("tracking", ""), ("warranty", "PRODUCT"), ("warranty", ""), ("opening_hours", "FACILITY")],
+        values={}, topic_weights={"tracking": 90.0, "warranty": 9.0, "opening_hours": 1.0},
+        entity_share={"tracking": 0.9, "warranty": 0.9, "opening_hours": 0.9},
+    )
+    rng = random.Random(0)
+    counts = {}
+    for _ in range(600):
+        for t in instantiate(model, model.sample(rng), vocab, rng):
+            if t["topic"]:
+                counts[t["topic"]] = counts.get(t["topic"], 0) + 1
+
+    assert counts["tracking"] > counts["warranty"] > counts.get("opening_hours", 0)
+    assert counts["tracking"] > 5 * counts["warranty"] > 0  # circa 10 a 1
+
+
+def test_questions_without_entity_prefer_topics_that_the_site_asks_without_entity(corpus):
+    model = FlowModel.fit(corpus)
+    vocab = SiteVocabulary(
+        pairs=[("news", ""), ("news", "EVENT"), ("tracking", ""), ("tracking", "DOCUMENT")], values={},
+        topic_weights={"news": 50.0, "tracking": 50.0}, entity_share={"news": 0.05, "tracking": 0.95},
+    )
+    rng = random.Random(1)
+    asked, answered = {}, {}
+    for _ in range(1500):
+        for t in instantiate(model, model.sample(rng), vocab, rng):
+            if t["move"] == "question" and not t["entities"] and not t["carry"] and t["topic"]:
+                target = asked if t["bot"] == "ask_slot" else answered if t["bot"] == "answer" else None
+                if target is not None:
+                    target[t["topic"]] = target.get(t["topic"], 0) + 1
+
+    assert asked["tracking"] > 5 * asked["news"]        # si chiede l'entità per ciò che di solito ne ha una
+    assert answered["news"] > 5 * answered["tracking"]  # si risponde subito per ciò che di solito non ne ha

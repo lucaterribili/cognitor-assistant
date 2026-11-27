@@ -1,0 +1,239 @@
+# Secondo passaggio sulle lacune: azioni e mosse ancora poco coperte (prompt, repeat, fuori argomento, insulti,
+# incomprensibili), transizioni residue e tipi di entità poco usati. Stesse convenzioni di 07_lacune.yaml.
+# Tutte source: llm, reviewed: false.
+conversations:
+  - id: gap2-prompt-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Sì, avrei una domanda", move: confirm, bot: prompt}
+      - {u: "Dove si trova l'ufficio per il cambio del medico?", move: question, topic: location, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-prompt-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Gli orari dello sportello anagrafe?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+      - {u: "Sì, ho un'altra richiesta", move: confirm, bot: prompt}
+      - {u: "Posso pagare con il POS?", move: question, topic: payments, ent: [PAYMENT_METHOD], bot: answer}
+      - {u: "Grazie, è tutto", move: thanks, bot: thanks_reply}
+
+  - id: gap2-prompt-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Mi servirebbe una mano", move: question, topic: help, bot: prompt}
+      - {u: "Come faccio a richiedere il certificato di vaccinazione?", move: question, topic: how_to, ent: [DOCUMENT], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: gap2-prompt-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Che servizi offre il consultorio?", move: question, topic: services, ent: [FACILITY], bot: answer}
+      - {u: "Ottimo", move: confirm, bot: offer_more}
+      - {u: "Sì, una cosa", move: confirm, bot: prompt}
+      - {u: "Serve prenotare per il consulto con la psicologa?", move: question, topic: booking, ent: [ROLE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-prompt-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso prenotare una visita senza impegnativa?", move: question, topic: requirements, ent: [MEDICAL_PROCEDURE], rag: low, bot: clarify}
+      - {u: "Sì, esatto, parlavo del servizio pubblico", move: confirm, bot: prompt}
+      - {u: "Serve l'impegnativa per una visita specialistica pubblica?", move: question, topic: requirements, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-repeat-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come si arriva al poliambulatorio in autobus?", move: question, topic: directions, ent: [FACILITY, TRANSPORT], bot: answer}
+      - {u: "Scusa, non ho letto, puoi riscriverlo?", move: repeat_request, bot: repeat}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-repeat-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Entro quando devo disdire la visita?", move: question, topic: deadlines, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Come dici?", move: repeat_request, bot: repeat}
+      - {u: "Ah ok, grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-repeat-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Quali documenti servono per il ritiro dei referti?", move: question, topic: documentation, ent: [DOCUMENT], bot: answer}
+      - {u: "Ripeti per favore", move: repeat_request, bot: repeat}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "Basta così, grazie", move: deny, bot: goodbye}
+
+  - id: gap2-oos-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "Mi racconti una storia?", move: out_of_scope, bot: fallback}
+      - {u: "Allora gli orari del CUP", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-oos-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Il costo di una visita pediatrica?", move: question, topic: costs, ent: [MEDICAL_PROCEDURE], rag: low, bot: clarify}
+      - {u: "Che ore sono adesso?", move: out_of_scope, bot: fallback}
+      - {u: "Parlo con una persona", move: handoff, bot: handoff}
+
+  - id: gap2-oos-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dove si trova il centro vaccinale?", move: question, topic: location, ent: [FACILITY], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "Quanto costa un biglietto del treno per Roma?", move: out_of_scope, bot: fallback}
+      - {u: "Grazie lo stesso", move: thanks, bot: thanks_reply}
+
+  - id: gap2-oos-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Dammi la ricetta della carbonara", move: out_of_scope, bot: fallback}
+      - {u: "Che noia", move: insult, bot: deescalate}
+      - {u: "Quali sono gli orari del distretto 1?", move: question, topic: opening_hours, ent: [ORGANIZATION], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-unclear-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "eh... quella roba lì", move: unclear, bot: clarify}
+      - {u: "Il modulo per l'esenzione", move: question, topic: downloads, ent: [DOCUMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-unclear-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "xyz qwe", move: unclear, bot: clarify}
+      - {u: "ghj", move: unclear, bot: fallback}
+      - {u: "Scusate, volevo sapere gli orari del laboratorio analisi", move: question, topic: opening_hours, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-unclear-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso farlo anche domani?", move: unclear, bot: clarify}
+      - {u: "Intendo prenotare il prelievo per domani mattina", move: question, topic: booking, ent: [MEDICAL_PROCEDURE, DATE], bot: answer}
+      - {u: "Perfetto, grazie", move: thanks, bot: thanks_reply}
+      - {u: "A posto così", move: deny, bot: goodbye}
+
+  - id: gap2-insult-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Fate schifo", move: insult, bot: deescalate}
+      - {u: "Scusate, dov'è il pronto soccorso più vicino?", move: question, topic: location, ent: [DEPARTMENT, ZONE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-insult-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Vi serve altro?", move: question, topic: general_information, bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "Siete davvero inutili", move: insult, bot: deescalate}
+      - {u: "Voglio un operatore", move: handoff, bot: handoff}
+
+  - id: gap2-trans-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Il numero della guardia medica?", move: question, topic: phone, ent: [FACILITY], bot: answer}
+      - {u: "Ok", move: confirm, bot: offer_more}
+      - {u: "No, ciao", move: goodbye, bot: goodbye}
+
+  - id: gap2-trans-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ci sono corsi di primo soccorso?", move: question, topic: training, ent: [EVENT], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Il costo del corso per le aziende?", move: question, topic: costs, ent: [EVENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-trans-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Esiste una app per i referti?", move: question, topic: downloads, ent: [TECHNOLOGY], rag: none, bot: fallback}
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Come scarico i referti online?", move: question, topic: how_to, ent: [DOCUMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-trans-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Ciao", move: greeting, bot: greet}
+      - {u: "No, niente, ciao", move: deny, bot: goodbye}
+
+  - id: gap2-types-01
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Il dottor Neri visita il lunedì?", move: question, topic: schedule, ent: [PERSON, DATE], bot: answer}
+      - {u: "E la dottoressa Greco?", move: follow_up_entity, ent: [PERSON], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-types-02
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "C'è la metropolitana fino all'ospedale?", move: question, topic: directions, ent: [TRANSPORT, FACILITY], bot: answer}
+      - {u: "E dal centro storico?", move: follow_up_entity, ent: [ZONE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-types-03
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Fornite ausili per la deambulazione?", move: question, topic: products, ent: [PRODUCT], bot: answer}
+      - {u: "Come si richiedono?", move: question, topic: how_to, carry: [PRODUCT], bot: answer}
+      - {u: "Serve la prescrizione del medico?", move: question, topic: requirements, carry: [PRODUCT], ent: [ROLE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-types-04
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Posso detrarre il ticket con il modello 730?", move: question, topic: tax_deductions, ent: [TAX, DOCUMENT], bot: answer}
+      - {u: "E la scadenza per presentarlo?", move: question, topic: deadlines, carry: [DOCUMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-types-05
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "C'è un mediatore culturale in arabo?", move: question, topic: availability, ent: [LANGUAGE, ROLE], bot: answer}
+      - {u: "E in francese?", move: follow_up_entity, ent: [LANGUAGE], bot: answer}
+      - {u: "Ottimo, grazie", move: thanks, bot: thanks_reply}
+
+  - id: gap2-types-06
+    source: llm
+    reviewed: false
+    turns:
+      - {u: "Come ci si iscrive alla giornata di screening del 12 dicembre?", move: question, topic: registration, ent: [EVENT, DATE], bot: answer}
+      - {u: "Serve la tessera sanitaria?", move: question, topic: documentation, carry: [EVENT], ent: [DOCUMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}

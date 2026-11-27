@@ -39,11 +39,21 @@ nlu:
     - mi dici la via e il numero civico del [Presidio Ospedaliero Grassi](FACILITY)
     - a quale indirizzo civico si trova i [Consultori](FACILITY)
     - mi fornisci l'indirizzo postale delle [Cappelle Medicee](FACILITY)
+    - dov'è situato il [Consultorio Familiare Valle Rossa](FACILITY)
+    - dove si trova il [Consultorio Familiare Porto Nuovo](FACILITY)
+    - qual è l'indirizzo della [Casa della Comunità Porto Nuovo](FACILITY)
+    - dove sta la [Casa della Comunità Sant'Agostino](FACILITY)
+    - qual è l'ubicazione della [Casa della Comunità Colline](FACILITY)
+    - dove si trova il [Presidio Ospedaliero Santa Maria del Mare](FACILITY)
+    - a quale indirizzo si trova il [Poliambulatorio Specialistico Coni Zugna](FACILITY)
+    - dov'è la sede del [Presidio Ospedaliero Grassi](FACILITY)
   - intent: ask_department_address
     examples:
     - mi dai l'indirizzo dell'[URP](DEPARTMENT)
-    - qual è l'indirizzo della [Direzione Provinciale](DEPARTMENT) dell'[Agenzia delle Entrate](ORGANIZATION)
-    - mi dai l'indirizzo dell'[Ufficio Territoriale](DEPARTMENT) delle Entrate di [Ostia](ZONE)
+    - qual è l'indirizzo della [Direzione Provinciale](DEPARTMENT) dell'[Agenzia delle
+      Entrate](ORGANIZATION)
+    - mi dai l'indirizzo dell'[Ufficio Territoriale](DEPARTMENT) delle Entrate di
+      [Ostia](ZONE)
     - qual è la via dell'[Ufficio del Catasto](DEPARTMENT)
     - qual è l'indirizzo esatto dei [Lavori pubblici](DEPARTMENT)
     - mi dici la via e il numero civico della [Direzione Generale](DEPARTMENT)
@@ -58,11 +68,21 @@ nlu:
     - in che via è situato il [Catasto](DEPARTMENT)
     - cercavo l'indirizzo stradale della [Direzione Sanitaria](DEPARTMENT)
     - qual è l'indirizzo esatto del [SUAP](DEPARTMENT)
+    - dov'è la sede della [UOC Patologia Clinica e Laboratorio Analisi](DEPARTMENT)
+    - a quale piano si trova la [UOC Prevenzione e Sicurezza negli Ambienti di Lavoro](DEPARTMENT)
+    - qual è la sede della [UOC Ostetricia e Ginecologia](DEPARTMENT)
+    - dove trovo la [UOC Pediatria e Neonatologia](DEPARTMENT)
+    - dov'è ubicata la [UOC Chirurgia Generale e Day Surgery](DEPARTMENT)
+    - dove si trova il [Centro di Salute Mentale](DEPARTMENT)
+    - dov'è il [Centro di Diabetologia e Malattie Metaboliche](DEPARTMENT)
+    - qual è l'ubicazione della [UOSD Consultori Familiari](DEPARTMENT)
+    - dove ha sede la [UOC Igiene e Sanità Pubblica](DEPARTMENT)
   - intent: ask_organization_address
     examples:
     - qual è l'indirizzo della sede generale dell'[ASL Roma 3](ORGANIZATION)
     - a che indirizzo si trova lo sportello dell'[Agenzia delle Entrate-Riscossione](ORGANIZATION)
-    - a quale indirizzo postale devo spedire la raccomandata per l'[Agenzia delle Entrate](ORGANIZATION)
+    - a quale indirizzo postale devo spedire la raccomandata per l'[Agenzia delle
+      Entrate](ORGANIZATION)
     - qual è l'indirizzo esatto del municipio del [Comune di Montesole](ORGANIZATION)
     - qual è l'indirizzo esatto dell'[ASL](ORGANIZATION)
     - mi dici la via e il numero civico del [CAF](ORGANIZATION)

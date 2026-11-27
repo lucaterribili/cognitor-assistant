@@ -98,6 +98,10 @@ nlu:
     - cosa si intende con la [Telemedicina](HEALTH_SERVICE)
     - puoi darmi una definizione chiara del [RECUP](HEALTH_SERVICE)
     - che significato ha il [Punto unico di accesso](HEALTH_SERVICE) in questo contesto
+    - che cos'è il [Centro Unico di Prenotazione](HEALTH_SERVICE)
+    - cosa si intende per [Punto Unico di Accesso](HEALTH_SERVICE)
+    - che cos'è l'[Assistenza Domiciliare Integrata](HEALTH_SERVICE)
+    - in cosa consiste la [Rete Locale di Cure Palliative](HEALTH_SERVICE)
   - intent: ask_tech_concept_definition
     examples:
     - cos'è una [rete neurale](TECH_CONCEPT)
@@ -111,7 +115,8 @@ nlu:
     - cosa significa il termine [cron job](TECH_CONCEPT)
     - cosa si intende con la [BiGRU](TECH_CONCEPT)
     - puoi darmi una definizione chiara dei [microservizi](TECH_CONCEPT)
-    - che significato ha la [programmazione orientata agli oggetti](TECH_CONCEPT) in questo contesto
+    - che significato ha la [programmazione orientata agli oggetti](TECH_CONCEPT)
+      in questo contesto
     - che cos'è esattamente i [generatori](TECH_CONCEPT)
     - qual è la definizione precisa degli [assistenti di codice](TECH_CONCEPT)
     - cosa significa il termine [rete neurale](TECH_CONCEPT)
@@ -137,6 +142,14 @@ nlu:
     - che significato ha l'[Ufficio del Catasto](DEPARTMENT) in questo contesto
     - che cos'è esattamente la [Direzione Provinciale](DEPARTMENT)
     - qual è la definizione precisa della [Medicina Legale](DEPARTMENT)
+    - che cos'è la [UOC Patologia Clinica e Laboratorio Analisi](DEPARTMENT)
+    - in cosa consiste la [UOC Prevenzione e Sicurezza negli Ambienti di Lavoro](DEPARTMENT)
+    - che cos'è la [UOC Ostetricia e Ginecologia](DEPARTMENT)
+    - cosa si intende per [UOC Pediatria e Neonatologia](DEPARTMENT)
+    - che cos'è il [Centro di Salute Mentale](DEPARTMENT)
+    - cosa rappresenta il [Centro di Diabetologia e Malattie Metaboliche](DEPARTMENT)
+    - che cos'è la [Direzione Strategica](DEPARTMENT)
+    - cosa si intende per [Dipartimento di Prevenzione](DEPARTMENT)
   - intent: ask_medical_procedure_definition
     examples:
     - cos'è una [curva glicemica](MEDICAL_PROCEDURE)
@@ -193,6 +206,12 @@ nlu:
     - qual è la definizione precisa della [Galleria d'arte contemporanea](FACILITY)
     - cosa significa il termine [Centro Prelievi Palidoro](FACILITY)
     - cosa si intende con il [Centro Prelievi Acilia](FACILITY)
+    - che cos'è il [Consultorio Familiare Valle Verde](FACILITY)
+    - cosa si intende per [Consultorio Familiare Porto Nuovo](FACILITY)
+    - che cos'è la [Casa della Comunità Porto Nuovo](FACILITY)
+    - cosa rappresenta la [Casa della Comunità Valle Verde](FACILITY)
+    - che tipo di struttura è la [Casa della Comunità Colline](FACILITY)
+    - che cos'è il [Presidio Ospedaliero Santa Maria del Mare](FACILITY)
   - intent: ask_procedure_definition
     examples:
     - che cos'è il [ravvedimento operoso](PROCEDURE)
@@ -251,3 +270,14 @@ nlu:
     - cosa significa il termine [donatore di sangue](ROLE)
     - cosa si intende con lo [psicologo](ROLE)
     - puoi darmi una definizione chiara del [Dirigente Scolastico](ROLE)
+    - chi è e cosa fa il [Direttore Generale](ROLE)
+    - che compiti ha il [Direttore Sanitario](ROLE)
+    - cosa fa il [Direttore Amministrativo](ROLE)
+    - di cosa si occupa il [Direttore del Distretto Sanitario](ROLE)
+    - quali sono le funzioni del [Direttore del Presidio Ospedaliero](ROLE)
+    - che ruolo svolge il [Direttore del Dipartimento di Prevenzione](ROLE)
+    - cosa fa il [Responsabile URP e Comunicazione](ROLE)
+    - quali mansioni ha il [Responsabile del Servizio di Prevenzione e Protezione](ROLE)
+    - cosa fa il [Responsabile Rete Locale Cure Palliative](ROLE)
+    - qual è la mansione del [coordinatore infermieristico](ROLE)
+    - di cosa si occupa il [dirigente medico](ROLE)

@@ -81,3 +81,80 @@ conversations:
       - {u: "A che ora?", move: question, topic: opening_hours, carry: [HEALTH_SERVICE], bot: answer}
       - {u: "Serve la prenotazione?", move: question, topic: booking, carry: [HEALTH_SERVICE], bot: answer}
       - {u: "Perfetto, grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-10
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quanto costa una visita oculistica?", move: question, topic: costs, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "E quella cardiologica?", move: follow_up_entity, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-11
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Chi è il primario del reparto di cardiologia?", move: question, topic: staff, ent: [DEPARTMENT], bot: answer}
+      - {u: "E di pediatria?", move: follow_up_entity, ent: [DEPARTMENT], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: follow-12
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quali documenti servono per l'esenzione ticket?", move: question, topic: requirements, ent: [DOCUMENT], bot: answer}
+      - {u: "E per la cartella clinica?", move: follow_up_entity, ent: [DOCUMENT], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-13
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Dove si trova il centro prelievi?", move: question, topic: location, ent: [FACILITY], bot: answer}
+      - {u: "Quali sono gli orari di apertura?", move: question, topic: opening_hours, carry: [FACILITY], bot: answer}
+      - {u: "E il recapito telefonico?", move: question, topic: phone, carry: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-14
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Posso prenotare una risonanza magnetica?", move: question, topic: booking, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Quali sono i tempi di attesa?", move: question, topic: waiting_times, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "E il costo del ticket?", move: question, topic: costs, carry: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Perfetto, grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-15
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Dov'è la sede del distretto 1?", move: question, topic: address, ent: [ORGANIZATION], bot: answer}
+      - {u: "E quella del distretto 2?", move: follow_up_entity, ent: [ORGANIZATION], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: follow-16
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Cosa serve per richiedere il certificato medico?", move: question, topic: documentation, ent: [DOCUMENT], bot: answer}
+      - {u: "Dove posso consegnare il modulo?", move: question, topic: location, carry: [DOCUMENT], bot: answer}
+      - {u: "Ho capito", move: confirm, bot: offer_more}
+      - {u: "No va bene così", move: deny, bot: goodbye}
+
+  - id: follow-17
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "A che ora apre la farmacia dell'ospedale?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "E l'ufficio ticket?", move: follow_up_entity, ent: [FACILITY], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+
+  - id: follow-18
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quali prestazioni offre la neurologia?", move: question, topic: services, ent: [DEPARTMENT], bot: answer}
+      - {u: "Come si contatta il reparto?", move: question, topic: contacts, carry: [DEPARTMENT], bot: answer}
+      - {u: "Molte grazie", move: thanks, bot: thanks_reply}
+

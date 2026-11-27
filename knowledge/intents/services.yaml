@@ -53,7 +53,8 @@ nlu:
     - offrite [ossigenoterapia](HEALTH_SERVICE) a domicilio
     - avete il servizio di [ritiro referti](HEALTH_SERVICE) online
     - c'è il servizio per le [adozioni](HEALTH_SERVICE)
-    - offrite il servizio di [sportello di ascolto psicologico](HEALTH_SERVICE) per gli studenti
+    - offrite il servizio di [sportello di ascolto psicologico](HEALTH_SERVICE) per
+      gli studenti
     - quali servizi sono disponibili per l'[ossigenoterapia](HEALTH_SERVICE)
     - che tipo di servizi offre o riguarda il [ritiro referti](HEALTH_SERVICE)
     - mi elenchi i servizi collegati al [CUP](HEALTH_SERVICE)
@@ -63,6 +64,10 @@ nlu:
     - quali servizi sono disponibili per la [Guardia Medica](HEALTH_SERVICE)
     - che tipo di servizi offre o riguarda la [donazione del sangue](HEALTH_SERVICE)
     - mi elenchi i servizi collegati alla [scelta del medico](HEALTH_SERVICE)
+    - quali prestazioni include l'[Assistenza Domiciliare Integrata](HEALTH_SERVICE)
+    - che servizi gestisce il [Centro Unico di Prenotazione](HEALTH_SERVICE)
+    - a cosa serve il [Punto Unico di Accesso](HEALTH_SERVICE)
+    - cosa offre la [Rete Locale di Cure Palliative](HEALTH_SERVICE)
   - intent: ask_organization_services
     examples:
     - che servizi offre il [Comune](ORGANIZATION)
@@ -101,6 +106,12 @@ nlu:
     - di quali prestazioni e servizi posso usufruire tramite il [Grassi](FACILITY)
     - quali servizi specifici sono attivi per il [Centro Prelievi](FACILITY)
     - cosa comprende l'offerta di servizi della [Casa della Salute](FACILITY)
+    - quali servizi eroga il [Consultorio Familiare Valle Verde](FACILITY)
+    - cosa offre il [Consultorio Familiare Porto Nuovo](FACILITY)
+    - che prestazioni si trovano alla [Casa della Comunità Porto Nuovo](FACILITY)
+    - quali servizi sanitari ci sono nella [Casa della Comunità Valle Verde](FACILITY)
+    - cosa comprende l'offerta della [Casa della Comunità Colline](FACILITY)
+    - quali prestazioni sono garantite dal [Presidio Ospedaliero Santa Maria del Mare](FACILITY)
   - intent: ask_department_services
     examples:
     - c'è il servizio di [Medicina dello Sport](DEPARTMENT)
@@ -115,10 +126,20 @@ nlu:
     - quali servizi sono disponibili per la [Polizia locale](DEPARTMENT)
     - che tipo di servizi offre o riguarda la [Neurologia](DEPARTMENT)
     - mi elenchi i servizi collegati all'[Ufficio Riabilitazione e Disabilità Adulti](DEPARTMENT)
-    - di quali prestazioni e servizi posso usufruire tramite il [Dipartimento del Farmaco](DEPARTMENT)
+    - di quali prestazioni e servizi posso usufruire tramite il [Dipartimento del
+      Farmaco](DEPARTMENT)
     - quali servizi specifici sono attivi per la [UOC Consultori Familiari](DEPARTMENT)
     - cosa comprende l'offerta di servizi della [Cardiologia interventistica](DEPARTMENT)
     - quali servizi sono disponibili per i [tributi](DEPARTMENT)
+    - quali servizi offre la [UOC Patologia Clinica e Laboratorio Analisi](DEPARTMENT)
+    - cosa comprende l'offerta della [UOC Prevenzione e Sicurezza negli Ambienti di
+      Lavoro](DEPARTMENT)
+    - che prestazioni eroga la [UOC Ostetricia e Ginecologia](DEPARTMENT)
+    - quali servizi sono erogati dalla [UOC Pediatria e Neonatologia](DEPARTMENT)
+    - cosa offre la [UOC Chirurgia Generale e Day Surgery](DEPARTMENT)
+    - quali servizi sono attivi presso il [Centro di Salute Mentale](DEPARTMENT)
+    - di cosa si occupa il [Centro di Diabetologia e Malattie Metaboliche](DEPARTMENT)
+    - che servizi offre la [UOSD Consultori Familiari](DEPARTMENT)
   - intent: ask_misc_services
     examples:
     - cosa posso fare nell'area riservata [Fisconline](MISC)
@@ -145,7 +166,8 @@ nlu:
     - quali servizi sono disponibili per il [modello 730](DOCUMENT)
     - che tipo di servizi offre o riguarda il [modello F24](DOCUMENT)
     - mi elenchi i servizi collegati alla [patente](DOCUMENT)
-    - di quali prestazioni e servizi posso usufruire tramite la [dichiarazione dei redditi](DOCUMENT)
+    - di quali prestazioni e servizi posso usufruire tramite la [dichiarazione dei
+      redditi](DOCUMENT)
     - quali servizi specifici sono attivi per la [cartella esattoriale](DOCUMENT)
     - cosa comprende l'offerta di servizi del [modello Redditi PF](DOCUMENT)
     - quali servizi sono disponibili per la [dichiarazione precompilata](DOCUMENT)
@@ -157,7 +179,8 @@ nlu:
     - quali servizi sono disponibili per il [codice fiscale](DOCUMENT)
     - che tipo di servizi offre o riguarda l'[ISEE](DOCUMENT)
     - mi elenchi i servizi collegati alla [partita IVA](DOCUMENT)
-    - di quali prestazioni e servizi posso usufruire tramite la [carta d'identità elettronica](DOCUMENT)
+    - di quali prestazioni e servizi posso usufruire tramite la [carta d'identità
+      elettronica](DOCUMENT)
   - intent: ask_procedure_services
     examples:
     - quali servizi telematici ci sono per la [registrazione del contratto di locazione](PROCEDURE)

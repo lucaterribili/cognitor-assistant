@@ -94,3 +94,71 @@ conversations:
       - {u: "Quali servizi ci sono per i bambini?", move: question, topic: services, ent: [HEALTH_SERVICE], bot: answer}
       - {u: "Grazie", move: thanks, bot: thanks_reply}
       - {u: "No, nient'altro", move: deny, bot: goodbye}
+
+  - id: meta-12
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Quali sono gli orari delle visite in reparto?", move: question, topic: opening_hours, ent: [DEPARTMENT], bot: answer}
+      - {u: "Non ho capito bene, puoi ripetere?", move: repeat_request, bot: repeat}
+      - {u: "Ok grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Arrivederci", move: goodbye, bot: goodbye}
+
+  - id: meta-13
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Come si effettua la disdetta di una visita?", move: question, topic: procedures, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Puoi ripetere l'ultimo punto?", move: repeat_request, bot: repeat}
+      - {u: "Chiarissimo", move: confirm, bot: offer_more}
+      - {u: "No grazie, basta così", move: deny, bot: goodbye}
+
+  - id: meta-14
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Non capite mai niente, siete pessimi", move: insult, bot: deescalate}
+      - {u: "Vorrei solo il numero di telefono dell'ospedale", move: question, topic: phone, ent: [FACILITY], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: meta-15
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Che risposta inutile", move: insult, bot: deescalate}
+      - {u: "Voglio subito parlare con un operatore", move: handoff, bot: handoff}
+
+  - id: meta-16
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Buongiorno", move: greeting, bot: greet}
+      - {u: "Ho bisogno di aiuto", move: question, topic: help, bot: prompt}
+      - {u: "Vorrei prenotare una visita cardiologica", move: question, topic: booking, ent: [MEDICAL_PROCEDURE], bot: answer}
+      - {u: "Grazie", move: thanks, bot: thanks_reply}
+
+  - id: meta-17
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Salve", move: greeting, bot: greet}
+      - {u: "Mi passi subito un operatore umano?", move: handoff, bot: handoff}
+
+  - id: meta-18
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Dove si trova l'ufficio relazioni con il pubblico?", move: question, topic: location, ent: [FACILITY], bot: answer}
+      - {u: "Ho capito", move: confirm, bot: offer_more}
+      - {u: "Sì, a che ora apre?", move: question, topic: opening_hours, carry: [FACILITY], bot: answer}
+      - {u: "Grazie mille", move: thanks, bot: thanks_reply}
+      - {u: "Ciao", move: goodbye, bot: goodbye}
+
+  - id: meta-19
+    source: hand
+    reviewed: true
+    turns:
+      - {u: "Qual è l'orario del laboratorio analisi?", move: question, topic: opening_hours, ent: [FACILITY], bot: answer}
+      - {u: "Perfetto", move: confirm, bot: offer_more}
+      - {u: "No, grazie non serve altro", move: deny, bot: goodbye}
+

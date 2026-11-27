@@ -114,32 +114,75 @@ Esegui la pipeline completa che include:
 python -m pipeline
 ```
 
-### Training Step-by-Step
+### Pipeline fino alla Creazione del Classificatore (senza Dialogue Policy)
 
+Per eseguire l'intera pipeline di preparazione dati e addestrare **solo l'Intent Classifier** (saltando la Dialogue Policy):
+
+**Da riga di comando:**
 ```bash
-# 1. Genera corpus per l'embedding
-python -m pipeline.intent_builder
+python -m pipeline --no-policy
+```
+*(è supportato anche l'alias `--skip-policy`)*
 
-# 2. Allena l'embedding (uno dei due, a seconda di USE_FASTTEXT)
-python -m intellective.train_own_embedder   # USE_FASTTEXT=false (default)
-python -m intellective.train_fast_text      # USE_FASTTEXT=true
-
-# 3. Allena Intent Classifier
-python -m intellective.train_intent_classifier
-
-# 4. Allena Dialogue Policy (opzionale)
-python -m intellective.train_dialogue_policy
+**Da riga di comando con one-liner Python:**
+```bash
+python -c "from pipeline import run_full_pipeline; run_full_pipeline(train_policy=False)"
 ```
 
-### Training Opzioni
+**Da script Python:**
+```python
+from pipeline import run_full_pipeline
 
-`python -m pipeline` esegue sempre tutti gli step. Per saltare il training del classifier o della policy chiama la funzione da Python:
+run_full_pipeline(train_policy=False)  # esegue fino all'Intent Classifier, saltando la Dialogue Policy
+```
+
+Questo comando esegue in sequenza:
+1. Validazione di intenti, esempi ed entità NER nei file YAML (`knowledge/` e `training_data/`)
+2. Generazione del corpus raw per l'embedding in `.cognitor/fast-text.txt`
+3. Merge di rules, responses e conversations in `.cognitor/`
+4. Addestramento dell'embedding di sotto-parola (SentencePiece + skip-gram, oppure FastText con `USE_FASTTEXT=true`)
+5. Generazione del dataset NLU tokenizzato (`.cognitor/tokenized_data.npy`)
+6. Addestramento dell'Intent Classifier BiGRU con Attention e NER (`models/intent_model_fast.pth`)
+
+### Opzioni da CLI
+
+Lo script `pipeline` supporta i seguenti flag da terminale:
+
+- `--no-policy` (o `--skip-policy`): Salta l'addestramento della Dialogue Policy ed esegue fino al classificatore compreso.
+- `--no-classifier` (o `--skip-classifier`): Salta l'addestramento dell'Intent Classifier.
+
+Le stesse opzioni possono essere passate alla funzione Python `run_full_pipeline`:
 
 ```python
 from pipeline import run_full_pipeline
 
+run_full_pipeline(train_policy=False)      # esegue fino al Classificatore (salta la Dialogue Policy)
 run_full_pipeline(train_classifier=False)  # salta l'Intent Classifier
-run_full_pipeline(train_policy=False)      # salta la Dialogue Policy
+```
+
+### Training Step-by-Step
+
+Se desideri eseguire i singoli passaggi manualmente:
+
+```bash
+# 1. Genera corpus raw per l'embedding (.cognitor/fast-text.txt)
+python -c "from classes.dataset_generator import DatasetGenerator; g = DatasetGenerator.load_from_yaml_files(); g.generate_fasttext_corpus_only()"
+
+# 1.5. Merge di rules, responses e conversations in .cognitor/
+python -m pipeline.merge_data
+
+# 2. Allena l'embedding (uno dei due, a seconda di USE_FASTTEXT)
+python -m intellective.train_own_embedder   # USE_FASTTEXT=false (default, SentencePiece + skip-gram)
+python -m intellective.train_fast_text      # USE_FASTTEXT=true (FastText)
+
+# 3. Genera dataset NLU tokenizzato (.cognitor/tokenized_data.npy)
+python -m pipeline.intent_builder
+
+# 4. Allena Intent Classifier
+python -m intellective.train_intent_classifier
+
+# 5. Allena Dialogue Policy (opzionale)
+python -m intellective.train_dialogue_policy
 ```
 
 ## Esportare il modello NLU in ONNX

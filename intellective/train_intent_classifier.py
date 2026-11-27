@@ -326,7 +326,12 @@ def train_main_model():
 
     train_with_validation(model, train_dataloader, val_dataloader, epochs=50, lr=0.001, device=device)
 
-    torch.save(model.state_dict(), os.path.join(BASE_DIR, 'models', 'intent_model_fast.pth'))
+    checkpoint = os.path.join(BASE_DIR, 'models', 'intent_model_fast.pth')
+    torch.save(model.state_dict(), checkpoint)
+
+    # Il label smoothing rende il modello sotto-sicuro: una temperatura sulla validation ricalibra le confidenze.
+    from intellective.calibrate_intent_classifier import calibrate
+    calibrate(checkpoint)
 
 
 if __name__ == "__main__":
